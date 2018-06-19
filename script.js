@@ -1,15 +1,9 @@
-
-// var container_width = ganttSvg.node().getBoundingClientRect().width
-
-// ganttSvg.node().getBoundingClientRect().height
-
-
 var ganttSvg = d3.select("#gantt svg"),
     brushSvg = d3.select("#brush svg"),
 
     margin = { top: 20, right: 20, bottom: 110, left: 40 },
     margin2 = { top: 20, right: 20, bottom: 30, left: 40 },
-    width = +ganttSvg.node().getBoundingClientRect().width - margin.left - margin.right,
+    width = +ganttSvg.node().getBoundingClientRect().width - 30 - margin.left - margin.right,
     height = +ganttSvg.node().getBoundingClientRect().height - margin.top - margin.bottom,
     height2 = +brushSvg.node().getBoundingClientRect().height - margin2.top - margin2.bottom;
 
@@ -43,11 +37,11 @@ var zoom = d3.zoom()
     ])
     .on("zoom", zoomed);
 
-// ganttSvg.append("defs").append("clipPath")
-//     .attr("id", "clip")
-//     .append("rect")
-//     .attr("width", width)
-//     .attr("height", height);
+ganttSvg.append("defs").append("clipPath")
+    .attr("id", "clip")
+    .append("rect")
+    .attr("width", width)
+    .attr("height", height);
 
 var focus = ganttSvg.append("g")
     .attr("class", "focus")
@@ -89,8 +83,15 @@ function update(data) {
         }
     })
 
-    x.domain(d3.extent(data.stesure.elements, function(d) { return d.start_year; }));
-    console.log(x.domain())
+    let xDomain = [];
+
+    data.stesure.elements.forEach(function(d){
+      if (d.start) {
+        xDomain.push(d.start);
+      }
+    })
+
+    x.domain(d3.extent(xDomain));
     y.domain(yDomain);
 
     x2.domain(x.domain());
@@ -115,12 +116,13 @@ function update(data) {
         .call(brush)
         .call(brush.move, x.range());
 
-    ganttSvg.append("rect")
-        .attr("class", "zoom")
-        .attr("width", width)
-        .attr("height", height)
-        .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
-        .call(zoom);
+    // // make scrollwheel zoom unactive
+    // ganttSvg.append("rect")
+    //     .attr("class", "zoom")
+    //     .attr("width", width)
+    //     .attr("height", height)
+    //     .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+    //     .call(zoom);
 }
 
 var parseDate = d3.timeParse("%Y-%m-%d");
@@ -152,10 +154,10 @@ function init() {
                 } else {
                     d.start = undefined;
                 }
-                console.log(d.start);
+                // console.log(d.start);
             })
 
-            console.log(data);
+            console.info(data);
             update(data);
         },
         simpleSheet: false
