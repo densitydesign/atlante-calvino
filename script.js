@@ -2,17 +2,15 @@ var ganttSvg = d3.select("#gantt svg"),
     brushSvg = d3.select("#brush svg"),
 
     margin = { top: 20, right: 20, bottom: 110, left: 40 },
-    margin2 = { top: 20, right: 20, bottom: 30, left: 40 },
-    width = +ganttSvg.node().getBoundingClientRect().width - 30 - margin.left - margin.right,
+    margin2 = { top: 0, right: 0, bottom: 18, left: 0 },
+    width = +ganttSvg.node().getBoundingClientRect().width - margin.left - margin.right,
     height = +ganttSvg.node().getBoundingClientRect().height - margin.top - margin.bottom,
     height2 = +brushSvg.node().getBoundingClientRect().height - margin2.top - margin2.bottom;
 
 var x = d3.scaleTime().range([0, width]),
     x2 = d3.scaleTime().range([0, width]),
-    y = d3.scaleBand()
-    .range([height, 0]),
-    y2 = d3.scaleBand()
-    .range([height2, 0]);
+    y = d3.scaleBand().range([height, 0]),
+    y2 = d3.scaleBand().range([height2, 0]);
 
 var xAxis = d3.axisBottom(x),
     xAxis2 = d3.axisBottom(x2),
@@ -73,22 +71,21 @@ function zoomed() {
 
 function update(data) {
     let yDomain = [];
+
     let titoli = data.info.elements.map(function(d) {
         return d.id;
     })
-
     titoli.forEach(function(d) {
-        if (yDomain.indexOf(d) < 0) {
-            yDomain.push(d);
-        }
+        if (yDomain.indexOf(d) < 0) yDomain.push(d);
     })
 
     let xDomain = [];
-
-    data.stesure.elements.forEach(function(d){
-      if (d.start) {
-        xDomain.push(d.start);
-      }
+    data.stesure.elements.forEach(function(d) {
+        if (d.start) xDomain.push(d.start);
+        if (d.end) xDomain.push(d.end);
+    })
+    data.pubblicazioni.elements.forEach(function(d) {
+        if (d.publication) xDomain.push(d.publication);
     })
 
     x.domain(d3.extent(xDomain));
@@ -154,10 +151,33 @@ function init() {
                 } else {
                     d.start = undefined;
                 }
-                // console.log(d.start);
             })
 
-            console.info(data);
+            data.pubblicazioni.elements.forEach(function(d) {
+                d.precision_publication = 'none';
+                d.publication = undefined;
+                if (d.year) {
+                    d.precision_publication = 'year';
+                    if (d.month) {
+                        d.precision_publication = 'month';
+                        if (d.day) {
+                            d.precision_publication = 'day';
+                            var dateString = d.year + '-' + d.month + '-' + d.day;
+                            d.publication = parseDate(dateString);
+                        } else {
+                            var dateString = d.year + '-' + d.month + '-28';
+                            d.publication = parseDate(dateString);
+                        }
+                    } else {
+                        var dateString = d.year + '-12-31';
+                        d.publication = parseDate(dateString);
+                    }
+                }
+                // console.info(d.publication);
+            })
+            // console.table(data.info.elements);
+            // console.table(data.stesure.elements);
+            // console.table(data.pubblicazioni.elements);
             update(data);
         },
         simpleSheet: false
