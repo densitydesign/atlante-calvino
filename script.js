@@ -1,9 +1,10 @@
-var svg = d3.select("svg"),
+var ganttSvg = d3.select("svg#gantt"),
+    brushSvg = d3.select("svg#brush"),
     margin = { top: 20, right: 20, bottom: 110, left: 40 },
     margin2 = { top: 430, right: 20, bottom: 30, left: 40 },
-    width = +svg.attr("width") - margin.left - margin.right,
-    height = +svg.attr("height") - margin.top - margin.bottom,
-    height2 = +svg.attr("height") - margin2.top - margin2.bottom;
+    width = +ganttSvg.attr("width") - margin.left - margin.right,
+    height = +ganttSvg.attr("height") - margin.top - margin.bottom,
+    height2 = +brushSvg.attr("height") - margin2.top - margin2.bottom;
 
 var x = d3.scaleTime().range([0, width]),
     x2 = d3.scaleTime().range([0, width]),
@@ -35,37 +36,19 @@ var zoom = d3.zoom()
     ])
     .on("zoom", zoomed);
 
-// var area = d3.area()
-//     .curve(d3.curveMonotoneX)
-//     .x(function(d) { return x(d.start_year); })
-//     .y0(height)
-//     .y1(function(d) { return y(d.titolo); });
-
-// var area2 = d3.area()
-//     .curve(d3.curveMonotoneX)
-//     .x(function(d) { return x2(d.start_year); })
-//     .y0(height2)
-//     .y1(function(d) { return y2(d.titolo); });
-
-svg.append("defs").append("clipPath")
+brushSvg.append("defs").append("clipPath")
     .attr("id", "clip")
     .append("rect")
     .attr("width", width)
     .attr("height", height);
 
-var focus = svg.append("g")
+var focus = ganttSvg.append("g")
     .attr("class", "focus")
     .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var context = svg.append("g")
+var context = brushSvg.append("g")
     .attr("class", "context")
     .attr("transform", "translate(" + margin2.left + "," + margin2.top + ")");
-
-// d3.tsv("data.tsv", type, function(error, data) {
-//     if (error) throw error;
-
-
-// });
 
 function brushed() {
     if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
@@ -73,7 +56,7 @@ function brushed() {
     x.domain(s.map(x2.invert, x2));
     // focus.select(".area").attr("d", area);
     focus.select(".axis--x").call(xAxis);
-    svg.select(".zoom").call(zoom.transform, d3.zoomIdentity
+    ganttSvg.select(".zoom").call(zoom.transform, d3.zoomIdentity
         .scale(width / (s[1] - s[0]))
         .translate(-s[0], 0));
 }
@@ -106,11 +89,6 @@ function update(data) {
     x2.domain(x.domain());
     y2.domain(y.domain());
 
-    // focus.append("path")
-    //     .datum(data)
-    //     .attr("class", "area")
-    //     .attr("d", area);
-
     focus.append("g")
         .attr("class", "axis axis--x")
         .attr("transform", "translate(0," + height + ")")
@@ -119,11 +97,6 @@ function update(data) {
     focus.append("g")
         .attr("class", "axis axis--y")
         .call(yAxis);
-
-    // context.append("path")
-    //     .datum(data)
-    //     .attr("class", "area")
-    //     .attr("d", area2);
 
     context.append("g")
         .attr("class", "axis axis--x")
@@ -135,7 +108,7 @@ function update(data) {
         .call(brush)
         .call(brush.move, x.range());
 
-    svg.append("rect")
+    ganttSvg.append("rect")
         .attr("class", "zoom")
         .attr("width", width)
         .attr("height", height)
@@ -181,10 +154,4 @@ function init() {
         simpleSheet: false
     })
 }
-window.addEventListener('DOMContentLoaded', init)
-
-function type(d) {
-    d.start_year = parseDate(d.start_year);
-    // d.titolo = d.titolo;
-    return d;
-}
+// window.addEventListener('DOMContentLoaded', init)

@@ -1,3 +1,11 @@
+svg#gantt {
+	background-color: #FADBD8;
+}
+
+svg#brush {
+	background-color: #D6DBDF;
+}
+
 .area {
 	fill: #FF5733;
 	clip-path: url(#clip);
