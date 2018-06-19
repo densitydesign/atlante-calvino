@@ -1,10 +1,17 @@
-var ganttSvg = d3.select("svg#gantt"),
-    brushSvg = d3.select("svg#brush"),
+
+// var container_width = ganttSvg.node().getBoundingClientRect().width
+
+// ganttSvg.node().getBoundingClientRect().height
+
+
+var ganttSvg = d3.select("#gantt svg"),
+    brushSvg = d3.select("#brush svg"),
+
     margin = { top: 20, right: 20, bottom: 110, left: 40 },
-    margin2 = { top: 430, right: 20, bottom: 30, left: 40 },
-    width = +ganttSvg.attr("width") - margin.left - margin.right,
-    height = +ganttSvg.attr("height") - margin.top - margin.bottom,
-    height2 = +brushSvg.attr("height") - margin2.top - margin2.bottom;
+    margin2 = { top: 20, right: 20, bottom: 30, left: 40 },
+    width = +ganttSvg.node().getBoundingClientRect().width - margin.left - margin.right,
+    height = +ganttSvg.node().getBoundingClientRect().height - margin.top - margin.bottom,
+    height2 = +brushSvg.node().getBoundingClientRect().height - margin2.top - margin2.bottom;
 
 var x = d3.scaleTime().range([0, width]),
     x2 = d3.scaleTime().range([0, width]),
@@ -36,11 +43,11 @@ var zoom = d3.zoom()
     ])
     .on("zoom", zoomed);
 
-brushSvg.append("defs").append("clipPath")
-    .attr("id", "clip")
-    .append("rect")
-    .attr("width", width)
-    .attr("height", height);
+// ganttSvg.append("defs").append("clipPath")
+//     .attr("id", "clip")
+//     .append("rect")
+//     .attr("width", width)
+//     .attr("height", height);
 
 var focus = ganttSvg.append("g")
     .attr("class", "focus")
@@ -154,4 +161,4 @@ function init() {
         simpleSheet: false
     })
 }
-// window.addEventListener('DOMContentLoaded', init)
+window.addEventListener('DOMContentLoaded', init)
