@@ -130,7 +130,7 @@ function init() {
         callback: function(data, tabletop) {
 
             data.stesure.elements.forEach(function(d) {
-
+                // start
                 d.precision_start = 'none';
                 if (d.start_year) {
                     d.precision_start = 'year';
@@ -151,6 +151,28 @@ function init() {
                 } else {
                     d.start = undefined;
                 }
+                // end
+                d.precision_end = 'none';
+                if (d.end_year) {
+                    d.precision_end = 'year';
+                    if (d.end_month) {
+                        d.precision_end = 'month';
+                        if (d.end_day) {
+                            d.precision_end = 'day';
+                            var dateString = d.end_year + '-' + d.end_month + '-' + d.end_day;
+                            d.end = parseDate(dateString);
+                        } else {
+                            var dateString = d.end_year + '-' + d.end_month + '-28';
+                            d.end = parseDate(dateString);
+                        }
+                    } else {
+                        var dateString = d.end_year + '-12-28';
+                        d.end = parseDate(dateString);
+                    }
+                } else {
+                    d.end = undefined;
+                }
+                // console.log(d.end);
             })
 
             data.pubblicazioni.elements.forEach(function(d) {
