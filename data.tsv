@@ -1,0 +1,175 @@
+id	titolo	conteggio	start_year	start_month	start_day	end_year	end_month	end_day
+1	Alba sui rami nudi	1	1947	0	1	1950	0	1
+2	Andato al comando	1	1945	1	1	1945	12	31
+3	Angoscia in caserma	1	1945	1	1	1945	12	16
+4	Attesa della morte in un albergo	1	1949	1	1	1949	7	30
+5	Campo di mine	1	1946	1	1	1946	8	18
+6	Chi ha messo la mina nel mare?	1	1948	1	1	1948	11	23
+7	Come imparare a essere morto	1	1983	9	6	1983	9	13
+8	Dal terrazzo	1	1982	11	21	1982	11	26
+9	Del modersi la lingua	1	1975	1	1	1975	8	1
+10	Del prendersela coi giovani	1	1975	1	1	1975	8	10
+11	Desiderio in novembre	1	1949	1	1	1949	7	30
+12	Di padre in figlio	1	1946	1	1	1946	4	28
+13	Dollari e vecchie mondane	1	1947	1	1	1947	12	22
+14	Dov'è più azzurro il fiume	1	1963	1	1	1963	11	24
+15	Fino a che dura il Sole	2	1964	9	4	1964	9	7
+16	Fino a che dura il Sole	2	1964	11	23	1964	11	23
+17	Fumo, vento e bolle di sapone	1	1963	1	1	1963	11	10
+18	Funghi in città	1	1952	1	1	1952	9	22
+19	Furto in una pasticceria	1	1946	1	1	1946	12	31
+20	Giochi senza fine	1	1964	9	26	1964	10	10
+21	Gli amori delle tartarughe	1	1982	12	7	1982	12	8
+22	Gli anni-luce	1	1965	8	18	1965	8	20
+23	Gli avanguardisti a Mentone	1	1952	12	25	1953	1	18
+24	I cristalli	1	1967	2	4	1967	2	11
+25	I Dinosauri	1	1965	9	14	1965	9	23
+26	I figli di Babbo Natale	1	1963	1	1	1963	11	23
+27	I figli poltroni	1	1948	1	1	1948	1	8
+28	I fratelli Bagnasco	1	1946	1	1	1946	9	22
+29	I meteoriti	2	1965	9	10	1965	9	12
+30	I meteoriti	2	1965	9	18	1965	9	18
+31	I. Mitosi	1	1966	7	22	1966	7	29
+32	II. Meiosi	1	1967	7	26	1967	8	15
+33	III. Morte	1	1967	9	14	1967	9	17
+34	Il bosco degli animali	1	1948	1	1	1948	4	20
+35	Il bosco sull'autostrada	1	1953	1	1	1953	2	1
+36	Il cielo di pietra	1	1968	6	1	1968	6	3
+37	Il coniglio velenoso	1	1954	1	1	1954	12	25
+38	Il conte di Montecristo	1	1967	8	29	1967	9	11
+39	Il fischio del merlo	2	1975	1	1	1975	8	10
+40	Il fischio del merlo	2	1982	12	1	1982	12	31
+41	Il gatto e il poliziotto	1	1948	1	1	1948	8	28
+42	Il giardino dei gatti ostinati	1	1963	1	1	1963	11	23
+43	Il giardino incantato	1	1948	1	1	1948	2	1
+44	Il gorilla albino	2	1980	5	11	1980	5	11
+45	Il gorilla albino	2	1982	12	1	1982	12	31
+46	Il guidatore notturno	1	1967	6	1	1967	6	31
+47	Il marmo e il sangue	1	1983	7	18	1983	7	20
+48	Il modello dei modelli	1	1983	8	28	1983	9	2
+49	Il mondo guarda il mondo	1	1975	1	1	1982	12	31
+50	Il museo dei formaggi	1	1982	3	16	1982	3	30
+51	Il niente e il poco	1	1984	8	14	1984	8	21
+52	Il piccione comunale	1	1952	10	10	1952	10	10
+53	Il prato infinito	1	1982	12	8	1982	12	9
+54	Il sangue, il mare	1	1966	4	9	1966	7	10
+55	Il seno nudo	1	1975	1	1	1977	8	2
+56	Impiccagione di un giudice	1	1948	1	1	1948	2	1
+57	L'aiola di sabbia	1	1975	1	1	1977	1	16
+58	L'aria buona	1	1953	1	1	1953	7	5
+59	L'avventura di due sposi	1	1958	1	1	1958	11	20
+60	L'avventura di un fotografo	1	1970	3	1	1970	3	31
+61	L'avventura di un impiegato	1	1953	1	1	1953	8	31
+62	L'avventura di un lettore	1	1958	1	1	1958	12	31
+63	L'avventura di un miope	1	1958	1	1	1958	11	20
+64	L'avventura di un poeta	1	1958	7	24	1958	8	7
+65	L'avventura di un soldato	1	1949	1	1	1949	7	30
+66	L'avventura di un viaggiatore	1	1957	11	1	1957	11	13
+67	L'avventura di una bagnante	1	1951	1	1	1951	8	31
+68	L'avventura di una moglie	1	1958	1	1	1958	11	20
+69	L'avventura di uno sciatore	1	1959	1	1	1959	5	31
+70	L'entrata in guerra	1	1953	6	14	1953	7	5
+71	L'implosione	1	1984	9	3	1984	9	4
+72	L'inseguimento	1	1967	4	14	1967	4	28
+73	L'invasione degli storni	2	1981	11	30	1981	11	30
+74	L'invasione degli storni	2	1982	12	1	1982	12	31
+75	L'occhio del padrone	1	1947	1	1	1947	3	30
+76	L'occhio e i pianeti	1	1982	4	7	1982	4	8
+77	L'ordine degli squamati	1	1983	5	8	1983	5	15
+78	L'origine degli uccelli	2	1964	1	1	1964	12	31
+79	L'origine degli uccelli	2	1967	1	23	1967	1	27
+80	L'universo come specchio	1	1983	9	3	1983	9	6
+81	La casa degli alveari	1	1949	1	1	1949	7	30
+82	La città smarrita nella neve	1	1963	1	1	1963	12	8
+83	La città tutta per lui	1	1963	1	1	1963	11	23
+84	La contemplazione delle stelle	1	1982	8	12	1982	8	23
+85	La corsa delle giraffe	1	1975	1	1	1975	8	1
+86	La cura delle vespe	1	1953	1	1	1953	2	15
+87	La distanza della Luna	1	1964	4	1	1964	6	29
+88	La fame a Bévera	1	1947	1	1	1947	5	18
+89	La fermata sbagliata	1	1963	1	1	1963	11	3
+90	La forma dello spazio	1	1965	7	24	1965	8	8
+91	La formica argentina	1	1949	8	1	1952	4	31
+92	La gallina di reparto	1	1954	1	1	1954	7	31
+93	La Luna come un fungo	1	1964	11	27	1964	12	8
+94	La memoria del mondo	1	1967	5	5	1967	5	7
+95	La molle Luna	1	1965	9	11	1965	11	21
+96	La notte dei numeri	1	1958	1	1	1958	7	15
+97	La nuvola di smog	1	1958	6	23	1958	8	18
+98	La pancia del geco	2	1982	8	6	1982	8	6
+99	La pancia del geco	2	1982	12	11	1982	12	12
+100	La pantofola spaiata	1	1975	1	1	1975	9	18
+101	La pietanziera	1	1952	1	1	1952	10	19
+102	La pioggia e le foglie	1	1963	1	1	1963	10	27
+103	La signora Paulatim	1	1958	1	1	1958	9	9
+104	La spada del sole	1	1975	1	1	1983	7	29
+105	La speculazione edilizia	1	1956	4	5	1957	7	12
+106	La spirale	2	1965	4	22	1965	5	8
+107	La spirale	2	1965	9	24	1965	9	27
+108	La stessa cosa del sangue	1	1949	1	1	1949	7	30
+109	La taverna dei destini incrociati	1	1968	1	1	1973	10	27
+110	La villeggiatura in panchina	2	1958	1	1	1958	11	12
+111	La villeggiatura in panchina	2	1963	1	1	1963	11	23
+112	Le conchiglie e il tempo	2	1966	10	7	1966	10	15
+113	Le conchiglie e il tempo	2	1968	1	1	1968	11	1
+114	Le figlie della Luna	1	1968	2	19	1968	2	29
+115	Le notti dell'UNPA	1	1953	9	1	1953	9	31
+116	Lettura di un'onda	2	1975	1	1	1975	8	24
+117	Lettura di un'onda	2	1982	7	28	1982	7	31
+118	Lo zio acquatico	1	1964	10	17	1964	10	17
+119	Luna di pomeriggio	1	1982	12	1	1982	12	31
+120	Luna e Gnac	1	1957	1	1	1957	5	4
+121	Mai nessuno degli uomini lo seppe	1	1950	1	1	1950	11	31
+122	Marcovaldo al supermarket	1	1963	1	1	1963	10	20
+123	Paese infido	1	1953	1	1	1953	4	31
+124	Paura sul sentiero	1	1946	1	1	1946	6	1
+125	Pesci grossi, pesci piccoli	1	1950	1	1	1950	9	23
+126	Pranzo con un pastore	1	1948	1	1	1948	9	15
+127	Quanto scommettiamo	1	1964	11	14	1964	11	14
+128	Senza colori	1	1964	8	28	1964	8	31
+129	Serpenti e teschi	1	1975	1	1	1976	7	16
+130	Si dorme come cani	1	1947	1	1	1947	12	31
+131	Sul far del giorno	1	1964	4	16	1964	4	16
+132	Tempesta solare	1	1968	3	28	1968	4	2
+133	Ti con zero	1	1966	8	6	1966	8	10
+134	Tutto in un punto	1	1964	5	19	1964	5	21
+135	Ultimo viene il corvo	1	1946	1	1	1946	12	31
+136	Un bastimento carico di granchi	1	1947	1	1	1947	7	6
+137	Un bel gioco dura poco	1	1952	1	1	1952	12	31
+138	Un chilo e mezzo di grasso d'oca	1	1975	1	1	1976	1	23
+139	Un letto di passaggio	1	1949	1	1	1949	12	31
+140	Un pomeriggio, Adamo	1	1947	1	1	1947	12	31
+141	Un sabato di sole, sabbia e sonno	1	1963	1	1	1963	11	23
+142	Un segno nello spazio	1	1964	5	17	1964	5	18
+143	Un viaggio con le mucche	1	1954	1	1	1954	12	31
+144	Uno dei tre è ancora vivo	1	1947	1	1	1947	12	31
+145	Uomo nei gerbidi	1	1946	1	1	1946	6	23
+146	Va' cosi che vai bene	1	1947	1	1	1947	12	31
+147	Visti alla mensa	1	1947	1	1	1947	1	8
+148	Cosmicomiche vecchie e nuove	2	1964	1	1	1968	11	1
+149	Cosmicomiche vecchie e nuove	2	1984	8	14	1984	9	4
+150	Eremita a Parigi	1	1974	12	1	1974	12	31
+151	Gli amori difficili	1	1949	1	1	1967	4	28
+152	Gli amori difficili	1	1959	1	1	1970	3	31
+153	I racconti	2	1945	1	1	1953	9	31
+154	I racconti	2	1947	1	1	1958	11	20
+155	Il barone rampante	1	1956	12	10	1957	2	26
+156	Il castello dei destini incrociati	1	1968	1	1	1969	11	31
+157	Il cavaliere inesistente	1	1959	1	1	1959	12	31
+158	Il sentiero dei nidi di ragno	1	1946	1	1	1946	12	31
+159	Il visconte dimezzato	1	1951	7	1	1951	9	30
+160	L'entrata in guerra	1	1952	12	25	1953	9	31
+161	La giornata d'uno scrutatore	1	1953	1	1	1963	12	31
+162	La memoria del mondo	1	1964	1	1	1967	9	11
+163	La memoria del mondo	1	1964	9	4	1968	11	1
+164	La nuvola di smog e la formica argentina	2	1949	8	1	1952	4	31
+165	La nuvola di smog e la formica argentina	2	1958	6	23	1958	8	18
+166	La speculazione edilizia	1	1956	4	5	1957	7	12
+167	Le città invisibili	1	1970	7	23	1972	11	3
+168	Le cosmicomiche	1	1964	4	1	1965	9	23
+169	Marcovaldo	1	1952	1	1	1957	5	4
+170	Marcovaldo	1	1963	1	1	1963	11	23
+171	Palomar	1	1975	1	1	1983	9	13
+172	Se una notte d'inverno un viaggiatore	1	1977	1	1	1979	6	2
+173	Ti con zero	2	1964	1	1	1967	9	17
+174	Ultimo viene il corvo	1	1945	1	1	1949	7	30

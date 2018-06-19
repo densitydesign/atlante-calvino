@@ -1,0 +1,19 @@
+.area {
+	fill: #FF5733;
+	clip-path: url(#clip);
+	}
+
+.zoom {
+	cursor: move;
+	fill: none;
+	pointer-events: all;
+	}
+
+p {
+	color: #FF5733;
+	font-family: "helvetica", 'sans-serif';
+	text-align: left;
+	font-weight: 700;
+	float: right;
+	margin-right: 20px;
+	}
