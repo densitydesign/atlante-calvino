@@ -1,0 +1,48 @@
+
+  FONTLOG: HK Grotesk
+
+  --------------------------------------------
+  HK Grotesk Bold
+  --------------------------------------------
+
+  This file provides detailed information on the HK Grotesk 
+  font software.
+  This information should be distributed along with the HK 
+  Grotesk font and any derivative works.
+  
+  HK Grotesk Font Information
+  
+  HK Grotesk is a sans serif typeface inspired from the 
+  classical grotesques. The goal in designing HK Grotesk is 
+  to create a more friendly and distinguishable typeface that 
+  is suitable for small text.
+  
+  
+  ChangeLog
+  
+  9 Dec 2015 (Christoph Haag)
+- created fontforge sources as base to work on GNU/Linux
+- added FONTLOG to .sfdir
+- Mastered Font from Fontforge SFDIR to 
+  UFO,OTF,TTF,EOT,WOFF,SVG
+  
+  18 Aug 2015 (Alfredo Marco Pradil)
+- Initial release
+  
+  If you make modifications be sure to add your name (N), 
+  email (E), web-address (if you have one) (W) and 
+  description (D). This list is in alphabetical order.
+  
+  N: Alfredo Marco Pradil
+  W: alfredomarcopradil.com
+  
+  N: Christoph Haag
+  E: christoph@lafkon.net
+  W: www.lafkon.net
+  D: Transformer
+
+
+  --------------------------------------------
+  HK Grotesk Regular
+  --------------------------------------------
+  see above

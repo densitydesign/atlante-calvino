@@ -96,7 +96,7 @@ function zoomed() {
 }
 
 function update(data) {
-    console.log(data);
+    // console.log(data);
 
     let gruppi = data.info.elements.filter(function(d) { return d.gruppo })
 

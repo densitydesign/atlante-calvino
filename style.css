@@ -1,11 +1,56 @@
-#gantt svg {
-	/*background-color: #FADBD8;*/
+@import "fonts/hk-grotesk/webfont.css";
+
+html {
+	font-size: 14px;
+}
+
+body {
+   font-family: 'hk-grotesk';
+   font-weight: normal;
+   font-style: normal;
+	 font-size: 1rem;
 }
 
 #gantt line {
 	stroke: black;
-	stroke-width: 1px;
+	/* stroke-width: 1px; */
 }
+
+#gantt svg {
+	/* background-color: #F8F9F9; */
+}
+
+g.group .bg {
+	fill: #F4F6F7;
+}
+
+g.group .title {
+	text-anchor: end;
+}
+
+g.group .line {
+	stroke: black;
+	stroke-width: 0.5px;
+}
+
+g.group.composite .title {
+	font-weight: bold;
+}
+
+g.group .span1 {
+	fill: #F5B7B1;
+}
+
+g.group .span2 {
+	fill: #E74C3C;
+}
+
+g.group .publication {
+	fill: none;
+	stroke: #273746;
+}
+
+
 
 #brush svg {
 	/*background-color: #D6DBDF;*/
