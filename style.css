@@ -22,6 +22,12 @@ body {
 
 g.group .bg {
 	fill: #F4F6F7;
+	opacity: 0;
+}
+
+g.group:hover .bg {
+	fill: #F4F6F7;
+	opacity: 1;
 }
 
 g.group .title {

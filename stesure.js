@@ -7,9 +7,7 @@ function draw(data) {
   var writings = data.stesure.elements
   var info = data.info.elements
   var publications = data.pubblicazioni.elements
-  var groups = data.gruppi.elements.filter(d => {
-    return !d.skip
-  })
+  var groups = data.gruppi.elements.filter(d => { return !d.skip })
 
   let data_example = {
     "id": "racconto-Alba sui rami nudi",
@@ -67,7 +65,20 @@ function draw(data) {
     bottom: 0,
     left: 0
   }
-  let width = parseInt(groupBoxStyle.width) - parseInt(groupBoxStyle.paddingLeft) - parseInt(groupBoxStyle.paddingRight) - parseInt(groupBoxStyle.marginLeft) - parseInt(groupBoxStyle.marginRight)
+
+  let width = parseInt(groupBoxStyle.width)
+  // console.log(width)
+  width -= parseInt(groupBoxStyle.paddingLeft)
+  // console.log(width)
+  width -= parseInt(groupBoxStyle.paddingRight)
+  // console.log(width)
+  width -= 15
+  // console.log(width)
+  // width -= parseInt(groupBoxStyle.marginLeft)
+  // console.log(width)
+  // width -= parseInt(groupBoxStyle.marginRight)
+  // console.log(width)
+
   let height = 150 + 50 * groups.length
 
   let groupsSvg = d3.select('div#gantt > svg')
@@ -154,7 +165,7 @@ function draw(data) {
     .attr('transform', 'translate(40,0) rotate(90)')
     .merge(groupTriangle)
     .on('click', function(d) {
-      console.log('expand')
+      expand(d);
     })
 
   let groupLine = group.selectAll('.line').data(function(d) {
@@ -261,6 +272,13 @@ function draw(data) {
     .attr('r', 3)
     .merge(groupPublication)
 
+}
+
+function expand(data) {
+  console.log('expand', data)
+  d3.selectAll('#gantt g.group').each(function(d,i){
+    console.log(i,d.key == data.key)
+  })
 }
 
 function formatData(data) {
