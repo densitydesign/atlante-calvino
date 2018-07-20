@@ -100,9 +100,9 @@ g.group.composite .publication {
 
 g.group .triangle {
   fill: #273746;
-  stroke-linejoin: round;
-  stroke-width: 2px;
-  stroke: #273746;
+  stroke-linejoin: bevel;
+  stroke-width: 7px;
+  stroke: white;
 	cursor: pointer;
 }
 

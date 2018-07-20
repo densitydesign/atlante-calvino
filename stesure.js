@@ -169,7 +169,7 @@ function draw(data) {
     .attr("transform", "translate(" + margin.left + "," + 0 + ")")
     .call(timeAxis);
 
-  let symbol = d3.symbol().size(100);
+  let symbol = d3.symbol().size(360);
 
   let groupTriangle = group.selectAll('.triangle').data(function(d) {
     return d.value.length > 1 ? [d] : []
@@ -292,7 +292,7 @@ function draw(data) {
 
   groupPublication = groupPublication.enter().append('path')
     .classed('publication', true)
-    .attr('d', symbol.type(d3['symbolCross'])())
+    .attr('d', symbol2.type(d3['symbolCross'])())
     .attr('transform', d => {
       return `translate(${timeScale(d.publication)},0) rotate(45)`;
     })
