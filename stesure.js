@@ -385,41 +385,97 @@ function draw(data) {
         let sgPublication = subGroup.selectAll('.publication').data(function(d) {
           let datum = publications.filter(e => {
             return e.id == d.id
-          }).sort(function(a,b){ return a.publication - b.publication })
-          console.log(datum)
+          }).sort(function(a, b) {
+            return a.publication - b.publication
+          })
+          // console.log(datum)
           return datum
         })
         sgPublication.exit().remove()
         sgPublication = sgPublication.enter().append('path')
           .classed('publication', true)
-          .classed('not-first', (d,i)=>{
-            return i>0
+          .classed('not-first', (d, i) => {
+            return i > 0
           })
-          .attr('d', (d,i)=>{
-            return i==0?symbol2.type(d3['symbolCross'])():symbol2.type(d3['symbolDiamond'])()
+          .attr('d', (d, i) => {
+            return i == 0 ? symbol2.type(d3['symbolCross'])() : symbol2.type(d3['symbolDiamond'])()
           })
-          .attr('transform', (d,i) => {
-            return i==0?`translate(${timeScale(d.publication)},0) rotate(45)`:`translate(${timeScale(d.publication)},0)`;
+          .attr('transform', (d, i) => {
+            return i == 0 ? `translate(${timeScale(d.publication)},0) rotate(45)` : `translate(${timeScale(d.publication)},0)`;
           })
           .merge(sgPublication)
 
-          let writingStart = subGroup.selectAll('.writing-start').data( d => {return [d]} )
-          writingStart.exit().remove()
-          writingStart = writingStart.enter().append('path')
-            .classed('writing-start', true)
-            .classed('day-precision', d => { return d.precision_start == 'day' })
-            .classed('month-precision', d => { return d.precision_start == 'month' })
-            .classed('year-precision', d => { return d.precision_start == 'year' })
-            .merge(writingStart)
+        let writingStart = subGroup.selectAll('.writing-start').data(d => {
+          return d.start?[d]:[]
+        })
+        writingStart.exit().remove()
+        writingStart = writingStart.enter().append('path')
+          .classed('termination start', true)
 
-            let writingEnd = subGroup.selectAll('.writing-end').data( d => {return [d]} )
-            writingEnd.exit().remove()
-            writingEnd = writingEnd.enter().append('path')
-              .classed('writing-end', true)
-              .classed('day-precision', d => { return d.precision_end == 'day' })
-              .classed('month-precision', d => { return d.precision_end == 'month' })
-              .classed('year-precision', d => { return d.precision_end == 'year' })
-              .merge(writingEnd)
+          .classed('year-precision', d => {
+            return d.precision_start == 'year'
+          })
+          .classed('month-precision', d => {
+            return d.precision_start == 'month'
+          })
+          .classed('day-precision', d => {
+            return d.precision_start == 'day'
+          })
+
+          .attr('d', d => {
+            let newEnd;
+            if (d.precision_start == 'month') {
+              let year = d.start.getFullYear()
+              let month = d.start.getMonth()
+              let day = d.start.getDate()
+              if (month < 11) {
+                newEnd = new Date(year, month+1, 0)
+              } else {
+                newEnd = new Date(year, 11, 31)
+              }
+            }
+            return d.precision_start == 'year' ?
+              'M3.5,0.5c-1.7,0-3,1-3,5.5s1.3,5.5,3,5.5' :
+              d.precision_start == 'month' ?
+              'M 0,0 L '+ ( d3.max([ (timeScale(newEnd) - timeScale(d.start)), 10 ]) ) +',0' :
+              'M 0,-6 L 0,1 Z'
+          })
+          .attr('transform', d => { return d.precision_start == 'year' ? 'translate('+timeScale(d.start)+',-6)' : 'translate('+timeScale(d.start)+',0)' })
+          .merge(writingStart)
+
+        let writingEnd = subGroup.selectAll('.writing-end').data(d => {
+          return d.end?[d]:[]
+        })
+        writingEnd.exit().remove()
+        writingEnd = writingEnd.enter().append('path')
+          .classed('termination end', true)
+
+          .classed('year-precision', d => {
+            return d.precision_end == 'year'
+          })
+          .classed('month-precision', d => {
+            return d.precision_end == 'month'
+          })
+          .classed('day-precision', d => {
+            return d.precision_end == 'day'
+          })
+
+          .attr('d', d => {
+            let newEnd;
+            if (d.precision_end == 'month') {
+              let year = d.end.getFullYear()
+              let month = d.end.getMonth()
+              let day = d.end.getDate()
+              newEnd = new Date(year, month, 1)
+            }
+            return d.precision_end == 'year' ?
+              'M0,0.5c1.7,0,3,1,3,5.5s-1.3,5.5-3,5.5' :
+              d.precision_end == 'month' ?
+              'M 0,0 L '+ ( d3.max([ (timeScale(d.end) - timeScale(newEnd) ), -10 ]) ) +',0' :
+              'M 0,6 L 0,-1 Z'
+          })
+          .attr('transform', d => { return d.precision_end == 'year' ? 'translate('+(timeScale(d.end)-3)+',-6)' : 'translate('+timeScale(d.end)+',0)' })
+          .merge(writingEnd)
 
 
       } else {

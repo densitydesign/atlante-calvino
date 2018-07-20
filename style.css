@@ -113,11 +113,30 @@ g.subGroup .title {
 
 g.subGroup .writing {
 	stroke: #1C2833;
-	stroke-width: 2px;
+	stroke-width: 1px;
 }
 
 g.subGroup.precise .writing {
-	stroke: #3498DB;
+	stroke-width:2px;
+}
+
+.termination {
+	fill: none;
+	stroke: red;
+	stroke-width: 1px;
+}
+
+.termination.year-precision {
+	stroke: black;
+}
+.termination.month-precision {
+	stroke: #fffbfb;
+	stroke-width: 1px;
+	stroke-dasharray: 2 2;
+}
+.termination.day-precision {
+	stroke: black;
+	stroke-width: 2px;
 }
 
 #time-scale svg {
