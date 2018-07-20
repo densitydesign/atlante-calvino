@@ -34,10 +34,10 @@ p {
   margin-right: 20px;
 }
 
-#gantt line {
+/* #gantt line {
   stroke: black;
   /* stroke-width: 1px; */
-}
+} */
 
 #gantt svg {
   /* background-color: #F8F9F9; */
@@ -51,9 +51,13 @@ g.group .title {
   text-anchor: end;
 }
 
-g.group .line {
-  stroke: black;
+#gantt .line {
+  stroke: #273746;
   stroke-width: 0.5px;
+}
+
+#gantt .subGroup .line {
+  stroke: #808B96;
 }
 
 g.group.composite .title {
@@ -76,9 +80,22 @@ g.group.composite .span2 {
   fill: #E74C3C;
 }
 
-g.group .publication {
-  fill: none;
-  stroke: #273746;
+.publication {
+  fill: #273746;
+	stroke: white;
+	stroke-width: 1px;
+	cursor: pointer;
+}
+.publication.not-first {
+  fill: transparent;
+	stroke: #273746;
+	stroke-width: 1px;
+}
+
+g.group.composite .publication {
+  fill: #E74C3C;
+	stroke: white;
+	stroke-width: 1px;
 }
 
 g.group .triangle {
@@ -86,6 +103,7 @@ g.group .triangle {
   stroke-linejoin: round;
   stroke-width: 2px;
   stroke: #273746;
+	cursor: pointer;
 }
 
 g.subGroup .title {
@@ -93,8 +111,17 @@ g.subGroup .title {
 	font-size: 0.75rem;
 }
 
+g.subGroup .writing {
+	stroke: #1C2833;
+	stroke-width: 2px;
+}
+
+g.subGroup.precise .writing {
+	stroke: #3498DB;
+}
+
 #time-scale svg {
-  /* background-color: pink */
+  background-color: rgba(255,255,255,.8)
 }
 
 .axis path, .axis line {

@@ -187,10 +187,8 @@ function draw(data) {
         .classed("expanded", !d3.select(this).classed("expanded"));
 
       if (d3.select(this).classed("expanded")) {
-        d3.select(this).transition().duration(500).attr('transform', 'translate(40,0) rotate(180)')
-        expand(d);
+        expand(this, d);
       } else {
-        d3.select(this).transition().duration(500).attr('transform', 'translate(40,0) rotate(90)')
         collapse()
       }
 
@@ -238,11 +236,11 @@ function draw(data) {
     .attr('x', d => {
       return timeScale(d.start)
     })
-    .attr('y', -5)
+    .attr('y', -6)
     .attr('width', d => {
       return timeScale(d.end) - timeScale(d.start)
     })
-    .attr('height', 8)
+    .attr('height', 12)
     .merge(groupSpan1)
 
   let groupSpan2 = group.selectAll('.span2').data(function(d) {
@@ -274,13 +272,14 @@ function draw(data) {
     .attr('x', d => {
       return timeScale(d.start)
     })
-    .attr('y', -3)
+    .attr('y', -6)
     .attr('width', d => {
       return timeScale(d.end) - timeScale(d.start)
     })
-    .attr('height', 8)
+    .attr('height', 12)
     .merge(groupSpan2)
 
+  let symbol2 = d3.symbol().size(50);
 
   let groupPublication = group.selectAll('.publication').data(function(d) {
     let datum = publications.filter(e => {
@@ -291,13 +290,12 @@ function draw(data) {
 
   groupPublication.exit().remove()
 
-  groupPublication = groupPublication.enter().append('circle')
+  groupPublication = groupPublication.enter().append('path')
     .classed('publication', true)
-    .attr('cx', d => {
-      return timeScale(d.publication)
+    .attr('d', symbol.type(d3['symbolCross'])())
+    .attr('transform', d => {
+      return `translate(${timeScale(d.publication)},0) rotate(45)`;
     })
-    .attr('cy', 0)
-    .attr('r', 3)
     .merge(groupPublication)
 
   // subgroups
@@ -308,28 +306,33 @@ function draw(data) {
     .attr('transform', `translate(${margin.left},0)`)
     .merge(subGroup)
 
-  function expand(data) {
+  function expand(triangle, data) {
+    collapse(0);
     console.log('expand', data)
+    d3.select(triangle).transition().duration(500).attr('transform', 'translate(40,0) rotate(180)')
     let selectedIndex = -1;
     let yPosition
     let subHeight = 25
     d3.selectAll('#gantt g.group').each(function(d, i) {
       selectedIndex = d.key == data.key ? i : selectedIndex
-      // console.log(i,d.key == data.key, selectedIndex)
 
       if (i == selectedIndex) {
         d3.select(this).select('.bg').transition()
           .duration(250)
           .attr('height', 50 + data.value.length * subHeight)
-          .style('opacity', .75)
+          .style('opacity', .25)
 
         yPosition = groupScale(d.key)
 
-        subGroup = subGroup.data(data.value)
+        subGroup = groupsSvg.selectAll('.subGroup').data(data.value.sort(function(a, b) {
+          return a.start - b.start
+        }))
         subGroup.exit().remove()
-
         subGroup = subGroup.enter().append('g')
           .classed('subGroup', true)
+          .classed('precise', d => {
+            return d.precision_start == 'day' && d.precision_end == 'day'
+          })
           .attr('sg-id', function(d) {
             return d.id
           })
@@ -339,19 +342,84 @@ function draw(data) {
           .merge(subGroup)
 
         let sgTitle = subGroup.selectAll('.title').data(function(d) {
-          console.log(d);
           return [d.titolo]
         })
         sgTitle.exit().remove()
         sgTitle = sgTitle.enter().append('text')
           .classed('title', true)
           .text(d => {
-            console.log('title', d)
             return d
           })
           .merge(sgTitle)
 
+        let sgLine = subGroup.selectAll('.line').data(function(d) {
+          return [d]
+        })
+        sgLine.exit().remove()
+        sgLine = sgLine.enter().append('line')
+          .classed('line', true)
+          .attr('x1', timeScale(timeScale.domain()[0]))
+          .attr('y1', 0)
+          .attr('x2', timeScale(timeScale.domain()[1]))
+          .attr('y2', 0)
+          .merge(sgLine)
 
+        let sgWriting = subGroup.selectAll('.writing').data(function(d) {
+          return [d]
+        })
+        sgWriting.exit().remove()
+        sgWriting = sgWriting.enter().append('line')
+          .classed('writing', true)
+          .attr('x1', d => {
+            return d.start ? timeScale(d.start) : null
+          })
+          .attr('y1', 0)
+          .attr('x2', d => {
+            return d.start ? timeScale(d.end) : null
+          })
+          .attr('y2', 0)
+          .merge(sgWriting)
+
+        // let symbol2 = d3.symbol().size(50);
+
+        let sgPublication = subGroup.selectAll('.publication').data(function(d) {
+          let datum = publications.filter(e => {
+            return e.id == d.id
+          }).sort(function(a,b){ return a.publication - b.publication })
+          console.log(datum)
+          return datum
+        })
+        sgPublication.exit().remove()
+        sgPublication = sgPublication.enter().append('path')
+          .classed('publication', true)
+          .classed('not-first', (d,i)=>{
+            return i>0
+          })
+          .attr('d', (d,i)=>{
+            return i==0?symbol2.type(d3['symbolCross'])():symbol2.type(d3['symbolDiamond'])()
+          })
+          .attr('transform', (d,i) => {
+            return i==0?`translate(${timeScale(d.publication)},0) rotate(45)`:`translate(${timeScale(d.publication)},0)`;
+          })
+          .merge(sgPublication)
+
+          let writingStart = subGroup.selectAll('.writing-start').data( d => {return [d]} )
+          writingStart.exit().remove()
+          writingStart = writingStart.enter().append('path')
+            .classed('writing-start', true)
+            .classed('day-precision', d => { return d.precision_start == 'day' })
+            .classed('month-precision', d => { return d.precision_start == 'month' })
+            .classed('year-precision', d => { return d.precision_start == 'year' })
+            .merge(writingStart)
+
+            let writingEnd = subGroup.selectAll('.writing-end').data( d => {return [d]} )
+            writingEnd.exit().remove()
+            writingEnd = writingEnd.enter().append('path')
+              .classed('writing-end', true)
+              .classed('day-precision', d => { return d.precision_end == 'day' })
+              .classed('month-precision', d => { return d.precision_end == 'month' })
+              .classed('year-precision', d => { return d.precision_end == 'year' })
+              .merge(writingEnd)
 
 
       } else {
@@ -377,12 +445,13 @@ function draw(data) {
           })
       }
       newHeight = height + data.value.length * subHeight
-      groupsSvg.attr('height', newHeight)
+      groupsSvg.transition().duration(100).delay(10).attr('height', newHeight)
     })
   }
 
-  function collapse() {
+  function collapse(duration) {
     console.log('collapse')
+    d3.selectAll('.triangle').transition().duration(500).attr('transform', 'translate(40,0) rotate(90)')
     d3.selectAll('#gantt g.group').each(function(d, i) {
       d3.select(this).select('.bg').transition()
         .duration(250)
@@ -396,16 +465,10 @@ function draw(data) {
           return `translate(${margin.left},${groupScale(d.key)})`;
         })
     })
-    groupsSvg.transition()
-      .duration(1000)
-      .attr('height', height)
+    groupsSvg.transition().duration(duration).attr('height', height)
 
-    subGroup = groupsSvg.selectAll('.subGroup').data([])
-    subGroup.exit().remove()
-    subGroup = subGroup.enter().append('g')
-      .classed('subGroup', true)
-      .attr('transform', `translate(${margin.left},0)`)
-      .merge(subGroup)
+    subGroup = groupsSvg.selectAll('.subGroup').data([]).exit().remove()
+
   }
 
 }
