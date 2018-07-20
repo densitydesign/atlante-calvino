@@ -1,83 +1,106 @@
 @import "fonts/hk-grotesk/webfont.css";
-
 html {
-	font-size: 14px;
+  font-size: 14px;
 }
 
 body {
-   font-family: 'hk-grotesk';
-   font-weight: normal;
-   font-style: normal;
-	 font-size: 1rem;
+  font-family: 'hk-grotesk';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1rem;
 }
-
-#gantt line {
-	stroke: black;
-	/* stroke-width: 1px; */
-}
-
-#gantt svg {
-	/* background-color: #F8F9F9; */
-}
-
-g.group .bg {
-	fill: #F4F6F7;
-	opacity: 0;
-}
-
-g.group:hover .bg {
-	fill: #F4F6F7;
-	opacity: 1;
-}
-
-g.group .title {
-	text-anchor: end;
-}
-
-g.group .line {
-	stroke: black;
-	stroke-width: 0.5px;
-}
-
-g.group.composite .title {
-	font-weight: bold;
-}
-
-g.group .span1 {
-	fill: #F5B7B1;
-}
-
-g.group .span2 {
-	fill: #E74C3C;
-}
-
-g.group .publication {
-	fill: none;
-	stroke: #273746;
-}
-
-
 
 #brush svg {
-	/*background-color: #D6DBDF;*/
+  /*background-color: #D6DBDF;*/
 }
 
 .area {
-	fill: #FF5733;
-	clip-path: url(#clip);
-	}
+  fill: #FF5733;
+  clip-path: url(#clip);
+}
 
 .zoom {
-	cursor: move;
-	fill: none;
-	pointer-events: all;
-	}
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
 
 p {
-	color: #FF5733;
-	font-family: "helvetica", 'sans-serif';
-	text-align: left;
-	font-weight: 700;
-	float: right;
-	margin-right: 20px;
-	}
+  color: #FF5733;
+  font-family: "helvetica", 'sans-serif';
+  text-align: left;
+  font-weight: 700;
+  float: right;
+  margin-right: 20px;
+}
+
+#gantt line {
+  stroke: black;
+  /* stroke-width: 1px; */
+}
+
+#gantt svg {
+  /* background-color: #F8F9F9; */
+}
+
+g.group .bg {
+  fill: #FDEDEC;
+}
+
+g.group .title {
+  text-anchor: end;
+}
+
+g.group .line {
+  stroke: black;
+  stroke-width: 0.5px;
+}
+
+g.group.composite .title {
+  font-weight: bold;
+}
+
+g.group .span1 {
+  fill: #808B96;
+}
+
+g.group .span2 {
+  fill: #2C3E50;
+}
+
+g.group.composite .span1 {
+  fill: #F5B7B1;
+}
+
+g.group.composite .span2 {
+  fill: #E74C3C;
+}
+
+g.group .publication {
+  fill: none;
+  stroke: #273746;
+}
+
+g.group .triangle {
+  fill: #273746;
+  stroke-linejoin: round;
+  stroke-width: 2px;
+  stroke: #273746;
+}
+
+g.subGroup .title {
+	text-anchor: end;
+	font-size: 0.75rem;
+}
+
+#time-scale svg {
+  /* background-color: pink */
+}
+
+.axis path, .axis line {
+  stroke-width: 0.5px
+}
+
+.axis .tick text {
+  font-size: 1rem
+}

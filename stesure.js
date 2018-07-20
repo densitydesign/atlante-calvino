@@ -7,7 +7,9 @@ function draw(data) {
   var writings = data.stesure.elements
   var info = data.info.elements
   var publications = data.pubblicazioni.elements
-  var groups = data.gruppi.elements.filter(d => { return !d.skip })
+  var groups = data.gruppi.elements.filter(d => {
+    return !d.skip
+  })
 
   let data_example = {
     "id": "racconto-Alba sui rami nudi",
@@ -79,7 +81,8 @@ function draw(data) {
   // width -= parseInt(groupBoxStyle.marginRight)
   // console.log(width)
 
-  let height = 150 + 50 * groups.length
+  let height = 50 * groups.length
+  let newHeight = height
 
   let groupsSvg = d3.select('div#gantt > svg')
     .attr('width', width)
@@ -90,6 +93,7 @@ function draw(data) {
       return d.key
     }))
     .range([50, height])
+    .padding(0)
 
   let group = groupsSvg.selectAll('.group').data(groups, d => {
     return d.key
@@ -114,8 +118,9 @@ function draw(data) {
     .classed('bg', true)
     .attr('x', 0)
     .attr('y', -25)
-    .attr('width', width*3)
+    .attr('width', width * 3)
     .attr('height', 50)
+    .style('opacity', 0)
 
   let groupTitle = group.selectAll('.title').data(function(d) {
     return [d]
@@ -125,7 +130,7 @@ function draw(data) {
 
   groupTitle = groupTitle.enter().append('text')
     .classed('title', true)
-    .attr('y',5)
+    .attr('y', 5)
     .text(d => {
       let title = info.filter(e => {
         return e.id == d.key
@@ -142,16 +147,29 @@ function draw(data) {
         let thisWidth = d3.select(this).node().getBBox().width;
         margin.left = d3.max([margin.left, thisWidth])
       })
-      return `translate(${margin.left},${groupScale(d.key)-25})`;
+      margin.left += 14
+      return `translate(${margin.left},${groupScale(d.key)})`;
     })
 
-  groupBG.attr('x', 0-margin.left-margin.right)
+  groupBG.attr('x', 0 - margin.left - margin.right)
 
   let timeScale = d3.scaleTime()
     .domain([parseDate('1940-01-01'), parseDate('1990-12-31')])
-    .range([80, width - margin.left - margin.right])
+    .range([80, width - margin.left - margin.right - 80])
 
-  let symbol = d3.symbol().size(72);
+  let timeSvg = d3.select('#time-scale > svg')
+    .attr('height', 25)
+    .attr('width', width)
+  let timeAxis = d3.axisBottom(timeScale)
+    .ticks(d3.timeYear.every(5))
+    .tickPadding(7)
+
+  timeSvg.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(" + margin.left + "," + 0 + ")")
+    .call(timeAxis);
+
+  let symbol = d3.symbol().size(100);
 
   let groupTriangle = group.selectAll('.triangle').data(function(d) {
     return d.value.length > 1 ? [d] : []
@@ -165,7 +183,17 @@ function draw(data) {
     .attr('transform', 'translate(40,0) rotate(90)')
     .merge(groupTriangle)
     .on('click', function(d) {
-      expand(d);
+      d3.select(this)
+        .classed("expanded", !d3.select(this).classed("expanded"));
+
+      if (d3.select(this).classed("expanded")) {
+        d3.select(this).transition().duration(500).attr('transform', 'translate(40,0) rotate(180)')
+        expand(d);
+      } else {
+        d3.select(this).transition().duration(500).attr('transform', 'translate(40,0) rotate(90)')
+        collapse()
+      }
+
     })
 
   let groupLine = group.selectAll('.line').data(function(d) {
@@ -272,13 +300,114 @@ function draw(data) {
     .attr('r', 3)
     .merge(groupPublication)
 
-}
+  // subgroups
+  let subGroup = groupsSvg.selectAll('.subGroup').data([])
+  subGroup.exit().remove()
+  subGroup = subGroup.enter().append('g')
+    .classed('subGroup', true)
+    .attr('transform', `translate(${margin.left},0)`)
+    .merge(subGroup)
 
-function expand(data) {
-  console.log('expand', data)
-  d3.selectAll('#gantt g.group').each(function(d,i){
-    console.log(i,d.key == data.key)
-  })
+  function expand(data) {
+    console.log('expand', data)
+    let selectedIndex = -1;
+    let yPosition
+    let subHeight = 25
+    d3.selectAll('#gantt g.group').each(function(d, i) {
+      selectedIndex = d.key == data.key ? i : selectedIndex
+      // console.log(i,d.key == data.key, selectedIndex)
+
+      if (i == selectedIndex) {
+        d3.select(this).select('.bg').transition()
+          .duration(250)
+          .attr('height', 50 + data.value.length * subHeight)
+          .style('opacity', .75)
+
+        yPosition = groupScale(d.key)
+
+        subGroup = subGroup.data(data.value)
+        subGroup.exit().remove()
+
+        subGroup = subGroup.enter().append('g')
+          .classed('subGroup', true)
+          .attr('sg-id', function(d) {
+            return d.id
+          })
+          .attr('transform', d => {
+            return `translate(${ margin.left },${ data.value.indexOf(d)*25 + yPosition + 5 + subHeight })`
+          })
+          .merge(subGroup)
+
+        let sgTitle = subGroup.selectAll('.title').data(function(d) {
+          console.log(d);
+          return [d.titolo]
+        })
+        sgTitle.exit().remove()
+        sgTitle = sgTitle.enter().append('text')
+          .classed('title', true)
+          .text(d => {
+            console.log('title', d)
+            return d
+          })
+          .merge(sgTitle)
+
+
+
+
+      } else {
+        d3.select(this).select('.bg').transition()
+          .duration(250)
+          .attr('height', 50)
+          .style('opacity', 0)
+      }
+
+      if (selectedIndex > -1 && i > selectedIndex) {
+        d3.select(this).transition()
+          .duration(500)
+          // .delay(i * 25)
+          .attr('transform', d => {
+            return `translate(${margin.left},${groupScale(d.key) + data.value.length*subHeight})`;
+          })
+      } else {
+        d3.select(this).transition()
+          .duration(500)
+          .delay((selectedIndex - i) * 25)
+          .attr('transform', d => {
+            return `translate(${margin.left},${groupScale(d.key)})`;
+          })
+      }
+      newHeight = height + data.value.length * subHeight
+      groupsSvg.attr('height', newHeight)
+    })
+  }
+
+  function collapse() {
+    console.log('collapse')
+    d3.selectAll('#gantt g.group').each(function(d, i) {
+      d3.select(this).select('.bg').transition()
+        .duration(250)
+        .attr('height', 50)
+        .style('opacity', 0)
+
+      d3.select(this).transition()
+        .duration(500)
+        .delay(i * 25)
+        .attr('transform', d => {
+          return `translate(${margin.left},${groupScale(d.key)})`;
+        })
+    })
+    groupsSvg.transition()
+      .duration(1000)
+      .attr('height', height)
+
+    subGroup = groupsSvg.selectAll('.subGroup').data([])
+    subGroup.exit().remove()
+    subGroup = subGroup.enter().append('g')
+      .classed('subGroup', true)
+      .attr('transform', `translate(${margin.left},0)`)
+      .merge(subGroup)
+  }
+
 }
 
 function formatData(data) {
