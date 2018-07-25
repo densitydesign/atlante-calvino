@@ -1,6 +1,19 @@
 @import "fonts/hk-grotesk/webfont.css";
+
 html {
-  font-size: 14px;
+  font-size: 10px;
+}
+
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 11px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  html {
+    font-size: 14px;
+  }
 }
 
 body {
@@ -11,19 +24,33 @@ body {
 }
 
 #brush svg {
-  /*background-color: #D6DBDF;*/
 }
 
-.area {
+#gantt svg {
+ /* background-color: #F8F9F9; */
+}
+
+#time-scale svg {
+}
+
+#brush, #time-scale {
+  background-color: #ffffffdd;
+  /* border: 1px solid black; */
+  -webkit-backdrop-filter: blur(10px);
+          backdrop-filter: blur(10px);
+}
+
+/* .area {
   fill: #FF5733;
-  clip-path: url(#clip);
+  -webkit-clip-path: url(#clip);
+          clip-path: url(#clip);
 }
 
 .zoom {
   cursor: move;
   fill: none;
   pointer-events: all;
-}
+} */
 
 p {
   color: #FF5733;
@@ -32,15 +59,6 @@ p {
   font-weight: 700;
   float: right;
   margin-right: 20px;
-}
-
-/* #gantt line {
-  stroke: black;
-  /* stroke-width: 1px; */
-} */
-
-#gantt svg {
-  /* background-color: #F8F9F9; */
 }
 
 g.group .bg {
@@ -82,20 +100,21 @@ g.group.composite .span2 {
 
 .publication {
   fill: #273746;
-	stroke: white;
-	stroke-width: 1px;
-	cursor: pointer;
+  stroke: white;
+  stroke-width: 1px;
+  cursor: pointer;
 }
+
 .publication.not-first {
   fill: transparent;
-	stroke: #273746;
-	stroke-width: 1px;
+  stroke: #273746;
+  stroke-width: 1px;
 }
 
 g.group.composite .publication {
   fill: #E74C3C;
-	stroke: white;
-	stroke-width: 1px;
+  stroke: white;
+  stroke-width: 1px;
 }
 
 g.group .triangle {
@@ -103,45 +122,53 @@ g.group .triangle {
   stroke-linejoin: bevel;
   stroke-width: 7px;
   stroke: white;
-	cursor: pointer;
+  cursor: pointer;
 }
 
+g.group .triangle.expanded {
+  fill: red;
+}
+
+/* g.main-g {
+  -webkit-clip-path: url(#clip);
+          clip-path: url(#clip)
+} */
+
 g.subGroup .title {
-	text-anchor: end;
-	font-size: 0.75rem;
+  text-anchor: end;
+  font-size: 0.75rem;
 }
 
 g.subGroup .writing {
-	stroke: #1C2833;
-	stroke-width: 1px;
+  stroke: #1C2833;
+  stroke-width: 1px;
 }
 
 g.subGroup.precise .writing {
-	stroke-width:2px;
+  stroke-width: 2px;
 }
 
 .termination {
-	fill: none;
-	stroke: red;
-	stroke-width: 1px;
+  fill: none;
+  stroke: red;
+  stroke-width: 1px;
 }
 
 .termination.year-precision {
-	stroke: black;
-}
-.termination.month-precision {
-	stroke: #fffbfb;
-	stroke-width: 1px;
-	stroke-dasharray: 2 2;
-}
-.termination.day-precision {
-	stroke: black;
-	stroke-width: 2px;
+  stroke: black;
 }
 
-#time-scale svg {
-  background-color: rgba(255,255,255,.8)
+.termination.month-precision {
+  stroke: #fffbfb;
+  stroke-width: 1px;
+  stroke-dasharray: 2 2;
 }
+
+.termination.day-precision {
+  stroke: black;
+  stroke-width: 2px;
+}
+
 
 .axis path, .axis line {
   stroke-width: 0.5px
@@ -149,4 +176,21 @@ g.subGroup.precise .writing {
 
 .axis .tick text {
   font-size: 1rem
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+.test {
+  opacity: .4;
+  fill: red;
 }

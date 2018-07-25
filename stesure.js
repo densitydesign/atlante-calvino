@@ -1,65 +1,33 @@
 console.info('stesure.js')
 
-var parseDate = d3.timeParse("%Y-%m-%d");
+let ganttChart
 
-function draw(data) {
+var parseDate = d3.timeParse("%Y-%m-%d")
 
-  var writings = data.stesure.elements
-  var info = data.info.elements
-  var publications = data.pubblicazioni.elements
-  var groups = data.gruppi.elements.filter(d => {
-    return !d.skip
-  })
+let data
 
-  let data_example = {
-    "id": "racconto-Alba sui rami nudi",
-    "titolo": "Alba sui rami nudi",
-    "conteggio": "1",
-    "start_year": "1947",
-    "start_month": "12",
-    "start_day": "",
-    "end_year": "1947",
-    "end_month": "12",
-    "end_day": "",
-    "precision_start": "month",
-    "start": "1947-11-30T23:00:00.000Z",
-    "precision_end": "month",
-    "end": "1947-12-30T23:00:00.000Z"
-  }
 
-  groups = d3.nest()
-    .key(d => {
-      return d.gruppo
-    })
-    .rollup(v => {
-      v = v.map(d => {
+function gantt(data) {
 
-        d = writings.filter(e => {
-          return e.id == d.id
-        })[0]
-
-        return d
-      })
-      return v
-    })
-    .entries(groups)
-
-  groups.forEach(d => {
-    d.start = d3.min(d.value.map(e => {
-      return e.start ? e.start : null
-    }))
-    d.end = d3.max(d.value, function(e) {
-      return e.end ? e.end : null
-    })
-  })
-  groups.sort(function(a, b) {
-    return a.start - b.start
-  })
-
-  console.info('display groups', groups)
+  // Convert the data into a usable format
+  let converted = convertData(data);
+  // console.log(converted)
+  var writings = converted.writings
+  var info = converted.info
+  var publications = converted.publications
+  var groups = converted.groups
 
   var elem = document.getElementById("gantt");
+
+  // Set dimentions
   var groupBoxStyle = window.getComputedStyle(elem, null);
+  let width = parseInt(groupBoxStyle.width)
+  width -= parseInt(groupBoxStyle.paddingLeft)
+  width -= parseInt(groupBoxStyle.paddingRight)
+  width -= 15
+
+  let height = 50 * groups.length
+  let newHeight = height
 
   let margin = {
     top: 0,
@@ -68,25 +36,18 @@ function draw(data) {
     left: 0
   }
 
-  let width = parseInt(groupBoxStyle.width)
-  // console.log(width)
-  width -= parseInt(groupBoxStyle.paddingLeft)
-  // console.log(width)
-  width -= parseInt(groupBoxStyle.paddingRight)
-  // console.log(width)
-  width -= 15
-  // console.log(width)
-  // width -= parseInt(groupBoxStyle.marginLeft)
-  // console.log(width)
-  // width -= parseInt(groupBoxStyle.marginRight)
-  // console.log(width)
-
-  let height = 50 * groups.length
-  let newHeight = height
-
   let groupsSvg = d3.select('div#gantt > svg')
     .attr('width', width)
     .attr('height', height)
+    // .append('g').attr('class', 'main-g')
+
+  let timeSvg = d3.select('#time-scale > svg')
+    .attr('height', 25)
+    .attr('width', width)
+
+  let brushSvg = d3.select('#brush > svg')
+    .attr('height', 100)
+    .attr('width', width)
 
   let groupScale = d3.scaleBand()
     .domain(groups.map(d => {
@@ -95,25 +56,42 @@ function draw(data) {
     .range([50, height])
     .padding(0)
 
-  let group = groupsSvg.selectAll('.group').data(groups, d => {
+  let symbol = d3.symbol().size(360);
+  let symbol2 = d3.symbol().size(50);
+
+  let group
+
+  let groupBG
+  let groupTitle
+  let groupTriangle
+  let groupLine
+  let groupSpan1 // daily precision
+  let groupSpan2 // not daily precision
+  let groupPublication
+  let subGroup
+
+  let sgTitle
+  let sgLine
+  let sgWriting
+  let sgPublication
+  let writingStart
+  let writingEnd
+
+  group = groupsSvg.selectAll('.group').data(groups, d => {
     return d.key
   })
-
-  group.exit().remove();
-
+  group.exit().remove()
   group = group.enter().append('g')
     .classed('group', true)
     .classed('composite', d => {
       return d.value.length > 1 ? true : false
     })
-    .merge(group);
+    .merge(group)
 
-  let groupBG = group.selectAll('.bg').data(function(d) {
+  groupBG = group.selectAll('.bg').data(function(d) {
     return [d]
   })
-
   groupBG.exit().remove()
-
   groupBG = groupBG.enter().append('rect')
     .classed('bg', true)
     .attr('x', 0)
@@ -122,12 +100,10 @@ function draw(data) {
     .attr('height', 50)
     .style('opacity', 0)
 
-  let groupTitle = group.selectAll('.title').data(function(d) {
+  groupTitle = group.selectAll('.title').data(function(d) {
     return [d]
   })
-
   groupTitle.exit().remove()
-
   groupTitle = groupTitle.enter().append('text')
     .classed('title', true)
     .attr('y', 5)
@@ -139,67 +115,55 @@ function draw(data) {
     })
     .merge(groupTitle)
 
-  group.transition()
-    .duration(0)
-    .attr('transform', d => {
-      margin.left = 0;
-      groupTitle.each(function(d, i) {
-        let thisWidth = d3.select(this).node().getBBox().width;
-        margin.left = d3.max([margin.left, thisWidth])
-      })
-      margin.left += 14
-      return `translate(${margin.left},${groupScale(d.key)})`;
+  // Set the left margin according to the largest title, to main SVG and to Groups BG
+  group.attr('transform', d => {
+    margin.left = 0;
+    groupTitle.each(function(d, i) {
+      let thisWidth = d3.select(this).node().getBBox().width;
+      margin.left = d3.max([margin.left, thisWidth])
     })
-
+    margin.left += 14
+    return `translate(${margin.left},${groupScale(d.key)})`;
+  })
   groupBG.attr('x', 0 - margin.left - margin.right)
 
+  // After margin is set, draw the temporal axis at the bottom, in a different SVG so to make it sticky via CSS
   let timeScale = d3.scaleTime()
     .domain([parseDate('1940-01-01'), parseDate('1990-12-31')])
     .range([80, width - margin.left - margin.right - 80])
-
-  let timeSvg = d3.select('#time-scale > svg')
-    .attr('height', 25)
-    .attr('width', width)
   let timeAxis = d3.axisBottom(timeScale)
     .ticks(d3.timeYear.every(5))
     .tickPadding(7)
-
   timeSvg.append("g")
     .attr("class", "axis axis--x")
     .attr("transform", "translate(" + margin.left + "," + 0 + ")")
     .call(timeAxis);
 
-  let symbol = d3.symbol().size(360);
-
-  let groupTriangle = group.selectAll('.triangle').data(function(d) {
+  groupTriangle = group.selectAll('.triangle').data(function(d) {
     return d.value.length > 1 ? [d] : []
   })
-
   groupTriangle.exit().remove()
-
   groupTriangle = groupTriangle.enter().append('path')
     .classed('triangle', true)
     .attr('d', symbol.type(d3['symbolTriangle'])())
     .attr('transform', 'translate(40,0) rotate(90)')
     .merge(groupTriangle)
     .on('click', function(d) {
-      d3.select(this)
-        .classed("expanded", !d3.select(this).classed("expanded"));
+      // Toggle the “expanded” class
+      d3.select(this).classed("expanded", !d3.select(this).classed("expanded"))
+      // Check if the class is currently assigned, if so expand, if not collapse
 
       if (d3.select(this).classed("expanded")) {
-        expand(this, d);
+        expand(this, d, d3.select(this).classed("expanded"))
       } else {
         collapse()
       }
-
     })
 
-  let groupLine = group.selectAll('.line').data(function(d) {
+  groupLine = group.selectAll('.line').data(function(d) {
     return [d]
   })
-
   groupLine.exit().remove()
-
   groupLine = groupLine.enter().append('line')
     .classed('line', true)
     .attr('x1', timeScale(timeScale.domain()[0]))
@@ -208,7 +172,7 @@ function draw(data) {
     .attr('y2', 0)
     .merge(groupLine)
 
-  let groupSpan1 = group.selectAll('.span1').data(function(d) {
+  groupSpan1 = group.selectAll('.span1').data(function(d) {
     let items = d.value.filter(e => {
       return e.precision_start != 'day' && e.precision_end != 'day'
     })
@@ -228,9 +192,7 @@ function draw(data) {
       return []
     }
   })
-
   groupSpan1.exit().remove()
-
   groupSpan1 = groupSpan1.enter().append('rect')
     .classed('span1', true)
     .attr('x', d => {
@@ -243,7 +205,7 @@ function draw(data) {
     .attr('height', 12)
     .merge(groupSpan1)
 
-  let groupSpan2 = group.selectAll('.span2').data(function(d) {
+  groupSpan2 = group.selectAll('.span2').data(function(d) {
     let items = d.value.filter(e => {
       return e.precision_start == 'day' && e.precision_end == 'day'
     })
@@ -264,9 +226,7 @@ function draw(data) {
       return []
     }
   })
-
   groupSpan2.exit().remove()
-
   groupSpan2 = groupSpan2.enter().append('rect')
     .classed('span2', true)
     .attr('x', d => {
@@ -279,17 +239,13 @@ function draw(data) {
     .attr('height', 12)
     .merge(groupSpan2)
 
-  let symbol2 = d3.symbol().size(50);
-
-  let groupPublication = group.selectAll('.publication').data(function(d) {
+  groupPublication = group.selectAll('.publication').data(function(d) {
     let datum = publications.filter(e => {
       return e.id == d.key
     })
     return datum
   })
-
   groupPublication.exit().remove()
-
   groupPublication = groupPublication.enter().append('path')
     .classed('publication', true)
     .attr('d', symbol2.type(d3['symbolCross'])())
@@ -298,32 +254,182 @@ function draw(data) {
     })
     .merge(groupPublication)
 
-  // subgroups
-  let subGroup = groupsSvg.selectAll('.subGroup').data([])
+  // Here start the declaration of subgroups
+  subGroup = groupsSvg.selectAll('.subGroup').data([])
   subGroup.exit().remove()
   subGroup = subGroup.enter().append('g')
     .classed('subGroup', true)
     .attr('transform', `translate(${margin.left},0)`)
     .merge(subGroup)
 
+  // Define elements for the brush
+  groupsSvg.append("defs").append("clipPath")
+    .attr("id", "clip")
+    .append("rect")
+    .attr('x', timeScale.range()[0] + margin.left)
+    .attr('y', 0)
+    .attr("width", timeScale.range()[1])
+    .attr("height", height);
+
+  let brushScale = d3.scaleTime()
+    .domain([parseDate('1940-01-01'), parseDate('1990-12-31')])
+    .range([80, width - margin.left - margin.right - 80])
+  let brushAxis = d3.axisBottom(brushScale)
+    .ticks(d3.timeYear.every(5))
+    .tickPadding(7)
+  brushSvg.append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(" + margin.left + "," + 60 + ")")
+    .call(brushAxis);
+
+  var brush = d3.brushX()
+    .extent([
+      [80, 0],
+      [width - margin.left - margin.right - 80, 15]
+    ])
+    .on("brush end", brushed);
+
+  let brush_g = brushSvg.append('g')
+    .attr("transform", "translate(" + margin.left + "," + 40 + ")")
+  brush_g.append('rect')
+    .classed('test', true)
+    .attr('x', brushScale(brushScale.domain()[0]))
+    .attr('y', 0)
+    .attr('height', 15)
+    .attr('width', brushScale(brushScale.domain()[1]) - brushScale(brushScale.domain()[0]))
+
+  brush_g.append("g")
+    .attr("class", "brush")
+    .call(brush)
+    .call(brush.move, brushScale.range());
+
+  function brushed() {
+    if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
+
+    var s = d3.event.selection || brushScale.range();
+    timeScale.domain(s.map(brushScale.invert, brushScale));
+    // console.log('brush')
+    update();
+  }
+
+  function update() {
+    // console.log('updating sizes')
+    timeSvg.select(".axis--x").call(timeAxis);
+    groupSpan1.attr('x', d => {
+        return timeScale(d.start)
+      })
+      .attr('width', d => {
+        return timeScale(d.end) - timeScale(d.start)
+      })
+    groupSpan2.attr('x', d => {
+        return timeScale(d.start)
+      })
+      .attr('width', d => {
+        return timeScale(d.end) - timeScale(d.start)
+      })
+    groupPublication.attr('transform', d => {
+      return `translate(${timeScale(d.publication)},0) rotate(45)`;
+    })
+
+    sgWriting.attr('x1', d => {
+        return d.start ? timeScale(d.start) : null
+      })
+      .attr('y1', 0)
+      .attr('x2', d => {
+        return d.start ? timeScale(d.end) : null
+      })
+      .attr('y2', 0)
+    sgPublication.attr('transform', (d, i) => {
+      return i == 0 ? `translate(${timeScale(d.publication)},0) rotate(45)` : `translate(${timeScale(d.publication)},0)`;
+    })
+    writingStart.attr('d', d => {
+        let newEnd;
+        if (d.precision_start == 'month') {
+          let year = d.start.getFullYear()
+          let month = d.start.getMonth()
+          let day = d.start.getDate()
+          if (month < 11) {
+            newEnd = new Date(year, month + 1, 0)
+          } else {
+            newEnd = new Date(year, 11, 31)
+          }
+        }
+        return d.precision_start == 'year' ?
+          'M3.5,0.5c-1.7,0-3,1-3,5.5s1.3,5.5,3,5.5' :
+          d.precision_start == 'month' ?
+          'M 0,0 L ' + (d3.max([(timeScale(newEnd) - timeScale(d.start)), 10])) + ',0' :
+          'M 0,-6 L 0,1 Z'
+      })
+      .attr('transform', d => {
+        return d.precision_start == 'year' ? 'translate(' + timeScale(d.start) + ',-6)' : 'translate(' + timeScale(d.start) + ',0)'
+      })
+      writingEnd.attr('d', d => {
+          let newEnd;
+          if (d.precision_end == 'month') {
+            let year = d.end.getFullYear()
+            let month = d.end.getMonth()
+            let day = d.end.getDate()
+            newEnd = new Date(year, month, 1)
+          }
+          return d.precision_end == 'year' ?
+            'M0,0.5c1.7,0,3,1,3,5.5s-1.3,5.5-3,5.5' :
+            d.precision_end == 'month' ?
+            'M 0,0 L ' + (d3.max([(timeScale(d.end) - timeScale(newEnd)), -10])) + ',0' :
+            'M 0,6 L 0,-1 Z'
+        })
+        .attr('transform', d => {
+          return d.precision_end == 'year' ? 'translate(' + (timeScale(d.end) - 3) + ',-6)' : 'translate(' + timeScale(d.end) + ',0)'
+        })
+
+  }
+
+  function collapse() {
+    let collapseDuration = 0;
+    console.log('collapse')
+    d3.selectAll('.triangle').transition().duration(500).attr('transform', 'translate(40,0) rotate(90)')
+    d3.selectAll('#gantt g.group').each(function(d, i) {
+      d3.select(this).select('.bg').transition()
+        .duration(250)
+        .attr('height', 50)
+        .style('opacity', 0)
+
+      d3.select(this).transition()
+        .duration(500)
+        .delay(i * 25)
+        .attr('transform', d => {
+          return `translate(${margin.left},${groupScale(d.key)})`;
+        })
+    })
+    groupsSvg.transition().duration(collapseDuration).attr('height', height)
+
+    subGroup = groupsSvg.selectAll('.subGroup').data([]).exit().remove()
+  }
+
   function expand(triangle, data) {
-    collapse(0);
-    console.log('expand', data)
+    collapse()
+    // console.log('expand', data)
     d3.select(triangle).transition().duration(500).attr('transform', 'translate(40,0) rotate(180)')
+
     let selectedIndex = -1;
     let yPosition
     let subHeight = 25
+
     d3.selectAll('#gantt g.group').each(function(d, i) {
+
+      // Get the index of the selected group
       selectedIndex = d.key == data.key ? i : selectedIndex
 
+      // Expand the group if the index matches
       if (i == selectedIndex) {
+
+        yPosition = groupScale(d.key)
+
         d3.select(this).select('.bg').transition()
           .duration(250)
           .attr('height', 50 + data.value.length * subHeight)
           .style('opacity', .25)
 
-        yPosition = groupScale(d.key)
-
+        // Bind data to the sub group and sort it according to the earliest starting date of the stories writings
         subGroup = groupsSvg.selectAll('.subGroup').data(data.value.sort(function(a, b) {
           return a.start - b.start
         }))
@@ -341,7 +447,7 @@ function draw(data) {
           })
           .merge(subGroup)
 
-        let sgTitle = subGroup.selectAll('.title').data(function(d) {
+        sgTitle = subGroup.selectAll('.title').data(function(d) {
           return [d.titolo]
         })
         sgTitle.exit().remove()
@@ -352,7 +458,7 @@ function draw(data) {
           })
           .merge(sgTitle)
 
-        let sgLine = subGroup.selectAll('.line').data(function(d) {
+        sgLine = subGroup.selectAll('.line').data(function(d) {
           return [d]
         })
         sgLine.exit().remove()
@@ -364,7 +470,7 @@ function draw(data) {
           .attr('y2', 0)
           .merge(sgLine)
 
-        let sgWriting = subGroup.selectAll('.writing').data(function(d) {
+        sgWriting = subGroup.selectAll('.writing').data(function(d) {
           return [d]
         })
         sgWriting.exit().remove()
@@ -380,15 +486,12 @@ function draw(data) {
           .attr('y2', 0)
           .merge(sgWriting)
 
-        // let symbol2 = d3.symbol().size(50);
-
-        let sgPublication = subGroup.selectAll('.publication').data(function(d) {
+        sgPublication = subGroup.selectAll('.publication').data(function(d) {
           let datum = publications.filter(e => {
             return e.id == d.id
           }).sort(function(a, b) {
             return a.publication - b.publication
           })
-          // console.log(datum)
           return datum
         })
         sgPublication.exit().remove()
@@ -405,8 +508,8 @@ function draw(data) {
           })
           .merge(sgPublication)
 
-        let writingStart = subGroup.selectAll('.writing-start').data(d => {
-          return d.start?[d]:[]
+        writingStart = subGroup.selectAll('.writing-start').data(d => {
+          return d.start ? [d] : []
         })
         writingStart.exit().remove()
         writingStart = writingStart.enter().append('path')
@@ -429,7 +532,7 @@ function draw(data) {
               let month = d.start.getMonth()
               let day = d.start.getDate()
               if (month < 11) {
-                newEnd = new Date(year, month+1, 0)
+                newEnd = new Date(year, month + 1, 0)
               } else {
                 newEnd = new Date(year, 11, 31)
               }
@@ -437,14 +540,16 @@ function draw(data) {
             return d.precision_start == 'year' ?
               'M3.5,0.5c-1.7,0-3,1-3,5.5s1.3,5.5,3,5.5' :
               d.precision_start == 'month' ?
-              'M 0,0 L '+ ( d3.max([ (timeScale(newEnd) - timeScale(d.start)), 10 ]) ) +',0' :
+              'M 0,0 L ' + (d3.max([(timeScale(newEnd) - timeScale(d.start)), 10])) + ',0' :
               'M 0,-6 L 0,1 Z'
           })
-          .attr('transform', d => { return d.precision_start == 'year' ? 'translate('+timeScale(d.start)+',-6)' : 'translate('+timeScale(d.start)+',0)' })
+          .attr('transform', d => {
+            return d.precision_start == 'year' ? 'translate(' + timeScale(d.start) + ',-6)' : 'translate(' + timeScale(d.start) + ',0)'
+          })
           .merge(writingStart)
 
-        let writingEnd = subGroup.selectAll('.writing-end').data(d => {
-          return d.end?[d]:[]
+        writingEnd = subGroup.selectAll('.writing-end').data(d => {
+          return d.end ? [d] : []
         })
         writingEnd.exit().remove()
         writingEnd = writingEnd.enter().append('path')
@@ -471,12 +576,13 @@ function draw(data) {
             return d.precision_end == 'year' ?
               'M0,0.5c1.7,0,3,1,3,5.5s-1.3,5.5-3,5.5' :
               d.precision_end == 'month' ?
-              'M 0,0 L '+ ( d3.max([ (timeScale(d.end) - timeScale(newEnd) ), -10 ]) ) +',0' :
+              'M 0,0 L ' + (d3.max([(timeScale(d.end) - timeScale(newEnd)), -10])) + ',0' :
               'M 0,6 L 0,-1 Z'
           })
-          .attr('transform', d => { return d.precision_end == 'year' ? 'translate('+(timeScale(d.end)-3)+',-6)' : 'translate('+timeScale(d.end)+',0)' })
+          .attr('transform', d => {
+            return d.precision_end == 'year' ? 'translate(' + (timeScale(d.end) - 3) + ',-6)' : 'translate(' + timeScale(d.end) + ',0)'
+          })
           .merge(writingEnd)
-
 
       } else {
         d3.select(this).select('.bg').transition()
@@ -501,36 +607,79 @@ function draw(data) {
           })
       }
       newHeight = height + data.value.length * subHeight
+      console.log(height, newHeight, data.value.length * subHeight)
       groupsSvg.transition().duration(100).delay(10).attr('height', newHeight)
     })
   }
 
-  function collapse(duration) {
-    console.log('collapse')
-    d3.selectAll('.triangle').transition().duration(500).attr('transform', 'translate(40,0) rotate(90)')
-    d3.selectAll('#gantt g.group').each(function(d, i) {
-      d3.select(this).select('.bg').transition()
-        .duration(250)
-        .attr('height', 50)
-        .style('opacity', 0)
+}
 
-      d3.select(this).transition()
-        .duration(500)
-        .delay(i * 25)
-        .attr('transform', d => {
-          return `translate(${margin.left},${groupScale(d.key)})`;
-        })
-    })
-    groupsSvg.transition().duration(duration).attr('height', height)
+function convertData(json) {
 
-    subGroup = groupsSvg.selectAll('.subGroup').data([]).exit().remove()
+  // console.info('convert data')
 
+  var writings = json.stesure.elements
+  var info = json.info.elements
+  var publications = json.pubblicazioni.elements
+  var groups = json.gruppi.elements.filter(d => {
+    return !d.skip
+  })
+
+  let data_example = {
+    "id": "racconto-Alba sui rami nudi",
+    "titolo": "Alba sui rami nudi",
+    "conteggio": "1",
+    "start_year": "1947",
+    "start_month": "12",
+    "start_day": "",
+    "end_year": "1947",
+    "end_month": "12",
+    "end_day": "",
+    "precision_start": "month",
+    "start": "1947-11-30T23:00:00.000Z",
+    "precision_end": "month",
+    "end": "1947-12-30T23:00:00.000Z"
   }
 
+  groups = d3.nest()
+    .key(d => {
+      return d.gruppo
+    })
+    .rollup(v => {
+      v = v.map(d => {
+        d = writings.filter(e => {
+          return e.id == d.id
+        })[0]
+        return d
+      })
+      return v
+    })
+    .entries(groups)
+
+  groups.forEach(d => {
+    d.start = d3.min(d.value.map(e => {
+      return e.start ? e.start : null
+    }))
+    d.end = d3.max(d.value, function(e) {
+      return e.end ? e.end : null
+    })
+  })
+  groups.sort(function(a, b) {
+    return a.start - b.start
+  })
+
+  data = {
+    'writings': writings,
+    'info': info,
+    'publications': publications,
+    'groups': groups
+  }
+
+  return data
 }
 
 function formatData(data) {
-  console.log('data is loaded')
+  // console.log('data is loaded')
   // console.log(data)
 
   data.stesure.elements.forEach(function(d) {
@@ -638,7 +787,7 @@ function formatData(data) {
       }
     }
   })
-  draw(data)
+  gantt(data)
 }
 
 function init() {
