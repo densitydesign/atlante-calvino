@@ -251,6 +251,10 @@ function gantt(data) {
   let ganttSVG = d3.select('#gantt > svg')
     .attr('width', width)
     .attr('height', height)
+
+  let pannable = ganttSVG.append("rect")
+    .attr('class', 'pannable')
+
   let gantt = ganttSVG.append('g').classed('gantt', true)
 
   let volumes = gantt.append('g').classed('volumes-group', true).attr('clip-path', 'url(#clip)')
@@ -262,6 +266,8 @@ function gantt(data) {
   let story = volumes.selectAll('.story')
   let storyBaseline = story.selectAll('.baseline')
   let storySpan = story.selectAll('.span')
+  let storyStart = story.selectAll('.start')
+  let storyEnd = story.selectAll('.end')
   let storyPublication = story.selectAll('.baseline')
 
   let volumePublication = volume.selectAll('.volume-publication')
@@ -458,7 +464,7 @@ function gantt(data) {
         [margin.left, 0],
         [width - margin.right, 15]
       ])
-      .handleSize(72)
+      .handleSize(48)
       .on("brush end", brushed);
 
     let brush_g = brushSVG.append('g')
@@ -467,12 +473,19 @@ function gantt(data) {
     brush_g.append("g")
       .attr("class", "brush")
       .call(brush)
-      .call(brush.move, xBrush.range());
+      .call(brush.move, xBrush.range())
+      .call(brush.move, [x(parseDate('1944-12-01')), x(parseDate('1955-01-01'))]);
+
 
     ganttSVG.append("defs").append("clipPath")
       .attr("id", "clip")
       .append("rect")
       .attr('x', x(x.domain()[0]))
+      .attr('y', 0)
+      .attr('height', height)
+      .attr('width', x(x.domain()[1]) - x(x.domain()[0]))
+
+    pannable.attr('x', x(x.domain()[0]))
       .attr('y', 0)
       .attr('height', height)
       .attr('width', x(x.domain()[1]) - x(x.domain()[0]))
@@ -521,18 +534,20 @@ function gantt(data) {
 
     let duration = 500;
 
-    triangle
-      .transition().duration(duration)
-      .attr('transform', d => {
-        return (selectedVolume ? d.key == selectedVolume.key : false) ? `translate(${margin.left-40}, 25) rotate(180)` : `translate(${margin.left - 40 },25) rotate(90)`
-      })
-
     newHeight = selectedVolume ? height + selectedVolume.value.length * subHeight : height;
     ganttSVG.attr('height', newHeight)
     d3.select('#clip rect').attr('height', newHeight)
+    pannable.attr('height', newHeight)
 
     if (selectedVolume) {
-      console.log('volume:', selectedVolume)
+
+      triangle
+        .transition().duration(duration)
+        .attr('transform', d => {
+          return (selectedVolume ? d.key == selectedVolume.key : false) ? `translate(${margin.left-40}, 25) rotate(180)` : `translate(${margin.left - 40 },25) rotate(90)`
+        })
+
+      // console.log('volume:', selectedVolume)
       let selectedIndex = groups.indexOf(selectedVolume)
 
       volume.each(function(d, i) {
@@ -566,9 +581,7 @@ function gantt(data) {
 
       console.log('Draw stories')
       // set stories
-      story = volumes.selectAll('.story').data(selectedVolume.value.sort(function(a, b) {
-        return a.start - b.start
-      }))
+      story = volumes.selectAll('.story').data(selectedVolume.value)
       story.exit().remove()
       story = story.enter().append('g')
         .classed('story', true)
@@ -602,6 +615,24 @@ function gantt(data) {
         })
         .merge(storySpan)
 
+      storyStart = story.selectAll('.start').data(function(d) {
+        return d.start ? [d] : []
+      })
+      storyStart.exit().remove()
+      storyStart = storyStart.enter().append('path')
+        .classed('start', true)
+        .classed('precise', d => { return d.precision_start == 'day' })
+        .merge(storyStart)
+
+      storyEnd = story.selectAll('.end').data(function(d) {
+        return d.end ? [d] : []
+      })
+      storyEnd.exit().remove()
+      storyEnd = storyEnd.enter().append('path')
+        .classed('end', true)
+        .classed('precise', d => { return d.precision_end == 'day' })
+        .merge(storyEnd)
+
       storyPublication = story.selectAll('.publication').data(function(d) {
         let datum = publications.filter(e => {
           return e.id == d.id
@@ -618,17 +649,15 @@ function gantt(data) {
         .merge(storyPublication)
 
       // labels
-      storyLabel = labels.selectAll('.story-label').data(selectedVolume.value.sort(function(a, b) {
-        return a.start - b.start
-      }))
+      storyLabel = labels.selectAll('.story-label').data(selectedVolume.value)
       storyLabel.exit().remove()
       storyLabel = storyLabel.enter().append('text')
         .classed('story-label', true)
         .attr('y', d => {
-          return selectedVolume.value.indexOf(d)*subHeight + y(selectedVolume.key) + y.bandwidth()/2 + 28
+          return selectedVolume.value.indexOf(d) * subHeight + y(selectedVolume.key) + y.bandwidth() / 2 + 28
         })
         .attr('x', 0)
-        .text( d => {
+        .text(d => {
           return d.titolo
         })
         .merge(storyLabel)
@@ -651,20 +680,67 @@ function gantt(data) {
       .attr('y1', y.bandwidth() / 2)
       .attr('y2', y.bandwidth() / 2)
 
+    storyStart.attr('d', d => {
+        return termination(d, 'path', 'start')
+      })
+      .attr('transform', d => {
+        return termination(d, 'transform', 'start')
+      })
+
+    storyEnd.attr('d', d => {
+        return termination(d, 'path', 'end')
+      })
+      .attr('transform', d => {
+        return termination(d, 'transform', 'end')
+      })
+
     storyPublication.attr('cx', d => {
         return x(d.publication)
       })
       .attr('cy', y.bandwidth() / 2)
 
-    // if (action == 'expand') {
-    //   console.log(action)
-    //
-    // } else if (action == 'collapse') {
-    //   console.log(action)
-    // }
-
   }
 
-}
+  function termination(story, attr, type) {
 
-// function updateMarginLeft
+    if (type == 'end') {
+      if (attr == 'path') {
+        if (story.precision_end == 'day') {
+          return 'M 0,6 L 0,-1 Z'
+        } else if (story.precision_end == 'month') {
+          return 'M 0,6 L 0,-1 Z'
+        } else if (story.precision_end == 'year') {
+          return 'M 0,6 L 0,-1 Z'
+        }
+      } else if (attr == 'transform') {
+        if (story.precision_end == 'day') {
+          return 'translate(' + x(story.end) + ', ' + y.bandwidth() / 2 + ')'
+        } else if (story.precision_end == 'month') {
+          return 'translate(' + x(story.end) + ', ' + y.bandwidth() / 2 + ')'
+        } else if (story.precision_end == 'year') {
+          return 'translate(' + x(story.end) + ', ' + y.bandwidth() / 2 + ')'
+        }
+      }
+    } else if (type == 'start') {
+      if (attr == 'path') {
+        if (story.precision_start == 'day') {
+          return 'M 0,-6 L 0,1 Z'
+        } else if (story.precision_start == 'month') {
+          return 'M 0,-6 L 0,1 Z'
+        } else if (story.precision_start == 'year') {
+          return 'M3.5,0.5c-1.7,0-3,1-3,5.5s1.3,5.5,3,5.5'
+        }
+      } else if (attr == 'transform') {
+        if (story.precision_start == 'day') {
+          return 'translate(' + x(story.start) + ', ' + y.bandwidth() / 2 + ')'
+        } else if (story.precision_start == 'month') {
+          return 'translate(' + x(story.start) + ', ' + y.bandwidth() / 2 + ')'
+        } else if (story.precision_start == 'year') {
+          return 'translate(' + x(story.start) + ',' + (y.bandwidth() / 2 - 6) + ')'
+        }
+      }
+    }
+
+
+  }
+} // gantt

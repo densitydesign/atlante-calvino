@@ -3,6 +3,8 @@
   --darker: #273746;
   --red: #EC634A;
   --red-light: #f4a191;
+  --greenish: #2F4F4F;
+  --greenish-light: #BFBFBF;
 }
 
 html {
@@ -79,6 +81,12 @@ p {
 
 /* Gantt */
 
+.pannable {
+  cursor: -webkit-grab;
+  cursor: grab;
+  opacity: 0.0;
+}
+
 .triangle {
   fill: var(--darker);
   stroke-width: 10px;
@@ -99,6 +107,7 @@ p {
   fill: transparent;
   stroke: var(--darker);
   stroke-width: 0.5px;
+  cursor: pointer;
 }
 
 .publication:first-of-type {
@@ -106,24 +115,38 @@ p {
 }
 
 .uncertain {
-  fill: var(--red-light);
+  fill: var(--greenish-light);
 }
 
 .certain {
-  fill: var(--red);
+  fill: var(--greenish);
 }
 
-.composite .uncertain {}
+.composite .uncertain {fill: var(--red-light);}
 
-.composite .certain {}
+.composite .certain {fill: var(--red);}
 
 .span {
   stroke: var(--red-light);
-  stroke-width: 2px;
+  stroke-width: 1px;
 }
 
 .span.precise {
   stroke: var(--red);
+}
+
+.end, .start {
+  stroke: var(--red-light);
+  stroke-width: 1px;
+  fill: transparent;
+  /* opacity: .5; */
+}
+
+.end.precise, .start.precise {
+  stroke: var(--red);
+  stroke-width: 1.5px;
+  shape-rendering: crispedges;
+  /* opacity: 1; */
 }
 
 .title {
