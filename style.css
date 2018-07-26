@@ -1,4 +1,9 @@
 @import "fonts/hk-grotesk/webfont.css";
+:root {
+  --darker: #273746;
+  --red: #EC634A;
+  --red-light: #f4a191;
+}
 
 html {
   font-size: 10px;
@@ -24,20 +29,25 @@ body {
 }
 
 #brush svg {
+  /* background-color: #D5F5E3; */
+  display: block;
 }
 
 #gantt svg {
- /* background-color: #F8F9F9; */
+  /* background-color: #D6DBDF99; */
+  display: block;
 }
 
-#time-scale svg {
+#timeline svg {
+  /* background-color: #D6EAF8; */
+  display: block;
 }
 
-#brush, #time-scale {
+#brush, #timeline {
   background-color: #ffffffdd;
   /* border: 1px solid black; */
   -webkit-backdrop-filter: blur(10px);
-          backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
 
 /* .area {
@@ -61,25 +71,74 @@ p {
   margin-right: 20px;
 }
 
-g.group .bg {
-  fill: #FDEDEC;
+/* Brush */
+
+.brush .selection {
+  fill: var(--darker);
 }
 
-g.group .title {
-  text-anchor: end;
+/* Gantt */
+
+.triangle {
+  fill: var(--darker);
+  stroke-width: 10px;
+  stroke: transparent;
+  cursor: pointer;
 }
 
-#gantt .line {
-  stroke: #273746;
+.baseline {
+  stroke: var(--darker);
   stroke-width: 0.5px;
 }
 
-#gantt .subGroup .line {
-  stroke: #808B96;
+.story .baseline {
+  opacity: .5;
 }
 
-g.group.composite .title {
-  font-weight: bold;
+.publication {
+  fill: transparent;
+  stroke: var(--darker);
+  stroke-width: 0.5px;
+}
+
+.publication:first-of-type {
+  fill: var(--darker);
+}
+
+.uncertain {
+  fill: var(--red-light);
+}
+
+.certain {
+  fill: var(--red);
+}
+
+.composite .uncertain {}
+
+.composite .certain {}
+
+.span {
+  stroke: var(--red-light);
+  stroke-width: 2px;
+}
+
+.span.precise {
+  stroke: var(--red);
+}
+
+.title {
+  text-anchor: start;
+  font-size: 1rem;
+}
+
+.story-label {
+  text-anchor: start;
+  font-size: 0.75rem;
+}
+
+
+#gantt .subGroup .line {
+  stroke: #808B96;
 }
 
 g.group .span1 {
@@ -98,18 +157,18 @@ g.group.composite .span2 {
   fill: #E74C3C;
 }
 
-.publication {
+/* .publication {
   fill: #273746;
   stroke: white;
   stroke-width: 1px;
   cursor: pointer;
-}
+} */
 
-.publication.not-first {
+/* .publication.not-first {
   fill: transparent;
   stroke: #273746;
   stroke-width: 1px;
-}
+} */
 
 g.group.composite .publication {
   fill: #E74C3C;
@@ -117,26 +176,8 @@ g.group.composite .publication {
   stroke-width: 1px;
 }
 
-g.group .triangle {
-  fill: #273746;
-  stroke-linejoin: bevel;
-  stroke-width: 7px;
-  stroke: white;
-  cursor: pointer;
-}
-
 g.group .triangle.expanded {
   fill: red;
-}
-
-/* g.main-g {
-  -webkit-clip-path: url(#clip);
-          clip-path: url(#clip)
-} */
-
-g.subGroup .title {
-  text-anchor: end;
-  font-size: 0.75rem;
 }
 
 g.subGroup .writing {
@@ -169,28 +210,10 @@ g.subGroup.precise .writing {
   stroke-width: 2px;
 }
 
-
 .axis path, .axis line {
   stroke-width: 0.5px
 }
 
 .axis .tick text {
   font-size: 1rem
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-.test {
-  opacity: .4;
-  fill: red;
 }
