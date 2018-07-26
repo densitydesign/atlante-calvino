@@ -282,7 +282,7 @@ function gantt(data) {
 
   // define elements for the timeline at the bottom
   let timelineSVG = d3.select('#timeline > svg')
-    .attr('height', 25)
+    .attr('height', 50)
     .attr('width', width)
 
 
@@ -703,30 +703,12 @@ function gantt(data) {
 
   function termination(story, attr, type) {
 
-    if (type == 'end') {
-      if (attr == 'path') {
-        if (story.precision_end == 'day') {
-          return 'M 0,6 L 0,-1 Z'
-        } else if (story.precision_end == 'month') {
-          return 'M 0,6 L 0,-1 Z'
-        } else if (story.precision_end == 'year') {
-          return 'M 0,6 L 0,-1 Z'
-        }
-      } else if (attr == 'transform') {
-        if (story.precision_end == 'day') {
-          return 'translate(' + x(story.end) + ', ' + y.bandwidth() / 2 + ')'
-        } else if (story.precision_end == 'month') {
-          return 'translate(' + x(story.end) + ', ' + y.bandwidth() / 2 + ')'
-        } else if (story.precision_end == 'year') {
-          return 'translate(' + x(story.end) + ', ' + y.bandwidth() / 2 + ')'
-        }
-      }
-    } else if (type == 'start') {
+    if (type == 'start') {
       if (attr == 'path') {
         if (story.precision_start == 'day') {
           return 'M 0,-6 L 0,1 Z'
         } else if (story.precision_start == 'month') {
-          return 'M 0,-6 L 0,1 Z'
+          return 'M3.5,0.5c-1.7,0-3,1-3,5.5s1.3,5.5,3,5.5'
         } else if (story.precision_start == 'year') {
           return 'M3.5,0.5c-1.7,0-3,1-3,5.5s1.3,5.5,3,5.5'
         }
@@ -734,9 +716,27 @@ function gantt(data) {
         if (story.precision_start == 'day') {
           return 'translate(' + x(story.start) + ', ' + y.bandwidth() / 2 + ')'
         } else if (story.precision_start == 'month') {
-          return 'translate(' + x(story.start) + ', ' + y.bandwidth() / 2 + ')'
+          return 'translate(' + x(story.start) + ',' + (y.bandwidth() / 2 - 6) + ')'
         } else if (story.precision_start == 'year') {
           return 'translate(' + x(story.start) + ',' + (y.bandwidth() / 2 - 6) + ')'
+        }
+      }
+    } else if (type == 'end') {
+      if (attr == 'path') {
+        if (story.precision_end == 'day') {
+          return 'M 0,6 L 0,-1 Z'
+        } else if (story.precision_end == 'month') {
+          return 'M0,0.5c1.7,0,3,1,3,5.5s-1.3,5.5-3,5.5'
+        } else if (story.precision_end == 'year') {
+          return 'M0,0.5c1.7,0,3,1,3,5.5s-1.3,5.5-3,5.5'
+        }
+      } else if (attr == 'transform') {
+        if (story.precision_end == 'day') {
+          return 'translate(' + x(story.end) + ', ' + y.bandwidth() / 2 + ')'
+        } else if (story.precision_end == 'month') {
+          return 'translate(' + (x(story.end)-3) + ',' + (y.bandwidth() / 2 - 6) + ')'
+        } else if (story.precision_end == 'year') {
+          return 'translate(' + (x(story.end)-3) + ',' + (y.bandwidth() / 2 - 6) + ')'
         }
       }
     }
