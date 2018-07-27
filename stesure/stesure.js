@@ -189,7 +189,7 @@ function convertData(json) {
 let parseDate = d3.timeParse("%Y-%m-%d")
 let boundaries = [parseDate('1940-01-01'), parseDate('1990-12-31')]
 let data
-let subHeight = 25
+let subHeight = 20
 
 function gantt(data) {
 
@@ -345,7 +345,17 @@ function gantt(data) {
       .attr('d', d3.symbol().size(120).type(d3['symbolTriangle'])())
       .attr('transform', `translate(${margin.left-40}, 25) rotate(90)`)
       .on('click', function(d) {
+
+        // console.log(d)
+
+        // if (d3.selectAll('.expanded').size() > 0) {
+        //   draw({
+        //     value: []
+        //   })
+        // }
+
         d3.select(this).classed("expanded", !d3.select(this).classed("expanded"))
+
         if (d3.select(this).classed("expanded")) {
           draw(d)
         } else {
@@ -452,17 +462,31 @@ function gantt(data) {
       .classed('.story', true)
       .merge(story)
 
-    // define brush
-    xBrush.range([margin.left, width - margin.right])
+    // define brush and pan
+
+    var zoom = d3.zoom()
+      .scaleExtent([1, Infinity])
+      .translateExtent([[0, 0], [width, height]])
+      // .extent([[0, 0], [width, height]])
+      .on("zoom", zoomed);
+
+    pannable.attr('x', x(x.domain()[0]))
+      .attr('y', 0)
+      .attr('height', height)
+      .attr('width', x(x.domain()[1]) - x(x.domain()[0]))
+      .call(zoom);
+
+    xBrush.range([0, width-margin.left - margin.right])
+
     brushSVG.append("g")
       .attr("class", "axis axis--x")
-      .attr("transform", "translate(" + 0 + "," + 25 + ")")
+      .attr("transform", "translate(" + margin.left + "," + 25 + ")")
       .call(brushAxis);
 
     var brush = d3.brushX()
       .extent([
-        [margin.left, 0],
-        [width - margin.right, 15]
+        [0, 0],
+        [width, 15]
       ])
       .handleSize(48)
       .on("brush end", brushed);
@@ -474,8 +498,7 @@ function gantt(data) {
       .attr("class", "brush")
       .call(brush)
       .call(brush.move, xBrush.range())
-      .call(brush.move, [x(parseDate('1944-12-01')), x(parseDate('1955-01-01'))]);
-
+      // .call(brush.move, [x(parseDate('1944-12-01')), x(parseDate('1955-01-01'))]);
 
     ganttSVG.append("defs").append("clipPath")
       .attr("id", "clip")
@@ -485,19 +508,31 @@ function gantt(data) {
       .attr('height', height)
       .attr('width', x(x.domain()[1]) - x(x.domain()[0]))
 
-    pannable.attr('x', x(x.domain()[0]))
-      .attr('y', 0)
-      .attr('height', height)
-      .attr('width', x(x.domain()[1]) - x(x.domain()[0]))
-
     function brushed() {
       if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
       var s = d3.event.selection || xBrush.range();
       x.domain(s.map(xBrush.invert, xBrush));
+      
+      pannable.call(zoom.transform, d3.zoomIdentity
+        .scale( (width) / (s[1] - s[0]) )
+        .translate( -s[0], 0) );
+
       timelineSVG.select(".axis--x").call(xAxis);
-      console.log('brush')
+
       draw()
     }
+
+    function zoomed() {
+      if (d3.event.sourceEvent && d3.event.sourceEvent.type === "brush") return; // ignore zoom-by-brush
+      var t = d3.event.transform;
+      x.domain(t.rescaleX(xBrush).domain());
+      brushSVG.select(".brush").call(brush.move, x.range().map(t.invertX, t));
+
+      timelineSVG.select(".axis--x").call(xAxis);
+
+      draw()
+    }
+
   } // update
 
   update()
@@ -541,26 +576,28 @@ function gantt(data) {
 
     if (selectedVolume) {
 
-      triangle
+      triangle.classed('expanded', d => {
+          return d.key == selectedVolume.key
+        })
         .transition().duration(duration)
         .attr('transform', d => {
           return (selectedVolume ? d.key == selectedVolume.key : false) ? `translate(${margin.left-40}, 25) rotate(180)` : `translate(${margin.left - 40 },25) rotate(90)`
         })
 
-      // console.log('volume:', selectedVolume)
       let selectedIndex = groups.indexOf(selectedVolume)
+      // console.log('volume:', selectedIndex, selectedVolume)
 
       volume.each(function(d, i) {
         // console.log(d, i)
         if (i <= selectedIndex) {
-          d3.select(this).attr('transform', e => {
+          d3.select(this).transition().duration(duration).attr('transform', e => {
             return `translate(0,${y(e.key)})`;
           })
           if (i == selectedIndex) {
 
           }
         } else {
-          d3.select(this).attr('transform', e => {
+          d3.select(this).transition().duration(duration).attr('transform', e => {
             return `translate(0,${y(e.key) + selectedVolume.value.length*subHeight})`;
           })
         }
@@ -569,19 +606,19 @@ function gantt(data) {
       label.each(function(d, i) {
         // console.log(d, i)
         if (i <= selectedIndex) {
-          d3.select(this).attr('transform', e => {
+          d3.select(this).transition().duration(duration).attr('transform', e => {
             return `translate(0,${y(e.key)})`;
           })
         } else {
-          d3.select(this).attr('transform', e => {
+          d3.select(this).transition().duration(duration).attr('transform', e => {
             return `translate(0,${y(e.key) + selectedVolume.value.length*subHeight})`;
           })
         }
       })
 
-      console.log('Draw stories')
+      // console.log('Draw stories')
       // set stories
-      story = volumes.selectAll('.story').data(selectedVolume.value)
+      story = volumes.selectAll('.story').data(selectedVolume.value, d => { return d.id })
       story.exit().remove()
       story = story.enter().append('g')
         .classed('story', true)
@@ -591,10 +628,18 @@ function gantt(data) {
         .attr('key', function(d) {
           return d.id
         })
+        .merge(story)
+        .style('opacity', 0)
         .attr('transform', d => {
           return `translate(0,${ selectedVolume.value.indexOf(d)*subHeight + y(selectedVolume.key) + y.bandwidth()/2 })`
         })
-        .merge(story)
+
+      story.transition()
+        .duration(duration)
+        .delay( (d,i) => {
+          return i*(duration/selectedVolume.value.length)
+        })
+        .style('opacity', 1)
 
       storyBaseline = story.selectAll('.baseline').data(function(d) {
         return d.start && d.end ? [d] : []
@@ -649,18 +694,26 @@ function gantt(data) {
         .merge(storyPublication)
 
       // labels
-      storyLabel = labels.selectAll('.story-label').data(selectedVolume.value)
+      storyLabel = labels.selectAll('.story-label').data(selectedVolume.value, d => { return d.id })
       storyLabel.exit().remove()
       storyLabel = storyLabel.enter().append('text')
         .classed('story-label', true)
-        .attr('y', d => {
-          return selectedVolume.value.indexOf(d) * subHeight + y(selectedVolume.key) + y.bandwidth() / 2 + 28
-        })
         .attr('x', 0)
         .text(d => {
           return d.titolo
         })
         .merge(storyLabel)
+        .style('opacity', 0)
+        .attr('y', d => {
+          return selectedVolume.value.indexOf(d) * subHeight + y(selectedVolume.key) + y.bandwidth() / 2 + 28
+        })
+
+      storyLabel.transition()
+        .duration(duration)
+        .delay( (d,i) => {
+          return i*(duration/selectedVolume.value.length)
+        })
+        .style('opacity', 1)
 
     }
 

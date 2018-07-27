@@ -82,9 +82,9 @@ p {
 /* Gantt */
 
 .pannable {
-  cursor: -webkit-grab;
-  cursor: grab;
-  opacity: 0.0;
+  /* cursor: -webkit-grab;
+  cursor: grab; */
+  opacity: 0.02;
 }
 
 .triangle {
@@ -92,6 +92,10 @@ p {
   stroke-width: 10px;
   stroke: transparent;
   cursor: pointer;
+}
+
+.triangle.expanded {
+  fill: purple;
 }
 
 .baseline {
@@ -199,9 +203,9 @@ g.group.composite .publication {
   stroke-width: 1px;
 }
 
-g.group .triangle.expanded {
+/* g.group .triangle.expanded {
   fill: red;
-}
+} */
 
 g.subGroup .writing {
   stroke: #1C2833;
