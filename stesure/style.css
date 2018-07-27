@@ -1,4 +1,4 @@
-@import "fonts/hk-grotesk/webfont.css";
+@import "../assets/fonts/hk-grotesk/webfont.css";
 :root {
   --darker: #273746;
   --red: #EC634A;
