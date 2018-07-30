@@ -102,10 +102,6 @@ XXXp {
   cursor: pointer;
 }
 
-.triangle.expanded {
-  fill: purple;
-}
-
 .baseline {
   stroke: var(--darker);
   stroke-width: 0.5px;
