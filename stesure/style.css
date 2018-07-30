@@ -30,8 +30,15 @@ body {
   font-size: 1rem;
 }
 
+.navbar .navbar-brand {
+  color: var(--red);
+}
+
+#brush {
+  border-bottom: 1px var(--red) solid;
+}
+
 #brush svg {
-  /* background-color: #D5F5E3; */
   display: block;
 }
 
@@ -47,24 +54,20 @@ body {
 
 #brush, #timeline {
   background-color: #ffffffdd;
-  /* border: 1px solid black; */
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
 
-/* .area {
-  fill: #FF5733;
-  -webkit-clip-path: url(#clip);
-          clip-path: url(#clip);
+.gantt-info {
+  display: block;
+  border-bottom: 0.5px var(--darker) solid;
 }
 
-.zoom {
-  cursor: move;
-  fill: none;
-  pointer-events: all;
-} */
+.brush-info {
+  display: block;
+}
 
-p {
+XXXp {
   color: #FF5733;
   font-family: "helvetica", 'sans-serif';
   text-align: left;
@@ -82,9 +85,14 @@ p {
 /* Gantt */
 
 .pannable {
-  /* cursor: -webkit-grab;
-  cursor: grab; */
-  opacity: 0.02;
+  cursor: -webkit-grab;
+  cursor: grab;
+  opacity: 0.0;
+}
+
+.pannable:active {
+  cursor: -webkit-grabbing;
+  cursor: grabbing;
 }
 
 .triangle {

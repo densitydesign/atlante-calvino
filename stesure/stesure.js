@@ -189,6 +189,7 @@ function convertData(json) {
 let parseDate = d3.timeParse("%Y-%m-%d")
 let boundaries = [parseDate('1940-01-01'), parseDate('1990-12-31')]
 let data
+let itemHeight = 40
 let subHeight = 20
 
 function gantt(data) {
@@ -208,7 +209,7 @@ function gantt(data) {
   width -= parseInt(groupBoxStyle.paddingRight)
   width -= 15
 
-  let height = 50 * groups.length
+  let height = itemHeight * groups.length
   let newHeight;
 
   let margin = {
@@ -239,7 +240,7 @@ function gantt(data) {
     .domain(boundaries)
 
   let brushAxis = d3.axisBottom(xBrush)
-    .ticks(d3.timeYear.every(5))
+    .ticks(d3.timeYear.every(3))
     .tickPadding(7)
 
   // define element for the brush
@@ -251,6 +252,11 @@ function gantt(data) {
   let ganttSVG = d3.select('#gantt > svg')
     .attr('width', width)
     .attr('height', height)
+
+  // define elements for the timeline at the bottom
+  let timelineSVG = d3.select('#timeline > svg')
+    .attr('height', 40)
+    .attr('width', width)
 
   let pannable = ganttSVG.append("rect")
     .attr('class', 'pannable')
@@ -277,14 +283,6 @@ function gantt(data) {
   let triangle = labels.selectAll('.triangle')
 
   let storyLabel = labels.selectAll('.story-label')
-
-
-
-  // define elements for the timeline at the bottom
-  let timelineSVG = d3.select('#timeline > svg')
-    .attr('height', 50)
-    .attr('width', width)
-
 
   function update() {
 
@@ -323,15 +321,24 @@ function gantt(data) {
 
     // calculate left margin
     title.each(function(d, i) {
-      let thisWidth = d3.select(this).node().getBBox().width + 80
+      let thisWidth = d3.select(this).node().getBBox().width + 60
       margin.left = d3.max([(margin.left), thisWidth])
     })
 
+    // Update width
+    width -= margin.left
+    width -= margin.right
+
+    volumes.attr(`transform`, `translate(${margin.left},0)`)
+    d3.select('.gantt-info').style('width', (margin.left-60)+'px')
+    d3.select('#brush > .brush-info').style('padding-left', (margin.left+0) + 'px')
+
     // After margin is set, draw the temporal axis at the bottom, in a different SVG so to make it sticky via CSS
-    x.range([margin.left, width - margin.right])
+    x.range([0, width])
 
     timelineSVG.append("g")
       .attr("class", "axis axis--x")
+      .attr(`transform`, `translate(${margin.left},1)`)
       .call(xAxis);
 
     triangle = label.selectAll('.triangle').data(function(d) {
@@ -343,16 +350,8 @@ function gantt(data) {
     triangle = triangle.enter().append('path')
       .classed('triangle', true)
       .attr('d', d3.symbol().size(120).type(d3['symbolTriangle'])())
-      .attr('transform', `translate(${margin.left-40}, 25) rotate(90)`)
+      .attr('transform', `translate(${margin.left-30}, 25) rotate(90)`)
       .on('click', function(d) {
-
-        // console.log(d)
-
-        // if (d3.selectAll('.expanded').size() > 0) {
-        //   draw({
-        //     value: []
-        //   })
-        // }
 
         d3.select(this).classed("expanded", !d3.select(this).classed("expanded"))
 
@@ -467,20 +466,26 @@ function gantt(data) {
     var zoom = d3.zoom()
       .scaleExtent([1, Infinity])
       .translateExtent([[0, 0], [width, height]])
-      // .extent([[0, 0], [width, height]])
-      .on("zoom", zoomed);
+      .extent([[0, 0], [width, height]])
+      .on("zoom", zoomed)
+
 
     pannable.attr('x', x(x.domain()[0]))
       .attr('y', 0)
       .attr('height', height)
       .attr('width', x(x.domain()[1]) - x(x.domain()[0]))
-      .call(zoom);
+      .attr("transform", "translate(" + margin.left + "," + 0 + ")")
+      .call(zoom)
+      .on("wheel.zoom", null)
 
-    xBrush.range([0, width-margin.left - margin.right])
+    xBrush.range([0, width])
 
-    brushSVG.append("g")
+    brushSVG
+      .append("g")
+      // .attr(`transform`, `translate(${margin.left},0)`)
+      .append("g")
       .attr("class", "axis axis--x")
-      .attr("transform", "translate(" + margin.left + "," + 25 + ")")
+      .attr(`transform`, `translate(0,15)`)
       .call(brushAxis);
 
     var brush = d3.brushX()
@@ -491,8 +496,9 @@ function gantt(data) {
       .handleSize(48)
       .on("brush end", brushed);
 
-    let brush_g = brushSVG.append('g')
-      .attr("transform", "translate(" + 0 + "," + 10 + ")")
+    let brush_g = brushSVG.select('g').attr("transform", "translate(" + margin.left + "," + 0 + ")")
+      .append('g')
+
 
     brush_g.append("g")
       .attr("class", "brush")
@@ -512,13 +518,10 @@ function gantt(data) {
       if (d3.event.sourceEvent && d3.event.sourceEvent.type === "zoom") return; // ignore brush-by-zoom
       var s = d3.event.selection || xBrush.range();
       x.domain(s.map(xBrush.invert, xBrush));
-      
       pannable.call(zoom.transform, d3.zoomIdentity
         .scale( (width) / (s[1] - s[0]) )
         .translate( -s[0], 0) );
-
       timelineSVG.select(".axis--x").call(xAxis);
-
       draw()
     }
 
@@ -527,9 +530,7 @@ function gantt(data) {
       var t = d3.event.transform;
       x.domain(t.rescaleX(xBrush).domain());
       brushSVG.select(".brush").call(brush.move, x.range().map(t.invertX, t));
-
       timelineSVG.select(".axis--x").call(xAxis);
-
       draw()
     }
 
@@ -581,7 +582,7 @@ function gantt(data) {
         })
         .transition().duration(duration)
         .attr('transform', d => {
-          return (selectedVolume ? d.key == selectedVolume.key : false) ? `translate(${margin.left-40}, 25) rotate(180)` : `translate(${margin.left - 40 },25) rotate(90)`
+          return (selectedVolume ? d.key == selectedVolume.key : false) ? `translate(${margin.left-30}, 25) rotate(180)` : `translate(${margin.left - 30 },25) rotate(90)`
         })
 
       let selectedIndex = groups.indexOf(selectedVolume)
