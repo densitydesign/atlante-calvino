@@ -16,6 +16,7 @@
   <nav class="navbar navbar-expand-md navbar-light bg-light">
     <span class="navbar-brand mb-0 h1">Atlante Calvino</span>
     <span class="navbar-text">Stesure</span>
+    <button type="button" class="btn btn-info" data-toggle="modal" data-target=".bd-example-modal-lg">Legenda</button>
   </nav>
   <div class="container-fluid">
     <div class="row sticky-top">
@@ -35,6 +36,73 @@
         <svg></svg>
       </div>
     </div>
+  </div>
+
+
+  <!-- Large modal -->
+
+
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+      <div class="modal-content legend-content p-3">
+        <div class="row">
+          <div class="col-12">
+            <h3>Legenda</h3>
+          </div>
+          <div class="col-12 mt-3">
+            <p><em>I colori indicano il tipo di pubblicazione:
+            </em></p>
+          </div>
+          <div class="col-4 text-center">
+            <p><span style="height:16px; width: 16px; display: inline-block; background-color: var(--red); border-radius: 15%;"></span></p>
+            Volume unico
+          </div>
+          <div class="col-4 text-center">
+            <p><span style="height:16px; width: 16px; display: inline-block; background-color: var(--darker); border-radius: 15%;"></span></p>
+            Volume Composito
+          </div>
+          <div class="col-4">
+            *<strong>Volume composito</strong>:<br />volume composto da più testi
+          </div>
+          <div class="col-12 mt-5">
+            <p><em>Le aree indicano l’estensione della stesura del <u>volume</u> e veicolano le seguenti informazioni:</em></p>
+          </div>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-4 pr-0"><span class="reused span"></span></div>
+              <div class="col-4 px-0"><span class="uncertain span"></span></div>
+              <div class="col-4 pl-0"><span class="certain span"></span></div>
+              <div class="col-4 text-center">Racconti ripresi da raccolta precedente</div>
+              <div class="col-4 text-center">Incertezza sul periodo di scrittura</div>
+              <div class="col-4 text-center">Certezza sul periodo di scrittura</div>
+            </div>
+          </div>
+          <div class="col-12 mt-5">
+            <p><em>Le terminazioni delle linee segnalano l’intervallo di stesura del <u>racconto</u>:</em></p>
+          </div>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-5 text-center">Intervallo certo</div>
+              <div class="col-5 offset-1 text-center">Intervallo ipotetico</div>
+            </div>
+          </div>
+          <div class="col-12 mt-5">
+            <p><em>I simboli indicano:</em></p>
+          </div>
+          <div class="col-12 mb-3">
+            <div class="row">
+              <div class="col-5 text-center">
+                <div class="row">
+                  <div class="col-6">Prima pubblicazione</div>
+                  <div class="col-6">Ripubblicazione</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 
   <!-- Optional JavaScript -->
