@@ -1,146 +1,127 @@
 <html>
-<head>
-<body>
-	<div></div>
-	<script src="https://d3js.org/d3.v5.min.js"></script>
-	<script>
-		console.log('hello')
-		d3.xml("lische_verticale-interattivo20.svg").then(function(xml){
-			console.log('hello')
-			console.log(xml)
-			let svg = d3.select(xml).select('svg').node()
-			console.log(svg)
-			d3.select('body > div').node().appendChild(svg)
 
-			function resetOpacity(){
-				d3.selectAll('#elementi > g > g').style('opacity',1)
-				d3.selectAll('.rivista').style('opacity',1)
-				d3.selectAll('.collection').style('opacity',1)
-				d3.selectAll('.no-collection').style('opacity',1)
+<head>
+
+	<body>
+		<div></div>
+		<script src="https://d3js.org/d3.v5.min.js"></script>
+		<script>
+			console.log('hello')
+
+			window.onload = function() {
+				document.onselectstart = function() {
+					return false;
+				}
 			}
 
-			d3.select('.reset').on('click', function(d) {
-				resetOpacity()
-				console.log('reset')
+			let selectedItems = [];
+			let selectionType = null
+			d3.xml("lische_verticale-interattivo20.svg").then(function(xml) {
+				console.log('hello')
+				console.log(xml)
+				let svg = d3.select(xml).select('svg').node()
+				console.log(svg)
+				d3.select('body > div').node().appendChild(svg)
+
+				function resetOpacity() {
+					d3.selectAll('#elementi > g > g').style('opacity', 1)
+					d3.selectAll('.rivista').style('opacity', 1)
+					d3.selectAll('.collection').style('opacity', 1)
+					d3.selectAll('.no-collection').style('opacity', 1)
+				}
+
+				d3.select('.reset').on('click', function(d) {
+					resetOpacity()
+					console.log('reset')
+				})
+
+
+				d3.selectAll('.collection')
+					.style('cursor', 'pointer')
+					.on('click', function(d) {
+						var thisClass = d3.select(this).attr('class')
+						thisClass = thisClass.split(' ')
+						thisClass = thisClass[thisClass.length - 1]
+						// console.log(thisClass)
+
+						if (d3.event.shiftKey && selectionType == 'collection') {
+							selectedItems.push(thisClass);
+						} else {
+							selectedItems = []
+						}
+						if (selectedItems.length < 1) {
+							selectedItems.push(thisClass)
+							selectionType = 'collection'
+						}
+
+						resetOpacity()
+						d3.selectAll('.collection').style('opacity', .2)
+						d3.selectAll('.no-collection').style('opacity', .2)
+
+						selectedItems.forEach(function(ee){
+							d3.selectAll('.' + ee).style('opacity', 1)
+						})
+
+					})
+
+				d3.selectAll('#elementi > g > g')
+					.style('cursor', 'pointer')
+					.on('click', function(d) {
+						d3.event.preventDefault()
+
+						if (d3.event.shiftKey && selectionType == 'story') {
+							selectedItems.push(this);
+						} else {
+							selectedItems = []
+						}
+						if (selectedItems.length < 1) {
+							selectedItems.push(this)
+							selectionType = 'story'
+						}
+						resetOpacity()
+						d3.selectAll('#elementi > g > g').style('opacity', 0.2)
+						selectedItems.forEach(function(e, j) {
+							d3.select(e).style('opacity', 1)
+						})
+						d3.select(this.parentNode).select('g:last-of-type').style('opacity', 1)
+
+					})
+
+				d3.selectAll('.rivista > g:last-of-type')
+					.style('cursor', 'pointer')
+					.on('click', function(d) {
+
+						if (d3.event.shiftKey && selectionType == 'magazine') {
+							selectedItems.push(this);
+						} else {
+							selectedItems = []
+						}
+
+						if (selectedItems.length < 1) {
+							selectedItems.push(this)
+							selectionType = 'magazine'
+						}
+
+						resetOpacity()
+
+						d3.selectAll('.rivista').style('opacity', .2)
+
+						selectedItems.forEach(function(e, j) {
+							d3.select(e.parentNode).style('opacity', 1)
+						})
+
+					})
+
+				// // Add class for collections
+				// d3.selectAll('#elementi > g > g')
+				// 	.on('click', function(d){
+				// 		d3.select(this).classed('collection-to-be-named', true)
+				// 		console.log(this)
+				// 	})
+
 			})
-
-
-			d3.selectAll('.collection')
-				.style('cursor','pointer')
-				.on('click', function(d){
-					var thisClass = d3.select(this).attr('class')
-					thisClass = thisClass.split(' ')
-					thisClass = thisClass[thisClass.length-1]
-					console.log(thisClass)
-					resetOpacity()
-					d3.selectAll('.collection').style('opacity',.2)
-					d3.selectAll('.no-collection').style('opacity',.2)
-					d3.selectAll('.'+thisClass).style('opacity',1)
-				})
-
-			d3.selectAll('#elementi > g > g')
-				.style('cursor','pointer')
-				.on('click', function(d){
-					resetOpacity()
-					d3.selectAll('#elementi > g > g').style('opacity',0.2)
-					d3.select(this).style('opacity',1)
-					d3.select(this.parentNode).select('g:last-of-type').style('opacity',1)
-				})
-
-			d3.selectAll('.rivista > g:last-of-type')
-				.style('cursor','pointer')
-				.on('click', function(d){
-					// console.log(this.parentNode)
-					resetOpacity()
-					d3.selectAll('.rivista').style('opacity',.2)
-					d3.select(this.parentNode).style('opacity',1)
-				})
-
-			// // Add class for collections
-			// d3.selectAll('#elementi > g > g')
-			// 	.on('click', function(d){
-			// 		d3.select(this).classed('collection-to-be-named', true)
-			// 		console.log(this)
-			// 	})
-
-			
-
-			// d3.selectAll('.ultimo-viene-il-corvo-AV')
-			// 	.style('cursor','pointer')
-			// 	.on('click', function(d){
-			// 		resetOpacity()
-			// 		d3.selectAll('#elementi > g > g').style('opacity',0.2)
-			// 		d3.selectAll('.ultimo-viene-il-corvo-AV').style('opacity',1)
-			// 	})
-
-			// d3.selectAll('.racconti-AV')
-			// 	.style('cursor','pointer')
-			// 	.on('click', function(d){
-			// 		resetOpacity()
-			// 		d3.selectAll('#elementi > g > g').style('opacity',0.2)
-			// 		d3.selectAll('.racconti-AV').style('opacity',1)
-			// 	})
-
-			// d3.selectAll('.l-entrata-in-guerra-AV')
-			// 	.style('cursor','pointer')
-			// 	.on('click', function(d){
-			// 		d3.selectAll('#elementi > g > g').style('opacity',0.2)
-			// 		d3.selectAll('.l-entrata-in-guerra-AV').style('opacity',1)
-			// 	})
-
-			// d3.selectAll('.marcovaldo-AV')
-			// 	.style('cursor','pointer')
-			// 	.on('click', function(d){
-			// 		d3.selectAll('#elementi > g > g').style('opacity',0.2)
-			// 		d3.selectAll('.marcovaldo-AV').style('opacity',1)
-			// 	})
-
-			// d3.selectAll('.le-cosmicomiche-AV')
-			// 	.style('cursor','pointer')
-			// 	.on('click', function(d){
-			// 		d3.selectAll('#elementi > g > g').style('opacity',1)
-			// 		d3.selectAll('#elementi > g > g').style('opacity',0.2)
-			// 		d3.selectAll('.le-cosmicomiche-AV').style('opacity',1)
-			// 	})
-
-			// d3.selectAll('.gli-amori-difficili-AV')
-			// 	.style('cursor','pointer')
-			// 	.on('click', function(d){
-			// 		d3.selectAll('#elementi > g > g').style('opacity',0.2)
-			// 		d3.selectAll('.gli-amori-difficili-AV').style('opacity',1)
-			// 	})
-
-			// d3.selectAll('.la-memoria-del-mondo-AV')
-			// 	.style('cursor','pointer')
-			// 	.on('click', function(d){
-			// 		d3.selectAll('#elementi > g > g').style('opacity',0.2)
-			// 		d3.selectAll('.la-memoria-del-mondo-AV').style('opacity',1)
-			// 	})
-
-			// d3.selectAll('.cosmicomiche-vecchie-e-nuove-AV')
-			// 	.style('cursor','pointer')
-			// 	.on('click', function(d){
-			// 		d3.selectAll('#elementi > g > g').style('opacity',0.2)
-			// 		d3.selectAll('.cosmicomiche-vecchie-e-nuove-AV').style('opacity',1)
-			// 	})
-
-			// d3.selectAll('.ti-con-zero-AV')
-			// 	.style('cursor','pointer')
-			// 	.on('click', function(d){
-			// 		d3.selectAll('#elementi > g > g').style('opacity',0.2)
-			// 		d3.selectAll('.ti-con-zero-AV').style('opacity',1)
-			// 	})
-
-			// d3.selectAll('.palomar-AV')
-			// 	.style('cursor','pointer')
-			// 	.on('click', function(d){
-			// 		d3.selectAll('#elementi > g > g').style('opacity',0.2)
-			// 		d3.selectAll('.palomar-AV').style('opacity',1)
-			// 	})
-
-		})
-		
-	</script>
-</body>
+		</script>
+	</body>
 </head>
+
 </html>
