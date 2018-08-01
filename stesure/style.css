@@ -1,5 +1,4 @@
 @import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i');
-
 @import "../assets/fonts/hk-grotesk/webfont.css";
 :root {
   --darker: #273746;
@@ -74,15 +73,6 @@ h3 {
   display: block;
 }
 
-XXXp {
-  color: #FF5733;
-  font-family: "helvetica", 'sans-serif';
-  text-align: left;
-  font-weight: 700;
-  float: right;
-  margin-right: 20px;
-}
-
 /* Brush */
 
 .brush .selection {
@@ -121,8 +111,12 @@ XXXp {
 .publication {
   fill: transparent;
   stroke: var(--darker);
-  stroke-width: 0.5px;
+  stroke-width: 1px;
   cursor: pointer;
+}
+
+.publication.not-precise {
+  opacity: .5;
 }
 
 .publication:first-of-type {
@@ -131,15 +125,23 @@ XXXp {
 
 .uncertain {
   fill: var(--greenish-light);
+  rx: 2px;
+  ry: 2px;
 }
 
 .certain {
   fill: var(--greenish);
+  rx: 2px;
+  ry: 2px;
 }
 
-.composite .uncertain {fill: var(--red-light);}
+.composite .uncertain {
+  fill: var(--red-light);
+}
 
-.composite .certain {fill: var(--red);}
+.composite .certain {
+  fill: var(--red);
+}
 
 .span {
   stroke: var(--red-light);
@@ -173,7 +175,6 @@ XXXp {
   text-anchor: start;
   font-size: 0.75rem;
 }
-
 
 #gantt .subGroup .line {
   stroke: #808B96;
@@ -270,7 +271,6 @@ g.subGroup.precise .writing {
 .legend-content .span.certain {
   background-color: var(--red);
 }
-
 
 .legend-content p {
   font-family: 'Crimson Text', serif;
