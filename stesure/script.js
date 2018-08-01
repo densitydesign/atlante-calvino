@@ -178,8 +178,43 @@ function convertData(json) {
       return e.end ? e.end : null
     })
   })
+
   groups.sort(function(a, b) {
     return a.start - b.start
+  })
+
+  // Sort groups by first publication date
+  groups = groups.sort(function(a,b){
+    let first_a = publications.filter(function(e){
+      return e.id == a.key
+    }).sort(function(a, b) {
+      return a.publication - b.publication
+    })
+    let first_b = publications.filter(function(e){
+      return e.id == b.key
+    }).sort(function(a, b) {
+      return a.publication - b.publication
+    })
+    return first_a[0].publication - first_b[0].publication
+  })
+
+  // sort stories by first publication date
+  groups.forEach(function(g){
+    g.value.sort(function(a,b){
+      let first_a = publications.filter(function(e){
+        return e.id == a.id
+      }).sort(function(a, b) {
+        return a.publication - b.publication
+      })
+      let first_b = publications.filter(function(e){
+        return e.id == b.id
+      }).sort(function(a, b) {
+        return a.publication - b.publication
+      })
+      if (first_a.length && first_b.length) {
+        return first_a[0].publication - first_b[0].publication
+      }
+    })
   })
 
   data = {
@@ -646,7 +681,7 @@ function gantt(data) {
       // console.log('Draw stories')
       // set stories
       story = volumes.selectAll('.story').data(selectedVolume.value, d => { return d.id })
-      story.exit().remove()
+      story.exit().transition().duration(duration).style('opacity',1e-16).remove()
       story = story.enter().append('g')
         .classed('story', true)
         .classed('precise', d => {
@@ -722,7 +757,7 @@ function gantt(data) {
 
       // labels
       storyLabel = labels.selectAll('.story-label').data(selectedVolume.value, d => { return d.id })
-      storyLabel.exit().remove()
+      storyLabel.exit().transition().duration(duration).style('opacity',1e-16).remove()
       storyLabel = storyLabel.enter().append('text')
         .classed('story-label', true)
         .attr('x', 0)
