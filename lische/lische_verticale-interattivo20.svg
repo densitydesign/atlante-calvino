@@ -2093,7 +2093,7 @@
       </g>
     </g>
     <g id="no-rivista" class="rivista">
-      <g id="ricevimento-al-castello-di-barbaj">
+      <g id="ricevimento-al-castello-di-barbaj" class="no-collection">
         <g>
           <rect class="cls-20" x="273.07" y="1878.76" width="155.15" height="6.81"/>
           <path class="cls-53" d="M269.77,1897.52a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1897.52Z" transform="translate(-5.45 -15.69)"/>
@@ -2441,7 +2441,7 @@
           <text class="cls-23" transform="translate(273.38 1320.5)">Le conchiglie e il tempo</text>
         </g>
       </g>
-      <g id="dall-opaco">
+      <g id="dall-opaco" class="no-collection">
         <g>
           <rect class="cls-20" x="273.07" y="1345.24" width="155.15" height="6.81"/>
           <path class="cls-53" d="M269.77,1364a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1364Z" transform="translate(-5.45 -15.69)"/>
@@ -2449,7 +2449,7 @@
           <text class="cls-23" transform="translate(273.38 1351.33)">Dall’opaco</text>
         </g>
       </g>
-      <g id="autobiografia-di-uno-spettatore">
+      <g id="autobiografia-di-uno-spettatore" class="no-collection">
         <g>
           <rect class="cls-120" x="273.07" y="1384" width="155.15" height="6.81"/>  
           <path class="cls-53" d="M269.77,1402.62a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1402.62Z" transform="translate(-5.45 -15.69)"/>
@@ -2457,14 +2457,14 @@
           <text class="cls-23" transform="translate(273.38 1390.17)">Autobiografia di uno spettatore</text>
         </g>
       </g>
-      <g id="eremita-a-parigi">
+      <g id="eremita-a-parigi" class="no-collection">
         <g>
           <rect class="cls-20" x="273.07" y="1391.59" width="155.15" height="6.81"/>
           <path class="cls-47" d="M269.77,1410.35a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1410.35Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 1397.68)">Eremita a Parigi</text>
         </g>
       </g>
-      <g id="l-uomo-di-neanderthal">
+      <g id="l-uomo-di-neanderthal" class="no-collection">
         <g>
           <rect class="cls-120" x="273.07" y="1422.5" width="155.15" height="6.81"/>  
           <path class="cls-53" d="M269.77,1441.17a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1441.17Z" transform="translate(-5.45 -15.69)"/>
@@ -2472,7 +2472,7 @@
           <text class="cls-23" transform="translate(273.38 1428.76)">L’uomo di Neanderthal</text>
         </g>
       </g>
-      <g id="montezuma">
+      <g id="montezuma" class="no-collection">
         <g>
           <rect class="cls-20" x="273.07" y="1430.18" width="155.15" height="6.81"/>
           <path class="cls-53" d="M269.77,1448.94a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1448.94Z" transform="translate(-5.45 -15.69)"/>
@@ -2480,7 +2480,7 @@
           <text class="cls-23" transform="translate(273.38 1436.44)">Montezuma</text>
         </g>
       </g>
-      <g id="altre-città">
+      <g id="altre-città" class="no-collection">
         <g>
           <rect class="cls-120" x="273.07" y="1507.5" width="155.15" height="6.81"/>  
           <path class="cls-53" d="M269.77,1526.29a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1526.29Z" transform="translate(-5.45 -15.69)"/>
@@ -2488,7 +2488,7 @@
           <text class="cls-23" transform="translate(273.38 1513.77)">Altre città</text>
         </g>
       </g>
-      <g id="il-richiamo-dell-acqua">
+      <g id="il-richiamo-dell-acqua" class="no-collection">
         <g>
           <rect class="cls-120" x="273.07" y="1523" width="155.15" height="6.81"/>  
           <path class="cls-53" d="M269.77,1541.8a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1541.8Z" transform="translate(-5.45 -15.69)"/>
@@ -2496,7 +2496,7 @@
           <text class="cls-23" transform="translate(273.38 1529.13)">Il richiamo dell’acqua</text>
         </g>
       </g>
-      <g id="parafrasi">
+      <g id="parafrasi" class="no-collection">
         <g>
           <rect class="cls-20" x="273.07" y="1577.11" width="155.15" height="6.81"/>
           <path class="cls-53" d="M269.77,1595.87a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1595.87Z" transform="translate(-5.45 -15.69)"/>
@@ -2504,7 +2504,7 @@
           <text class="cls-23" transform="translate(273.38 1583.41)">Parafrasi</text>
         </g>
       </g>
-      <g id="essere-pietra">
+      <g id="essere-pietra" class="no-collection">
         <g>
           <rect class="cls-20" x="273.07" y="1638.94" width="155.15" height="6.81"/>
           <path class="cls-53" d="M269.77,1657.7a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1657.7Z" transform="translate(-5.45 -15.69)"/>
@@ -2512,7 +2512,7 @@
           <text class="cls-23" transform="translate(273.38 1645.19)">Essere pietra (per Alberto Magnelli)</text>
         </g>
       </g>
-      <g id="le-memorie-di-casanova">
+      <g id="le-memorie-di-casanova" class="no-collection">
         <g>
           <rect class="cls-120" x="273.07" y="1646.5" width="155.15" height="6.81"/>  
           <path class="cls-53" d="M269.77,1665.43a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1665.43Z" transform="translate(-5.45 -15.69)"/>
@@ -2520,7 +2520,7 @@
           <text class="cls-23" transform="translate(273.38 1652.62)">Le memorie di Casanova</text>
         </g>
       </g>
-      <g id="il-silenzio-e-la-citta">
+      <g id="il-silenzio-e-la-citta" class="no-collection">
         <g>
           <rect class="cls-20" x="273.07" y="1669.9" width="155.15" height="6.81"/>
           <path class="cls-53" d="M269.77,1688.66a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1688.66Z" transform="translate(-5.45 -15.69)"/>
@@ -2528,12 +2528,20 @@
           <text class="cls-23" transform="translate(273.38 1676.18)">Il silenzio e la città</text>
         </g>
       </g>
-      <g id="quattro-studi-dal-vero">
+      <g id="quattro-studi-dal-vero" class="no-collection">
         <g>
           <rect class="cls-20" x="273.07" y="1716.27" width="155.15" height="6.81"/>
           <path class="cls-53" d="M269.77,1735a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1735Z" transform="translate(-5.45 -15.69)"/>
           <circle cx="267.35" cy="1719.34" r="0.74"/>
           <text class="cls-23" transform="translate(273.38 1722.49)">Quattro studi dal vero</text>
+        </g>
+      </g>
+      <g id="il-ricordo-e-bendato" class="no-collection">
+        <g>
+          <rect class="cls-120" x="273.07" y="1840.21" width="155.15" height="6.81"/>  
+          <path class="cls-53" d="M269.77,1858.75a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1858.75Z" transform="translate(-5.45 -15.69)"/>
+          <circle cx="267.35" cy="1843.06" r="0.74"/>
+          <text class="cls-23" transform="translate(273.38 1846.19)">Il ricordo è bendato</text>
         </g>
       </g>
       <g id="gli-amori-delle-tartarughe" class="collection palomar">
@@ -2624,14 +2632,6 @@
           <path class="cls-52" d="M824.27,1701.21a2.16,2.16,0,0,0,2.16,2.17,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1701.21Z" transform="translate(-5.45 -15.69)"/>
           <path class="cls-47" d="M269.77,1835.63a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1835.63Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 1822.96)">Come imparare a essere morto</text>
-        </g>
-      </g>
-      <g id="il-ricordo-e-bendato">
-        <g>
-          <rect class="cls-120" x="273.07" y="1840.21" width="155.15" height="6.81"/>  
-          <path class="cls-53" d="M269.77,1858.75a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1858.75Z" transform="translate(-5.45 -15.69)"/>
-          <circle cx="267.35" cy="1843.06" r="0.74"/>
-          <text class="cls-23" transform="translate(273.38 1846.19)">Il ricordo è bendato</text>
         </g>
       </g>
     </g>
