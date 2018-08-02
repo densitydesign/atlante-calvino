@@ -231,7 +231,7 @@ let parseDate = d3.timeParse("%Y-%m-%d")
 let boundaries = [parseDate('1940-01-01'), parseDate('1990-12-31')]
 let data
 let itemHeight = 40
-let subHeight = 20
+let subHeight = 30
 
 var cross = {
   draw: function(context, size) {
@@ -728,7 +728,7 @@ function gantt(data) {
         .merge(story)
         .style('opacity', 0)
         .attr('transform', d => {
-          return `translate(0,${ selectedVolume.value.indexOf(d)*subHeight + y(selectedVolume.key) + y.bandwidth()/2 })`
+          return `translate(0,${ selectedVolume.value.indexOf(d)*subHeight + y(selectedVolume.key) + y.bandwidth() })`
         })
 
       story.transition()
@@ -816,7 +816,7 @@ function gantt(data) {
         .merge(storyLabel)
         .style('opacity', 0)
         .attr('y', d => {
-          return selectedVolume.value.indexOf(d) * subHeight + y(selectedVolume.key) + y.bandwidth() / 2 + 28
+          return selectedVolume.value.indexOf(d) * subHeight + y(selectedVolume.key) + y.bandwidth() + 28
         })
 
       storyLabel.transition()

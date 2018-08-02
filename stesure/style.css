@@ -111,7 +111,7 @@ h3 {
 .volume > .publication, .story > .publication {
   fill: transparent;
   stroke: var(--darker);
-  stroke-width: 2px;
+  stroke-width: 3px;
   stroke-linejoin: bevel;
   cursor: pointer;
 }
