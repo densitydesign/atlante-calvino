@@ -928,12 +928,9 @@ function gantt(data) {
   let dateFormatter1 = d3.timeFormat('%e %B %Y')
 
   function showDate(data) {
+
     if (data) {
-      console.log(data)
       selectedDate = selectedDate.data([data], function(d) {
-        return d.publication
-      })
-      selectedDateLine = selectedDateLine.data([data], function(d) {
         return d.publication
       })
 
@@ -943,33 +940,16 @@ function gantt(data) {
         .style('opacity', 0)
         .remove()
 
-      selectedDateLine.exit()
-        .transition()
-        .duration(500)
-        .style('opacity', 0)
-        .remove()
-
       selectedDate = selectedDate.enter().append('text')
         .classed('date-tooltip', true)
+        .attr('transform', function(d) {
+          return 'translate(' + (margin.left + x(d.publication)) + ', -10)'
+        })
         .merge(selectedDate)
         .text(function(d) {
           return dateFormatter1(d.publication)
         })
-        .attr('transform', function(d) {
-          return 'translate(' + (margin.left + x(d.publication)) + ', -10)'
-        })
 
-      selectedDateLine = selectedDateLine.enter().append('line')
-        .classed('selected-date-line', true)
-        .attr('x1', function(d) {
-          return x(d.publication)
-        })
-        .attr('y1', 0)
-        .attr('x2', function(d) {
-          return x(d.publication)
-        })
-        .attr('y2', newHeight)
-        .style('opacity', 1)
 
       selectedDate.transition()
         .duration(500)
@@ -978,19 +958,39 @@ function gantt(data) {
           return 'translate(' + (margin.left + x(d.publication)) + ', 25)'
         })
 
-      d3.select('line.selected-date-line')
+      selectedDateLine = selectedDateLine.data([data], function(d) {
+        return d.publication
+      })
 
+      selectedDateLine.exit()
+        .transition()
+        .duration(500)
+        .style('opacity', 0)
+        .remove()
 
+      selectedDateLine = selectedDateLine.enter().append('line')
+        .classed('selected-date-line', true)
+
+        .attr('x1', function(d) {
+          return x(d.publication)
+        })
+        .attr('y1', 0)
+        .attr('x2', function(d) {
+          return x(d.publication)
+        })
+        .attr('y2', newHeight)
+        .merge(selectedDateLine)
 
     } else {
       selectedDate = selectedDate.data([])
-      selectedDateLine = selectedDateLine.data([])
 
       selectedDate.exit()
         .transition()
         .duration(500)
         .style('opacity', 0)
         .remove()
+
+      selectedDateLine = selectedDateLine.data([])
 
       selectedDateLine.exit()
         .transition()
