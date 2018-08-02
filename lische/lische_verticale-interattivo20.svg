@@ -163,6 +163,10 @@
       .cls-52 {
       fill: #4573f4;
       }
+      .cls-120 {
+      fill: transparent;
+      stroke: #eaeaea;
+      }
     </style>
     <linearGradient id="Sfumatura_senza_nome_101" data-name="Sfumatura senza nome 101" x1="1098.18" y1="240.46" x2="1280.27" y2="240.46" gradientTransform="matrix(0, 1, 1, 0, -61.97, 10.46)" gradientUnits="userSpaceOnUse">
       <stop offset="0" stop-color="#009640"/>
@@ -286,6 +290,7 @@
         <text class="cls-23" transform="translate(273.38 29.47)">Invece era un’altra</text>
       </g>
       <g id="dieci-soldi-in-plastilina" class="no-collection">
+        <rect class="cls-120" x="273.07" y="15.4" width="155.15" height="6.81"/>    
         <path class="cls-21" d="M272.79,34.49c-94.29,0-94.29,90.85-188.59,90.85" transform="translate(-5.45 -15.69)"/>
         <path class="cls-22" d="M269.77,34.49a3,3,0,1,0,3-3A3,3,0,0,0,269.77,34.49Z" transform="translate(-5.45 -15.69)"/>
         <text class="cls-23" transform="translate(273.38 21.82)">Dieci soldi in plastilina</text>
@@ -362,6 +367,7 @@
     <g id="l-unita" class="rivista">
       <g id="campo-di-mine" class="collection ultimo-viene-il-corvo collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="92.5" width="155.15" height="6.81"/>  
           <path class="cls-26" d="M272.79,111.73c-76,0-83.89,226.52-188.59,226.52" transform="translate(-5.45 -15.69)"/>
           <path class="cls-26" d="M527.15,143.9c-47.66,0-49.91-32.87-91.3-32.87" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,153.89c-45.64,0-45.64-10-91.25-10" transform="translate(-5.45 -15.69)"/>
@@ -405,6 +411,7 @@
       </g>
       <g id="visti-alla-mensa" class="collection ultimo-viene-il-corvo">
         <g>
+          <rect class="cls-120" x="273.07" y="154.32" width="155.15" height="6.81"/>  
           <path class="cls-26" d="M272.79,173.41c-94.29,0-94.29,38-188.59,38" transform="translate(-5.45 -15.69)"/>
           <path class="cls-26" d="M527.12,177.3c-45.64,0-45.76-5.44-91.27-5.44" transform="translate(-5.45 -15.69)"/>
           <path class="cls-27" d="M525.06,177.3a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,525.06,177.3Z" transform="translate(-5.45 -15.69)"/>
@@ -460,6 +467,7 @@
       </g>
       <g id="il-bosco-degli-animali" class="collection ultimo-viene-il-corvo collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="231.8" width="155.15" height="6.81"/>  
           <path class="cls-26" d="M272.79,250.61c-94.29,0-94.29-12-188.59-12" transform="translate(-5.45 -15.69)"/>
           <path class="cls-26" d="M527.12,244.1c-45.64,0-45.64,6.11-91.27,6.11" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,265.05c-45.63,0-45.64-21-91.28-21" transform="translate(-5.45 -15.69)"/>
@@ -495,6 +503,7 @@
       </g>
       <g id="pranzo-con-un-pastore" class="collection ultimo-viene-il-corvo collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="262.45" width="155.15" height="6.81"/>  
           <path class="cls-26" d="M272.79,281.74c-94.29,0-94.29-32.81-188.59-32.81" transform="translate(-5.45 -15.69)"/>
           <path class="cls-26" d="M527.12,269.15c-45.64,0-45.64,12.09-91.27,12.09" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,306.74c-45.63,0-45.63-37.59-91.28-37.59" transform="translate(-5.45 -15.69)"/>
@@ -506,6 +515,7 @@
       </g>
       <g id="isabella-e-fioravanti" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="277.85" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,297c-94.29,0-94.29-41.2-188.59-41.2" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,297a3,3,0,1,0,3-3A3,3,0,0,0,269.77,297Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.8 284.38)">Isabella e Fioravanti</text>
@@ -539,6 +549,7 @@
       </g>
       <g id="lasciare-anna" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="316.85" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,335.82c-94.29,0-94.29-69.62-188.59-69.62" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,335.82a3,3,0,1,0,3-3A3,3,0,0,0,269.77,335.82Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.64 323.15)">Lasciare Anna</text>
@@ -554,6 +565,7 @@
       </g>
       <g id="storia-del-soldato-che-portò-il-cannone-a-casa" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="393.75" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,413C178,413,178.5,273.1,84.2,273.1" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,413a3,3,0,1,0,3-3A3,3,0,0,0,269.77,413Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.57 400.32)">Storia del soldato che portò il cannone a casa</text>
@@ -587,6 +599,7 @@
       </g>
       <g id="un-bel-gioco-dura-poco" class="collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="463.3" width="155.15" height="6.81"/>
           <path class="cls-28" d="M272.79,482.54c-94.29,0-94.29-195.62-188.59-195.62" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,417.9c-91.28,0-91.28,64.2-182.55,64.2" transform="translate(-5.45 -15.69)"/>
           <path class="cls-29" d="M616.22,417.9a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,616.22,417.9Z" transform="translate(-5.45 -15.69)"/>
@@ -632,6 +645,7 @@
       </g>
       <g id="la-pietanziera" class="collection racconti collection marcovaldo">
         <g>
+          <rect class="cls-120" x="273.07" y="494.3" width="155.15" height="6.81"/>1  
           <path class="cls-28" d="M272.79,513.63c-94.29,0-94.29-216.36-188.59-216.36" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,723.59c-95.54,0-97.62-210.45-182.55-210.45" transform="translate(-5.45 -15.69)"/>
           <path class="cls-30" d="M680.32,772.78c-34,0-32.31-49.19-61.92-49.19" transform="translate(-5.45 -15.69)"/>
@@ -651,6 +665,7 @@
       </g>
       <g id="la-fabbrica-occupata" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="510.18" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,528.91c-94.29,0-94.49-224.73-188.59-224.73" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,528.91a3,3,0,1,0,3-3A3,3,0,0,0,269.77,528.91Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.8 516.24)">La fabbrica occupata</text>
@@ -674,6 +689,7 @@
       </g>
       <g id="il-bosco-sull-autostrada" class="collection racconti collection marcovaldo">
         <g>
+          <rect class="cls-120" x="273.07" y="540.45" width="155.15" height="6.81"/>  
           <path class="cls-28" d="M272.79,559.84c-94.29,0-94.68-245.3-188.59-245.3" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,737.49c-91.61,0-91.45-177.91-182.55-177.91" transform="translate(-5.45 -15.69)"/>
           <path class="cls-30" d="M680.32,779.46c-33,0-34.25-42-61.92-42" transform="translate(-5.45 -15.69)"/>
@@ -697,6 +713,7 @@
       </g>
       <g id="la-storia-di-kim-ghi-u" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="555.85" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,575.3c-94.29,0-94.29-253.85-188.59-253.85" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,575.3a3,3,0,1,0,3-3A3,3,0,0,0,269.77,575.3Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 562.63)">La storia di Kim-Ghi-U</text>
@@ -726,6 +743,7 @@
       </g>
       <g id="un-paese-disgraziato" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="602.3" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,621.72c-94.29,0-94.29-289.91-188.59-289.91" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,621.72a3,3,0,1,0,3-3A3,3,0,0,0,269.77,621.72Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 609.05)">Un paese disgraziato</text>
@@ -749,6 +767,7 @@
       </g>
       <g id="di-padre-in-figlio" class="collection ultimo-viene-il-corvo">
         <g>
+          <rect class="cls-120" x="273.07" y="61.6" width="155.15" height="6.81"/>  
           <path class="cls-26" d="M272.79,80.73c-94.29,0-94.29,119.39-188.59,119.39" transform="translate(-5.45 -15.69)"/>
           <path class="cls-26" d="M527.15,110.49c-47.66,0-48.4-30.35-91.3-30.35" transform="translate(-5.45 -15.69)"/>
           <path class="cls-27" d="M525.06,110.49a2.18,2.18,0,1,0,2.17-2.17A2.17,2.17,0,0,0,525.06,110.49Z" transform="translate(-5.45 -15.69)"/>
@@ -758,6 +777,7 @@
       </g>
       <g id="ragionamento-del-cugino" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="108.28" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,127.37c-94.29,0-94.29,93.94-188.59,93.94" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,127.37a3,3,0,1,0,3-3A3,3,0,0,0,269.77,127.37Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.07 114.41)">Ragionamento del cugino</text>
@@ -765,6 +785,7 @@
       </g>
       <g id="e-il-settimo-si-riposò" class="collection ultimo-viene-il-corvo">
         <g>
+          <rect class="cls-120" x="273.07" y="77.3" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,96.26C178.5,96.26,178.5,214.4,84.2,214.4" transform="translate(-5.45 -15.69)"/>
           <path class="cls-26" d="M527.12,127.19c-47.76,0-48.15-31.88-91.27-31.88" transform="translate(-5.45 -15.69)"/>
           <path class="cls-27" d="M525.06,127.21a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,525.06,127.21Z" transform="translate(-5.45 -15.69)"/>
@@ -774,6 +795,7 @@
       </g>
       <g id="il-giardino-incantato" class="collection ultimo-viene-il-corvo collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="216.3" width="155.15" height="6.81"/>  
           <path class="cls-26" d="M272.79,235.32c-94.49,0-94.29-.2-188.59-.2" transform="translate(-5.45 -15.69)"/>
           <path class="cls-26" d="M527.12,227.4c-45.64,0-45.64,7.59-91.27,7.59" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,251.16c-45.64,0-45.64-23.76-91.28-23.76" transform="translate(-5.45 -15.69)"/>
@@ -785,6 +807,7 @@
       </g>
       <g id="furto-in-una-pasticceria" class="collection ultimo-viene-il-corvo collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="185.53" width="155.15" height="6.81"/>  
           <path class="cls-26" d="M272.79,204.51c-94.29,0-95.88,23.7-188.59,23.7" transform="translate(-5.45 -15.69)"/>
           <path class="cls-26" d="M527.12,202.35c-45.64,0-45.62,1.6-91.27,1.6" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,209.47c-45.63,0-45.63-7.12-91.28-7.12" transform="translate(-5.45 -15.69)"/>
@@ -795,21 +818,21 @@
         </g>
       </g>
       <g id="L_Unità" data-name="L'Unità">
-        <rect x="24.01" y="185.17" width="51.17" height="8.1"/>
-        <rect x="24.73" y="253.96" width="50.44" height="8.99"/>
-        <rect x="23.16" y="323.32" width="52.02" height="8.9"/>
+        <rect x="24.01" y="185.17" width="51.17" height="8.1" fill="#dddddd"/>
+        <rect x="24.73" y="253.96" width="50.44" height="8.99" fill="#dddddd"/>
+        <rect x="23.16" y="323.32" width="52.02" height="8.9" fill="#dddddd"/>
         <rect x="77.7" y="343.7" width="13.28" height="0.35" transform="translate(422.77 243.85) rotate(90)"/>
         <rect x="78.72" y="197.7" width="0.35" height="122.85"/>
         <rect x="78.72" y="183.43" width="0.35" height="13.28"/>
-        <text class="cls-32" transform="translate(24.56 330.89)">
+        <text class="cls-25" transform="translate(24.56 330.89)">
           l’Unità 
           <tspan class="cls-15" x="25.56" y="0">Genova</tspan>
         </text>
-        <text class="cls-32" transform="translate(26.07 261.66)">
+        <text class="cls-25" transform="translate(26.07 261.66)">
           l’Unità 
           <tspan class="cls-15" x="25.56" y="0">Torino</tspan>
         </text>
-        <text class="cls-32" transform="translate(25.05 192.45)">
+        <text class="cls-25" transform="translate(25.05 192.45)">
           l’Unità 
           <tspan class="cls-15" x="25.56" y="0">Milano</tspan>
         </text>
@@ -833,6 +856,7 @@
     <g id="agora" class="rivista">
       <g id="alba-sui-rami-nudi" class="collection ultimo-viene-il-corvo">
         <g>
+          <rect class="cls-120" x="273.07" y="138.6" width="155.15" height="7.81"/>  
           <path class="cls-26" d="M272.79,158C178.5,158,178.5,422.9,84.2,422.9" transform="translate(-5.45 -15.69)"/>
           <path class="cls-26" d="M527.12,160.6c-45.62,0-45.64-2.81-91.27-2.81" transform="translate(-5.45 -15.69)"/>
           <path class="cls-27" d="M525.06,160.6a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,525.06,160.6Z" transform="translate(-5.45 -15.69)"/>
@@ -849,6 +873,7 @@
     <g id="il-settimanale" class="rivista">
       <g id="come-un-volo-d_anitre" data-name="come-un-volo-d'anitre" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="169.7" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,188.75c-94.29,0-94.29,257.9-188.59,257.9" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,188.75a3,3,0,1,0,3-3A3,3,0,0,0,269.77,188.75Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.73 176.08)">Come un volo d’anitre</text>
@@ -873,6 +898,7 @@
       </g>
       <g id="cimitero-di-biciclette" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="409.15" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,428.5c-94.29,0-95.56,56.75-188.59,56.75" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,428.5a3,3,0,1,0,3-3A3,3,0,0,0,269.77,428.5Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.8 415.83)">Cimitero di biciclette</text>
@@ -887,15 +913,16 @@
     <g id="milano-sera" class="rivista">
       <g id="com-era-grande-il-mare" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="247.35" width="155.15" height="6.81"/>s  
           <path class="cls-21" d="M272.79,266.05C178.5,266.05,178.5,519.8,84.2,519.8" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,266.05a3,3,0,1,0,3-3A3,3,0,0,0,269.77,266.05Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.71 253.38)">Com’era grande il mare</text>
         </g>
       </g>
       <g id="Milano-sera-2" data-name="Milano-sera">
-        <rect x="30.56" y="499.2" width="44.7" height="8.44"/>
+        <rect x="30.56" y="499.2" width="44.7" height="8.44" fill="#dddddd"/>
         <rect x="82.68" y="519.54" width="3.32" height="0.35" transform="translate(598.6 419.68) rotate(90)"/>
-        <text class="cls-32" transform="translate(31.33 506.4)">Milano-sera</text>
+        <text class="cls-25" transform="translate(31.33 506.4)">Milano-sera</text>
       </g>
     </g>
     <g id="inventario" class="rivista">
@@ -918,6 +945,7 @@
     <g id="paragone" class="rivista">
       <g id="l-avventura-di-una-bagnante" class="collection racconti collection amori-difficili">
         <g>
+          <rect class="cls-120" x="273.07" y="440" width="155.15" height="6.81"/>
           <path class="cls-28" d="M272.79,459.55c-94.29,0-94.29,119-188.59,119" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,404c-91.28,0-91.28,55-182.55,55" transform="translate(-5.45 -15.69)"/>
           <path class="cls-33" d="M837.3,716.09C729.18,716.09,738.63,404,618.4,404" transform="translate(-5.45 -15.69)"/>
@@ -941,6 +969,7 @@
       </g>
       <g id="la-poubelle-agreee" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="1546" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,1565C178.5,1565,178.5,585.37,84.2,585.37" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,1565a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1565Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 1552.76)">La poubelle agréée</text>
@@ -955,6 +984,7 @@
     <g id="botteghe-oscure" class="rivista">
       <g id="la-formica-argentina" class="collection racconti collection amori-difficili">
         <g>
+          <rect class="cls-120" x="273.07" y="479.28" width="155.15" height="6.81"/>  
           <path class="cls-28" d="M272.79,498C178.5,498,178.5,611.61,84.2,611.61" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,431.79c-91.78,0-91.28,66.18-182.55,66.18" transform="translate(-5.45 -15.69)"/>
           <path class="cls-33" d="M837.3,736.19c-109.45,0-104.61-304.4-218.9-304.4" transform="translate(-5.45 -15.69)"/>
@@ -983,6 +1013,7 @@
     <g id="nuovi-argomenti" class="rivista">
       <g id="gli-avanguardisti-a-mentone" class="collection entrata-in-guerra collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="572" width="155.15" height="6.81"/>
           <path class="cls-35" d="M272.79,590.74c-94.29,0-94.29,55.59-188.59,55.59" transform="translate(-5.45 -15.69)"/>
           <path class="cls-35" d="M544.3,512.75c-53.64,0-54.77,77.66-108.45,77.66" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,529.06c-23.6,0-50.16-16.31-73.77-16.31" transform="translate(-5.45 -15.69)"/>
@@ -1013,6 +1044,7 @@
     <g id="il-ponte" class="rivista">
       <g id="l-entrata-in-guerra" class="collection entrata-in-guerra collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="587" width="155.15" height="6.81"/>  
           <path class="cls-35" d="M272.79,606.26c-94.29,0-94.29,68.88-188.59,68.88" transform="translate(-5.45 -15.69)"/>
           <path class="cls-35" d="M544.3,543c-53.64,0-54.77,63.13-108.45,63.13" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,543H544.64" transform="translate(-5.45 -15.69)"/>
@@ -1046,6 +1078,7 @@
     <g id="il-contemporaneo" class="rivista">
       <g id="liberta-liberta" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="648.8" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,668.17c-94.29,0-94.29,104.26-188.59,104.26" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,668.17a3,3,0,1,0,3-3A3,3,0,0,0,269.77,668.17Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 655.5)">Libertà! Libertà!</text>
@@ -1061,6 +1094,7 @@
       </g>
       <g id="dove-va-l-avvoltoio" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="664.3" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,683.47c-94.29,0-94.29,95.87-188.59,95.87" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,683.47a3,3,0,1,0,3-3A3,3,0,0,0,269.77,683.47Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.07 670.81)">Dove va l’avvoltoio?</text>
@@ -1076,6 +1110,7 @@
       </g>
       <g id="lo-jus-primae-noctis" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="679.8" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,699.13c-94.29,0-94.29,87.12-188.59,87.12" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,699.13a3,3,0,1,0,3-3A3,3,0,0,0,269.77,699.13Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(272.88 686.46)">Lo jus primae noctis</text>
@@ -1091,6 +1126,7 @@
       </g>
       <g id="la-lente-d-ingrandimento" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="695.7" width="155.15" height="6.81"/>
           <path class="cls-21" d="M272.79,714.56c-94.29,0-94.29,78.59-188.59,78.59" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,714.56a3,3,0,1,0,3-3A3,3,0,0,0,269.77,714.56Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 701.89)">La lente d’ingrandimento</text>
@@ -1106,6 +1142,7 @@
       </g>
       <g id="la-domenica-delle-follie" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="710.8" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,730c-94.29,0-94.29,70-188.59,70" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,730a3,3,0,1,0,3-3A3,3,0,0,0,269.77,730Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.45 717.36)">La domenica delle follie</text>
@@ -1154,6 +1191,7 @@
       </g>
       <g id="la-signora-paulatim" class="collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="850.8" width="155.15" height="6.81"/>  
           <path class="cls-28" d="M272.79,869.23C178.5,869.23,178.5,850,84.2,850" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,584.64c-91.74,0-91.45,284.09-182.55,284.09" transform="translate(-5.45 -15.69)"/>
           <path class="cls-29" d="M616.22,584.64a2.18,2.18,0,1,0,2.17-2.17A2.17,2.17,0,0,0,616.22,584.64Z" transform="translate(-5.45 -15.69)"/>
@@ -1177,6 +1215,7 @@
       </g>
       <g id="sul-far-del-giorno" class="collection cosmicomiche memoria-del-mondo collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1059" width="155.15" height="6.81"/>  
           <path class="cls-37" d="M272.79,1077.91C178.5,1077.91,178.5,857,84.2,857" transform="translate(-5.45 -15.69)"/>
           <path class="cls-38" d="M710.8,1114.14c-137.48,0-137.48-37.37-274.95-37.37" transform="translate(-5.45 -15.69)"/>
           <path class="cls-39" d="M768.8,1123.12c-29,0-29-9-58-9" transform="translate(-5.45 -15.69)"/>
@@ -1202,6 +1241,7 @@
       </g>
       <g id="tutto-in-un-punto" class="collection cosmicomiche collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1074.5" width="155.15" height="6.81"/>  
           <path class="cls-37" d="M272.79,1093.44C178.5,1093.44,178.5,864,84.2,864" transform="translate(-5.45 -15.69)"/>
           <path class="cls-38" d="M710.8,1029.18c-145.74,0-129.11,64.26-274.95,63.34" transform="translate(-5.45 -15.69)"/>
           <path class="cls-40" d="M891.39,1064.39c-90.51,0-90.74-35.21-180.59-35.21" transform="translate(-5.45 -15.69)"/>
@@ -1221,6 +1261,7 @@
       </g>
       <g id="il-crollo-del-tempo" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="1562" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,1580.49c-94.29,0-94.29-709.55-188.59-709.55" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,1580.49a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1580.49Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 1567.91)">Il crollo del tempo</text>
@@ -1246,9 +1287,9 @@
         </g>
       </g>
       <g id="Corriere_d_Informazione" data-name="Corriere d'Informazione">
-        <rect x="19.31" y="899.98" width="56.04" height="16.31"/>
+        <rect x="19.31" y="899.98" width="56.04" height="16.31" fill="#dddddd"/>
         <rect x="82.68" y="923.82" width="3.32" height="0.35" transform="translate(1002.89 823.96) rotate(90)"/>
-        <text class="cls-32" transform="translate(43.97 907.33)">
+        <text class="cls-25" transform="translate(43.97 907.33)">
           Corriere
           <tspan x="-23.41" y="7">d’Informazione</tspan>
         </text>
@@ -1257,6 +1298,7 @@
     <g id="citta-aperta" class="rivista">
       <g id="la-gran-bonaccia-delle-antille" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="772.5" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,792C178.5,792,178.5,944.91,84.2,944.91" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,792a3,3,0,1,0,3-3A3,3,0,0,0,269.77,792Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.8 779.34)">La gran bonaccia delle Antille</text>
@@ -1287,6 +1329,7 @@
     <g id="l-espresso" class="rivista">
       <g id="monologo-notturno-d-un-nobile-scozzese" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="804" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,822.81c-94.49,0-94.29,151.67-188.59,151.67" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,822.81a3,3,0,1,0,3-3A3,3,0,0,0,269.77,822.81Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.8 810.15)">Monologo notturno d’un nobile scozzese</text>
@@ -1305,14 +1348,15 @@
         </g>
       </g>
       <g id="L_Espresso" data-name="L'Espresso">
-        <rect x="36.86" y="956.23" width="38.4" height="9.98"/>
+        <rect x="36.86" y="956.23" width="38.4" height="9.98" fill="#dddddd"/>
         <rect x="81.02" y="976.62" width="6.64" height="0.35" transform="translate(1055.69 876.77) rotate(90)"/>
-        <text class="cls-32" transform="translate(38.42 964.43)">L’espresso</text>
+        <text class="cls-25" transform="translate(38.42 964.43)">L’espresso</text>
       </g>
     </g>
     <g id="nuova-corrente" class="rivista">
       <g id="la-gallina-di-reparto" class="collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="819.3" width="155.15" height="6.81"/>  
           <path class="cls-28" d="M272.79,838.33c-94.29,0-94.29,163.09-188.59,163.09" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,487.37c-89,0-98.2,350.26-182.55,350.26" transform="translate(-5.45 -15.69)"/>
           <path class="cls-29" d="M616.22,487.37a2.18,2.18,0,1,0,2.17-2.17A2.17,2.17,0,0,0,616.22,487.37Z" transform="translate(-5.45 -15.69)"/>
@@ -1350,14 +1394,15 @@
         </g>
       </g>
       <g id="Il_Mondo" data-name="Il Mondo">
-        <rect x="39.77" y="1015.17" width="35.49" height="8.52"/>
+        <rect x="39.77" y="1015.17" width="35.49" height="8.52" fill="#dddddd"/>
         <rect x="82.68" y="1035.09" width="3.32" height="0.35" transform="translate(1114.16 935.23) rotate(90)"/>
-        <text class="cls-32" transform="translate(41.04 1022.59)">Il Mondo</text>
+        <text class="cls-25" transform="translate(41.04 1022.59)">Il Mondo</text>
       </g>
     </g>
     <g id="tempo-presente" class="rivista">
       <g id="l-avventura-di-un-lettore" class="collection racconti collection amori-difficili">
         <g>
+          <rect class="cls-120" x="273.07" y="835" width="155.15" height="6.81"/>  
           <path class="cls-28" d="M272.79,853.67c-94.29,0-94.29,211.48-188.59,211.48" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,515.16c-83.9,0-93,338.07-182.55,338.07" transform="translate(-5.45 -15.69)"/>
           <path class="cls-33" d="M837.3,776.38c-109.45,0-109.45-261.22-218.9-261.22" transform="translate(-5.45 -15.69)"/>
@@ -1443,6 +1488,7 @@
       <rect class="cls-24" x="92.39" y="1224.49" width="73.36" height="10.46"/>
       <g id="marcovaldo-al-supermarket" class="collection marcovaldo">
         <g>
+          <rect class="cls-120" x="273.07" y="966.5" width="155.15" height="6.81"/>  
           <path class="cls-30" d="M272.79,985.24c-94.29,0-94.29,251.91-188.59,251.91" transform="translate(-5.45 -15.69)"/>
           <path class="cls-30" d="M680.32,826.24c-110.33,0-135.15,158.87-244.47,158.87" transform="translate(-5.45 -15.69)"/>
           <path class="cls-31" d="M678.14,826.24a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,678.14,826.24Z" transform="translate(-5.45 -15.69)"/>
@@ -1462,6 +1508,7 @@
       </g>
       <g id="la-fermata-sbagliata" class="collection marcovaldo">
         <g>
+          <rect class="cls-120" x="273.07" y="981.8" width="155.15" height="6.81"/>
           <path class="cls-30" d="M272.79,1000.6C178.5,1000.6,178.65,1244,84.2,1244" transform="translate(-5.45 -15.69)"/>
           <path class="cls-30" d="M680.32,839.6c-102.68,0-135.15,160.72-244.47,160.72" transform="translate(-5.45 -15.69)"/>
           <path class="cls-31" d="M678.14,839.6a2.18,2.18,0,1,0,2.17-2.17A2.17,2.17,0,0,0,678.14,839.6Z" transform="translate(-5.45 -15.69)"/>
@@ -1481,6 +1528,7 @@
       </g>
       <g id="dov-è-più-azzurro-il-fiume" class="collection marcovaldo">
         <g>
+          <rect class="cls-120" x="273.07" y="1028" width="155.15" height="6.81"/>  
           <path class="cls-30" d="M272.79,1047.21c-94.29,0-94.29,203.62-188.59,203.62" transform="translate(-5.45 -15.69)"/>
           <path class="cls-30" d="M680.32,879.7c-67.48,0-135.15,166.35-244.47,166.35" transform="translate(-5.45 -15.69)"/>
           <path class="cls-31" d="M678.14,879.7a2.18,2.18,0,1,0,2.17-2.18A2.18,2.18,0,0,0,678.14,879.7Z" transform="translate(-5.45 -15.69)"/>
@@ -1520,6 +1568,7 @@
       </g>
       <g id="fino-a-che-dura-il-sole" class="collection memoria-del-mondo collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1098" width="155.15" height="6.81"/>  
           <path class="cls-39" d="M272.79,1116.8c-94.29,0-94.29,177.11-188.59,177.11" transform="translate(-5.45 -15.69)"/>
           <path class="cls-39" d="M768.8,1186.23c-195.48,0-186.44-70.75-332.95-70.75" transform="translate(-5.45 -15.69)"/>
           <path class="cls-40" d="M891.39,1199.63c-61.3,0-61.3-13.4-122.59-13.4" transform="translate(-5.45 -15.69)"/>
@@ -1545,6 +1594,7 @@
       </g>
       <g id="la-luna-come-un-fungo" class="collection memoria-del-mondo collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1113" width="155.15" height="6.81"/>  
           <path class="cls-39" d="M272.79,1132.07c-94.29,0-94.29,168.78-188.59,168.78" transform="translate(-5.45 -15.69)"/>
           <path class="cls-39" d="M768.8,1198.86c-195.48,0-190.37-67.58-332.95-67.58" transform="translate(-5.45 -15.69)"/>
           <path class="cls-40" d="M891.39,1211.93c-61.3,0-61.3-13.07-122.59-13.07" transform="translate(-5.45 -15.69)"/>
@@ -1570,6 +1620,7 @@
       </g>
       <g id="i-meteoriti" class="collection memoria-del-mondo collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1128.8" width="155.15" height="6.81"/>  
           <path class="cls-39" d="M272.79,1147.47c-94.29,0-94.29,160.31-188.59,160.31" transform="translate(-5.45 -15.69)"/>
           <path class="cls-39" d="M768.8,1211.48c-195.48,0-195.48-64-332.95-64" transform="translate(-5.45 -15.69)"/>
           <path class="cls-40" d="M891.39,1224.23c-61.3,0-61.3-12.75-122.59-12.75" transform="translate(-5.45 -15.69)"/>
@@ -1581,6 +1632,7 @@
       </g>
       <g id="l-inseguimento" class="collection amori-difficili ti-con-zero memoria-del-mondo collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1206" width="155.15" height="6.81"/>  
           <path class="cls-44" d="M272.79,1224.85c-94.29,0-94.29,86.4-188.59,86.4" transform="translate(-5.45 -15.69)"/>
           <path class="cls-45" d="M734.69,1292.87c-149.42,0-149.42-68.59-298.84-68.59" transform="translate(-5.45 -15.69)"/>
           <path class="cls-39" d="M768.8,1287.23c-17.46,0-17.46,5.64-34.11,5.64" transform="translate(-5.45 -15.69)"/>
@@ -1633,14 +1685,15 @@
         </g>
       </g>
       <g>
-        <rect x="40.13" y="1285.16" width="35.12" height="8.94"/>
+        <rect x="40.13" y="1285.16" width="35.12" height="8.94" fill="#dddddd"/>
         <rect x="67.79" y="1305.86" width="33.2" height="0.35" transform="translate(1384.98 1205.96) rotate(90)"/>
-        <text class="cls-32" transform="translate(41.42 1292.8)">Il Giorno</text>
+        <text class="cls-25" transform="translate(41.42 1292.8)">Il Giorno</text>
       </g>
     </g>
     <g id="linus" class="rivista">
       <g id="l-origine-degli-uccelli" class="collection ti-con-zero memoria-del-mondo collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1221.8" width="155.15" height="6.81"/>  
           <path class="cls-44" d="M272.79,1240.31c-94.29,0-94.29,111.37-188.59,111.37" transform="translate(-5.45 -15.69)"/>
           <path class="cls-45" d="M734.69,1319.42c-149.42,0-149.42-79.08-298.84-79.08" transform="translate(-5.45 -15.69)"/>
           <path class="cls-39" d="M768.8,1312.47c-17.46,0-17.46,7-34.11,7" transform="translate(-5.45 -15.69)"/>
@@ -1661,6 +1714,7 @@
     <g id="rendiconti" class="rivista">
       <g id="il-sangue-il-mare" class="collection ti-con-zero collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1237" width="155.15" height="6.81"/>  
           <path class="cls-44" d="M272.79,1255.71c-94.29,0-94.29,129-188.59,129" transform="translate(-5.45 -15.69)"/>
           <path class="cls-45" d="M734.69,1399.05c-149.42,0-112.3-143.81-298.84-143.81" transform="translate(-5.45 -15.69)"/>
           <path class="cls-40" d="M891.39,1359.47c-78.64,0-78.11,39.58-156.7,39.58" transform="translate(-5.45 -15.69)"/>
@@ -1721,6 +1775,7 @@
       </g>
       <g id="la-pompa-di-benzina" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="1399.5" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,1418.06c-95.92,0-94.29,75.21-188.59,75.21" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,1418.06a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1418.06Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 1405.57)">La pompa di benzina</text>
@@ -1736,6 +1791,7 @@
       </g>
       <g id="prima-che-tu-dica-pronto" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="1438" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,1456.74c-94.49,0-94.29,43.36-188.59,43.36" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,1456.74a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1456.74Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 1444.23)">Prima che tu dica «Pronto»</text>
@@ -1753,6 +1809,7 @@
       </g>
       <g id="del-mordersi-la-lingua" class="collection palomar">
         <g>
+          <rect class="cls-120" x="273.07" y="1453.5" width="155.15" height="6.81"/>  
           <path class="cls-51" d="M272.79,1472.18c-94.29,0-94.29,34.75-188.59,34.75" transform="translate(-5.45 -15.69)"/>
           <path class="cls-51" d="M826.44,1596.9c-179.11,0-213-125.24-390.59-125.24" transform="translate(-5.45 -15.69)"/>
           <path class="cls-52" d="M824.27,1596.83a2.16,2.16,0,0,0,2.16,2.18,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1596.83Z" transform="translate(-5.45 -15.69)"/>
@@ -1772,6 +1829,7 @@
       </g>
       <g id="del-prendersela-coi-giovani" class="collection palomar">
         <g>
+          <rect class="cls-120" x="273.07" y="1469" width="155.15" height="6.81"/>  
           <path class="cls-51" d="M272.79,1487.65c-94.29,0-94.37,26.11-188.59,26.11" transform="translate(-5.45 -15.69)"/>
           <path class="cls-51" d="M826.44,1605.25c-181.59,0-213-117-390.59-117" transform="translate(-5.45 -15.69)"/>
           <path class="cls-52" d="M824.27,1605.18a2.16,2.16,0,0,0,2.16,2.18,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1605.18Z" transform="translate(-5.45 -15.69)"/>
@@ -1791,6 +1849,7 @@
       </g>
       <g id="la-pantofola-spaiata" class="collection palomar">
         <g>
+          <rect class="cls-120" x="273.07" y="1484" width="155.15" height="6.81"/>  
           <path class="cls-51" d="M272.79,1503.16c-94.29,0-94.29,17.44-188.59,17.44" transform="translate(-5.45 -15.69)"/>
           <path class="cls-51" d="M826.44,1613.6c-180.66,0-214.44-110-390.59-110" transform="translate(-5.45 -15.69)"/>
           <path class="cls-52" d="M824.27,1613.53a2.16,2.16,0,0,0,2.16,2.18,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1613.53Z" transform="translate(-5.45 -15.69)"/>
@@ -1840,15 +1899,16 @@
       </g>
       <g id="lo-specchio-e-il-bersaglio" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="1585" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,1603.65c-94.13,0-94.29-66-188.59-66" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,1603.65a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1603.65Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 1590.98)">Lo specchio e il bersaglio</text>
         </g>
       </g>
       <g>
-        <rect x="7.48" y="1493.17" width="67.78" height="8.32"/>
+        <rect x="7.48" y="1493.17" width="67.78" height="8.32" fill="#dddddd"/>
         <rect x="59.49" y="1513.58" width="49.8" height="0.35" transform="translate(1592.69 1413.67) rotate(90)"/>
-        <text class="cls-32" transform="translate(8.51 1500.54)">Corriere della Sera</text>
+        <text class="cls-25" transform="translate(8.51 1500.54)">Corriere della Sera</text>
       </g>
     </g>
     <g id="la-repubblica" class="rivista">
@@ -1882,6 +1942,7 @@
       </g>
       <g id="l-occhio-e-i-pianeti" class="collection palomar">
         <g>
+          <rect class="cls-120" x="273.07" y="1677.5" width="155.15" height="6.81"/>  
           <path class="cls-51" d="M272.79,1696.39c-94.29,0-94.29-105.16-188.59-105.16" transform="translate(-5.45 -15.69)"/>
           <path class="cls-51" d="M826.44,1642.82c-180.66,0-213,53.73-390.59,53.73" transform="translate(-5.45 -15.69)"/>
           <path class="cls-52" d="M824.27,1642.76a2.16,2.16,0,0,0,2.16,2.17,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1642.76Z" transform="translate(-5.45 -15.69)"/>
@@ -1911,6 +1972,7 @@
       </g>
       <g id="la-contemplazione-delle-stelle" class="collection palomar">
         <g>
+          <rect class="cls-120" x="273.07" y="1739.3" width="155.15" height="6.81"/>  
           <path class="cls-51" d="M272.79,1758.22c-94.29,0-94.29-156.69-188.59-156.69" transform="translate(-5.45 -15.69)"/>
           <path class="cls-51" d="M826.44,1659.52c-180.66,0-213,98.37-390.59,98.37" transform="translate(-5.45 -15.69)"/>
           <path class="cls-52" d="M824.27,1659.46a2.16,2.16,0,0,0,2.16,2.17,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1659.46Z" transform="translate(-5.45 -15.69)"/>
@@ -1936,6 +1998,7 @@
       </g>
       <g id="il-niente-e-il-poco" class="collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1855.3" width="155.15" height="6.81"/>  
           <path class="cls-40" d="M272.79,1874.23c-94.29,0-94.29-262.4-188.59-262.4" transform="translate(-5.45 -15.69)"/>
           <path class="cls-40" d="M891.39,1396.36c-227.77,0-227.77,478.43-455.54,478.43" transform="translate(-5.45 -15.69)"/>
           <path class="cls-43" d="M889.21,1396.36a2.18,2.18,0,1,0,2.17-2.18A2.18,2.18,0,0,0,889.21,1396.36Z" transform="translate(-5.45 -15.69)"/>
@@ -1954,14 +2017,15 @@
         </g>
       </g>
       <g>
-        <rect x="23.37" y="1577.65" width="51.89" height="10.07"/>
+        <rect x="23.37" y="1577.65" width="51.89" height="10.07" fill="#dddddd"/>
         <rect x="66.13" y="1598" width="36.52" height="0.35" transform="translate(1677.12 1498.1) rotate(90)"/>
-        <text class="cls-32" transform="translate(24.2 1584.9)">La Repubblica</text>
+        <text class="cls-25" transform="translate(24.2 1584.9)">La Repubblica</text>
       </g>
     </g>
     <g id="derriere-le-miroir" class="rivista">
       <g id="quattro-favole-d-esopo" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="1608" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,1626.89c-94.29,0-94.29,25-188.59,25" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,1626.89a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1626.89Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 1614.22)">Quattro favole d’Esopo per Valerio Adamo</text>
@@ -1976,6 +2040,7 @@
     <g id="gran-bazaar" class="rivista">
       <g id="l-altra-euridice" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="1623.8" width="155.15" height="6.81"/>  
           <path class="cls-21" d="M272.79,1642.39c-93.94,0-94.29,55.87-188.59,55.87" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,1642.39a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1642.39Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 1629.77)">L’altra Euridice</text>
@@ -1998,6 +2063,7 @@
       </g>
       <g id="viaggio-nelle-citta-di-de-chirico" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="1724.27" width="155.15" height="6.81"/>
           <path class="cls-21" d="M272.79,1742.72c-94.29,0-94.29-7.9-188.59-7.9" transform="translate(-5.45 -15.69)"/>
           <path class="cls-22" d="M269.77,1742.72a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1742.72Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.38 1730.32)">Viaggio nelle città di de Chirico</text>
@@ -2011,6 +2077,7 @@
     </g>
     <g id="cnac-magazine" class="rivista">
       <g id="il-mondo-guarda-il-mondo" class="collection palomar">
+        <rect class="cls-120" x="273.07" y="1693" width="155.15" height="6.81"/>
         <path class="cls-51" d="M272.79,1711.94c-93.91,0-94.29,60.32-188.59,60.32" transform="translate(-5.45 -15.69)"/>
         <path class="cls-51" d="M826.44,1647c-180.66,0-213,64.48-390.59,64.48" transform="translate(-5.45 -15.69)"/>
         <path class="cls-52" d="M824.27,1646.93a2.16,2.16,0,0,0,2.16,2.18,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1646.93Z" transform="translate(-5.45 -15.69)"/>
@@ -2036,6 +2103,7 @@
       </g>
       <g id="dollari-e-vecchie-mondane" class="collection ultimo-viene-il-corvo collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="293.5" width="155.15" height="6.81"/>  
           <path class="cls-26" d="M527.12,285.85c-45.64,0-45.64,26.44-91.27,26.44" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,320.63c-45.64,0-45.64-34.78-91.28-34.78" transform="translate(-5.45 -15.69)"/>
           <path class="cls-27" d="M525.06,285.85a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,525.06,285.85Z" transform="translate(-5.45 -15.69)"/>
@@ -2058,6 +2126,7 @@
       </g>
       <g id="la-casa-degli-alveari" class="no-collection">
         <g>
+          <rect class="cls-120" x="273.07" y="332.3" width="155.15" height="6.81"/>  
           <path class="cls-47" d="M269.77,351.23a3,3,0,1,0,3-3A3,3,0,0,0,269.77,351.23Z" transform="translate(-5.45 -15.69)"/>
           <text class="cls-23" transform="translate(273.8 338.56)">La casa degli alveari</text>
         </g>
@@ -2073,6 +2142,7 @@
       </g>
       <g id="attesa-della-morte-in-un-albergo" class="collection ultimo-viene-il-corvo">
         <g>
+          <rect class="cls-120" x="273.07" y="347.8" width="155.15" height="6.81"/>  
           <path class="cls-26" d="M527.12,310.9c-45.64,0-43,55.86-91.27,55.86" transform="translate(-5.45 -15.69)"/>
           <path class="cls-27" d="M525.06,310.9a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,525.06,310.9Z" transform="translate(-5.45 -15.69)"/>
           <path class="cls-47" d="M269.77,366.58a3,3,0,1,0,3-3A3,3,0,0,0,269.77,366.58Z" transform="translate(-5.45 -15.69)"/>
@@ -2092,6 +2162,7 @@
       </g>
       <g id="l-avventura-di-un-soldato" class="collection ultimo-viene-il-corvo racconti collection amori-difficili">
         <g>
+          <rect class="cls-120" x="273.07" y="363.23" width="155.15" height="6.81"/>  
           <path class="cls-26" d="M527.12,327.6c-45.64,0-42.46,54.46-91.27,54.68" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,362.32c-45.64,0-45.64-34.72-91.28-34.72" transform="translate(-5.45 -15.69)"/>
           <path class="cls-33" d="M837.3,696c-109.45,0-91.83-333.68-218.9-333.68" transform="translate(-5.45 -15.69)"/>
@@ -2113,6 +2184,7 @@
       </g>
       <g id="le-notti-dell-unpa" class="collection entrata-in-guerra collection racconti">
         <g>
+          <rect class="cls-120" x="273.07" y="633.8" width="155.15" height="6.81"/>  
           <path class="cls-35" d="M544.3,573.16c-53.66,0-54.86,79.21-108.45,79.21" transform="translate(-5.45 -15.69)"/>
           <path class="cls-28" d="M618.4,556.85c-27,0-48.74,16.31-73.76,16.31" transform="translate(-5.45 -15.69)"/>
           <path class="cls-29" d="M616.22,556.85a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,616.22,556.85Z" transform="translate(-5.45 -15.69)"/>
@@ -2123,6 +2195,7 @@
       </g>
       <g id="la-villeggiatura-in-panchina" class="collection racconti collection marcovaldo">
         <g>
+          <rect class="cls-120" x="273.07" y="865.8" width="155.15" height="6.81"/>  
           <path class="cls-28" d="M618.4,820.86c-91.28,0-91.28,63.25-182.55,63.25" transform="translate(-5.45 -15.69)"/>
           <path class="cls-30" d="M680.32,819.55c-26.71,0-31,1.31-61.92,1.31" transform="translate(-5.45 -15.69)"/>
           <path class="cls-29" d="M616.22,820.86a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,616.22,820.86Z" transform="translate(-5.45 -15.69)"/>
@@ -2142,6 +2215,7 @@
       </g>
       <g id="un-letto-di-passaggio" class="collection racconti collection amori-difficili">
         <g>
+          <rect class="cls-120" x="273.07" y="881.3" width="155.15" height="6.81"/>  
           <path class="cls-28" d="M618.4,626.33c-92,0-85.93,273.09-182.55,273.09" transform="translate(-5.45 -15.69)"/>
           <path class="cls-33" d="M837.3,836.66c-109.45,0-109.45-210.33-218.9-210.33" transform="translate(-5.45 -15.69)"/>
           <path class="cls-29" d="M616.22,626.33a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,616.22,626.33Z" transform="translate(-5.45 -15.69)"/>
@@ -2163,6 +2237,7 @@
       </g>
       <g id="l-avventura-di-una-moglie" class="collection racconti collection amori-difficili">
         <g>
+          <rect class="cls-120" x="273.07" y="897" width="155.15" height="6.81"/>  
           <path class="cls-28" d="M618.4,654.12c-91.74,0-78.79,261.1-182.55,261.1" transform="translate(-5.45 -15.69)"/>
           <path class="cls-33" d="M837.3,876.85c-109.45,0-109.45-222.73-218.9-222.73" transform="translate(-5.45 -15.69)"/>
           <path class="cls-29" d="M616.22,654.12a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,616.22,654.12Z" transform="translate(-5.45 -15.69)"/>
@@ -2184,6 +2259,7 @@
       </g>
       <g id="l-avventura-di-un-poeta" class="collection racconti collection amori-difficili">
         <g>
+          <rect class="cls-120" x="273.07" y="912" width="155.15" height="6.81"/>  
           <path class="cls-28" d="M618.4,681.91c-92,0-71.95,248.8-182.55,248.23" transform="translate(-5.45 -15.69)"/>
           <path class="cls-33" d="M837.3,917c-109.45,0-109.45-235.13-218.9-235.13" transform="translate(-5.45 -15.69)"/>
           <path class="cls-29" d="M616.22,681.91a2.18,2.18,0,1,0,2.17-2.18A2.17,2.17,0,0,0,616.22,681.91Z" transform="translate(-5.45 -15.69)"/>
@@ -2194,6 +2270,7 @@
       </g>
       <g id="un-sabato-di-sole-sabbia-e-sonno" class="collection marcovaldo">
         <g>
+          <rect class="cls-120" x="273.07" y="997" width="155.15" height="6.81"/>  
           <path class="cls-30" d="M680.32,853c-91.21,0-135.15,163.13-244.47,163.13" transform="translate(-5.45 -15.69)"/>
           <path class="cls-31" d="M678.14,853a2.18,2.18,0,1,0,2.17-2.17A2.17,2.17,0,0,0,678.14,853Z" transform="translate(-5.45 -15.69)"/>
           <path class="cls-47" d="M269.77,1016a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1016Z" transform="translate(-5.45 -15.69)"/>
@@ -2211,6 +2288,7 @@
       </g>
       <g id="il-giardino-dei-gatti-ostinati" class="collection marcovaldo">
         <g>
+          <rect class="cls-120" x="273.07" y="1012.8" width="155.15" height="6.81"/>
           <path class="cls-30" d="M680.32,866.33c-79.2,0-135.15,164.85-244.47,164.85" transform="translate(-5.45 -15.69)"/>
           <path class="cls-31" d="M678.14,866.33a2.18,2.18,0,1,0,2.17-2.17A2.17,2.17,0,0,0,678.14,866.33Z" transform="translate(-5.45 -15.69)"/>
           <path class="cls-47" d="M269.77,1031.44a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1031.44Z" transform="translate(-5.45 -15.69)"/>
@@ -2228,6 +2306,7 @@
       </g>
       <g id="quanto-scommettiamo" class="collection cosmicomiche collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1144" width="155.15" height="6.81"/>  
           <path class="cls-38" d="M710.8,1057.5c-137.48,0-137.48,105.21-274.95,105.21" transform="translate(-5.45 -15.69)"/>
           <path class="cls-40" d="M891.39,1089c-90.51,0-89.85-31.48-180.59-31.48" transform="translate(-5.45 -15.69)"/>
           <path class="cls-41" d="M708.63,1057.5a2.18,2.18,0,1,0,2.17-2.18A2.18,2.18,0,0,0,708.63,1057.5Z" transform="translate(-5.45 -15.69)"/>
@@ -2251,6 +2330,7 @@
       </g>
       <g id="gli-anni-luce" class="collection cosmicomiche collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1159.8" width="155.15" height="6.81"/>  
           <path class="cls-38" d="M710.8,1071.66c-137.48,0-137.48,106-274.95,106" transform="translate(-5.45 -15.69)"/>
           <path class="cls-40" d="M891.39,1101.27c-90.51,0-89.85-29.61-180.59-29.61" transform="translate(-5.45 -15.69)"/>
           <path class="cls-41" d="M708.63,1071.66a2.18,2.18,0,1,0,2.17-2.17A2.17,2.17,0,0,0,708.63,1071.66Z" transform="translate(-5.45 -15.69)"/>
@@ -2284,6 +2364,7 @@
       </g>
       <g id="la-molle-luna" class="collection ti-con-zero memoria-del-mondo collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1252.5" width="155.15" height="6.81"/>  
           <path class="cls-45" d="M734.69,1346c-149.42,0-149.42-75.56-298.84-75.56" transform="translate(-5.45 -15.69)"/>
           <path class="cls-39" d="M768.8,1337.72c-17.46,0-17.46,8.24-34.11,8.24" transform="translate(-5.45 -15.69)"/>
           <path class="cls-40" d="M891.39,1310.29c-61.3,0-61.3,27.43-122.59,27.43" transform="translate(-5.45 -15.69)"/>
@@ -2307,6 +2388,7 @@
       </g>
       <g id="morte" class="collection ti-con-zero collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1268" width="155.15" height="6.81"/>  
           <path class="cls-45" d="M734.69,1425.6c-149.42,0-112.3-138.88-298.84-138.88" transform="translate(-5.45 -15.69)"/>
           <path class="cls-40" d="M891.39,1384.06c-78.64,0-78.11,41.54-156.7,41.54" transform="translate(-5.45 -15.69)"/>
           <path class="cls-46" d="M732.52,1425.6a2.18,2.18,0,1,0,2.17-2.17A2.17,2.17,0,0,0,732.52,1425.6Z" transform="translate(-5.45 -15.69)"/>
@@ -2330,6 +2412,7 @@
       </g>
       <g id="il-cielo-di-pietra" class="collection memoria-del-mondo collection cosmicomiche-vecchie-nuove">
         <g>
+          <rect class="cls-120" x="273.07" y="1298.8" width="155.15" height="6.81"/>  
           <path class="cls-39" d="M768.8,1249.35c-166.48,0-200.15,67.63-332.95,67.63" transform="translate(-5.45 -15.69)"/>
           <path class="cls-40" d="M891.39,1248.82c-61.3,0-61.3.53-122.59.53" transform="translate(-5.45 -15.69)"/>
           <path class="cls-42" d="M766.63,1249.35a2.16,2.16,0,0,0,2.16,2.18,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,766.63,1249.35Z" transform="translate(-5.45 -15.69)"/>
@@ -2351,6 +2434,7 @@
       </g>
       <g id="le-conchiglie-e-il-tempo" class="collection memoria-del-mondo">
         <g>
+          <rect class="cls-120" x="273.07" y="1314.5" width="155.15" height="6.81"/>  
           <path class="cls-39" d="M768.8,1274.6c-166.48,0-183.44,58-332.95,58" transform="translate(-5.45 -15.69)"/>
           <path class="cls-42" d="M766.63,1274.6a2.16,2.16,0,0,0,2.16,2.18,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,766.63,1274.6Z" transform="translate(-5.45 -15.69)"/>
           <path class="cls-47" d="M269.77,1333.06a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1333.06Z" transform="translate(-5.45 -15.69)"/>
@@ -2367,6 +2451,7 @@
       </g>
       <g id="autobiografia-di-uno-spettatore">
         <g>
+          <rect class="cls-120" x="273.07" y="1384" width="155.15" height="6.81"/>  
           <path class="cls-53" d="M269.77,1402.62a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1402.62Z" transform="translate(-5.45 -15.69)"/>
           <circle cx="267.35" cy="1386.93" r="0.74"/>
           <text class="cls-23" transform="translate(273.38 1390.17)">Autobiografia di uno spettatore</text>
@@ -2381,6 +2466,7 @@
       </g>
       <g id="l-uomo-di-neanderthal">
         <g>
+          <rect class="cls-120" x="273.07" y="1422.5" width="155.15" height="6.81"/>  
           <path class="cls-53" d="M269.77,1441.17a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1441.17Z" transform="translate(-5.45 -15.69)"/>
           <circle cx="267.35" cy="1425.49" r="0.74"/>
           <text class="cls-23" transform="translate(273.38 1428.76)">L’uomo di Neanderthal</text>
@@ -2396,6 +2482,7 @@
       </g>
       <g id="altre-città">
         <g>
+          <rect class="cls-120" x="273.07" y="1507.5" width="155.15" height="6.81"/>  
           <path class="cls-53" d="M269.77,1526.29a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1526.29Z" transform="translate(-5.45 -15.69)"/>
           <circle cx="267.35" cy="1510.6" r="0.74"/>
           <text class="cls-23" transform="translate(273.38 1513.77)">Altre città</text>
@@ -2403,6 +2490,7 @@
       </g>
       <g id="il-richiamo-dell-acqua">
         <g>
+          <rect class="cls-120" x="273.07" y="1523" width="155.15" height="6.81"/>  
           <path class="cls-53" d="M269.77,1541.8a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1541.8Z" transform="translate(-5.45 -15.69)"/>
           <circle cx="267.35" cy="1526.11" r="0.74"/>
           <text class="cls-23" transform="translate(273.38 1529.13)">Il richiamo dell’acqua</text>
@@ -2426,6 +2514,7 @@
       </g>
       <g id="le-memorie-di-casanova">
         <g>
+          <rect class="cls-120" x="273.07" y="1646.5" width="155.15" height="6.81"/>  
           <path class="cls-53" d="M269.77,1665.43a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1665.43Z" transform="translate(-5.45 -15.69)"/>
           <circle cx="267.35" cy="1649.74" r="0.74"/>
           <text class="cls-23" transform="translate(273.38 1652.62)">Le memorie di Casanova</text>
@@ -2458,6 +2547,7 @@
       </g>
       <g id="il-prato-infinito" class="collection palomar">
         <g>
+          <rect class="cls-120" x="273.07" y="1755.13" width="155.15" height="6.81"/>  
           <path class="cls-51" d="M826.44,1667.87c-180.66,0-213,106.28-390.59,106.28" transform="translate(-5.45 -15.69)"/>
           <path class="cls-52" d="M824.27,1667.81a2.16,2.16,0,0,0,2.16,2.17,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1667.81Z" transform="translate(-5.45 -15.69)"/>
           <path class="cls-47" d="M269.77,1773.69a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1773.69Z" transform="translate(-5.45 -15.69)"/>
@@ -2475,6 +2565,7 @@
       </g>
       <g id="dal-terrazzo" class="collection palomar">
         <g>
+          <rect class="cls-120" x="273.07" y="1770.3" width="155.15" height="6.81"/>  
           <path class="cls-51" d="M826.44,1676.22c-180.66,0-215.79,113.3-390.59,113.3" transform="translate(-5.45 -15.69)"/>
           <path class="cls-52" d="M824.27,1676.16a2.16,2.16,0,0,0,2.16,2.17,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1676.16Z" transform="translate(-5.45 -15.69)"/>
           <path class="cls-47" d="M269.77,1789.16a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1789.16Z" transform="translate(-5.45 -15.69)"/>
@@ -2492,6 +2583,7 @@
       </g>
       <g id="il-marmo-e-il-sangue" class="collection palomar">
         <g>
+          <rect class="cls-120" x="273.07" y="1786" width="155.15" height="6.81"/>  
           <path class="cls-51" d="M826.44,1684.57c-180.66,0-213,119.8-390.59,119.8" transform="translate(-5.45 -15.69)"/>
           <path class="cls-52" d="M824.27,1684.51a2.16,2.16,0,0,0,2.16,2.17,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1684.51Z" transform="translate(-5.45 -15.69)"/>
           <path class="cls-47" d="M269.77,1804.6a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1804.6Z" transform="translate(-5.45 -15.69)"/>
@@ -2509,6 +2601,7 @@
       </g>
       <g id="il-modello-dei-modelli" class="collection palomar">
         <g>
+          <rect class="cls-120" x="273.07" y="1801.55" width="155.15" height="6.81"/>  
           <path class="cls-51" d="M826.44,1692.92c-180.66,0-213,127.75-390.59,127.75" transform="translate(-5.45 -15.69)"/>
           <path class="cls-52" d="M824.27,1692.86a2.16,2.16,0,0,0,2.16,2.17,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1692.86Z" transform="translate(-5.45 -15.69)"/>
           <path class="cls-47" d="M269.77,1820.08a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1820.08Z" transform="translate(-5.45 -15.69)"/>
@@ -2526,6 +2619,7 @@
       </g>
       <g id="come-imparare-ad-essere-morto" class="collection palomar">
         <g>
+          <rect class="cls-120" x="273.07" y="1816.09" width="155.15" height="6.81"/>  
           <path class="cls-51" d="M826.44,1701.27c-180.66,0-211.48,133.51-390.59,133.51" transform="translate(-5.45 -15.69)"/>
           <path class="cls-52" d="M824.27,1701.21a2.16,2.16,0,0,0,2.16,2.17,2.18,2.18,0,1,0,0-4.35A2.16,2.16,0,0,0,824.27,1701.21Z" transform="translate(-5.45 -15.69)"/>
           <path class="cls-47" d="M269.77,1835.63a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1835.63Z" transform="translate(-5.45 -15.69)"/>
@@ -2534,6 +2628,7 @@
       </g>
       <g id="il-ricordo-e-bendato">
         <g>
+          <rect class="cls-120" x="273.07" y="1840.21" width="155.15" height="6.81"/>  
           <path class="cls-53" d="M269.77,1858.75a3,3,0,1,0,3-3A3,3,0,0,0,269.77,1858.75Z" transform="translate(-5.45 -15.69)"/>
           <circle cx="267.35" cy="1843.06" r="0.74"/>
           <text class="cls-23" transform="translate(273.38 1846.19)">Il ricordo è bendato</text>
