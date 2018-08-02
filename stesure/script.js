@@ -184,13 +184,13 @@ function convertData(json) {
   })
 
   // Sort groups by first publication date
-  groups = groups.sort(function(a,b){
-    let first_a = publications.filter(function(e){
+  groups = groups.sort(function(a, b) {
+    let first_a = publications.filter(function(e) {
       return e.id == a.key
     }).sort(function(a, b) {
       return a.publication - b.publication
     })
-    let first_b = publications.filter(function(e){
+    let first_b = publications.filter(function(e) {
       return e.id == b.key
     }).sort(function(a, b) {
       return a.publication - b.publication
@@ -199,14 +199,14 @@ function convertData(json) {
   })
 
   // sort stories by first publication date
-  groups.forEach(function(g){
-    g.value.sort(function(a,b){
-      let first_a = publications.filter(function(e){
+  groups.forEach(function(g) {
+    g.value.sort(function(a, b) {
+      let first_a = publications.filter(function(e) {
         return e.id == a.id
       }).sort(function(a, b) {
         return a.publication - b.publication
       })
-      let first_b = publications.filter(function(e){
+      let first_b = publications.filter(function(e) {
         return e.id == b.id
       }).sort(function(a, b) {
         return a.publication - b.publication
@@ -233,6 +233,26 @@ let data
 let itemHeight = 40
 let subHeight = 20
 
+var cross = {
+  draw: function(context, size) {
+    context.moveTo(-size / 2, -size / 2)
+    context.lineTo(size / 2, size / 2)
+    context.moveTo(size / 2, -size / 2)
+    context.lineTo(-size / 2, size / 2)
+  }
+}
+
+var diamond = {
+  draw: function(context, size) {
+    context.moveTo(0, -size / 2)
+    context.lineTo(size / 3, 0)
+    context.lineTo(0, size / 2)
+    context.lineTo(-size / 3, 0)
+    context.lineTo(0, -size / 2)
+    context.closePath();
+  }
+}
+
 function gantt(data) {
 
   // Convert the data into a usable format
@@ -251,7 +271,7 @@ function gantt(data) {
   width -= 15
 
   let height = itemHeight * groups.length
-  let newHeight;
+  let newHeight = height;
 
   let margin = {
     top: 0,
@@ -274,7 +294,7 @@ function gantt(data) {
 
   let xAxis = d3.axisBottom(x)
     // .ticks(d3.timeYear.every(5))
-    .tickPadding(7)
+    .tickPadding(30)
 
   // Scale for the brush
   let xBrush = d3.scaleTime()
@@ -296,7 +316,7 @@ function gantt(data) {
 
   // define elements for the timeline at the bottom
   let timelineSVG = d3.select('#timeline > svg')
-    .attr('height', 40)
+    .attr('height', 70)
     .attr('width', width)
 
   let pannable = ganttSVG.append("rect")
@@ -324,6 +344,14 @@ function gantt(data) {
   let triangle = labels.selectAll('.triangle')
 
   let storyLabel = labels.selectAll('.story-label')
+
+  // for tooltip
+  let selectedDateLine = volumes.selectAll('.selected-date-line')
+  let selectedDate = timelineSVG.selectAll('.date-tooltip')
+    .attr('transform', 'translate(0, 0)')
+    .style('opacity', 0)
+  selectedDateLine = selectedDateLine.data([])
+  selectedDate = selectedDate.data([])
 
   function update() {
 
@@ -371,8 +399,8 @@ function gantt(data) {
     width -= margin.right
 
     volumes.attr(`transform`, `translate(${margin.left},0)`)
-    d3.select('.gantt-info').style('width', (margin.left-60)+'px')
-    d3.select('#brush > .brush-info').style('padding-left', (margin.left+0) + 'px')
+    d3.select('.gantt-info').style('width', (margin.left - 60) + 'px')
+    d3.select('#brush > .brush-info').style('padding-left', (margin.left + 0) + 'px')
 
     // After margin is set, draw the temporal axis at the bottom, in a different SVG so to make it sticky via CSS
     x.range([0, width])
@@ -505,16 +533,19 @@ function gantt(data) {
       datum = datum.sort(function(a, b) {
         return a.publication - b.publication
       })
-      return datum
+      return datum.splice(0, 1)
     })
     volumePublication.exit().remove()
-    volumePublication = volumePublication.enter().append('circle')
+    volumePublication = volumePublication.enter().append('path')
       .classed('publication', true)
-      .classed('not-precise', function(d){
+      .classed('not-precise', function(d) {
         return d.precision_publication != 'day'
       })
-      .attr('r', 3)
+      .attr('d', d3.symbol().type(cross).size(10))
       .merge(volumePublication)
+      .on('click', function(d) {
+        showDate(d);
+      })
 
     story = volume.selectAll('.story').data([])
     story.exit().remove()
@@ -526,8 +557,14 @@ function gantt(data) {
 
     var zoom = d3.zoom()
       .scaleExtent([1, Infinity])
-      .translateExtent([[0, 0], [width, height]])
-      .extent([[0, 0], [width, height]])
+      .translateExtent([
+        [0, 0],
+        [width, height]
+      ])
+      .extent([
+        [0, 0],
+        [width, height]
+      ])
       .on("zoom", zoomed)
 
 
@@ -538,6 +575,7 @@ function gantt(data) {
       .attr("transform", "translate(" + margin.left + "," + 0 + ")")
       .call(zoom)
       .on("wheel.zoom", null)
+      .on('click', showDate)
 
     xBrush.range([0, width])
 
@@ -565,7 +603,7 @@ function gantt(data) {
       .attr("class", "brush")
       .call(brush)
       .call(brush.move, xBrush.range())
-      // .call(brush.move, [x(parseDate('1944-12-01')), x(parseDate('1955-01-01'))]);
+    // .call(brush.move, [x(parseDate('1944-12-01')), x(parseDate('1955-01-01'))]);
 
     ganttSVG.append("defs").append("clipPath")
       .attr("id", "clip")
@@ -580,8 +618,8 @@ function gantt(data) {
       var s = d3.event.selection || xBrush.range();
       x.domain(s.map(xBrush.invert, xBrush));
       pannable.call(zoom.transform, d3.zoomIdentity
-        .scale( (width) / (s[1] - s[0]) )
-        .translate( -s[0], 0) );
+        .scale((width) / (s[1] - s[0]))
+        .translate(-s[0], 0));
       timelineSVG.select(".axis--x").call(xAxis);
       draw()
     }
@@ -624,17 +662,12 @@ function gantt(data) {
         return x(d.end) - x(d.start)
       })
 
-    volumePublication.attr('cx', d => {
-        return x(d.publication)
+    volumePublication
+      .attr('transform', function(d) {
+        return `translate(${x(d.publication)}, 25)`
       })
-      .attr('cy', 25)
 
     let duration = 500;
-
-    newHeight = selectedVolume ? height + selectedVolume.value.length * subHeight : height;
-    ganttSVG.attr('height', newHeight)
-    d3.select('#clip rect').attr('height', newHeight)
-    pannable.attr('height', newHeight)
 
     if (selectedVolume) {
 
@@ -680,8 +713,10 @@ function gantt(data) {
 
       // console.log('Draw stories')
       // set stories
-      story = volumes.selectAll('.story').data(selectedVolume.value, d => { return d.id })
-      story.exit().transition().duration(duration).style('opacity',1e-16).remove()
+      story = volumes.selectAll('.story').data(selectedVolume.value, d => {
+        return d.id
+      })
+      story.exit().transition().duration(duration).style('opacity', 1e-16).remove()
       story = story.enter().append('g')
         .classed('story', true)
         .classed('precise', d => {
@@ -698,8 +733,8 @@ function gantt(data) {
 
       story.transition()
         .duration(duration)
-        .delay( (d,i) => {
-          return i*(duration/selectedVolume.value.length)
+        .delay((d, i) => {
+          return i * (duration / selectedVolume.value.length)
         })
         .style('opacity', 1)
 
@@ -728,7 +763,9 @@ function gantt(data) {
       storyStart.exit().remove()
       storyStart = storyStart.enter().append('path')
         .classed('start', true)
-        .classed('precise', d => { return d.precision_start == 'day' })
+        .classed('precise', d => {
+          return d.precision_start == 'day'
+        })
         .merge(storyStart)
 
       storyEnd = story.selectAll('.end').data(function(d) {
@@ -737,7 +774,9 @@ function gantt(data) {
       storyEnd.exit().remove()
       storyEnd = storyEnd.enter().append('path')
         .classed('end', true)
-        .classed('precise', d => { return d.precision_end == 'day' })
+        .classed('precise', d => {
+          return d.precision_end == 'day'
+        })
         .merge(storyEnd)
 
       storyPublication = story.selectAll('.publication').data(function(d) {
@@ -750,14 +789,24 @@ function gantt(data) {
         return datum
       })
       storyPublication.exit().remove()
-      storyPublication = storyPublication.enter().append('circle')
+      storyPublication = storyPublication.enter().append('path')
         .classed('publication', true)
-        .attr('r', 2)
+        .attr('d', d3.symbol().type(function(d, i) {
+          return i == 0 ? cross : diamond
+        }).size(function(d, i) {
+          let thisSize = 8
+          return i == 0 ? thisSize : thisSize * 1.3
+        }))
         .merge(storyPublication)
+        .on('click', function(d) {
+          showDate(d);
+        })
 
       // labels
-      storyLabel = labels.selectAll('.story-label').data(selectedVolume.value, d => { return d.id })
-      storyLabel.exit().transition().duration(duration).style('opacity',1e-16).remove()
+      storyLabel = labels.selectAll('.story-label').data(selectedVolume.value, d => {
+        return d.id
+      })
+      storyLabel.exit().transition().duration(duration).style('opacity', 1e-16).remove()
       storyLabel = storyLabel.enter().append('text')
         .classed('story-label', true)
         .attr('x', 0)
@@ -772,10 +821,15 @@ function gantt(data) {
 
       storyLabel.transition()
         .duration(duration)
-        .delay( (d,i) => {
-          return i*(duration/selectedVolume.value.length)
+        .delay((d, i) => {
+          return i * (duration / selectedVolume.value.length)
         })
         .style('opacity', 1)
+
+      newHeight = selectedVolume ? height + selectedVolume.value.length * subHeight : height;
+      ganttSVG.attr('height', newHeight)
+      d3.select('#clip rect').attr('height', newHeight)
+      pannable.attr('height', newHeight)
 
     }
 
@@ -809,10 +863,22 @@ function gantt(data) {
         return termination(d, 'transform', 'end')
       })
 
-    storyPublication.attr('cx', d => {
+    storyPublication
+      .attr('transform', function(d) {
+        return `translate(${x(d.publication)}, ${y.bandwidth() / 2})`
+      })
+
+    selectedDate.attr('transform', function(d) {
+      return 'translate(' + (margin.left + x(d.publication)) + ', 25)'
+    })
+
+    selectedDateLine
+      .attr('x1', function(d) {
         return x(d.publication)
       })
-      .attr('cy', y.bandwidth() / 2)
+      .attr('x2', function(d) {
+        return x(d.publication)
+      })
 
   }
 
@@ -849,13 +915,89 @@ function gantt(data) {
         if (story.precision_end == 'day') {
           return 'translate(' + x(story.end) + ', ' + y.bandwidth() / 2 + ')'
         } else if (story.precision_end == 'month') {
-          return 'translate(' + (x(story.end)-3) + ',' + (y.bandwidth() / 2 - 6) + ')'
+          return 'translate(' + (x(story.end) - 3) + ',' + (y.bandwidth() / 2 - 6) + ')'
         } else if (story.precision_end == 'year') {
-          return 'translate(' + (x(story.end)-3) + ',' + (y.bandwidth() / 2 - 6) + ')'
+          return 'translate(' + (x(story.end) - 3) + ',' + (y.bandwidth() / 2 - 6) + ')'
         }
       }
     }
 
 
   }
+
+  let dateFormatter1 = d3.timeFormat('%e %B %Y')
+
+  function showDate(data) {
+    if (data) {
+      console.log(data)
+      selectedDate = selectedDate.data([data], function(d) {
+        return d.publication
+      })
+      selectedDateLine = selectedDateLine.data([data], function(d) {
+        return d.publication
+      })
+
+      selectedDate.exit()
+        .transition()
+        .duration(500)
+        .style('opacity', 0)
+        .remove()
+
+      selectedDateLine.exit()
+        .transition()
+        .duration(500)
+        .style('opacity', 0)
+        .remove()
+
+      selectedDate = selectedDate.enter().append('text')
+        .classed('date-tooltip', true)
+        .merge(selectedDate)
+        .text(function(d) {
+          return dateFormatter1(d.publication)
+        })
+        .attr('transform', function(d) {
+          return 'translate(' + (margin.left + x(d.publication)) + ', -10)'
+        })
+
+      selectedDateLine = selectedDateLine.enter().append('line')
+        .classed('selected-date-line', true)
+        .attr('x1', function(d) {
+          return x(d.publication)
+        })
+        .attr('y1', 0)
+        .attr('x2', function(d) {
+          return x(d.publication)
+        })
+        .attr('y2', newHeight)
+        .style('opacity', 1)
+
+      selectedDate.transition()
+        .duration(500)
+        .style('opacity', 1)
+        .attr('transform', function(d) {
+          return 'translate(' + (margin.left + x(d.publication)) + ', 25)'
+        })
+
+      d3.select('line.selected-date-line')
+
+
+
+    } else {
+      selectedDate = selectedDate.data([])
+      selectedDateLine = selectedDateLine.data([])
+
+      selectedDate.exit()
+        .transition()
+        .duration(500)
+        .style('opacity', 0)
+        .remove()
+
+      selectedDateLine.exit()
+        .transition()
+        .duration(500)
+        .style('opacity', 0)
+        .remove()
+    }
+  }
+
 } // gantt
