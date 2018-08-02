@@ -82,8 +82,7 @@ h3 {
 /* Gantt */
 
 .pannable {
-  cursor: -webkit-grab;
-  cursor: grab;
+  cursor: ew-resize;
   opacity: 0.0;
 }
 
@@ -196,19 +195,6 @@ g.group.composite .span1 {
 g.group.composite .span2 {
   fill: #E74C3C;
 }
-
-/* .publication {
-  fill: #273746;
-  stroke: white;
-  stroke-width: 1px;
-  cursor: pointer;
-} */
-
-/* .publication.not-first {
-  fill: transparent;
-  stroke: #273746;
-  stroke-width: 1px;
-} */
 
 g.group.composite .publication {
   fill: #E74C3C;
