@@ -108,19 +108,20 @@ h3 {
   opacity: .5;
 }
 
-.publication {
+.volume > .publication, .story > .publication {
   fill: transparent;
   stroke: var(--darker);
-  stroke-width: 1px;
+  stroke-width: 2px;
+  stroke-linejoin: bevel;
   cursor: pointer;
+}
+
+.volume > .publication ~ .publication, .story > .publication ~ .publication {
+  stroke-width: 1px;
 }
 
 .publication.not-precise {
   opacity: .5;
-}
-
-.publication:first-of-type {
-  fill: var(--darker);
 }
 
 .uncertain {
@@ -256,6 +257,22 @@ g.subGroup.precise .writing {
 .axis .tick text {
   font-size: 1rem
 }
+
+/* tooltip */
+
+.date-tooltip {
+  text-anchor: middle;
+  font-size: 0.9rem;
+  font-weight: bold;
+}
+
+line.selected-date-line {
+  stroke: #a6a6a6;
+  stroke-width: .5px;
+  stroke-dasharray: 3 4;
+}
+
+/* legend */
 
 .legend-content .span {
   display: block;
