@@ -326,6 +326,10 @@ function gantt(data) {
 
   let volumes = gantt.append('g').classed('volumes-group', true).attr('clip-path', 'url(#clip)')
   let volume = volumes.selectAll('.volume')
+
+  let tooltipGroup = volumes.append('g').classed('tooltip-group', true)
+
+  // rest of Gantt
   let baseline = volume.selectAll('.baseline')
   let uncertain = volume.selectAll('.uncertain')
   let certain = volume.selectAll('.uncertain')
@@ -346,11 +350,12 @@ function gantt(data) {
   let storyLabel = labels.selectAll('.story-label')
 
   // for tooltip
-  let selectedDateLine = volumes.selectAll('.selected-date-line')
-  let selectedDate = timelineSVG.selectAll('.date-tooltip')
-    .attr('transform', 'translate(0, 0)')
-    .style('opacity', 0)
+  let selectedDateLine = tooltipGroup.selectAll('.selected-date-line')
   selectedDateLine = selectedDateLine.data([])
+  let selectedMag = tooltipGroup.selectAll('.selected-mag')
+  selectedMag = selectedMag.data([])
+
+  let selectedDate = timelineSVG.selectAll('.date-tooltip')
   selectedDate = selectedDate.data([])
 
   function update() {
@@ -538,13 +543,13 @@ function gantt(data) {
     volumePublication.exit().remove()
     volumePublication = volumePublication.enter().append('path')
       .classed('publication', true)
-      .classed('not-precise', function(d) {
-        return d.precision_publication != 'day'
-      })
+      // .classed('not-precise', function(d) {
+      //   return d.precision_publication != 'day'
+      // })
       .attr('d', d3.symbol().type(cross).size(10))
       .merge(volumePublication)
       .on('click', function(d) {
-        showDate(d);
+        showDate(d, d3.event);
       })
 
     story = volume.selectAll('.story').data([])
@@ -799,7 +804,7 @@ function gantt(data) {
         }))
         .merge(storyPublication)
         .on('click', function(d) {
-          showDate(d);
+          showDate(d, d3.event);
         })
 
       // labels
@@ -880,6 +885,11 @@ function gantt(data) {
         return x(d.publication)
       })
 
+    selectedMag
+      .attr('x', function(d) {
+        return x(d.publication)
+      })
+
   }
 
   function termination(story, attr, type) {
@@ -930,6 +940,7 @@ function gantt(data) {
   function showDate(data) {
 
     if (data) {
+
       selectedDate = selectedDate.data([data], function(d) {
         return d.publication
       })
@@ -950,7 +961,6 @@ function gantt(data) {
           return dateFormatter1(d.publication)
         })
 
-
       selectedDate.transition()
         .duration(500)
         .style('opacity', 1)
@@ -970,7 +980,6 @@ function gantt(data) {
 
       selectedDateLine = selectedDateLine.enter().append('line')
         .classed('selected-date-line', true)
-
         .attr('x1', function(d) {
           return x(d.publication)
         })
@@ -981,9 +990,41 @@ function gantt(data) {
         .attr('y2', newHeight)
         .merge(selectedDateLine)
 
+      selectedMag = selectedMag.data([])
+      selectedMag.exit()
+        .transition()
+        .duration(500)
+        .style('opacity', 0)
+        .remove()
+
+      selectedMag = selectedMag.data([data], function(d) {
+        d.event = d3.event
+        return d.id + '|' + d.publication
+      })
+      selectedMag.exit()
+        .transition()
+        .duration(500)
+        .style('opacity', 0)
+        .remove()
+
+      selectedMag = selectedMag.enter().append('text')
+        .classed('selected-mag', true)
+        .text(function(d) {
+          let pubs = publications.filter(function(e) {
+            return e.id == d.id && e.publication == d.publication
+          })
+          return pubs[0].nome
+        })
+        .attr('x', function(d) {
+          return x(d.publication)
+        })
+        .attr('y', function(d) {
+          return d.event.offsetY - 10
+        })
+        .merge(selectedMag)
+
     } else {
       selectedDate = selectedDate.data([])
-
       selectedDate.exit()
         .transition()
         .duration(500)
@@ -991,13 +1032,16 @@ function gantt(data) {
         .remove()
 
       selectedDateLine = selectedDateLine.data([])
-
       selectedDateLine.exit()
         .transition()
         .duration(500)
         .style('opacity', 0)
         .remove()
+
+      selectedMag = selectedMag.data([])
+      selectedMag.exit().remove()
     }
+
   }
 
 } // gantt

@@ -82,7 +82,8 @@ h3 {
 /* Gantt */
 
 .pannable {
-  cursor: ew-resize;
+  cursor: -webkit-grab;
+  cursor: grab;
   opacity: 0.0;
 }
 
@@ -117,10 +118,6 @@ h3 {
 
 .volume > .publication ~ .publication, .story > .publication ~ .publication {
   stroke-width: 1px;
-}
-
-.publication.not-precise {
-  opacity: .5;
 }
 
 .uncertain {
@@ -256,6 +253,11 @@ line.selected-date-line {
   stroke: #a6a6a6;
   stroke-width: .5px;
   stroke-dasharray: 3 4;
+}
+
+.selected-mag {
+  text-anchor: middle;
+  font-size: 0.8rem;
 }
 
 /* legend */
