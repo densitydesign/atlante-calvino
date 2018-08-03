@@ -179,10 +179,6 @@ function convertData(json) {
     })
   })
 
-  groups.sort(function(a, b) {
-    return a.start - b.start
-  })
-
   // Sort groups by first publication date
   groups = groups.sort(function(a, b) {
     let first_a = publications.filter(function(e) {
@@ -217,6 +213,21 @@ function convertData(json) {
     })
   })
 
+  // See if stories have been published on previous collections
+  groups.forEach(function(g, i) {
+    g.appearPreviously = []
+    for (var j = 0; j < i; j++) {
+      g.value.forEach(function(s) {
+        let filtered = groups[j].value.filter(function(d) {
+          return d.id == s.id
+        })
+        if (filtered.length) {
+          g.appearPreviously.push(s.id);
+        }
+      })
+    }
+  })
+
   data = {
     'writings': writings,
     'info': info,
@@ -236,9 +247,9 @@ let subHeight = 40
 var symbolFirstPublication = {
   draw: function(context, size) {
 
-    context.moveTo(-size*0.5, -size*0.5)
-    context.lineTo(size*0.5, -size*0.5)
-    context.lineTo(0, size*0.6)
+    context.moveTo(-size * 0.5, -size * 0.5)
+    context.lineTo(size * 0.5, -size * 0.5)
+    context.lineTo(0, size * 0.6)
     context.closePath();
 
 
@@ -334,8 +345,9 @@ function gantt(data) {
 
   // rest of Gantt
   let baseline = volume.selectAll('.baseline')
+  let previousWriting = volume.selectAll('.previous-writing')
   let uncertain = volume.selectAll('.uncertain')
-  let certain = volume.selectAll('.uncertain')
+  let certain = volume.selectAll('.certain')
 
   let story = volumes.selectAll('.story')
   let storyBaseline = story.selectAll('.baseline')
@@ -402,7 +414,7 @@ function gantt(data) {
         let thisWidth = d3.select(this).node().getBBox().width + 60
         margin.left = d3.max([(margin.left), thisWidth])
       })
-      .attr('x', margin.left-60)
+      .attr('x', margin.left - 60)
 
     // Update width
     width -= margin.left
@@ -468,11 +480,12 @@ function gantt(data) {
       .classed('baseline', true)
       .merge(baseline)
 
-    uncertain = volume.selectAll('.uncertain').data(function(d) {
+    previousWriting = volume.selectAll('.previous-writing').data(function(d) {
       let items = d.value.filter(e => {
-        return e.precision_start != 'day' && e.precision_end != 'day'
+        return d.appearPreviously.indexOf(e.id) > -1
       })
       if (items.length) {
+
         let start = d3.min(items, e => {
           return e.start
         })
@@ -481,7 +494,8 @@ function gantt(data) {
         })
         let datum = {
           start: start,
-          end: end
+          end: end,
+          key: d.key
         }
 
         // On the uncertain writing timespan if the ending date take place later than the first publication, use the date of the first publication as the ending date of the writing timespan
@@ -498,12 +512,67 @@ function gantt(data) {
             }
           }
         }
-
-
-        return [datum]
+        // return values only if dates are defined (there could be only values with undefined dates)
+        if (datum.start && datum.end) {
+          return [datum]
+        } else {
+          return []
+        }
       } else {
         return []
       }
+    })
+
+    previousWriting.exit().remove()
+
+    previousWriting = previousWriting.enter().append('rect')
+      .classed('previous-writing', true)
+      .merge(previousWriting)
+
+    uncertain = volume.selectAll('.uncertain').data(function(d) {
+      let items = d.value.filter(e => {
+        return e.precision_start != 'day' && e.precision_end != 'day' && d.appearPreviously.indexOf(e.id) < 0
+      })
+
+      if (items.length) {
+
+        let start = d3.min(items, e => {
+          return e.start
+        })
+        let end = d3.max(items, e => {
+          return e.end
+        })
+        let datum = {
+          start: start,
+          end: end,
+          key: d.key
+        }
+
+        // On the uncertain writing timespan if the ending date take place later than the first publication, use the date of the first publication as the ending date of the writing timespan
+        let thisPublications = publications.filter(e => {
+          return e.id == d.key
+        })
+        thisPublications = thisPublications.sort(function(a, b) {
+          return a.publication - b.publication
+        })
+        if (thisPublications.length) {
+          if (thisPublications[0].precision_publication == 'day') {
+            if (datum.end > thisPublications[0].publication) {
+              datum.end = thisPublications[0].publication
+            }
+          }
+        }
+        // return values only if dates are defined (there could be only values with undefined dates)
+        if (datum.start && datum.end) {
+          return [datum]
+        } else {
+          return []
+        }
+      } else {
+        return []
+      }
+
+
     })
     uncertain.exit().remove()
     uncertain = uncertain.enter().append('rect')
@@ -512,7 +581,7 @@ function gantt(data) {
 
     certain = volume.selectAll('.certain').data(function(d) {
       let items = d.value.filter(e => {
-        return e.precision_start == 'day' && e.precision_end == 'day'
+        return e.precision_start == 'day' && e.precision_end == 'day' && d.appearPreviously.indexOf(e.id) < 0
       })
       if (items.length) {
         let start = d3.min(items, e => {
@@ -526,7 +595,11 @@ function gantt(data) {
           end: end,
           items: items
         }
-        return [datum]
+        if (datum.start && datum.end) {
+          return [datum]
+        } else {
+          return []
+        }
       } else {
         return []
       }
@@ -653,6 +726,15 @@ function gantt(data) {
       .attr('y1', 25)
       .attr('x2', x(x.domain()[1]))
       .attr('y2', 25)
+
+    previousWriting.attr('y', 19)
+      .attr('height', 12)
+      .attr('x', d => {
+        return x(d.start)
+      })
+      .attr('width', d => {
+        return x(d.end) - x(d.start)
+      })
 
     uncertain.attr('y', 19)
       .attr('height', 12)
@@ -819,7 +901,7 @@ function gantt(data) {
       storyLabel.exit().transition().duration(duration).style('opacity', 1e-16).remove()
       storyLabel = storyLabel.enter().append('text')
         .classed('story-label', true)
-        .attr('x', margin.left-60)
+        .attr('x', margin.left - 60)
         .text(d => {
           return d.titolo
         })

@@ -5,7 +5,10 @@
   --red: #EC634A;
   --red-light: #f4a191;
   --greenish: #2F4F4F;
-  --greenish-light: #BFBFBF;
+  --greenish-light: #7bb2b2;
+  --previous-writing: #BFBFBF;
+  --baseline: #94a6b8;
+  --baseline-light: #c6cfd8;
 }
 
 html {
@@ -59,9 +62,16 @@ h3 {
 }
 
 #brush, #timeline {
-  background-color: #ffffffdd;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  background-color: #ffffffcc;
+  -webkit-backdrop-filter: blur(1.75px);
+  backdrop-filter: blur(1.75px);
+}
+
+.timeline-container {
+  position: -webkit-sticky;
+  position: sticky;
+  bottom: 0;
+  z-index: 1020;
 }
 
 .gantt-info {
@@ -105,15 +115,16 @@ h3 {
 }
 
 .baseline {
-  stroke: var(--darker);
-  stroke-width: 0.5px;
+  stroke: var(--baseline);
+  stroke-width: 1px;
+  shape-rendering: crispedges;
 }
 
 .story .baseline {
-  opacity: .5;
+  stroke: var(--baseline-light);
 }
 
-.volume > .publication, .story > .publication {
+.volume>.publication, .story>.publication {
   fill: var(--darker);
   stroke: white;
   stroke-width: 2px;
@@ -121,10 +132,16 @@ h3 {
   cursor: pointer;
 }
 
-.volume > .publication ~ .publication, .story > .publication ~ .publication {
+.volume>.publication~.publication, .story>.publication~.publication {
   fill: transparent;
   stroke: var(--darker);
   stroke-width: 1px;
+}
+
+.previous-writing {
+  fill: var(--previous-writing);
+  rx: 2px;
+  ry: 2px;
 }
 
 .uncertain {
@@ -181,7 +198,7 @@ h3 {
 
 .story-label {
   text-anchor: end;
-  font-size: 0.75rem;
+  font-size: 0.9rem;
 }
 
 #gantt .subGroup .line {
