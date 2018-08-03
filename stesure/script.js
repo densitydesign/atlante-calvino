@@ -230,15 +230,18 @@ function convertData(json) {
 let parseDate = d3.timeParse("%Y-%m-%d")
 let boundaries = [parseDate('1940-01-01'), parseDate('1990-12-31')]
 let data
-let itemHeight = 40
-let subHeight = 30
+let itemHeight = 50
+let subHeight = 40
 
-var cross = {
+var symbolFirstPublication = {
   draw: function(context, size) {
-    context.moveTo(-size / 2, -size / 2)
-    context.lineTo(size / 2, size / 2)
-    context.moveTo(size / 2, -size / 2)
-    context.lineTo(-size / 2, size / 2)
+
+    context.moveTo(-size*0.5, -size*0.5)
+    context.lineTo(size*0.5, -size*0.5)
+    context.lineTo(0, size*0.6)
+    context.closePath();
+
+
   }
 }
 
@@ -394,10 +397,12 @@ function gantt(data) {
       .merge(title)
 
     // calculate left margin
-    title.each(function(d, i) {
-      let thisWidth = d3.select(this).node().getBBox().width + 60
-      margin.left = d3.max([(margin.left), thisWidth])
-    })
+    title
+      .each(function(d, i) {
+        let thisWidth = d3.select(this).node().getBBox().width + 60
+        margin.left = d3.max([(margin.left), thisWidth])
+      })
+      .attr('x', margin.left-60)
 
     // Update width
     width -= margin.left
@@ -546,7 +551,7 @@ function gantt(data) {
       // .classed('not-precise', function(d) {
       //   return d.precision_publication != 'day'
       // })
-      .attr('d', d3.symbol().type(cross).size(10))
+      .attr('d', d3.symbol().type(symbolFirstPublication).size(12))
       .merge(volumePublication)
       .on('click', function(d) {
         showDate(d, d3.event);
@@ -669,7 +674,7 @@ function gantt(data) {
 
     volumePublication
       .attr('transform', function(d) {
-        return `translate(${x(d.publication)}, 25)`
+        return `translate(${x(d.publication)}, 10)`
       })
 
     let duration = 500;
@@ -797,10 +802,10 @@ function gantt(data) {
       storyPublication = storyPublication.enter().append('path')
         .classed('publication', true)
         .attr('d', d3.symbol().type(function(d, i) {
-          return i == 0 ? cross : diamond
+          return i == 0 ? symbolFirstPublication : diamond
         }).size(function(d, i) {
-          let thisSize = 8
-          return i == 0 ? thisSize : thisSize * 1.3
+          let thisSize = 10
+          return i == 0 ? thisSize : thisSize * 1
         }))
         .merge(storyPublication)
         .on('click', function(d) {
@@ -814,7 +819,7 @@ function gantt(data) {
       storyLabel.exit().transition().duration(duration).style('opacity', 1e-16).remove()
       storyLabel = storyLabel.enter().append('text')
         .classed('story-label', true)
-        .attr('x', 0)
+        .attr('x', margin.left-60)
         .text(d => {
           return d.titolo
         })
@@ -870,7 +875,7 @@ function gantt(data) {
 
     storyPublication
       .attr('transform', function(d) {
-        return `translate(${x(d.publication)}, ${y.bandwidth() / 2})`
+        return `translate(${x(d.publication)}, ${ 13 })`
       })
 
     selectedDate.attr('transform', function(d) {
