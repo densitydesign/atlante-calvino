@@ -43,6 +43,11 @@ h3 {
   text-transform: uppercase;
 }
 
+p {
+
+}
+
+
 #brush {
   border-bottom: 1px var(--red) solid;
 }
@@ -304,4 +309,23 @@ line.selected-date-line {
 .legend-content p {
   font-family: 'Crimson Text', serif;
   font-size: 1.2rem;
+  margin-bottom: 0;
+}
+
+.legend-content p.small {
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.intervals path {
+  fill: none;
+  stroke: grey;
+}
+
+.intervals svg {
+  background-color: red;
+}
+
+#uncertain-intervall, #certain-intervall {
+  background-color: #f6f6f6;
 }

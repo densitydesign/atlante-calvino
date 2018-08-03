@@ -284,22 +284,23 @@ function gantt(data) {
   width -= parseInt(groupBoxStyle.paddingRight)
   width -= 15
 
-  let height = itemHeight * groups.length
-  let newHeight = height;
-
   let margin = {
-    top: 0,
+    top: 20,
     right: 5,
     bottom: 0,
     left: 0
   }
+
+
+    let height = itemHeight * groups.length + margin.top;
+    let newHeight = height;
 
   // define vertical scale
   let y = d3.scaleBand()
     .domain(groups.map(d => {
       return d.key
     }))
-    .range([0, height])
+    .range([margin.top, height])
     .padding(0)
 
   // scale of gantt, to be updated on brush

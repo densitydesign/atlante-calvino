@@ -1,0 +1,20 @@
+<svg id="legenda" xmlns="http://www.w3.org/2000/svg" width="240" height="90" viewBox="0 0 240 90">
+  <title>uncertain-intervals</title>
+  <line x1="44.9996" y1="28.8845" x2="74.9996" y2="28.8845" style="fill: none;stroke: #ec634a;stroke-miterlimit: 10;stroke-width: 2px"/>
+  <g>
+    <path d="M32.747,29.8849h-3v-2h3v2Z" style="fill: #f8c7be"/>
+    <rect x="34.747" y="27.8849" width="3" height="2" style="fill: #f4a192"/>
+    <rect x="39.747" y="27.8849" width="2.8916" height="2" style="fill: #f0826e"/>
+  </g>
+  <g>
+    <path d="M87.2523,27.8845h3v2h-3v-2Z" style="fill: #f8c7be"/>
+    <rect x="82.2523" y="27.8845" width="3" height="2" style="fill: #f4a192"/>
+    <rect x="77.3607" y="27.8845" width="2.8916" height="2" style="fill: #f0826e"/>
+  </g>
+  <line x1="154.9596" y1="28.7492" x2="204.9596" y2="28.7492" style="fill: none;stroke: #ec634a;stroke-miterlimit: 10;stroke-width: 0.949063709733798px"/>
+  <path d="M154.7849,28.8466a9.3414,9.3414,0,0,1,1.8516-5.7578h1.0078A9.5432,9.5432,0,0,0,155.738,28.87a9.4084,9.4084,0,0,0,1.8906,5.7344h-0.9766A9.8051,9.8051,0,0,1,154.7849,28.8466Z" style="fill: #ec634a"/>
+  <path d="M205.2156,28.9231a9.3414,9.3414,0,0,1-1.8516,5.7578h-1.0078A9.5432,9.5432,0,0,0,204.2625,28.9a9.4084,9.4084,0,0,0-1.8906-5.7344h0.9766A9.8051,9.8051,0,0,1,205.2156,28.9231Z" style="fill: #ec634a"/>
+  <text transform="translate(36.5992 65.2381)" style="font-size: 12.600000381469727px;font-family: HK Grotesk">da me<tspan x="35.1235" y="0">s</tspan><tspan x="40.4146" y="0">e</tspan><tspan x="4.3252" y="11.1201">a me</tspan><tspan x="30.7988" y="11.1201">s</tspan><tspan x="36.0898" y="11.1201">e</tspan></text>
+  <text transform="translate(157.3781 65.238)" style="font-size: 12.600000381469727px;font-family: HK Grotesk">da anno<tspan x="4.3252" y="11.1201">a anno</tspan></text>
+  <polyline points="1 78 1 89 239 89.004 239 80" style="fill: none;stroke: #333;stroke-miterlimit: 10;stroke-width: 0.5px"/>
+</svg>

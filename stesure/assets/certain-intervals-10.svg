@@ -1,0 +1,8 @@
+<svg id="legenda" xmlns="http://www.w3.org/2000/svg" width="240" height="90" viewBox="0 0 240 90">
+  <title>certain-intervals</title>
+  <line x1="60" y1="11.8013" x2="60" y2="45.9681" style="fill: none;stroke: #ec634a;stroke-miterlimit: 10;stroke-width: 2px"/>
+  <text transform="translate(44.5201 65.2381)" style="font-size: 12.600000381469727px;font-family: HK Grotesk">u<tspan x="8.2563" y="0">ni</tspan><tspan x="18.1431" y="0">c</tspan><tspan x="24.0742" y="0">o</tspan><tspan x="-1.9502" y="11.1201">gio</tspan><tspan x="14.2368" y="11.1201">r</tspan><tspan x="19.1401" y="11.1201">no</tspan></text>
+  <polyline points="172.542 11.801 172.542 28.982 187.459 28.982 187.459 45.968" style="fill: none;stroke: #ec634a;stroke-miterlimit: 10;stroke-width: 2px"/>
+  <text transform="translate(153.4283 65.238)" style="font-size: 12.600000381469727px;font-family: HK Grotesk">da gio<tspan x="34.4717" y="0">r</tspan><tspan x="39.375" y="0">no</tspan><tspan x="4.3247" y="11.1201">a gio</tspan><tspan x="30.146" y="11.1201">r</tspan><tspan x="35.0493" y="11.1201">no</tspan></text>
+  <polyline points="1 78 1 89 239 89.004 239 80" style="fill: none;stroke: #333;stroke-miterlimit: 10;stroke-width: 0.5px"/>
+</svg>
