@@ -4,7 +4,8 @@ window.addEventListener('DOMContentLoaded', init)
 
 function init() {
   Tabletop.init({
-    key: 'https://docs.google.com/spreadsheets/d/1UPiuY_6vEu-bXPEcZTf8BAVuQIzDsIIfsvoDhwN18Iw/edit?usp=sharing',
+    // key: 'https://docs.google.com/spreadsheets/d/1UPiuY_6vEu-bXPEcZTf8BAVuQIzDsIIfsvoDhwN18Iw/edit?usp=sharing',
+    key: 'https://docs.google.com/spreadsheets/d/1AzGDDACeqZRwGBaE9Dt5cmyJcI-on1m7_D2pCOqr-XA/edit?usp=sharing',
     callback: formatData,
     simpleSheet: false
   })
