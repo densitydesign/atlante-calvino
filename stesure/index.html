@@ -46,7 +46,7 @@
   <div class="container-fluid">
     <div class="row sticky-top">
       <div id="brush" class="col pt-2">
-        <span class="brush-info"><p class="mb-1 crimson"><em><strong>Filtro temporale</strong>: clicca e trascina sulla timeline per selezionare un periodo da analizzare</em></p></span>
+        <span class="brush-info"><p class="mb-1 crimson"><em><strong>Filtro temporale</strong>: clicca e trascina sulla timeline per selezionare un periodo da analizzare, su schermi touch fai pinch zoom sulla visualizzazione.</em></p></span>
         <svg></svg>
       </div>
     </div>
@@ -74,14 +74,14 @@
           <div class="col-12 mb-3">
             <h3>Legenda</h3>
           </div>
-          <div class="col-12">
+          <!-- <div class="col-12">
             <p>Per aumentare lo zoom usa il filtro temporale, oppure fai doppio click sullo spondo della <em>timeline</em>.<br/>Fai doppio click tenendo premuto <em>shift</em> per diminuire lo zoom.</p>
             <p>Su schermi <em>touch</em> fai <em>pinch zoom</em> per aumentare o diminuire lo zoom.</p>
-          </div>
+          </div> -->
         </div>
         <div class="row mb-4">
           <div class="col-12 mb-3 pl-0">
-            <p><em>– I colori indicano il tipo di pubblicazione:
+            <p><em>– I colori indicano il tipo di volume:
             </em></p>
           </div>
           <div class="col-2 text-center">
@@ -90,30 +90,46 @@
           </div>
           <div class="col-2 text-center">
             <p class="mb-1"><span style="height:16px; width: 16px; display: inline-block; background-color: var(--red); border-radius: 15%;"></span></p>
-            <p class="small">Volume<br />composito</p>
+            <p class="small">Composto<br/>da più testi</p>
           </div>
-          <div class="col pt-2">
+          <!-- <div class="col pt-2">
             *<strong>Volume composito</strong>:<br />volume composto da più testi
-          </div>
+          </div> -->
         </div>
         <div class="row mb-4">
           <div class="col-12 mb-3 pl-0">
-            <p><em>– Le aree indicano l’estensione della stesura del <u>volume</u> e veicolano le seguenti informazioni sugli scritti contenuti:</em></p>
+            <p><em>– Le aree verdi indicano la durata della stesura del <u>volume unico</u>:</em></p>
           </div>
           <div class="col-12">
             <div class="row">
-              <div class="col-4 pr-0"><span class="reused span"></span></div>
-              <div class="col-4 px-0"><span class="uncertain span"></span></div>
-              <div class="col-4 pl-0"><span class="certain span"></span></div>
-              <div class="col-4 pl-4 pr-0">Ripresi da raccolta precedente</div>
-              <div class="col-4 px-1">Incertezza sul periodo di scrittura</div>
-              <div class="col-4 px-1">Certezza sul periodo di scrittura</div>
+              <!-- <div class="col-4 pr-0"><span class="reused span"></span></div> -->
+              <div class="col-4 line-bg"><span class="uncertain span" style="background-color:var(--greenish-light)"></span></div>
+              <div class="col-4 line-bg"><span class="certain span" style="background-color:var(--greenish)"></span></div>
+              <div class="col-4"></div>
+              <!-- <div class="col-4 pl-4 pr-0">Ripresi da raccolta precedente</div> -->
+              <div class="col-4 px-4">Intervallo incerto di stesura</div>
+              <div class="col-4 px-4">Intervallo certo di stesura</div>
             </div>
           </div>
         </div>
         <div class="row mb-4">
           <div class="col-12 mb-3 pl-0">
-            <p><em>– Le terminazioni delle linee segnalano l’intervallo di stesura del <u>racconto</u>:</em></p>
+            <p><em>– Le aree rosse indicano la durata della stesura del <u>volume composto</u> e veicolano le seguenti informazioni sui racconti contenuti:</em></p>
+          </div>
+          <div class="col-12">
+            <div class="row">
+              <div class="col-4 line-bg"><span class="reused span"></span></div>
+              <div class="col-4 line-bg"><span class="uncertain span"></span></div>
+              <div class="col-4 line-bg"><span class="certain span"></span></div>
+              <div class="col-4 px-4">Ripresi da raccolta precedente</div>
+              <div class="col-4 px-4">Intervallo incerto di stesura</div>
+              <div class="col-4 px-4">Intervallo certo di stesura</div>
+            </div>
+          </div>
+        </div>
+        <div class="row mb-4">
+          <div class="col-12 mb-3 pl-0">
+            <p><em>– Le terminazioni delle linee segnalano l’intervallo di stesura dei <u>racconti</u>:</em></p>
           </div>
           <div class="col-12">
             <div class="row intervals">

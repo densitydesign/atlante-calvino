@@ -124,14 +124,10 @@ function formatData(data) {
 
   })
 
-
-
   gantt(data)
 }
 
 function convertData(json) {
-
-  // console.info('convert data')
 
   var writings = json.stesure.elements
   var info = json.info.elements
@@ -247,13 +243,10 @@ let subHeight = 40
 
 var symbolFirstPublication = {
   draw: function(context, size) {
-
     context.moveTo(-size * 0.5, -size * 0.5)
     context.lineTo(size * 0.5, -size * 0.5)
     context.lineTo(0, size * 0.6)
     context.closePath();
-
-
   }
 }
 
@@ -272,6 +265,9 @@ function gantt(data) {
 
   // Convert the data into a usable format
   let converted = convertData(data);
+
+  console.log(converted)
+
   var writings = converted.writings
   var info = converted.info
   var publications = converted.publications
@@ -293,8 +289,8 @@ function gantt(data) {
   }
 
 
-    let height = itemHeight * groups.length + margin.top;
-    let newHeight = height;
+  let height = itemHeight * groups.length + margin.top;
+  let newHeight = height;
 
   // define vertical scale
   let y = d3.scaleBand()
@@ -533,37 +529,44 @@ function gantt(data) {
 
     uncertain = volume.selectAll('.uncertain').data(function(d) {
       let items = d.value.filter(e => {
-        return e.precision_start != 'day' && e.precision_end != 'day' && d.appearPreviously.indexOf(e.id) < 0
+        return (e.precision_start != 'day' || e.precision_end != 'day') && d.appearPreviously.indexOf(e.id) < 0
       })
+
+      // console.log(d, items)
 
       if (items.length) {
 
-        let start = d3.min(items, e => {
+        let volStart = d3.min(items, e => {
           return e.start
         })
-        let end = d3.max(items, e => {
+        // console.log(volStart)
+        let volEnd = d3.max(items, e => {
           return e.end
         })
+        // console.log(volEnd)
         let datum = {
-          start: start,
-          end: end,
+          start: volStart,
+          end: volEnd,
           key: d.key
         }
+        // console.log(JSON.stringify(datum, null, 2))
 
-        // On the uncertain writing timespan if the ending date take place later than the first publication, use the date of the first publication as the ending date of the writing timespan
-        let thisPublications = publications.filter(e => {
-          return e.id == d.key
-        })
-        thisPublications = thisPublications.sort(function(a, b) {
-          return a.publication - b.publication
-        })
-        if (thisPublications.length) {
-          if (thisPublications[0].precision_publication == 'day') {
-            if (datum.end > thisPublications[0].publication) {
-              datum.end = thisPublications[0].publication
-            }
-          }
-        }
+        // Taken out because it caused problems with “Eremita a Parigi”
+        // // On the uncertain writing timespan if the ending date take place later than the first publication, use the date of the first publication as the ending date of the writing timespan
+        // let thisPublications = publications.filter(e => {
+        //   return e.id == d.key
+        // })
+        // thisPublications = thisPublications.sort(function(a, b) {
+        //   return a.publication - b.publication
+        // })
+        // if (thisPublications.length) {
+        //   if (thisPublications[0].precision_publication == 'day') {
+        //     if (datum.end > thisPublications[0].publication) {
+        //       datum.end = thisPublications[0].publication
+        //     }
+        //   }
+        // }
+        // console.log(JSON.stringify(datum, null, 2))
         // return values only if dates are defined (there could be only values with undefined dates)
         if (datum.start && datum.end) {
           return [datum]
@@ -729,7 +732,7 @@ function gantt(data) {
       .attr('x2', x(x.domain()[1]))
       .attr('y2', 25)
 
-    previousWriting.attr('y', 19)
+    previousWriting.attr('y', 19-2)
       .attr('height', 12)
       .attr('x', d => {
         return x(d.start)
@@ -738,7 +741,7 @@ function gantt(data) {
         return x(d.end) - x(d.start)
       })
 
-    uncertain.attr('y', 19)
+    uncertain.attr('y', 19+2)
       .attr('height', 12)
       .attr('x', d => {
         return x(d.start)
@@ -861,6 +864,11 @@ function gantt(data) {
           return d.precision_start == 'day'
         })
         .merge(storyStart)
+        .on('click', function(d) {
+          // Quickest way for complying with the showDate() function: it calls the display date “d.publication”
+          d.publication = d.start
+          showDate(d, d3.event);
+        })
 
       storyEnd = story.selectAll('.end').data(function(d) {
         return d.end ? [d] : []
@@ -872,6 +880,11 @@ function gantt(data) {
           return d.precision_end == 'day'
         })
         .merge(storyEnd)
+        .on('click', function(d) {
+          // Quickest way for complying with the showDate() function: it calls the display date “d.publication”
+          d.publication = d.end
+          showDate(d, d3.event);
+        })
 
       storyPublication = story.selectAll('.publication').data(function(d) {
         let datum = publications.filter(e => {
@@ -893,6 +906,7 @@ function gantt(data) {
         }))
         .merge(storyPublication)
         .on('click', function(d) {
+          console.log('pub',d)
           showDate(d, d3.event);
         })
 
@@ -1102,7 +1116,7 @@ function gantt(data) {
           let pubs = publications.filter(function(e) {
             return e.id == d.id && e.publication == d.publication
           })
-          return pubs[0].nome
+          return pubs[0]?pubs[0].nome:''
         })
         .attr('x', function(d) {
           return x(d.publication)

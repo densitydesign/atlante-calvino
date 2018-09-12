@@ -47,10 +47,7 @@ h3 {
   text-transform: uppercase;
 }
 
-p {
-
-}
-
+p {}
 
 #brush {
   border-bottom: 1px var(--red) solid;
@@ -149,20 +146,26 @@ p {
 
 .previous-writing {
   fill: var(--previous-writing);
-  rx: 2px;
-  ry: 2px;
+  /* rx: 2px;
+  ry: 2px; */
 }
 
 .uncertain {
   fill: var(--greenish-light);
-  rx: 2px;
-  ry: 2px;
+  /* rx: 2px;
+  ry: 2px; */
 }
 
 .certain {
   fill: var(--greenish);
-  rx: 2px;
-  ry: 2px;
+  /* rx: 2px;
+  ry: 2px; */
+}
+
+rect.previous-writing, rect.uncertain, rect.certain {
+  opacity: 1;
+  rx: 1px;
+  ry: 1px;
 }
 
 .composite .uncertain {
@@ -186,7 +189,7 @@ p {
   stroke: var(--red-light);
   stroke-width: 1px;
   fill: transparent;
-  /* opacity: .5; */
+  cursor: pointer;
 }
 
 .end.precise, .start.precise {
@@ -300,6 +303,7 @@ line.selected-date-line {
   width: 100%;
   height: 15px;
   background-color: #dadada;
+  border-radius: 2px;
 }
 
 .legend-content .span.uncertain {
@@ -328,6 +332,13 @@ line.selected-date-line {
 
 .intervals svg {
   background-color: red;
+}
+
+.line-bg {
+  background-image: url(assets/line-bg.gif);
+  background-position-y: center;
+  background-size: 1px 7.5px;
+  background-repeat-y: no-repeat;
 }
 
 #uncertain-intervall, #certain-intervall {
