@@ -741,7 +741,7 @@ function gantt(data) {
         return x(d.end) - x(d.start)
       })
 
-    uncertain.attr('y', 19+2)
+    uncertain.attr('y', 19)
       .attr('height', 12)
       .attr('x', d => {
         return x(d.start)
@@ -750,7 +750,7 @@ function gantt(data) {
         return x(d.end) - x(d.start)
       })
 
-    certain.attr('y', 19)
+    certain.attr('y', 19+2)
       .attr('height', 12)
       .attr('x', d => {
         return x(d.start)
