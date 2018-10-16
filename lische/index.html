@@ -1,127 +1,42 @@
-<html>
+<!doctype html>
+<html lang="en">
 
 <head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-	<body>
-		<div></div>
-		<script src="https://d3js.org/d3.v5.min.js"></script>
-		<script>
-			console.log('hello')
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<style>
+		.lische {}
 
-			window.onload = function() {
-				document.onselectstart = function() {
-					return false;
-				}
-			}
+		g.stories>g,
+		g.magazines>g,
+		g.collections>g,
+		g.collections-labels>g {
+			cursor: pointer;
+		}
+	</style>
 
-			let selectedItems = [];
-			let selectionType = null
-			d3.xml("lische_verticale-interattivo20.svg").then(function(xml) {
-				console.log('hello')
-				console.log(xml)
-				let svg = d3.select(xml).select('svg').node()
-				console.log(svg)
-				d3.select('body > div').node().appendChild(svg)
-
-				function resetOpacity() {
-					d3.selectAll('#elementi > g > g').style('opacity', 1)
-					d3.selectAll('.rivista').style('opacity', 1)
-					d3.selectAll('.collection').style('opacity', 1)
-					d3.selectAll('.no-collection').style('opacity', 1)
-				}
-
-				d3.select('.reset').on('click', function(d) {
-					resetOpacity()
-					console.log('reset')
-				})
-
-
-				d3.selectAll('.collection')
-					.style('cursor', 'pointer')
-					.on('click', function(d) {
-						var thisClass = d3.select(this).attr('class')
-						thisClass = thisClass.split(' ')
-						thisClass = thisClass[thisClass.length - 1]
-						// console.log(thisClass)
-
-						if (d3.event.shiftKey && selectionType == 'collection') {
-							selectedItems.push(thisClass);
-						} else {
-							selectedItems = []
-						}
-						if (selectedItems.length < 1) {
-							selectedItems.push(thisClass)
-							selectionType = 'collection'
-						}
-
-						resetOpacity()
-						d3.selectAll('.collection').style('opacity', .2)
-						d3.selectAll('.no-collection').style('opacity', .2)
-
-						selectedItems.forEach(function(ee){
-							d3.selectAll('.' + ee).style('opacity', 1)
-						})
-
-					})
-
-				d3.selectAll('#elementi > g > g')
-					.style('cursor', 'pointer')
-					.on('click', function(d) {
-						d3.event.preventDefault()
-
-						if (d3.event.shiftKey && selectionType == 'story') {
-							selectedItems.push(this);
-						} else {
-							selectedItems = []
-						}
-						if (selectedItems.length < 1) {
-							selectedItems.push(this)
-							selectionType = 'story'
-						}
-						resetOpacity()
-						d3.selectAll('#elementi > g > g').style('opacity', 0.2)
-						selectedItems.forEach(function(e, j) {
-							d3.select(e).style('opacity', 1)
-						})
-						d3.select(this.parentNode).select('g:last-of-type').style('opacity', 1)
-
-					})
-
-				d3.selectAll('.rivista > g:last-of-type')
-					.style('cursor', 'pointer')
-					.on('click', function(d) {
-
-						if (d3.event.shiftKey && selectionType == 'magazine') {
-							selectedItems.push(this);
-						} else {
-							selectedItems = []
-						}
-
-						if (selectedItems.length < 1) {
-							selectedItems.push(this)
-							selectionType = 'magazine'
-						}
-
-						resetOpacity()
-
-						d3.selectAll('.rivista').style('opacity', .2)
-
-						selectedItems.forEach(function(e, j) {
-							d3.select(e.parentNode).style('opacity', 1)
-						})
-
-					})
-
-				// // Add class for collections
-				// d3.selectAll('#elementi > g > g')
-				// 	.on('click', function(d){
-				// 		d3.select(this).classed('collection-to-be-named', true)
-				// 		console.log(this)
-				// 	})
-
-			})
-		</script>
-	</body>
+	<title>Hello, world!</title>
 </head>
+
+<body>
+	<div class="container">
+		<div class="row">
+			<div class="col-12 lische">
+			</div>
+		</div>
+	</div>
+
+	<!-- Optional JavaScript -->
+	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+	<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="scripts.js"></script>
+</body>
 
 </html>
