@@ -7,7 +7,7 @@ window.onload = function() {
 let selectedItems = [];
 let selectionType = null;
 
-let visualisation = 'lische-web-000.svg';
+let visualisation = 'lische-web.svg';
 
 // visualisation = "lische_verticale-interattivo20.svg";
 
