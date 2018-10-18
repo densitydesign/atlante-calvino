@@ -29,11 +29,21 @@ body {
   background-color: #ffffffcc;
 }
 
+.lische-box {
+  max-width: calc(100% - 60px);
+}
+
+@media (min-width: 1600px) {
+  .lische-box {
+      max-width: 1540px;
+  }
+}
+
 .lische {
     -webkit-box-shadow: 0 0 7px 0px #fbe1b6;
             box-shadow: 0 0 7px 0px #fbe1b6;
     background-color: white;
-    max-width: 1200px;
+    /* max-width: 1200px; */
     margin: auto;
 }
 
@@ -55,3 +65,9 @@ g.collections-labels>g {
                 box-shadow: none;
     }
 }
+
+/* @media (min-width: 1380px) {
+  .container {
+      max-width: 1320px;
+  }
+} */

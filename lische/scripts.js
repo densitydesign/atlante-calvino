@@ -8,18 +8,14 @@ let selectedItems = [];
 let selectionType = null;
 
 d3.xml("SVG/header-viz.svg").then(function(xml) {
-  // console.log(xml)
   let svg = d3.select(xml).select('svg').node()
   d3.select(svg).attr('class','info sticky-top')
-  // console.log(svg)
   d3.select('div.lische').node().appendChild(svg)
 })
 
 d3.xml('SVG/visualisation.svg').then(function(xml) {
-  // console.log(xml)
   let svg = d3.select(xml).select('svg').node()
   d3.select(svg).attr('class','visualisation')
-  // console.log(svg)
   d3.select('div.lische').node().appendChild(svg)
 
   let viz = d3.select('svg.visualisation');
@@ -27,7 +23,6 @@ d3.xml('SVG/visualisation.svg').then(function(xml) {
   viz.selectAll('*[data-name]').each(function(d,i){
     let data_name = d3.select(this).attr('data-name');
     if (data_name) {
-      // console.log(this)
       data_name = data_name.replace(/\s/g,'-')
       data_name = data_name.replace(/\|/g,' ')
       d3.select(this).classed(data_name, true);
@@ -38,7 +33,7 @@ d3.xml('SVG/visualisation.svg').then(function(xml) {
     resetOpacity();
 
     d3.selectAll('g.collections > g').transition().duration(250).style('opacity', .2);
-    d3.selectAll('g.collections-labels > g').transition().duration(250).style('opacity', .2);
+    d3.selectAll('g.collections-labels > g').transition().duration(250).style('opacity', .5);
     d3.selectAll('g.magazines > g').transition().duration(250).style('opacity', .2);
     d3.selectAll('g.stories > g').transition().duration(250).style('opacity', .2);
 
@@ -70,7 +65,7 @@ d3.xml('SVG/visualisation.svg').then(function(xml) {
     resetOpacity();
 
     d3.selectAll('g.collections > g').transition().duration(250).style('opacity', .2);
-    d3.selectAll('g.collections-labels > g').transition().duration(250).style('opacity', .2);
+    d3.selectAll('g.collections-labels > g').transition().duration(250).style('opacity', .5);
     d3.selectAll('g.magazines > g').transition().duration(250).style('opacity', .2);
     d3.selectAll('g.stories > g').transition().duration(250).style('opacity', .2);
 
@@ -108,7 +103,7 @@ d3.xml('SVG/visualisation.svg').then(function(xml) {
     d3.selectAll('g.stories > g').transition().duration(250).style('opacity', .2);
     d3.selectAll('g.magazines > g').transition().duration(250).style('opacity', .2);
     d3.selectAll('g.collections > g').transition().duration(250).style('opacity', .2);
-    d3.selectAll('g.collections-labels > g').transition().duration(250).style('opacity', .2);
+    d3.selectAll('g.collections-labels > g').transition().duration(250).style('opacity', .5);
 
     if (d3.event.shiftKey && selectionType == 'collection') {
       selectedItems.push(this);
