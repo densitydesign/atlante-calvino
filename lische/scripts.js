@@ -32,10 +32,10 @@ d3.xml(visualisation).then(function(xml) {
   d3.selectAll('g.stories > g').on('click', function(d,i){
     resetOpacity();
 
-    d3.selectAll('g.collections > g').style('opacity', .2);
-    d3.selectAll('g.collections-labels > g').style('opacity', .2);
-    d3.selectAll('g.magazines > g').style('opacity', .2);
-    d3.selectAll('g.stories > g').style('opacity', .2);
+    d3.selectAll('g.collections > g').transition().duration(350).style('opacity', .2);
+    d3.selectAll('g.collections-labels > g').transition().duration(350).style('opacity', .2);
+    d3.selectAll('g.magazines > g').transition().duration(350).style('opacity', .2);
+    d3.selectAll('g.stories > g').transition().duration(350).style('opacity', .2);
 
     if (d3.event.shiftKey && selectionType == 'story') {
       selectedItems.push(this);
@@ -49,12 +49,12 @@ d3.xml(visualisation).then(function(xml) {
 
     selectedItems.forEach(function(s){
       let magazine = d3.select(s).attr('class').split(' ')[1];
-      d3.select('g.magazines > g.'+magazine).style('opacity', 1);
+      d3.select('g.magazines > g.'+magazine).transition().duration(350).style('opacity', 1);
       let collections = d3.select(s).attr('class').split(' ');
       collections.forEach(function(c){
-        d3.select('g.collections > g.'+c).style('opacity', 1);
+        d3.select('g.collections > g.'+c).transition().duration(350).style('opacity', 1);
       })
-      d3.select(s).style('opacity', 1);
+      d3.select(s).transition().duration(350).style('opacity', 1);
     })
 
   })
@@ -62,10 +62,10 @@ d3.xml(visualisation).then(function(xml) {
   d3.selectAll('g.magazines > g').on('click', function(d,i){
     resetOpacity();
 
-    d3.selectAll('g.collections > g').style('opacity', .2);
-    d3.selectAll('g.collections-labels > g').style('opacity', .2);
-    d3.selectAll('g.magazines > g').style('opacity', .2);
-    d3.selectAll('g.stories > g').style('opacity', .2);
+    d3.selectAll('g.collections > g').transition().duration(350).style('opacity', .2);
+    d3.selectAll('g.collections-labels > g').transition().duration(350).style('opacity', .2);
+    d3.selectAll('g.magazines > g').transition().duration(350).style('opacity', .2);
+    d3.selectAll('g.stories > g').transition().duration(350).style('opacity', .2);
 
     if (d3.event.shiftKey && selectionType == 'magazine') {
       selectedItems.push(this);
@@ -78,15 +78,15 @@ d3.xml(visualisation).then(function(xml) {
     }
 
     selectedItems.forEach(function(m){
-      d3.select(m).style('opacity', 1);
+      d3.select(m).transition().duration(350).style('opacity', 1);
       let thisClass = d3.select(m).attr('class');
       let collections = [];
       d3.selectAll('g.stories > g.'+thisClass)
-        .style('opacity', 1)
+        .transition().duration(350).style('opacity', 1)
         .each(function(s){
           let classes = d3.select(this).attr('class').split(' ');
           classes.forEach( (c) => {
-            d3.select('g.collections > g.'+c).style('opacity',1);
+            d3.select('g.collections > g.'+c).transition().duration(350).style('opacity',1);
           })
         });
     })
@@ -96,10 +96,10 @@ d3.xml(visualisation).then(function(xml) {
   d3.selectAll('g.collections > g, g.collections-labels > g').on('click', function(d,i){
     resetOpacity();
 
-    d3.selectAll('g.stories > g').style('opacity', .2);
-    d3.selectAll('g.magazines > g').style('opacity',.2);
-    d3.selectAll('g.collections > g').style('opacity',.2);
-    d3.selectAll('g.collections-labels > g').style('opacity', .2);
+    d3.selectAll('g.stories > g').transition().duration(350).style('opacity', .2);
+    d3.selectAll('g.magazines > g').transition().duration(350).style('opacity', .2);
+    d3.selectAll('g.collections > g').transition().duration(350).style('opacity', .2);
+    d3.selectAll('g.collections-labels > g').transition().duration(350).style('opacity', .2);
 
     if (d3.event.shiftKey && selectionType == 'collection') {
       selectedItems.push(this);
@@ -116,18 +116,18 @@ d3.xml(visualisation).then(function(xml) {
       let thisClass = d3.select(c).attr('class');
       let magazines = [];
       d3.selectAll('g.stories > g.'+thisClass)
-        .style('opacity', 1)
+        .transition().duration(350).style('opacity', 1)
         .each(function(s){
           let thisMagazine = d3.select(this).attr('class').split(' ')[1];
           magazines.push(thisMagazine);
         });
       magazines.forEach(function(m){
-        d3.select('g.magazines > g.'+m).style('opacity',1);
+        d3.select('g.magazines > g.'+m).transition().duration(350).style('opacity',1);
       })
 
-      // d3.select(c).style('opacity',1)
-      d3.select('g.collections > g.'+thisClass).style('opacity', 1);
-      d3.select('g.collections-labels > g.'+thisClass).style('opacity', 1);
+      // d3.select(c).transition().duration(350).style('opacity',1)
+      d3.select('g.collections > g.'+thisClass).transition().duration(350).style('opacity', 1);
+      d3.select('g.collections-labels > g.'+thisClass).transition().duration(350).style('opacity', 1);
 
     })
 
@@ -139,10 +139,10 @@ d3.xml(visualisation).then(function(xml) {
   })
 
   function resetOpacity() {
-    d3.selectAll('g.stories > g').style('opacity', 1);
-    d3.selectAll('g.magazines > g').style('opacity', 1);
-    d3.selectAll('g.collections > g').style('opacity', 1);
-    d3.selectAll('g.collections-labels > g').style('opacity', 1);
+    d3.selectAll('g.stories > g').transition().duration(350).style('opacity', 1);
+    d3.selectAll('g.magazines > g').transition().duration(350).style('opacity', 1);
+    d3.selectAll('g.collections > g').transition().duration(350).style('opacity', 1);
+    d3.selectAll('g.collections-labels > g').transition().duration(350).style('opacity', 1);
   }
 
 })
