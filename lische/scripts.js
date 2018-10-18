@@ -9,7 +9,7 @@ let selectionType = null;
 
 let visualisation = 'lische-web.svg';
 
-// visualisation = "lische_verticale-interattivo20.svg";
+visualisation = "SVG/Asset 1.svg";
 
 d3.xml(visualisation).then(function(xml) {
   // console.log(xml)

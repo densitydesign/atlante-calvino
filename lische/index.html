@@ -9,6 +9,10 @@
 	<!-- Bootstrap CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<style>
+
+		@import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i');
+		@import "../assets/fonts/hk-grotesk/webfont.css";
+
 		body {
 			background-color: #fffcf5;
 		}
@@ -16,6 +20,8 @@
 		.lische {
 		    box-shadow: 0 0 7px 0px #fbe1b6;
 		    background-color: white;
+				max-width: 1200px;
+				margin: auto;
 		}
 
 		g.stories>g,
@@ -24,15 +30,28 @@
 		g.collections-labels>g {
 			cursor: pointer;
 		}
+
+		@media (max-width: 991px) {
+		    .lische-box {
+		        width:100%;
+						max-width: inherit;
+		    }
+
+				.lische {
+				    box-shadow: none;
+				}
+		}
 	</style>
 
 	<title>I racconti di Calvino</title>
 </head>
 
 <body>
-	<div class="container">
+	<div class="container lische-box">
 		<div class="row">
-			<div class="col-12 lische">
+			<!-- <div class="col-12"></div> -->
+			<div class="col-12 lische my-lg-3">
+				<object data="SVG/Asset 2.svg" class="img-fluid sticky-top"> </object>
 			</div>
 		</div>
 	</div>
