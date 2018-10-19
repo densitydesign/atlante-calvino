@@ -1,12 +1,12 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 692.51 25.25">
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 692.51 16.25">
   <title>header-viz</title>
   <g id="info">
-    <rect width="692.51" height="25" style="fill: none;opacity: 0.8"/>
-    <text transform="translate(27.98 20)" style="font-size: 9px;font-family: HKGrotesk-Regular, HK Grotesk;letter-spacing: 0.09998914930555555em">RIVI<tspan x="19.9" y="0" style="letter-spacing: 0.09608289930555555em">S</tspan><tspan x="25.64" y="0">TE</tspan></text>
-    <line x1="10" y1="25" x2="86.36" y2="25" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px"/>
-    <text transform="translate(230.84 20)" style="font-size: 9px;font-family: HKGrotesk-Regular, HK Grotesk;letter-spacing: 0.09608289930555555em">R<tspan x="6.23" y="0" style="letter-spacing: 0.07313368055555555em">A</tspan><tspan x="12.62" y="0" style="letter-spacing: 0.09125434027777778em">CC</tspan><tspan x="26.75" y="0" style="letter-spacing: 0.09998914930555555em">ONTI</tspan></text>
-    <line x1="183.41" y1="25" x2="328.59" y2="25" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px"/>
-    <text transform="translate(517.35 20)" style="font-size: 9px;font-family: HKGrotesk-Regular, HK Grotesk;letter-spacing: 0.09608289930555555em">R<tspan x="6.23" y="0" style="letter-spacing: 0.07313368055555555em">A</tspan><tspan x="12.62" y="0" style="letter-spacing: 0.09125434027777778em">CC</tspan><tspan x="26.75" y="0" style="letter-spacing: 0.09998914930555555em">O</tspan><tspan x="34.3" y="0" style="letter-spacing: 0.030164930555555556em">L</tspan><tspan x="39.13" y="0" style="letter-spacing: 0.09998914930555555em">TE</tspan></text>
-    <line x1="404.15" y1="25" x2="682.64" y2="25" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px"/>
+    <rect width="692.51" height="16" style="fill: none;opacity: 0.8"/>
+    <text transform="translate(27.98 11)" style="font-size: 9px;font-family: HKGrotesk-Regular, HK Grotesk;letter-spacing: 0.09998914930555555em">RIVI<tspan x="19.9" y="0" style="letter-spacing: 0.09608289930555555em">S</tspan><tspan x="25.64" y="0">TE</tspan></text>
+    <line x1="10" y1="16" x2="86.36" y2="16" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px"/>
+    <text transform="translate(230.84 11)" style="font-size: 9px;font-family: HKGrotesk-Regular, HK Grotesk;letter-spacing: 0.09608289930555555em">R<tspan x="6.23" y="0" style="letter-spacing: 0.07313368055555555em">A</tspan><tspan x="12.62" y="0" style="letter-spacing: 0.09125434027777778em">CC</tspan><tspan x="26.75" y="0" style="letter-spacing: 0.09998914930555555em">ONTI</tspan></text>
+    <line x1="183.41" y1="16" x2="328.59" y2="16" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px"/>
+    <text transform="translate(517.35 11)" style="font-size: 9px;font-family: HKGrotesk-Regular, HK Grotesk;letter-spacing: 0.09608289930555555em">R<tspan x="6.23" y="0" style="letter-spacing: 0.07313368055555555em">A</tspan><tspan x="12.62" y="0" style="letter-spacing: 0.09125434027777778em">CC</tspan><tspan x="26.75" y="0" style="letter-spacing: 0.09998914930555555em">O</tspan><tspan x="34.3" y="0" style="letter-spacing: 0.030164930555555556em">L</tspan><tspan x="39.13" y="0" style="letter-spacing: 0.09998914930555555em">TE</tspan></text>
+    <line x1="404.15" y1="16" x2="682.64" y2="16" style="fill: none;stroke: #000;stroke-miterlimit: 10;stroke-width: 0.5px"/>
   </g>
 </svg>

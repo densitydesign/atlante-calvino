@@ -29,6 +29,29 @@ d3.xml('SVG/visualisation.svg').then(function(xml) {
     }
   })
 
+  // Fix HTML Entities
+
+  d3.selectAll('g.magazines > g > text').each(function(d,i){
+    let _innerHtml = d3.select(this).html();
+    console.log(_innerHtml)
+    let options = {
+      'decimal': true
+    }
+    let encoded = he.encode(_innerHtml, options);
+    console.log(encoded);
+    d3.select(this).html(encoded)
+  })
+
+  // fix font for newspaper titles
+  d3.selectAll('g.magazines > g > text').each(function(d,i){
+    let fontStyle = d3.select(this).style('font-family');
+    // console.log(fontStyle, fontStyle == 'CrimsonText-SemiboldItalic, "Crimson Text"')
+    if (fontStyle == 'CrimsonText-SemiboldItalic, "Crimson Text"') {
+      d3.select(this).style('font-weight', 600);
+    }
+
+  })
+
   d3.selectAll('g.stories > g').on('click', function(d,i){
     resetOpacity();
 

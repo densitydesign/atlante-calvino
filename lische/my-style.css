@@ -1,28 +1,67 @@
-@import url('https://fonts.googleapis.com/css?family=Crimson+Text:400,400i,600,600i,700,700i');
-@import "../assets/fonts/hk-grotesk/webfont.css";
+@import "fonts/hk/stylesheet.css";
+@import "fonts/crimson/stylesheet.css";
 
 html {
-  font-size: 10px;
+  font-size: 16px;
+}
+
+/* @media only screen and (min-width: 576px) {
+  html {
+    font-size: 16px;
+  }
 }
 
 @media only screen and (min-width: 768px) {
   html {
-    font-size: 11px;
+    font-size: 18px;
   }
-}
+} */
 
-@media only screen and (min-width: 992px) {
+/* @media only screen and (min-width: 992px) {
   html {
-    font-size: 14px;
+    font-size: 18px;
   }
-}
+} */
+
+/* @media only screen and (min-width: 1200px) {
+  html {
+    font-size: 21px;
+  }
+} */
+
+/* @media only screen and (min-width: 1400px) {
+  html {
+    font-size: 21px;
+  }
+} */
 
 body {
-  background-color: #fffcf5;
-  font-family: 'hk-grotesk';
+  background-color: #fffefa;
+  color:#212529;
+  font-family: 'Crimson Text';
   font-weight: normal;
   font-style: normal;
   font-size: 1rem;
+}
+
+h1 {
+  font-family: 'Crimson Text';
+  color: darkslategrey;
+}
+
+a {
+  color: tomato;
+}
+
+.caption {
+  font-size: 0.75rem;
+  font-family: 'HK Grotesk'
+}
+
+@media only screen and (min-width: 768px) {
+  .caption {
+    font-size: 0.60rem;
+  }
 }
 
 .info {
@@ -40,10 +79,10 @@ body {
 }
 
 .lische {
-    -webkit-box-shadow: 0 0 7px 0px #fbe1b6;
-            box-shadow: 0 0 7px 0px #fbe1b6;
+    -webkit-box-shadow: 0px 0px 7px 0px #fbe1b6;
+        -ms-box-shadow: 0px 0px 7px 0px #fbe1b6;
+            box-shadow: 0px 0px 7px 0px #fbe1b6;
     background-color: white;
-    /* max-width: 1200px; */
     margin: auto;
 }
 
@@ -59,15 +98,4 @@ g.collections-labels>g {
         width:100%;
         max-width: inherit;
     }
-
-    .lische {
-        -webkit-box-shadow: none;
-                box-shadow: none;
-    }
 }
-
-/* @media (min-width: 1380px) {
-  .container {
-      max-width: 1320px;
-  }
-} */
