@@ -7,6 +7,11 @@
 let selectedItems = [];
 let selectionType = null;
 
+d3.xml("SVG/legenda.svg").then(function(xml) {
+  let svg = d3.select(xml).select('svg').node()
+  d3.select('div.legend').node().appendChild(svg)
+})
+
 d3.xml("SVG/header-viz.svg").then(function(xml) {
   let svg = d3.select(xml).select('svg').node()
   d3.select(svg).attr('class','info sticky-top')
