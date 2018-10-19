@@ -53,6 +53,16 @@ p {
   margin-bottom: 0.5rem;
 }
 
+.legend p{
+  font-size: 0.8rem;
+}
+
+@media only screen and (max-width: 767px) {
+  .legend p{
+    font-size: 1rem;
+  }
+}
+
 a {
   color: tomato;
 }
@@ -70,6 +80,7 @@ a {
 
 .info {
   background-color: #ffffffcc;
+  padding-bottom: 1px;
 }
 
 .lische-box {
