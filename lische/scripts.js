@@ -33,12 +33,10 @@ d3.xml('SVG/visualisation.svg').then(function(xml) {
 
   d3.selectAll('g.magazines > g > text').each(function(d,i){
     let _innerHtml = d3.select(this).html();
-    console.log(_innerHtml)
     let options = {
       'decimal': true
     }
     let encoded = he.encode(_innerHtml, options);
-    console.log(encoded);
     d3.select(this).html(encoded)
   })
 

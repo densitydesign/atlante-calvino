@@ -49,6 +49,10 @@ h1 {
   color: darkslategrey;
 }
 
+p {
+  margin-bottom: 0.5rem;
+}
+
 a {
   color: tomato;
 }
