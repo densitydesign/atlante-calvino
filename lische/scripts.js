@@ -1,9 +1,3 @@
-// window.onload = function() {
-//   document.onselectstart = function() {
-//     return false;
-//   }
-// }
-
 let selectedItems = [];
 let selectionType = null;
 
