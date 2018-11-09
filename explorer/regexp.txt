@@ -1,0 +1,33 @@
+\n\–\n\s(.)
+
+\n\- $1
+
+Trasforma questo:
+
+e s’avvicinò.
+–
+ Lepre, lepre, – disse.
+
+
+In questo:
+
+ e s’avvicinò.
+– Lepre, lepre, – disse.
+
+
+
+
+\n\–\s\n(.)
+
+\n\- $1
+
+Trasforma questo:
+
+risposi.
+–
+Sparato
+
+In questo:
+
+risposi.
+– Sparato
