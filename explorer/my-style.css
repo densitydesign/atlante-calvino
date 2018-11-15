@@ -1,0 +1,9 @@
+.load-file {
+
+}
+
+#output-box {
+  white-space: pre-line;
+  /* white-space: pre; */
+  width: 100%;
+}

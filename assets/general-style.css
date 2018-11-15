@@ -1,0 +1,15 @@
+@import "fonts/hk/stylesheet.css";
+@import "fonts/crimson/stylesheet.css";
+
+body {
+  background-color: #fffefa;
+  color:#212529;
+  font-family: 'Crimson Text';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1rem;
+}
+
+h6 {
+  font-weight: bold;
+}
