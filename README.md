@@ -7,4 +7,4 @@
 - [saggi saggi-persone](https://densitydesign.github.io/atlante-calvino/saggi/saggi-persone)
 
 ##### Strumenti
-- [correggi txt](https://densitydesign.github.io/atlante-calvino/bonifica)
+- [Estrai posizione parole](https://densitydesign.github.io/atlante-calvino/explorer)
