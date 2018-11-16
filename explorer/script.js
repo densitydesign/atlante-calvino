@@ -21,13 +21,13 @@ var openFile = function(event) {
 
 function textSelection() {
   // console.log('selection changed');
-  // console.log(window.getSelection());
+  console.log(window.getSelection());
 
   // console.log(window.getSelection().focusNode.parentElement.id)
 
   if (window.getSelection().focusNode.parentElement.id == 'output-box') {
     let currentSelection = window.getSelection().toString();
-    let currentSelectionStart = window.getSelection().baseOffset;
+    let currentSelectionStart = window.getSelection().anchorOffset;
     let currentSelectionEnd = window.getSelection().focusOffset;
     d3.select('#current-selection').html(currentSelection);
     d3.select('#current-selection-start').html(currentSelectionStart);
