@@ -50,9 +50,9 @@ var arc = d3.arc().startAngle(0).innerRadius(0);
 let container = d3.select('#visualisation-container');
 let m = window.innerHeight / data.length;
 let margin = {
-	top: m / 2,
+	top: m,
 	right: m / 1.4,
-	bottom: m / 2,
+	bottom: m,
 	left: m / 1.4
 }
 let width = container.node().clientWidth - margin.right - margin.left - 30;
@@ -93,10 +93,13 @@ let decadeLabel = decade.selectAll('.decade-label')
 	.text(function(d) { return d.label })
 
 let decadeArc = decade.selectAll('.decade-arc')
-	.data(function(d, i) { d.index = i; return [d]; })
+	.data(function(d, i) { d.index = i; if (i==0){d.gradient=true;} return [d]; })
 	.enter()
 	.append('path')
 	.attr('class', 'guide-line decade-arc')
+	.style('stroke', function(d) {
+		return d.gradient ? 'url(#gradient-1st-arc)' : '';
+	})
 	.attr('transform', function(d) { return 'translate(' + (d.index % 2 == 0 ? 0 : width) + ', ' + (y(d.id) - y.step() / 2) + ')' })
 	.attr("d", function(d) {
 		let myString = arc({

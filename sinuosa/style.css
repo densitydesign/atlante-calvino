@@ -5,10 +5,17 @@ svg#visualisation {
 .guide-line {
   fill: none;
   stroke: black;
+  stroke-width: .5px;
 }
 
-.guide-line.decade-arc {
-  stroke-dasharray: 2;
+.decade-arc {
+  stroke-width: 1px;
+  stroke-dasharray: 0 3;
+  animation-name: arcs-direction;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: linear;
+  stroke-linecap: round;
 }
 
 .scrollytelling-container {
@@ -25,4 +32,9 @@ svg#visualisation {
 .item {
   padding-bottom: 25vh;
   /* opacity: .35; */
+}
+
+@keyframes arcs-direction {
+    from {stroke-dashoffset: 0;}
+    to {stroke-dashoffset: -9;}
 }
