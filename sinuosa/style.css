@@ -1,0 +1,28 @@
+svg#visualisation {
+  background-color: #fffefa;
+}
+
+.guide-line {
+  fill: none;
+  stroke: black;
+}
+
+.guide-line.decade-arc {
+  stroke-dasharray: 2;
+}
+
+.scrollytelling-container {
+  padding-top: 50vh;
+  padding-bottom: 50vh;
+}
+
+.decade-txt {}
+
+.intro {
+  padding-bottom: 25vh;
+}
+
+.item {
+  padding-bottom: 25vh;
+  /* opacity: .35; */
+}
