@@ -1,0 +1,212 @@
+[{
+  "id": "anni40",
+  "label": "Anni '40",
+  "works": [{
+      "id": "V001",
+      "label": "Il sentiero dei nidi di ragno",
+      "year": 1947,
+      "kind": "romanzo",
+      "firstPublication": null,
+      "publisher": ""
+    },
+    {
+      "id": "V002",
+      "label": "Ultimo viene il corvo",
+      "year": 1949,
+      "kind": "raccolta di racconti",
+      "firstPublication": null,
+      "publisher": ""
+    }
+  ],
+  "periodicals": [
+
+  ]
+}, {
+  "id": "anni50",
+  "label": "Anni '50",
+  "works": [{
+      "id": "V003",
+      "label": "Il visconte dimezzato",
+      "year": 1952,
+      "kind": "forma ibrida tra romanzo breve e racconto lungo",
+      "firstPublication": null,
+      "publisher": ""
+    },
+    {
+      "id": "V004",
+      "label": "L'entrata in guerra",
+      "year": 1954,
+      "kind": "raccolta di racconti",
+      "firstPublication": null,
+      "publisher": ""
+    },
+    {
+      "id": "V005",
+      "label": "Le fiabe italiane",
+      "year": 1956,
+      "kind": "riscrittura",
+      "firstPublication": null,
+      "publisher": ""
+    },
+    {
+      "id": "V006",
+      "label": "Il barone rampante",
+      "year": 1957,
+      "kind": "romanzo",
+      "firstPublication": null,
+      "publisher": ""
+    },
+    {
+      "id": "V007",
+      "label": "I racconti",
+      "year": 1958,
+      "kind": "raccolta di racconti",
+      "firstPublication": null,
+      "publisher": ""
+    },
+    {
+      "id": "V008",
+      "label": "Il cavaliere inesistente",
+      "year": 1959,
+      "kind": "romanzo",
+      "firstPublication": null,
+      "publisher": ""
+    }
+  ],
+  "periodicals": [
+
+  ]
+}, {
+  "id": "anni60",
+  "label": "Anni '60",
+  "works": [{
+    "id": "V009",
+    "label": "La giornata di uno scrutatore",
+    "year": 1963,
+    "kind": "forma ibrida tra romanzo breve e racconto lungo",
+    "distributeElement": 0,
+    "firstPublication": null,
+    "publisher": ""
+  }, {
+    "id": "V010",
+    "label": "La speculazione edilizia",
+    "year": 1963,
+    "kind": "forma ibrida tra romanzo breve e racconto lungo",
+    "distributeElement": -1,
+    "firstPublication": 1957,
+    "publisher": ""
+  }, {
+    "id": "V011",
+    "label": "Marcovaldo",
+    "year": 1963,
+    "distributeElement": 1,
+    "kind": "raccolta di racconti con un unico protagonista",
+    "firstPublication": null,
+    "publisher": ""
+  }, {
+    "id": "V012",
+    "label": "La nuvola di smog e la formica argentina",
+    "year": 1965,
+    "distributeElement": -0.5,
+    "kind": "forma ibrida tra romanzo breve e racconto lungo",
+    "firstPublication": 1952,
+    "publisher": ""
+  }, {
+    "id": "V013",
+    "label": "Le Cosmicomiche",
+    "year": 1965,
+    "distributeElement": 0.5,
+    "kind": "raccolta di racconti con un unico protagonista",
+    "firstPublication": null,
+    "publisher": ""
+  }, {
+    "id": "V014",
+    "label": "Ti con zero",
+    "year": 1967,
+    "kind": "raccolta di racconti con un unico protagonista",
+    "firstPublication": null,
+    "publisher": ""
+  }],
+  "periodicals": [
+
+  ]
+}, {
+  "id": "anni70",
+  "label": "Anni '70",
+  "works": [{
+    "id": "V015",
+    "label": "Orlando furioso",
+    "year": 1970,
+    "distributeElement": -0.5,
+    "kind": "riscrittura",
+    "firstPublication": 1967,
+    "publisher": ""
+  }, {
+    "id": "V016",
+    "label": "Gli amori difficili",
+    "year": 1970,
+    "distributeElement": 0.5,
+    "kind": "raccolta di racconti",
+    "firstPublication": null,
+    "publisher": ""
+  }, {
+    "id": "V017",
+    "label": "Le città invisibili",
+    "year": 1972,
+    "kind": "romanzo di racconti dentro una cornice",
+    "firstPublication": null,
+    "publisher": ""
+  }, {
+    "id": "V018",
+    "label": "Il castello dei destini incrociati",
+    "year": 1973,
+    "kind": "romanzo di racconti dentro una cornice",
+    "firstPublication": 1969,
+    "publisher": ""
+  }, {
+    "id": "V019",
+    "label": "Se una notte d'inverno un viaggiatore",
+    "year": 1979,
+    "kind": "romanzo di racconti dentro una cornice",
+    "firstPublication": null,
+    "publisher": ""
+  }],
+  "periodicals": [
+
+  ]
+}, {
+  "id": "anni80",
+  "label": "Anni '80",
+  "works": [{
+    "id": "V020",
+    "label": "Una pietra sopra",
+    "year": 1980,
+    "kind": "raccolta di saggi",
+    "firstPublication": null,
+    "publisher": ""
+  }, {
+    "id": "V021",
+    "label": "Palomar",
+    "year": 1983,
+    "kind": "raccolta di racconti con un unico protagonista",
+    "firstPublication": null,
+    "publisher": ""
+  }, {
+    "id": "V022",
+    "label": "Collezione di sabbia",
+    "year": 1984,
+    "kind": "raccolta di saggi",
+    "firstPublication": null,
+    "publisher": ""
+  }],
+  "periodicals": [
+
+  ]
+}, {
+  "id": "anni90",
+  "label": "Anni '90",
+  "works": [],
+  "periodicals": [
+
+  ]
+}]

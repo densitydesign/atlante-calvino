@@ -1,5 +1,30 @@
+html {
+  font-size: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 21px;
+  }
+}
+
 svg#visualisation {
   background-color: #fffefa;
+}
+
+.label {
+  font-size: .65rem;
+  text-anchor: middle;
+}
+
+.year {
+  font-size: .5rem;
 }
 
 .guide-line {
@@ -11,10 +36,14 @@ svg#visualisation {
 .decade-arc {
   stroke-width: 1px;
   stroke-dasharray: 0 3;
-  animation-name: arcs-direction;
-  animation-duration: 1.5s;
-  animation-iteration-count: infinite;
-  animation-timing-function: linear;
+  -webkit-animation-name: arcs-direction;
+          animation-name: arcs-direction;
+  -webkit-animation-duration: 1.5s;
+          animation-duration: 1.5s;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+  -webkit-animation-timing-function: linear;
+          animation-timing-function: linear;
   stroke-linecap: round;
 }
 
@@ -32,6 +61,11 @@ svg#visualisation {
 .item {
   padding-bottom: 25vh;
   /* opacity: .35; */
+}
+
+@-webkit-keyframes arcs-direction {
+    from {stroke-dashoffset: 0;}
+    to {stroke-dashoffset: -9;}
 }
 
 @keyframes arcs-direction {
