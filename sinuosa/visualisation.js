@@ -3,6 +3,7 @@ console.log('olè!')
 // Draw visualisation
 
 let data;
+let articles = [];
 var duration = 500;
 var arc = d3.arc().startAngle(0).innerRadius(0);
 let container = d3.select('#visualisation-container');
@@ -15,7 +16,8 @@ let margin = {
 }
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
-let r = width/10/2/2;
+let r = width / 10 / 2 / 2;
+let r2 = r / 4;
 let distributePadding = 3.5;
 
 let svg = d3.select('svg#visualisation')
@@ -42,6 +44,8 @@ d3.json('data.json').then(function(json) {
 	data = json;
 	y.domain(data.map((d) => { return d.id }))
 
+	let gArticles = g.append('g').attr('class', 'periodicals');
+
 	let decade = g.selectAll('.decade')
 		.data(data, function(d) { return d.id })
 		.enter()
@@ -50,7 +54,7 @@ d3.json('data.json').then(function(json) {
 		.attr('transform', function(d) { return 'translate(0,' + y(d.id) + ')' })
 
 	let decadeLine = decade.selectAll('line')
-		.data(function(d, i) { d.index = i; return [d]; })
+		.data(function(d, i) { d.index = i;  transformPeriodicals(d); return [d]; })
 		.enter()
 		.append('line')
 		.attr('class', 'guide-line')
@@ -85,6 +89,44 @@ d3.json('data.json').then(function(json) {
 			return "M" + myString[1] + "A" + myString[2]
 		})
 
+	let article = gArticles.selectAll('.article')
+		.data(articles)
+		.enter()
+		.append('circle')
+		.attr('class','article')
+		.classed('ghost-node', function(d){ return d.ghostNode })
+		.attr('r', 0)
+		.attr('cx', function(d) { return d.x })
+		.attr('cy', function(d) { return d.y })
+		.style('opacity', 1e-6)
+
+		article.transition()
+			.duration(duration*3)
+			.delay(function(d,i){ return i*3; })
+			.attr('r', function(d){ return d.r })
+			.style('opacity', .75)
+
+	function ticked() {
+		// console.log('tick')
+		article
+			.attr("cx", function(d) {
+				if (d.x < 0) {
+					return d.x = 0
+				} else if (d.x > width) {
+					return d.x = width
+				}
+				return d.x;
+			})
+			.attr("cy", function(d) { return d.y; });
+	}
+
+	let simulationArticle = d3.forceSimulation(articles)
+		.force('collision', d3.forceCollide(function(d){ return d3.max([r2+2, d.r+2])}).iterations(2))
+		.force('x', d3.forceX(function(d) { return d.x }).strength(0.1))
+		.force('y', d3.forceY(function(d) { return d.y }).strength(0.6))
+		.on("tick", ticked);
+
+
 	let works = decade.selectAll('.work')
 		.data(function(d, i) { return d.works; })
 		.enter()
@@ -93,8 +135,8 @@ d3.json('data.json').then(function(json) {
 		.attr('transform', function(d) {
 			let position = d.year.toString().split('')[3];
 			let _x = d.year.toString().split('')[2] % 2 == 0 ? x(position) : xInverse(position);
-			let _y = d.distributeElement ? r*d.distributeElement*distributePadding : 0;
-			return 'translate(' + _x + ','+_y+')';
+			let _y = d.distributeElement ? r * d.distributeElement * distributePadding : 0;
+			return 'translate(' + _x + ',' + _y + ')';
 		})
 
 	works.append('circle')
@@ -105,11 +147,44 @@ d3.json('data.json').then(function(json) {
 	works.append('text')
 		.attr('class', 'label')
 		.attr('y', -r)
-		.text(function(d){ return d.label; })
+		.text(function(d) { return d.label; })
 
 	works.append('text')
 		.attr('class', 'label year')
 		.attr('y', r)
-		.text(function(d){ return d.year; })
+		.text(function(d) { return d.year; })
 
 });
+
+function transformPeriodicals(data) {
+	console.log(data)
+	data.periodicals.forEach((d) => {
+		if (d.distributeElement) {
+			let positionGN = d.year.toString().split('')[3];
+			let _xGN = d.year.toString().split('')[2] % 2 == 0 ? x(positionGN) : xInverse(positionGN);
+			let ghostNode = {
+				'fx': _xGN,
+				'fy': y(data.id),
+				'r': r,
+				'ghostNode': true,
+				'decade': data.id,
+				'decadeIndex': data.index
+			}
+			articles.push(ghostNode);
+		}
+
+		for(var i = 0; i < d.amount; i++) {
+			let position = d.year.toString().split('')[3];
+			let _x = d.year.toString().split('')[2] % 2 == 0 ? x(position) : xInverse(position);
+			let node = {
+				'x': _x,
+				'y': y(data.id),
+				'r': d3.max([r2 + d3.randomUniform(-3.5, 0)(), 1]),
+				'decade': data.id,
+				'decadeIndex': data.index
+			}
+			articles.push(node);
+		}
+	})
+
+}

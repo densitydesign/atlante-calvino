@@ -30,6 +30,10 @@ function scrollytelling(el) {
 				return "M" + myString[1] + "A" + myString[2]
 			})
 
+		d3.selectAll('.article').transition().duration(duration)
+			.attr('transform', function(d) { return 'translate(0, 0)' })
+			.style('opacity', .75);
+
 		return;
 	}
 
@@ -107,6 +111,23 @@ function scrollytelling(el) {
 						return "M" + myString[1] + "A" + myString[2]
 					})
 			}
+		}
+	})
+
+	// articles on periodicals
+	d3.selectAll('.article').each(function(d, i) {
+		if(d.decadeIndex < index) {
+			d3.select(this).transition().duration(duration)
+				.attr('transform', function(d) { return 'translate(0,' + (y(d.decade) * 0 - m * .4) + ')' })
+				.style('opacity', .25);
+		} else if(d.decadeIndex == index) {
+			d3.select(this).transition().duration(duration)
+				.attr('transform', function(d) { return 'translate(0, 0)' })
+				.style('opacity', .75);
+		} else if(d.decadeIndex > index) {
+			d3.select(this).transition().duration(duration)
+				.attr('transform', function(d) { return 'translate(0,' + (y(d.decade) * 0 + m * .4) + ')' })
+				.style('opacity', .25);
 		}
 	})
 }

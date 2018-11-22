@@ -14,6 +14,8 @@ html {
   }
 }
 
+/* visualisation */
+
 svg#visualisation {
   background-color: #fffefa;
 }
@@ -46,6 +48,19 @@ svg#visualisation {
           animation-timing-function: linear;
   stroke-linecap: round;
 }
+
+.article {
+  fill: #fff;
+  stroke: #000;
+  stroke-width: .5px;
+}
+
+.article.ghost-node {
+  fill: none;
+  stroke: none;
+}
+
+/* Other */
 
 .scrollytelling-container {
   padding-top: 50vh;

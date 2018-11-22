@@ -19,7 +19,24 @@
     }
   ],
   "periodicals": [
-
+    {
+      "year": 1946,
+      "amount": 30
+    },
+    {
+      "year": 1947,
+      "amount": 30,
+      "distributeElement": true
+    },
+    {
+      "year": 1948,
+      "amount": 30
+    },
+    {
+      "year": 1949,
+      "amount": 30,
+      "distributeElement": true
+    }
   ]
 }, {
   "id": "anni50",
@@ -74,7 +91,32 @@
     }
   ],
   "periodicals": [
-
+    {
+      "year": 1950,
+      "amount": 30
+    },
+    {
+      "year": 1951,
+      "amount": 30
+    },
+    {
+      "year": 1952,
+      "amount": 30,
+      "distributeElement": true
+    },
+    {
+      "year": 1953,
+      "amount": 30
+    },
+    {
+      "year": 1954,
+      "amount": 30,
+      "distributeElement": true
+    },
+    {
+      "year": 1955,
+      "amount": 30
+    }
   ]
 }, {
   "id": "anni60",
@@ -172,7 +214,27 @@
     "publisher": ""
   }],
   "periodicals": [
-
+    {
+      "year": 1975,
+      "amount": 18
+    },
+    {
+      "year": 1956,
+      "amount": 18
+    },
+    {
+      "year": 1977,
+      "amount": 18
+    },
+    {
+      "year": 1978,
+      "amount": 18
+    },
+    {
+      "year": 1979,
+      "amount": 20,
+      "distributeElement": true
+    }
   ]
 }, {
   "id": "anni80",
@@ -200,7 +262,33 @@
     "publisher": ""
   }],
   "periodicals": [
-
+    {
+      "year": 1980,
+      "amount": 20,
+      "distributeElement": true
+    },
+    {
+      "year": 1981,
+      "amount": 20
+    },
+    {
+      "year": 1982,
+      "amount": 20
+    },
+    {
+      "year": 1983,
+      "amount": 20,
+      "distributeElement": true
+    },
+    {
+      "year": 1984,
+      "amount": 20,
+      "distributeElement": true
+    },
+    {
+      "year": 1985,
+      "amount": 20
+    }
   ]
 }, {
   "id": "anni90",
