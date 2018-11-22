@@ -193,17 +193,7 @@ d3.json('data.json').then(function(json) {
 		.append('path')
 		.attr('class','previous-publication')
 		.attr('d', function(d){
-			let positionX1 = d.x1.toString().split('')[3];
-			let _x1 = d.x1.toString().split('')[2] % 2 == 0 ? x(positionX1) : xInverse(positionX1);
-
-			let positionX2 = d.x2.toString().split('')[3];
-			let _x2 = d.x2.toString().split('')[2] % 2 == 0 ? x(positionX2) : xInverse(positionX2);
-
-			let start_y = d.distributeElement ? r * d.distributeElement * distributePadding : 0;
-			start_y += y(d.y1)
-
-			let p = [ {'x':0,'y':0}, {'x':_x2 - _x1, 'y':y(d.y2) - start_y} ]
-			return `M${p[0].x},${p[0].y} C${p[0].x},${p[1].y/2} ${p[1].x},${p[1].y/2} ${p[1].x},${p[1].y}`;
+			return previousPublicationsLine(d);
 		})
 
 });
@@ -223,19 +213,36 @@ function transformPeriodicals(data) {
 			}
 			articles.push(ghostNode);
 		}
-
 		for(var i = 0; i < d.amount; i++) {
 			let position = d.year.toString().split('')[3];
 			let _x = d.year.toString().split('')[2] % 2 == 0 ? x(position) : xInverse(position);
 			let node = {
 				'x': _x,
 				'y': y(data.id),
-				'r': d3.max([r2 + d3.randomUniform(-r2/1.35, 0)(), 1]),
+				'r': d3.max([r2 + d3.randomUniform(-r2/3, 0)(), 1]),
+				// 'r': r2,
 				'decade': data.id,
 				'decadeIndex': data.index
 			}
 			articles.push(node);
 		}
 	})
+}
 
+function previousPublicationsLine(d, open) {
+	let positionX1 = d.x1.toString().split('')[3];
+	let _x1 = d.x1.toString().split('')[2] % 2 == 0 ? x(positionX1) : xInverse(positionX1);
+
+	let positionX2 = d.x2.toString().split('')[3];
+	let _x2 = d.x2.toString().split('')[2] % 2 == 0 ? x(positionX2) : xInverse(positionX2);
+
+	let end_y = d.distributeElement ? r * d.distributeElement * distributePadding : 0;
+	end_y += y(d.y1)
+
+	if (open) {
+		end_y += m*0.4;
+	}
+
+	let p = [ {'x':0,'y':0}, {'x':_x2 - _x1, 'y':y(d.y2) - end_y} ]
+	return `M${p[0].x},${p[0].y} C${p[0].x},${p[1].y/2} ${p[1].x},${p[1].y/2} ${p[1].x},${p[1].y}`;
 }

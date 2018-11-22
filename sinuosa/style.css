@@ -80,9 +80,13 @@ svg#visualisation {
   padding-bottom: 25vh;
 }
 
-.item {
+.item, .non-item {
   padding-bottom: 25vh;
   /* opacity: .35; */
+}
+
+.item-focus {
+  margin-top: 25vh;
 }
 
 @-webkit-keyframes arcs-direction {
