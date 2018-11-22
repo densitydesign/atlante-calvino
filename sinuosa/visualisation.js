@@ -4,8 +4,13 @@ console.log('olè!')
 
 let data;
 let articles = [];
+let previousPublications = [];
 var duration = 500;
 var arc = d3.arc().startAngle(0).innerRadius(0);
+// var linePreviousPublication = d3.line()
+//     .x(function(d) { return d.x; })
+//     .y(function(d) { return d.y; })
+// 		.curve(d3.curveMonotoneY);
 let container = d3.select('#visualisation-container');
 let m = window.innerHeight / 7;
 let margin = {
@@ -16,7 +21,7 @@ let margin = {
 }
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
-let r = width / 10 / 2 / 2;
+let r = width / 10 / 2 / 2.2;
 let r2 = r / 4;
 let distributePadding = 3.5;
 
@@ -111,9 +116,9 @@ d3.json('data.json').then(function(json) {
 		article
 			.attr("cx", function(d) {
 				if (d.x < 0) {
-					return d.x = 0
+					return d.x += 1
 				} else if (d.x > width) {
-					return d.x = width
+					return d.x -= 1
 				}
 				return d.x;
 			})
@@ -121,14 +126,36 @@ d3.json('data.json').then(function(json) {
 	}
 
 	let simulationArticle = d3.forceSimulation(articles)
-		.force('collision', d3.forceCollide(function(d){ return d3.max([r2+2, d.r+2])}).iterations(2))
+		.force('collision', d3.forceCollide(function(d){ return d3.max([r2+1.5, d.r+1.5])}).iterations(4))
 		.force('x', d3.forceX(function(d) { return d.x }).strength(0.1))
-		.force('y', d3.forceY(function(d) { return d.y }).strength(0.6))
+		.force('y', d3.forceY(function(d) { return d.y }).strength(0.8))
 		.on("tick", ticked);
 
 
 	let works = decade.selectAll('.work')
-		.data(function(d, i) { return d.works; })
+		.data(function(d, i) {
+			// compile data for visualising first publications
+			d.works.forEach( (e) => {
+				// console.log(e)
+				if (e.firstPublication) {
+					let _y1 = e.year.toString().split('')[2];
+					_y1 = 'anni'+_y1+'0';
+					let _y2 = e.firstPublication.toString().split('')[2];
+					_y2 = 'anni'+_y2+'0';
+					let obj = {
+						"x1": e.year,
+						"y1": _y1,
+						"x2": e.firstPublication,
+						"y2": _y2
+					}
+					if (e.distributeElement) {
+						obj.distributeElement = e.distributeElement
+					}
+					e.previousPublications = obj;
+				}
+			})
+			return d.works;
+		})
 		.enter()
 		.append('g')
 		.attr('class', function(d) { return 'work ' + d.id })
@@ -154,10 +181,34 @@ d3.json('data.json').then(function(json) {
 		.attr('y', r)
 		.text(function(d) { return d.year; })
 
+	works.selectAll('.previous-publication')
+		.data(function(d){
+			if (d.firstPublication) {
+				return [d.previousPublications]
+			} else {
+				return []
+			}
+		})
+		.enter()
+		.append('path')
+		.attr('class','previous-publication')
+		.attr('d', function(d){
+			let positionX1 = d.x1.toString().split('')[3];
+			let _x1 = d.x1.toString().split('')[2] % 2 == 0 ? x(positionX1) : xInverse(positionX1);
+
+			let positionX2 = d.x2.toString().split('')[3];
+			let _x2 = d.x2.toString().split('')[2] % 2 == 0 ? x(positionX2) : xInverse(positionX2);
+
+			let start_y = d.distributeElement ? r * d.distributeElement * distributePadding : 0;
+			start_y += y(d.y1)
+
+			let p = [ {'x':0,'y':0}, {'x':_x2 - _x1, 'y':y(d.y2) - start_y} ]
+			return `M${p[0].x},${p[0].y} C${p[0].x},${p[1].y/2} ${p[1].x},${p[1].y/2} ${p[1].x},${p[1].y}`;
+		})
+
 });
 
 function transformPeriodicals(data) {
-	console.log(data)
 	data.periodicals.forEach((d) => {
 		if (d.distributeElement) {
 			let positionGN = d.year.toString().split('')[3];
@@ -179,7 +230,7 @@ function transformPeriodicals(data) {
 			let node = {
 				'x': _x,
 				'y': y(data.id),
-				'r': d3.max([r2 + d3.randomUniform(-3.5, 0)(), 1]),
+				'r': d3.max([r2 + d3.randomUniform(-r2/1.35, 0)(), 1]),
 				'decade': data.id,
 				'decadeIndex': data.index
 			}
