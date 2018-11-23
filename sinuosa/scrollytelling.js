@@ -25,7 +25,7 @@ function activateStorytelling() { // controlla scrollytelling
 		},
 		exit: function(el) {
 			let sel = d3.select(el).attr('data-attribute').split('-');
-			d3.select('.'+sel[0]).selectAll('.work').style('opacity', 1)
+			d3.select('.' + sel[0]).selectAll('.work').style('opacity', 1)
 		},
 		offset: 0.5, // enter at middle of viewport
 	});
@@ -45,6 +45,15 @@ function scrollytelling(el) {
 		d3.selectAll('.article').transition().duration(duration)
 			.attr('transform', function(d) { return 'translate(0, 0)' })
 			.style('opacity', .75);
+
+		d3.selectAll('.decade-arc.start')
+			.attr("d", function(d) {
+				return decadeArcs(d, 'start', false);
+			})
+		d3.selectAll('.decade-arc.end').transition().duration(duration)
+			.attr("d", function(d) {
+				return decadeArcs(d, 'end', false);
+			})
 
 		return;
 	}
@@ -67,6 +76,14 @@ function scrollytelling(el) {
 				.attr('d', function(d) {
 					return previousPublicationsLine(d);
 				})
+			d3.select(this).select('.decade-arc.start').transition().duration(duration)
+				.attr("d", function(d) {
+					return decadeArcs(d, 'start', false);
+				})
+			d3.select(this).select('.decade-arc.end').transition().duration(duration)
+				.attr("d", function(d) {
+					return decadeArcs(d, 'end', false);
+			})
 
 		} else if(i == index) {
 			// decade group
@@ -77,6 +94,14 @@ function scrollytelling(el) {
 				.attr('d', function(d) {
 					return previousPublicationsLine(d, true);
 				})
+			d3.select(this).select('.decade-arc.start').transition().duration(duration)
+				.attr("d", function(d) {
+					return decadeArcs(d, 'start', true);
+				})
+			d3.select(this).select('.decade-arc.end').transition().duration(duration)
+				.attr("d", function(d) {
+					return decadeArcs(d, 'end', true);
+				})
 
 		} else if(i > index) {
 			// decade group
@@ -86,6 +111,14 @@ function scrollytelling(el) {
 			d3.select(this).selectAll('.previous-publication').transition().duration(duration)
 				.attr('d', function(d) {
 					return previousPublicationsLine(d);
+				})
+			d3.select(this).select('.decade-arc.start').transition().duration(duration)
+				.attr("d", function(d) {
+					return decadeArcs(d, 'start', false);
+				})
+			d3.select(this).select('.decade-arc.end').transition().duration(duration)
+				.attr("d", function(d) {
+					return decadeArcs(d, 'end', false);
 				})
 
 			// arcs

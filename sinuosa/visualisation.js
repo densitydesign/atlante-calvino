@@ -24,6 +24,7 @@ let margin = {
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
 let r = width / 10 / 2 / 2.2;
+r = height / 10 / 2 / 2.2;
 let r2 = r / 6;
 let distributePadding = 3.5;
 
@@ -157,37 +158,13 @@ d3.json('data.json').then(function(json) {
 		.append('path')
 		.attr('class', 'decade-arc start thread')
 		.attr('transform', function(d) {
+      if (d.id == 'anni70') {
+        return 'translate(' + (d.index % 2 == 0 ? 0 : width) + ', ' + (-y.step() / 2 + (r * distributePadding * 0.5)) + ')'
+      }
 			return 'translate(' + (d.index % 2 == 0 ? 0 : width) + ', ' + (-y.step() / 2) + ')'
 		})
 		.attr("d", function(d) {
-			let myString;
-			if(d.index % 2 == 0) {
-				myString = arc({
-					outerRadius: y.step() / 2,
-					startAngle: -Math.PI / 2,
-					endAngle: -Math.PI,
-					// endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
-				}).split(/[A-Z]/);
-			} else {
-				myString = arc({
-					outerRadius: y.step() / 2,
-					startAngle: Math.PI / 2,
-					endAngle: Math.PI,
-					// endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
-				}).split(/[A-Z]/);
-			}
-      if (d.id != 'anni70'){
-        return "M" + myString[1] + "A" + myString[2]
-      } else {
-
-        x1 = y.step()/2;
-        y1 = 0;
-
-        x2 = 0;
-        y2 = y.step()/2 + r * distributePadding * 0.5;
-
-        return `M ${x1} ${y1}, C ${x1} ${y1+y.step()/20}, ${x2+y.step()/1.8} ${y2+y.step()/10}, ${x2} ${y2}`
-      }
+      return decadeArcs(d,'start', false);
 		})
 
 	let decadeArcEnd = decade.selectAll('.decade-arc.end')
@@ -202,23 +179,7 @@ d3.json('data.json').then(function(json) {
 			return 'translate(' + (d.index % 2 == 0 ? width : 0) + ', ' + (+y.step() / 2) + ')'
 		})
 		.attr("d", function(d) {
-			let myString;
-			if(d.index % 2 == 0) {
-				myString = arc({
-					outerRadius: y.step() / 2,
-					startAngle: 0,
-					endAngle: Math.PI/2,
-					// endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
-				}).split(/[A-Z]/);
-			} else {
-				myString = arc({
-					outerRadius: y.step() / 2,
-					startAngle: 0,
-					endAngle: -Math.PI/2,
-					// endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
-				}).split(/[A-Z]/);
-			}
-			return "M" + myString[1] + "A" + myString[2]
+			return decadeArcs(d,'end', false)
 		})
 
 	let article = gArticles.selectAll('.article')
@@ -387,4 +348,95 @@ function workPosition(d) {
 	_y += (d.kind == 'romanzo fallito o opera non pubblicata') ? r * 3 : 0;
   _y += (d.kind == 'progetto incompiuto') ? r * 3 : 0;
 	return [_x, _y]
+}
+
+function decadeArcs(d,position,open) {
+  if (position == "start") {
+    let myString;
+    if(d.index % 2 == 0) {
+      myString = arc({
+        outerRadius: y.step() / 2,
+        startAngle: -Math.PI / 2,
+        endAngle: -Math.PI,
+        // endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
+      }).split(/[A-Z]/);
+    } else {
+      myString = arc({
+        outerRadius: y.step() / 2,
+        startAngle: Math.PI / 2,
+        endAngle: Math.PI,
+        // endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
+      }).split(/[A-Z]/);
+    }
+    if (d.id != 'anni70'){
+
+      // console.log(myString[1].split(','))
+
+      if (open) {
+        let px = myString[1].split(',')[0]
+        let py = myString[1].split(',')[1]-space
+        // console.log(px,py, myString[1])
+        return `M${px} ${py} L ${myString[1]} A ${myString[2]}`;
+      } else {
+        let px = myString[1].split(',')[0]
+        let py = myString[1].split(',')[1]
+        return `M${px} ${py} L ${myString[1]} A ${myString[2]}`;
+        // return "M" + myString[1] + "A" + myString[2]
+      }
+    } else {
+
+      // x1 = y.step()/2;
+      // y1 = 0;
+      //
+      // x2 = 0;
+      // y2 = y.step()/2 + r * distributePadding * 0.5;
+      //
+      let thisSpace = r * distributePadding * 0.5;
+
+      if (open) {
+        let px = myString[1].split(',')[0]
+        let py = myString[1].split(',')[1]-space
+        // console.log(px,py, myString[1])
+        return `M${px} ${py - thisSpace} l 0 ${0} L ${myString[1]} A ${myString[2]}`;
+        // return `M${px} ${py} L ${myString[1]} A ${myString[2]}`;
+      } else {
+        let px = myString[1].split(',')[0]
+        let py = myString[1].split(',')[1]
+        return `M${px} ${py - thisSpace} l 0 ${py} L ${myString[1]} A ${myString[2]}`;
+        // return "M" + myString[1] + "A" + myString[2]
+      }
+
+      // // old
+      // if (open) {
+      //   let px = x1
+      //   let py = y1-space
+      //   return `M ${px} ${py} L ${x1} ${y1}, C ${x1} ${y1+y.step()/20}, ${x2+y.step()/1.8} ${y2+y.step()/10}, ${x2} ${y2}`
+      // } else {
+      //   return `M ${x1} ${y1} L ${x1} ${y1}, C ${x1} ${y1+y.step()/20}, ${x2+y.step()/1.8} ${y2+y.step()/10}, ${x2} ${y2}`
+      //   // return `M ${x1} ${y1}, C ${x1} ${y1+y.step()/20}, ${x2+y.step()/1.8} ${y2+y.step()/10}, ${x2} ${y2}`
+      // }
+    }
+  } else {
+    let myString;
+    if(d.index % 2 == 0) {
+      myString = arc({
+        outerRadius: y.step() / 2,
+        startAngle: 0,
+        endAngle: Math.PI/2,
+        // endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
+      }).split(/[A-Z]/);
+    } else {
+      myString = arc({
+        outerRadius: y.step() / 2,
+        startAngle: 0,
+        endAngle: -Math.PI/2,
+        // endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
+      }).split(/[A-Z]/);
+    }
+    if (open){
+      return "M" + myString[1] + "A" + myString[2] + "l 0 "+space;
+    } else {
+      return "M" + myString[1] + "A" + myString[2] + "l 0 0";
+    }
+  }
 }
