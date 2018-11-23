@@ -35,6 +35,12 @@ svg#visualisation {
   stroke-width: .5px;
 }
 
+.thread {
+  fill: none;
+  stroke: red;
+  stroke-width: 3px;
+}
+
 .decade-arc {
   stroke-width: 1px;
   stroke-dasharray: 0 3;
@@ -57,17 +63,21 @@ svg#visualisation {
 }
 
 .article {
-  fill: #fff;
+  fill: transparent;
   stroke: #000;
   stroke-width: .5px;
 }
 
-.article.ghost-node {
+/* .article.ghost-node {
   fill: none;
   stroke: none;
-}
+} */
 
 /* Other */
+
+.hidden {
+  display: none;
+}
 
 .scrollytelling-container {
   padding-top: 50vh;
@@ -77,16 +87,16 @@ svg#visualisation {
 .decade-txt {}
 
 .intro {
-  padding-bottom: 25vh;
+  margin-bottom: 25vh;
 }
 
 .item, .non-item {
-  padding-bottom: 25vh;
+  margin-bottom: 25vh;
   /* opacity: .35; */
 }
 
 .item-focus {
-  margin-top: 25vh;
+  margin-bottom: 25vh;
 }
 
 @-webkit-keyframes arcs-direction {

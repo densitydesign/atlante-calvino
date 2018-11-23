@@ -7,13 +7,22 @@
       "year": 1947,
       "kind": "romanzo",
       "firstPublication": null,
-      "publisher": ""
+      "publisher": "",
+      "previousPoint": { "x": 0, "y": 0 }
     },
     {
       "id": "V002",
       "label": "Ultimo viene il corvo",
       "year": 1949,
       "kind": "raccolta di racconti",
+      "firstPublication": null,
+      "publisher": ""
+    },
+    {
+      "id": "F001",
+      "label": "Il bianco veliero",
+      "year": 1948,
+      "kind": "romanzo fallito o opera non pubblicata",
       "firstPublication": null,
       "publisher": ""
     }
@@ -41,13 +50,31 @@
 }, {
   "id": "anni50",
   "label": "Anni '50",
-  "works": [{
+  "works": [
+    {
+      "id": "F002",
+      "label": "I Giovani del Pò",
+      "year": 1950.5,
+      "kind": "romanzo fallito o opera non pubblicata",
+      "firstPublication": null,
+      "publisher": ""
+    },
+    {
+      "id": "F003",
+      "label": "La collana della regina",
+      "year": 1953,
+      "kind": "romanzo fallito o opera non pubblicata",
+      "firstPublication": null,
+      "publisher": ""
+    },
+    {
       "id": "V003",
       "label": "Il visconte dimezzato",
       "year": 1952,
       "kind": "forma ibrida tra romanzo breve e racconto lungo",
       "firstPublication": null,
-      "publisher": ""
+      "publisher": "",
+      "previousPoint": { "x": 0, "y": 0 }
     },
     {
       "id": "V004",
@@ -121,14 +148,23 @@
 }, {
   "id": "anni60",
   "label": "Anni '60",
-  "works": [{
+  "works": [
+  {
+    "id": "F004",
+    "label": "Un ottimista in america",
+    "year": 1960,
+    "kind": "romanzo fallito o opera non pubblicata",
+    "firstPublication": null,
+    "publisher": ""
+  },{
     "id": "V009",
     "label": "La giornata di uno scrutatore",
     "year": 1963,
     "kind": "forma ibrida tra romanzo breve e racconto lungo",
     "distributeElement": 0,
     "firstPublication": null,
-    "publisher": ""
+    "publisher": "",
+    "previousPoint": { "x": 0, "y": 0 }
   }, {
     "id": "V010",
     "label": "La speculazione edilizia",
@@ -136,7 +172,8 @@
     "kind": "forma ibrida tra romanzo breve e racconto lungo",
     "distributeElement": -1,
     "firstPublication": 1957,
-    "publisher": ""
+    "publisher": "",
+    "previousPoint": { "type": "arc180" }
   }, {
     "id": "V011",
     "label": "Marcovaldo",
@@ -144,20 +181,22 @@
     "distributeElement": 1,
     "kind": "raccolta di racconti con un unico protagonista",
     "firstPublication": null,
-    "publisher": ""
+    "publisher": "",
+    "previousPoint": { "type": "arc180" }
   }, {
     "id": "V012",
     "label": "La nuvola di smog e la formica argentina",
     "year": 1965,
-    "distributeElement": -0.5,
+    "distributeElement": 0.5,
     "kind": "forma ibrida tra romanzo breve e racconto lungo",
     "firstPublication": 1952,
-    "publisher": ""
+    "publisher": "",
+    "previousPoint": { "type": "arc90",  "x": 4, "y": 0.5  }
   }, {
     "id": "V013",
     "label": "Le Cosmicomiche",
     "year": 1965,
-    "distributeElement": 0.5,
+    "distributeElement": -0.5,
     "kind": "raccolta di racconti con un unico protagonista",
     "firstPublication": null,
     "publisher": ""
@@ -167,7 +206,8 @@
     "year": 1967,
     "kind": "raccolta di racconti con un unico protagonista",
     "firstPublication": null,
-    "publisher": ""
+    "publisher": "",
+    "previousPoint": { "x": 6, "y": 0  }
   }],
   "periodicals": [
 
@@ -259,6 +299,36 @@
     "year": 1984,
     "kind": "raccolta di saggi",
     "firstPublication": null,
+    "publisher": ""
+  }, {
+    "id": "F005",
+    "label": "Passaggi obbligati",
+    "year": 1986,
+    "kind": "progetto incompiuto",
+    "publisher": ""
+  }, {
+    "id": "F006",
+    "label": "I cinque sensi",
+    "year": 1986.5,
+    "kind": "progetto incompiuto",
+    "publisher": ""
+  }, {
+    "id": "F007",
+    "label": "Le memorie di Casanova",
+    "year": 1987,
+    "kind": "progetto incompiuto",
+    "publisher": ""
+  }, {
+    "id": "F008",
+    "label": "Dialoghi storici",
+    "year": 1987.5,
+    "kind": "progetto incompiuto",
+    "publisher": ""
+  }, {
+    "id": "F009",
+    "label": "Lezioni americane",
+    "year": 1988,
+    "kind": "progetto incompiuto",
     "publisher": ""
   }],
   "periodicals": [

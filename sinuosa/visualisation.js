@@ -7,10 +7,13 @@ let articles = [];
 let previousPublications = [];
 var duration = 500;
 var arc = d3.arc().startAngle(0).innerRadius(0);
-// var linePreviousPublication = d3.line()
-//     .x(function(d) { return d.x; })
-//     .y(function(d) { return d.y; })
-// 		.curve(d3.curveMonotoneY);
+var line = d3.line()
+    .x(function(d) { return d.x; })
+    .y(function(d) { return d.y; })
+		.curve(d3.curveNatural)
+		.curve(d3.curveMonotoneX)
+		.curve(function(d) {calvinLine(d)})
+
 let container = d3.select('#visualisation-container');
 let m = window.innerHeight / 7;
 let margin = {
@@ -22,7 +25,7 @@ let margin = {
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
 let r = width / 10 / 2 / 2.2;
-let r2 = r / 4;
+let r2 = r / 6;
 let distributePadding = 3.5;
 
 let svg = d3.select('svg#visualisation')
@@ -34,11 +37,11 @@ let g = svg.append('g')
 let y = d3.scalePoint()
 	.range([0, height])
 
-let x = d3.scalePoint()
-	.domain([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+let x = d3.scaleLinear()
+	.domain([0, 9])
 	.range([0, width])
-let xInverse = d3.scalePoint()
-	.domain([9, 8, 7, 6, 5, 4, 3, 2, 1, 0])
+let xInverse = d3.scaleLinear()
+	.domain([9, 0])
 	.range([0, width])
 
 let col = d3.scaleOrdinal()
@@ -112,13 +115,14 @@ d3.json('data.json').then(function(json) {
 			.style('opacity', .75)
 
 	function ticked() {
-		// console.log('tick')
 		article
 			.attr("cx", function(d) {
 				if (d.x < 0) {
-					return d.x += 1
+					// d.x = 0
+					return d.x += .5
 				} else if (d.x > width) {
-					return d.x -= 1
+					// d.x = width
+					return d.x -= .5
 				}
 				return d.x;
 			})
@@ -126,17 +130,21 @@ d3.json('data.json').then(function(json) {
 	}
 
 	let simulationArticle = d3.forceSimulation(articles)
-		.force('collision', d3.forceCollide(function(d){ return d3.max([r2+1.5, d.r+1.5])}).iterations(4))
-		.force('x', d3.forceX(function(d) { return d.x }).strength(0.1))
-		.force('y', d3.forceY(function(d) { return d.y }).strength(0.8))
+		.force('collision', d3.forceCollide(function(d){ return d3.max([r2+3, d.r+3])}).iterations(8))
+		.force('x', d3.forceX(function(d) { return d.x }).strength(.1))
+		.force('y', d3.forceY(function(d) { return d.y }).strength(.4))
 		.on("tick", ticked);
-
 
 	let works = decade.selectAll('.work')
 		.data(function(d, i) {
-			// compile data for visualising first publications
-			d.works.forEach( (e) => {
-				// console.log(e)
+			// compile data for visualising first publications amd for line-thread-guide
+			d.points = []
+			d.works.forEach( (e,i) => {
+
+				if (e.kind != 'romanzo fallito o opera non pubblicata' || e.kind != 'progetto incompiuto') {
+					// console.log(e)
+				}
+
 				if (e.firstPublication) {
 					let _y1 = e.year.toString().split('')[2];
 					_y1 = 'anni'+_y1+'0';
@@ -148,9 +156,7 @@ d3.json('data.json').then(function(json) {
 						"x2": e.firstPublication,
 						"y2": _y2
 					}
-					if (e.distributeElement) {
-						obj.distributeElement = e.distributeElement
-					}
+					if (e.distributeElement) { obj.distributeElement = e.distributeElement }
 					e.previousPublications = obj;
 				}
 			})
@@ -161,10 +167,19 @@ d3.json('data.json').then(function(json) {
 		.attr('class', function(d) { return 'work ' + d.id })
 		.attr('transform', function(d) {
 			let position = d.year.toString().split('')[3];
+			position = +d.year.toString().split('').slice(3).join('')
 			let _x = d.year.toString().split('')[2] % 2 == 0 ? x(position) : xInverse(position);
 			let _y = d.distributeElement ? r * d.distributeElement * distributePadding : 0;
+			_y += (d.kind == 'romanzo fallito o opera non pubblicata') ? r*3 : 0;
 			return 'translate(' + _x + ',' + _y + ')';
 		})
+
+		let thread = decade.selectAll('.thread')
+			.data(function(d){ return [d.points] })
+			.enter()
+			.append('path')
+			.classed('thread',true)
+			.attr('d', calvinLine)
 
 	works.append('circle')
 		.attr('r', r)
@@ -178,6 +193,7 @@ d3.json('data.json').then(function(json) {
 
 	works.append('text')
 		.attr('class', 'label year')
+		.classed('hidden', function(d) { return d.kind == 'romanzo fallito o opera non pubblicata' || d.kind == 'progetto incompiuto' })
 		.attr('y', r)
 		.text(function(d) { return d.year; })
 
@@ -196,6 +212,7 @@ d3.json('data.json').then(function(json) {
 			return previousPublicationsLine(d);
 		})
 
+		activateStorytelling();
 });
 
 function transformPeriodicals(data) {
@@ -215,11 +232,11 @@ function transformPeriodicals(data) {
 		}
 		for(var i = 0; i < d.amount; i++) {
 			let position = d.year.toString().split('')[3];
-			let _x = d.year.toString().split('')[2] % 2 == 0 ? x(position) : xInverse(position);
+			let _x = d.year.toString().split('')[2] % 2 == 0 ? x(+position) : xInverse(+position);
 			let node = {
 				'x': _x,
 				'y': y(data.id),
-				'r': d3.max([r2 + d3.randomUniform(-r2/3, 0)(), 1]),
+				'r': d3.max([r2 + d3.randomUniform(-r2/2, 0)(), 1]),
 				// 'r': r2,
 				'decade': data.id,
 				'decadeIndex': data.index
