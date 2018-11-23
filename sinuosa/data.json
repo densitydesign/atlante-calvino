@@ -7,8 +7,7 @@
       "year": 1947,
       "kind": "romanzo",
       "firstPublication": null,
-      "publisher": "",
-      "previousPoint": { "x": 0, "y": 0 }
+      "publisher": ""
     },
     {
       "id": "V002",
@@ -73,8 +72,7 @@
       "year": 1952,
       "kind": "forma ibrida tra romanzo breve e racconto lungo",
       "firstPublication": null,
-      "publisher": "",
-      "previousPoint": { "x": 0, "y": 0 }
+      "publisher": ""
     },
     {
       "id": "V004",
@@ -156,15 +154,6 @@
     "kind": "romanzo fallito o opera non pubblicata",
     "firstPublication": null,
     "publisher": ""
-  },{
-    "id": "V009",
-    "label": "La giornata di uno scrutatore",
-    "year": 1963,
-    "kind": "forma ibrida tra romanzo breve e racconto lungo",
-    "distributeElement": 0,
-    "firstPublication": null,
-    "publisher": "",
-    "previousPoint": { "x": 0, "y": 0 }
   }, {
     "id": "V010",
     "label": "La speculazione edilizia",
@@ -173,7 +162,15 @@
     "distributeElement": -1,
     "firstPublication": 1957,
     "publisher": "",
-    "previousPoint": { "type": "arc180" }
+    "curve": "bezier"
+  },{
+    "id": "V009",
+    "label": "La giornata di uno scrutatore",
+    "year": 1963,
+    "kind": "forma ibrida tra romanzo breve e racconto lungo",
+    "distributeElement": 0,
+    "firstPublication": null,
+    "publisher": ""
   }, {
     "id": "V011",
     "label": "Marcovaldo",
@@ -181,24 +178,23 @@
     "distributeElement": 1,
     "kind": "raccolta di racconti con un unico protagonista",
     "firstPublication": null,
-    "publisher": "",
-    "previousPoint": { "type": "arc180" }
-  }, {
-    "id": "V012",
-    "label": "La nuvola di smog e la formica argentina",
-    "year": 1965,
-    "distributeElement": 0.5,
-    "kind": "forma ibrida tra romanzo breve e racconto lungo",
-    "firstPublication": 1952,
-    "publisher": "",
-    "previousPoint": { "type": "arc90",  "x": 4, "y": 0.5  }
+    "publisher": ""
   }, {
     "id": "V013",
     "label": "Le Cosmicomiche",
     "year": 1965,
-    "distributeElement": -0.5,
+    "distributeElement": 0.5,
     "kind": "raccolta di racconti con un unico protagonista",
     "firstPublication": null,
+    "publisher": "",
+    "curve": "bezier"
+  }, {
+    "id": "V012",
+    "label": "La nuvola di smog e la formica argentina",
+    "year": 1965,
+    "distributeElement": -0.5,
+    "kind": "forma ibrida tra romanzo breve e racconto lungo",
+    "firstPublication": 1952,
     "publisher": ""
   }, {
     "id": "V014",
@@ -206,8 +202,7 @@
     "year": 1967,
     "kind": "raccolta di racconti con un unico protagonista",
     "firstPublication": null,
-    "publisher": "",
-    "previousPoint": { "x": 6, "y": 0  }
+    "publisher": ""
   }],
   "periodicals": [
 
@@ -216,20 +211,20 @@
   "id": "anni70",
   "label": "Anni '70",
   "works": [{
-    "id": "V015",
-    "label": "Orlando furioso",
-    "year": 1970,
-    "distributeElement": -0.5,
-    "kind": "riscrittura",
-    "firstPublication": 1967,
-    "publisher": ""
-  }, {
     "id": "V016",
     "label": "Gli amori difficili",
     "year": 1970,
     "distributeElement": 0.5,
     "kind": "raccolta di racconti",
     "firstPublication": null,
+    "publisher": ""
+  }, {
+    "id": "V015",
+    "label": "Orlando furioso",
+    "year": 1970,
+    "distributeElement": -0.5,
+    "kind": "riscrittura",
+    "firstPublication": 1967,
     "publisher": ""
   }, {
     "id": "V017",

@@ -29,20 +29,14 @@ svg#visualisation {
   font-size: .5rem;
 }
 
-.guide-line {
+.guide-line, .thread {
   fill: none;
   stroke: black;
   stroke-width: .5px;
 }
-
-.thread {
-  fill: none;
-  stroke: red;
-  stroke-width: 3px;
-}
-
 .decade-arc {
   stroke-width: 1px;
+  stroke: black;
   stroke-dasharray: 0 3;
   -webkit-animation-name: arcs-direction;
           animation-name: arcs-direction;
@@ -53,6 +47,9 @@ svg#visualisation {
   -webkit-animation-timing-function: linear;
           animation-timing-function: linear;
   stroke-linecap: round;
+}
+.decade-arc.end {
+  /* stroke: red; */
 }
 
 .previous-publication {
