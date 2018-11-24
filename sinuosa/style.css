@@ -79,6 +79,7 @@ svg#visualisation {
 .scrollytelling-container {
   padding-top: 50vh;
   padding-bottom: 50vh;
+  z-index: 1050;
 }
 
 .decade-txt {}

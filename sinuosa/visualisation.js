@@ -14,18 +14,17 @@ var line = d3.line()
 	.curve(d3.curveNatural)
 
 let container = d3.select('#visualisation-container');
-let m = window.innerHeight / 7;
+let m = window.innerHeight / 6;
 let margin = {
-	top: m / 2,
-	right: m,
-	bottom: m / 2,
-	left: m
+	top: m / 3,
+	right: m/1.8,
+	bottom: m / 3,
+	left: m/1.8
 }
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
-let r = width / 10 / 2 / 2.2;
-r = height / 10 / 2 / 2.2;
-let r2 = r / 6;
+let r = width > height ? height / 10 / 2 / 2.2 : width / 10 / 2 / 1.1;
+let r2 = r / 4;
 let distributePadding = 3.5;
 
 let svg = d3.select('svg#visualisation')
@@ -217,7 +216,7 @@ d3.json('data.json').then(function(json) {
 	let simulationArticle = d3.forceSimulation(articles)
 		.force('collision', d3.forceCollide(function(d) { return d3.max([r2 + 3, d.r + 3]) }).iterations(8))
 		.force('x', d3.forceX(function(d) { return d.x }).strength(.1))
-		.force('y', d3.forceY(function(d) { return d.y }).strength(.4))
+		.force('y', d3.forceY(function(d) { return d.y }).strength(.6))
 		.on("tick", ticked);
 
 	let works = decade.selectAll('.work')
@@ -312,8 +311,7 @@ function transformPeriodicals(data) {
 			let node = {
 				'x': _x,
 				'y': y(data.id),
-				'r': d3.max([r2 + d3.randomUniform(-r2 / 2, 0)(), 1]),
-				// 'r': r2,
+				'r': d3.max([r2 + d3.randomUniform(-r2 / 1, 0)(), 1.5]),
 				'decade': data.id,
 				'decadeIndex': data.index
 			}
