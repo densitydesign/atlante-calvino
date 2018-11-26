@@ -23,7 +23,7 @@ let margin = {
 }
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
-let r = width > height ? height / 10 / 2 / 2.2 : width / 10 / 2 / 1.1;
+let r = width > height ? height / 10 / 2 / 2.8 : width / 10 / 2 / 2.2;
 let r2 = r / 4;
 let distributePadding = 3.5;
 
@@ -267,7 +267,7 @@ d3.json('data.json').then(function(json) {
 
 	works.append('text')
 		.attr('class', 'label')
-		.attr('y', -r*1.8)
+		.attr('y', -r*1.9)
 		// .attr('dy', '1rem')
 		.text(function(d) { return d.label; })
 		.call(wrap, 100)
@@ -275,7 +275,7 @@ d3.json('data.json').then(function(json) {
 	works.append('text')
 		.attr('class', 'label year')
 		.classed('hidden', function(d) { return d.kind == 'romanzo fallito o opera non pubblicata' || d.kind == 'progetto incompiuto' })
-		.attr('y', r)
+		.attr('y', r + 10)
 		.text(function(d) { return d.year; })
 
 	works.selectAll('.previous-publication')
