@@ -1,5 +1,16 @@
+@import "../assets/fonts/hk/stylesheet.css";
+@import "../assets/fonts/crimson/stylesheet.css";
+
 html {
   font-size: 16px;
+}
+
+body {
+  color: #212529;
+  font-family: 'Crimson Text';
+  font-weight: normal;
+  font-style: normal;
+  font-size: 1rem;
 }
 
 @media only screen and (min-width: 768px) {
@@ -15,14 +26,20 @@ html {
 }
 
 /* visualisation */
-
 svg#visualisation {
   background-color: #fffefa;
 }
 
 .label {
-  font-size: .65rem;
+  font-size: .6rem;
   text-anchor: middle;
+  font-style: italic;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
+.label.with-shadow {
+  text-shadow: white 2px 2px 2px, white -2px -2px 2px, white 2px -2px 2px, white -2px 2px 2px;
 }
 
 .year {
@@ -34,20 +51,22 @@ svg#visualisation {
   stroke: black;
   stroke-width: .5px;
 }
+
 .decade-arc {
   stroke-width: 1px;
   stroke: black;
   stroke-dasharray: 0 3;
   -webkit-animation-name: arcs-direction;
-          animation-name: arcs-direction;
+  animation-name: arcs-direction;
   -webkit-animation-duration: 1.5s;
-          animation-duration: 1.5s;
+  animation-duration: 1.5s;
   -webkit-animation-iteration-count: infinite;
-          animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
-          animation-timing-function: linear;
+  animation-timing-function: linear;
   stroke-linecap: round;
 }
+
 .decade-arc.end {
   /* stroke: red; */
 }
@@ -61,7 +80,7 @@ svg#visualisation {
 
 .article {
   fill: transparent;
-  stroke: #000;
+  stroke: #7b7b7b;
   stroke-width: .5px;
 }
 
@@ -69,9 +88,7 @@ svg#visualisation {
   fill: none;
   stroke: none;
 } */
-
 /* Other */
-
 .hidden {
   display: none;
 }
@@ -97,11 +114,21 @@ svg#visualisation {
 }
 
 @-webkit-keyframes arcs-direction {
-    from {stroke-dashoffset: 0;}
-    to {stroke-dashoffset: -9;}
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -9;
+  }
 }
 
 @keyframes arcs-direction {
-    from {stroke-dashoffset: 0;}
-    to {stroke-dashoffset: -9;}
+  from {
+    stroke-dashoffset: 0;
+  }
+
+  to {
+    stroke-dashoffset: -9;
+  }
 }

@@ -3,7 +3,7 @@
   "label": "Anni '40",
   "works": [{
       "id": "V001",
-      "label": "Il sentiero dei nidi di ragno",
+      "label": "Il sentiero_dei nidi di ragno",
       "year": 1947,
       "kind": "romanzo",
       "firstPublication": null,
@@ -11,7 +11,7 @@
     },
     {
       "id": "V002",
-      "label": "Ultimo viene il corvo",
+      "label": "Ultimo viene_il corvo",
       "year": 1949,
       "kind": "raccolta di racconti",
       "firstPublication": null,
@@ -68,7 +68,7 @@
     },
     {
       "id": "V003",
-      "label": "Il visconte dimezzato",
+      "label": "Il visconte_dimezzato",
       "year": 1952,
       "kind": "forma ibrida tra romanzo breve e racconto lungo",
       "firstPublication": null,
@@ -76,7 +76,7 @@
     },
     {
       "id": "V004",
-      "label": "L'entrata in guerra",
+      "label": "L'entrata_in guerra",
       "year": 1954,
       "kind": "raccolta di racconti",
       "firstPublication": null,
@@ -84,7 +84,7 @@
     },
     {
       "id": "V005",
-      "label": "Le fiabe italiane",
+      "label": "Le fiabe_italiane",
       "year": 1956,
       "kind": "riscrittura",
       "firstPublication": null,
@@ -92,7 +92,7 @@
     },
     {
       "id": "V006",
-      "label": "Il barone rampante",
+      "label": "Il barone_rampante",
       "year": 1957,
       "kind": "romanzo",
       "firstPublication": null,
@@ -108,7 +108,7 @@
     },
     {
       "id": "V008",
-      "label": "Il cavaliere inesistente",
+      "label": "Il cavaliere_inesistente",
       "year": 1959,
       "kind": "romanzo",
       "firstPublication": null,
@@ -156,7 +156,7 @@
     "publisher": ""
   }, {
     "id": "V010",
-    "label": "La speculazione edilizia",
+    "label": "La speculazione_edilizia",
     "year": 1963,
     "kind": "forma ibrida tra romanzo breve e racconto lungo",
     "distributeElement": -1,
@@ -165,7 +165,7 @@
     "curve": "bezier"
   },{
     "id": "V009",
-    "label": "La giornata di uno scrutatore",
+    "label": "La giornata_d'uno scrutatore",
     "year": 1963,
     "kind": "forma ibrida tra romanzo breve e racconto lungo",
     "distributeElement": 0,
@@ -190,7 +190,7 @@
     "curve": "bezier"
   }, {
     "id": "V012",
-    "label": "La nuvola di smog e la formica argentina",
+    "label": "La nuvola di smog_e la formica argentina",
     "year": 1965,
     "distributeElement": -0.5,
     "kind": "forma ibrida tra romanzo breve e racconto lungo",
@@ -212,7 +212,7 @@
   "label": "Anni '70",
   "works": [{
     "id": "V016",
-    "label": "Gli amori difficili",
+    "label": "Gli amori_difficili",
     "year": 1970,
     "distributeElement": 0.5,
     "kind": "raccolta di racconti",
@@ -220,7 +220,7 @@
     "publisher": ""
   }, {
     "id": "V015",
-    "label": "Orlando furioso",
+    "label": "Orlando_furioso",
     "year": 1970,
     "distributeElement": -0.5,
     "kind": "riscrittura",
@@ -228,21 +228,21 @@
     "publisher": ""
   }, {
     "id": "V017",
-    "label": "Le città invisibili",
+    "label": "Le città_invisibili",
     "year": 1972,
     "kind": "romanzo di racconti dentro una cornice",
     "firstPublication": null,
     "publisher": ""
   }, {
     "id": "V018",
-    "label": "Il castello dei destini incrociati",
+    "label": "Il castello dei destini_incrociati",
     "year": 1973,
     "kind": "romanzo di racconti dentro una cornice",
     "firstPublication": 1969,
     "publisher": ""
   }, {
     "id": "V019",
-    "label": "Se una notte d'inverno un viaggiatore",
+    "label": "Se una notte d'inverno_un viaggiatore",
     "year": 1979,
     "kind": "romanzo di racconti dentro una cornice",
     "firstPublication": null,
@@ -276,7 +276,7 @@
   "label": "Anni '80",
   "works": [{
     "id": "V020",
-    "label": "Una pietra sopra",
+    "label": "Una pietra_sopra",
     "year": 1980,
     "kind": "raccolta di saggi",
     "firstPublication": null,
@@ -290,7 +290,7 @@
     "publisher": ""
   }, {
     "id": "V022",
-    "label": "Collezione di sabbia",
+    "label": "Collezione_di sabbia",
     "year": 1984,
     "kind": "raccolta di saggi",
     "firstPublication": null,

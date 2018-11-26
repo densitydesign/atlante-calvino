@@ -51,7 +51,7 @@ let col = d3.scaleOrdinal()
 d3.json('data.json').then(function(json) {
 	data = json;
 	y.domain(data.map((d) => { return d.id }))
-  space = y.step()*0.75;
+	space = y.step() * 0.75;
 
 	let gArticles = g.append('g').attr('class', 'periodicals');
 
@@ -101,12 +101,12 @@ d3.json('data.json').then(function(json) {
 						"y": workPosition({ "year": decadeNumber + ii })[1],
 						"curve": undefined
 					}
-          if (d.id == 'anni60' && ii == 6) {
-            point.curve = "bezier";
-          }
-          if (d.id == 'anni70' && ii == 1) {
-            point.curve = "bezier";
-          }
+					if(d.id == 'anni60' && ii == 6) {
+						point.curve = "bezier";
+					}
+					if(d.id == 'anni70' && ii == 1) {
+						point.curve = "bezier";
+					}
 					d.points.push(point);
 				}
 			}
@@ -129,9 +129,9 @@ d3.json('data.json').then(function(json) {
 			//   d.points.push(endingPoint);
 			// }
 
-      if (d.id=='anni60') {
-        d.points.splice(6, 1);
-      }
+			if(d.id == 'anni60') {
+				d.points.splice(6, 1);
+			}
 
 			// now return the identifier for the decade
 			return d.id;
@@ -142,7 +142,11 @@ d3.json('data.json').then(function(json) {
 		.attr('transform', function(d) { return 'translate(0,' + y(d.id) + ')' })
 
 	let thread = decade.selectAll('.thread')
-		.data(function(d,i) {d.index = i; transformPeriodicals(d); return [d.points] })
+		.data(function(d, i) {
+			d.index = i;
+			transformPeriodicals(d);
+			return [d.points]
+		})
 		.enter()
 		.append('path')
 		.attr('class', 'thread')
@@ -158,13 +162,13 @@ d3.json('data.json').then(function(json) {
 		.append('path')
 		.attr('class', 'decade-arc start thread')
 		.attr('transform', function(d) {
-      if (d.id == 'anni70') {
-        return 'translate(' + (d.index % 2 == 0 ? 0 : width) + ', ' + (-y.step() / 2 + (r * distributePadding * 0.5)) + ')'
-      }
+			if(d.id == 'anni70') {
+				return 'translate(' + (d.index % 2 == 0 ? 0 : width) + ', ' + (-y.step() / 2 + (r * distributePadding * 0.5)) + ')'
+			}
 			return 'translate(' + (d.index % 2 == 0 ? 0 : width) + ', ' + (-y.step() / 2) + ')'
 		})
 		.attr("d", function(d) {
-      return decadeArcs(d,'start', false);
+			return decadeArcs(d, 'start', false);
 		})
 
 	let decadeArcEnd = decade.selectAll('.decade-arc.end')
@@ -179,7 +183,7 @@ d3.json('data.json').then(function(json) {
 			return 'translate(' + (d.index % 2 == 0 ? width : 0) + ', ' + (+y.step() / 2) + ')'
 		})
 		.attr("d", function(d) {
-			return decadeArcs(d,'end', false)
+			return decadeArcs(d, 'end', false)
 		})
 
 	let article = gArticles.selectAll('.article')
@@ -260,12 +264,14 @@ d3.json('data.json').then(function(json) {
 		.attr('r', r)
 		.style('fill', 'white')
 		.style('stroke', function(d) { return col(d.kind) })
-    // .style('display','none')
+	// .style('display','none')
 
 	works.append('text')
 		.attr('class', 'label')
-		.attr('y', -r)
+		.attr('y', -r*1.8)
+		// .attr('dy', '1rem')
 		.text(function(d) { return d.label; })
+		.call(wrap, 100)
 
 	works.append('text')
 		.attr('class', 'label year')
@@ -346,97 +352,134 @@ function workPosition(d) {
 	let _x = d.year.toString().split('')[2] % 2 == 0 ? x(position) : xInverse(position);
 	let _y = d.distributeElement ? r * d.distributeElement * distributePadding : 0;
 	_y += (d.kind == 'romanzo fallito o opera non pubblicata') ? r * 3 : 0;
-  _y += (d.kind == 'progetto incompiuto') ? r * 3 : 0;
+	_y += (d.kind == 'progetto incompiuto') ? r * 3 : 0;
 	return [_x, _y]
 }
 
-function decadeArcs(d,position,open) {
-  if (position == "start") {
-    let myString;
-    if(d.index % 2 == 0) {
-      myString = arc({
-        outerRadius: y.step() / 2,
-        startAngle: -Math.PI / 2,
-        endAngle: -Math.PI,
-        // endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
-      }).split(/[A-Z]/);
-    } else {
-      myString = arc({
-        outerRadius: y.step() / 2,
-        startAngle: Math.PI / 2,
-        endAngle: Math.PI,
-        // endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
-      }).split(/[A-Z]/);
-    }
-    if (d.id != 'anni70'){
+function decadeArcs(d, position, open) {
+	if(position == "start") {
+		let myString;
+		if(d.index % 2 == 0) {
+			myString = arc({
+				outerRadius: y.step() / 2,
+				startAngle: -Math.PI / 2,
+				endAngle: -Math.PI,
+				// endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
+			}).split(/[A-Z]/);
+		} else {
+			myString = arc({
+				outerRadius: y.step() / 2,
+				startAngle: Math.PI / 2,
+				endAngle: Math.PI,
+				// endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
+			}).split(/[A-Z]/);
+		}
+		if(d.id != 'anni70') {
 
-      // console.log(myString[1].split(','))
+			// console.log(myString[1].split(','))
 
-      if (open) {
-        let px = myString[1].split(',')[0]
-        let py = myString[1].split(',')[1]-space
-        // console.log(px,py, myString[1])
-        return `M${px} ${py} L ${myString[1]} A ${myString[2]}`;
-      } else {
-        let px = myString[1].split(',')[0]
-        let py = myString[1].split(',')[1]
-        return `M${px} ${py} L ${myString[1]} A ${myString[2]}`;
-        // return "M" + myString[1] + "A" + myString[2]
-      }
-    } else {
+			if(open) {
+				let px = myString[1].split(',')[0]
+				let py = myString[1].split(',')[1] - space
+				// console.log(px,py, myString[1])
+				return `M${px} ${py} L ${myString[1]} A ${myString[2]}`;
+			} else {
+				let px = myString[1].split(',')[0]
+				let py = myString[1].split(',')[1]
+				return `M${px} ${py} L ${myString[1]} A ${myString[2]}`;
+				// return "M" + myString[1] + "A" + myString[2]
+			}
+		} else {
 
-      // x1 = y.step()/2;
-      // y1 = 0;
-      //
-      // x2 = 0;
-      // y2 = y.step()/2 + r * distributePadding * 0.5;
-      //
-      let thisSpace = r * distributePadding * 0.5;
+			// x1 = y.step()/2;
+			// y1 = 0;
+			//
+			// x2 = 0;
+			// y2 = y.step()/2 + r * distributePadding * 0.5;
+			//
+			let thisSpace = r * distributePadding * 0.5;
 
-      if (open) {
-        let px = myString[1].split(',')[0]
-        let py = myString[1].split(',')[1]-space
-        // console.log(px,py, myString[1])
-        return `M${px} ${py - thisSpace} l 0 ${0} L ${myString[1]} A ${myString[2]}`;
-        // return `M${px} ${py} L ${myString[1]} A ${myString[2]}`;
-      } else {
-        let px = myString[1].split(',')[0]
-        let py = myString[1].split(',')[1]
-        return `M${px} ${py - thisSpace} l 0 ${py} L ${myString[1]} A ${myString[2]}`;
-        // return "M" + myString[1] + "A" + myString[2]
-      }
+			if(open) {
+				let px = myString[1].split(',')[0]
+				let py = myString[1].split(',')[1] - space
+				// console.log(px,py, myString[1])
+				return `M${px} ${py - thisSpace} l 0 ${0} L ${myString[1]} A ${myString[2]}`;
+				// return `M${px} ${py} L ${myString[1]} A ${myString[2]}`;
+			} else {
+				let px = myString[1].split(',')[0]
+				let py = myString[1].split(',')[1]
+				return `M${px} ${py - thisSpace} l 0 ${py} L ${myString[1]} A ${myString[2]}`;
+				// return "M" + myString[1] + "A" + myString[2]
+			}
 
-      // // old
-      // if (open) {
-      //   let px = x1
-      //   let py = y1-space
-      //   return `M ${px} ${py} L ${x1} ${y1}, C ${x1} ${y1+y.step()/20}, ${x2+y.step()/1.8} ${y2+y.step()/10}, ${x2} ${y2}`
-      // } else {
-      //   return `M ${x1} ${y1} L ${x1} ${y1}, C ${x1} ${y1+y.step()/20}, ${x2+y.step()/1.8} ${y2+y.step()/10}, ${x2} ${y2}`
-      //   // return `M ${x1} ${y1}, C ${x1} ${y1+y.step()/20}, ${x2+y.step()/1.8} ${y2+y.step()/10}, ${x2} ${y2}`
-      // }
-    }
-  } else {
-    let myString;
-    if(d.index % 2 == 0) {
-      myString = arc({
-        outerRadius: y.step() / 2,
-        startAngle: 0,
-        endAngle: Math.PI/2,
-        // endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
-      }).split(/[A-Z]/);
-    } else {
-      myString = arc({
-        outerRadius: y.step() / 2,
-        startAngle: 0,
-        endAngle: -Math.PI/2,
-        // endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
-      }).split(/[A-Z]/);
-    }
-    if (open){
-      return "M" + myString[1] + "A" + myString[2] + "l 0 "+space;
-    } else {
-      return "M" + myString[1] + "A" + myString[2] + "l 0 0";
-    }
-  }
+			// // old
+			// if (open) {
+			//   let px = x1
+			//   let py = y1-space
+			//   return `M ${px} ${py} L ${x1} ${y1}, C ${x1} ${y1+y.step()/20}, ${x2+y.step()/1.8} ${y2+y.step()/10}, ${x2} ${y2}`
+			// } else {
+			//   return `M ${x1} ${y1} L ${x1} ${y1}, C ${x1} ${y1+y.step()/20}, ${x2+y.step()/1.8} ${y2+y.step()/10}, ${x2} ${y2}`
+			//   // return `M ${x1} ${y1}, C ${x1} ${y1+y.step()/20}, ${x2+y.step()/1.8} ${y2+y.step()/10}, ${x2} ${y2}`
+			// }
+		}
+	} else {
+		let myString;
+		if(d.index % 2 == 0) {
+			myString = arc({
+				outerRadius: y.step() / 2,
+				startAngle: 0,
+				endAngle: Math.PI / 2,
+				// endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
+			}).split(/[A-Z]/);
+		} else {
+			myString = arc({
+				outerRadius: y.step() / 2,
+				startAngle: 0,
+				endAngle: -Math.PI / 2,
+				// endAngle: d.index % 2 == 0 ? -Math.PI/2 : Math.PI/2
+			}).split(/[A-Z]/);
+		}
+		if(open) {
+			return "M" + myString[1] + "A" + myString[2] + "l 0 " + space;
+		} else {
+			return "M" + myString[1] + "A" + myString[2] + "l 0 0";
+		}
+	}
+}
+
+function wrap(text, width) {
+	text.each(function() {
+		var text = d3.select(this),
+			// words = text.text().split(/\s+/).reverse();
+			words = text.text().split(/_+/).reverse().reverse();
+
+		text.text(null);
+
+		var word,
+			line = [],
+			lineNumber = 0,
+			lineHeight = 0.55, // ems
+			y = text.attr("y"),
+			dy = parseFloat(text.attr("dy"));
+		// tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+		// while (word = words.pop()) {
+		//   line.push(word);
+		//   tspan.text(line.join(" "));
+		//   if (tspan.node().getComputedTextLength() > width) {
+		//     line.pop();
+		//     tspan.text(line.join(" "));
+		//     line = [word];
+		//     tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+		//   }
+		// }
+		words.forEach((w, i) => {
+			// console.log(w)
+			tspan = text.append("tspan")
+				.attr("x", 0)
+				.attr("y", y)
+				.attr("dy", i * lineHeight + 'rem')
+				.text(w);
+		})
+
+	});
 }
