@@ -53,11 +53,12 @@
   "works": [
     {
       "id": "F002",
-      "label": "I Giovani del Pò",
+      "label": "I Giovani_del Pò",
       "year": 1950.5,
       "kind": "romanzo fallito o opera non pubblicata",
       "firstPublication": null,
-      "publisher": ""
+      "publisher": "",
+      "labelPosition": "right"
     },
     {
       "id": "F003",
