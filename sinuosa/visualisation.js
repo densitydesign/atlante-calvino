@@ -17,9 +17,9 @@ let container = d3.select('#visualisation-container');
 let m = window.innerHeight / 6;
 let margin = {
 	top: m / 3,
-	right: m/1.8,
+	right: m / 1.8,
 	bottom: m / 3,
-	left: m/1.8
+	left: m / 1.8
 }
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
@@ -80,10 +80,7 @@ d3.json('data.json').then(function(json) {
 
 			for(var ii = 0; ii < 10; ii++) {
 				// check if there is a volume in this date (ii) and is not an abandoned work
-				let ww = d.works.filter(function(e) {
-					return +e.year.toString().split('').slice(3).join('') == ii && e.kind != 'romanzo fallito o opera non pubblicata' && e.kind != 'progetto incompiuto';
-				})
-				// console.log(ww);
+				let ww = d.works.filter(function(e) { return +e.year.toString().split('').slice(3).join('') == ii && e.kind != 'romanzo fallito o opera non pubblicata' && e.kind != 'progetto incompiuto'; })
 				if(ww.length) {
 					ww.forEach((e) => {
 						let point = {
@@ -94,7 +91,6 @@ d3.json('data.json').then(function(json) {
 						d.points.push(point);
 					})
 				} else {
-					// console.log(workPosition({"year": decadeNumber+ii}))
 					let point = {
 						"x": workPosition({ "year": decadeNumber + ii })[0],
 						"y": workPosition({ "year": decadeNumber + ii })[1],
@@ -152,11 +148,7 @@ d3.json('data.json').then(function(json) {
 		.attr('d', calvinLine)
 
 	let decadeArcStart = decade.selectAll('.decade-arc.start')
-		.data(function(d, i) {
-			d.index = i;
-			// console.log(d)
-			return [d];
-		})
+		.data(function(d, i) { d.index = i; return [d]; })
 		.enter()
 		.append('path')
 		.attr('class', 'decade-arc start thread')
@@ -223,10 +215,14 @@ d3.json('data.json').then(function(json) {
 		.force('y', d3.forceY(function(d) { return d.y }).strength(.6))
 		.on("tick", ticked);
 
+	let yearsLabels = decade.selectAll('.label.year')
+		.data(function(d){ console.log(d.points); return d.points })
+		.attr('class', 'label year')
+
 	let works = decade.selectAll('.work')
 		.data(function(d, i) {
-			// compile data for visualising first publications amd for line-thread-guide
-			d.points = []
+			// compile data for visualising first publications add for line-thread-guide
+			// d.points = []
 			d.works.forEach((e, i) => {
 				if(e.firstPublication) {
 					let _y1 = e.year.toString().split('')[2];
@@ -249,11 +245,6 @@ d3.json('data.json').then(function(json) {
 		.append('g')
 		.attr('class', function(d) { return 'work ' + d.id })
 		.attr('transform', function(d) {
-			// let position = d.year.toString().split('')[3];
-			// position = +d.year.toString().split('').slice(3).join('')
-			// let _x = d.year.toString().split('')[2] % 2 == 0 ? x(position) : xInverse(position);
-			// let _y = d.distributeElement ? r * d.distributeElement * distributePadding : 0;
-			// _y += (d.kind == 'romanzo fallito o opera non pubblicata') ? r*3 : 0;
 			_x = workPosition(d)[0]
 			_y = workPosition(d)[1]
 			return 'translate(' + _x + ',' + _y + ')';
@@ -263,48 +254,50 @@ d3.json('data.json').then(function(json) {
 		.attr('r', r)
 		.style('fill', 'white')
 		.style('stroke', function(d) { return col(d.kind) })
-	// .style('display','none')
+
+	works.append('text')
+		.attr('class', 'label white-shadow')
+		.attr('y', 0)
+		.attr('x', 0)
+		.attr('transform', function(d) {
+			let _x = 0, _y = -r * 2;
+			if(d.labelPosition) {
+				if(d.labelPosition == "right") { _x = r * 1.3;
+					_y = r * 0.25; } else if(d.labelPosition == "left") { _x = -r * 1.3;
+					_y = r * 0.25; }
+			}
+			return 'translate(' + _x + ', ' + _y + ')';
+		})
+		.style('text-anchor', function(d) {
+			if(d.labelPosition == "right") { return 'start' } else if(d.labelPosition == "left") { return 'end' }
+		})
+		.text(function(d) { return d.label; })
+		.call(wrap)
 
 	works.append('text')
 		.attr('class', 'label')
-		.attr('y', function(d){
-			let y;
-			if (d.labelPosition) {
-				y = (d.labelPosition == "right" || d.labelPosition == "left") ? 0 : -r*2.4
-			} else {
-				y = -r*2.4
+		.attr('y', 0)
+		.attr('x', 0)
+		.attr('transform', function(d) {
+			let _x = 0, _y = -r * 2;
+			if(d.labelPosition) {
+				if(d.labelPosition == "right") { _x = r * 1.3;
+					_y = r * 0.25; } else if(d.labelPosition == "left") { _x = -r * 1.3;
+					_y = r * 0.25; }
 			}
-			return 0
+			return 'translate(' + _x + ', ' + _y + ')';
 		})
-		.attr('x', function(d){
-			let x = 0;
-			if (d.labelPosition) {
-				if (d.labelPosition == "right") { x = r*2.4 }
-				else if (d.labelPosition == "left") { x =  -r*2.4 }
-			}
-			return 0;
+		.style('text-anchor', function(d) {
+			if(d.labelPosition == "right") { return 'start' } else if(d.labelPosition == "left") { return 'end' }
 		})
-		.attr('transform', function(d){
-			let _x = 0, _y = 0;
-			if (d.labelPosition) {
-				if (d.labelPosition == "right") { _x = r*1.3; _y = 4; }
-				else if (d.labelPosition == "left") { _x =  -r*1.3; _y = 4; }
-			}
-			return 'translate('+_x+', '+_y+')';
-		})
-		.style('text-anchor', function(d){
-			if (d.labelPosition == "right") { return 'start' }
-			else if (d.labelPosition == "left") { return 'end' }
-		})
-		// .attr('dy', '1rem')
 		.text(function(d) { return d.label; })
-		.call(wrap, 100)
+		.call(wrap)
 
-	works.append('text')
-		.attr('class', 'label year')
-		.classed('hidden', function(d) { return d.kind == 'romanzo fallito o opera non pubblicata' || d.kind == 'progetto incompiuto' })
-		.attr('y', r + 10)
-		.text(function(d) { return d.year; })
+	// works.append('text')
+	// 	.attr('class', 'label year')
+	// 	.classed('hidden', function(d) { return d.kind == 'romanzo fallito o opera non pubblicata' || d.kind == 'progetto incompiuto' })
+	// 	.attr('y', r + 10)
+	// 	.text(function(d) { return d.year; })
 
 	works.selectAll('.previous-publication')
 		.data(function(d) {
@@ -362,13 +355,14 @@ function previousPublicationsLine(d, open) {
 	let _x2 = d.x2.toString().split('')[2] % 2 == 0 ? x(positionX2) : xInverse(positionX2);
 
 	let end_y = d.distributeElement ? r * d.distributeElement * distributePadding : 0;
-	end_y += y(d.y1)
+	end_y += y(d.y1);
+	end_y -= r;
 
 	if(open) {
 		end_y += space;
 	}
 
-	let p = [{ 'x': 0, 'y': 0 }, { 'x': _x2 - _x1, 'y': y(d.y2) - end_y }]
+	let p = [{ 'x': 0, 'y': 0 - r }, { 'x': _x2 - _x1, 'y': y(d.y2) - end_y }]
 	return `M${p[0].x},${p[0].y} C${p[0].x},${p[1].y/2} ${p[1].x},${p[1].y/2} ${p[1].x},${p[1].y}`;
 }
 
@@ -473,11 +467,10 @@ function decadeArcs(d, position, open) {
 	}
 }
 
-function wrap(text, width) {
+function wrap(text) {
 	text.each(function() {
 		var text = d3.select(this),
-			// words = text.text().split(/\s+/).reverse();
-			words = text.text().split(/_+/).reverse().reverse();
+			words = text.text().split(/_+/);
 
 		text.text(null);
 
@@ -486,29 +479,25 @@ function wrap(text, width) {
 			lineNumber = 0,
 			lineHeight = 0.55, // ems
 			y = text.attr("y"),
-			transform = text.attr("transform"),
+			transform = text.attr("transform").replace('translate', '').replace(/\s+/, '').replace(/\(/, '').replace(/\)/, '').split(','),
 			dy = parseFloat(text.attr("dy"));
-		// tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-		// while (word = words.pop()) {
-		//   line.push(word);
-		//   tspan.text(line.join(" "));
-		//   if (tspan.node().getComputedTextLength() > width) {
-		//     line.pop();
-		//     tspan.text(line.join(" "));
-		//     line = [word];
-		//     tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-		//   }
-		// }
+
 		words.forEach((w, i) => {
-			// console.log(w)
 			tspan = text.append("tspan")
 				.attr("x", 0)
 				.attr("y", y)
 				.attr("dy", i * lineHeight + 'rem')
 				.text(w);
 
-			// text.transform
+			if(i > 0) {
+				transform[1] -= rem2px(i * lineHeight) / 2;
+				text.attr('transform', `translate(${transform[0]}, ${transform[1]})`)
+			}
 		})
 
 	});
+}
+
+function rem2px(rem) {
+	return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
 }

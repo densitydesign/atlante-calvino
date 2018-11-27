@@ -19,11 +19,12 @@
     },
     {
       "id": "F001",
-      "label": "Il bianco veliero",
+      "label": "Il bianco_veliero",
       "year": 1948,
       "kind": "romanzo fallito o opera non pubblicata",
       "firstPublication": null,
-      "publisher": ""
+      "publisher": "",
+      "labelPosition": "right"
     }
   ],
   "periodicals": [
@@ -60,11 +61,12 @@
     },
     {
       "id": "F003",
-      "label": "La collana della regina",
+      "label": "La collana_della regina",
       "year": 1953,
       "kind": "romanzo fallito o opera non pubblicata",
       "firstPublication": null,
-      "publisher": ""
+      "publisher": "",
+      "labelPosition": "right"
     },
     {
       "id": "V003",
@@ -198,7 +200,7 @@
     "year": 1965,
     "distributeElement": -0.5,
     "kind": "forma ibrida tra romanzo breve e racconto lungo",
-    "firstPublication": 1952,
+    "firstPublication": 1957,
     "publisher": "",
     "labelPosition": "right"
   }, {

@@ -28,6 +28,7 @@ body {
 /* visualisation */
 svg#visualisation {
   background-color: #fffefa;
+  /* background-color: beige; */
 }
 
 .label {
@@ -38,8 +39,11 @@ svg#visualisation {
   letter-spacing: 0.5px;
 }
 
-.label.with-shadow {
-  text-shadow: white 2px 2px 2px, white -2px -2px 2px, white 2px -2px 2px, white -2px 2px 2px;
+.label.white-shadow {
+  stroke: white;
+  stroke-width: 0.125rem;
+  fill: white;
+  stroke-linejoin: round;
 }
 
 .year {
