@@ -48,14 +48,12 @@ svg#visualisation {
 
 .guide-line, .thread {
   fill: none;
-  stroke: black;
-  stroke-width: .5px;
+  stroke: #2E4053;
+  stroke-width: 1px;
 }
 
 .decade-arc {
-  stroke-width: 1px;
-  stroke: black;
-  stroke-dasharray: 0 3;
+  stroke-dasharray: 1 3;
   -webkit-animation-name: arcs-direction;
   animation-name: arcs-direction;
   -webkit-animation-duration: 1.5s;
@@ -73,7 +71,7 @@ svg#visualisation {
 
 .previous-publication {
   fill: none;
-  stroke: black;
+  stroke: #5D6D7E;
   stroke-width: .5px;
   stroke-dasharray: 2 3;
 }

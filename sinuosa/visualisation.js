@@ -267,7 +267,35 @@ d3.json('data.json').then(function(json) {
 
 	works.append('text')
 		.attr('class', 'label')
-		.attr('y', -r*1.9)
+		.attr('y', function(d){
+			let y;
+			if (d.labelPosition) {
+				y = (d.labelPosition == "right" || d.labelPosition == "left") ? 0 : -r*2.4
+			} else {
+				y = -r*2.4
+			}
+			return 0
+		})
+		.attr('x', function(d){
+			let x = 0;
+			if (d.labelPosition) {
+				if (d.labelPosition == "right") { x = r*2.4 }
+				else if (d.labelPosition == "left") { x =  -r*2.4 }
+			}
+			return 0;
+		})
+		.attr('transform', function(d){
+			let _x = 0, _y = 0;
+			if (d.labelPosition) {
+				if (d.labelPosition == "right") { _x = r*1.3; _y = 4; }
+				else if (d.labelPosition == "left") { _x =  -r*1.3; _y = 4; }
+			}
+			return 'translate('+_x+', '+_y+')';
+		})
+		.style('text-anchor', function(d){
+			if (d.labelPosition == "right") { return 'start' }
+			else if (d.labelPosition == "left") { return 'end' }
+		})
 		// .attr('dy', '1rem')
 		.text(function(d) { return d.label; })
 		.call(wrap, 100)
@@ -458,6 +486,7 @@ function wrap(text, width) {
 			lineNumber = 0,
 			lineHeight = 0.55, // ems
 			y = text.attr("y"),
+			transform = text.attr("transform"),
 			dy = parseFloat(text.attr("dy"));
 		// tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
 		// while (word = words.pop()) {
@@ -477,6 +506,8 @@ function wrap(text, width) {
 				.attr("y", y)
 				.attr("dy", i * lineHeight + 'rem')
 				.text(w);
+
+			// text.transform
 		})
 
 	});

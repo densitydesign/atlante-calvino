@@ -162,7 +162,8 @@
     "distributeElement": -1,
     "firstPublication": 1957,
     "publisher": "",
-    "curve": "bezier"
+    "curve": "bezier",
+    "labelPosition": "right"
   },{
     "id": "V009",
     "label": "La giornata_d'uno scrutatore",
@@ -170,7 +171,8 @@
     "kind": "forma ibrida tra romanzo breve e racconto lungo",
     "distributeElement": 0,
     "firstPublication": null,
-    "publisher": ""
+    "publisher": "",
+    "labelPosition": "right"
   }, {
     "id": "V011",
     "label": "Marcovaldo",
@@ -178,7 +180,8 @@
     "distributeElement": 1,
     "kind": "raccolta di racconti con un unico protagonista",
     "firstPublication": null,
-    "publisher": ""
+    "publisher": "",
+    "labelPosition": "right"
   }, {
     "id": "V013",
     "label": "Le Cosmicomiche",
@@ -187,7 +190,8 @@
     "kind": "raccolta di racconti con un unico protagonista",
     "firstPublication": null,
     "publisher": "",
-    "curve": "bezier"
+    "curve": "bezier",
+    "labelPosition": "right"
   }, {
     "id": "V012",
     "label": "La nuvola di smog_e la formica argentina",
@@ -195,7 +199,8 @@
     "distributeElement": -0.5,
     "kind": "forma ibrida tra romanzo breve e racconto lungo",
     "firstPublication": 1952,
-    "publisher": ""
+    "publisher": "",
+    "labelPosition": "right"
   }, {
     "id": "V014",
     "label": "Ti con zero",
@@ -217,7 +222,8 @@
     "distributeElement": 0.5,
     "kind": "raccolta di racconti",
     "firstPublication": null,
-    "publisher": ""
+    "publisher": "",
+    "labelPosition": "left"
   }, {
     "id": "V015",
     "label": "Orlando_furioso",
@@ -225,7 +231,8 @@
     "distributeElement": -0.5,
     "kind": "riscrittura",
     "firstPublication": 1967,
-    "publisher": ""
+    "publisher": "",
+    "labelPosition": "right"
   }, {
     "id": "V017",
     "label": "Le città_invisibili",
