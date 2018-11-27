@@ -45,7 +45,7 @@ let xInverse = d3.scaleLinear()
 
 let col = d3.scaleOrdinal()
 	.domain(['romanzo', 'romanzo di racconti dentro una cornice', 'forma ibrida tra romanzo breve e racconto lungo', 'raccolta di racconti con un unico protagonista', 'raccolta di racconti', 'riscrittura', 'raccolta di saggi', 'romanzo fallito o opera non pubblicata', 'progetto incompiuto'])
-	.range(['#0490ca', '#00b79e', '#f2d371', '#eb9d69', '#ed7f62', '#707e84', '#9d80bb', 'transparent', 'transparent'])
+	.range(['#0490ca', '#00b79e', '#f2d371', '#eb9d69', '#ed7f62', '#707e84', '#9d80bb', '#dfdfdf', '#dfdfdf'])
 
 d3.json('data.json').then(function(json) {
 	data = json;
@@ -255,24 +255,24 @@ d3.json('data.json').then(function(json) {
 		.style('fill', 'white')
 		.style('stroke', function(d) { return col(d.kind) })
 
-	works.append('text')
-		.attr('class', 'label white-shadow')
-		.attr('y', 0)
-		.attr('x', 0)
-		.attr('transform', function(d) {
-			let _x = 0, _y = -r * 2;
-			if(d.labelPosition) {
-				if(d.labelPosition == "right") { _x = r * 1.3;
-					_y = r * 0.25; } else if(d.labelPosition == "left") { _x = -r * 1.3;
-					_y = r * 0.25; }
-			}
-			return 'translate(' + _x + ', ' + _y + ')';
-		})
-		.style('text-anchor', function(d) {
-			if(d.labelPosition == "right") { return 'start' } else if(d.labelPosition == "left") { return 'end' }
-		})
-		.text(function(d) { return d.label; })
-		.call(wrap)
+	// works.append('text')
+	// 	.attr('class', 'label white-shadow')
+	// 	.attr('y', 0)
+	// 	.attr('x', 0)
+	// 	.attr('transform', function(d) {
+	// 		let _x = 0, _y = -r * 2;
+	// 		if(d.labelPosition) {
+	// 			if(d.labelPosition == "right") { _x = r * 1.3;
+	// 				_y = r * 0.25; } else if(d.labelPosition == "left") { _x = -r * 1.3;
+	// 				_y = r * 0.25; }
+	// 		}
+	// 		return 'translate(' + _x + ', ' + _y + ')';
+	// 	})
+	// 	.style('text-anchor', function(d) {
+	// 		if(d.labelPosition == "right") { return 'start' } else if(d.labelPosition == "left") { return 'end' }
+	// 	})
+	// 	.text(function(d) { return d.label; })
+	// 	.call(wrap)
 
 	works.append('text')
 		.attr('class', 'label')
@@ -282,8 +282,12 @@ d3.json('data.json').then(function(json) {
 			let _x = 0, _y = -r * 2;
 			if(d.labelPosition) {
 				if(d.labelPosition == "right") { _x = r * 1.3;
-					_y = r * 0.25; } else if(d.labelPosition == "left") { _x = -r * 1.3;
 					_y = r * 0.25; }
+					else if(d.labelPosition == "left") { _x = -r * 1.3;
+					_y = r * 0.25; }
+					else if (d.labelPosition == "bottom") {
+						_y = -_y + r*0.5
+					}
 			}
 			return 'translate(' + _x + ', ' + _y + ')';
 		})

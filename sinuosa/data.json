@@ -306,10 +306,11 @@
     "publisher": ""
   }, {
     "id": "F005",
-    "label": "Passaggi obbligati",
+    "label": "Passaggi_obbligati",
     "year": 1986,
     "kind": "progetto incompiuto",
-    "publisher": ""
+    "publisher": "",
+    "labelPosition": "left"
   }, {
     "id": "F006",
     "label": "I cinque sensi",
@@ -318,10 +319,11 @@
     "publisher": ""
   }, {
     "id": "F007",
-    "label": "Le memorie di Casanova",
+    "label": "Le memorie_di Casanova",
     "year": 1987,
     "kind": "progetto incompiuto",
-    "publisher": ""
+    "publisher": "",
+    "labelPosition": "bottom"
   }, {
     "id": "F008",
     "label": "Dialoghi storici",
@@ -330,10 +332,11 @@
     "publisher": ""
   }, {
     "id": "F009",
-    "label": "Lezioni americane",
+    "label": "Lezioni_americane",
     "year": 1988,
     "kind": "progetto incompiuto",
-    "publisher": ""
+    "publisher": "",
+    "labelPosition": "right"
   }],
   "periodicals": [
     {
