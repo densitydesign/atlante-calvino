@@ -78,23 +78,30 @@ d3.json('data.json').then(function(json) {
 			//   d.points.push(startingPoint);
 			// }
 
+			let _year = '19' + d.id.toString().split('').slice(4, 5).join('')
+
 			for(var ii = 0; ii < 10; ii++) {
+				let _year = '19' + d.id.toString().split('').slice(4, 5).join('') + ii;
 				// check if there is a volume in this date (ii) and is not an abandoned work
 				let ww = d.works.filter(function(e) { return +e.year.toString().split('').slice(3).join('') == ii && e.kind != 'romanzo fallito o opera non pubblicata' && e.kind != 'progetto incompiuto'; })
 				if(ww.length) {
 					ww.forEach((e) => {
 						let point = {
+							"year": _year,
 							"x": workPosition(e)[0],
 							"y": workPosition(e)[1],
-							"curve": e.curve
+							"curve": e.curve,
+							"there_is_work": true
 						}
 						d.points.push(point);
 					})
 				} else {
 					let point = {
+						"year": _year,
 						"x": workPosition({ "year": decadeNumber + ii })[0],
 						"y": workPosition({ "year": decadeNumber + ii })[1],
-						"curve": undefined
+						"curve": undefined,
+						"there_is_work": false
 					}
 					if(d.id == 'anni60' && ii == 6) {
 						point.curve = "bezier";
@@ -215,10 +222,6 @@ d3.json('data.json').then(function(json) {
 		.force('y', d3.forceY(function(d) { return d.y }).strength(.6))
 		.on("tick", ticked);
 
-	let yearsLabels = decade.selectAll('.label.year')
-		.data(function(d){ console.log(d.points); return d.points })
-		.attr('class', 'label year')
-
 	let works = decade.selectAll('.work')
 		.data(function(d, i) {
 			// compile data for visualising first publications add for line-thread-guide
@@ -281,9 +284,9 @@ d3.json('data.json').then(function(json) {
 		.attr('transform', function(d) {
 			let _x = 0, _y = -r * 2;
 			if(d.labelPosition) {
-				if(d.labelPosition == "right") { _x = r * 1.3;
+				if(d.labelPosition == "right") { _x = r * 1.6;
 					_y = r * 0.25; }
-					else if(d.labelPosition == "left") { _x = -r * 1.3;
+					else if(d.labelPosition == "left") { _x = -r * 1.6;
 					_y = r * 0.25; }
 					else if (d.labelPosition == "bottom") {
 						_y = -_y + r*0.5
@@ -316,6 +319,34 @@ d3.json('data.json').then(function(json) {
 		.attr('class', 'previous-publication')
 		.attr('d', function(d) {
 			return previousPublicationsLine(d);
+		})
+
+	let yearsLabels = decade.selectAll('.label.year')
+		.data(function(d){
+			console.log(d.points);
+			let nested = d3.nest()
+				.key(function(d){return d.year})
+				.rollup(function(leaves) {
+					console.log(leaves)
+					let obj = {
+						'x': d3.max(leaves, function(d){ return d.x }),
+						'y': d3.max(leaves, function(d){ return d.y }),
+						'there_is_work': leaves.there_is_work
+					}
+					return obj;
+				})
+				.entries(d.points);
+
+			console.log(nested);
+			return nested;
+		})
+		.enter()
+		.append('text')
+		.attr('class', 'label year')
+		.attr('x', function(d) { console.log(d); return d.value.x })
+		.attr('y', function(d) { return d.value.y + r*1.6 })
+		.text(function(d){
+			return d.key
 		})
 
 	activateStorytelling();
