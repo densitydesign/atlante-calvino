@@ -24,7 +24,8 @@
       "kind": "romanzo fallito o opera non pubblicata",
       "firstPublication": null,
       "publisher": "",
-      "labelPosition": "right"
+      "labelPosition": "right",
+      "distributeElement": 0.9
     }
   ],
   "periodicals": [
@@ -58,7 +59,8 @@
       "kind": "romanzo fallito o opera non pubblicata",
       "firstPublication": null,
       "publisher": "",
-      "labelPosition": "right"
+      "labelPosition": "right",
+      "distributeElement": -0.75
     },
     {
       "id": "F003",
@@ -67,7 +69,8 @@
       "kind": "romanzo fallito o opera non pubblicata",
       "firstPublication": null,
       "publisher": "",
-      "labelPosition": "right"
+      "labelPosition": "right",
+      "distributeElement": 0.9
     },
     {
       "id": "V003",
@@ -157,7 +160,8 @@
     "kind": "romanzo fallito o opera non pubblicata",
     "firstPublication": null,
     "publisher": "",
-    "labelPosition": "right"
+    "labelPosition": "right",
+    "distributeElement": -0.75
   }, {
     "id": "V010",
     "label": "La speculazione_edilizia",
@@ -312,33 +316,40 @@
     "year": 1986,
     "kind": "progetto incompiuto",
     "publisher": "",
-    "labelPosition": "left"
+    "labelPosition": "top",
+    "distributeElement": -0.25
   }, {
     "id": "F006",
-    "label": "I cinque sensi",
+    "label": "I cinque_sensi",
     "year": 1986.5,
     "kind": "progetto incompiuto",
-    "publisher": ""
+    "publisher": "",
+    "labelPosition": "bottom",
+    "distributeElement": 0.25
   }, {
     "id": "F007",
     "label": "Le memorie_di Casanova",
     "year": 1987,
     "kind": "progetto incompiuto",
     "publisher": "",
-    "labelPosition": "bottom"
+    "labelPosition": "top",
+    "distributeElement": -0.25
   }, {
     "id": "F008",
-    "label": "Dialoghi storici",
+    "label": "Dialoghi_storici",
     "year": 1987.5,
     "kind": "progetto incompiuto",
-    "publisher": ""
+    "publisher": "",
+    "labelPosition": "bottom",
+    "distributeElement": 0.25
   }, {
     "id": "F009",
     "label": "Lezioni_americane",
     "year": 1988,
     "kind": "progetto incompiuto",
     "publisher": "",
-    "labelPosition": "right"
+    "labelPosition": "top",
+    "distributeElement": -0.25
   }],
   "periodicals": [
     {
@@ -372,7 +383,136 @@
 }, {
   "id": "anni90",
   "label": "Anni '90",
-  "works": [],
+  "works": [
+    {
+      "id": "P001",
+      "label": "Sotto il sole_giaguaro",
+      "year": 1991,
+      "trueYear": 1986,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": -0
+    },{
+      "id": "P002",
+      "label": "Lezioni_americane",
+      "year": 1991.5,
+      "trueYear": 1988,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": 0,
+      "labelPosition": "bottom"
+    },{
+      "id": "P003",
+      "label": "La strada_di san giovanni",
+      "year": 1992,
+      "trueYear": 1990,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": -0
+    },{
+      "id": "P004",
+      "label": "Perché leggere_i classici",
+      "year": 1992.5,
+      "trueYear": 1991,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": 0,
+      "labelPosition": "bottom"
+    },{
+      "id": "P005",
+      "label": "Prima che tu_dica “Pronto”",
+      "year": 1993,
+      "trueYear": 1993,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": -0
+    },{
+      "id": "P006",
+      "label": "Eremita_a Parigi",
+      "year": 1993.5,
+      "trueYear": 1994,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": 0,
+      "labelPosition": "bottom"
+    }
+
+    ,{
+      "id": "P007",
+      "label": "Romanzi_e racconti I",
+      "year": 1995,
+      "trueYear": 1991,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": 0
+    },{
+      "id": "P008",
+      "label": "Romanzi_e racconti II",
+      "year": 1995.5,
+      "trueYear": 1992,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": -0,
+      "labelPosition": "bottom"
+    },{
+      "id": "P009",
+      "label": "Fiabe_italiane",
+      "year": 1996,
+      "trueYear": 1993,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": 0
+    },{
+      "id": "P010",
+      "label": "Romanzi_e racconti III",
+      "year": 1996.5,
+      "trueYear": 1994,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": -0,
+      "labelPosition": "bottom"
+    },{
+      "id": "P011",
+      "label": "Saggi",
+      "year": 1997,
+      "trueYear": 1995,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": 0,
+      "labelPosition": "top"
+    },{
+      "id": "P012",
+      "label": "Album_Calvino",
+      "year": 1997.5,
+      "trueYear": 1995,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": -0,
+      "labelPosition": "bottom"
+    },{
+      "id": "P013",
+      "label": "Lettere",
+      "year": 1998,
+      "trueYear": 2000,
+      "kind": "posthumous",
+      "publisher": "",
+      "curve": "bezier",
+      "distributeElement": -0,
+      "labelPosition": "top"
+    }
+  ],
   "periodicals": [
 
   ]

@@ -24,15 +24,15 @@ let margin = {
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
 let r = width > height ? height / 10 / 2 / 2.8 : width / 10 / 2 / 2.2;
-r = 18;
-let r2 = r / 3.5;
+r = width > 540 ? 12 : 8;
+let r2 = r / 3 + width/1000;
 let distributePadding = 3.5;
 
 let svg = d3.select('svg#visualisation')
 	.attr('width', width + margin.right + margin.left)
-	.attr('height', height + margin.top + margin.bottom);
+	.attr('height', height + margin.top + margin.bottom + 80);
 let g = svg.append('g')
-	.attr('transform', 'translate(' + margin.left + ',' + margin.top + ')')
+	.attr('transform', 'translate(' + margin.left + ',' + (margin.top+40) + ')')
 
 let y = d3.scalePoint()
 	.range([0, height])
@@ -45,8 +45,8 @@ let xInverse = d3.scaleLinear()
 	.range([0, width])
 
 let col = d3.scaleOrdinal()
-	.domain(['romanzo', 'romanzo di racconti dentro una cornice', 'forma ibrida tra romanzo breve e racconto lungo', 'raccolta di racconti con un unico protagonista', 'raccolta di racconti', 'riscrittura', 'raccolta di saggi', 'romanzo fallito o opera non pubblicata', 'progetto incompiuto'])
-	.range(['#0490ca', '#00b79e', '#f2d371', '#eb9d69', '#ed7f62', '#707e84', '#9d80bb', '#dfdfdf', '#dfdfdf'])
+	.domain(['romanzo', 'romanzo di racconti dentro una cornice', 'forma ibrida tra romanzo breve e racconto lungo', 'raccolta di racconti con un unico protagonista', 'raccolta di racconti', 'riscrittura', 'raccolta di saggi', 'romanzo fallito o opera non pubblicata', 'progetto incompiuto', 'posthumous'])
+	.range(['#0490ca', '#00b79e', '#f2d371', '#eb9d69', '#ed7f62', '#707e84', '#9d80bb', '#dfdfdf', '#566573', 'transparent'])
 
 d3.json('data.json').then(function(json) {
 	data = json;
@@ -83,8 +83,13 @@ d3.json('data.json').then(function(json) {
 
 			for(var ii = 0; ii < 10; ii++) {
 				let _year = '19' + d.id.toString().split('').slice(4, 5).join('') + ii;
+
 				// check if there is a volume in this date (ii) and is not an abandoned work
-				let ww = d.works.filter(function(e) { return +e.year.toString().split('').slice(3).join('') == ii && e.kind != 'romanzo fallito o opera non pubblicata' && e.kind != 'progetto incompiuto'; })
+				let ww = d.works.filter(function(e) {
+					let checkYear = Math.round(+e.year.toString().split('').slice(3).join(''));
+					return checkYear == ii
+					&& e.kind != 'romanzo fallito o opera non pubblicata'
+					&& e.kind != 'progetto incompiuto'; })
 				if(ww.length) {
 					ww.forEach((e) => {
 						let point = {
@@ -136,6 +141,12 @@ d3.json('data.json').then(function(json) {
 				d.points.splice(6, 1);
 			}
 
+			if(d.id == 'anni90') {
+				d.points = []
+			}
+
+			// console.log(d.points)
+
 			// now return the identifier for the decade
 			return d.id;
 		})
@@ -171,8 +182,11 @@ d3.json('data.json').then(function(json) {
 		})
 
 	let decadeArcEnd = decade.selectAll('.decade-arc.end')
-		.data(function(d, i) {
+		.data(function(d, i){
 			d.index = i;
+			if (d.id == 'anni90') {
+				return [];
+			}
 			return [d];
 		})
 		.enter()
@@ -191,42 +205,37 @@ d3.json('data.json').then(function(json) {
 		.append('circle')
 		.attr('class', 'article')
 		.classed('ghost-node', function(d) { return d.ghostNode })
-		.attr('r', 0)
+		.attr('r', function(d) { return d.r })
 		.attr('cx', function(d) { return d.x })
 		.attr('cy', function(d) { return d.y })
-		.style('opacity', 1e-6)
-
-	article.transition()
-		.duration(duration * 3)
-		.delay(function(d, i) { return i * 3; })
-		.attr('r', function(d) { return d.r })
-		.style('opacity', .75)
 
 	function ticked() {
 		article
 			.attr("cx", function(d) {
 				if(d.x < 0) {
 					// d.x = 0
-					return d.x += .5
+					return d.x += .35
 				} else if(d.x > width) {
 					// d.x = width
-					return d.x -= .5
+					return d.x -= .35
 				}
 				return d.x;
 			})
-			.attr("cy", function(d) { return d.y; });
+			.attr("cy", function(d) {
+
+				return d.y;
+			});
 	}
 
 	let simulationArticle = d3.forceSimulation(articles)
-		.force('collision', d3.forceCollide(function(d) { return d3.max([r2 + 3, d.r + 3]) }).iterations(8))
+		.force('collision', d3.forceCollide(function(d) { return d3.max([r2 + 1.5, d.r + 1.5]) }).iterations(8))
 		.force('x', d3.forceX(function(d) { return d.x }).strength(.1))
-		.force('y', d3.forceY(function(d) { return d.y }).strength(.6))
+		.force('y', d3.forceY(function(d) { return d.y }).strength(.8))
 		.on("tick", ticked);
 
 	let works = decade.selectAll('.work')
 		.data(function(d, i) {
 			// compile data for visualising first publications add for line-thread-guide
-			// d.points = []
 			d.works.forEach((e, i) => {
 				if(e.firstPublication) {
 					let _y1 = e.year.toString().split('')[2];
@@ -248,16 +257,37 @@ d3.json('data.json').then(function(json) {
 		.enter()
 		.append('g')
 		.attr('class', function(d) { return 'work ' + d.id })
-		.attr('transform', function(d) {
-			_x = workPosition(d)[0]
-			_y = workPosition(d)[1]
+		.attr('transform', function(d,i) {
+			// console.log(d)
+			// if (d.kind == 'posthumous') {
+			// 	d.yearLabel = d.year;
+			// 	d.year = d.positionPosthumous;
+			// }
+			let _x = workPosition(d)[0]
+			let _y = workPosition(d)[1]
+			// if (d.kind == 'posthumous') {
+			// 	_y+= i%2==0 ? r/2 : -r/2
+			// }
+
 			return 'translate(' + _x + ',' + _y + ')';
 		})
 
 	works.append('circle')
-		.attr('r', r)
-		.style('fill', 'white')
+		.attr('r', function(d){
+			d.r = r;
+			if (d.kind == 'posthumous' || d.kind == 'progetto incompiuto') d.r/=2
+			return d.r;
+		})
+		.style('fill', function(d){
+			if (d.kind == 'posthumous') {
+				return '#566573';
+			} else {
+				return 'white';
+			}
+		})
 		.style('stroke', function(d) { return col(d.kind) })
+		.classed('posthumous', function(d){ return d.kind == 'posthumous' })
+		.classed('unfinished', function(d){ return d.kind == 'progetto incompiuto' })
 
 	// works.append('text')
 	// 	.attr('class', 'label white-shadow')
@@ -279,18 +309,21 @@ d3.json('data.json').then(function(json) {
 	// 	.call(wrap)
 
 	works.append('text')
-		.attr('class', 'label')
+		.attr('class', 'label white-shadow')
+		.classed('small',  function(d){
+			return d.kind == 'posthumous'
+		})
 		.attr('y', 0)
 		.attr('x', 0)
 		.attr('transform', function(d) {
-			let _x = 0, _y = -r * 2;
+			let _x = 0, _y = -d.r * 1.75;
 			if(d.labelPosition) {
-				if(d.labelPosition == "right") { _x = r * 1.6;
-					_y = r * 0.25; }
-					else if(d.labelPosition == "left") { _x = -r * 1.6;
-					_y = r * 0.25; }
+				if(d.labelPosition == "right") { _x = d.r * 1.6;
+					_y = d.r * 0.25; }
+					else if(d.labelPosition == "left") { _x = -d.r * 1.6;
+					_y = d.r * 0.25; }
 					else if (d.labelPosition == "bottom") {
-						_y = -_y + r*0.5
+						_y = -_y + d.r*1
 					}
 			}
 			return 'translate(' + _x + ', ' + _y + ')';
@@ -300,6 +333,32 @@ d3.json('data.json').then(function(json) {
 		})
 		.text(function(d) { return d.label; })
 		.call(wrap)
+
+		works.append('text')
+			.attr('class', 'label')
+			.classed('small',  function(d){
+				return d.kind == 'posthumous'
+			})
+			.attr('y', 0)
+			.attr('x', 0)
+			.attr('transform', function(d) {
+				let _x = 0, _y = -d.r * 1.75;
+				if(d.labelPosition) {
+					if(d.labelPosition == "right") { _x = d.r * 1.6;
+						_y = d.r * 0.25; }
+						else if(d.labelPosition == "left") { _x = -d.r * 1.6;
+						_y = d.r * 0.25; }
+						else if (d.labelPosition == "bottom") {
+							_y = -_y + d.r*1
+						}
+				}
+				return 'translate(' + _x + ', ' + _y + ')';
+			})
+			.style('text-anchor', function(d) {
+				if(d.labelPosition == "right") { return 'start' } else if(d.labelPosition == "left") { return 'end' }
+			})
+			.text(function(d) { return d.label; })
+			.call(wrap)
 
 	// works.append('text')
 	// 	.attr('class', 'label year')
@@ -324,28 +383,28 @@ d3.json('data.json').then(function(json) {
 
 	let yearsLabels = decade.selectAll('.label.year')
 		.data(function(d){
-			console.log(d.points);
 			let nested = d3.nest()
 				.key(function(d){return d.year})
 				.rollup(function(leaves) {
-					console.log(leaves)
+					// console.log(leaves.length, leaves[0].there_is_work)
 					let obj = {
 						'x': d3.max(leaves, function(d){ return d.x }),
 						'y': d3.max(leaves, function(d){ return d.y }),
-						'there_is_work': leaves.there_is_work
+						'there_is_work': leaves[0].there_is_work
 					}
 					return obj;
 				})
 				.entries(d.points);
-
-			console.log(nested);
-			return nested;
+			// console.log(nested)
+			return nested.filter( (e,i) => {
+				return e.value.there_is_work || i == 0;
+			});
 		})
 		.enter()
 		.append('text')
 		.attr('class', 'label year')
-		.attr('x', function(d) { console.log(d); return d.value.x })
-		.attr('y', function(d) { return d.value.y + r*1.6 })
+		.attr('x', function(d) { return d.value.x })
+		.attr('y', function(d) { return d.value.there_is_work ? d.value.y + r*2 : r })
 		.text(function(d){
 			return d.key
 		})
@@ -374,7 +433,7 @@ function transformPeriodicals(data) {
 			let node = {
 				'x': _x,
 				'y': y(data.id),
-				'r': d3.max([r2 + d3.randomUniform(-r2 / 1, 0)(), 2]),
+				'r': r2 + d3.randomUniform(-1.5,0)(),
 				'decade': data.id,
 				'decadeIndex': data.index
 			}
@@ -407,8 +466,6 @@ function workPosition(d) {
 	position = +d.year.toString().split('').slice(3).join('')
 	let _x = d.year.toString().split('')[2] % 2 == 0 ? x(position) : xInverse(position);
 	let _y = d.distributeElement ? r * d.distributeElement * distributePadding : 0;
-	_y += (d.kind == 'romanzo fallito o opera non pubblicata') ? r * 3 : 0;
-	_y += (d.kind == 'progetto incompiuto') ? r * 3 : 0;
 	return [_x, _y]
 }
 
