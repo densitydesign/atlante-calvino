@@ -24,7 +24,8 @@ let margin = {
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
 let r = width > height ? height / 10 / 2 / 2.8 : width / 10 / 2 / 2.2;
-let r2 = r / 4;
+r = 18;
+let r2 = r / 3.5;
 let distributePadding = 3.5;
 
 let svg = d3.select('svg#visualisation')
@@ -342,7 +343,7 @@ function transformPeriodicals(data) {
 			let node = {
 				'x': _x,
 				'y': y(data.id),
-				'r': d3.max([r2 + d3.randomUniform(-r2 / 1, 0)(), 1.5]),
+				'r': d3.max([r2 + d3.randomUniform(-r2 / 1, 0)(), 2]),
 				'decade': data.id,
 				'decadeIndex': data.index
 			}

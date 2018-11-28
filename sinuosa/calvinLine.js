@@ -14,5 +14,4 @@ function calvinLine(p) {
 		}
 		return path;
 	}
-
 }
