@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 692.51 1603.31">
-  <title>lische-web-003</title>
+  <title>visualisation</title>
   <g style="isolation: isolate">
     <g id="Layer_1" data-name="Layer 1">
       <rect id="reset_" data-name="reset|" width="692.51" height="1603.31" style="fill: #fff"/>
@@ -320,6 +320,8 @@
         </g>
         <g id="la_casa_degli_alveari_uvic_ir" data-name="la casa degli alveari|uvic|ir">
           <path d="M404.09,276.11c-39.51,0-39.83,35-75.5,35" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,310.54c-35.81,0-35.81-34.43-71.61-34.43" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,310.54a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,310.54Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <rect x="252.66" y="238.63" width="6.68" height="145.17" transform="translate(567.22 30.22) rotate(90)" style="fill: #fefcf6"/>
           <text transform="translate(186.76 288.71)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: 0.0009765625em">L</tspan><tspan x="3.55" y="0">a </tspan><tspan x="8.9" y="0" style="letter-spacing: -0.00390625em">c</tspan><tspan x="12.21" y="0">a</tspan><tspan x="15.71" y="0" style="letter-spacing: -0.0087890625em">s</tspan><tspan x="18.61" y="0">a degli al</tspan><tspan x="45.44" y="0" style="letter-spacing: -0.01513671875em">v</tspan><tspan x="48.57" y="0">ea</tspan><tspan x="55.62" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="58.35" y="0">i</tspan></text>
           <line x1="328.59" y1="282.88" x2="328.59" y2="289.56" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
@@ -333,20 +335,21 @@
           <path d="M179.32,263.06a2.41,2.41,0,1,1-2.4,2.4,2.41,2.41,0,0,1,2.4-2.4m0-.25a2.66,2.66,0,1,0,2.66,2.65,2.65,2.65,0,0,0-2.66-2.65Z" transform="translate(0 -25)" style="fill: #373736"/>
         </g>
         <g id="pranzo_con_un_pastore_l_unita_torino_uvic_ir" data-name="pranzo con un pastore|l unita torino|uvic|ir">
-          <path d="M475.7,286.81c-35.79,0-35.79-39.22-71.61-39.22" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,247.59c-37.75,0-37.75,4.52-75.5,4.52" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,275c-35.81,0-35.81-27.36-71.61-27.36" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,275a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,275Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,252.1c-44.69,0-44.69-43.33-89.38-43.33" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="179.5" width="6.68" height="145.17" transform="translate(508.09 -28.91) rotate(90)" style="fill: #fefcf6"/>
           <text transform="translate(186.76 229.61)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: -0.01416015625em">P</tspan><tspan x="3.82" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="6.55" y="0">an</tspan><tspan x="13.88" y="0" style="letter-spacing: -0.0009765625em">z</tspan><tspan x="17.05" y="0">o </tspan><tspan x="22.72" y="0" style="letter-spacing: -0.0048828125em">c</tspan><tspan x="26.02" y="0">on un pas</tspan><tspan x="55.34" y="0" style="letter-spacing: -0.00390625em">t</tspan><tspan x="57.61" y="0">o</tspan><tspan x="61.43" y="0" style="letter-spacing: -0.0400390625em">r</tspan><tspan x="63.87" y="0">e</tspan></text>
-          <path d="M473.85,286.81A1.86,1.86,0,1,0,475.7,285,1.85,1.85,0,0,0,473.85,286.81Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <line x1="183.41" y1="223.74" x2="183.41" y2="230.43" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <line x1="328.59" y1="223.74" x2="328.59" y2="230.43" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,249.69a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25A2.66,2.66,0,1,0,182,252.1a2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M402.29,247.59a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,247.59Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="il_gatto_e_il_poliziotto_l_unita_torino_uvic_ir" data-name="il gatto e il poliziotto|l unita torino|uvic|ir">
-          <path d="M475.7,275c-35.81,0-35.81-34.49-71.61-34.49" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,240.46c-37.75,0-37.75,5-75.5,5" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,263.09c-35.79,0-35.81-22.63-71.61-22.63" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,263.09a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,263.09Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,245.42c-44.69,0-44.69-39.6-89.38-39.6" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="172.84" width="6.68" height="145.17" transform="translate(501.43 -35.57) rotate(90)" style="fill: #f9f5de"/>
           <text transform="translate(186.76 222.92)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk">Il <tspan x="5.61" y="0" style="letter-spacing: -0.0048828125em">g</tspan><tspan x="9.07" y="0" style="letter-spacing: -0.0009765625em">a</tspan><tspan x="12.57" y="0">t</tspan><tspan x="14.87" y="0" style="letter-spacing: -0.00390625em">t</tspan><tspan x="17.14" y="0">o e il polizi</tspan><tspan x="49.47" y="0" style="letter-spacing: -0.00390625em">o</tspan><tspan x="53.27" y="0">t</tspan><tspan x="55.57" y="0" style="letter-spacing: -0.00390625em">t</tspan><tspan x="57.84" y="0">o</tspan></text>
@@ -354,11 +357,11 @@
           <line x1="328.59" y1="217.06" x2="328.59" y2="223.74" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,243a2.41,2.41,0,1,1-2.4,2.4,2.41,2.41,0,0,1,2.4-2.4m0-.25a2.66,2.66,0,1,0,2.66,2.65,2.65,2.65,0,0,0-2.66-2.65Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M402.29,240.46a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,402.29,240.46Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,275a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,275Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="si_dorme_come_cani_l_unita_torino_uvic_ir" data-name="si dorme come cani|l unita torino|uvic|ir">
-          <path d="M475.7,263.09c-35.79,0-35.81-29.76-71.61-29.76" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,233.33c-37.75,0-37.75-1.27-75.5-1.27" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,251.22c-35.79,0-35.81-17.89-71.61-17.89" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,251.22a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,473.85,251.22Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,232c-44.69,0-44.69-29.17-89.38-29.17" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="159.47" width="6.68" height="145.17" transform="translate(488.06 -48.94) rotate(90)" style="fill: #f9f5de"/>
           <text transform="translate(186.76 209.56)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: -0.00390625em">S</tspan><tspan x="3.77" y="0">i do</tspan><tspan x="14.97" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="17.69" y="0">me </tspan><tspan x="28.9" y="0" style="letter-spacing: -0.0048828125em">c</tspan><tspan x="32.19" y="0">ome </tspan><tspan x="47.22" y="0" style="letter-spacing: -0.00390625em">c</tspan><tspan x="50.52" y="0">ani</tspan></text>
@@ -366,10 +369,8 @@
           <line x1="328.59" y1="203.69" x2="328.59" y2="210.38" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,229.64a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25a2.66,2.66,0,1,0,2.66,2.66,2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M402.29,233.33a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,402.29,233.33Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,263.09a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,263.09Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="il_bosco_degli_animali_l_unita_torino_uvic" data-name="il bosco degli animali|l unita torino|uvic">
-          <path d="M475.7,251.22c-35.79,0-35.81-25-71.61-25" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,226.21c-37.75,0-37.75-.84-75.5-.84" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <path d="M175.9,225.36c-44.69,0-44.69-25.44-89.38-25.44" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="152.77" width="6.68" height="145.17" transform="translate(481.35 -55.65) rotate(90)" style="fill: #fefcf6"/>
@@ -378,10 +379,11 @@
           <line x1="328.59" y1="197.01" x2="328.59" y2="203.69" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,223a2.41,2.41,0,1,1-2.4,2.4,2.41,2.41,0,0,1,2.4-2.4m0-.25a2.66,2.66,0,1,0,2.66,2.65,2.65,2.65,0,0,0-2.66-2.65Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M402.29,226.21a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,226.21Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,251.22a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,473.85,251.22Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="impiccagione_di_un_giudice_rinascita_uvic_ir" data-name="impiccagione di un giudice|rinascita|uvic|ir">
           <path d="M404.09,219.08c-37.75,0-37.75-.39-75.5-.39" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,239.36c-35.81,0-35.81-20.28-71.61-20.28" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,239.36a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,239.36Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,218.68C131.09,218.68,131.21,407,86.52,407" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="146.11" width="6.68" height="145.17" transform="translate(474.69 -62.31) rotate(90)" style="fill: #f9f5de"/>
           <text transform="translate(186.76 196.19)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk">Impi<tspan x="13.32" y="0" style="letter-spacing: -0.0048828125em">c</tspan><tspan x="16.62" y="0" style="letter-spacing: -0.00390625em">c</tspan><tspan x="19.92" y="0">agione di un gi</tspan><tspan x="63.67" y="0" style="letter-spacing: -0.00390625em">u</tspan><tspan x="67.46" y="0">di</tspan><tspan x="72.99" y="0" style="letter-spacing: -0.0048828125em">c</tspan><tspan x="76.29" y="0">e</tspan></text>
@@ -391,8 +393,9 @@
           <path d="M402.29,219.08a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,219.08Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="il_giardino_incantato_l_unita_torino_uvic_ir" data-name="il giardino incantato|l unita torino|uvic|ir">
-          <path d="M475.7,239.36c-35.81,0-35.81-27.41-71.61-27.41" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,212c-37.75,0-37.75.06-75.5.06" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,227.5c-35.81,0-35.79-15.55-71.61-15.55" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,227.5a1.86,1.86,0,0,0,3.71,0,1.86,1.86,0,1,0-3.71,0Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,212c-44.79,0-44.69-15-89.38-15" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="139.4" width="6.68" height="145.17" transform="translate(467.98 -69.02) rotate(90)" style="fill: #fefcf6"/>
           <text transform="translate(186.76 189.51)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk">Il gia<tspan x="14.28" y="0" style="letter-spacing: -0.0400390625em">r</tspan><tspan x="16.72" y="0">dino in</tspan><tspan x="37.24" y="0" style="letter-spacing: -0.00390625em">c</tspan><tspan x="40.54" y="0">an</tspan><tspan x="47.87" y="0" style="letter-spacing: 0.0009765625em">t</tspan><tspan x="50.17" y="0" style="letter-spacing: -0.0009765625em">a</tspan><tspan x="53.67" y="0" style="letter-spacing: -0.00390625em">t</tspan><tspan x="55.94" y="0">o</tspan></text>
@@ -400,7 +403,6 @@
           <line x1="328.59" y1="183.64" x2="328.59" y2="190.33" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,209.59a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25A2.66,2.66,0,1,0,182,212a2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M402.29,212a1.86,1.86,0,0,0,3.72,0,1.86,1.86,0,1,0-3.72,0Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,239.36a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,239.36Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="ragionamento_del_cugino_l_unita_torino" data-name="ragionamento del cugino|l unita torino">
           <path d="M175.9,120.52c-44.69,0-44.69,64.66-89.38,64.66" transform="translate(0 -25)" style="fill: none;stroke: #9aa4a5;stroke-miterlimit: 10;stroke-width: 0.349999994039536px"/>
@@ -437,7 +439,6 @@
           <path d="M402.29,105a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,105Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="andato_al_comando_politecnico_uvic_ir" data-name="andato al comando|politecnico|uvic|ir">
-          <path d="M475.7,120.73c-35.79,0-35.79-8.59-71.61-8.59" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M473.85,120.76a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,120.76Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,73.74c-44.69,0-44.69,75.32-89.38,75.32" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="1.16" width="6.68" height="145.17" transform="translate(329.74 -207.26) rotate(90)" style="fill: #f9f5de"/>
@@ -446,10 +447,10 @@
           <line x1="328.59" y1="45.4" x2="328.59" y2="52.08" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,71.33a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25A2.66,2.66,0,1,0,182,73.74a2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M404.09,112.14c-39.42,0-38-38.4-75.5-38.4" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,120.73c-35.79,0-35.79-8.59-71.61-8.59" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M402.29,112.08a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,402.29,112.08Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="paura_sul_sentiero_darsena_nuova_uvic_ir" data-name="paura sul sentiero|darsena nuova|uvic|ir">
-          <path d="M475.7,132.59c-35.81,0-35.81-6.19-71.59-6.19" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M473.85,132.59a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,473.85,132.59Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,87.1c-44.69,0-44.69,222.66-89.38,222.66" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="14.52" width="6.68" height="145.17" transform="translate(343.11 -193.89) rotate(90)" style="fill: #f9f5de"/>
@@ -458,6 +459,7 @@
           <line x1="328.59" y1="58.76" x2="328.59" y2="65.45" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,84.7a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25A2.66,2.66,0,1,0,182,87.11a2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M404.12,126.4c-39.43,0-39.32-39.29-75.53-39.29" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,132.59c-35.81,0-35.81-6.19-71.59-6.19" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M402.29,126.4a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,126.4Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="e_il_settimo_si_riposo_l_unita_torino" data-name="e il settimo si riposo|l unita torino">
@@ -467,7 +469,7 @@
           <path d="M179.32,91.38a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25A2.66,2.66,0,1,0,182,93.79a2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
         </g>
         <g id="campo_di_mine_l_unita_genova_uvic_ir" data-name="campo di mine|l unita genova|uvic|ir">
-          <path d="M475.7,156.32c-35.81,0-35.81-15.66-71.59-15.66" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,144.46a1.86,1.86,0,0,0,3.71,0,1.86,1.86,0,1,0-3.71,0Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,107.15c-36,0-39.76,177.87-89.38,177.87" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="34.57" width="6.68" height="145.17" transform="translate(363.16 -173.84) rotate(90)" style="fill: #fefcf6"/>
           <text transform="translate(186.76 84.67)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: -0.01904296875em">C</tspan><tspan x="4.72" y="0">ampo di mine</tspan></text>
@@ -475,8 +477,8 @@
           <line x1="328.59" y1="78.81" x2="328.59" y2="85.5" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,104.75a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25a2.66,2.66,0,1,0,2.66,2.66,2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M404.12,140.66c-39.43,0-41.3-33.5-75.53-33.5" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,144.46c-35.79,0-35.79-3.8-71.61-3.8" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M402.29,140.66a1.86,1.86,0,0,0,3.72,0,1.86,1.86,0,1,0-3.72,0Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,156.32a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,156.32Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="come_non_fu_noe_rivista_n_i" data-name="come non fu noe|rivista n i">
           <path d="M175.9,139.47c-44.69,0-44.69,195.75-89.38,195.75" transform="translate(0 -25)" style="fill: none;stroke: #9aa4a5;stroke-miterlimit: 10;stroke-width: 0.349999994039536px"/>
@@ -485,6 +487,7 @@
           <path d="M179.32,137.12a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25a2.66,2.66,0,1,0,2.66,2.66,2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
         </g>
         <g id="alba_sui_rami_nudi_agora_uvic_ir" data-name="alba sui rami nudi|agora|uvic|ir">
+          <path d="M473.85,168.18a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,473.85,168.18Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,146.16c-44.69,0-44.69,211.13-89.38,211.13" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="73.63" width="6.68" height="145.17" transform="translate(402.22 -134.78) rotate(90)" style="fill: #fefcf6"/>
           <text transform="translate(186.76 123.72)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk">Alba <tspan x="15.44" y="0" style="letter-spacing: -0.0048828125em">s</tspan><tspan x="18.38" y="0">ui </tspan><tspan x="25.71" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="28.43" y="0">ami </tspan><tspan x="41.26" y="0" style="letter-spacing: -0.0087890625em">n</tspan><tspan x="45.02" y="0" style="letter-spacing: -0.00390625em">u</tspan><tspan x="48.82" y="0">di</tspan></text>
@@ -492,10 +495,10 @@
           <line x1="328.59" y1="117.86" x2="328.59" y2="124.55" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,143.8a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25a2.66,2.66,0,1,0,2.66,2.66,2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M404.09,154.92c-37.74,0-37.75-8.7-75.5-8.7" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,168.18c-35.79,0-35.81-13.26-71.61-13.26" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M402.29,154.92a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,154.92Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="ultimo_viene_il_corvo_l_unita_milano_uvic" data-name="ultimo viene il corvo|l unita milano|uvic">
-          <path d="M475.7,180.05c-35.79,0-35.81-18-71.61-18" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,162c-37.75,0-37.75-9.14-75.5-9.14" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <path d="M175.9,152.85c-44.69,0-44.69,20.66-89.38,20.66" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="80.31" width="6.68" height="145.17" transform="translate(408.9 -128.1) rotate(90)" style="fill: #f9f5de"/>
@@ -504,10 +507,11 @@
           <line x1="328.59" y1="124.55" x2="328.59" y2="131.23" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,150.49a2.41,2.41,0,1,1-2.4,2.4,2.41,2.41,0,0,1,2.4-2.4m0-.25a2.66,2.66,0,1,0,2.66,2.65,2.65,2.65,0,0,0-2.66-2.65Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M402.29,162a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,402.29,162Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,180.06a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,180.06Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="visti_alla_mensa_l_unita_milano_uvic_ir" data-name="visti alla mensa|l unita milano|uvic|ir">
+          <path d="M475.7,180.05c-35.79,0-35.81-10.88-71.61-10.88" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,169.17c-37.75,0-37.85-9.59-75.5-9.59" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M473.85,180.06a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,180.06Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,159.52c-44.69,0-44.69,17.2-89.38,17.2" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="87" width="6.68" height="145.17" transform="translate(415.58 -121.42) rotate(90)" style="fill: #fefcf6"/>
           <text transform="translate(186.76 137.09)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk">Vis<tspan x="9.16" y="0" style="letter-spacing: 0.0009765625em">t</tspan><tspan x="11.47" y="0">i al</tspan><tspan x="20.26" y="0" style="letter-spacing: -0.0009765625em">l</tspan><tspan x="22.02" y="0">a men</tspan><tspan x="40.55" y="0" style="letter-spacing: -0.0087890625em">s</tspan><tspan x="43.46" y="0">a</tspan></text>
@@ -517,7 +521,6 @@
           <path d="M402.29,169.17a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,402.29,169.17Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="l_occhio_del_padrone_l_unita_genova_uvic" data-name="l occhio del padrone|l unita genova|uvic">
-          <path d="M475.7,191.91c-35.79,0-35.81-15.61-71.61-15.61" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,176.3c-37.75,0-38-10-75.5-10" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <path d="M175.9,166.21c-44.69,0-44.69,121.18-89.38,121.18" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="93.68" width="6.68" height="145.17" transform="translate(422.26 -114.74) rotate(90)" style="fill: #f9f5de"/>
@@ -526,7 +529,6 @@
           <line x1="328.59" y1="137.91" x2="328.59" y2="144.6" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,163.85a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25a2.66,2.66,0,1,0,2.66,2.66,2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M402.29,176.3a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,176.3Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,191.91a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,191.91Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="come_un_volo_d_anitre_il_settimanale" data-name="come un volo d anitre|il settimanale">
           <path d="M175.9,172.89c-44.69,0-44.69,204.67-89.38,204.67" transform="translate(0 -25)" style="fill: none;stroke: #9aa4a5;stroke-miterlimit: 10;stroke-width: 0.349999994039536px"/>
@@ -536,6 +538,8 @@
         </g>
         <g id="la_fame_a_bevera_l_unita_genova_uvic_ir" data-name="la fame a bevera|l unita genova|uvic|ir">
           <path d="M404.12,183.43c-37.77,0-37.76-3.79-75.53-3.79" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,191.91c-35.79,0-35.81-8.48-71.61-8.48" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,191.91a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,191.91Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,179.58c-44.94,0-44.69,110.19-89.38,110.19" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="107.05" width="6.68" height="145.17" transform="translate(435.63 -101.37) rotate(90)" style="fill: #f9f5de"/>
           <text transform="translate(186.76 157.14)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: 0.0009765625em">L</tspan><tspan x="3.55" y="0">a </tspan><tspan x="8.9" y="0" style="letter-spacing: -0.01318359375em">f</tspan><tspan x="11.13" y="0">ame a </tspan><tspan x="31.19" y="0" style="letter-spacing: 0.0048828125em">B</tspan><tspan x="35.47" y="0" style="letter-spacing: -0.009765625em">é</tspan><tspan x="38.95" y="0" style="letter-spacing: -0.01513671875em">v</tspan><tspan x="42.09" y="0">e</tspan><tspan x="45.64" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="48.36" y="0">a</tspan></text>
@@ -545,7 +549,6 @@
           <path d="M402.29,183.43a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,183.43Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="furto_in_una_pasticceria_l_unita_torino_uvic" data-name="furto in una pasticceria|l unita torino|uvic">
-          <path d="M475.7,203.77c-35.79,0-35.79-13.21-71.61-13.21" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.12,190.56c-37.77,0-37.76-4.24-75.53-4.24" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <path d="M175.9,186.26c-44.69,0-45.44,4.82-89.38,4.82" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="113.73" width="6.68" height="145.17" transform="translate(442.31 -94.69) rotate(90)" style="fill: #fefcf6"/>
@@ -554,11 +557,11 @@
           <line x1="328.59" y1="157.96" x2="328.59" y2="164.65" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,183.9a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25a2.66,2.66,0,1,0,2.66,2.66,2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M402.29,190.56a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,190.56Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,203.77a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,203.77Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="un_bastimento_carico_di_granchi_l_unita_genova_uvic_ir" data-name="un bastimento carico di granchi|l unita genova|uvic|ir">
-          <path d="M475.7,215.63c-35.79,0-35.81-17.94-71.61-17.94" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.12,197.69c-37.77,0-37.77-4.69-75.53-4.69" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,203.77c-35.79,0-35.79-6.08-71.61-6.08" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,203.77a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,203.77Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,193.06c-44.69,0-44.69,99.08-89.38,99.08" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="120.41" width="6.68" height="145.17" transform="translate(449 -88) rotate(90)" style="fill: #f9f5de"/>
           <text transform="translate(186.76 170.5)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: -0.0048828125em">U</tspan><tspan x="4.59" y="0">n bas</tspan><tspan x="20.59" y="0" style="letter-spacing: 0.0009765625em">t</tspan><tspan x="22.89" y="0">imen</tspan><tspan x="37.74" y="0" style="letter-spacing: -0.00390625em">t</tspan><tspan x="40.01" y="0">o </tspan><tspan x="45.69" y="0" style="letter-spacing: -0.00390625em">c</tspan><tspan x="48.99" y="0">a</tspan><tspan x="52.49" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="55.22" y="0">i</tspan><tspan x="56.89" y="0" style="letter-spacing: -0.0048828125em">c</tspan><tspan x="60.18" y="0">o di g</tspan><tspan x="76.73" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="79.45" y="0">anchi</tspan></text>
@@ -566,11 +569,11 @@
           <line x1="328.59" y1="164.65" x2="328.59" y2="171.33" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,190.59a2.41,2.41,0,1,1-2.4,2.4,2.41,2.41,0,0,1,2.4-2.4m0-.25A2.66,2.66,0,1,0,182,193a2.65,2.65,0,0,0-2.66-2.65Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M402.29,197.69a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,197.69Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,215.63a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,473.85,215.63Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="i_figli_poltroni_l_unita_torino_uvic_ir" data-name="i figli poltroni|l unita torino|uvic|ir">
-          <path d="M475.7,227.5c-35.81,0-35.79-22.68-71.61-22.68" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,204.82c-37.75,0-37.75.5-75.5.5" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,215.63c-35.79,0-35.81-10.81-71.61-10.81" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,215.63a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,473.85,215.63Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,205.3c-44.69,0-45.44-12.16-89.38-12.16" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="132.74" width="6.68" height="145.17" transform="translate(461.32 -75.68) rotate(90)" style="fill: #f9f5de"/>
           <text transform="translate(186.76 182.82)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk">I figli pol<tspan x="25.49" y="0" style="letter-spacing: -0.0087890625em">t</tspan><tspan x="27.73" y="0" style="letter-spacing: -0.0400390625em">r</tspan><tspan x="30.17" y="0">oni</tspan></text>
@@ -578,7 +581,6 @@
           <line x1="328.59" y1="176.96" x2="328.59" y2="183.64" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,202.9a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25a2.66,2.66,0,1,0,2.66,2.66,2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M402.29,204.82a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,204.82Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,227.5a1.86,1.86,0,0,0,3.71,0,1.86,1.86,0,1,0-3.71,0Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="com_era_grande_il_mare_milano_sera" data-name="com era grande il mare|milano sera">
           <path d="M175.9,238.72C131.21,238.72,131.21,440,86.52,440" transform="translate(0 -25)" style="fill: none;stroke: #9aa4a5;stroke-miterlimit: 10;stroke-width: 0.349999994039536px"/>
@@ -594,6 +596,8 @@
         </g>
         <g id="chi_ha_messo_la_mina_nel_mare_l_unita_torino_uvic_ir" data-name="chi ha messo la mina nel mare|l unita torino|uvic|ir">
           <path d="M404.09,254.72c-37.75,0-37.75,17.44-75.5,17.44" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,286.81c-35.79,0-35.79-32.09-71.61-32.09" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,286.81A1.86,1.86,0,1,0,475.7,285,1.85,1.85,0,0,0,473.85,286.81Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,272.16c-44.65,0-44.69-54.55-89.38-54.55" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="199.58" width="6.68" height="145.17" transform="translate(528.16 -8.84) rotate(90)" style="fill: #f9f5de"/>
           <text transform="translate(186.76 249.66)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: -0.009765625em">C</tspan><tspan x="4.79" y="0">hi ha mes</tspan><tspan x="33.66" y="0" style="letter-spacing: -0.00390625em">s</tspan><tspan x="36.6" y="0">o </tspan><tspan x="42.27" y="0" style="letter-spacing: -0.0009765625em">l</tspan><tspan x="44.04" y="0">a mina nel ma</tspan><tspan x="86.34" y="0" style="letter-spacing: -0.0400390625em">r</tspan><tspan x="88.78" y="0" style="letter-spacing: -0.02392578125em">e</tspan><tspan x="92.16" y="0">?</tspan></text>
@@ -603,7 +607,6 @@
           <path d="M402.29,254.72a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,254.72Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="dollari_e_vecchie_mondane_uvic" data-name="dollari e vecchie mondane|uvic">
-          <path d="M475.7,298.68c-35.81,0-35.81-36.83-71.61-36.83" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,261.85c-37.75,0-37.75,17-75.5,17" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="206.24" width="6.68" height="145.17" transform="translate(534.82 -2.18) rotate(90)" style="fill: #f7f7f7"/>
           <text transform="translate(186.76 256.34)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: 0.0009765625em">D</tspan><tspan x="4.81" y="0">ol</tspan><tspan x="10.41" y="0" style="letter-spacing: -0.0009765625em">l</tspan><tspan x="12.17" y="0">a</tspan><tspan x="15.67" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="18.4" y="0">i e </tspan><tspan x="27.31" y="0" style="letter-spacing: -0.01513671875em">v</tspan><tspan x="30.45" y="0">e</tspan><tspan x="34" y="0" style="letter-spacing: -0.0048828125em">c</tspan><tspan x="37.29" y="0">chie mon</tspan><tspan x="64.99" y="0" style="letter-spacing: -0.0009765625em">d</tspan><tspan x="68.84" y="0">ane</tspan></text>
@@ -613,7 +616,6 @@
             <circle cx="179.32" cy="253.83" r="0.71"/>
           </g>
           <path d="M402.29,261.85a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,261.85Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,298.68a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,298.68Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="freddo_a_napoli_l_unita_torino" data-name="freddo a napoli|l unita torino">
           <path d="M175.9,291.17c-44.69,0-45.1-70.61-89.38-70.61" transform="translate(0 -25)" style="fill: none;stroke: #9aa4a5;stroke-miterlimit: 10;stroke-width: 0.349999994039536px"/>
@@ -628,14 +630,14 @@
           <path d="M179.32,295.42a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25a2.66,2.66,0,1,0,2.66,2.66,2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
         </g>
         <g id="un_pomeriggio_adamo_uvic_ir" data-name="un pomeriggio adamo|uvic|ir">
-          <path d="M475.7,310.54c-35.81,0-35.81-41.56-71.61-41.56" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,269c-37.75,0-37.75,35.55-75.5,35.55" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,298.68c-35.81,0-35.81-29.7-71.61-29.7" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,298.68a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,298.68Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <rect x="252.66" y="231.95" width="6.68" height="145.17" transform="translate(560.53 23.53) rotate(90)" style="fill: #f9f5de"/>
           <text transform="translate(186.76 282.02)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: -0.0048828125em">U</tspan><tspan x="4.59" y="0">n pome</tspan><tspan x="27.3" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="30.02" y="0">iggi</tspan><tspan x="40.36" y="0" style="letter-spacing: -0.01611328125em">o</tspan><tspan x="44.07" y="0">, </tspan><tspan x="48.04" y="0" style="letter-spacing: -0.009765625em">A</tspan><tspan x="52.44" y="0" style="letter-spacing: -0.0009765625em">d</tspan><tspan x="56.29" y="0">amo</tspan></text>
           <line x1="328.59" y1="276.18" x2="328.59" y2="282.86" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <circle cx="179.32" cy="279.52" r="2.13" style="fill: #5f5f5e"/>
           <path d="M402.29,269a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,269Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,310.54a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,310.54Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="attesa_della_morta_in_un_albergo_uvic" data-name="attesa della morta in un albergo|uvic">
           <path d="M404.09,290.37c-37.75,0-35.57,34.22-75.5,34.22" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
@@ -646,8 +648,8 @@
           <path d="M402.29,290.37a1.86,1.86,0,0,0,3.72,0,1.86,1.86,0,1,0-3.72,0Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="uno_dei_tre_è_ancora_vivo_uvic_ir" data-name="uno dei tre è ancora vivo|uvic|ir">
-          <path d="M475.7,322.4c-35.81,0-35.81-24.9-71.61-24.9" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,297.5c-37.75,0-35.57,33.74-75.5,33.77" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,322.4c-35.81,0-35.81-24.9-71.61-24.9" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M473.85,322.4a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,322.4Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <rect x="252.66" y="258.68" width="6.68" height="145.17" transform="translate(587.27 50.27) rotate(90)" style="fill: #f9f5de"/>
           <text transform="translate(186.76 308.76)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: -0.0048828125em">U</tspan><tspan x="4.59" y="0">no dei </tspan><tspan x="25.01" y="0" style="letter-spacing: -0.0087890625em">t</tspan><tspan x="27.25" y="0" style="letter-spacing: -0.0400390625em">r</tspan><tspan x="29.69" y="0">e è an</tspan><tspan x="47.81" y="0" style="letter-spacing: -0.0048828125em">c</tspan><tspan x="51.1" y="0">o</tspan><tspan x="54.93" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="57.65" y="0">a vi</tspan><tspan x="67.92" y="0" style="letter-spacing: -0.01513671875em">v</tspan><tspan x="71.05" y="0">o</tspan></text>
@@ -656,8 +658,8 @@
           <path d="M402.29,297.5a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,297.5Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="l_avventura_di_un_soldato_uvic_ir_gad" data-name="l avventura di un soldato|uvic|ir|gad">
-          <path d="M475.7,334.26c-35.81,0-35.81-29.64-71.61-29.64" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M404.09,304.62c-37.75,0-35.12,33.21-75.5,33.33" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,334.26c-35.81,0-35.81-29.64-71.61-29.64" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M571.24,574.64c-43.29,0-35.6-240.38-95.54-240.38" transform="translate(0 -25)" style="fill: none;stroke: #f0be96;stroke-miterlimit: 10"/>
           <path d="M473.85,334.21a1.86,1.86,0,0,0,3.71,0,1.86,1.86,0,1,0-3.71,0Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M569.21,574.64a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,569.21,574.64Z" transform="translate(0 -25)" style="fill: #f0be96"/>
@@ -1908,7 +1910,6 @@
           <path d="M402.29,119.27a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,119.27Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
         </g>
         <g id="uomo_nei_gerbidi_l_unita_torino_uvic_ir" data-name="uomo nei gerbidi|l unita torino|uvic|ir">
-          <path d="M475.7,144.46c-35.79,0-35.79-10.92-71.61-10.92" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M175.9,100.47c-44.69,0-44.69,81.76-89.38,81.76" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="27.89" width="6.68" height="145.17" transform="translate(356.47 -180.53) rotate(90)" style="fill: #f9f5de"/>
           <text transform="translate(186.76 77.99)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: -0.0048828125em">U</tspan><tspan x="4.59" y="0">omo nei ge</tspan><tspan x="37.83" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="40.55" y="0">bidi</tspan></text>
@@ -1917,10 +1918,9 @@
           <path d="M179.32,98.07a2.41,2.41,0,1,1-2.4,2.4,2.41,2.41,0,0,1,2.4-2.4m0-.25a2.66,2.66,0,1,0,2.66,2.65,2.65,2.65,0,0,0-2.66-2.65Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M404.09,133.54c-39.51,0-41.27-33.06-75.5-33.06" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <path d="M402.29,133.54a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,133.54Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,144.46a1.86,1.86,0,0,0,3.71,0,1.86,1.86,0,1,0-3.71,0Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
         <g id="i_fratelli_bagnasco_l_unita_milano_uvic_ir" data-name="i fratelli bagnasco|l unita milano|uvic|ir">
-          <path d="M475.7,168.18c-35.79,0-35.81-20.39-71.61-20.39" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
+          <path d="M473.85,156.32a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,473.85,156.32Z" transform="translate(0 -25)" style="fill: #476a70"/>
           <path d="M175.9,113.84c-44.69,0-44.69,56.46-89.38,56.46" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
           <rect x="252.66" y="41.26" width="6.68" height="145.17" transform="translate(369.84 -167.16) rotate(90)" style="fill: #f9f5de"/>
           <text transform="translate(186.76 91.35)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk">I f<tspan x="6.16" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="8.88" y="0" style="letter-spacing: -0.0009765625em">a</tspan><tspan x="12.38" y="0" style="letter-spacing: -0.00390625em">t</tspan><tspan x="14.65" y="0">elli </tspan><tspan x="25.26" y="0" style="letter-spacing: -0.0078125em">B</tspan><tspan x="29.45" y="0">agna</tspan><tspan x="43.78" y="0" style="letter-spacing: -0.00390625em">s</tspan><tspan x="46.72" y="0" style="letter-spacing: -0.0048828125em">c</tspan><tspan x="50.02" y="0">o</tspan></text>
@@ -1928,8 +1928,8 @@
           <line x1="328.59" y1="85.5" x2="328.59" y2="92.18" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10;stroke-width: 1.5px"/>
           <path d="M179.32,111.43a2.41,2.41,0,1,1-2.4,2.41,2.41,2.41,0,0,1,2.4-2.41m0-.25a2.66,2.66,0,1,0,2.66,2.66,2.66,2.66,0,0,0-2.66-2.66Z" transform="translate(0 -25)" style="fill: #373736"/>
           <path d="M404.09,147.79c-39.43,0-41.8-33.94-75.5-33.94" transform="translate(0 -25)" style="fill: none;stroke: #e9d05d;stroke-miterlimit: 10"/>
+          <path d="M475.7,156.32c-35.81,0-35.81-8.53-71.59-8.53" transform="translate(0 -25)" style="fill: none;stroke: #476a70;stroke-miterlimit: 10"/>
           <path d="M402.29,147.79a1.86,1.86,0,1,0,1.85-1.86A1.85,1.85,0,0,0,402.29,147.79Z" transform="translate(0 -25)" style="fill: #e9d05d"/>
-          <path d="M473.85,168.18a1.86,1.86,0,1,0,1.85-1.85A1.85,1.85,0,0,0,473.85,168.18Z" transform="translate(0 -25)" style="fill: #476a70"/>
         </g>
       </g>
       <g id="years_" data-name="years|">
