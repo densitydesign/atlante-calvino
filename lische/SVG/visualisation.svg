@@ -1035,19 +1035,17 @@
             <circle cx="179.32" cy="1615.39" r="0.71"/>
           </g>
         </g>
-        <g id="il_ricordo_e_bendato_la_repubblica" data-name="il ricordo e bendato|la repubblica">
-          <path d="M175.9,1589.69c-44.69,0-44.19-208.29-89.38-208.29" style="fill: none;stroke: #9aa4a5;stroke-miterlimit: 10;stroke-width: 0.349999994039536px"/>
+        <g id="il_ricordo_e_bendato" data-name="il ricordo e bendato">
           <rect x="252.66" y="1517.01" width="6.68" height="145.17" transform="translate(1845.59 1333.59) rotate(90)" style="fill: #e5e4e3"/>
           <text transform="translate(186.75 1592.17)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk">Il <tspan x="5.61" y="0" style="letter-spacing: 0.0009765625em">r</tspan><tspan x="8.33" y="0">i</tspan><tspan x="10" y="0" style="letter-spacing: -0.0048828125em">c</tspan><tspan x="13.3" y="0">o</tspan><tspan x="17.12" y="0" style="letter-spacing: -0.0400390625em">r</tspan><tspan x="19.56" y="0">do è ben</tspan><tspan x="45.72" y="0" style="letter-spacing: -0.0009765625em">da</tspan><tspan x="53.06" y="0" style="letter-spacing: -0.00390625em">t</tspan><tspan x="55.34" y="0">o</tspan></text>
           <path d="M179.32,1587.29a2.41,2.41,0,1,1-2.4,2.4,2.41,2.41,0,0,1,2.4-2.4m0-.25a2.66,2.66,0,1,0,2.66,2.65,2.65,2.65,0,0,0-2.66-2.65Z" style="fill: #373736"/>
+          <circle cx="179.32" cy="1589.69" r="0.71"/>
         </g>
-        <g id="un_re_in_ascolto" data-name="un re in ascolto">
+        <g id="un_re_in_ascolto_la_repubblica" data-name="un re in ascolto|la repubblica">
           <rect x="252.66" y="1510.32" width="6.68" height="145.17" transform="translate(1838.91 1326.91) rotate(90)" style="fill: #f7f7f7"/>
           <text transform="translate(186.75 1585.49)" style="font-size: 7px;font-family: HKGrotesk-Regular, HK Grotesk"><tspan style="letter-spacing: -0.0048828125em">U</tspan><tspan x="4.59" y="0">n </tspan><tspan x="10.26" y="0" style="letter-spacing: -0.0400390625em">r</tspan><tspan x="12.7" y="0">e in a</tspan><tspan x="28.94" y="0" style="letter-spacing: -0.00390625em">s</tspan><tspan x="31.88" y="0" style="letter-spacing: -0.0048828125em">c</tspan><tspan x="35.17" y="0">ol</tspan><tspan x="40.77" y="0" style="letter-spacing: -0.00390625em">t</tspan><tspan x="43.04" y="0">o</tspan></text>
-          <g>
-            <path d="M179.32,1580.43a2.59,2.59,0,1,1-2.58,2.59,2.59,2.59,0,0,1,2.58-2.59m0-.25a2.84,2.84,0,1,0,2.84,2.84,2.84,2.84,0,0,0-2.84-2.84Z" style="fill: #373736"/>
-            <circle cx="179.32" cy="1583.02" r="0.71"/>
-          </g>
+          <path d="M179.32,1580.43a2.59,2.59,0,1,1-2.58,2.59,2.59,2.59,0,0,1,2.58-2.59m0-.25a2.84,2.84,0,1,0,2.84,2.84,2.84,2.84,0,0,0-2.84-2.84Z" style="fill: #373736"/>
+          <path d="M175.9,1583c-44.69,0-44.19-201.62-89.38-201.62" style="fill: none;stroke: #9aa4a5;stroke-miterlimit: 10;stroke-width: 0.349999994039536px"/>
         </g>
         <g id="come_imparare_a_essere_morto_p" data-name="come imparare a essere morto|p">
           <path d="M674.67,1477.39c-160.07,0-187.38,86.72-346.08,86.72" style="fill: none;stroke: #94d2ba;stroke-miterlimit: 10"/>
