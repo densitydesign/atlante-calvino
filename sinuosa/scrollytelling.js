@@ -44,7 +44,7 @@ function scrollytelling(el) {
 
 		d3.selectAll('.article').transition().duration(duration)
 			.attr('transform', function(d) { return 'translate(0, 0)' })
-			.style('opacity', .75);
+			// .style('opacity', .75);
 
 		d3.selectAll('.decade-arc.start')
 			.attr("d", function(d) {
@@ -61,7 +61,7 @@ function scrollytelling(el) {
 	let index = data.map(function(d) { return d.id }).indexOf(thisDataAttribute);
 	// handle opacity
 	d3.selectAll('g.decade')
-		.style('opacity', .25);
+		// .style('opacity', .25);
 	d3.selectAll('g.decade.' + thisDataAttribute)
 		.style('opacity', 1);
 
@@ -139,15 +139,15 @@ function scrollytelling(el) {
 		if(d.decadeIndex < index) {
 			d3.select(this).transition().duration(duration)
 				.attr('transform', function(d) { return 'translate(0,' + (-space) + ')' })
-				.style('opacity', .25);
+				// .style('opacity', .25);
 		} else if(d.decadeIndex == index) {
 			d3.select(this).transition().duration(duration)
 				.attr('transform', function(d) { return 'translate(0, 0)' })
-				.style('opacity', .75);
+				// .style('opacity', .75);
 		} else if(d.decadeIndex > index) {
 			d3.select(this).transition().duration(duration)
 				.attr('transform', function(d) { return 'translate(0,' + (space) + ')' })
-				.style('opacity', .25);
+				// .style('opacity', .25);
 		}
 	})
 }

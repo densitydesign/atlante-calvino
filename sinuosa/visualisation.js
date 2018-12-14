@@ -24,8 +24,8 @@ let margin = {
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
 let r = width > height ? height / 10 / 2 / 2.8 : width / 10 / 2 / 2.2;
-r = width > 540 ? 12 : 8;
-let r2 = r / 3 + width/1000;
+r = width > 540 ? 20 : 12;
+let r2 = r / 4 + width/1000;
 let distributePadding = 3.5;
 
 let svg = d3.select('svg#visualisation')
@@ -46,7 +46,7 @@ let xInverse = d3.scaleLinear()
 
 let col = d3.scaleOrdinal()
 	.domain(['romanzo', 'romanzo di racconti dentro una cornice', 'forma ibrida tra romanzo breve e racconto lungo', 'raccolta di racconti con un unico protagonista', 'raccolta di racconti', 'riscrittura', 'raccolta di saggi', 'romanzo fallito o opera non pubblicata', 'progetto incompiuto', 'posthumous'])
-	.range(['#0490ca', '#00b79e', '#f2d371', '#eb9d69', '#ed7f62', '#707e84', '#9d80bb', '#dfdfdf', '#566573', 'transparent'])
+	.range(['#0490ca', '#00b79e', '#f2d371', '#eb9d69', '#ed7f62', '#707e84', '#9d80bb', 'none', '#566573', 'transparent'])
 
 d3.json('data.json').then(function(json) {
 	data = json;
@@ -231,7 +231,7 @@ d3.json('data.json').then(function(json) {
 		.force('collision', d3.forceCollide(function(d) { return d3.max([r2 + 1.5, d.r + 1.5]) }).iterations(8))
 		.force('x', d3.forceX(function(d) { return d.x }).strength(.1))
 		.force('y', d3.forceY(function(d) { return d.y }).strength(.8))
-		.on("tick", ticked);
+		.on("tick", ticked)
 
 	let works = decade.selectAll('.work')
 		.data(function(d, i) {
@@ -278,11 +278,29 @@ d3.json('data.json').then(function(json) {
 			if (d.kind == 'posthumous' || d.kind == 'progetto incompiuto') d.r/=2
 			return d.r;
 		})
-		.style('fill', function(d){
+		.attr('fill', function(d){
 			if (d.kind == 'posthumous') {
 				return '#566573';
-			} else {
-				return 'white';
+			} else if (d.kind == 'romanzo') {
+				return 'url(#glifo-romanzo)';
+			} else if (d.kind == 'raccolta di racconti') {
+				return 'url(#glifo-racconti)';
+			} else if (d.kind == 'romanzo fallito o opera non pubblicata') {
+				return 'url(#glifo-falliti)';
+			} else if (d.kind == 'forma ibrida tra romanzo breve e racconto lungo') {
+				return 'url(#glifo-ibrido)';
+			} else if (d.kind == 'riscrittura') {
+				return 'url(#glifo-riscrittura)';
+			} else if (d.kind == 'raccolta di racconti con un unico protagonista') {
+				return 'url(#glifo-racconti-protagonista)';
+			} else if (d.kind == 'romanzo di racconti dentro una cornice') {
+				return 'url(#glifo-romanzo-racconti-cornice)';
+			} else if (d.kind == 'raccolta di saggi') {
+				return 'url(#glifo-saggi)';
+			} else if (d.kind == 'raccolta di saggi') {
+				return 'url(#glifo-romanzo-racconti-cornice)';
+			} else if (d.kind == 'progetto incompiuto') {
+				return 'transparent';
 			}
 		})
 		.style('stroke', function(d) { return col(d.kind) })

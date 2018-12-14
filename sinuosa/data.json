@@ -163,25 +163,25 @@
     "labelPosition": "right",
     "distributeElement": -0.75
   }, {
+    "id": "V009",
+    "label": "La giornata_d'uno scrutatore",
+    "year": 1963,
+    "kind": "forma ibrida tra romanzo breve e racconto lungo",
+    "distributeElement": -1,
+    "firstPublication": null,
+    "publisher": "",
+    "labelPosition": "right"
+  }, {
     "id": "V010",
     "label": "La speculazione_edilizia",
     "year": 1963,
     "kind": "forma ibrida tra romanzo breve e racconto lungo",
-    "distributeElement": -1,
+    "distributeElement": 0,
     "firstPublication": 1957,
     "publisher": "",
     "curve": "bezier",
     "labelPosition": "right"
   },{
-    "id": "V009",
-    "label": "La giornata_d'uno scrutatore",
-    "year": 1963,
-    "kind": "forma ibrida tra romanzo breve e racconto lungo",
-    "distributeElement": 0,
-    "firstPublication": null,
-    "publisher": "",
-    "labelPosition": "right"
-  }, {
     "id": "V011",
     "label": "Marcovaldo",
     "year": 1963,
@@ -392,7 +392,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": -0
+      "distributeElement": -0.1
     },{
       "id": "P002",
       "label": "Lezioni_americane",
@@ -401,7 +401,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": 0,
+      "distributeElement": 0.1,
       "labelPosition": "bottom"
     },{
       "id": "P003",
@@ -411,7 +411,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": -0
+      "distributeElement": -0.1
     },{
       "id": "P004",
       "label": "Perché leggere_i classici",
@@ -420,7 +420,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": 0,
+      "distributeElement": 0.1,
       "labelPosition": "bottom"
     },{
       "id": "P005",
@@ -430,7 +430,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": -0
+      "distributeElement": -0.1
     },{
       "id": "P006",
       "label": "Eremita_a Parigi",
@@ -439,7 +439,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": 0,
+      "distributeElement": 0.1,
       "labelPosition": "bottom"
     }
 
@@ -451,7 +451,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": 0
+      "distributeElement": -0.1
     },{
       "id": "P008",
       "label": "Romanzi_e racconti II",
@@ -460,7 +460,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": -0,
+      "distributeElement": 0.1,
       "labelPosition": "bottom"
     },{
       "id": "P009",
@@ -470,7 +470,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": 0
+      "distributeElement": -0.1
     },{
       "id": "P010",
       "label": "Romanzi_e racconti III",
@@ -479,7 +479,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": -0,
+      "distributeElement": 0.1,
       "labelPosition": "bottom"
     },{
       "id": "P011",
@@ -489,7 +489,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": 0,
+      "distributeElement": -0.1,
       "labelPosition": "top"
     },{
       "id": "P012",
@@ -499,7 +499,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": -0,
+      "distributeElement": 0.1,
       "labelPosition": "bottom"
     },{
       "id": "P013",
@@ -509,7 +509,7 @@
       "kind": "posthumous",
       "publisher": "",
       "curve": "bezier",
-      "distributeElement": -0,
+      "distributeElement": -0.1,
       "labelPosition": "top"
     }
   ],
