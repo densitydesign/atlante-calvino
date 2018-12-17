@@ -31,7 +31,6 @@ body {
 }
 
 #visualisation-container {
-  /* background-color: #fffefa; */
   -webkit-box-shadow: 0px 0px 7px 0px #fbe1b6;
       -ms-box-shadow: 0px 0px 7px 0px #fbe1b6;
           box-shadow: 0px 0px 7px 0px #fbe1b6;
@@ -66,7 +65,6 @@ svg#visualisation {
   font-family: 'HK Grotesk';
   font-size: .5rem;
   font-weight: 400;
-  /* letter-spacing: 0.3px; */
 }
 
 .year {
@@ -97,22 +95,7 @@ svg#visualisation {
 }
 
 .decade-arc.end {
-  /* stroke: red; */
 }
-
-/* g.decade:last-child .thread {
-  stroke: blue;
-  stroke-dasharray: 3 3;
-  -webkit-animation-name: arcs-direction;
-  animation-name: arcs-direction;
-  -webkit-animation-duration: 1.5s;
-  animation-duration: 1.5s;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
-  stroke-linecap: round;
-} */
 
 .previous-publication {
   fill: none;
@@ -124,7 +107,7 @@ svg#visualisation {
 
 .article {
   stroke: #566573;
-  /* stroke: none; */
+  opacity: .35;
   fill: #D6DBDF;
   stroke-width: .5px;
   -webkit-transition: r 2s;

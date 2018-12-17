@@ -25,7 +25,7 @@ let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
 let r = width > height ? height / 10 / 2 / 2.8 : width / 10 / 2 / 2.2;
 r = width > 540 ? 20 : 12;
-let r2 = r / 5 + width / 1000;
+let r2 = r / 5.5 + width / 1000;
 let firstPubRadius = 3;
 let distributePadding = 3.5;
 
@@ -177,10 +177,10 @@ d3.json('data.json').then(function(json) {
 			.attr("cx", function(d) {
 				if(d.x < 0) {
 					// d.x = 0
-					return d.x += .35
+					return d.x += .5
 				} else if(d.x > width) {
 					// d.x = width
-					return d.x -= .35
+					return d.x -= .5
 				}
 				return d.x;
 			})
@@ -191,9 +191,9 @@ d3.json('data.json').then(function(json) {
 	}
 
 	let simulationArticle = d3.forceSimulation(articles)
-		.force('collision', d3.forceCollide(function(d) { return d3.max([r2 + 1, d.r + 1]) }).iterations(8))
+		.force('collision', d3.forceCollide(function(d) { return d3.max([r2 + 2, d.r + 2]) }).iterations(4))
 		.force('x', d3.forceX(function(d) { return d.x }).strength(.1))
-		.force('y', d3.forceY(function(d) { return d.y }).strength(.8))
+		.force('y', d3.forceY(function(d) { return d.y }).strength(.7))
 		.on("tick", ticked)
 
 	let works = decade.selectAll('.work')
@@ -270,37 +270,50 @@ d3.json('data.json').then(function(json) {
 		.attr('x', 0)
 		.attr('transform', function(d) {
 			let _x = 0,
-				_y = -d.r * 1.75;
+				_y = -d.r * 1.25;
 			if(d.labelPosition) {
 				if(d.labelPosition == "right") {
-					_x = d.r * 1.6;
-					_y = d.r * 0.25;
+					_x = d.r * 1.25;
+					_y = d.r * 0 + 3.5;
 					if(d.kind == 'romanzo fallito o opera non pubblicata') {
-						_x = d.r * .8;
+						_x = d.r * .6;
 					}
 				} else if(d.labelPosition == "left") {
-					_x = -d.r * 1.6;
-					_y = d.r * 0.25;
+					_x = -d.r * 1.25;
+					_y = d.r * 0 + 3.5;
 					if(d.kind == 'romanzo fallito o opera non pubblicata') {
 						_x = -d.r * .8;
 					}
 				} else if(d.labelPosition == "bottom") {
-					_y = -_y + d.r * 1
+					_y = -_y + d.r
 				}
 			}
+			d._x = _x;
 			return 'translate(' + _x + ', ' + _y + ')';
 		})
 		.style('text-anchor', function(d) {
 			if(d.labelPosition == "right") { return 'start' } else if(d.labelPosition == "left") { return 'end' }
 		})
-		.text(function(d) { return d.label; })
-		.call(wrap)
+		.html(function(d) {
+			console.log(d.label.split('_').length)
 
-	// works.append('text')
-	// 	.attr('class', 'label year')
-	// 	.classed('hidden', function(d) { return d.kind == 'romanzo fallito o opera non pubblicata' || d.kind == 'progetto incompiuto' })
-	// 	.attr('y', r + 10)
-	// 	.text(function(d) { return d.year; })
+			let delta_y = rem2px(.6);
+
+			if (d.labelPosition == "left" || d.labelPosition == "right") {
+				d3.select(this).attr('y', -(d.label.split('_').length-1)*delta_y/2 )
+			} else if (d.labelPosition == "bottom") {
+				// d3.select(this).attr('y', (d.label.split('_').length-1)*delta_y/2 )
+			} else {
+				d3.select(this).attr('y', -(d.label.split('_').length-1)*delta_y )
+			}
+
+
+			let txt = '';
+			d.label.split('_').forEach(function(t,i){
+				txt+=`<tspan x="0" dy="${i==0?'0rem':delta_y}">${t}</tspan>`;
+			})
+			return txt
+		})
 
 	works.selectAll('.previous-publication')
 		.data(function(d) {
@@ -403,15 +416,15 @@ d3.json('data.json').then(function(json) {
 		.attr('y', 5);
 	deathInfo.append('tspan')
 		.attr('x', deathInfoXpos)
-		.attr('dy', '.6rem')
+		.attr('dy', rem2px(.6))
 		.text('Muore a Siena');
 	deathInfo.append('tspan')
 		.attr('x', deathInfoXpos)
-		.attr('dy', '.6rem')
+		.attr('dy', rem2px(.6))
 		.text('il 19 Settembre');
 	deathInfo.append('tspan')
 		.attr('x', deathInfoXpos)
-		.attr('dy', '.6rem')
+		.attr('dy', rem2px(.6))
 		.text('1985');
 
 	// I Meridiani e Pubblicazioni Pustume
