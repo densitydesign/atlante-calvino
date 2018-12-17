@@ -24,12 +24,11 @@
       "kind": "romanzo fallito o opera non pubblicata",
       "firstPublication": null,
       "publisher": "",
-      "labelPosition": "right",
+      "labelPosition": "left",
       "distributeElement": 0.9
     }
   ],
-  "periodicals": [
-    {
+  "periodicals": [{
       "year": 1946,
       "amount": 30
     },
@@ -51,8 +50,7 @@
 }, {
   "id": "anni50",
   "label": "Anni '50",
-  "works": [
-    {
+  "works": [{
       "id": "F002",
       "label": "I giovani_del Po",
       "year": 1950.5,
@@ -121,8 +119,7 @@
       "publisher": ""
     }
   ],
-  "periodicals": [
-    {
+  "periodicals": [{
       "year": 1950,
       "amount": 30
     },
@@ -152,8 +149,7 @@
 }, {
   "id": "anni60",
   "label": "Anni '60",
-  "works": [
-  {
+  "works": [{
     "id": "F004",
     "label": "Un ottimista_in america",
     "year": 1960,
@@ -181,7 +177,7 @@
     "publisher": "",
     "curve": "bezier",
     "labelPosition": "right"
-  },{
+  }, {
     "id": "V011",
     "label": "Marcovaldo",
     "year": 1963,
@@ -202,7 +198,7 @@
     "labelPosition": "right"
   }, {
     "id": "V012",
-    "label": "La nuvola di smog_e la formica argentina",
+    "label": "La nuvola_di smog_e La formica_argentina",
     "year": 1965,
     "distributeElement": -0.5,
     "kind": "forma ibrida tra romanzo breve e racconto lungo",
@@ -263,8 +259,7 @@
     "firstPublication": null,
     "publisher": ""
   }],
-  "periodicals": [
-    {
+  "periodicals": [{
       "year": 1975,
       "amount": 18
     },
@@ -351,8 +346,7 @@
     "labelPosition": "top",
     "distributeElement": -0.25
   }],
-  "periodicals": [
-    {
+  "periodicals": [{
       "year": 1980,
       "amount": 20,
       "distributeElement": true
@@ -383,8 +377,7 @@
 }, {
   "id": "anni90",
   "label": "Anni '90",
-  "works": [
-    {
+  "works": [{
       "id": "P001",
       "label": "Sotto il sole_giaguaro",
       "year": 1991,
@@ -393,7 +386,7 @@
       "publisher": "",
       "curve": "bezier",
       "distributeElement": -0.1
-    },{
+    }, {
       "id": "P002",
       "label": "Lezioni_americane",
       "year": 1991.5,
@@ -403,7 +396,7 @@
       "curve": "bezier",
       "distributeElement": 0.1,
       "labelPosition": "bottom"
-    },{
+    }, {
       "id": "P003",
       "label": "La strada_di san giovanni",
       "year": 1992,
@@ -412,7 +405,7 @@
       "publisher": "",
       "curve": "bezier",
       "distributeElement": -0.1
-    },{
+    }, {
       "id": "P004",
       "label": "Perché leggere_i classici",
       "year": 1992.5,
@@ -422,7 +415,7 @@
       "curve": "bezier",
       "distributeElement": 0.1,
       "labelPosition": "bottom"
-    },{
+    }, {
       "id": "P005",
       "label": "Prima che tu_dica “Pronto”",
       "year": 1993,
@@ -431,7 +424,7 @@
       "publisher": "",
       "curve": "bezier",
       "distributeElement": -0.1
-    },{
+    }, {
       "id": "P006",
       "label": "Eremita_a Parigi",
       "year": 1993.5,
@@ -443,7 +436,7 @@
       "labelPosition": "bottom"
     }
 
-    ,{
+    , {
       "id": "P007",
       "label": "Romanzi_e racconti I",
       "year": 1995,
@@ -452,7 +445,7 @@
       "publisher": "",
       "curve": "bezier",
       "distributeElement": -0.1
-    },{
+    }, {
       "id": "P008",
       "label": "Romanzi_e racconti II",
       "year": 1995.5,
@@ -462,7 +455,7 @@
       "curve": "bezier",
       "distributeElement": 0.1,
       "labelPosition": "bottom"
-    },{
+    }, {
       "id": "P009",
       "label": "Fiabe_italiane",
       "year": 1996,
@@ -471,7 +464,7 @@
       "publisher": "",
       "curve": "bezier",
       "distributeElement": -0.1
-    },{
+    }, {
       "id": "P010",
       "label": "Romanzi_e racconti III",
       "year": 1996.5,
@@ -481,7 +474,7 @@
       "curve": "bezier",
       "distributeElement": 0.1,
       "labelPosition": "bottom"
-    },{
+    }, {
       "id": "P011",
       "label": "Saggi",
       "year": 1997,
@@ -491,7 +484,7 @@
       "curve": "bezier",
       "distributeElement": -0.1,
       "labelPosition": "top"
-    },{
+    }, {
       "id": "P012",
       "label": "Album_Calvino",
       "year": 1997.5,
@@ -501,7 +494,7 @@
       "curve": "bezier",
       "distributeElement": 0.1,
       "labelPosition": "bottom"
-    },{
+    }, {
       "id": "P013",
       "label": "Lettere",
       "year": 1998,
@@ -514,6 +507,6 @@
     }
   ],
   "periodicals": [
-
   ]
-}]
+}
+]

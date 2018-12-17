@@ -25,14 +25,15 @@ let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
 let r = width > height ? height / 10 / 2 / 2.8 : width / 10 / 2 / 2.2;
 r = width > 540 ? 20 : 12;
-let r2 = r / 4 + width/1000;
+let r2 = r / 5 + width / 1000;
+let firstPubRadius = 3;
 let distributePadding = 3.5;
 
 let svg = d3.select('svg#visualisation')
 	.attr('width', width + margin.right + margin.left)
 	.attr('height', height + margin.top + margin.bottom + 80);
 let g = svg.append('g')
-	.attr('transform', 'translate(' + margin.left + ',' + (margin.top+40) + ')')
+	.attr('transform', 'translate(' + margin.left + ',' + (margin.top + 40) + ')')
 
 let y = d3.scalePoint()
 	.range([0, height])
@@ -57,27 +58,8 @@ d3.json('data.json').then(function(json) {
 
 	let decade = g.selectAll('.decade')
 		.data(data, function(d) {
-			// console.log(d.id);
 			let decadeNumber = '19' + d.id.toString().split('').slice(4, 5).join('') + '0'
-			// console.log(decadeNumber);
 			d.points = [];
-			// this previously added a starting point for drawing the 90deg arc of the decade
-			// better to draw it separately
-			// if (decadeNumber/10%2 == 0) {
-			//   let startingPoint = {
-			//     "x": -y.step()/2,
-			//     "y": -y.step()/2,
-			//     "tipe": "arc90"
-			//   }
-			//   d.points.push(startingPoint);
-			// } else {
-			//   let startingPoint = {
-			//     "x": xInverse(0) + y.step()/2,
-			//     "y": -y.step()/2,
-			//     "tipe": "arc90"
-			//   }
-			//   d.points.push(startingPoint);
-			// }
 
 			let _year = '19' + d.id.toString().split('').slice(4, 5).join('')
 
@@ -87,9 +69,10 @@ d3.json('data.json').then(function(json) {
 				// check if there is a volume in this date (ii) and is not an abandoned work
 				let ww = d.works.filter(function(e) {
 					let checkYear = Math.round(+e.year.toString().split('').slice(3).join(''));
-					return checkYear == ii
-					&& e.kind != 'romanzo fallito o opera non pubblicata'
-					&& e.kind != 'progetto incompiuto'; })
+					return checkYear == ii &&
+						e.kind != 'romanzo fallito o opera non pubblicata' &&
+						e.kind != 'progetto incompiuto';
+				})
 				if(ww.length) {
 					ww.forEach((e) => {
 						let point = {
@@ -119,24 +102,6 @@ d3.json('data.json').then(function(json) {
 				}
 			}
 
-			// this previously added an ending point for drawing the 90deg arc of the decade
-			// better to draw it separately
-			// if (decadeNumber/10%2 == 0) {
-			//   let endingPoint = {
-			//     "x": workPosition({"year": decadeNumber+9})[0]+y.step()/2,
-			//     "y": workPosition({"year": decadeNumber+9})[1]+y.step()/2,
-			//     "tipe": "arc90"
-			//   }
-			//   d.points.push(endingPoint);
-			// } else {
-			//   let endingPoint = {
-			//     "x": workPosition({"year": decadeNumber+9})[0]-y.step()/2,
-			//     "y": workPosition({"year": decadeNumber+9})[1]+y.step()/2,
-			//     "tipe": "arc90"
-			//   }
-			//   d.points.push(endingPoint);
-			// }
-
 			if(d.id == 'anni60') {
 				d.points.splice(6, 1);
 			}
@@ -144,8 +109,6 @@ d3.json('data.json').then(function(json) {
 			if(d.id == 'anni90') {
 				d.points = []
 			}
-
-			// console.log(d.points)
 
 			// now return the identifier for the decade
 			return d.id;
@@ -182,9 +145,9 @@ d3.json('data.json').then(function(json) {
 		})
 
 	let decadeArcEnd = decade.selectAll('.decade-arc.end')
-		.data(function(d, i){
+		.data(function(d, i) {
 			d.index = i;
-			if (d.id == 'anni90') {
+			if(d.id == 'anni90') {
 				return [];
 			}
 			return [d];
@@ -228,7 +191,7 @@ d3.json('data.json').then(function(json) {
 	}
 
 	let simulationArticle = d3.forceSimulation(articles)
-		.force('collision', d3.forceCollide(function(d) { return d3.max([r2 + 1.5, d.r + 1.5]) }).iterations(8))
+		.force('collision', d3.forceCollide(function(d) { return d3.max([r2 + 1, d.r + 1]) }).iterations(8))
 		.force('x', d3.forceX(function(d) { return d.x }).strength(.1))
 		.force('y', d3.forceY(function(d) { return d.y }).strength(.8))
 		.on("tick", ticked)
@@ -257,92 +220,73 @@ d3.json('data.json').then(function(json) {
 		.enter()
 		.append('g')
 		.attr('class', function(d) { return 'work ' + d.id })
-		.attr('transform', function(d,i) {
-			// console.log(d)
-			// if (d.kind == 'posthumous') {
-			// 	d.yearLabel = d.year;
-			// 	d.year = d.positionPosthumous;
-			// }
+		.attr('transform', function(d, i) {
 			let _x = workPosition(d)[0]
 			let _y = workPosition(d)[1]
-			// if (d.kind == 'posthumous') {
-			// 	_y+= i%2==0 ? r/2 : -r/2
-			// }
-
 			return 'translate(' + _x + ',' + _y + ')';
 		})
 
 	works.append('circle')
-		.attr('r', function(d){
+		.attr('r', function(d) {
 			d.r = r;
-			if (d.kind == 'posthumous' || d.kind == 'progetto incompiuto') d.r/=2
+			if(d.kind == 'posthumous' || d.kind == 'progetto incompiuto') d.r /= 3.5
 			return d.r;
 		})
-		.attr('fill', function(d){
-			if (d.kind == 'posthumous') {
+		.attr('fill', function(d) {
+			if(d.kind == 'posthumous') {
 				return '#566573';
-			} else if (d.kind == 'romanzo') {
+			} else if(d.kind == 'romanzo') {
 				return 'url(#glifo-romanzo)';
-			} else if (d.kind == 'raccolta di racconti') {
+			} else if(d.kind == 'raccolta di racconti') {
 				return 'url(#glifo-racconti)';
-			} else if (d.kind == 'romanzo fallito o opera non pubblicata') {
+			} else if(d.kind == 'romanzo fallito o opera non pubblicata') {
 				return 'url(#glifo-falliti)';
-			} else if (d.kind == 'forma ibrida tra romanzo breve e racconto lungo') {
+			} else if(d.kind == 'forma ibrida tra romanzo breve e racconto lungo') {
 				return 'url(#glifo-ibrido)';
-			} else if (d.kind == 'riscrittura') {
+			} else if(d.kind == 'riscrittura') {
 				return 'url(#glifo-riscrittura)';
-			} else if (d.kind == 'raccolta di racconti con un unico protagonista') {
+			} else if(d.kind == 'raccolta di racconti con un unico protagonista') {
 				return 'url(#glifo-racconti-protagonista)';
-			} else if (d.kind == 'romanzo di racconti dentro una cornice') {
+			} else if(d.kind == 'romanzo di racconti dentro una cornice') {
 				return 'url(#glifo-romanzo-racconti-cornice)';
-			} else if (d.kind == 'raccolta di saggi') {
+			} else if(d.kind == 'raccolta di saggi') {
 				return 'url(#glifo-saggi)';
-			} else if (d.kind == 'raccolta di saggi') {
+			} else if(d.kind == 'raccolta di saggi') {
 				return 'url(#glifo-romanzo-racconti-cornice)';
-			} else if (d.kind == 'progetto incompiuto') {
+			} else if(d.kind == 'progetto incompiuto') {
 				return 'transparent';
 			}
 		})
 		.style('stroke', function(d) { return col(d.kind) })
-		.classed('posthumous', function(d){ return d.kind == 'posthumous' })
-		.classed('unfinished', function(d){ return d.kind == 'progetto incompiuto' })
-
-	// works.append('text')
-	// 	.attr('class', 'label white-shadow')
-	// 	.attr('y', 0)
-	// 	.attr('x', 0)
-	// 	.attr('transform', function(d) {
-	// 		let _x = 0, _y = -r * 2;
-	// 		if(d.labelPosition) {
-	// 			if(d.labelPosition == "right") { _x = r * 1.3;
-	// 				_y = r * 0.25; } else if(d.labelPosition == "left") { _x = -r * 1.3;
-	// 				_y = r * 0.25; }
-	// 		}
-	// 		return 'translate(' + _x + ', ' + _y + ')';
-	// 	})
-	// 	.style('text-anchor', function(d) {
-	// 		if(d.labelPosition == "right") { return 'start' } else if(d.labelPosition == "left") { return 'end' }
-	// 	})
-	// 	.text(function(d) { return d.label; })
-	// 	.call(wrap)
+		.classed('posthumous', function(d) { return d.kind == 'posthumous' })
+		.classed('unfinished', function(d) { return d.kind == 'progetto incompiuto' })
 
 	works.append('text')
-		.attr('class', 'label white-shadow')
-		.classed('small',  function(d){
+		.attr('class', 'label')
+		.classed('small', function(d) {
 			return d.kind == 'posthumous'
 		})
 		.attr('y', 0)
 		.attr('x', 0)
 		.attr('transform', function(d) {
-			let _x = 0, _y = -d.r * 1.75;
+			let _x = 0,
+				_y = -d.r * 1.75;
 			if(d.labelPosition) {
-				if(d.labelPosition == "right") { _x = d.r * 1.6;
-					_y = d.r * 0.25; }
-					else if(d.labelPosition == "left") { _x = -d.r * 1.6;
-					_y = d.r * 0.25; }
-					else if (d.labelPosition == "bottom") {
-						_y = -_y + d.r*1
+				if(d.labelPosition == "right") {
+					_x = d.r * 1.6;
+					_y = d.r * 0.25;
+					if(d.kind == 'romanzo fallito o opera non pubblicata') {
+						_x = d.r * .8;
 					}
+				} else if(d.labelPosition == "left") {
+					_x = -d.r * 1.6;
+					_y = d.r * 0.25;
+					if(d.kind == 'romanzo fallito o opera non pubblicata') {
+						_x = -d.r * .8;
+					}
+				} else if(d.labelPosition == "bottom") {
+					_y = -_y + d.r * 1
+				}
 			}
 			return 'translate(' + _x + ', ' + _y + ')';
 		})
@@ -351,32 +295,6 @@ d3.json('data.json').then(function(json) {
 		})
 		.text(function(d) { return d.label; })
 		.call(wrap)
-
-		works.append('text')
-			.attr('class', 'label')
-			.classed('small',  function(d){
-				return d.kind == 'posthumous'
-			})
-			.attr('y', 0)
-			.attr('x', 0)
-			.attr('transform', function(d) {
-				let _x = 0, _y = -d.r * 1.75;
-				if(d.labelPosition) {
-					if(d.labelPosition == "right") { _x = d.r * 1.6;
-						_y = d.r * 0.25; }
-						else if(d.labelPosition == "left") { _x = -d.r * 1.6;
-						_y = d.r * 0.25; }
-						else if (d.labelPosition == "bottom") {
-							_y = -_y + d.r*1
-						}
-				}
-				return 'translate(' + _x + ', ' + _y + ')';
-			})
-			.style('text-anchor', function(d) {
-				if(d.labelPosition == "right") { return 'start' } else if(d.labelPosition == "left") { return 'end' }
-			})
-			.text(function(d) { return d.label; })
-			.call(wrap)
 
 	// works.append('text')
 	// 	.attr('class', 'label year')
@@ -399,33 +317,125 @@ d3.json('data.json').then(function(json) {
 			return previousPublicationsLine(d);
 		})
 
+	works.selectAll('.previous-publication-circle')
+		.data(function(d) {
+			if(d.firstPublication) {
+				d.previousPublications.kind = d.kind
+				return [d.previousPublications]
+			} else {
+				return []
+			}
+		})
+		.enter()
+		.append('circle')
+		.attr('class', 'previous-publication-circle')
+		.attr('fill', function(d){
+			return col(d.kind)
+		})
+		.attr('r', firstPubRadius)
+		.attr('cx', function(d){
+			let arrrr = previousPublicationsLine(d).split(' ');
+			arrrr = arrrr[arrrr.length-1].split(',');
+			return arrrr[0]
+		})
+		.attr('cy', function(d){
+			let arrrr = previousPublicationsLine(d).split(' ');
+			arrrr = arrrr[arrrr.length-1].split(',');
+			return arrrr[1] - firstPubRadius*2 - 5
+		})
+
 	let yearsLabels = decade.selectAll('.label.year')
-		.data(function(d){
+		.data(function(d) {
 			let nested = d3.nest()
-				.key(function(d){return d.year})
+				.key(function(d) { return d.year })
 				.rollup(function(leaves) {
-					// console.log(leaves.length, leaves[0].there_is_work)
 					let obj = {
-						'x': d3.max(leaves, function(d){ return d.x }),
-						'y': d3.max(leaves, function(d){ return d.y }),
+						'x': d3.max(leaves, function(d) { return d.x }),
+						'y': d3.max(leaves, function(d) { return d.y }),
 						'there_is_work': leaves[0].there_is_work
 					}
 					return obj;
 				})
 				.entries(d.points);
-			// console.log(nested)
-			return nested.filter( (e,i) => {
-				return e.value.there_is_work || i == 0;
-			});
+			// include the year 1969 because there is a 'first publication'
+			if (d.id == 'anni60') {
+				nested.find(function(ddd){ return ddd.key == '1969'}).value.to_be_included = true;
+			}
+			// return an array filtered as following
+			return nested.filter((e, i) => { return e.value.there_is_work || i == 0 || e.value.to_be_included; });
 		})
 		.enter()
 		.append('text')
 		.attr('class', 'label year')
 		.attr('x', function(d) { return d.value.x })
-		.attr('y', function(d) { return d.value.there_is_work ? d.value.y + r*2 : r })
-		.text(function(d){
+		.attr('y', function(d) { return d.value.there_is_work ? d.value.y + r*1.6 : r*.8 })
+		.text(function(d) {
 			return d.key
 		})
+
+	// date and place of birth
+	let birthInfo = g.append('text')
+		.attr('x', -margin.left + 30)
+		.attr('y', -margin.top - 15)
+		.classed('info', true);
+	birthInfo.append('tspan')
+		.attr('x', -margin.left + 30)
+		.text('Italo Calvino nasce il 15 ottobre 1923');
+	birthInfo.append('tspan')
+		.attr('x', -margin.left + 30)
+		.attr('dy', '.6rem')
+		.text('a Santiago de las Vegas (L’Avana, Cuba)');
+
+	// date and place of death
+	let deathInfoXpos = workPosition({ 'year': '1985' })[0]
+	decade.filter(function(d){
+		return d.id == 'anni80'
+	}).append('rect')
+		.attr('x', deathInfoXpos - 2)
+		.attr('y', - 3)
+		.attr('width', 6)
+		.attr('height', 6);
+	let deathInfo = decade.filter(function(d){
+		return d.id == 'anni80'
+	}).append('text')
+		.classed('info', true)
+		.attr('x', deathInfoXpos)
+		.attr('y', 5);
+	deathInfo.append('tspan')
+		.attr('x', deathInfoXpos)
+		.attr('dy', '.6rem')
+		.text('Muore a Siena');
+	deathInfo.append('tspan')
+		.attr('x', deathInfoXpos)
+		.attr('dy', '.6rem')
+		.text('il 19 Settembre');
+	deathInfo.append('tspan')
+		.attr('x', deathInfoXpos)
+		.attr('dy', '.6rem')
+		.text('1985');
+
+	// I Meridiani e Pubblicazioni Pustume
+	decade.filter(function(d){
+		return d.id == 'anni90'
+	}).append('text')
+	.text('Collana «I Meridiani»')
+	.attr('text-anchor','middle')
+	.attr('x', function(d){
+		return workPosition({year:'1996.5'})[0]
+	})
+	.attr('y', -r*2.3)
+	.classed('info', true);
+
+	decade.filter(function(d){
+		return d.id == 'anni90'
+	}).append('text')
+	.text('Pubblicazioni postume')
+	.attr('text-anchor','middle')
+	.attr('x', function(d){
+		return workPosition({year:'1992.25'})[0]
+	})
+	.attr('y', -r*2.3)
+	.classed('info', true);
 
 	activateStorytelling();
 });
@@ -451,7 +461,7 @@ function transformPeriodicals(data) {
 			let node = {
 				'x': _x,
 				'y': y(data.id),
-				'r': r2 + d3.randomUniform(-1.5,0)(),
+				'r': r2 + d3.randomUniform(-1.5, 0)(),
 				'decade': data.id,
 				'decadeIndex': data.index
 			}
@@ -461,15 +471,30 @@ function transformPeriodicals(data) {
 }
 
 function previousPublicationsLine(d, open) {
+
 	let positionX1 = d.x1.toString().split('')[3];
 	let _x1 = d.x1.toString().split('')[2] % 2 == 0 ? x(positionX1) : xInverse(positionX1);
 
 	let positionX2 = d.x2.toString().split('')[3];
 	let _x2 = d.x2.toString().split('')[2] % 2 == 0 ? x(positionX2) : xInverse(positionX2);
 
+	if (d.x1 == 1963 && d.x2 == 1957) {
+		_x2 -= 6
+	}
+
+	if (d.x1 == 1965 && d.x2 == 1957) {
+		_x2 += 6
+	}
+
 	let end_y = d.distributeElement ? r * d.distributeElement * distributePadding : 0;
 	end_y += y(d.y1);
-	end_y -= r;
+	end_y -= r*2;
+	end_y -= 3;
+	end_y -= firstPubRadius*2;
+
+	if (d.x2 == 1969) {
+		end_y += r*.85
+	}
 
 	if(open) {
 		end_y += space;

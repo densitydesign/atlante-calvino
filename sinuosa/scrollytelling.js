@@ -76,6 +76,12 @@ function scrollytelling(el) {
 				.attr('d', function(d) {
 					return previousPublicationsLine(d);
 				})
+			d3.select(this).selectAll('.previous-publication-circle').transition().duration(duration)
+				.attr('cy', function(d){
+					let arrrr = previousPublicationsLine(d).split(' ');
+					arrrr = arrrr[arrrr.length-1].split(',');
+					return arrrr[1] - firstPubRadius*2 - 5
+				})
 			d3.select(this).select('.decade-arc.start').transition().duration(duration)
 				.attr("d", function(d) {
 					return decadeArcs(d, 'start', false);
@@ -93,6 +99,12 @@ function scrollytelling(el) {
 			d3.select(this).selectAll('.previous-publication').transition().duration(duration)
 				.attr('d', function(d) {
 					return previousPublicationsLine(d, true);
+				})
+			d3.select(this).selectAll('.previous-publication-circle').transition().duration(duration)
+				.attr('cy', function(d){
+					let arrrr = previousPublicationsLine(d, true).split(' ');
+					arrrr = arrrr[arrrr.length-1].split(',');
+					return arrrr[1] - firstPubRadius*2 - 5
 				})
 			d3.select(this).select('.decade-arc.start').transition().duration(duration)
 				.attr("d", function(d) {
@@ -112,6 +124,12 @@ function scrollytelling(el) {
 				.attr('d', function(d) {
 					return previousPublicationsLine(d);
 				})
+			d3.select(this).selectAll('.previous-publication-circle').transition().duration(duration)
+				.attr('cy', function(d){
+					let arrrr = previousPublicationsLine(d).split(' ');
+					arrrr = arrrr[arrrr.length-1].split(',');
+					return arrrr[1] - firstPubRadius*2 - 5
+				})
 			d3.select(this).select('.decade-arc.start').transition().duration(duration)
 				.attr("d", function(d) {
 					return decadeArcs(d, 'start', false);
@@ -127,6 +145,12 @@ function scrollytelling(el) {
 				d3.select(this).selectAll('.previous-publication').transition().duration(duration)
 					.attr('d', function(d) {
 						return previousPublicationsLine(d, true);
+					})
+				d3.select(this).selectAll('.previous-publication-circle').transition().duration(duration)
+					.attr('cy', function(d){
+						let arrrr = previousPublicationsLine(d, true).split(' ');
+						arrrr = arrrr[arrrr.length-1].split(',');
+						return arrrr[1] - firstPubRadius*2 - 5
 					})
 			} else {
 				// do stuff
