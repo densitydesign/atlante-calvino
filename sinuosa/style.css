@@ -30,23 +30,16 @@ p {
   top: -40px;
 }
 
-@media only screen and (min-width: 768px) {
-  html {
-    font-size: 18px;
-  }
-}
 
-@media only screen and (min-width: 1200px) {
-  html {
-    font-size: 21px;
-  }
-}
 
 #visualisation-container {
   -webkit-box-shadow: 0px 0px 7px 0px #fbe1b6;
       -ms-box-shadow: 0px 0px 7px 0px #fbe1b6;
           box-shadow: 0px 0px 7px 0px #fbe1b6;
   background-color: white;
+  position: -webkit-sticky;
+  position: sticky;
+  top: -40px;
 }
 
 /* visualisation */
@@ -167,6 +160,16 @@ svg#visualisation {
   /* opacity: .35; */
 }
 
+.item {
+    background-color: rgba(255,254,250,0.8);
+    padding: 0.8rem;
+    border-radius: 4px;
+}
+
+.item p:last-child {
+    margin-bottom: 0;
+}
+
 .item-focus {
   margin-bottom: 25vh;
 }
@@ -208,5 +211,32 @@ svg#visualisation {
 
   to {
     r: auto;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media screen and (min-width: 992px) {
+  #visualisation-container {
+    position: relative;
+    top: 0;
+  }
+  .item {
+      background-color: transparent;
+      padding: 0;
+      border-radius: 0;
+  }
+  .item p:last-child {
+      margin-bottom: 1rem;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  html {
+    font-size: 21px;
   }
 }
