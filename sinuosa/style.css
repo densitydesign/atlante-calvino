@@ -148,6 +148,16 @@ svg#visualisation {
   /* opacity: .35; */
 }
 
+.item {
+    background-color: rgba(255,254,250,0.8);
+    padding: 0.8rem;
+    border-radius: 4px;
+}
+
+.item p:last-child {
+    margin-bottom: 0;
+}
+
 .item-focus {
   margin-bottom: 25vh;
 }
@@ -202,6 +212,14 @@ svg#visualisation {
   #visualisation-container {
     position: relative;
     top: 0;
+  }
+  .item {
+      background-color: transparent;
+      padding: 0;
+      border-radius: 0;
+  }
+  .item p:last-child {
+      margin-bottom: 1rem;
   }
 }
 
