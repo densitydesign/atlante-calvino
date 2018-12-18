@@ -3,18 +3,19 @@
 
 html {
   font-size: 16px;
-  --c-romanzo:#0490ca;
-  --c-racconti:#ed7f62;
-  --c-ibrido:#f2d371;
-  --c-riscritture:#707e84;
-  --c-racconti-protagonista:#eb9d69;
-  --c-racconti-cornice:#00b79e;
-  --c-saggi:#9d80bb;
-  --c-postumi:#566573;
+  --c-romanzo: #0490ca;
+  --c-racconti: #ed7f62;
+  --c-ibrido: #f2d371;
+  --c-riscritture: #707e84;
+  --c-racconti-protagonista: #eb9d69;
+  --c-racconti-cornice: #00b79e;
+  --c-saggi: #9d80bb;
+  --c-postumi: #566573;
+  --c-text:#212529;
 }
 
 body {
-  color: #212529;
+  color: var(--c-text);
   font-family: 'Crimson Text';
   font-weight: normal;
   font-style: normal;
@@ -32,8 +33,8 @@ p {
 
 #visualisation-container {
   -webkit-box-shadow: 0px 0px 7px 0px #fbe1b6;
-      -ms-box-shadow: 0px 0px 7px 0px #fbe1b6;
-          box-shadow: 0px 0px 7px 0px #fbe1b6;
+  -ms-box-shadow: 0px 0px 7px 0px #fbe1b6;
+  box-shadow: 0px 0px 7px 0px #fbe1b6;
   background-color: white;
   position: -webkit-sticky;
   position: sticky;
@@ -41,17 +42,39 @@ p {
 }
 
 /* visualisation */
-svg#visualisation {
-
-}
+svg#visualisation {}
 
 .legend {
-  border: 2px solid blue;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 7px 0px #fbe1b6;
+          box-shadow: 0px 0px 7px 0px #fbe1b6;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
   width: 100%;
   height: 50vh;
+  position: -webkit-sticky;
+  position: sticky;
+  top: calc(-50vh + 5px);
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.legend:after {
+  content: '\2193';
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 1.3rem;
+  height: 1.3rem;
+  background-color: white;
+  position: absolute;
+  -webkit-box-shadow: 0px 0px 7px 0px #fbe1b6;
+          box-shadow: 0px 0px 7px 0px #fbe1b6;
+  bottom: -1.5rem;
+  right:0;
 }
 
 .label {
@@ -106,8 +129,7 @@ svg#visualisation {
   marker-end: url(#arrow-head-big);
 }
 
-.decade-arc.end {
-}
+.decade-arc.end {}
 
 .previous-publication {
   fill: none;
@@ -125,11 +147,11 @@ svg#visualisation {
   -webkit-transition: r 2s;
   transition: r 2s;
   -webkit-animation-name: fade-in-radius;
-          animation-name: fade-in-radius;
+  animation-name: fade-in-radius;
   -webkit-animation-duration: 1.5s;
-          animation-duration: 1.5s;
+  animation-duration: 1.5s;
   -webkit-animation-iteration-count: 1;
-          animation-iteration-count: 1;
+  animation-iteration-count: 1;
 }
 
 .article.ghost-node {
@@ -168,13 +190,13 @@ svg#visualisation {
 }
 
 .item {
-    background-color: rgba(255,254,250,0.8);
-    padding: 0.8rem;
-    border-radius: 4px;
+  background-color: rgba(255, 254, 250, 0.8);
+  padding: 0.8rem;
+  border-radius: 4px;
 }
 
 .item p:last-child {
-    margin-bottom: 0;
+  margin-bottom: 0;
 }
 
 .item-focus {
@@ -232,13 +254,15 @@ svg#visualisation {
     position: relative;
     top: 0;
   }
+
   .item {
-      background-color: transparent;
-      padding: 0;
-      border-radius: 0;
+    background-color: transparent;
+    padding: 0;
+    border-radius: 0;
   }
+
   .item p:last-child {
-      margin-bottom: 1rem;
+    margin-bottom: 1rem;
   }
 }
 
