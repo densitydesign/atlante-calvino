@@ -4,10 +4,10 @@ function activateStorytelling() { // controlla scrollytelling
 	enterView({
 		selector: '.item',
 		enter: function(el) {
-			scrollytelling(el)
+			scrollytelling(el);
 		},
 		exit: function(el) {
-			scrollytelling(el)
+			scrollytelling(el);
 		},
 		offset: 0.8, // enter at middle of viewport
 	});
@@ -15,10 +15,12 @@ function activateStorytelling() { // controlla scrollytelling
 	enterView({
 		selector: '.item-reset-bottom',
 		enter: function(el) {
-			scrollytelling(el)
+			scrollytelling(el);
+			d3.select('.legend').classed('open', true);
 		},
 		exit: function(el) {
-			scrollytelling(el)
+			scrollytelling(el);
+			d3.select('.legend').classed('open', false);
 		},
 		offset: 0, // enter at middle of viewport
 	});
@@ -26,10 +28,14 @@ function activateStorytelling() { // controlla scrollytelling
 	enterView({
 		selector: '.item-reset-top',
 		enter: function(el) {
-			scrollytelling(el)
+			// console.log('enter uouououou')
+			scrollytelling(el);
+			d3.select('.legend').classed('open', true);
 		},
 		exit: function(el) {
-			scrollytelling(el)
+			// console.log('exit uouououou')
+			scrollytelling(el);
+			d3.select('.legend').classed('open', true);
 		},
 		offset: 1, // enter at middle of viewport
 	});
@@ -62,6 +68,8 @@ function scrollytelling(el) {
 	console.log('enters/exits:', thisDataAttribute);
 
 	// reset
+
+	console.log('reset uouououo')
 	if(thisDataAttribute == 'reset') {
 		d3.selectAll('g.decade').transition().duration(duration)
 			.attr('transform', function(d) { return 'translate(0,' + y(d.id) + ')' })
@@ -79,6 +87,10 @@ function scrollytelling(el) {
 			.attr("d", function(d) {
 				return decadeArcs(d, 'end', false);
 			})
+		console.log(d3.select(el).attr('class'))
+		if (d3.select(el).attr('class') != 'item-reset-top' && d3.select(el).attr('class') != 'item-reset-bottom') {
+			d3.select('.legend').classed('open', false);
+		}
 
 		return;
 	}
