@@ -3,6 +3,14 @@
 
 html {
   font-size: 16px;
+  --c-romanzo:#0490ca;
+  --c-racconti:#ed7f62;
+  --c-ibrido:#f2d371;
+  --c-riscritture:#707e84;
+  --c-racconti-protagonista:#eb9d69;
+  --c-racconti-cornice:#00b79e;
+  --c-saggi:#9d80bb;
+  --c-postumi:#566573;
 }
 
 body {

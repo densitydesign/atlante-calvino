@@ -241,10 +241,10 @@ d3.json('data.json').then(function(json) {
 		})
 
 	let toBack = works.filter(function(d) {
-		return d.id == 'V012';
-	}).moveToBack();
+		return d.id == 'V009';
+	}).moveToFront();
 
-	d3.select('.decade.anni60').selectAll('.thread').moveToBack();
+	// d3.select('.decade.anni60').selectAll('.thread').moveToBack();
 
 	works.selectAll('.previous-publication')
 		.data(function(d) {
