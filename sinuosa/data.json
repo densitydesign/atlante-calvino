@@ -25,7 +25,7 @@
       "firstPublication": null,
       "publisher": "",
       "labelPosition": "left",
-      "distributeElement": 0.5
+      "distributeElement": 0.7
     }
   ],
   "periodicals": [{
@@ -68,7 +68,7 @@
       "firstPublication": null,
       "publisher": "",
       "labelPosition": "right",
-      "distributeElement": 0.5
+      "distributeElement": 0.7
     },
     {
       "id": "V003",
@@ -212,7 +212,7 @@
     "kind": "raccolta di racconti con un unico protagonista",
     "firstPublication": null,
     "publisher": "",
-    "labelPosition":"right"
+    "labelPosition": "right"
   }],
   "periodicals": [
 
@@ -247,7 +247,7 @@
     "publisher": ""
   }, {
     "id": "V018",
-    "label": "Il castello dei destini_incrociati",
+    "label": "Il castello_dei destini_incrociati",
     "year": 1973,
     "kind": "romanzo di racconti dentro una cornice",
     "firstPublication": 1969,
@@ -309,7 +309,7 @@
   }, {
     "id": "F005",
     "label": "Passaggi_obbligati",
-    "year": 1986,
+    "year": 1986.1,
     "kind": "progetto incompiuto",
     "publisher": "",
     "labelPosition": "top",
@@ -317,7 +317,7 @@
   }, {
     "id": "F006",
     "label": "I cinque_sensi",
-    "year": 1986.5,
+    "year": 1986.7,
     "kind": "progetto incompiuto",
     "publisher": "",
     "labelPosition": "bottom",
@@ -325,7 +325,7 @@
   }, {
     "id": "F007",
     "label": "Le memorie_di Casanova",
-    "year": 1987,
+    "year": 1987.3,
     "kind": "progetto incompiuto",
     "publisher": "",
     "labelPosition": "top",
@@ -333,7 +333,7 @@
   }, {
     "id": "F008",
     "label": "Dialoghi_storici",
-    "year": 1987.5,
+    "year": 1987.9,
     "kind": "progetto incompiuto",
     "publisher": "",
     "labelPosition": "bottom",
@@ -341,7 +341,7 @@
   }, {
     "id": "F009",
     "label": "Lezioni_americane",
-    "year": 1988,
+    "year": 1988.5,
     "kind": "progetto incompiuto",
     "publisher": "",
     "labelPosition": "top",
@@ -381,7 +381,7 @@
   "works": [{
       "id": "P001",
       "label": "Sotto il sole_giaguaro",
-      "year": 1991,
+      "year": 1990.5,
       "trueYear": 1986,
       "kind": "posthumous",
       "publisher": "",
@@ -390,7 +390,7 @@
     }, {
       "id": "P002",
       "label": "Lezioni_americane",
-      "year": 1991.5,
+      "year": 1991.1,
       "trueYear": 1988,
       "kind": "posthumous",
       "publisher": "",
@@ -400,7 +400,7 @@
     }, {
       "id": "P003",
       "label": "La strada_di san giovanni",
-      "year": 1992,
+      "year": 1991.7,
       "trueYear": 1990,
       "kind": "posthumous",
       "publisher": "",
@@ -409,7 +409,7 @@
     }, {
       "id": "P004",
       "label": "Perché leggere_i classici",
-      "year": 1992.5,
+      "year": 1992.3,
       "trueYear": 1991,
       "kind": "posthumous",
       "publisher": "",
@@ -419,7 +419,7 @@
     }, {
       "id": "P005",
       "label": "Prima che tu_dica “Pronto”",
-      "year": 1993,
+      "year": 1992.9,
       "trueYear": 1993,
       "kind": "posthumous",
       "publisher": "",
@@ -440,7 +440,7 @@
     , {
       "id": "P007",
       "label": "Romanzi_e racconti I",
-      "year": 1995,
+      "year": 1995.4,
       "trueYear": 1991,
       "kind": "posthumous",
       "publisher": "",
@@ -449,7 +449,7 @@
     }, {
       "id": "P008",
       "label": "Romanzi_e racconti II",
-      "year": 1995.5,
+      "year": 1996,
       "trueYear": 1992,
       "kind": "posthumous",
       "publisher": "",
@@ -459,7 +459,7 @@
     }, {
       "id": "P009",
       "label": "Fiabe_italiane",
-      "year": 1996,
+      "year": 1996.8,
       "trueYear": 1993,
       "kind": "posthumous",
       "publisher": "",
@@ -468,7 +468,7 @@
     }, {
       "id": "P010",
       "label": "Romanzi_e racconti III",
-      "year": 1996.5,
+      "year": 1997.4,
       "trueYear": 1994,
       "kind": "posthumous",
       "publisher": "",
@@ -478,7 +478,7 @@
     }, {
       "id": "P011",
       "label": "Saggi",
-      "year": 1997,
+      "year": 1998,
       "trueYear": 1995,
       "kind": "posthumous",
       "publisher": "",
@@ -488,7 +488,7 @@
     }, {
       "id": "P012",
       "label": "Album_Calvino",
-      "year": 1997.5,
+      "year": 1998.6,
       "trueYear": 1995,
       "kind": "posthumous",
       "publisher": "",
@@ -498,7 +498,7 @@
     }, {
       "id": "P013",
       "label": "Lettere",
-      "year": 1998,
+      "year": 1999.2,
       "trueYear": 2000,
       "kind": "posthumous",
       "publisher": "",
