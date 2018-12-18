@@ -48,7 +48,7 @@ svg#visualisation {
 }
 
 .label {
-  font-size: .6rem;
+  font-size: .53rem;
   text-anchor: middle;
   font-style: italic;
   font-weight: 600;
@@ -56,7 +56,7 @@ svg#visualisation {
 }
 
 .label.small {
-  font-size: .55rem;
+  font-size: .48rem;
 }
 
 .label.white-shadow {
@@ -217,6 +217,12 @@ svg#visualisation {
 @media screen and (min-width: 768px) {
   html {
     font-size: 18px;
+  }
+  .label {
+    font-size: .6rem;
+  }
+  .label.small {
+    font-size: .55rem;
   }
 }
 

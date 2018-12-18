@@ -37,8 +37,9 @@ let margin = {
 }
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
-let r = width > 540 ? 20 : 12;
-r = height > 640 ? 20 : 12;
+// let r = width > 540 ? 20 : 12;
+// r = height > 640 ? 20 : 12;
+let r = height < width || width > 540 ? 20 : 12;
 let r2 = 4
 let firstPubRadius = 3;
 let distributePadding = 3.5;
@@ -450,7 +451,7 @@ d3.json('data.json').then(function(json) {
 		.text('Collana «I Meridiani»')
 		.attr('text-anchor', 'middle')
 		.attr('x', function(d) {
-			return workPosition({ year: '1996.5' })[0]
+			return workPosition({ year: '1997.3' })[0]
 		})
 		.attr('y', -r * 2.3)
 		.classed('info', true);
@@ -461,7 +462,7 @@ d3.json('data.json').then(function(json) {
 		.text('Pubblicazioni postume')
 		.attr('text-anchor', 'middle')
 		.attr('x', function(d) {
-			return workPosition({ year: '1992.25' })[0]
+			return workPosition({ year: '1991.7' })[0]
 		})
 		.attr('y', -r * 2.3)
 		.classed('info', true);
