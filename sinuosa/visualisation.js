@@ -1,5 +1,19 @@
 console.log('olè!')
 
+d3.selection.prototype.moveToFront = function() {
+	return this.each(function() {
+		this.parentNode.appendChild(this);
+	});
+};
+d3.selection.prototype.moveToBack = function() {
+	return this.each(function() {
+		var firstChild = this.parentNode.firstChild;
+		if(firstChild) {
+			this.parentNode.insertBefore(this, firstChild);
+		}
+	});
+};
+
 // Draw visualisation
 
 let data;
@@ -23,9 +37,9 @@ let margin = {
 }
 let width = container.node().clientWidth - margin.right - margin.left - 30;
 let height = window.innerHeight - margin.top - margin.bottom;
-let r = width > height ? height / 10 / 2 / 2.8 : width / 10 / 2 / 2.2;
-r = width > 540 ? 20 : 12;
-let r2 = r / 5.5 + width / 1000;
+let r = width > 540 ? 20 : 12;
+r = height > 640 ? 20 : 12;
+let r2 = 4
 let firstPubRadius = 3;
 let distributePadding = 3.5;
 
@@ -226,6 +240,54 @@ d3.json('data.json').then(function(json) {
 			return 'translate(' + _x + ',' + _y + ')';
 		})
 
+	let toBack = works.filter(function(d) {
+		return d.id == 'V012';
+	}).moveToBack();
+
+	d3.select('.decade.anni60').selectAll('.thread').moveToBack();
+
+	works.selectAll('.previous-publication')
+		.data(function(d) {
+			if(d.firstPublication) {
+				return [d.previousPublications]
+			} else {
+				return []
+			}
+		})
+		.enter()
+		.append('path')
+		.attr('class', 'previous-publication')
+		.attr('d', function(d) {
+			return previousPublicationsLine(d);
+		})
+
+	works.selectAll('.previous-publication-circle')
+		.data(function(d) {
+			if(d.firstPublication) {
+				d.previousPublications.kind = d.kind
+				return [d.previousPublications]
+			} else {
+				return []
+			}
+		})
+		.enter()
+		.append('circle')
+		.attr('class', 'previous-publication-circle')
+		.attr('fill', function(d) {
+			return col(d.kind)
+		})
+		.attr('r', firstPubRadius)
+		.attr('cx', function(d) {
+			let arrrr = previousPublicationsLine(d).split(' ');
+			arrrr = arrrr[arrrr.length - 1].split(',');
+			return arrrr[0]
+		})
+		.attr('cy', function(d) {
+			let arrrr = previousPublicationsLine(d).split(' ');
+			arrrr = arrrr[arrrr.length - 1].split(',');
+			return arrrr[1] - firstPubRadius * 2 - 5
+		})
+
 	works.append('circle')
 		.attr('r', function(d) {
 			d.r = r;
@@ -295,66 +357,20 @@ d3.json('data.json').then(function(json) {
 			if(d.labelPosition == "right") { return 'start' } else if(d.labelPosition == "left") { return 'end' }
 		})
 		.html(function(d) {
-			console.log(d.label.split('_').length)
-
 			let delta_y = rem2px(.6);
-
-			if (d.labelPosition == "left" || d.labelPosition == "right") {
-				d3.select(this).attr('y', -(d.label.split('_').length-1)*delta_y/2 )
-			} else if (d.labelPosition == "bottom") {
+			if(d.labelPosition == "left" || d.labelPosition == "right") {
+				d3.select(this).attr('y', -(d.label.split('_').length - 1) * delta_y / 2)
+			} else if(d.labelPosition == "bottom") {
 				// d3.select(this).attr('y', (d.label.split('_').length-1)*delta_y/2 )
 			} else {
-				d3.select(this).attr('y', -(d.label.split('_').length-1)*delta_y )
+				d3.select(this).attr('y', -(d.label.split('_').length - 1) * delta_y)
 			}
-
 
 			let txt = '';
-			d.label.split('_').forEach(function(t,i){
-				txt+=`<tspan x="0" dy="${i==0?'0rem':delta_y}">${t}</tspan>`;
+			d.label.split('_').forEach(function(t, i) {
+				txt += `<tspan x="0" dy="${i==0?'0rem':delta_y}">${t}</tspan>`;
 			})
 			return txt
-		})
-
-	works.selectAll('.previous-publication')
-		.data(function(d) {
-			if(d.firstPublication) {
-				return [d.previousPublications]
-			} else {
-				return []
-			}
-		})
-		.enter()
-		.append('path')
-		.attr('class', 'previous-publication')
-		.attr('d', function(d) {
-			return previousPublicationsLine(d);
-		})
-
-	works.selectAll('.previous-publication-circle')
-		.data(function(d) {
-			if(d.firstPublication) {
-				d.previousPublications.kind = d.kind
-				return [d.previousPublications]
-			} else {
-				return []
-			}
-		})
-		.enter()
-		.append('circle')
-		.attr('class', 'previous-publication-circle')
-		.attr('fill', function(d){
-			return col(d.kind)
-		})
-		.attr('r', firstPubRadius)
-		.attr('cx', function(d){
-			let arrrr = previousPublicationsLine(d).split(' ');
-			arrrr = arrrr[arrrr.length-1].split(',');
-			return arrrr[0]
-		})
-		.attr('cy', function(d){
-			let arrrr = previousPublicationsLine(d).split(' ');
-			arrrr = arrrr[arrrr.length-1].split(',');
-			return arrrr[1] - firstPubRadius*2 - 5
 		})
 
 	let yearsLabels = decade.selectAll('.label.year')
@@ -371,8 +387,8 @@ d3.json('data.json').then(function(json) {
 				})
 				.entries(d.points);
 			// include the year 1969 because there is a 'first publication'
-			if (d.id == 'anni60') {
-				nested.find(function(ddd){ return ddd.key == '1969'}).value.to_be_included = true;
+			if(d.id == 'anni60') {
+				nested.find(function(ddd) { return ddd.key == '1969' }).value.to_be_included = true;
 			}
 			// return an array filtered as following
 			return nested.filter((e, i) => { return e.value.there_is_work || i == 0 || e.value.to_be_included; });
@@ -381,7 +397,7 @@ d3.json('data.json').then(function(json) {
 		.append('text')
 		.attr('class', 'label year')
 		.attr('x', function(d) { return d.value.x })
-		.attr('y', function(d) { return d.value.there_is_work ? d.value.y + r*1.6 : r*.8 })
+		.attr('y', function(d) { return d.value.there_is_work ? d.value.y + r * 1.6 : r * .8 })
 		.text(function(d) {
 			return d.key
 		})
@@ -396,21 +412,21 @@ d3.json('data.json').then(function(json) {
 		.text('Italo Calvino nasce il 15 ottobre 1923');
 	birthInfo.append('tspan')
 		.attr('x', -margin.left + 30)
-		.attr('dy', '.6rem')
+		.attr('dy', rem2px(.6))
 		.text('a Santiago de las Vegas (L’Avana, Cuba)');
 
 	// date and place of death
 	let deathInfoXpos = workPosition({ 'year': '1985' })[0]
-	decade.filter(function(d){
-		return d.id == 'anni80'
-	}).append('rect')
+	decade.filter(function(d) {
+			return d.id == 'anni80'
+		}).append('rect')
 		.attr('x', deathInfoXpos - 2)
-		.attr('y', - 3)
+		.attr('y', -3)
 		.attr('width', 6)
 		.attr('height', 6);
-	let deathInfo = decade.filter(function(d){
-		return d.id == 'anni80'
-	}).append('text')
+	let deathInfo = decade.filter(function(d) {
+			return d.id == 'anni80'
+		}).append('text')
 		.classed('info', true)
 		.attr('x', deathInfoXpos)
 		.attr('y', 5);
@@ -428,27 +444,27 @@ d3.json('data.json').then(function(json) {
 		.text('1985');
 
 	// I Meridiani e Pubblicazioni Pustume
-	decade.filter(function(d){
-		return d.id == 'anni90'
-	}).append('text')
-	.text('Collana «I Meridiani»')
-	.attr('text-anchor','middle')
-	.attr('x', function(d){
-		return workPosition({year:'1996.5'})[0]
-	})
-	.attr('y', -r*2.3)
-	.classed('info', true);
+	decade.filter(function(d) {
+			return d.id == 'anni90'
+		}).append('text')
+		.text('Collana «I Meridiani»')
+		.attr('text-anchor', 'middle')
+		.attr('x', function(d) {
+			return workPosition({ year: '1996.5' })[0]
+		})
+		.attr('y', -r * 2.3)
+		.classed('info', true);
 
-	decade.filter(function(d){
-		return d.id == 'anni90'
-	}).append('text')
-	.text('Pubblicazioni postume')
-	.attr('text-anchor','middle')
-	.attr('x', function(d){
-		return workPosition({year:'1992.25'})[0]
-	})
-	.attr('y', -r*2.3)
-	.classed('info', true);
+	decade.filter(function(d) {
+			return d.id == 'anni90'
+		}).append('text')
+		.text('Pubblicazioni postume')
+		.attr('text-anchor', 'middle')
+		.attr('x', function(d) {
+			return workPosition({ year: '1992.25' })[0]
+		})
+		.attr('y', -r * 2.3)
+		.classed('info', true);
 
 	activateStorytelling();
 });
@@ -491,22 +507,22 @@ function previousPublicationsLine(d, open) {
 	let positionX2 = d.x2.toString().split('')[3];
 	let _x2 = d.x2.toString().split('')[2] % 2 == 0 ? x(positionX2) : xInverse(positionX2);
 
-	if (d.x1 == 1963 && d.x2 == 1957) {
+	if(d.x1 == 1963 && d.x2 == 1957) {
 		_x2 -= 6
 	}
 
-	if (d.x1 == 1965 && d.x2 == 1957) {
+	if(d.x1 == 1965 && d.x2 == 1957) {
 		_x2 += 6
 	}
 
 	let end_y = d.distributeElement ? r * d.distributeElement * distributePadding : 0;
 	end_y += y(d.y1);
-	end_y -= r*2;
+	end_y -= r * 2;
 	end_y -= 3;
-	end_y -= firstPubRadius*2;
+	end_y -= firstPubRadius * 2;
 
-	if (d.x2 == 1969) {
-		end_y += r*.85
+	if(d.x2 == 1969) {
+		end_y += r * .85
 	}
 
 	if(open) {
