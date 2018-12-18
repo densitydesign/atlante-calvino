@@ -200,3 +200,8 @@ function scrollytelling(el) {
 		}
 	})
 }
+
+d3.select('#legend-button').on('click', function(d){
+	console.log('legend open/closed')
+	d3.select('.legend').classed('open', d3.select('.legend').classed('open') ? false : true)
+})

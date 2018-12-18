@@ -11,7 +11,7 @@ html {
   --c-racconti-cornice: #00b79e;
   --c-saggi: #9d80bb;
   --c-postumi: #566573;
-  --c-text:#212529;
+  --c-text: #212529;
 }
 
 body {
@@ -45,36 +45,103 @@ p {
 svg#visualisation {}
 
 .legend {
-  background-color: white;
-  -webkit-box-shadow: 0px 0px 7px 0px #fbe1b6;
-          box-shadow: 0px 0px 7px 0px #fbe1b6;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
+  flex-wrap: wrap;
   width: 100%;
-  height: 50vh;
+  height: 1.8rem;
   position: -webkit-sticky;
   position: sticky;
-  top: calc(-50vh + 5px);
+  top: 0px;
   -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  box-sizing: border-box;
+  margin-bottom: 2rem;
+  z-index: 10000;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
 }
 
-.legend:after {
-  content: '\2193';
+.legend .legend-content {
+  padding: 5px 10px;
+  height: 1.8rem;
+  width: 100%;
+  -webkit-transition: height .35s ease;
+  transition: height .35s ease;
+  overflow: hidden;
+  background-color: white;
+  -webkit-box-shadow: 0px 0px 7px 0px #fbe1b6;
+  box-shadow: 0px 0px 7px 0px #fbe1b6;
+}
+
+.legend.open .legend-content {
+  height: 50vh;
+}
+
+#legend-button {
+  /* content: '\2193'; */
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   width: 1.3rem;
   height: 1.3rem;
   background-color: white;
-  position: absolute;
   -webkit-box-shadow: 0px 0px 7px 0px #fbe1b6;
-          box-shadow: 0px 0px 7px 0px #fbe1b6;
-  bottom: -1.5rem;
-  right:0;
+  box-shadow: 0px 0px 7px 0px #fbe1b6;
+  text-align: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10000;
+  margin-top: 0.2rem;
+}
+
+#legend-button::before {
+  content: '';
+  display: block;
+  background-color: var(--c-text);
+  height: 2px;
+  position: relative;
+  left: 1px;
+  width: 32%;
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+#legend-button::after {
+  content: '';
+  display: block;
+  background-color: var(--c-text);
+  height: 2px;
+  position: relative;
+  right: 1px;
+  width: 32%;
+  -webkit-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+}
+
+.legend.open #legend-button::before {
+  -webkit-transform: rotate(-30deg);
+  transform: rotate(-30deg);
+}
+
+.legend.open #legend-button::after {
+  -webkit-transform: rotate(30deg);
+  transform: rotate(30deg);
+}
+
+.work-title {
+  font-style: italic;
+  display: inline;
+  border: 1px solid;
+  border-radius: 4px;
+  padding: 0px 3.5px;
 }
 
 .label {
@@ -87,6 +154,13 @@ svg#visualisation {}
 
 .label.small {
   font-size: .48rem;
+}
+
+.label.character {
+  font-size: .56rem;
+  font-family: 'HK Grotesk';
+  font-style: normal;
+  text-anchor: middle;
 }
 
 .label.white-shadow {
@@ -247,9 +321,11 @@ svg#visualisation {}
   html {
     font-size: 18px;
   }
+
   .label {
     font-size: .6rem;
   }
+
   .label.small {
     font-size: .55rem;
   }

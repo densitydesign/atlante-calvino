@@ -211,6 +211,32 @@ d3.json('data.json').then(function(json) {
 		.force('y', d3.forceY(function(d) { return d.y }).strength(.7))
 		.on("tick", ticked)
 
+	let characters = decade.selectAll('.character')
+		.data(function(d,i){
+			return d.characters;
+		})
+		.enter()
+		.append('g')
+		.attr('class', 'character')
+		.attr('transform', function(d, i) {
+			let _x = workPosition(d)[0]
+			let _y = workPosition(d)[1]
+			return 'translate(' + _x + ',' + _y + ')';
+		})
+
+	characters.append('path')
+		.attr('d', 'M -3.5 0 L 0 -7 L 3.5 0 L 0 7 Z')
+		.attr('stroke', 'white')
+		.attr('stroke-width', 1)
+
+	characters.append('text')
+		.attr('x',0)
+		.attr('y',-10)
+		.attr('class', 'label character')
+		.text(function(d){
+			return d.name.split('').slice(0,1);
+		})
+
 	let works = decade.selectAll('.work')
 		.data(function(d, i) {
 			// compile data for visualising first publications add for line-thread-guide
@@ -240,12 +266,10 @@ d3.json('data.json').then(function(json) {
 			let _y = workPosition(d)[1]
 			return 'translate(' + _x + ',' + _y + ')';
 		})
-
-	let toBack = works.filter(function(d) {
+	// Move La giornata di uno scriutatore to from to avoid silly overlapping with lines
+	works.filter(function(d) {
 		return d.id == 'V009';
 	}).moveToFront();
-
-	// d3.select('.decade.anni60').selectAll('.thread').moveToBack();
 
 	works.selectAll('.previous-publication')
 		.data(function(d) {

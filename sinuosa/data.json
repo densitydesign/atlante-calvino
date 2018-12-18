@@ -46,7 +46,8 @@
       "amount": 30,
       "distributeElement": true
     }
-  ]
+  ],
+  "characters": [ ]
 }, {
   "id": "anni50",
   "label": "Anni '50",
@@ -145,7 +146,11 @@
       "year": 1955,
       "amount": 30
     }
-  ]
+  ],
+  "characters": [{
+    "name": "Marcovaldo",
+    "year": 1952.75
+  }]
 }, {
   "id": "anni60",
   "label": "Anni '60",
@@ -216,7 +221,11 @@
   }],
   "periodicals": [
 
-  ]
+  ],
+  "characters": [{
+    "name": "Qfwfq",
+    "year": 1964.72
+  }]
 }, {
   "id": "anni70",
   "label": "Anni '70",
@@ -281,7 +290,11 @@
       "amount": 20,
       "distributeElement": true
     }
-  ]
+  ],
+  "characters": [{
+    "name": "Palomar",
+    "year": 1975.67
+  }]
 }, {
   "id": "anni80",
   "label": "Anni '80",
@@ -374,7 +387,8 @@
       "year": 1985,
       "amount": 20
     }
-  ]
+  ],
+  "characters": []
 }, {
   "id": "anni90",
   "label": "Anni '90",
@@ -507,7 +521,6 @@
       "labelPosition": "top"
     }
   ],
-  "periodicals": [
-  ]
-}
-]
+  "periodicals": [],
+  "characters": []
+}]
