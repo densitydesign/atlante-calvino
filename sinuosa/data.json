@@ -207,11 +207,12 @@
     "labelPosition": "right"
   }, {
     "id": "V014",
-    "label": "Ti con zero",
+    "label": "Ti_con zero",
     "year": 1967,
     "kind": "raccolta di racconti con un unico protagonista",
     "firstPublication": null,
-    "publisher": ""
+    "publisher": "",
+    "labelPosition":"right"
   }],
   "periodicals": [
 

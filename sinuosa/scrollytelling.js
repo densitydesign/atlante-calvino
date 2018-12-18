@@ -9,30 +9,55 @@ function activateStorytelling() { // controlla scrollytelling
 		exit: function(el) {
 			scrollytelling(el)
 		},
-		offset: 0.6, // enter at middle of viewport
+		offset: 0.8, // enter at middle of viewport
+	});
+
+	enterView({
+		selector: '.item-reset-bottom',
+		enter: function(el) {
+			scrollytelling(el)
+		},
+		exit: function(el) {
+			scrollytelling(el)
+		},
+		offset: 0, // enter at middle of viewport
+	});
+
+	enterView({
+		selector: '.item-reset-top',
+		enter: function(el) {
+			scrollytelling(el)
+		},
+		exit: function(el) {
+			scrollytelling(el)
+		},
+		offset: 1, // enter at middle of viewport
 	});
 
 	// controlla scrollytelling
-	enterView({
-		selector: '.item-focus',
-		enter: function(el) {
-			let sel = d3.select(el).attr('data-attribute').split('-');
-			d3.select('.' + sel[0]).selectAll('.work').style('opacity', .5)
-			sel[1].split('|').forEach((d) => {
-				d3.select('.' + sel[0]).selectAll('.' + d).style('opacity', 1)
-			})
-
-		},
-		exit: function(el) {
-			let sel = d3.select(el).attr('data-attribute').split('-');
-			d3.select('.' + sel[0]).selectAll('.work').style('opacity', 1)
-		},
-		offset: 0.5, // enter at middle of viewport
-	});
+	// enterView({
+	// 	selector: '.item-focus',
+	// 	enter: function(el) {
+	// 		let sel = d3.select(el).attr('data-attribute').split('-');
+	// 		d3.select('.' + sel[0]).selectAll('.work').style('opacity', .5)
+	// 		sel[1].split('|').forEach((d) => {
+	// 			d3.select('.' + sel[0]).selectAll('.' + d).style('opacity', 1)
+	// 		})
+	//
+	// 	},
+	// 	exit: function(el) {
+	// 		let sel = d3.select(el).attr('data-attribute').split('-');
+	// 		d3.select('.' + sel[0]).selectAll('.work').style('opacity', 1)
+	// 	},
+	// 	offset: 0.5, // enter at middle of viewport
+	// });
 }
 
 function scrollytelling(el) {
 	let thisDataAttribute = d3.select(el).attr('data-attribute');
+
+	d3.selectAll('.item').style('opacity', .35)
+	d3.select(el).style('opacity', 1)
 
 	console.log('enters/exits:', thisDataAttribute);
 
@@ -44,7 +69,7 @@ function scrollytelling(el) {
 
 		d3.selectAll('.article').transition().duration(duration)
 			.attr('transform', function(d) { return 'translate(0, 0)' })
-			// .style('opacity', .75);
+			.style('opacity', .75);
 
 		d3.selectAll('.decade-arc.start')
 			.attr("d", function(d) {
@@ -61,7 +86,7 @@ function scrollytelling(el) {
 	let index = data.map(function(d) { return d.id }).indexOf(thisDataAttribute);
 	// handle opacity
 	d3.selectAll('g.decade')
-		// .style('opacity', .25);
+		.style('opacity', .25);
 	d3.selectAll('g.decade.' + thisDataAttribute)
 		.style('opacity', 1);
 
@@ -163,15 +188,15 @@ function scrollytelling(el) {
 		if(d.decadeIndex < index) {
 			d3.select(this).transition().duration(duration)
 				.attr('transform', function(d) { return 'translate(0,' + (-space) + ')' })
-				// .style('opacity', .25);
+				.style('opacity', .25);
 		} else if(d.decadeIndex == index) {
 			d3.select(this).transition().duration(duration)
 				.attr('transform', function(d) { return 'translate(0, 0)' })
-				// .style('opacity', .75);
+				.style('opacity', .75);
 		} else if(d.decadeIndex > index) {
 			d3.select(this).transition().duration(duration)
 				.attr('transform', function(d) { return 'translate(0,' + (space) + ')' })
-				// .style('opacity', .25);
+				.style('opacity', .25);
 		}
 	})
 }
