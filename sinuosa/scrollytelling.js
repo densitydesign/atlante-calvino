@@ -217,3 +217,15 @@ d3.select('#legend-button').on('click', function(d){
 	console.log('legend open/closed')
 	d3.select('.legend').classed('open', d3.select('.legend').classed('open') ? false : true)
 })
+
+d3.selectAll('span.work-title')
+	.on('mouseover touchstart', function(){
+		let id = d3.select(this).attr('data-attribute')
+		console.log(id)
+		d3.select('.work.'+id+' circle').classed('in-focus', true);
+	})
+	.on('mouseout touchend', function(){
+		let id = d3.select(this).attr('data-attribute')
+		console.log(id)
+		d3.select('.work.'+id+' circle').classed('in-focus', false);
+	})
