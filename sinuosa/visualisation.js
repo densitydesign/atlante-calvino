@@ -206,9 +206,9 @@ d3.json('data.json').then(function(json) {
 	}
 
 	let simulationArticle = d3.forceSimulation(articles)
-		.force('collision', d3.forceCollide(function(d) { return d3.max([r2 + 2, d.r + 2]) }).iterations(4))
-		.force('x', d3.forceX(function(d) { return d.x }).strength(.1))
-		.force('y', d3.forceY(function(d) { return d.y }).strength(.7))
+		.force('x', d3.forceX(function(d) { return d.x }))
+		.force('y', d3.forceY(function(d) { return d.y }))
+		.force('collision', d3.forceCollide(function(d) { return d.r + 1 }))
 		.on("tick", ticked)
 
 	let characters = decade.selectAll('.character')
@@ -495,20 +495,23 @@ d3.json('data.json').then(function(json) {
 });
 
 function transformPeriodicals(data) {
+	console.log('continue from here', data);
 	data.periodicals.forEach((d) => {
-		if(d.distributeElement) {
-			let positionGN = d.year.toString().split('')[3];
-			let _xGN = d.year.toString().split('')[2] % 2 == 0 ? x(positionGN) : xInverse(positionGN);
-			let ghostNode = {
-				'fx': _xGN,
-				'fy': y(data.id),
-				'r': r,
-				'ghostNode': true,
-				'decade': data.id,
-				'decadeIndex': data.index
-			}
-			articles.push(ghostNode);
-		}
+
+		// if(true || d.distributeElement) {
+		// 	let positionGN = d.year.toString().split('')[3];
+		// 	let _xGN = d.year.toString().split('')[2] % 2 == 0 ? x(positionGN) : xInverse(positionGN);
+		// 	let ghostNode = {
+		// 		'fx': _xGN,
+		// 		'fy': y(data.id),
+		// 		'r': r,
+		// 		'ghostNode': true,
+		// 		'decade': data.id,
+		// 		'decadeIndex': data.index
+		// 	}
+		// 	articles.push(ghostNode);
+		// }
+
 		for(var i = 0; i < d.amount; i++) {
 			let position = d.year.toString().split('')[3];
 			let _x = d.year.toString().split('')[2] % 2 == 0 ? x(+position) : xInverse(+position);

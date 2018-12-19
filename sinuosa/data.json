@@ -28,24 +28,1085 @@
       "distributeElement": 0.7
     }
   ],
-  "periodicals": [{
-      "year": 1946,
-      "amount": 30
-    },
+  "periodicals": [
     {
-      "year": 1947,
-      "amount": 30,
-      "distributeElement": true
-    },
-    {
-      "year": 1948,
-      "amount": 30
-    },
-    {
-      "year": 1949,
-      "amount": 30,
-      "distributeElement": true
-    }
+  		"title": "Di padre in figlio",
+  		"type": "racconto",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "E il settimo si riposò",
+  		"type": "racconto",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Uomo nei gerbidi",
+  		"type": "racconto",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Campo di mine",
+  		"type": "racconto",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I fratelli Bagnasco",
+  		"type": "racconto",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ragionamento del cugino",
+  		"type": "racconto",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Cinque dopodomani: guerra finita!",
+  		"type": "racconto",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Taddei Rotaia. Rangoni Uccidere il re",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Foglio di via» di Franco Fortini",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Carlo Levi, «Paura della libertà»",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Silvio Micheli, «Pane duro»",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Rancore» di Stefano Terra",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Eluard missionario, Ford democristiano, Mosca monarchico",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Krasavcenko sereno, Giannini neofita, Bing Crosby teologo",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Fascismo psicanalizzato, Ferderzoni beneducato, Valenti oleografico",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Piovene spietato, La Guardia «Babbo Natale», Shaw «bastian contrari»",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Hemingway burbero benefico, Dante qualunquista, Omero antimilitarista",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Rosenberg dannato, I saggi a congresso, Comisso sentimentale",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Fleming e borsa nera, De Broglie e Bikini, Picasso e lortolano",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Freud e il marxismo, Cupido attraverso i tempi, Hollywood puritana",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le capre ci guardano, Soggezione di un cane, Il marxismo spiegato ai gatti, Da Esopo a Disney",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Cocteau angelico, Caldwell moralista, Da Eschilo a García Lorca",
+  		"type": "saggio",
+  		"year": 1946,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ultimo viene il corvo",
+  		"type": "racconto",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Visti alla mensa",
+  		"type": "racconto",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Locchio del padrone",
+  		"type": "racconto",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La fame a Bévera",
+  		"type": "racconto",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Furto in una pasticceria",
+  		"type": "racconto",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un bastimento carico di granchi",
+  		"type": "racconto",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il muro di Paul Sartre. Bianco cavallo, bianco cavaliere di Anna Porter",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il paese di Dio di Ilf e Petrof",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "A questi uomini di quattranni diamo la gioia dellinfanzia",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Praga è rossa e verde e tutti i giovani sono amici",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Figli di cinquantadue nazioni al Festival di Praga",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La resistenza italiana presente allesposizione mondiale",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Fratelli nel lavoro e nella gioia i giovani di tutto il mondo",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Dai balletti di protesta alla strana danza di Lella. La chiusura",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "A colloquio con il trust dei cervelli",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il sipario di ferro è fatto di cetrioli",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Croce ben lo sa. Koestler",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«La Linea dombra» di Joseph Conrad",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«È stato così» di Natalia Ginzburg",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Silvio Micheli, «Un figlio ella disse»",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Il compagno»",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Sherwood Anderson scrittore artigiano",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Aleksandr Fadeev, «La disfatta»",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Raymond Queneau, «Pierrot amico mio»",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Ragazzo negro» di Richard Wright",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Marxismo e cattolicesimo",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Abbiamo vinto in molti",
+  		"type": "saggio",
+  		"year": 1947,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I figli poltroni",
+  		"type": "racconto",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il giardino incantato",
+  		"type": "racconto",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il bosco degli animali",
+  		"type": "racconto",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Si dorme come cani",
+  		"type": "racconto",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il gatto e il poliziotto",
+  		"type": "racconto",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Pranzo con un pastore",
+  		"type": "racconto",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Voglia di mare",
+  		"type": "racconto",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Isabella e Fioravanti",
+  		"type": "racconto",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Chi ha messo la mina nel mare?",
+  		"type": "racconto",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Scelba, quel simpaticone. Una polemica di giovani. Alba non più tragica",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gli applausi di Joe Brown",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Oggi come ieri. Scienza di Franco",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ieri come oggi guerra alla guerra",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La grande mobilitazione della d. c. e dellAzione cattolica",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "LIllustrazione maledetta",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I comizi e gli oratori",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La cultura italiana si è incontrata a Firenze",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Per ogni democì un custode mentre nessuno arresta Patrissi",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Se questo è un uomo di P. Levi",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Una partita che non ho visto",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I fratelli Cuccoli",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " A Valenza l’oro si calpesta ma non resta attaccato alle suole",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Forse «La Marsigliese» è un film che possiamo capire solo noi",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il crepuscolo degli avventurieri",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Dopo un secolo l’Ungheria è tornata la terra di Petöfi",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Pitigrilli edificante",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Notizie letterarie",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "È tutto un bluff. Filosofia dello slip [nell’AC 3 cc. ds col titolo autografo Le spiagge di Scelba] - La religione e il ciclismo - Christian Dior: il vero Metternich della nuova Santa Alleanza",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Commende a buon mercato",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Zatterin e le chiazze. Gorresio e le contesse. Evita e Guido de Ruggiero",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Perché abbiamo scelto «La via della libertà»",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Per domani il Sangone ha promesso una grande festa che valga per due",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gatto e Guglielmo Tell hanno colto nel segno",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Duemila piemontesi alla grande Festa de «l’Unità»",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un’interminabile valanga passa per le vie di Roma",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Racconti tra Tevere e Po",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Lo spirito di Wroclaw rivive al teatro Adriano",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I delegati del Viet-Nam tra i lavoratori di Torino",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I libri del mese",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Le novità della Casa ed. Einaudi",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Una polemica che continua",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Gazzettino letterario",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «L’albero del riccio»",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Prima che il gallo canti",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La verità sul dibattito Lysenko",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un romanzo sul serio («Menzogna e sortilegio» di Elsa Morante)",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Prima che il gallo canti»",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Elio Vittorini, «Il garofano rosso»",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Tra i pioppi della risaia la «cinecittà» delle mondine",
+  		"type": "saggio",
+  		"year": 1948,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Freddo a Napoli",
+  		"type": "racconto",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lasciare Anna",
+  		"type": "racconto",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "L’interrogativo d’Eduardo",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gazzettino letterario",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gazzettino letterario",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Sciatori non si nasce ma a Sportinia si diventa",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Prime al Carignano",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Segnalazioni",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gazzettino letterario",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Vittorini ai «Venerdì letterari»",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Una giornata con Père Cachin",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gazzettino letterario",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La «Mirra» al Teatro dei cento",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I libri e le idee",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Se gli operai avessero obbedito sarebbero scoppiate le caldaie!",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gazzettino letterario",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "A Parigi strapperemo l’Europa alla guerra",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Aprire un dialogo",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I libri e le idee",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un dizionario che si farà strada",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Libri per pochi e libri per tutti",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I libri e le idee",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Una rivolta di pescatori in un libro di Anna Seghers",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I libri e le idee",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "È partito ieri da Venezia il «treno della gioventù»",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La sfilata di Budapest",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Giro del mondo alla Mostra di Budapest",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Affermazioni italiane a Budapest nel Concorso musicale del Festival",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I libri e le idee",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Giuriamo di lottare senza tregua per difendere la pace dei popoli»",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Sul treno che ci ha riportato in Italia cantavano «Gioventù» in tutte le lingue",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La deputata che guida i trattori",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I bagnanti al lago Balaton sono turisti di nuovo genere",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Una prima di Salacrou: «Così per gioco» al Carignano",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Debutto di Gandusio al Teatro Carignano",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Tradimento e fedeltà",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «La tua giovinezza» di Amiel nell’interpretazione di A. Ninchi",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Racconti lombardi",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«L’officina sull’Ural» di Vera Panova",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «I meticci» di Icaza",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lopera di Conrad",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Ludro e la sua gran giornata»",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «Il re» di De Flers e Caillavet",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Unantologia faziosa",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Il fischietto d’argento» di Mac Enroe",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Una donna senza importanza» di Oscar Wilde",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Avventura del personaggio», di Guglielmo Giannini",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "È morto Sem Benelli",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Libri belli e buoni per le strenne",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Menzogne» di V. Vinnicenko",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «Lo zio Harry» di T. Job",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«L’imperatore Jones» di Eugene O’Neill e «La porta chiusa» di Jean-Paul Sartre",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Joseph Conrad scrittore poeta e uomo di mare",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Le donne di Messina»",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Vladimir Ja. Propp, «Le radici storiche dei racconti di fate»",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un leader comunista: Vittorio Vidali",
+  		"type": "saggio",
+  		"year": 1949,
+  		"paper": "unita",
+  		"amount": 1
+  	}
   ],
   "characters": [ ]
 }, {
@@ -120,32 +1181,903 @@
       "publisher": ""
     }
   ],
-  "periodicals": [{
-      "year": 1950,
-      "amount": 30
-    },
+  "periodicals": [
     {
-      "year": 1951,
-      "amount": 30
-    },
-    {
-      "year": 1952,
-      "amount": 30,
-      "distributeElement": true
-    },
-    {
-      "year": 1953,
-      "amount": 30
-    },
-    {
-      "year": 1954,
-      "amount": 30,
-      "distributeElement": true
-    },
-    {
-      "year": 1955,
-      "amount": 30
-    }
+  		"title": "Lettera ad Amelia sui dischi volanti",
+  		"type": "racconto",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Storia del soldato che portò il cannone a casa",
+  		"type": "racconto",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Mai nessuno degli uomini lo seppe",
+  		"type": "racconto",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Film cecoslovacchi",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «Firenze Bologna si cambia...» di Gaspare Cataldo",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«L’arcipelago Lenoir» di Armand Salacrou",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Mirra Efros» di Giacomo Gordin",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «La professione della signora Warren» di George Bernard Shaw",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «Lunga notte di Medea» di Corrado Alvaro al Carignano",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Zoo di vetro» di Tennessee Williams",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Gli agnellini mangiano l’edera» di Noel Langley",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Un albergo sul porto» di Ugo Betti al Carignano",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Ricciarda» di Foscolo al Teatro dei cento",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Il sorriso della Gioconda» di Aldous Huxley",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " La Dunham a Torino",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «Nina» di André Roussin",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «La sete» di Henry Bernstein",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Maurice Chevalier all’Alfieri",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Come nasce un libro per il popolo",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Scopi del Centro del Libro popolare",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«... e Giuditta aprì gli occhi» di Carlo Lodovici",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Il debutto della Compagnia Abbruzzo-Anselmi",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Conferenza di Carlo Levi",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Vita mea» di Cesare Viola",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Assassinio alla cattedrale» di T.S. Eliot",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«La nostra fortuna» di Eligio Possenti",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il Teatro d’Israele in «Geremia» di Zweig",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«25 anni di felicità» di Germana Lefranc",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Moravia parla di Machiavelli",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Resurrezione» di Leone Tolstoj",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«La torre d’avorio» di Piero Mazzolotti",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «Luciana e il macellaio» di Marcel Aymé",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «La parigina» di H. Becque",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " «I giusti» di Camus",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«I merletti di Venezia»",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Un vero tonto",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Malvagità degli ignoranti",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Bestiali brutalità da SS",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I lettori non parlano?",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "G. Bernard Shaw è morto",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " A colloquio coi «vecchi»",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Il premio Nobel della fisica a un noto partigiano della pace. Oltre a Powell premiati Faulkner e Russell",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Baldini al Carignano",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Cento anni di Maupassant",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Sciopero in risaia",
+  		"type": "saggio",
+  		"year": 1950,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il reggimento smarrito",
+  		"type": "racconto",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " I lavori del VII Congresso della Federazione torinese del PCI",
+  		"type": "saggio",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Tutti i trucchi diventano buoni per «tagliare i tempi» alla SPA",
+  		"type": "saggio",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il Partito e gli intellettuali",
+  		"type": "saggio",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ricatti di mezzo milione legalizzati in carta da bollo",
+  		"type": "saggio",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La morte di André Gide",
+  		"type": "saggio",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il vero volto d’Italia",
+  		"type": "saggio",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il Sindaco di Torino",
+  		"type": "saggio",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Giovanni Roveda",
+  		"type": "saggio",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Luciano Gruppi",
+  		"type": "saggio",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Egidio Sulotto",
+  		"type": "saggio",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Celeste Negarville",
+  		"type": "saggio",
+  		"year": 1951,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un compagno venuto da lontano",
+  		"type": "racconto",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un bel gioco dura poco",
+  		"type": "racconto",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Funghi in città",
+  		"type": "racconto",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il piccione comunale",
+  		"type": "racconto",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La pietanziera",
+  		"type": "racconto",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gli occhi del nemico",
+  		"type": "racconto",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La fabbrica occupata",
+  		"type": "racconto",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La ragazza licenziata",
+  		"type": "racconto",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I brasiliani evasi dallisola di Anchieta",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Primo sguardo a Helsinki capitale delle Olimpiadi",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un eroe olimpico",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Numero fuori programma con la ragazza biancovestita",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Arriva Dordoni",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I più celebri assi del mestolo alla Olimpiade gastronomica",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Conversazione in piemontese con Remigino vincitore dei 100",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Un giapponese prestigiatore",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Perché di un successo",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Sulla pista Zatopek è come a casa sua",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un addio a malincuore",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La Piazza invasa dai fiori nella città bianca di neve",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le ragazze di Lvov",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Primi passi per Mosca",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Sui monti Lenin",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Una serata moscovita",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I piccoli naturalisti sono fieri dei pomodori a forma di piramide",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Negozi di Mosca",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Danze per televisione",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I Podrecca sovietici",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Vittoria dei tifosi",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La moda femminile",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Teatro dei ragazzi",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Mentre il treno corre sulla pianura ascoltiamo la storia di due fidanzati e Soltanto con qualche trucco li abbiamo battuti a domino",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La Napoli del Caspio",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La città del petrolio",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il piccolo eroe coreano",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il vecchio dellAurora",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La casa delle vocazioni",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Hanno vinto i bambini",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il paese dei balocchi",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Quartere operaio",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Arrivederci Mosca",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le vacanze del Buon Lettore",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lalbero alla Nebiolo",
+  		"type": "saggio",
+  		"year": 1952,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le disgrazie di un paese",
+  		"type": "racconto",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il bosco sullautostrada",
+  		"type": "racconto",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La cura delle vespe",
+  		"type": "racconto",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La storia di Kim-Ghi-U",
+  		"type": "racconto",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Paese infido",
+  		"type": "racconto",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Laria buona",
+  		"type": "racconto",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un paese disgraziato",
+  		"type": "racconto",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il generale in biblioteca",
+  		"type": "racconto",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I cortili delle case in barriera di Milano trasformati in arenghi di vita politica",
+  		"type": "saggio",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I nostri attacchini fanno comizio quando in giro affiggono i manifesti",
+  		"type": "saggio",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Comizi sui tetti di borgo S. Paolo per chi non vuole scender le scale",
+  		"type": "saggio",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Stormi di suore fantasmagoriche alla ricerca di certificati elettorali",
+  		"type": "saggio",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Come i giovani elettori festeggiano il loro ingresso nella vita democratica",
+  		"type": "saggio",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I sette fratelli Cervi",
+  		"type": "saggio",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Elezioni e cultura",
+  		"type": "saggio",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ricordo di Scotellaro",
+  		"type": "saggio",
+  		"year": 1953,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La fabbrica nella montagna",
+  		"type": "racconto",
+  		"year": 1954,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Domani alla Riv",
+  		"type": "saggio",
+  		"year": 1954,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I padri degli eroi partigiani all’appuntamento di papà Cervi",
+  		"type": "saggio",
+  		"year": 1954,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ricordo di Ugolini",
+  		"type": "saggio",
+  		"year": 1954,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I piccoli uomini di Anton Cechov",
+  		"type": "saggio",
+  		"year": 1954,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I capitani di Conrad",
+  		"type": "saggio",
+  		"year": 1954,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Tre storie di fabbrica",
+  		"type": "saggio",
+  		"year": 1954,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Il saldatore rompe l’assedio",
+  		"type": "saggio",
+  		"year": 1955,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I venticinque anni di fonderia del meridionale addetto alla conchiglia",
+  		"type": "saggio",
+  		"year": 1955,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Utopia e realtà",
+  		"type": "saggio",
+  		"year": 1955,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "L «Isola del tesoro» ha il suo segreto",
+  		"type": "saggio",
+  		"year": 1955,
+  		"paper": "unita",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lettera di dimissioni dal P.C.I.",
+  		"type": "saggio",
+  		"year": 1957,
+  		"paper": "unita",
+  		"amount": 1
+  	}
   ],
   "characters": [{
     "name": "Marcovaldo",
@@ -220,7 +2152,41 @@
     "labelPosition": "right"
   }],
   "periodicals": [
-
+    {
+  		"title": "Una domanda a Calvino",
+  		"type": "saggio",
+  		"year": 1963,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "LAmerica vuole conoscersi",
+  		"type": "saggio",
+  		"year": 1963,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Risposta [Il giuoco dell’oca di Sanguineti] all’inchiesta su I libri più belli dell’anno",
+  		"type": "saggio",
+  		"year": 1967,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il rapporto con la luna",
+  		"type": "saggio",
+  		"year": 1967,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Breve risposta all’inchiesta di Giuliano Zincone, Il romanzo si difende",
+  		"type": "saggio",
+  		"year": 1969,
+  		"paper": "cds",
+  		"amount": 1
+  	}
   ],
   "characters": [{
     "name": "Qfwfq",
@@ -269,27 +2235,553 @@
     "firstPublication": null,
     "publisher": ""
   }],
-  "periodicals": [{
-      "year": 1975,
-      "amount": 18
-    },
+  "periodicals": [
     {
-      "year": 1956,
-      "amount": 18
-    },
-    {
-      "year": 1977,
-      "amount": 18
-    },
-    {
-      "year": 1978,
-      "amount": 18
-    },
-    {
-      "year": 1979,
-      "amount": 20,
-      "distributeElement": true
-    }
+  		"title": "Vita e sogno",
+  		"type": "saggio",
+  		"year": 1970,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Stephens",
+  		"type": "saggio",
+  		"year": 1970,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lavoro da professionisti",
+  		"type": "saggio",
+  		"year": 1972,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ricordo di una battaglia",
+  		"type": "racconto",
+  		"year": 1974,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La pompa di benzina",
+  		"type": "racconto",
+  		"year": 1974,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Forse si ritornerà a Robinson Crusoe",
+  		"type": "saggio",
+  		"year": 1974,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Collezione di sabbia",
+  		"type": "saggio",
+  		"year": 1974,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La «Meditazione milanese»",
+  		"type": "saggio",
+  		"year": 1974,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La strage",
+  		"type": "saggio",
+  		"year": 1974,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il potente intercambiabile",
+  		"type": "saggio",
+  		"year": 1974,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Togliatti e De Gasperi",
+  		"type": "saggio",
+  		"year": 1974,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La glaciazione",
+  		"type": "racconto",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Prima che tu dica «Pronto»",
+  		"type": "racconto",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La corsa delle giraffe",
+  		"type": "racconto",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il fischio del merlo",
+  		"type": "racconto",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lettura di unonda",
+  		"type": "racconto",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La pantofola spaiata",
+  		"type": "racconto",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I buchi neri",
+  		"type": "saggio",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un maremoto nel Pacifico. Non ditemi che è inutile. Al centro della ruota",
+  		"type": "saggio",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Dichiarazione sullomicidio di Pier Paolo Pasolini",
+  		"type": "saggio",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Su Pasolini: una risposta a Moravia",
+  		"type": "saggio",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Che cosa vuol dire «rispettare la vita»",
+  		"type": "saggio",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Palomar e le brave persone",
+  		"type": "saggio",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Delitto in Europa",
+  		"type": "saggio",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ultima lettera a Pier Paolo Pasolini",
+  		"type": "saggio",
+  		"year": 1975,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un chilo e mezzo di grasso doca",
+  		"type": "racconto",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Serpenti e teschi",
+  		"type": "racconto",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Case viventi. Coloni puritani",
+  		"type": "saggio",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "È morto a Parigini lo scrittore Queneau",
+  		"type": "saggio",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La vecchia signora in kimono viola",
+  		"type": "saggio",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il rovescio del sublime",
+  		"type": "saggio",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gerolamo Cardano",
+  		"type": "saggio",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Montezuma e Cortés",
+  		"type": "saggio",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Del mantenere la calma",
+  		"type": "saggio",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un deserto in più",
+  		"type": "saggio",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Estate di disastri",
+  		"type": "saggio",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Palomar nel Massachusetts",
+  		"type": "saggio",
+  		"year": 1976,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Laiola di sabbia",
+  		"type": "racconto",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il seno nudo",
+  		"type": "racconto",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Bernardo Valli, Andrej Zdanov lindistruttibile. Ma Togliatti-Roerigo consigliava ai compagni di leggere De Sanctis",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La donna fantasma",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le ragazze vendevano le trecce",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Perché contro Moravia",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il sigaro di Groucho",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La spada e le foglie",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La forma dellalbero",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Luigi Malerba, «Le parole abbandonate»",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Eugenio Montale, «Forse un mattino andando»",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Palomar e lenciclopedia",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I nostri prossimi 500 anni",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Miracolo che ritarda",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Al di là della paura",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il paese non può attendere",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il tramonto della luna",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Quando va via la luce",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gli uomini giusti con le cose giuste",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Se la parola non serve",
+  		"type": "saggio",
+  		"year": 1977,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lo specchio e il bersaglio",
+  		"type": "racconto",
+  		"year": 1978,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Viaggio al centro di Jules Verne. Non siamo ancora riusciti a decifrarlo...",
+  		"type": "saggio",
+  		"year": 1978,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Enrico Filippini, Lironia e lestasi",
+  		"type": "saggio",
+  		"year": 1978,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Bernardo Valli, Quei cattivi pieni di fascino",
+  		"type": "saggio",
+  		"year": 1978,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le parolacce",
+  		"type": "saggio",
+  		"year": 1978,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I livelli della realtà in letteratura",
+  		"type": "saggio",
+  		"year": 1978,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le cose mai uscite da quella prigione",
+  		"type": "saggio",
+  		"year": 1978,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Rispettoso promemoria per mille Grandi Elettori",
+  		"type": "saggio",
+  		"year": 1978,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Laura Lilli, «Signor Calvino, ha ragione: la mia tela è piena di buchi»",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Bernardo Valli, «Signori, vi imbroglio per amor di verità»",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Paolo Mauri, IC: ragione e menzogna",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gli indios favolosi",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Quando in Giappone si parla di Cuneo",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Breve dichiarazione sul «privato», in Leonardo Vergani, Il riflusso è una «prova d’orchestra»...",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": " La locomotiva e le ninfe - Un popolo al volante - Triturando parole",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": " Risposte a tre domande di Mario Pendinelli, La strage di Milano: un segno dei tempi",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Miti e dei a perdifiato",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Carlo Levi, «Il quaderno a cancelli»",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Francis Ponge",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Del prendere posizione",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Sono stato stalinista anchio?",
+  		"type": "saggio",
+  		"year": 1979,
+  		"paper": "repubblica",
+  		"amount": 1
+  	}
   ],
   "characters": [{
     "name": "Palomar",
@@ -360,33 +2852,980 @@
     "labelPosition": "top",
     "distributeElement": -0.25
   }],
-  "periodicals": [{
-      "year": 1980,
-      "amount": 20,
-      "distributeElement": true
-    },
+  "periodicals": [
     {
-      "year": 1981,
-      "amount": 20
-    },
-    {
-      "year": 1982,
-      "amount": 20
-    },
-    {
-      "year": 1983,
-      "amount": 20,
-      "distributeElement": true
-    },
-    {
-      "year": 1984,
-      "amount": 20,
-      "distributeElement": true
-    },
-    {
-      "year": 1985,
-      "amount": 20
-    }
+  		"title": "Calvino / Preferisco essere un long-seller",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La coscienza a posto",
+  		"type": "racconto",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il gorilla albino",
+  		"type": "racconto",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un impero in guerra contro una colomba",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lo spillo, la marina inglese ed altre cose: Grido nel deserto - Il pungiglione nell’occhio - Il cristallo e la fiamma",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Mamma mette il grugno e babbo gli dà un pugno",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Letnologo bifronte",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La mano che ti segue",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lord Jim e il terremoto",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Tra Amherst e Recanati",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Appendice: Sotto quella pietra",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il viandante nella mappa",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il museo dei mostri di cera",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il patrimonio dei draghi",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "In memoria di Roland Barthes",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "II maiale e larcheologo",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La città scritta: epigrafi e graffiti",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le avventure di tre orologiai e di tre automi",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La geografia delle fate",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gustave Flaubert, «Trois contes»",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Dino Buzzati",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il taciturno ciarliero (per Giorgio Caproni)",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Bachtin",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Biffures» di Michel Leiris",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Kagemusha» di Akira Kurosawa",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Cannibali e re» di Marvin Harris",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Carlo Ginzburg, «Spie: radici di un paradigma indiziario»",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ilya Prigogine e Isabelle Stengers, «La nuova alleanza»",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Album di francobolli",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lestate del 56",
+  		"type": "saggio",
+  		"year": 1980,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Linvasione degli storni",
+  		"type": "racconto",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Guardando a un futuro di tenebra",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La Giustizia e il taglione",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Bontempelli con la spada e Montale con la pipa",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Nella bottiglia del diavolo",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "In un salotto piccolo borghese",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Che noia in Paradiso",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Piccoli assassini, sapienti e giocolieri",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La ragazzina e lo scorbutico Pavese",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": " I flash scattarono e apparve lei, Gloria Swanson",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lo scettico dei Fiori Blu",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il poeta mangiato da un gatto",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Per il Mozart incompiuto Calvino diventa «librettista»",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le effimere nella fortezza",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La Colonna Traiana raccontata",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La redenzione degli oggetti",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Larcipelago dei luoghi immaginari",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I francobolli degli stati danimo",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Carlo Collodi, «Pinocchio»",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le Odissee nellOdissea",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Primo Levi, «La ricerca delle radici»",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ricordo di Lucio Mastronardi",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lo scoglio di Montale",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "In memoria di Sergio Solmi",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I cavalieri del Graal",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Anni di piombo» di Margarethe von Trotta",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Diario di uno scrittore in giuria",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Arnold Van Gennep, «I riti di passaggio»",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Turbare luniverso» di Freeman Dyson",
+  		"type": "saggio",
+  		"year": 1981,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Locchio e i pianeti",
+  		"type": "racconto",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La pancia de geco",
+  		"type": "racconto",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ed ora siamo a Zero",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il segreto di Giancarlo",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Vi racconto la mia vera storia",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Tortura: guai se fosse vero",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Diario d’estate: Stelle & Fiamme (Vana attesa di una cometa. Appunti su un incendio)",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Che saggezza, dottor Johnson",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Poche chiacchiere",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ma lo scrittore indiano non piacque a Indira Gandhi",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un mozartiano Calvino conquista Londra",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Calvino: «Anche per me sarà una sorpresa il secondo atto della “Vera storia” alla Scala»",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Prima dellalfabeto",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La città pensata: la misura degli spazi",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La luce negli occhi",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Eros e discontinuità",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Cyrano sulla Luna",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Charles Dickens, «Our Mutual Friend»",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le sette principesse di Nezami",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Guida alla «Chartreuse» a uso dei nuovi lettori",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I cinque tavoli di Stevenson",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gianni Rodari",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ricordo di Georges Perec",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Junichiro Tanizaki, «Libro dombra»",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Giovanni Godoli, «Il Sole. Storia di una stella»",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Saggi sullamore» di Ortega y Gasset",
+  		"type": "saggio",
+  		"year": 1982,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La spada del sole",
+  		"type": "racconto",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La contemplazione delle stelle",
+  		"type": "racconto",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un gerundio e tre saette",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "E Willie andò allinferno",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "È morto lautore di Buio a mezzogiorno",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "La natura si rifugia nel cuore della città",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Cavalcanti e la sua canzone",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Le meraviglie della cronaca nera",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un romanzo dentro un quadro",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ditelo coi nodi",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Washington Irving",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Il dottor Jekyll» tradotto da Fruttero & Lucentini",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ricordo di Bobi Bazlen",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Fruttero & Lucentini, «Il palio delle contrade morte»",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Omaggio a Gore Vidal",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Gian Carlo Ferretti, «Il best-seller allitaliana»",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Letteratura e potere (su un saggio di Alberto Asor Rosa)",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Sulla neo-avanguardia",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Luis Buñuel",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«E la nave va» di Federico Fellini",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Lo sguardo da lontano» di Claude Lévi-Strauss",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Pietro Redondi, «Galileo eretico»",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I ritratti del Duce",
+  		"type": "saggio",
+  		"year": 1983,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Lultimo canale",
+  		"type": "racconto",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Un re in ascolto",
+  		"type": "racconto",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Il niente e il poco",
+  		"type": "racconto",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Limplosione",
+  		"type": "racconto",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ma il Bronzo è viaggiatore",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "I libri delle meraviglie",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Giulio Nascimbeni - IC, «Sono un po’ stanco di essere Calvino»",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "cds",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Scrittori che disegnano",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Denis Diderot, «Jacques le fataliste»",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Giammaria Ortes",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ricordo di Emilio Cecchi",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Loceano e il ragazzo» di Giuseppe Conte",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ricordo di Fortunato Seminara",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Jorge Luis Borges",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "In memoria di Cortázar",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Omaggio a Octavio Paz",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Perec, «La vita istruzioni per luso»",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Queneau e «I fiori blu»",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«I figli della mezzanotte» di Salman Rushdie",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Sette fiasche di lacrime",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Amica ironia» di Guido Almansi",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Unantologia di racconti «neri»",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ricordo di Felice Balbo",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ricordo di Vittorio Metz",
+  		"type": "saggio",
+  		"year": 1984,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Ma io non verrei dichiarato maturo",
+  		"type": "saggio",
+  		"year": 1985,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Laltrui mestiere» di Primo Levi",
+  		"type": "saggio",
+  		"year": 1985,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Giovanni Macchia, «Le rovine di Parigi»",
+  		"type": "saggio",
+  		"year": 1985,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Linsostenibile leggerezza dellessere» di Milan Kundera",
+  		"type": "saggio",
+  		"year": 1985,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Perché scrivete?",
+  		"type": "saggio",
+  		"year": 1985,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "«Fato antico e fato moderno» di Giorgio de Santillana",
+  		"type": "saggio",
+  		"year": 1985,
+  		"paper": "repubblica",
+  		"amount": 1
+  	},
+  	{
+  		"title": "Tante storie che abbiamo dimenticato",
+  		"type": "saggio",
+  		"year": 1985,
+  		"paper": "repubblica",
+  		"amount": 1
+  	}
   ],
   "characters": []
 }, {

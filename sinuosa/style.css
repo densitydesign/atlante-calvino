@@ -187,10 +187,11 @@ svg#visualisation {}
   display: block;
   border-radius: 50%;
   padding-bottom: calc(100% - 2px);
+  background-size: cover;
 }
 
 .legend-article-circle {
-  background: transparent;
+  background: white;
   border: 2px solid transparent;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -295,8 +296,12 @@ svg#visualisation {}
 }
 
 .article.ghost-node {
-  fill: none;
+  fill: red;
   stroke: none;
+}
+
+.work {
+  opacity: .2;
 }
 
 .work circle.in-focus {
