@@ -183,6 +183,17 @@ d3.json('data.json').then(function(json) {
 		.append('circle')
 		.attr('class', 'article')
 		.classed('ghost-node', function(d) { return d.ghostNode })
+		.attr('stroke',function(d){
+			return 'var(--c-'+d.paper+')';
+		})
+		.attr('fill',function(d){
+			if (d.kind != 'saggio') {
+				return 'var(--c-'+d.paper+')'
+				// return col(d.kind)
+			}
+			// return 'var(--c-'+d.paper+')'
+			return 'none';
+		})
 		.attr('r', function(d) { return d.r })
 		.attr('cx', function(d) { return d.x })
 		.attr('cy', function(d) { return d.y })
@@ -192,10 +203,17 @@ d3.json('data.json').then(function(json) {
 			.attr("cx", function(d) {
 				if(d.x < 0) {
 					// d.x = 0
-					return d.x += .5
+					return d.x += .35
+				} else if(d.x >= width*1.2) {
+					d.x = width*1.2
+					return d.x
 				} else if(d.x > width) {
 					// d.x = width
 					return d.x -= .5
+				} else if (d.year == '1985' ) {
+					if (d.x > workPosition(d)[0]) {
+						return d.x -= .5
+					}
 				}
 				return d.x;
 			})
@@ -206,9 +224,9 @@ d3.json('data.json').then(function(json) {
 	}
 
 	let simulationArticle = d3.forceSimulation(articles)
-		.force('x', d3.forceX(function(d) { return d.x }))
-		.force('y', d3.forceY(function(d) { return d.y }))
-		.force('collision', d3.forceCollide(function(d) { return d.r + 1 }))
+		.force('x', d3.forceX(function(d) { return d.x }).strength(function(d){return 0.1}))
+		.force('y', d3.forceY(function(d) { return d.y }).strength(function(d){return 0.75}))
+		.force('collision', d3.forceCollide(function(d) { return d.r + 1.5 }).iterations(16))
 		.on("tick", ticked)
 
 	let characters = decade.selectAll('.character')
@@ -441,7 +459,7 @@ d3.json('data.json').then(function(json) {
 		.text('a Santiago de las Vegas (L’Avana, Cuba)');
 
 	// date and place of death
-	let deathInfoXpos = workPosition({ 'year': '1985' })[0]
+	let deathInfoXpos = workPosition({ 'year': '1985.2' })[0]
 	decade.filter(function(d) {
 			return d.id == 'anni80'
 		}).append('rect')
@@ -453,6 +471,7 @@ d3.json('data.json').then(function(json) {
 			return d.id == 'anni80'
 		}).append('text')
 		.classed('info', true)
+		.style('text-anchor','middle')
 		.attr('x', deathInfoXpos)
 		.attr('y', 5);
 	deathInfo.append('tspan')
@@ -495,32 +514,41 @@ d3.json('data.json').then(function(json) {
 });
 
 function transformPeriodicals(data) {
-	console.log('continue from here', data);
+	
+	data.works.forEach((d) => {
+		if (d.year < 1985) {
+			let ghostNode = {
+					'x': workPosition(d)[0],
+					'y': y(data.id) + workPosition(d)[1],
+					'fx': workPosition(d)[0],
+					'fy': y(data.id) + workPosition(d)[1],
+					'r': r,
+					'ghostNode': true,
+					'decade': data.id,
+					'decadeIndex': data.index
+				}
+			articles.push(ghostNode);
+		}
+	})
+
 	data.periodicals.forEach((d) => {
-
-		// if(true || d.distributeElement) {
-		// 	let positionGN = d.year.toString().split('')[3];
-		// 	let _xGN = d.year.toString().split('')[2] % 2 == 0 ? x(positionGN) : xInverse(positionGN);
-		// 	let ghostNode = {
-		// 		'fx': _xGN,
-		// 		'fy': y(data.id),
-		// 		'r': r,
-		// 		'ghostNode': true,
-		// 		'decade': data.id,
-		// 		'decadeIndex': data.index
-		// 	}
-		// 	articles.push(ghostNode);
-		// }
-
+		if (!d.amount) {
+			d.amount = 1;
+		}
 		for(var i = 0; i < d.amount; i++) {
+			// console.log(d);
 			let position = d.year.toString().split('')[3];
 			let _x = d.year.toString().split('')[2] % 2 == 0 ? x(+position) : xInverse(+position);
 			let node = {
-				'x': _x,
-				'y': y(data.id),
-				'r': r2 + d3.randomUniform(-1.5, 0)(),
-				'decade': data.id,
-				'decadeIndex': data.index
+				'x':_x,
+				'y':y(data.id),
+				'r':r2 + d3.randomUniform(-1.5, 0)(),
+				'decade':data.id,
+				'decadeIndex':data.index,
+				'year':d.year,
+				'paper':d.paper,
+				'title':d.title,
+				'kind':d.type
 			}
 			articles.push(node);
 		}

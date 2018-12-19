@@ -12,6 +12,12 @@ html {
   --c-racconti-cornice: #00b79e;
   --c-saggi: #9d80bb;
   --c-postumi: #566573;
+  --c-unita:#8D6E63;
+  --c-cds:#1d1c1c;
+  --c-repubblica:#6a9ab1;
+  /* --c-unita:#808B96;
+  --c-cds:#808B96;
+  --c-repubblica:#808B96; */
   --c-text: #212529;
 }
 
@@ -75,7 +81,7 @@ svg#visualisation {}
   transition: height .35s ease;
   overflow: hidden;
   background-color: var(--c-bg);
-  box-shadow: 0px 12px 15px -10px #fbe1b6;
+  /* box-shadow: 0px 12px 15px -10px #fbe1b6; */
   grid-column-gap: 24.5%;
 }
 
@@ -281,27 +287,16 @@ svg#visualisation {}
 }
 
 .article {
-  stroke: #566573;
-  /* opacity: .35; */
-  fill: #D6DBDF;
-  stroke-width: .5px;
-  -webkit-transition: r 2s;
-  transition: r 2s;
-  -webkit-animation-name: fade-in-radius;
-  animation-name: fade-in-radius;
-  -webkit-animation-duration: 1.5s;
-  animation-duration: 1.5s;
-  -webkit-animation-iteration-count: 1;
-  animation-iteration-count: 1;
+  stroke-width: 1px;
 }
 
 .article.ghost-node {
+  display: none;
   fill: red;
-  stroke: none;
 }
 
 .work {
-  opacity: .2;
+  /* opacity: .2; */
 }
 
 .work circle.in-focus {
