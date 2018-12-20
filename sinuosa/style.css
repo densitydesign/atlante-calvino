@@ -288,6 +288,7 @@ svg#visualisation {}
 
 .article {
   stroke-width: 1px;
+  display:none;
 }
 
 .article.ghost-node {
@@ -300,14 +301,11 @@ svg#visualisation {}
 }
 
 .work circle.in-focus {
-  -webkit-animation-name: in-focus;
   animation-name: in-focus;
-  -webkit-animation-duration: 1.5s;
-  animation-duration: 1.5s;
-  -webkit-animation-iteration-count: infinite;
+  animation-duration: .5s;
   animation-iteration-count: infinite;
-  -webkit-animation-timing-function: linear;
-  animation-timing-function: linear;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
 }
 
 .work circle.unfinished {
@@ -394,97 +392,12 @@ svg#visualisation {}
   }
 }
 
-@-webkit-keyframes in-focus {
-  0% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  }
-
-  12.5% {
-    -webkit-transform: translate(-1.25px, -2.5px);
-    transform: translate(-1.25px, -2.5px);
-  }
-
-  25% {
-    -webkit-transform: translate(-2.5px, 0);
-    transform: translate(-2.5px, 0);
-  }
-
-  37.5% {
-    -webkit-transform: translate(-1.25px, 2.5px);
-    transform: translate(-1.25px, 2.5px);
-  }
-
-  50% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  }
-
-  62.5% {
-    -webkit-transform: translate(1.25px, -2.5px);
-    transform: translate(1.25px, -2.5px);
-  }
-
-  75% {
-    -webkit-transform: translate(2.5px, 0);
-    transform: translate(2.5px, 0);
-  }
-
-  87.5% {
-    -webkit-transform: translate(1.25px, 2.5px);
-    transform: translate(1.25px, 2.5px);
-  }
-
-  100% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  }
-}
-
 @keyframes in-focus {
   0% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
+    transform: scale(1);
   }
-
-  12.5% {
-    -webkit-transform: translate(-1.25px, -2.5px);
-    transform: translate(-1.25px, -2.5px);
-  }
-
-  25% {
-    -webkit-transform: translate(-2.5px, 0);
-    transform: translate(-2.5px, 0);
-  }
-
-  37.5% {
-    -webkit-transform: translate(-1.25px, 2.5px);
-    transform: translate(-1.25px, 2.5px);
-  }
-
-  50% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
-  }
-
-  62.5% {
-    -webkit-transform: translate(1.25px, -2.5px);
-    transform: translate(1.25px, -2.5px);
-  }
-
-  75% {
-    -webkit-transform: translate(2.5px, 0);
-    transform: translate(2.5px, 0);
-  }
-
-  87.5% {
-    -webkit-transform: translate(1.25px, 2.5px);
-    transform: translate(1.25px, 2.5px);
-  }
-
   100% {
-    -webkit-transform: translate(0, 0);
-    transform: translate(0, 0);
+    transform: scale(1.125);
   }
 }
 
@@ -499,6 +412,9 @@ svg#visualisation {}
 
   .label.small {
     font-size: .55rem;
+  }
+  .article {
+    display:block;
   }
 }
 

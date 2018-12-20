@@ -60,9 +60,11 @@ let xInverse = d3.scaleLinear()
 	.domain([9, 0])
 	.range([0, width])
 
+//#eb9d69
+
 let col = d3.scaleOrdinal()
 	.domain(['romanzo', 'romanzo di racconti dentro una cornice', 'forma ibrida tra romanzo breve e racconto lungo', 'raccolta di racconti con un unico protagonista', 'raccolta di racconti', 'riscrittura', 'raccolta di saggi', 'romanzo fallito o opera non pubblicata', 'progetto incompiuto', 'posthumous'])
-	.range(['#0490ca', '#00b79e', '#f2d371', '#eb9d69', '#ed7f62', '#707e84', '#9d80bb', 'none', '#566573', 'transparent'])
+	.range(['#0490ca', '#00b79e', '#f2d371', 'brown', '#ed7f62', '#707e84', '#9d80bb', 'none', '#566573', 'transparent'])
 
 d3.json('data.json').then(function(json) {
 	data = json;
@@ -188,8 +190,9 @@ d3.json('data.json').then(function(json) {
 		})
 		.attr('fill',function(d){
 			if (d.kind != 'saggio') {
-				return 'var(--c-'+d.paper+')'
-				// return col(d.kind)
+				// return 'var(--c-'+d.paper+')'
+				return col(d.kind)
+				// return 'blue'
 			}
 			// return 'var(--c-'+d.paper+')'
 			return 'none';
@@ -514,7 +517,7 @@ d3.json('data.json').then(function(json) {
 });
 
 function transformPeriodicals(data) {
-	
+
 	data.works.forEach((d) => {
 		if (d.year < 1985) {
 			let ghostNode = {
