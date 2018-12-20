@@ -519,6 +519,14 @@ d3.json('data.json').then(function(json) {
 		.attr('y', -r * 2.3)
 		.classed('info', true);
 
+	d3.selectAll('.label').each(function(d,i){
+
+		clone_d3_selection(d3.select(this),'')
+
+		d3.select(this).classed('white-shadow', true);
+
+	})
+
 	activateStorytelling();
 });
 
@@ -737,4 +745,24 @@ function wrap(text) {
 
 function rem2px(rem) {
 	return rem * parseFloat(getComputedStyle(document.documentElement).fontSize);
+}
+
+function clone_d3_selection(selection, i) {
+            // Assume the selection contains only one object, or just work
+            // on the first object. 'i' is an index to add to the id of the
+            // newly cloned DOM element.
+    var attr = selection.node().attributes;
+		var innerElements = selection.html()
+    var length = attr.length;
+    var node_name = selection.property("nodeName");
+    var parent = d3.select(selection.node().parentNode);
+    var cloned = parent.append(node_name)
+                 .attr("id", selection.attr("id") + i)
+								 .html(innerElements)
+
+    for (var j = 0; j < length; j++) { // Iterate on attributes and skip on "id"
+        if (attr[j].nodeName == "id") continue;
+        cloned.attr(attr[j].name,attr[j].value);
+    }
+    return cloned;
 }

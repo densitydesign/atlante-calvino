@@ -221,21 +221,21 @@ let thisCover;
 d3.selectAll('span.work-title')
 	.on('mouseover touchstart', function(){
 		let id = d3.select(this).attr('data-attribute')
-		console.log(id)
+		// console.log(id)
 		d3.selectAll('.work.'+id+' circle')
 			.filter(function(d){ return d3.select(this).attr('class') != 'previous-publication-circle' })
 			.classed('in-focus', true);
 
 		thisCover = d3.selectAll('.work.'+id).moveToFront().append('image')
 			.attr('x',-width*0.15/2)
-			.attr('y',40)
+			.attr('y',37)
 			.attr('width', width*0.15)
 			.attr('xlink:href','assets/copertine/'+id+'.jpg')
 			.style('filter', 'drop-shadow( -5px -5px 5px #000 )')
 	})
 	.on('mouseout touchend', function(){
 		let id = d3.select(this).attr('data-attribute')
-		console.log(id)
+		// console.log(id)
 		d3.selectAll('.work.'+id+' circle').classed('in-focus', false);
 		thisCover.remove()
 	})
