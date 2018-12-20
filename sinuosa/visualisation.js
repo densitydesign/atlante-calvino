@@ -60,11 +60,9 @@ let xInverse = d3.scaleLinear()
 	.domain([9, 0])
 	.range([0, width])
 
-//#eb9d69
-
 let col = d3.scaleOrdinal()
 	.domain(['romanzo', 'romanzo di racconti dentro una cornice', 'forma ibrida tra romanzo breve e racconto lungo', 'raccolta di racconti con un unico protagonista', 'raccolta di racconti', 'riscrittura', 'raccolta di saggi', 'romanzo fallito o opera non pubblicata', 'progetto incompiuto', 'posthumous'])
-	.range(['#0490ca', '#00b79e', '#f2d371', 'brown', '#ed7f62', '#707e84', '#9d80bb', 'none', '#566573', 'transparent'])
+	.range(['#0490ca', '#00b79e', '#f2d371', '#eb9d69', '#bd504c', '#707e84', '#9d80bb', 'none', '#566573', 'transparent'])
 
 d3.json('data.json').then(function(json) {
 	data = json;
@@ -186,16 +184,24 @@ d3.json('data.json').then(function(json) {
 		.attr('class', 'article')
 		.classed('ghost-node', function(d) { return d.ghostNode })
 		.attr('stroke',function(d){
-			return 'var(--c-'+d.paper+')';
+			if (d.kind == 'saggio') {
+				return 'var(--c-'+d.paper+')';
+			}
+		})
+		.style('stroke-width', 1)
+		.style('stroke-dasharray', function(d){
+			// return '1 3'
+			// return 'var(--dash-'+d.paper+')'
 		})
 		.attr('fill',function(d){
 			if (d.kind != 'saggio') {
-				// return 'var(--c-'+d.paper+')'
-				return col(d.kind)
-				// return 'blue'
+				if (col.domain().indexOf(d.kind) >= 0) {
+					return col(d.kind)
+				} else {
+					return 'var(--c-'+d.paper+')'
+				}
 			}
-			// return 'var(--c-'+d.paper+')'
-			return 'none';
+			return 'white';
 		})
 		.attr('r', function(d) { return d.r })
 		.attr('cx', function(d) { return d.x })
@@ -539,7 +545,7 @@ function transformPeriodicals(data) {
 			d.amount = 1;
 		}
 		for(var i = 0; i < d.amount; i++) {
-			// console.log(d);
+			// filter unità
 			let position = d.year.toString().split('')[3];
 			let _x = d.year.toString().split('')[2] % 2 == 0 ? x(+position) : xInverse(+position);
 			let node = {
@@ -554,6 +560,13 @@ function transformPeriodicals(data) {
 				'kind':d.type
 			}
 			articles.push(node);
+			// if(d.paper == 'unita') {
+			// 	if(d.year <= 1955) {
+			// 		articles.push(node);
+			// 	}
+			// } else {
+			// 	articles.push(node);
+			// }
 		}
 	})
 }

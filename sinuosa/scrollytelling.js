@@ -77,7 +77,7 @@ function scrollytelling(el) {
 
 		d3.selectAll('.article').transition().duration(duration)
 			.attr('transform', function(d) { return 'translate(0, 0)' })
-			.style('opacity', .75);
+			.style('opacity', 1);
 
 		d3.selectAll('.decade-arc.start')
 			.attr("d", function(d) {
@@ -204,7 +204,7 @@ function scrollytelling(el) {
 		} else if(d.decadeIndex == index) {
 			d3.select(this).transition().duration(duration)
 				.attr('transform', function(d) { return 'translate(0, 0)' })
-				.style('opacity', .75);
+				.style('opacity', 1);
 		} else if(d.decadeIndex > index) {
 			d3.select(this).transition().duration(duration)
 				.attr('transform', function(d) { return 'translate(0,' + (space) + ')' })
@@ -217,15 +217,25 @@ d3.select('#legend-button').on('click', function(d){
 	console.log('legend open/closed')
 	d3.select('.legend').classed('open', d3.select('.legend').classed('open') ? false : true)
 })
-
+let thisCover;
 d3.selectAll('span.work-title')
 	.on('mouseover touchstart', function(){
 		let id = d3.select(this).attr('data-attribute')
 		console.log(id)
-		d3.select('.work.'+id+' circle').classed('in-focus', true);
+		d3.selectAll('.work.'+id+' circle')
+			.filter(function(d){ return d3.select(this).attr('class') != 'previous-publication-circle' })
+			.classed('in-focus', true);
+
+		thisCover = d3.selectAll('.work.'+id).moveToFront().append('image')
+			.attr('x',-width*0.15/2)
+			.attr('y',40)
+			.attr('width', width*0.15)
+			.attr('xlink:href','assets/copertine/'+id+'.jpg')
+			.style('filter', 'drop-shadow( -5px -5px 5px #000 )')
 	})
 	.on('mouseout touchend', function(){
 		let id = d3.select(this).attr('data-attribute')
 		console.log(id)
-		d3.select('.work.'+id+' circle').classed('in-focus', false);
+		d3.selectAll('.work.'+id+' circle').classed('in-focus', false);
+		thisCover.remove()
 	})
