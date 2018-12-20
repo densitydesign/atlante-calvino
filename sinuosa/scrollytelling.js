@@ -225,7 +225,7 @@ d3.selectAll('span.work-title')
 		d3.selectAll('.work.'+id+' circle')
 			.filter(function(d){ return d3.select(this).attr('class') != 'previous-publication-circle' })
 			.classed('in-focus', true);
-
+		thisCover.remove();
 		thisCover = d3.selectAll('.work.'+id).moveToFront().append('image')
 			.attr('x',-width*0.15/2)
 			.attr('y',37)
