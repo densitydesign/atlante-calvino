@@ -567,14 +567,14 @@ function transformPeriodicals(data) {
 				'title':d.title,
 				'kind':d.type
 			}
-			articles.push(node);
-			// if(d.paper == 'unita') {
-			// 	if(d.year <= 1955) {
-			// 		articles.push(node);
-			// 	}
-			// } else {
-			// 	articles.push(node);
-			// }
+			// articles.push(node);
+			if(d.paper == 'unita') {
+				if(d.year <= 1955) {
+					articles.push(node);
+				}
+			} else {
+				articles.push(node);
+			}
 		}
 	})
 }
