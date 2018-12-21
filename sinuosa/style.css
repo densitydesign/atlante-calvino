@@ -227,10 +227,6 @@ svg#visualisation {}
   top: -15px;
 }
 
-.work {
-  cursor: pointer;
-}
-
 .work-title {
   font-style: italic;
   display: inline;
@@ -323,8 +319,8 @@ svg#visualisation {}
   fill: red;
 }
 
-.work {
-  /* opacity: .2; */
+.work circle {
+  cursor: pointer;
 }
 
 .work circle.in-focus {
@@ -341,6 +337,10 @@ svg#visualisation {}
 
 .work circle.posthumous {
   /* fill: #5D6D7E; */
+}
+
+.work image {
+  pointer-events: none;
 }
 
 /* Other */

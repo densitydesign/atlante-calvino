@@ -293,10 +293,6 @@ d3.json('data.json').then(function(json) {
 			let _y = workPosition(d)[1]
 			return 'translate(' + _x + ',' + _y + ')';
 		})
-	// Move La giornata di uno scriutatore to from to avoid silly overlapping with lines
-	works.filter(function(d) {
-		return d.id == 'V009';
-	}).moveToFront();
 
 	works.selectAll('.previous-publication')
 		.data(function(d) {
@@ -540,6 +536,9 @@ d3.json('data.json').then(function(json) {
 		.attr('y', -r * 2.3)
 		.classed('info', true);
 
+
+
+	// White shadow
 	d3.selectAll('.label').each(function(d,i){
 
 		clone_d3_selection(d3.select(this),'')
@@ -547,6 +546,48 @@ d3.json('data.json').then(function(json) {
 		d3.select(this).classed('white-shadow', true);
 
 	})
+
+	// Move La giornata di uno scriutatore to from to avoid silly overlapping with lines
+	works.filter(function(d) {
+		return d.id == 'V009';
+	}).moveToFront();
+
+	decade.each(function(d){
+		d3.select(this).moveToBack();
+	})
+
+	gArticles.moveToBack();
+
+	d3.select('#legend-button').on('click', function(d){
+		console.log('legend open/closed')
+		d3.select('.legend').classed('open', d3.select('.legend').classed('open') ? false : true)
+	})
+
+	d3.selectAll('span.work-title')
+		.on('mouseover touchstart', function(){
+			let id = d3.select(this).attr('data-attribute');
+			d3.selectAll('.work.'+id).moveToFront();
+			d3.selectAll('.work.'+id+' circle')
+				.filter(function(d){ return d3.select(this).attr('class') != 'previous-publication-circle' })
+				.classed('in-focus', true);
+			d3.selectAll('.work.'+id+' .volume-cover').style('opacity', 1);
+		})
+		.on('mouseout touchend', function(){
+			let id = d3.select(this).attr('data-attribute');
+			d3.selectAll('.work.'+id+' circle').classed('in-focus', false);
+			d3.selectAll('.work.'+id+' .volume-cover').style('opacity', 1e-6);
+		})
+
+	d3.selectAll('g.work')
+		.on('mouseover touchstart', function(){
+			d3.select(this).moveToFront();
+			d3.select(this).select('circle').filter(function(d){ return d3.select(this).attr('class') != 'previous-publication-circle' }).classed('in-focus', true)
+			d3.select(this).select('.volume-cover').style('opacity', 1);
+		})
+		.on('mouseout touchend', function(){
+			d3.select(this).select('circle').classed('in-focus', false)
+			d3.select(this).select('.volume-cover').style('opacity', 1e-6);
+		})
 
 	activateStorytelling();
 });
