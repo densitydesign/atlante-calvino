@@ -45,11 +45,6 @@ function scrollytelling(el) {
 	d3.selectAll('.item').style('opacity', .35)
 	d3.select(el).style('opacity', 1)
 
-	// console.log('enters/exits:', thisDataAttribute);
-
-	// reset
-
-	// console.log('reset uouououo')
 	if(thisDataAttribute == 'reset') {
 		d3.selectAll('g.decade').transition().duration(duration)
 			.attr('transform', function(d) { return 'translate(0,' + y(d.id) + ')' })
@@ -67,7 +62,7 @@ function scrollytelling(el) {
 			.attr("d", function(d) {
 				return decadeArcs(d, 'end', false);
 			})
-		// console.log(d3.select(el).attr('class'))
+
 		if (d3.select(el).attr('class') != 'item-reset-top' && d3.select(el).attr('class') != 'item-reset-bottom') {
 			d3.select('.legend').classed('open', false);
 		}
