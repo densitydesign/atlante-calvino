@@ -425,6 +425,26 @@ d3.json('data.json').then(function(json) {
 			return txt
 		})
 
+	works.selectAll('.volume-cover')
+		.data(function(d){
+			// console.log(d)
+			if (d.id.split('').slice(0,1) == 'V') {
+				return [d]
+			} else {
+				return []
+			}
+		})
+		.enter()
+		.append('image')
+		.attr('class','volume-cover')
+		// .style('opacity', 1e-6)
+		.style('filter','url(#shadow)')
+		.attr('x',-width*0.15/2)
+		.attr('y',37)
+		.attr('width', width*0.15)
+		.attr('xlink:href',function(d){ return 'assets/copertine/'+d.id+'.jpg' })
+
+
 	let yearsLabels = decade.selectAll('.label.year')
 		.data(function(d) {
 			let nested = d3.nest()

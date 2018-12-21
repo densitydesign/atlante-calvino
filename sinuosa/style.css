@@ -227,6 +227,10 @@ svg#visualisation {}
   top: -15px;
 }
 
+.work {
+  cursor: pointer;
+}
+
 .work-title {
   font-style: italic;
   display: inline;

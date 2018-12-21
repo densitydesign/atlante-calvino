@@ -27,7 +27,7 @@
   <div class="container">
     <div class="row">
       <div class="col-12 col-lg-9 col-xl-9" id="visualisation-container">
-        <svg id="visualisation" class="sticky-top sticky-from-top">
+        <svg id="visualisation" class="sticky-top sticky-from-top" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
           <defs>
             <pattern id="glifo-romanzo" viewBox="0,0,34,34" width="100%" height="100%">
               <rect width="34" height="34" style="fill: #fff"/>
@@ -81,6 +81,9 @@
                 orient="auto">
               <path d="M 0 0 L 12 5 L 0 10 L 2 5 z" stroke="white" />
             </marker>
+            <filter id="shadow">
+              <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#566573" flood-opacity=".3"/>
+            </filter>
           </defs>
           <!-- <path d='M0,0 V4 L2,2 Z' fill="red"/> -->
         </svg>

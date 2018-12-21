@@ -211,31 +211,36 @@ function scrollytelling(el) {
 				.style('opacity', .25);
 		}
 	})
-}
 
-d3.select('#legend-button').on('click', function(d){
-	console.log('legend open/closed')
-	d3.select('.legend').classed('open', d3.select('.legend').classed('open') ? false : true)
-})
-let thisCover;
-d3.selectAll('span.work-title')
-	.on('mouseover touchstart', function(){
-		let id = d3.select(this).attr('data-attribute')
-		// console.log(id)
-		d3.selectAll('.work.'+id+' circle')
-			.filter(function(d){ return d3.select(this).attr('class') != 'previous-publication-circle' })
-			.classed('in-focus', true);
-		thisCover.remove();
-		thisCover = d3.selectAll('.work.'+id).moveToFront().append('image')
-			.attr('x',-width*0.15/2)
-			.attr('y',37)
-			.attr('width', width*0.15)
-			.attr('xlink:href','assets/copertine/'+id+'.jpg')
-			.style('filter', 'drop-shadow( -5px -5px 5px #000 )')
+
+	d3.select('#legend-button').on('click', function(d){
+		console.log('legend open/closed')
+		d3.select('.legend').classed('open', d3.select('.legend').classed('open') ? false : true)
 	})
-	.on('mouseout touchend', function(){
-		let id = d3.select(this).attr('data-attribute')
-		// console.log(id)
-		d3.selectAll('.work.'+id+' circle').classed('in-focus', false);
-		thisCover.remove()
-	})
+
+	d3.selectAll('span.work-title')
+		.on('mouseover touchstart', function(){
+			let id = d3.select(this).attr('data-attribute');
+			d3.selectAll('.work.'+id).moveToFront();
+			d3.selectAll('.work.'+id+' circle')
+				.filter(function(d){ return d3.select(this).attr('class') != 'previous-publication-circle' })
+				.classed('in-focus', true);
+			d3.selectAll('.work.'+id+' .volume-cover').style('opacity', 1);
+		})
+		.on('mouseout touchend', function(){
+			let id = d3.select(this).attr('data-attribute');
+			d3.selectAll('.work.'+id+' circle').classed('in-focus', false);
+			d3.selectAll('.work.'+id+' .volume-cover').style('opacity', 1e-6);
+			// thisCover.remove()
+		})
+
+	d3.selectAll('g.work')
+		.on('click mouseover touchstart', function(){
+			d3.select(this).select('.volume-cover').style('opacity', 1);
+		})
+		.on('mouseout touchend', function(){
+			d3.select(this).select('.volume-cover').style('opacity', 1e-6);
+		})
+
+
+}
