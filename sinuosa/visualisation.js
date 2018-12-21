@@ -437,12 +437,13 @@ d3.json('data.json').then(function(json) {
 		.enter()
 		.append('image')
 		.attr('class','volume-cover')
-		// .style('opacity', 1e-6)
+		.style('opacity', 1e-6)
 		.style('filter','url(#shadow)')
 		.attr('x',-width*0.15/2)
 		.attr('y',37)
 		.attr('width', width*0.15)
-		.attr('xlink:href',function(d){ return 'assets/copertine/'+d.id+'.jpg' })
+		.attr('height', width*0.20)
+		.attr('xlink:xlink:href', function(d){ return 'assets/copertine/'+d.id+'.jpg' } )
 
 
 	let yearsLabels = decade.selectAll('.label.year')
