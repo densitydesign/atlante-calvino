@@ -66,17 +66,20 @@ let col = d3.scaleOrdinal()
 
 d3.json('data.json').then(function(json) {
 	data = json;
+
 	y.domain(data.map((d) => { return d.id }))
 	space = y.step() * 0.75;
 
 	let gArticles = g.append('g').attr('class', 'periodicals');
 
+	data = data
+
 	let decade = g.selectAll('.decade')
 		.data(data, function(d) {
-			let decadeNumber = '19' + d.id.toString().split('').slice(4, 5).join('') + '0'
+			let decadeNumber = '19' + d.id.toString().split('').slice(4, 5).join('') + '0';
 			d.points = [];
 
-			let _year = '19' + d.id.toString().split('').slice(4, 5).join('')
+			let _year = '19' + d.id.toString().split('').slice(4, 5).join('');
 
 			for(var ii = 0; ii < 10; ii++) {
 				let _year = '19' + d.id.toString().split('').slice(4, 5).join('') + ii;
@@ -552,11 +555,11 @@ d3.json('data.json').then(function(json) {
 		return d.id == 'V009';
 	}).moveToFront();
 
-	decade.each(function(d){
-		d3.select(this).moveToBack();
-	})
-
-	gArticles.moveToBack();
+	// decade.each(function(d){
+	// 	d3.select(this).moveToBack();
+	// })
+	//
+	// gArticles.moveToBack();
 
 	d3.select('#legend-button').on('click', function(d){
 		console.log('legend open/closed')

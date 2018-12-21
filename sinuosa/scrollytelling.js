@@ -28,35 +28,15 @@ function activateStorytelling() { // controlla scrollytelling
 	enterView({
 		selector: '.item-reset-top',
 		enter: function(el) {
-			// console.log('enter uouououou')
 			scrollytelling(el);
 			d3.select('.legend').classed('open', true);
 		},
 		exit: function(el) {
-			// console.log('exit uouououou')
 			scrollytelling(el);
 			d3.select('.legend').classed('open', true);
 		},
 		offset: 1, // enter at middle of viewport
 	});
-
-	// controlla scrollytelling
-	// enterView({
-	// 	selector: '.item-focus',
-	// 	enter: function(el) {
-	// 		let sel = d3.select(el).attr('data-attribute').split('-');
-	// 		d3.select('.' + sel[0]).selectAll('.work').style('opacity', .5)
-	// 		sel[1].split('|').forEach((d) => {
-	// 			d3.select('.' + sel[0]).selectAll('.' + d).style('opacity', 1)
-	// 		})
-	//
-	// 	},
-	// 	exit: function(el) {
-	// 		let sel = d3.select(el).attr('data-attribute').split('-');
-	// 		d3.select('.' + sel[0]).selectAll('.work').style('opacity', 1)
-	// 	},
-	// 	offset: 0.5, // enter at middle of viewport
-	// });
 }
 
 function scrollytelling(el) {
@@ -65,11 +45,11 @@ function scrollytelling(el) {
 	d3.selectAll('.item').style('opacity', .35)
 	d3.select(el).style('opacity', 1)
 
-	console.log('enters/exits:', thisDataAttribute);
+	// console.log('enters/exits:', thisDataAttribute);
 
 	// reset
 
-	console.log('reset uouououo')
+	// console.log('reset uouououo')
 	if(thisDataAttribute == 'reset') {
 		d3.selectAll('g.decade').transition().duration(duration)
 			.attr('transform', function(d) { return 'translate(0,' + y(d.id) + ')' })
@@ -87,7 +67,7 @@ function scrollytelling(el) {
 			.attr("d", function(d) {
 				return decadeArcs(d, 'end', false);
 			})
-		console.log(d3.select(el).attr('class'))
+		// console.log(d3.select(el).attr('class'))
 		if (d3.select(el).attr('class') != 'item-reset-top' && d3.select(el).attr('class') != 'item-reset-bottom') {
 			d3.select('.legend').classed('open', false);
 		}

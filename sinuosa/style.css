@@ -233,6 +233,7 @@ svg#visualisation {}
   border: 1px solid;
   border-radius: 4px;
   padding: 0px 3.5px;
+  white-space: nowrap;
 }
 
 .label {
@@ -352,6 +353,10 @@ svg#visualisation {}
   /* padding-top: 50vh;
   padding-bottom: 50vh; */
   z-index: 1050;
+}
+
+.scrollytelling-container p {
+  font-size: 0.75rem;
 }
 
 .decade-txt {}
