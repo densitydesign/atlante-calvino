@@ -332,6 +332,10 @@ svg#visualisation {}
   white-space: nowrap;
 }
 
+.work-title:hover {
+  border-width: 2px;
+}
+
 .work circle {
   cursor: pointer;
 }
