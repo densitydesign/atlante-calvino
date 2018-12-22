@@ -47,6 +47,45 @@ let distributePadding = 3.5;
 let svg = d3.select('svg#visualisation')
 	.attr('width', width + margin.right + margin.left)
 	.attr('height', height + margin.top + margin.bottom + 80);
+
+let resetRect = svg.append('rect')
+	.attr('x', 0)
+	.attr('y', 0)
+	.attr('width', width + margin.right + margin.left)
+	.attr('height', height + margin.top + margin.bottom + 80)
+	.attr('fill','transparent')
+	.on('click', function() {
+		console.log('reset each state');
+		d3.selectAll('g.decade')
+			.classed('in-focus', false)
+			.transition().duration(duration)
+			.attr('transform', function(d) { return 'translate(0,' + y(d.id) + ')' })
+			.style('opacity', 1);
+
+		d3.selectAll('.article').transition().duration(duration)
+			.attr('transform', function(d) { return 'translate(0, 0)' })
+			.style('opacity', 1);
+
+		d3.selectAll('.decade-arc.start')
+			.attr("d", function(d) {
+				return decadeArcs(d, 'start', false);
+			})
+		d3.selectAll('.decade-arc.end').transition().duration(duration)
+			.attr("d", function(d) {
+				return decadeArcs(d, 'end', false);
+			})
+		// previous publications
+		d3.selectAll('.previous-publication').transition().duration(duration)
+			.attr('d', function(d) {
+				return previousPublicationsLine(d, false);
+			})
+		d3.selectAll('.previous-publication-circle').transition().duration(duration)
+			.attr('cy', function(d){
+				let arrrr = previousPublicationsLine(d, false).split(' ');
+				arrrr = arrrr[arrrr.length-1].split(',');
+				return arrrr[1] - firstPubRadius*2 - 5
+			})
+	})
 let g = svg.append('g')
 	.attr('transform', 'translate(' + margin.left + ',' + (margin.top + 40) + ')')
 
@@ -488,7 +527,7 @@ d3.json('data.json').then(function(json) {
 		.enter()
 		.append('text')
 		.attr('class', 'label year')
-		.classed('the-first', function(d,i){
+		.classed('the-first', function(d, i) {
 			return i == 0 ? true : false;
 		})
 		.attr('x', function(d) { return d.value.x })
