@@ -227,15 +227,6 @@ svg#visualisation {}
   top: -15px;
 }
 
-.work-title {
-  font-style: italic;
-  display: inline;
-  border: 1px solid;
-  border-radius: 4px;
-  padding: 0px 3.5px;
-  white-space: nowrap;
-}
-
 .label {
   font-size: .53rem;
   text-anchor: middle;
@@ -320,6 +311,15 @@ svg#visualisation {}
   fill: red;
 }
 
+.work-title {
+  font-style: italic;
+  display: inline;
+  border: 1px solid;
+  border-radius: 4px;
+  padding: 0px 3.5px;
+  white-space: nowrap;
+}
+
 .work circle {
   cursor: pointer;
 }
@@ -340,9 +340,17 @@ svg#visualisation {}
   /* fill: #5D6D7E; */
 }
 
-.work image {
+.work .volume-cover {
+  opacity: 1e-6;
   pointer-events: none;
+  transition: opacity .35s ease;
 }
+
+.work:hover .volume-cover, .work.work-in-focus .volume-cover {
+  opacity: 1;
+}
+
+
 
 /* Other */
 .hidden {

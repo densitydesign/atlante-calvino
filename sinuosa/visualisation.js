@@ -436,7 +436,7 @@ d3.json('data.json').then(function(json) {
 		.enter()
 		.append('image')
 		.attr('class','volume-cover')
-		.style('opacity', 1e-6)
+		// .style('opacity', 1e-6)
 		.style('filter','url(#shadow)')
 		.attr('x',-width*0.15/2)
 		.attr('y',37)
@@ -543,23 +543,22 @@ d3.json('data.json').then(function(json) {
 
 	// White shadow
 	d3.selectAll('.label').each(function(d,i){
-
 		clone_d3_selection(d3.select(this),'')
-
 		d3.select(this).classed('white-shadow', true);
-
 	})
 
 	// Move La giornata di uno scriutatore to from to avoid silly overlapping with lines
-	works.filter(function(d) {
-		return d.id == 'V009';
-	}).moveToFront();
+	// works.filter(function(d) {
+	// 	return d.id == 'V009';
+	// }).moveToFront();
 
 	// decade.each(function(d){
 	// 	d3.select(this).moveToBack();
 	// })
 	//
 	// gArticles.moveToBack();
+
+	activateStorytelling();
 
 	d3.select('#legend-button').on('click', function(d){
 		console.log('legend open/closed')
@@ -569,30 +568,18 @@ d3.json('data.json').then(function(json) {
 	d3.selectAll('span.work-title')
 		.on('mouseover touchstart', function(){
 			let id = d3.select(this).attr('data-attribute');
-			d3.selectAll('.work.'+id).moveToFront();
+			// d3.selectAll('.work.'+id).moveToFront();
+			d3.selectAll('.work.'+id).classed('work-in-focus', true);
 			d3.selectAll('.work.'+id+' circle')
 				.filter(function(d){ return d3.select(this).attr('class') != 'previous-publication-circle' })
 				.classed('in-focus', true);
-			d3.selectAll('.work.'+id+' .volume-cover').style('opacity', 1);
 		})
 		.on('mouseout touchend', function(){
 			let id = d3.select(this).attr('data-attribute');
+			d3.selectAll('.work.'+id).classed('work-in-focus', false);
 			d3.selectAll('.work.'+id+' circle').classed('in-focus', false);
-			d3.selectAll('.work.'+id+' .volume-cover').style('opacity', 1e-6);
 		})
 
-	d3.selectAll('g.work')
-		.on('mouseover touchstart', function(){
-			d3.select(this).moveToFront();
-			d3.select(this).select('circle').filter(function(d){ return d3.select(this).attr('class') != 'previous-publication-circle' }).classed('in-focus', true)
-			d3.select(this).select('.volume-cover').style('opacity', 1);
-		})
-		.on('mouseout touchend', function(){
-			d3.select(this).select('circle').classed('in-focus', false)
-			d3.select(this).select('.volume-cover').style('opacity', 1e-6);
-		})
-
-	activateStorytelling();
 });
 
 function transformPeriodicals(data) {
@@ -645,7 +632,7 @@ function transformPeriodicals(data) {
 }
 
 function previousPublicationsLine(d, open) {
-
+	console.log(d)
 	let positionX1 = d.x1.toString().split('')[3];
 	let _x1 = d.x1.toString().split('')[2] % 2 == 0 ? x(positionX1) : xInverse(positionX1);
 
