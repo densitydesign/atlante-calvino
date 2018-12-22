@@ -284,15 +284,19 @@ svg#visualisation {}
 
 .decade-arc {
   stroke-dasharray: 0 2;
-  /* -webkit-animation-name: arcs-direction;
-  animation-name: arcs-direction; */
+  stroke-linecap: round;
+  stroke-dashoffset: 0
+}
+
+.decade.in-focus .decade-arc {
+  -webkit-animation-name: arcs-direction;
+  animation-name: arcs-direction;
   -webkit-animation-duration: 1.5s;
   animation-duration: 1.5s;
   -webkit-animation-iteration-count: infinite;
   animation-iteration-count: infinite;
   -webkit-animation-timing-function: linear;
   animation-timing-function: linear;
-  stroke-linecap: round;
 }
 
 .decade-arc.start {
