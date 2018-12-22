@@ -30,7 +30,7 @@ var line = d3.line()
 let container = d3.select('#visualisation-container');
 let m = window.innerHeight / 6;
 let margin = {
-	top: m / 3,
+	top: m / 2.5,
 	right: m / 1.8,
 	bottom: m / 3,
 	left: m / 1.8
