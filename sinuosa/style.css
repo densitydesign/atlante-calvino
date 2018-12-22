@@ -168,7 +168,7 @@ svg#visualisation {}
 .legend h6 {
   font-family: 'HK Grotesk';
   font-size: .45rem;
-  margin-bottom:0.1rem;
+  margin-bottom: 0.1rem;
   text-align: center;
   width: 300%;
   margin-left: -100%;
@@ -204,7 +204,7 @@ svg#visualisation {}
   height: 0;
   display: block;
   border-radius: 50%;
-  margin:auto;
+  margin: auto;
   margin-bottom: 2px;
   padding-bottom: calc(30% - 4px);
 }
@@ -238,6 +238,14 @@ svg#visualisation {}
 .label.year {
   font-family: 'HK Grotesk';
   font-size: .45rem;
+}
+
+.decade.in-focus>.label.year.the-first {
+  animation-name: in-focus-label;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
 }
 
 .label.small {
@@ -303,7 +311,7 @@ svg#visualisation {}
 
 .article {
   /* stroke-width: 0.5px; */
-  display:none;
+  display: none;
 }
 
 .article.ghost-node {
@@ -349,8 +357,6 @@ svg#visualisation {}
 .work:hover .volume-cover, .work.work-in-focus .volume-cover {
   opacity: 1;
 }
-
-
 
 /* Other */
 .hidden {
@@ -436,8 +442,19 @@ svg#visualisation {}
   0% {
     transform: scale(1);
   }
+
   100% {
     transform: scale(1.125);
+  }
+}
+
+@keyframes in-focus-label {
+  0% {
+    font-size: .45rem;
+  }
+
+  100% {
+    font-size: .55rem;
   }
 }
 
@@ -453,8 +470,9 @@ svg#visualisation {}
   .label.small {
     font-size: .55rem;
   }
+
   .article {
-    display:block;
+    display: block;
   }
 }
 

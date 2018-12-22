@@ -133,6 +133,7 @@ d3.json('data.json').then(function(json) {
 		})
 		.enter()
 		.append('g')
+		.attr('data-attribute', function(d) { return d.id })
 		.attr('class', function(d) { return 'decade ' + d.id; })
 		.attr('transform', function(d) { return 'translate(0,' + y(d.id) + ')' })
 
@@ -186,22 +187,22 @@ d3.json('data.json').then(function(json) {
 		.append('circle')
 		.attr('class', 'article')
 		.classed('ghost-node', function(d) { return d.ghostNode })
-		.attr('stroke',function(d){
-			if (d.kind == 'saggio') {
-				return 'var(--c-'+d.paper+')';
+		.attr('stroke', function(d) {
+			if(d.kind == 'saggio') {
+				return 'var(--c-' + d.paper + ')';
 			}
 		})
 		.style('stroke-width', 1)
-		.style('stroke-dasharray', function(d){
+		.style('stroke-dasharray', function(d) {
 			// return '1 3'
 			// return 'var(--dash-'+d.paper+')'
 		})
-		.attr('fill',function(d){
-			if (d.kind != 'saggio') {
-				if (col.domain().indexOf(d.kind) >= 0) {
+		.attr('fill', function(d) {
+			if(d.kind != 'saggio') {
+				if(col.domain().indexOf(d.kind) >= 0) {
 					return col(d.kind)
 				} else {
-					return 'var(--c-'+d.paper+')'
+					return 'var(--c-' + d.paper + ')'
 				}
 			}
 			return 'white';
@@ -216,14 +217,14 @@ d3.json('data.json').then(function(json) {
 				if(d.x < 0) {
 					// d.x = 0
 					return d.x += .35
-				} else if(d.x >= width*1.2) {
-					d.x = width*1.2
+				} else if(d.x >= width * 1.2) {
+					d.x = width * 1.2
 					return d.x
 				} else if(d.x > width) {
 					// d.x = width
 					return d.x -= .5
-				} else if (d.year == '1985' ) {
-					if (d.x > workPosition(d)[0]) {
+				} else if(d.year == '1985') {
+					if(d.x > workPosition(d)[0]) {
 						return d.x -= .5
 					}
 				}
@@ -236,13 +237,13 @@ d3.json('data.json').then(function(json) {
 	}
 
 	let simulationArticle = d3.forceSimulation(articles)
-		.force('x', d3.forceX(function(d) { return d.x }).strength(function(d){return 0.1}))
-		.force('y', d3.forceY(function(d) { return d.y }).strength(function(d){return 0.75}))
+		.force('x', d3.forceX(function(d) { return d.x }).strength(function(d) { return 0.1 }))
+		.force('y', d3.forceY(function(d) { return d.y }).strength(function(d) { return 0.75 }))
 		.force('collision', d3.forceCollide(function(d) { return d.r + 1.5 }).iterations(16))
 		.on("tick", ticked)
 
 	let characters = decade.selectAll('.character')
-		.data(function(d,i){
+		.data(function(d, i) {
 			return d.characters;
 		})
 		.enter()
@@ -260,11 +261,11 @@ d3.json('data.json').then(function(json) {
 		.attr('stroke-width', 1)
 
 	characters.append('text')
-		.attr('x',0)
-		.attr('y',-10)
+		.attr('x', 0)
+		.attr('y', -10)
 		.attr('class', 'label character')
-		.text(function(d){
-			return d.name.split('').slice(0,1);
+		.text(function(d) {
+			return d.name.split('').slice(0, 1);
 		})
 
 	let works = decade.selectAll('.work')
@@ -424,10 +425,16 @@ d3.json('data.json').then(function(json) {
 			return txt
 		})
 
+	// White shadow for volumes labels
+	d3.selectAll('.work .label').each(function(d, i) {
+		clone_d3_selection(d3.select(this), '')
+		d3.select(this).classed('white-shadow', true);
+	})
+
 	works.selectAll('.volume-cover')
-		.data(function(d){
+		.data(function(d) {
 			// console.log(d)
-			if (d.id.split('').slice(0,1) == 'V') {
+			if(d.id.split('').slice(0, 1) == 'V') {
 				return [d]
 			} else {
 				return []
@@ -435,15 +442,28 @@ d3.json('data.json').then(function(json) {
 		})
 		.enter()
 		.append('image')
-		.attr('class','volume-cover')
+		.attr('class', 'volume-cover')
 		// .style('opacity', 1e-6)
-		.style('filter','url(#shadow)')
-		.attr('x',-width*0.15/2)
-		.attr('y',37)
-		.attr('width', width*0.15)
-		.attr('height', width*0.20)
-		.attr('xlink:xlink:href', function(d){ return 'assets/copertine/'+d.id+'.jpg' } )
-
+		.style('filter', 'url(#shadow)')
+		.attr('x', function(d) {
+			if(d.labelPosition == 'right' || d.distributeElement) {
+				return -width * 0.15 - r * 1.5
+			}
+			return -width * 0.15 / 2
+		})
+		.attr('y', function(d) {
+			if(d.labelPosition == 'right' || d.distributeElement) {
+				if(d.distributeElement) {
+					return -(width * 0.20 / 2 + (d.distributeElement * (width * 0.20 / 3)))
+				} else {
+					return -(width * 0.20 / 2)
+				}
+			}
+			return 37
+		})
+		.attr('width', width * 0.15)
+		.attr('height', width * 0.20)
+		.attr('xlink:xlink:href', function(d) { return 'assets/copertine/' + d.id + '.jpg' })
 
 	let yearsLabels = decade.selectAll('.label.year')
 		.data(function(d) {
@@ -468,6 +488,9 @@ d3.json('data.json').then(function(json) {
 		.enter()
 		.append('text')
 		.attr('class', 'label year')
+		.classed('the-first', function(d,i){
+			return i == 0 ? true : false;
+		})
 		.attr('x', function(d) { return d.value.x })
 		.attr('y', function(d) { return d.value.there_is_work ? d.value.y + r * 1.6 : r * .8 })
 		.text(function(d) {
@@ -500,7 +523,7 @@ d3.json('data.json').then(function(json) {
 			return d.id == 'anni80'
 		}).append('text')
 		.classed('info', true)
-		.style('text-anchor','middle')
+		.style('text-anchor', 'middle')
 		.attr('x', deathInfoXpos)
 		.attr('y', 5);
 	deathInfo.append('tspan')
@@ -539,14 +562,6 @@ d3.json('data.json').then(function(json) {
 		.attr('y', -r * 2.3)
 		.classed('info', true);
 
-
-
-	// White shadow
-	d3.selectAll('.label').each(function(d,i){
-		clone_d3_selection(d3.select(this),'')
-		d3.select(this).classed('white-shadow', true);
-	})
-
 	// Move La giornata di uno scriutatore to from to avoid silly overlapping with lines
 	// works.filter(function(d) {
 	// 	return d.id == 'V009';
@@ -558,26 +573,41 @@ d3.json('data.json').then(function(json) {
 	//
 	// gArticles.moveToBack();
 
+	// White shadow for volumes labels
+	d3.selectAll('.label.year').each(function(d, i) {
+		clone_d3_selection(d3.select(this), '')
+		d3.select(this).classed('white-shadow', true);
+	})
+
 	activateStorytelling();
 
-	d3.select('#legend-button').on('click', function(d){
+	d3.select('#legend-button').on('click', function(d) {
 		console.log('legend open/closed')
 		d3.select('.legend').classed('open', d3.select('.legend').classed('open') ? false : true)
 	})
 
 	d3.selectAll('span.work-title')
-		.on('mouseover touchstart', function(){
+		.on('mouseover touchstart', function() {
 			let id = d3.select(this).attr('data-attribute');
 			// d3.selectAll('.work.'+id).moveToFront();
-			d3.selectAll('.work.'+id).classed('work-in-focus', true);
-			d3.selectAll('.work.'+id+' circle')
-				.filter(function(d){ return d3.select(this).attr('class') != 'previous-publication-circle' })
+			d3.selectAll('.work.' + id).classed('work-in-focus', true);
+			d3.selectAll('.work.' + id + ' circle')
+				.filter(function(d) { return d3.select(this).attr('class') != 'previous-publication-circle' })
 				.classed('in-focus', true);
 		})
-		.on('mouseout touchend', function(){
+		.on('mouseout touchend', function() {
 			let id = d3.select(this).attr('data-attribute');
-			d3.selectAll('.work.'+id).classed('work-in-focus', false);
-			d3.selectAll('.work.'+id+' circle').classed('in-focus', false);
+			d3.selectAll('.work.' + id).classed('work-in-focus', false);
+			d3.selectAll('.work.' + id + ' circle').classed('in-focus', false);
+		})
+
+	d3.selectAll('g.work')
+		.on('click', function() {
+			let parent = d3.select(this).node().parentNode
+			scrollytelling(parent);
+		})
+		.on('mouseout touchend', function() {
+			// reset();
 		})
 
 });
@@ -585,23 +615,23 @@ d3.json('data.json').then(function(json) {
 function transformPeriodicals(data) {
 
 	data.works.forEach((d) => {
-		if (d.year < 1985) {
+		if(d.year < 1985) {
 			let ghostNode = {
-					'x': workPosition(d)[0],
-					'y': y(data.id) + workPosition(d)[1],
-					'fx': workPosition(d)[0],
-					'fy': y(data.id) + workPosition(d)[1],
-					'r': r,
-					'ghostNode': true,
-					'decade': data.id,
-					'decadeIndex': data.index
-				}
+				'x': workPosition(d)[0],
+				'y': y(data.id) + workPosition(d)[1],
+				'fx': workPosition(d)[0],
+				'fy': y(data.id) + workPosition(d)[1],
+				'r': r,
+				'ghostNode': true,
+				'decade': data.id,
+				'decadeIndex': data.index
+			}
 			articles.push(ghostNode);
 		}
 	})
 
 	data.periodicals.forEach((d) => {
-		if (!d.amount) {
+		if(!d.amount) {
 			d.amount = 1;
 		}
 		for(var i = 0; i < d.amount; i++) {
@@ -609,15 +639,15 @@ function transformPeriodicals(data) {
 			let position = d.year.toString().split('')[3];
 			let _x = d.year.toString().split('')[2] % 2 == 0 ? x(+position) : xInverse(+position);
 			let node = {
-				'x':_x,
-				'y':y(data.id),
-				'r':r2 + d3.randomUniform(-1.5, 0)(),
-				'decade':data.id,
-				'decadeIndex':data.index,
-				'year':d.year,
-				'paper':d.paper,
-				'title':d.title,
-				'kind':d.type
+				'x': _x,
+				'y': y(data.id),
+				'r': r2 + d3.randomUniform(-1.5, 0)(),
+				'decade': data.id,
+				'decadeIndex': data.index,
+				'year': d.year,
+				'paper': d.paper,
+				'title': d.title,
+				'kind': d.type
 			}
 			// articles.push(node);
 			if(d.paper == 'unita') {
@@ -632,7 +662,6 @@ function transformPeriodicals(data) {
 }
 
 function previousPublicationsLine(d, open) {
-	console.log(d)
 	let positionX1 = d.x1.toString().split('')[3];
 	let _x1 = d.x1.toString().split('')[2] % 2 == 0 ? x(positionX1) : xInverse(positionX1);
 
@@ -800,21 +829,21 @@ function rem2px(rem) {
 }
 
 function clone_d3_selection(selection, i) {
-            // Assume the selection contains only one object, or just work
-            // on the first object. 'i' is an index to add to the id of the
-            // newly cloned DOM element.
-    var attr = selection.node().attributes;
-		var innerElements = selection.html()
-    var length = attr.length;
-    var node_name = selection.property("nodeName");
-    var parent = d3.select(selection.node().parentNode);
-    var cloned = parent.append(node_name)
-                 .attr("id", selection.attr("id") + i)
-								 .html(innerElements)
+	// Assume the selection contains only one object, or just work
+	// on the first object. 'i' is an index to add to the id of the
+	// newly cloned DOM element.
+	var attr = selection.node().attributes;
+	var innerElements = selection.html()
+	var length = attr.length;
+	var node_name = selection.property("nodeName");
+	var parent = d3.select(selection.node().parentNode);
+	var cloned = parent.append(node_name)
+		.attr("id", selection.attr("id") + i)
+		.html(innerElements)
 
-    for (var j = 0; j < length; j++) { // Iterate on attributes and skip on "id"
-        if (attr[j].nodeName == "id") continue;
-        cloned.attr(attr[j].name,attr[j].value);
-    }
-    return cloned;
+	for(var j = 0; j < length; j++) { // Iterate on attributes and skip on "id"
+		if(attr[j].nodeName == "id") continue;
+		cloned.attr(attr[j].name, attr[j].value);
+	}
+	return cloned;
 }

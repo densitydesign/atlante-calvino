@@ -45,8 +45,25 @@ function scrollytelling(el) {
 	d3.selectAll('.item').style('opacity', .35)
 	d3.select(el).style('opacity', 1)
 
+	if (thisDataAttribute == 'anni40') {
+		g.transition().duration(duration).attr('transform', 'translate(' + margin.left + ',' + (margin.top + 80) + ')')
+	} else if (thisDataAttribute == 'anni90') {
+		g.transition().duration(duration).attr('transform', 'translate(' + margin.left + ',' + (margin.top - 40) + ')')
+	} else {
+		g.transition().duration(duration).attr('transform', 'translate(' + margin.left + ',' + (margin.top + 40) + ')')
+	}
+
+	if (d3.select(el).attr('class') != 'item-reset-top' && d3.select(el).attr('class') != 'item-reset-bottom') {
+		d3.select('.legend').classed('open', false);
+	} else {
+		d3.select('.legend').classed('open', true);
+	}
+
 	if(thisDataAttribute == 'reset') {
-		d3.selectAll('g.decade').transition().duration(duration)
+
+		d3.selectAll('g.decade')
+			.classed('in-focus', false)
+			.transition().duration(duration)
 			.attr('transform', function(d) { return 'translate(0,' + y(d.id) + ')' })
 			.style('opacity', 1);
 
@@ -63,10 +80,6 @@ function scrollytelling(el) {
 				return decadeArcs(d, 'end', false);
 			})
 
-		if (d3.select(el).attr('class') != 'item-reset-top' && d3.select(el).attr('class') != 'item-reset-bottom') {
-			d3.select('.legend').classed('open', false);
-		}
-
 		return;
 	}
 
@@ -80,6 +93,7 @@ function scrollytelling(el) {
 	// align decades and arcs
 	d3.selectAll('g.decade').each(function(d, i) {
 		if(i < index) {
+			d3.select(this).classed('in-focus', false)
 			// decade group
 			d3.select(this).transition().duration(duration)
 				.attr('transform', function(d) { return 'translate(0,' + (y(d.id) - space) + ')' })
@@ -104,6 +118,7 @@ function scrollytelling(el) {
 			})
 
 		} else if(i == index) {
+			d3.select(this).classed('in-focus', true)
 			// decade group
 			d3.select(this).transition().duration(duration)
 				.attr('transform', function(d) { return 'translate(0,' + (y(d.id)) + ')' })
@@ -128,6 +143,7 @@ function scrollytelling(el) {
 				})
 
 		} else if(i > index) {
+			d3.select(this).classed('in-focus', false)
 			// decade group
 			d3.select(this).transition().duration(duration)
 				.attr('transform', function(d) { return 'translate(0,' + (y(d.id) + space) + ')' })
