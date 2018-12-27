@@ -381,6 +381,21 @@ svg#visualisation {}
   font-size: 0.75rem;
 }
 
+.how-to {
+  font-size: .6rem;
+  font-family: 'HK Grotesk', sans-serif;
+}
+
+.how-to > div {
+  padding:.5rem;
+  border: 1px solid var(--c-text);
+  border-radius: 3px;
+}
+
+.how-to p {
+  font-size: inherit;
+}
+
 .decade-txt {}
 
 .intro {
