@@ -281,31 +281,31 @@ d3.json('data.json').then(function(json) {
 		.force('collision', d3.forceCollide(function(d) { return d.r + 1.5 }).iterations(16))
 		.on("tick", ticked)
 
-	let characters = decade.selectAll('.character')
-		.data(function(d, i) {
-			return d.characters;
-		})
-		.enter()
-		.append('g')
-		.attr('class', 'character')
-		.attr('transform', function(d, i) {
-			let _x = workPosition(d)[0]
-			let _y = workPosition(d)[1]
-			return 'translate(' + _x + ',' + _y + ')';
-		})
-
-	characters.append('path')
-		.attr('d', 'M -3.5 0 L 0 -7 L 3.5 0 L 0 7 Z')
-		.attr('stroke', 'white')
-		.attr('stroke-width', 1)
-
-	characters.append('text')
-		.attr('x', 0)
-		.attr('y', -10)
-		.attr('class', 'label character')
-		.text(function(d) {
-			return d.name.split('').slice(0, 1);
-		})
+	// let characters = decade.selectAll('.character')
+	// 	.data(function(d, i) {
+	// 		return d.characters;
+	// 	})
+	// 	.enter()
+	// 	.append('g')
+	// 	.attr('class', 'character')
+	// 	.attr('transform', function(d, i) {
+	// 		let _x = workPosition(d)[0]
+	// 		let _y = workPosition(d)[1]
+	// 		return 'translate(' + _x + ',' + _y + ')';
+	// 	})
+	//
+	// characters.append('path')
+	// 	.attr('d', 'M -3.5 0 L 0 -7 L 3.5 0 L 0 7 Z')
+	// 	.attr('stroke', 'white')
+	// 	.attr('stroke-width', 1)
+	//
+	// characters.append('text')
+	// 	.attr('x', 0)
+	// 	.attr('y', -10)
+	// 	.attr('class', 'label character')
+	// 	.text(function(d) {
+	// 		return d.name.split('').slice(0, 1);
+	// 	})
 
 	let works = decade.selectAll('.work')
 		.data(function(d, i) {
