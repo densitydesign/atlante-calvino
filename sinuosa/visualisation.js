@@ -327,6 +327,16 @@ d3.json('data.json').then(function(json) {
 					e.previousPublications = obj;
 				}
 			})
+
+			if (d.id == 'anni60') {
+				// console.log('anni 60', d.works);
+				let iindex = 1
+				d.works.push(d.works.splice(iindex, 1)[0]);
+			} else if (d.id == 'anni70') {
+				// console.log('anni 70', d.works);
+				let iindex = 2
+				d.works.push(d.works.splice(iindex, 1)[0]);
+			}
 			return d.works;
 		})
 		.enter()
