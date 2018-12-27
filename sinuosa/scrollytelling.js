@@ -9,18 +9,29 @@ function activateStorytelling() { // controlla scrollytelling
 		exit: function(el) {
 			scrollytelling(el);
 		},
-		offset: 0.8, // enter at middle of viewport
+		offset: 1,
+	});
+
+	enterView({
+		selector: '.item.how-to',
+		enter: function(el) {
+			scrollytelling(el);
+		},
+		exit: function(el) {
+			scrollytelling(el);
+		},
+		offset: 0.7,
 	});
 
 	enterView({
 		selector: '.item-reset-bottom',
 		enter: function(el) {
 			scrollytelling(el);
-			d3.select('.legend').classed('open', true);
+			// d3.select('.legend').classed('open', true);
 		},
 		exit: function(el) {
 			scrollytelling(el);
-			d3.select('.legend').classed('open', false);
+			// d3.select('.legend').classed('open', false);
 		},
 		offset: 0, // enter at middle of viewport
 	});
@@ -55,8 +66,6 @@ function scrollytelling(el) {
 
 	if (d3.select(el).attr('class') != 'item-reset-top' && d3.select(el).attr('class') != 'item-reset-bottom') {
 		d3.select('.legend').classed('open', false);
-	} else {
-		d3.select('.legend').classed('open', true);
 	}
 
 	if(thisDataAttribute == 'reset') {
