@@ -238,11 +238,12 @@ d3.json('data.json').then(function(json) {
 		})
 		.attr('fill', function(d) {
 			if(d.kind != 'saggio') {
-				if(col.domain().indexOf(d.kind) >= 0) {
-					return col(d.kind)
-				} else {
-					return 'var(--c-' + d.paper + ')'
-				}
+				return 'var(--c-' + d.paper + ')';
+				// if(col.domain().indexOf(d.kind) >= 0) {
+				// 	return col(d.kind)
+				// } else {
+				// 	return 'var(--c-' + d.paper + ')'
+				// }
 			}
 			return 'white';
 		})
@@ -470,39 +471,39 @@ d3.json('data.json').then(function(json) {
 		d3.select(this).classed('white-shadow', true);
 	})
 
-	works.selectAll('.volume-cover')
-		.data(function(d) {
-			// console.log(d)
-			if(d.id.split('').slice(0, 1) == 'V') {
-				return [d]
-			} else {
-				return []
-			}
-		})
-		.enter()
-		.append('image')
-		.attr('class', 'volume-cover')
-		// .style('opacity', 1e-6)
-		.style('filter', 'url(#shadow)')
-		.attr('x', function(d) {
-			if(d.labelPosition == 'right' || d.distributeElement) {
-				return -width * 0.15 - r * 1.5
-			}
-			return -width * 0.15 / 2
-		})
-		.attr('y', function(d) {
-			if(d.labelPosition == 'right' || d.distributeElement) {
-				if(d.distributeElement) {
-					return -(width * 0.20 / 2 + (d.distributeElement * (width * 0.20 / 3)))
-				} else {
-					return -(width * 0.20 / 2)
-				}
-			}
-			return 37
-		})
-		.attr('width', width * 0.15)
-		.attr('height', width * 0.20)
-		.attr('xlink:xlink:href', function(d) { return 'assets/copertine/' + d.id + '.jpg' })
+	// works.selectAll('.volume-cover')
+	// 	.data(function(d) {
+	// 		// console.log(d)
+	// 		if(d.id.split('').slice(0, 1) == 'V') {
+	// 			return [d]
+	// 		} else {
+	// 			return []
+	// 		}
+	// 	})
+	// 	.enter()
+	// 	.append('image')
+	// 	.attr('class', 'volume-cover')
+	// 	// .style('opacity', 1e-6)
+	// 	.style('filter', 'url(#shadow)')
+	// 	.attr('x', function(d) {
+	// 		if(d.labelPosition == 'right' || d.distributeElement) {
+	// 			return -width * 0.15 - r * 1.5
+	// 		}
+	// 		return -width * 0.15 / 2
+	// 	})
+	// 	.attr('y', function(d) {
+	// 		if(d.labelPosition == 'right' || d.distributeElement) {
+	// 			if(d.distributeElement) {
+	// 				return -(width * 0.20 / 2 + (d.distributeElement * (width * 0.20 / 3)))
+	// 			} else {
+	// 				return -(width * 0.20 / 2)
+	// 			}
+	// 		}
+	// 		return 37
+	// 	})
+	// 	.attr('width', width * 0.15)
+	// 	.attr('height', width * 0.20)
+	// 	.attr('xlink:xlink:href', function(d) { return 'assets/copertine/' + d.id + '.jpg' })
 
 	let yearsLabels = decade.selectAll('.label.year')
 		.data(function(d) {
