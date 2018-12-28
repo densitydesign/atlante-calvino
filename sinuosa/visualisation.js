@@ -41,9 +41,10 @@ let height = window.innerHeight - margin.top - margin.bottom;
 // r = height > 640 ? 20 : 12;
 let r = height < width || width > 540 ? 20 : 16;
 r = width < 400 ? 11 : r;
+r = height > 650 ? r : 16
 let r2 = 4
 let firstPubRadius = 3;
-let distributePadding = 3.5;
+let distributePadding = height > 650 ? 3.5 : 2.75;
 
 let svg = d3.select('svg#visualisation')
 	.attr('width', width + margin.right + margin.left)
