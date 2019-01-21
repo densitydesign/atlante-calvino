@@ -706,6 +706,14 @@ function transformPeriodicals(data) {
 				if(d.year <= 1955) {
 					articles.push(node);
 				}
+			} else if(d.paper == 'cds') {
+				if(d.year >= 1974 && d.year <= 1979) {
+					articles.push(node);
+				}
+			} else if(d.paper == 'repubblica') {
+				if(d.year >= 1979 && d.year <= 1985) {
+					articles.push(node);
+				}
 			} else {
 				articles.push(node);
 			}

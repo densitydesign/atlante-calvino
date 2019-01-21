@@ -19,6 +19,22 @@ html {
   --c-text: #212529;
 }
 
+html {
+  font-size: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  html {
+    font-size: 18px;
+  }
+}
+
+@media only screen and (min-width: 1200px) {
+  html {
+    font-size: 21px;
+  }
+}
+
 body {
   color: var(--c-text);
   font-family: 'Crimson Text';
@@ -28,8 +44,28 @@ body {
   background-color: var(--c-bg);
 }
 
+h1 {
+  font-family: 'Crimson Text';
+  color: darkslategrey;
+}
+
+a {
+  color: tomato;
+}
+
 p {
-  font-size: .8rem;
+  /* font-size: .8rem; */
+}
+
+.caption {
+  font-size: 0.75rem;
+  font-family: 'HK Grotesk'
+}
+
+@media only screen and (min-width: 768px) {
+  .caption {
+    font-size: 0.60rem;
+  }
 }
 
 .sticky-from-top {
