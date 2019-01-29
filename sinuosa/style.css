@@ -221,7 +221,7 @@ svg#visualisation {}
   height: 0;
   display: block;
   border-radius: 50%;
-  padding-bottom: calc(100% - 3px);
+  padding-bottom: calc(100% - 2px);
   background-size: cover;
   box-shadow: none !important;
 }
