@@ -107,15 +107,15 @@ let resetRect = svg.append('rect')
 		d3.select('.decade.anni90 .line-meridiani').transition().duration(duration)
 			.attr('d', function (d){
 				let _d = `M ${workPosition({ "year": 1990 })[0]},0
-									C ${workPosition({ "year": 1991 })[0]},0
-									  ${workPosition({ "year": 1991 })[0]},0
-										${workPosition({ "year": 1992 })[0]},0
+									C ${workPosition({ "year": 1990.4 })[0]},0
+									  ${workPosition({ "year": 1990.4 })[0]},0
+										${workPosition({ "year": 1990.8 })[0]},0
 									L ${workPosition({ "year": 1995.2 })[0]},0`;
 				return _d;
 			})
 			.attr('opacity',0)
 		d3.select('.info-postume').transition().duration(duration)
-			.attr('y', -r * 2.3)
+			.attr('y', -r * 1.75)
 		d3.select('.info-meridiani').transition().duration(duration)
 			.attr('y', -r * 2.3)
 
@@ -577,7 +577,11 @@ d3.json('data.json').then(function(json) {
 		})
 		.attr('x', function(d) { return d.value.x })
 		.attr('y', function(d) { return d.value.there_is_work ? d.value.y + r * 1.6 : r * .8 })
-		.text(function(d) {
+		.text(function(d,i) {
+			if (i==0 && (d.key != '1970') && (d.key != '1980')) {
+				console.log(d.key.substring(2,4));
+				d.key = 'Anni ' + d.key.substring(2,4);
+			}
 			return d.key
 		})
 
@@ -596,9 +600,9 @@ d3.json('data.json').then(function(json) {
 		.attr('class', 'line-meridiani decade-arc thread')
 		.attr('d', function (d){
 			let _d = `M ${workPosition({ "year": 1990 })[0]},0
-								C ${workPosition({ "year": 1991 })[0]},0
-								  ${workPosition({ "year": 1991 })[0]},0
-									${workPosition({ "year": 1992 })[0]},0
+								C ${workPosition({ "year": 1990.4 })[0]},0
+								  ${workPosition({ "year": 1990.4 })[0]},0
+									${workPosition({ "year": 1990.8 })[0]},0
 								L ${workPosition({ "year": 1995.2 })[0]},0`;
 			return _d;
 		})
@@ -662,14 +666,17 @@ d3.json('data.json').then(function(json) {
 	decade.filter(function(d) {
 			return d.id == 'anni90'
 		}).append('text')
-		.attr('class', 'info-postume')
-		.text('Pubblicazioni postume')
-		.attr('text-anchor', 'middle')
-		.attr('x', function(d) {
-			return workPosition({ year: '1992.5' })[0]
-		})
-		.attr('y', -r * 2.3)
-		.classed('info', true);
+		.attr('class', 'Xinfo info-postume label year')
+		// .attr('text-anchor', 'start')
+		.style('text-anchor', 'start')
+		// .attr('x', function(d) {
+		// 	return workPosition({ year: '1990.25' })[0]
+		// })
+		.attr('y', -r * 1.75)
+		// .text('Pubblicazioni_postume')
+		.html(`<tspan x="${workPosition({ year: '1990.15' })[0]}" dy="0">Pubblicazioni</tspan>
+					 <tspan x="${workPosition({ year: '1990.15' })[0]}" dy="${rem2px(.6)}">postume</tspan>
+					`);
 
 	// Move La giornata di uno scriutatore to from to avoid silly overlapping with lines
 	// works.filter(function(d) {
@@ -1098,15 +1105,15 @@ function scrollytelling(el) {
 		d3.select('.decade.anni90 .line-meridiani').transition().duration(duration)
 			.attr('d', function (d){
 				let _d = `M ${workPosition({ "year": 1990 })[0]},0
-									C ${workPosition({ "year": 1991 })[0]},0
-									  ${workPosition({ "year": 1991 })[0]},0
-										${workPosition({ "year": 1992 })[0]},0
+									C ${workPosition({ "year": 1990.4 })[0]},0
+									  ${workPosition({ "year": 1990.4 })[0]},0
+										${workPosition({ "year": 1990.8 })[0]},0
 									L ${workPosition({ "year": 1995.2 })[0]},0`;
 				return _d;
 			})
 			.attr('opacity',0)
 		d3.select('.info-postume').transition().duration(duration)
-			.attr('y', -r * 2.3)
+			.attr('y', -r * 1.75)
 		d3.select('.info-meridiani').transition().duration(duration)
 			.attr('y', -r * 2.3)
 
@@ -1151,15 +1158,15 @@ function scrollytelling(el) {
 		d3.select('.decade.anni90 .line-meridiani').transition().duration(duration)
 			.attr('d', function (d){
 				let _d = `M ${workPosition({ "year": 1990 })[0]},0
-									C ${workPosition({ "year": 1991 })[0]},0
-									  ${workPosition({ "year": 1991 })[0]},${space/3}
-										${workPosition({ "year": 1992 })[0]},${space/3}
+									C ${workPosition({ "year": 1990.4 })[0]},0
+									  ${workPosition({ "year": 1990.4 })[0]},${space/3}
+										${workPosition({ "year": 1990.8 })[0]},${space/3}
 									L ${workPosition({ "year": 1995.2 })[0]},${space/3}`;
 				return _d;
 			})
 			.attr('opacity',1)
 		d3.select('.info-postume').transition().duration(duration)
-			.attr('y', (-r * 2.3) - space/3)
+			.attr('y', (-r * 1.75))
 		d3.select('.info-meridiani').transition().duration(duration)
 			.attr('y', (-r * 2.3) + space/3)
 	} else {
@@ -1182,15 +1189,15 @@ function scrollytelling(el) {
 		d3.select('.decade.anni90 .line-meridiani').transition().duration(duration)
 			.attr('d', function (d){
 				let _d = `M ${workPosition({ "year": 1990 })[0]},0
-									C ${workPosition({ "year": 1991 })[0]},0
-									  ${workPosition({ "year": 1991 })[0]},0
-										${workPosition({ "year": 1992 })[0]},0
+									C ${workPosition({ "year": 1990.4 })[0]},0
+									  ${workPosition({ "year": 1990.4 })[0]},0
+										${workPosition({ "year": 1990.8 })[0]},0
 									L ${workPosition({ "year": 1995.2 })[0]},0`;
 				return _d;
 			})
 			.attr('opacity',0)
 		d3.select('.info-postume').transition().duration(duration)
-			.attr('y', -r * 2.3)
+			.attr('y', -r * 1.75)
 		d3.select('.info-meridiani').transition().duration(duration)
 			.attr('y', -r * 2.3)
 	}
