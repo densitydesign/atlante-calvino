@@ -1011,18 +1011,18 @@ function activateStorytelling() { // controlla scrollytelling
 		offset: 0.7,
 	});
 
-	enterView({
-		selector: '.item-reset-bottom',
-		enter: function(el) {
-			scrollytelling(el);
-			// d3.select('.legend').classed('open', true);
-		},
-		exit: function(el) {
-			scrollytelling(el);
-			// d3.select('.legend').classed('open', false);
-		},
-		offset: 0, // enter at middle of viewport
-	});
+	// enterView({
+	// 	selector: '.item-reset-bottom',
+	// 	enter: function(el) {
+	// 		scrollytelling(el);
+	// 		// d3.select('.legend').classed('open', true);
+	// 	},
+	// 	exit: function(el) {
+	// 		scrollytelling(el);
+	// 		// d3.select('.legend').classed('open', false);
+	// 	},
+	// 	offset: 0, // enter at middle of viewport
+	// });
 
 	enterView({
 		selector: '.item-reset-top',
