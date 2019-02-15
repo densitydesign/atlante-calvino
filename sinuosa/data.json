@@ -3397,7 +3397,7 @@
   "works": [{
       "id": "P001",
       "label": "Sotto il sole_giaguaro",
-      "year": 1990.5,
+      "year": 1991,
       "trueYear": 1986,
       "kind": "posthumous",
       "publisher": "",
@@ -3406,7 +3406,7 @@
     }, {
       "id": "P002",
       "label": "Lezioni_americane",
-      "year": 1991.1,
+      "year": 1991.6,
       "trueYear": 1988,
       "kind": "posthumous",
       "publisher": "",
@@ -3416,7 +3416,7 @@
     }, {
       "id": "P003",
       "label": "La strada_di San Giovanni",
-      "year": 1991.7,
+      "year": 1992.2,
       "trueYear": 1990,
       "kind": "posthumous",
       "publisher": "",
@@ -3425,7 +3425,7 @@
     }, {
       "id": "P004",
       "label": "Perché leggere_i classici",
-      "year": 1992.3,
+      "year": 1992.8,
       "trueYear": 1991,
       "kind": "posthumous",
       "publisher": "",
@@ -3435,7 +3435,7 @@
     }, {
       "id": "P005",
       "label": "Prima che tu_dica “Pronto”",
-      "year": 1992.9,
+      "year": 1993.4,
       "trueYear": 1993,
       "kind": "posthumous",
       "publisher": "",
@@ -3444,7 +3444,7 @@
     }, {
       "id": "P006",
       "label": "Eremita_a Parigi",
-      "year": 1993.5,
+      "year": 1994,
       "trueYear": 1994,
       "kind": "posthumous",
       "publisher": "",

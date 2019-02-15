@@ -334,6 +334,10 @@ svg#visualisation {}
   marker-end: url(#arrow-head-big);
 }
 
+.anni90 .decade-arc.start {
+  marker-end: none;
+}
+
 .decade-arc.end {}
 
 .previous-publication {
