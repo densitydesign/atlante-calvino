@@ -19,6 +19,25 @@ html {
   --c-text: #212529;
 }
 
+/* Fight with CDS CSS */
+/* * {
+    font-family: 'Crimson Text';
+} */
+
+/* p {
+    margin-bottom: 0.5rem;
+    padding-bottom: 0px;
+}
+
+h1 {
+    text-align: left;
+    padding: 0;
+} */
+
+#main_footer {
+  background-color: var(--c-bg);
+}
+
 html {
   font-size: 16px;
 }
@@ -418,7 +437,11 @@ svg#visualisation {}
 
 .how-to {
   font-size: .6rem;
-  font-family: 'HK Grotesk', sans-serif;
+  font-family: 'HK Grotesk', sans-serif !important;
+}
+
+.how-to * {
+  font-family: 'HK Grotesk', sans-serif !important;
 }
 
 .how-to>div {
