@@ -3,13 +3,32 @@
 <head>
   <meta charset="utf-8">
   <style>
+
+    svg {
+      cursor: grab;
+    }
+
+    svg:active {
+      cursor: grabbing;
+    }
+
+    .node {
+      cursor: pointer;
+    }
+    .node .label {
+      opacity: 0;
+      transition: opacity .5s;
+    }
     .node:hover circle {
-      fill:red
+      fill:white;
+    }
+    .node:hover .label {
+      opacity: 1;
     }
   </style>
 </head>
 <body>
-  <svg></svg>
+  <svg id="landscape"></svg>
   <script src="https://d3js.org/d3.v4.js"></script>
   <script type="text/javascript">
     let w = window.innerWidth-20
@@ -20,22 +39,13 @@
         .style('background-color','#e4e4e4')
 
     d3.json("data.json", function(err, json) {
-      console.log(json)
 
-      let size_ext = d3.extent(json.nodes, function(d){return d.size})
-
-
-      let min_size = size_ext[0]/4
-      let step_size = size_ext[0]/min_size
-
-      console.log(size_ext, min_size, step_size)
+      console.log(json.nodes)
 
       let nodes = json.nodes;
-      nodes.forEach(function(n){
-        // n.x*=-1
-        n.y*=-1
-      })
-
+      // fix orientation of the viz
+      nodes.forEach(function(n){ n.y*=-1 })
+      // sort node so to have the upper in the background and not covering the ones in the foreground
       nodes = nodes.sort(function(a, b){return a.y - b.y})
 
       let margin = {
@@ -45,12 +55,11 @@
         "max_y": d3.max(nodes, function(d){ return d.y })
       }
 
-      console.log(margin)
-
-      console.log((margin.max_x - margin.min_x)/2)
+      let colour = d3.scaleLinear()
+          .domain(d3.extent(nodes, function(d){ return d.attributes.first_publication; }))
+          .range(['#FADBD8','#B03A2E'])
 
       let g = svg.append('g')
-          // .style('transform','scale(1,0.5773) rotate(-45deg)')
           .append('g')
           .attr('class','nodes')
 
@@ -60,39 +69,44 @@
           .attr('transform',function(d){
             return 'scale(1,0.5773) translate('+d.x+','+d.y+')'
           })
+          .attr('fill',function(d){
+            return colour(d.attributes.first_publication)
+          })
+
+      // calculate the size of steps for hills
+      let size_ext = d3.extent(json.nodes, function(d){return d.size})
+      let min_size = size_ext[0]/5
+      let step_increment = -40;
 
       let steps = node.selectAll('circle')
           .data(function(d){
-            // console.log(d)
             d.steps = []
             let i = d3.interpolateBasis(d.size,1)
             for(var j = d.size; j >= min_size; j-=min_size) {
-              // console.log(j, j/d.size)
-              // console.log(i(j/d.size))
               d.steps.push(j);
             }
-            // console.log(d.steps)
             return d.steps
           })
         .enter()
           .append('circle')
-          .attr('fill','#fff')
           .attr('stroke','#000')
           .attr('r',function(d){ return d })
+          .transition()
+          .duration(1500)
           .attr('transform', function(d,i){
-            i = i*-45
+            i = i*step_increment
             return 'translate(0,'+i+')'
           })
-          // .attr('cx', function(d){ return d.x })
-          // .attr('cy', function(d){ return d.y })
 
       let label = node.selectAll('.label')
             .data(function(d){ return [d] })
           .enter()
             .append('text')
             .attr('class','label')
+            .attr('fill','black')
+            .attr('font-size','4rem')
             .attr('transform',function(d){
-              return 'translate(0,'+(d.steps.length+2)*-45+') scale(1,'+1/0.5773+')'
+              return 'translate(0,'+(d.steps.length+1)*step_increment+') scale(1,'+1/0.5773+')'
             })
             .text(function(d){
               return d.attributes.title;
@@ -104,12 +118,12 @@
 
       zoom_handler(svg);
 
-      svg.transition()
-        .duration(750)
-        .call( zoom_handler.transform, d3.zoomIdentity
-          .translate(w/2,h/2)
-          .scale(0.1)
-        ); // updated for d3 v4
+      // svg.transition()
+      //   .duration(750)
+      //   .call( zoom_handler.transform, d3.zoomIdentity
+      //     .translate(w/2,h/2)
+      //     .scale(0.1)
+      //   ); // updated for d3 v4
 
       //Zoom functions
       function zoom_actions(){
