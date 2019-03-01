@@ -36,6 +36,8 @@
         n.y*=-1
       })
 
+      nodes = nodes.sort(function(a, b){return a.y - b.y})
+
       let margin = {
         "min_x": d3.min(nodes, function(d){ return d.x }),
         "max_x": d3.max(nodes, function(d){ return d.x }),
