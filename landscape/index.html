@@ -44,14 +44,16 @@
       console.log(json.nodes)
 
       let nodes = json.nodes;
-      // fix orientation of the viz
-      //handle collections
+
       nodes.forEach(function(n){
+        // fix orientation of the viz
         n.y*=-1;
+        // handle collections
         if (n.attributes.collections){
           n.attributes.collections = n.attributes.collections.split(';')
+          // remove last element which is always empty due to the fat that all records end with a ";"
+          n.attributes.collections.pop()
         }
-
       })
       // sort node so to have the upper in the background and not covering the ones in the foreground
       nodes = nodes.sort(function(a, b){return a.y - b.y})
@@ -92,9 +94,10 @@
       let steps = node.selectAll('circle')
           .data(function(d){
             d.steps = []
-            let i = d3.interpolateBasis(d.size,1)
+            // console.log(d)
             for(var j = d.size; j >= min_size; j-=min_size) {
-              d.steps.push(j);
+              let step_size = j
+              d.steps.push(step_size);
             }
             return d.steps
           })
@@ -110,7 +113,7 @@
           })
 
       node
-        .on("mouseover", function(){
+        .on("mouseenter", function(){
           d3.select(this).selectAll('circle')
             .transition()
             .duration(350)
