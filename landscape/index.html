@@ -18,6 +18,7 @@
     .node .label {
       opacity: 0;
       transition: opacity .5s;
+      pointer-events: none;
     }
     .node:hover circle {
       fill:white;
@@ -44,9 +45,19 @@
 
       let nodes = json.nodes;
       // fix orientation of the viz
-      nodes.forEach(function(n){ n.y*=-1 })
+      //handle collections
+      nodes.forEach(function(n){
+        n.y*=-1;
+        if (n.attributes.collections){
+          n.attributes.collections = n.attributes.collections.split(';')
+        }
+
+      })
       // sort node so to have the upper in the background and not covering the ones in the foreground
       nodes = nodes.sort(function(a, b){return a.y - b.y})
+
+
+
 
       let margin = {
         "min_x": d3.min(nodes, function(d){ return d.x }),
@@ -97,6 +108,26 @@
             i = i*step_increment
             return 'translate(0,'+i+')'
           })
+
+      node
+        .on("mouseover", function(){
+          d3.select(this).selectAll('circle')
+            .transition()
+            .duration(350)
+            .attr('transform', function(d,i){
+              i = i*step_increment*1.5
+              return 'translate(0,'+i+')'
+            })
+        })
+        .on("mouseleave", function(){
+          d3.select(this).selectAll('circle')
+            .transition()
+            .duration(350)
+            .attr('transform', function(d,i){
+              i = i*step_increment
+              return 'translate(0,'+i+')'
+            })
+        })
 
       let label = node.selectAll('.label')
             .data(function(d){ return [d] })
