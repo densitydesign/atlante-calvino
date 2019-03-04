@@ -88,8 +88,8 @@
 
       // calculate the size of steps for hills
       let size_ext = d3.extent(json.nodes, function(d){return d.size})
-      let min_size = size_ext[0]/4
-      let step_increment = -40;
+      let min_size = size_ext[0]/5
+      let step_increment = -40*1;
 
       function interpolateSpline(x) {
         let y;
@@ -116,7 +116,6 @@
         } else {
           y=x
         }
-
 
         // Inserted values are:
         // x, y
@@ -198,7 +197,25 @@
           y=x
         }
 
+        // Inserted values are:
+        // x, y
+        // 0, 0
+        // 0.1, 0.2
+        // 0.55, 0.65
+        // 0.8, 0.8
+        // 1, 1
 
+        if (x>=0 && x<=0.1) {
+          y = (-8.7269*Math.pow(x,3)) + (1.1764*Math.pow(10,-60)*Math.pow(x,2)) + (2.0873*x) + (0);
+        } else if (x>0.1 && x<=0.55) {
+          y = (1.7416*Math.pow(x,3)) + (-3.1405*Math.pow(x,2)) + (2.4013*x) + (-1.0468*Math.pow(10,-2))
+        } else if (x>0.55 && x<=0.8) {
+          y = (2.2326*Math.pow(x,3)) + (-3.9507*Math.pow(x,2)) + (2.8469*x) + (-9.2166*Math.pow(10,-2))
+        } else if (x>0.8 && x<=1) {
+          y = (-2.3458*Math.pow(x,3)) + (7.0374*Math.pow(x,2)) + (-5.9436*x) + (2.2520)
+        } else {
+          y=x
+        }
 
         return y
       }
@@ -230,6 +247,7 @@
 
       node
         .on("mouseenter", function(){
+          
           d3.select(this).selectAll('circle')
             .transition()
             .duration(350)
