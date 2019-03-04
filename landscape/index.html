@@ -91,14 +91,47 @@
       let min_size = size_ext[0]/5
       let step_increment = -40;
 
+      function interpolateSpline(x) {
+        let y;
+
+        // The cubic spline interpolation has been calculated "heuristically" by using this service:
+        // https://tools.timodenk.com/cubic-spline-interpolation
+
+        // Inserted values are:
+        // x, y
+        // 0, 0
+        // 0.2, 0.25
+        // 0.5, 0.5
+        // 0.8, 0.75
+        // 1, 1
+
+        if (x>=0 && x<=0.2) {
+          y = (-2.0833*Math.pow(x,3)) + (1.25*Math.pow(10,-61)*Math.pow(x,2)) + (1.3333*x);
+        } else if (x>0.2 && x<=0.5) {
+          y = (1.3889*Math.pow(x,3)) + (-2.0833*Math.pow(x,2)) + (1.75*x) + (-2.7778*Math.pow(10,-2))
+        } else if (x>0.5 && x<=0.8) {
+          y = (1.3889*Math.pow(x,3)) + (-2.0833*Math.pow(x,2)) + (1.75*x) + (-2.7778*Math.pow(10,-2))
+        } else if (x>0.8 && x<=1) {
+          y = (-2.0833*Math.pow(x,3)) + (6.25*Math.pow(x,2)) + (-4.9167*x) + (1.75)
+        } else {
+          y=x
+        }
+
+        return y
+      }
+
       let steps = node.selectAll('circle')
           .data(function(d){
             d.steps = []
-            // console.log(d)
-            for(var j = d.size; j >= min_size; j-=min_size) {
-              let step_size = j
-              d.steps.push(step_size);
+
+            for (var jj = (min_size * 0); jj<= d.size; jj+=min_size) {
+              let new_step_size = jj;
+              let ratio = jj / d.size;
+              new_step_size = d.size * interpolateSpline(ratio);
+              d.steps.push(new_step_size);
             }
+
+            d.steps = d.steps.reverse()
             return d.steps
           })
         .enter()
@@ -118,7 +151,7 @@
             .transition()
             .duration(350)
             .attr('transform', function(d,i){
-              i = i*step_increment*1.5
+              i = i*step_increment*1.2
               return 'translate(0,'+i+')'
             })
         })
