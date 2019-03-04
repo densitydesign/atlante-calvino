@@ -247,7 +247,7 @@
 
       node
         .on("mouseenter", function(){
-          
+
           d3.select(this).selectAll('circle')
             .transition()
             .duration(350)
@@ -272,7 +272,7 @@
             .append('text')
             .attr('class','label')
             .attr('fill','black')
-            .attr('font-size','4rem')
+            .attr('font-size','8rem')
             .attr('transform',function(d){
               return 'translate(0,'+(d.steps.length+1)*step_increment+') scale(1,'+1/0.5773+')'
             })
@@ -286,12 +286,12 @@
 
       zoom_handler(svg);
 
-      // svg.transition()
-      //   .duration(750)
-      //   .call( zoom_handler.transform, d3.zoomIdentity
-      //     .translate(w/2,h/2)
-      //     .scale(0.1)
-      //   ); // updated for d3 v4
+      svg.transition()
+        .duration(0)
+        .call( zoom_handler.transform, d3.zoomIdentity
+          .translate(w/2,h/2*1.2)
+          .scale(0.08)
+        ); // updated for d3 v4
 
       //Zoom functions
       function zoom_actions(){
