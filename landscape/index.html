@@ -21,7 +21,7 @@
       pointer-events: none;
     }
     .node:hover circle {
-      fill:white;
+      /* fill:white; */
     }
     .node:hover .label {
       opacity: 1;
@@ -30,7 +30,7 @@
 </head>
 <body>
   <svg id="landscape"></svg>
-  <script src="https://d3js.org/d3.v4.js"></script>
+  <script src="https://d3js.org/d3.v5.js"></script>
   <script type="text/javascript">
     let w = window.innerWidth-20
     let h = window.innerHeight-20
@@ -39,8 +39,7 @@
         .attr('height', h)
         .style('background-color','#e4e4e4')
 
-    d3.json("data.json", function(err, json) {
-
+    d3.json("data.json").then(function(json){
       console.log(json.nodes)
 
       let nodes = json.nodes;
@@ -53,13 +52,65 @@
           n.attributes.collections = n.attributes.collections.split(';')
           // remove last element which is always empty due to the fat that all records end with a ";"
           n.attributes.collections.pop()
+        } else {
+          n.attributes.collections = []
         }
       })
       // sort node so to have the upper in the background and not covering the ones in the foreground
       nodes = nodes.sort(function(a, b){return a.y - b.y})
 
-
-
+      let collections = [
+        {
+          'n': 'Ultimo viene il corvo',
+          'id': 'V002',
+          'c': '#e9d05d'
+        },
+        {
+          'n': 'L\'entrata in guerra',
+          'id': 'V004',
+          'c': '#12b259'
+        },
+        {
+          'n': 'I racconti',
+          'id': 'V006',
+          'c': '#476a70'
+        },
+        {
+          'n': 'Marcovaldo',
+          'id': 'V011',
+          'c': '#9f73b2'
+        },
+        {
+          'n': 'Le cosmicomiche',
+          'id': 'V013',
+          'c': '#e89fc0'
+        },
+        {
+          'n': 'Ti con zero',
+          'id': 'V014',
+          'c': '#581745'
+        },
+        {
+          'n': 'La memoria del mondo',
+          'id': 'V015',
+          'c': '#00b1b3'
+        },
+        {
+          'n': 'Gli amori difficili',
+          'id': 'V017',
+          'c': '#f0be96'
+        },
+        {
+          'n': 'Palomar',
+          'id': 'V022',
+          'c': '#94d2ba'
+        },
+        {
+          'n': 'Cosmicomiche vecchie e nuove',
+          'id': 'V023',
+          'c': '#f1634b'
+        }
+      ]
 
       let margin = {
         "min_x": d3.min(nodes, function(d){ return d.x }),
@@ -72,6 +123,13 @@
           .domain(d3.extent(nodes, function(d){ return d.attributes.first_publication; }))
           .range(['#FADBD8','#B03A2E'])
 
+      let col_collections = d3.scaleOrdinal()
+          .domain(collections.map(function(d){return d.id}))
+          .range(collections.map(function(d){return d.c}))
+          .unknown('#d4d4d4')
+
+          // console.log(col_collections.domain())
+
       let g = svg.append('g')
           .append('g')
           .attr('class','nodes')
@@ -82,14 +140,11 @@
           .attr('transform',function(d){
             return 'scale(1,0.5773) translate('+d.x+','+d.y+')'
           })
-          .attr('fill',function(d){
-            return colour(d.attributes.first_publication)
-          })
 
       // calculate the size of steps for hills
-      let size_ext = d3.extent(json.nodes, function(d){return d.size})
-      let min_size = size_ext[0]/5
-      let step_increment = -40*1;
+      let size_ext = d3.extent(json.nodes, function(d){return d.size});
+      let min_size = size_ext[0]/8;
+      let step_increment = -23;
 
       function interpolateSpline(x) {
         let y;
@@ -223,7 +278,7 @@
       let steps = node.selectAll('circle')
           .data(function(d){
             d.steps = []
-
+            // get different radii
             for (var jj = (min_size); jj<= d.size; jj+=min_size) {
               let new_step_size = jj;
               let ratio = new_step_size / d.size;
@@ -231,13 +286,34 @@
               d.steps.push(new_step_size);
             }
 
+            // get colors
+            d.steps = d.steps.map((s,i)=>{
+              let pos_1 = i/d.steps.length;
+              // console.log(i/d.steps.length)
+              let pos_2 = pos_1 * d.attributes.collections.length;
+              // console.log((i/d.steps.length) * d.attributes.collections.length)
+
+              // console.log(Math.floor(pos_2))
+
+              let collection_here = d.attributes.collections[Math.floor(pos_2)]
+              // console.log('---')
+              return {'r': s, 'collection': collection_here, 'first_publication': d.attributes.first_publication}
+            });
+
+            // sort array so to have little circles on top, big at bottom
             d.steps = d.steps.reverse()
+
             return d.steps
           })
         .enter()
           .append('circle')
           .attr('stroke','#000')
-          .attr('r',function(d){ return d })
+          .attr('stroke-width',1)
+          .attr('fill',function(d){
+            return col_collections(d.collection)
+          })
+          // .style('shape-rendering','crispedges')
+          .attr('r',function(d){ return d.r })
           .transition()
           .duration(1500)
           .attr('transform', function(d,i){
@@ -247,12 +323,11 @@
 
       node
         .on("mouseenter", function(){
-
           d3.select(this).selectAll('circle')
             .transition()
             .duration(350)
             .attr('transform', function(d,i){
-              i = i*step_increment*1.2
+              i = i*step_increment*1.5
               return 'translate(0,'+i+')'
             })
         })
@@ -277,7 +352,7 @@
               return 'translate(0,'+(d.steps.length+1)*step_increment+') scale(1,'+1/0.5773+')'
             })
             .text(function(d){
-              return d.attributes.title;
+              return d.id+'-'+d.attributes.title;
             })
 
       //add zoom capabilities
@@ -298,6 +373,23 @@
         // console.log(d3.event.transform)
         g.attr("transform", d3.event.transform)
       }
+
+      d3.select('body').on("keyup", function(d) {
+          if (d3.event.key == "c") {
+            node.selectAll('circle')
+              .transition().duration(350)
+              .attr('fill',function(d){
+                return col_collections(d.collection)
+              })
+          } else if (d3.event.key == "y") {
+            node.selectAll('circle')
+              .transition().duration(350)
+              .attr('fill',function(d){
+                return colour(d.first_publication)
+              })
+          }
+      })
+
     })
 
 
