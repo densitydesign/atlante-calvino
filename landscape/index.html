@@ -29,7 +29,7 @@
   </style>
 </head>
 <body>
-  <p>schiaccia y per colorare per anno, c per colorare per raccolta</p> 
+  <p>schiaccia y per colorare per anno, c per colorare per raccolta</p>
   <svg id="landscape"></svg>
   <script src="https://d3js.org/d3.v5.js"></script>
   <script type="text/javascript">
@@ -308,8 +308,8 @@
           })
         .enter()
           .append('circle')
-          .attr('stroke','#000')
-          .attr('stroke-width',1)
+          .attr('stroke','#fff')
+          .attr('stroke-width',1.5)
           .attr('fill',function(d){
             return col_collections(d.collection)
           })
@@ -324,22 +324,36 @@
 
       node
         .on("mouseenter", function(){
-          d3.select(this).selectAll('circle')
+          d3.selectAll('.node')
             .transition()
             .duration(350)
-            .attr('transform', function(d,i){
-              i = i*step_increment*1.5
-              return 'translate(0,'+i+')'
-            })
+            .style('opacity',.4)
+
+          d3.select(this)
+            .transition()
+            .duration(350)
+            .style('opacity',1)
+            // .selectAll('circle')
+            // .transition()
+            // .duration(350)
+            // .attr('transform', function(d,i){
+            //   i = i*step_increment*1.5
+            //   return 'translate(0,'+i+')'
+            // })
         })
         .on("mouseleave", function(){
-          d3.select(this).selectAll('circle')
+          d3.selectAll('.node')
             .transition()
             .duration(350)
-            .attr('transform', function(d,i){
-              i = i*step_increment
-              return 'translate(0,'+i+')'
-            })
+            .style('opacity',1)
+          // d3.select(this).selectAll('circle')
+          //   .transition()
+          //   .duration(350)
+          //   .style('opacity',1)
+          //   .attr('transform', function(d,i){
+          //     i = i*step_increment
+          //     return 'translate(0,'+i+')'
+          //   })
         })
 
       let label = node.selectAll('.label')
@@ -384,7 +398,8 @@
               })
           } else if (d3.event.key == "y") {
             node.selectAll('circle')
-              .transition().duration(350)
+              .transition()
+              .duration(350)
               .attr('fill',function(d){
                 return colour(d.first_publication)
               })
