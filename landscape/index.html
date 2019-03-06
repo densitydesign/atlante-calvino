@@ -20,6 +20,10 @@
       transition: opacity .5s;
       pointer-events: none;
     }
+
+    .node circle {
+      shape-rendering: optimizeSpeed;
+    }
     .node:hover circle {
       /* fill:white; */
     }
@@ -39,6 +43,10 @@
         .attr('width', w)
         .attr('height', h)
         .style('background-color','#e4e4e4')
+        .style('background-color','#EFEBE9')
+
+
+
 
     d3.json("data.json").then(function(json){
       console.log(json.nodes)
@@ -47,7 +55,8 @@
 
       nodes.forEach(function(n){
         // fix orientation of the viz
-        n.y*=-1;
+        // n.y*=-1;
+        n.x*=-1;
         // handle collections
         if (n.attributes.collections){
           n.attributes.collections = n.attributes.collections.split(';')
@@ -123,11 +132,13 @@
       let colour = d3.scaleLinear()
           .domain(d3.extent(nodes, function(d){ return d.attributes.first_publication; }))
           .range(['#FADBD8','#B03A2E'])
+          .range(['#CFD8DC','#455A64'])
 
       let col_collections = d3.scaleOrdinal()
           .domain(collections.map(function(d){return d.id}))
           .range(collections.map(function(d){return d.c}))
           .unknown('#d4d4d4')
+          .unknown('#ffffff')
 
           // console.log(col_collections.domain())
 
@@ -311,16 +322,20 @@
           .attr('stroke','#444')
           .attr('stroke-width',1.5)
           .attr('fill',function(d){
+            return colour(d.first_publication)
             return col_collections(d.collection)
           })
           // .style('shape-rendering','crispedges')
           .attr('r',function(d){ return d.r })
+          .style('opacity',0)
           .transition()
-          .duration(1500)
+          .duration(1000)
+          .delay(function(d){return (d.first_publication - 1940)*100})
           .attr('transform', function(d,i){
             i = i*step_increment
             return 'translate(0,'+i+')'
           })
+          .style('opacity',1)
 
       node
         .on("mouseenter", function(){
@@ -333,27 +348,27 @@
             .transition()
             .duration(350)
             .style('opacity',1)
-            // .selectAll('circle')
-            // .transition()
-            // .duration(350)
-            // .attr('transform', function(d,i){
-            //   i = i*step_increment*1.5
-            //   return 'translate(0,'+i+')'
-            // })
+            .selectAll('circle')
+            .transition()
+            .duration(350)
+            .attr('transform', function(d,i){
+              i = i*step_increment*1.5
+              return 'translate(0,'+i+')'
+            })
         })
         .on("mouseleave", function(){
           d3.selectAll('.node')
             .transition()
             .duration(350)
             .style('opacity',1)
-          // d3.select(this).selectAll('circle')
-          //   .transition()
-          //   .duration(350)
-          //   .style('opacity',1)
-          //   .attr('transform', function(d,i){
-          //     i = i*step_increment
-          //     return 'translate(0,'+i+')'
-          //   })
+          d3.select(this).selectAll('circle')
+            .transition()
+            .duration(350)
+            .style('opacity',1)
+            .attr('transform', function(d,i){
+              i = i*step_increment
+              return 'translate(0,'+i+')'
+            })
         })
 
       let label = node.selectAll('.label')
@@ -367,7 +382,7 @@
               return 'translate(0,'+(d.steps.length+1)*step_increment+') scale(1,'+1/0.5773+')'
             })
             .text(function(d){
-              return d.id+'-'+d.attributes.title;
+              return d.id+'-'+d.attributes.title+'-'+d.attributes.first_publication;
             })
 
       //add zoom capabilities
