@@ -289,6 +289,9 @@
 
       let steps = node.selectAll('circle')
           .data(function(d){
+            // reverse the order of collections, so to have the older ones at the bottom of the hills
+            d.attributes.collections = d.attributes.collections.reverse()
+
             d.steps = []
             // get different radii
             for (var jj = (min_size); jj<= d.size; jj+=min_size) {
@@ -300,15 +303,14 @@
 
             // get colors
             d.steps = d.steps.map((s,i)=>{
+
+
+
+              // assign to each step a collection
               let pos_1 = i/d.steps.length;
-              // console.log(i/d.steps.length)
               let pos_2 = pos_1 * d.attributes.collections.length;
-              // console.log((i/d.steps.length) * d.attributes.collections.length)
-
-              // console.log(Math.floor(pos_2))
-
               let collection_here = d.attributes.collections[Math.floor(pos_2)]
-              // console.log('---')
+
               return {'r': s, 'collection': collection_here, 'first_publication': d.attributes.first_publication}
             });
 
@@ -338,16 +340,16 @@
           .style('opacity',1)
 
       node
-        .on("mouseenter", function(){
+        .on("Xmouseenter", function(){
           d3.selectAll('.node')
             .transition()
             .duration(350)
             .style('opacity',.4)
 
           d3.select(this)
-            .transition()
-            .duration(350)
-            .style('opacity',1)
+            // .transition()
+            // .duration(350)
+            // .style('opacity',1)
             .selectAll('circle')
             .transition()
             .duration(350)
@@ -356,11 +358,12 @@
               return 'translate(0,'+i+')'
             })
         })
-        .on("mouseleave", function(){
+        .on("Xmouseleave", function(){
           d3.selectAll('.node')
             .transition()
             .duration(350)
             .style('opacity',1)
+
           d3.select(this).selectAll('circle')
             .transition()
             .duration(350)
