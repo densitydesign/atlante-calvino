@@ -33,8 +33,8 @@
   </style>
 </head>
 <body>
-  <p>schiaccia y per colorare per anno, c per colorare per raccolta</p>
   <svg id="landscape"></svg>
+  <!-- <p>Schiaccia "y" per colorare per anno, "c" per colorare per raccolta. "n" per evidenziare le opere della nebbia, "m" per cancellazione. Barra spaziatrice per tutte le opere.</p> -->
   <script src="https://d3js.org/d3.v5.js"></script>
   <script type="text/javascript">
     let w = window.innerWidth-20
@@ -408,6 +408,7 @@
       }
 
       d3.select('body').on("keyup", function(d) {
+          console.log(d3.event.key)
           if (d3.event.key == "c") {
             node.selectAll('circle')
               .transition().duration(350)
@@ -421,7 +422,24 @@
               .attr('fill',function(d){
                 return colour(d.first_publication)
               })
+          } else if (d3.event.key == "n") {
+            node.style('display','none')
+            node.filter(function(d){
+                console.log(d)
+                return d.attributes.nebbia
+              })
+              .style('display','block')
+          } else if (d3.event.key == "m") {
+            node.style('display','none')
+            node.filter(function(d){
+                console.log(d)
+                return d.attributes.cancellazione
+              })
+              .style('display','block')
           }
+          else if (d3.event.key == " ") {
+           node.style('display','block')
+         }
       })
 
     })
