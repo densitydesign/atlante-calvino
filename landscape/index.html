@@ -31,10 +31,23 @@
     .node:hover .label {
       opacity: 1;
     }
+    .g-circles {
+
+    }
+    .g-circles circle {
+
+    }
   </style>
 </head>
 <body>
-  <svg id="landscape"></svg>
+  <svg id="landscape">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix" result="mat" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 50 -19"></feColorMatrix>
+      </filter>
+    </defs>
+  </svg>
   <!-- <p>Schiaccia "y" per colorare per anno, "c" per colorare per raccolta. "n" per evidenziare le opere della nebbia, "m" per cancellazione. Barra spaziatrice per tutte le opere.</p> -->
   <script src="https://d3js.org/d3.v5.js"></script>
   <script src="metaball.js"></script>
@@ -46,9 +59,6 @@
         .attr('height', h)
         .style('background-color','#e4e4e4')
         .style('background-color','#EFEBE9')
-
-
-
 
     d3.json("data.json").then(function(json){
       console.log(json.nodes)
@@ -168,54 +178,54 @@
           .append('g')
           .attr('class','nodes')
 
-      let metaballPolygon = g.selectAll('.polygon').data(metaballPoints).enter()
-          .append('polygon')
-          .classed('polygon', true)
-          .attr('points', function(d){
-            // console.log(d)
-            let pointsHull = d3.polygonHull(d.nodes.map(function(d) { return [d.x,d.y]; }) )
-            // console.log(polygonHull.join(' '))
-            return pointsHull.join(' ')
-          })
-          .attr('fill','none')
-          .attr('stroke', function(d){ return col_collections(d.collection) })
-          .attr('stroke-width', 5)
-          .attr('transform',function(d){
-            return 'scale(1,0.5773)'
-          })
+      // let metaballPolygon = g.selectAll('.polygon').data(metaballPoints).enter()
+      //     .append('polygon')
+      //     .classed('polygon', true)
+      //     .attr('points', function(d){
+      //       // console.log(d)
+      //       let pointsHull = d3.polygonHull(d.nodes.map(function(d) { return [d.x,d.y]; }) )
+      //       // console.log(polygonHull.join(' '))
+      //       return pointsHull.join(' ')
+      //     })
+      //     .attr('fill','none')
+      //     .attr('stroke', function(d){ return col_collections(d.collection) })
+      //     .attr('stroke-width', 5)
+      //     .attr('transform',function(d){
+      //       return 'scale(1,0.5773)'
+      //     })
 
-      let gMetaball = g.selectAll('.g-circles').data(metaballPoints).enter()
-          .append('g')
-          .classed('g-circles', true)
-          .attr('fill', function(d){ return col_collections(d.collection) })
-          .attr('opacity', .5)
-
-      let pointsHull;
-
-      let circleMetaball = gMetaball.selectAll('circle').data(function(d){
-            d.nodes.forEach(function(n){ n.thisCollection = d.collection });
-            pointsHull = d3.polygonHull(d.nodes.map(function(d) { return [d.x,d.y]; }) )
-              .map((d)=>{ return {'x':d[0], 'y':d[1]} })
-            pointsHull.forEach((ph)=>{
-              let filteredNodes = d.nodes.filter((n)=>{
-                return ph.x == n.x && ph.y == n.y
-              })
-              ph.size = filteredNodes[0].size;
-              ph.id = filteredNodes[0].id;
-            })
-            // console.log(d.collection, pointsHull)
-            return pointsHull
-            // return d.nodes
-          }).enter()
-          .append('circle')
-          .attr('r', function(d){
-            return d.size*2
-          })
-          .attr('cx', function(d){ return d.x })
-          .attr('cy', function(d){ return d.y })
-          .attr('transform',function(d){
-            return 'scale(1,0.5773)'
-          })
+      // let gMetaball = g.selectAll('.g-circles').data(metaballPoints).enter()
+      //     .append('g')
+      //     .classed('g-circles', true)
+      //     .attr('fill', function(d){ return col_collections(d.collection) })
+      //     .attr('opacity', .5)
+      //     .attr("filter","url(#goo)")
+      //
+      // let pointsHull;
+      // let circleMetaball = gMetaball.selectAll('circle').data(function(d){
+      //       d.nodes.forEach(function(n){ n.thisCollection = d.collection });
+      //       pointsHull = d3.polygonHull(d.nodes.map(function(d) { return [d.x,d.y]; }) )
+      //         .map((d)=>{ return {'x':d[0], 'y':d[1]} })
+      //       pointsHull.forEach((ph)=>{
+      //         let filteredNodes = d.nodes.filter((n)=>{
+      //           return ph.x == n.x && ph.y == n.y
+      //         })
+      //         ph.size = filteredNodes[0].size;
+      //         ph.id = filteredNodes[0].id;
+      //       })
+      //       // console.log(d.collection, pointsHull)
+      //       // return pointsHull
+      //       return d.nodes
+      //     }).enter()
+      //     .append('circle')
+      //     .attr('r', function(d){
+      //       return d.size*4
+      //     })
+      //     .attr('cx', function(d){ return d.x })
+      //     .attr('cy', function(d){ return d.y })
+      //     .attr('transform',function(d){
+      //       return 'scale(1,0.5773)'
+      //     })
 
       // pointsHull.forEach((d,i)=>{
       //   console.log(d)
@@ -391,7 +401,7 @@
               let pos_2 = pos_1 * d.attributes.collections.length;
               let collection_here = d.attributes.collections[Math.floor(pos_2)]
 
-              return {'r': s, 'collection': collection_here, 'first_publication': d.attributes.first_publication}
+              return {'r': s, 'collection': collection_here, 'first_publication': d.attributes.first_publication, 'id': d.id}
             });
 
             // sort array so to have little circles on top, big at bottom
@@ -405,6 +415,7 @@
           .attr('stroke-width',1.5)
           .attr('fill',function(d){
             // return colour(d.first_publication)
+            // return 'transparent'
             return col_collections(d.collection)
           })
           // .style('shape-rendering','crispedges')
@@ -418,6 +429,42 @@
             return 'translate(0,'+i+')'
           })
           // .style('opacity',1)
+
+      // let linesExp = node.selectAll('.line-exp')
+      //       .data(function(d){ return d.steps })
+      //     .enter()
+      //       .filter(function(d){ return d.id == 'V021'})
+      //       .append('line')
+      //       .attr('class','line-exp')
+      //       .attr('stroke','#444')
+      //       .attr('stroke-width',1.5)
+      //       .attr('x1', function(d){
+      //         return -d.r+d.r*0.2
+      //       })
+      //       .attr('y1', function(d){ return -d.r })
+      //       .attr('x2', function(d){
+      //         return -d.r+d.r*0.2
+      //       })
+      //       .attr('y2', function(d){ return d.r })
+      //       .attr('transform', function(d,i){
+      //         i = i*step_increment
+      //         return 'translate(0,'+i+')'
+      //       })
+
+      let label = node.selectAll('.label')
+            .data(function(d){ return [d] })
+          .enter()
+            .append('text')
+            .attr('class','label')
+            .attr('fill','black')
+            .attr('font-size','5rem')
+            .attr('transform',function(d){
+              return 'translate(0,'+(d.steps.length+2)*step_increment+') scale(1,'+1/0.5773+')'
+            })
+            .text(function(d){
+              return d.attributes.title;
+              return d.id+'-'+d.attributes.title+'-'+d.attributes.first_publication;
+            })
 
       node
         .on("Xmouseenter", function(){
@@ -454,20 +501,7 @@
             })
         })
 
-      let label = node.selectAll('.label')
-            .data(function(d){ return [d] })
-          .enter()
-            .append('text')
-            .attr('class','label')
-            .attr('fill','black')
-            .attr('font-size','5rem')
-            .attr('transform',function(d){
-              return 'translate(0,'+(d.steps.length+2)*step_increment+') scale(1,'+1/0.5773+')'
-            })
-            .text(function(d){
-              return d.attributes.title;
-              return d.id+'-'+d.attributes.title+'-'+d.attributes.first_publication;
-            })
+
 
       //add zoom capabilities
       var zoom_handler = d3.zoom()
