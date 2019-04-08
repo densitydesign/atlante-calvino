@@ -145,6 +145,7 @@
           .domain(d3.extent(nodes, function(d){ return d.attributes.first_publication; }))
           .range(['#FADBD8','#B03A2E'])
           .range(['#CFD8DC','#455A64'])
+          .range(['#ff6347','#455A64'])
 
       let col_collections = d3.scaleOrdinal()
           .domain(collections.map(function(d){return d.id}))
