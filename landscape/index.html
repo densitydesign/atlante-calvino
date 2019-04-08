@@ -19,10 +19,11 @@
       opacity: 0;
       transition: opacity .5s;
       pointer-events: none;
+      font-family: sans-serif;
     }
 
     .node circle {
-      shape-rendering: optimizeSpeed;
+      /* shape-rendering: optimizeSpeed; */
     }
     .node:hover circle {
       /* fill:white; */
@@ -30,12 +31,26 @@
     .node:hover .label {
       opacity: 1;
     }
+    .g-circles {
+
+    }
+    .g-circles circle {
+
+    }
   </style>
 </head>
 <body>
-  <svg id="landscape"></svg>
+  <svg id="landscape">
+    <defs>
+      <filter id="goo">
+        <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur"></feGaussianBlur>
+        <feColorMatrix in="blur" mode="matrix" result="mat" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 50 -19"></feColorMatrix>
+      </filter>
+    </defs>
+  </svg>
   <!-- <p>Schiaccia "y" per colorare per anno, "c" per colorare per raccolta. "n" per evidenziare le opere della nebbia, "m" per cancellazione. Barra spaziatrice per tutte le opere.</p> -->
   <script src="https://d3js.org/d3.v5.js"></script>
+  <script src="metaball.js"></script>
   <script type="text/javascript">
     let w = window.innerWidth-20
     let h = window.innerHeight-20
@@ -44,9 +59,6 @@
         .attr('height', h)
         .style('background-color','#e4e4e4')
         .style('background-color','#EFEBE9')
-
-
-
 
     d3.json("data.json").then(function(json){
       console.log(json.nodes)
@@ -131,22 +143,35 @@
 
       let colour = d3.scaleLinear()
           .domain(d3.extent(nodes, function(d){ return d.attributes.first_publication; }))
-          .range(['#FADBD8','#B03A2E'])
-          .range(['#CFD8DC','#455A64'])
-          .range(['#ff6347','#2f4f4f'])
+          .range(['#ff6347','#455A64'])
 
       let col_collections = d3.scaleOrdinal()
           .domain(collections.map(function(d){return d.id}))
           .range(collections.map(function(d){return d.c}))
-          .unknown('#d4d4d4')
           .unknown('#ffffff')
 
-          // console.log(col_collections.domain())
+      let metaballPoints = []
+      collections.map(function(d){return d.id}).forEach(function(d){
+        let thisCollection = {
+          'collection': d,
+          'nodes': []
+        }
+        nodes.forEach(function(n){
+          n.attributes.collections.forEach(function(c){
+            if (c == d) {
+              thisCollection.nodes.push(n)
+            }
+          })
+        })
+        metaballPoints.push(thisCollection)
+      })
 
       let g = svg.append('g')
           .append('g')
           .attr('class','nodes')
 
+
+      // Hills
       let node = g.selectAll('.node').data(nodes).enter()
           .append('g')
           .attr('class','node')
@@ -305,14 +330,12 @@
             // get colors
             d.steps = d.steps.map((s,i)=>{
 
-
-
               // assign to each step a collection
               let pos_1 = i/d.steps.length;
               let pos_2 = pos_1 * d.attributes.collections.length;
               let collection_here = d.attributes.collections[Math.floor(pos_2)]
 
-              return {'r': s, 'collection': collection_here, 'first_publication': d.attributes.first_publication}
+              return {'r': s, 'collection': collection_here, 'first_publication': d.attributes.first_publication, 'id': d.id}
             });
 
             // sort array so to have little circles on top, big at bottom
@@ -328,7 +351,7 @@
             return colour(d.first_publication)
             return col_collections(d.collection)
           })
-          // .style('shape-rendering','crispedges')
+          .style('shape-rendering','geometricprecision')
           .attr('r',function(d){ return d.r })
           .style('opacity',0)
           .transition()
@@ -340,52 +363,21 @@
           })
           .style('opacity',1)
 
-      node
-        .on("Xmouseenter", function(){
-          d3.selectAll('.node')
-            .transition()
-            .duration(350)
-            .style('opacity',.4)
-
-          d3.select(this)
-            // .transition()
-            // .duration(350)
-            // .style('opacity',1)
-            .selectAll('circle')
-            .transition()
-            .duration(350)
-            .attr('transform', function(d,i){
-              i = i*step_increment*1.5
-              return 'translate(0,'+i+')'
-            })
-        })
-        .on("Xmouseleave", function(){
-          d3.selectAll('.node')
-            .transition()
-            .duration(350)
-            .style('opacity',1)
-
-          d3.select(this).selectAll('circle')
-            .transition()
-            .duration(350)
-            .style('opacity',1)
-            .attr('transform', function(d,i){
-              i = i*step_increment
-              return 'translate(0,'+i+')'
-            })
-        })
-
       let label = node.selectAll('.label')
             .data(function(d){ return [d] })
           .enter()
             .append('text')
             .attr('class','label')
             .attr('fill','black')
-            .attr('font-size','8rem')
+            .attr('font-size','5rem')
             .attr('transform',function(d){
-              return 'translate(0,'+(d.steps.length+1)*step_increment+') scale(1,'+1/0.5773+')'
+              return 'translate(0,'+(d.steps.length+2)*step_increment+') scale(1,'+1/0.5773+')'
             })
             .text(function(d){
+              // return d.attributes.title;
+              return d.id+'-'+d.attributes.first_publication;
+              return d.id+'-'+d.attributes.collections;
+              return d.attributes.title+'-'+d.attributes.first_publication;
               return d.id+'-'+d.attributes.title+'-'+d.attributes.first_publication;
             })
 
@@ -409,7 +401,7 @@
       }
 
       d3.select('body').on("keyup", function(d) {
-          console.log(d3.event.key)
+          // console.log(d3.event.key)
           if (d3.event.key == "c") {
             node.selectAll('circle')
               .transition().duration(350)
