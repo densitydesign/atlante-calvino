@@ -60,7 +60,8 @@ function createControl(name, type, values)
             value_items.forEach(item => {
                 let option = selector
                     .append("option")
-                    .attr("value", item);
+                    .attr("value", item)
+                    .text(item);
             });
 
             break;
