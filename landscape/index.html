@@ -75,8 +75,8 @@
             function(n)
             {
               // fix orientation of the viz
-              // n.y*=-1;
-              n.x*=-1;
+              n.y*=-1;
+              // n.x*=-1;
               // handle collections
               if (n.attributes.collections){
                 n.attributes.collections = n.attributes.collections.split(';')
@@ -132,16 +132,16 @@
             .append("defs")
             .append("radialGradient")
             .attr("id", "radial-gradient")
-            
+
           radialGradient
             .append("stop")
             .attr("offset", "30%")
-            .attr("stop-color", "green")            
+            .attr("stop-color", "green")
 
           radialGradient
             .append("stop")
             .attr("offset", "97%")
-            .attr("stop-color", "#EFEBE9")            
+            .attr("stop-color", "#EFEBE9")
 
           let g = svg
             .append('g')
@@ -263,13 +263,13 @@
 //              .attr('stroke-width',1.5)
               .attr('fill','url(#radial-gradient)')
               .attr('r',function(d){ return d.r * 1.5 })
-              .attr("class", "halo")              
+              .attr("class", "halo")
               .style('fill-opacity',0)
               .style('stroke-opacity',0)
               .attr('transform', function(d,i){
                 i = i*step_increment
                 return 'translate(0,'+i+')'
-              })              
+              })
 
           steps
               .append('circle')
@@ -282,7 +282,7 @@
               // .style('shape-rendering','crispedges')
               .attr('r',function(d){ return d.r })
               .attr('first_elem',function(d){ return d.first_elem })
-              .attr("class", "hill" ) 
+              .attr("class", "hill" )
               .style('fill-opacity',0)
               .style('stroke-opacity',0)
               .transition()
@@ -291,7 +291,7 @@
               .attr('transform', function(d,i){
                 i = i*step_increment
                 return 'translate(0,'+i+')'
-              })              
+              })
               .style('fill-opacity',1)
               .style('stroke-opacity',1)
 
@@ -436,7 +436,7 @@
                   .style('fill-opacity',1)
                   .style('stroke-opacity',1)
 
-                break;                
+                break;
 
               case 3 : // bicolor rings
 
@@ -645,7 +645,7 @@
           }
         ]
 
-        return collections        
+        return collections
       }
 
       function incrementDrawMode(drawMode)
