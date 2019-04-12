@@ -82,7 +82,11 @@ function textSelection() {
     d3.select('#current-selection-start').html(currentSelectionStart);
     d3.select('#current-selection-end').html(currentSelectionEnd);
   }
+}
 
+function addInfoClick() {
+    alert("ciao!");
 }
 
 document.addEventListener('selectionchange', textSelection);
+document.getElementById("add-info").addEventListener("click", addInfoClick);
