@@ -1,6 +1,6 @@
 var text;
 
-var openFile = function(event) {
+function openTextFile(event) {
   var input = event.target;
   var reader = new FileReader();
   reader.onload = function() {
@@ -18,6 +18,54 @@ var openFile = function(event) {
   reader.readAsText(input.files[0]);
 };
 
+function openStructureFile(event) {
+    var input = event.target;
+    var reader = new FileReader();
+
+    reader.onload = 
+        function() 
+        {
+            text = reader.result;
+        
+            let data = text.split(/\r?\n/);
+            let lines = data.slice(1, data.length);
+
+            lines.forEach(line => {
+                let fields = line.split("\t");
+
+                let name = fields[0];
+                let type = fields[1];
+                let values = fields[2];
+
+                createControl(name, type, values);
+            });
+        };
+
+    reader.readAsText(input.files[0]);
+}
+
+function createControl(name, type, values)
+{
+    switch(type)
+    {
+        case "select":
+
+            let selector = d3
+                .select("#info-box")
+                .append("select")
+                .attr("id", name);
+
+            let value_items = values.split(";");
+
+            value_items.forEach(item => {
+                let option = selector
+                    .append("option")
+                    .attr("value", item);
+            });
+
+            break;
+    }
+}
 
 function textSelection() {
   // console.log('selection changed');
