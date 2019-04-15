@@ -102,12 +102,14 @@ function textSelection() {
 
 function spacesToHtmlSpaces(s)
 {
-    return s.replace(" ", "&nbsp;")
+    return (s
+        .replace(" ", "&nbsp;"));
 }
 
 function htmlSpacesToSpaces(s)
 {
-    return s.replace("&nbsp;", " ");
+    return (s
+        .replace("&nbsp;", " "));
 }
 
 function getNextSpanId()
@@ -130,10 +132,11 @@ function addInfoClick() {
         parentElement.innerHTML.substring(currentSelectionEndRelative, parentElement.innerHTML.length);
 */
 
-    const originalText = htmlSpacesToSpaces(parentElement.innerText);
+    const originalText = htmlSpacesToSpaces(parentElement.innerHTML);
 
     let textBeforeSelection = originalText.substring(0, currentSelectionStartRelative);
-    let s2 = spacesToHtmlSpaces(textBeforeSelection);
+    let s2 = spacesToHtmlSpaces(textBeforeSelection).replace(/\n\r?/g, "<br />");
+//    let s2 = spacesToHtmlSpaces(textBeforeSelection);
     parentElement.innerHTML = s2;
 
     let span = document.createElement('span');
