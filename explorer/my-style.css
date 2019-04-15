@@ -7,3 +7,7 @@
   /* white-space: pre; */
   width: 100%;
 }
+
+.highlight {
+    background-color: yellow;
+}

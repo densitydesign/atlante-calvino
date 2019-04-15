@@ -137,8 +137,11 @@ function addInfoClick() {
     parentElement.innerHTML = s2;
 
     let span = document.createElement('span');
-    span.setAttribute("id", "output-span-" + getNextSpanId());
-    span.setAttribute("data-pos", textBeforeSelection.length);
+    span.setAttribute("id", "output-span-" + getNextSpanId());    
+
+    let parent_pos = +parentElement.getAttribute("data-pos");
+    span.setAttribute("data-pos", parent_pos + textBeforeSelection.length);
+    span.setAttribute("class", "highlight");
 
     let selection = originalText.substring(currentSelectionStartRelative, currentSelectionEndRelative);
     span.innerHTML = spacesToHtmlSpaces(selection);
@@ -147,7 +150,7 @@ function addInfoClick() {
 
     let spanAfterSelection = document.createElement('span');
     spanAfterSelection.setAttribute("id", "output-span-" + getNextSpanId());
-    spanAfterSelection.setAttribute("data-pos", textBeforeSelection.length + selection.length);
+    spanAfterSelection.setAttribute("data-pos", parent_pos + textBeforeSelection.length + selection.length);
 
     spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
 //    parentElement.parentNode.insertBefore(spanAfterSelection, parentElement.nextSibling);
