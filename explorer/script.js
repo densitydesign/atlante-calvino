@@ -6,7 +6,8 @@ function openTextFile(event) {
   reader.onload = function() {
     text = reader.result;
 
-    document.getElementById('output-box').innerHTML = text;
+//    document.getElementById('output-box').innerHTML = text;
+    document.getElementById('output-box').innerHTML = "<div id='output-block-1' data-pos=100>" + text + "</div>";
 
     if (text) {
       $('#saveBtn').show()
@@ -74,10 +75,13 @@ function textSelection() {
 
   // console.log(document.getSelection().focusNode.parentElement.id)
 
-  if (document.getSelection().focusNode.parentElement.id == 'output-box') {
+  let parentElement = document.getSelection().focusNode.parentElement;
+
+//  if (document.getSelection().focusNode.parentElement.id.contains('output-block')) {
+  if (parentElement.id.includes('output-block')) {
     let currentSelection = document.getSelection().toString();
-    let currentSelectionStart = document.getSelection().getRangeAt(0).startOffset;
-    let currentSelectionEnd = document.getSelection().getRangeAt(0).endOffset;
+    let currentSelectionStart = document.getSelection().getRangeAt(0).startOffset + (+parentElement.dataset.pos);
+    let currentSelectionEnd = document.getSelection().getRangeAt(0).endOffset + (+parentElement.dataset.pos);
     d3.select('#current-selection').html(currentSelection);
     d3.select('#current-selection-start').html(currentSelectionStart);
     d3.select('#current-selection-end').html(currentSelectionEnd);
@@ -85,7 +89,7 @@ function textSelection() {
 }
 
 function addInfoClick() {
-    alert("ciao!");
+  alert("ciao!");
 }
 
 document.addEventListener('selectionchange', textSelection);
