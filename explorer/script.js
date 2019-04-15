@@ -1,8 +1,11 @@
+"use strict";
+
 var text;
 var parentElement;
-var curentSelection;
+var currentSelection;
 let currentSelectionStartRelative;
 let currentSelectionEndRelative;
+let max_span_id = 0;
 
 function openTextFile(event) {
   var input = event.target;
@@ -11,7 +14,8 @@ function openTextFile(event) {
     text = reader.result;
 
 //    document.getElementById('output-box').innerHTML = text;
-    document.getElementById('output-box').innerHTML = "<div id='output-block-1' data-pos=0>" + text + "</div>";
+    max_span_id = 0;
+    document.getElementById('output-box').innerHTML = "<span id='output-span-" + max_span_id + "' data-pos=0>" + text + "</span>";
 
     if (text) {
       $('#saveBtn').show()
@@ -81,8 +85,8 @@ function textSelection() {
 
   parentElement = document.getSelection().focusNode.parentElement;
 
-//  if (document.getSelection().focusNode.parentElement.id.contains('output-block')) {
-  if (parentElement.id.includes('output-block')) {
+  if (document.getSelection().focusNode.parentElement.id.includes('output-span')) {
+//  if (parentElement.id.includes('output-box') && document.getSelection().toString().length >= 4) {
     currentSelection = document.getSelection().toString();
     d3.select('#current-selection').html(currentSelection);
 
@@ -106,6 +110,13 @@ function htmlSpacesToSpaces(s)
     return s.replace("&nbsp;", " ");
 }
 
+function getNextSpanId()
+{
+    ++max_span_id;
+
+    return max_span_id;
+}
+
 function addInfoClick() {
 //  let innerHtml = d3.select("#output-box").nodes().map((d) => { return d.innerHTML; })
     let innerHtml = parentElement.innerHTML;
@@ -125,18 +136,36 @@ function addInfoClick() {
     let s2 = spacesToHtmlSpaces(textBeforeSelection);
     parentElement.innerHTML = s2;
 
-    let a = 5;
-
     let span = document.createElement('span');
-    span.innerText = spacesToHtmlSpaces(originalText.substring(currentSelectionStartRelative, currentSelectionEndRelative));
+    span.setAttribute("id", "output-span-" + getNextSpanId());
+    span.setAttribute("data-pos", textBeforeSelection.length);
+
+    let selection = originalText.substring(currentSelectionStartRelative, currentSelectionEndRelative);
+    span.innerHTML = spacesToHtmlSpaces(selection);
 //    parentElement.parentNode.insertBefore(span, parentElement.nextSibling);
     parentElement.parentNode.insertBefore(span, parentElement.nextSibling);
 
-    let divAfterSelection = document.createElement('div');
-    divAfterSelection.innerText = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
-    parentElement.insertBefore(divAfterSelection, parentElement.nextSibling);
+    let spanAfterSelection = document.createElement('span');
+    spanAfterSelection.setAttribute("id", "output-span-" + getNextSpanId());
+    spanAfterSelection.setAttribute("data-pos", textBeforeSelection.length + selection.length);
+
+    spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
+//    parentElement.parentNode.insertBefore(spanAfterSelection, parentElement.nextSibling);
+    parentElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
 
 //    $(this).children(':gt('+half+')').detach().wrapAll('<ul></ul>').parent().insertAfter(this);
+
+/*
+    const originalText = parentElement.innerHTML;
+
+    $('#output-box')
+        .html(
+            originalText.slice(0, currentSelectionStartRelative) + 
+            '<span>' + 
+            originalText.slice(currentSelectionStartRelative, currentSelectionEndRelative) + 
+            '</span>' + 
+            originalText.slice(currentSelectionEndRelative));
+*/
 }
 
 document.addEventListener('selectionchange', textSelection);
