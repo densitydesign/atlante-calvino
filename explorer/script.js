@@ -55,26 +55,69 @@ function openStructureFile(event) {
 
 function createControl(name, type, values)
 {
-    switch(type)
-    {
-        case "select":
+  switch(type)
+  {
+    case "text":
 
-            let selector = d3
-                .select("#info-box")
-                .append("select")
-                .attr("id", name);
+      if (values == "currentSelection") break;
 
-            let value_items = values.split(";");
+      d3
+        .select("#info-box")
+        .append("label")
+        .attr("id", name + "-label")
+        .attr("for", name)
+        .text(name);
 
-            value_items.forEach(item => {
-                let option = selector
-                    .append("option")
-                    .attr("value", item)
-                    .text(item);
-            });
+      d3
+        .select("#info-box")
+        .append("input")
+        .attr("id", name)
+        .attr("type", "text");
 
-            break;
-    }
+      break;
+
+    case "select":
+
+      d3
+        .select("#info-box")
+        .append("label")
+        .attr("id", name + "-label")
+        .attr("for", name)
+        .text(name);
+
+      let selector = d3
+        .select("#info-box")
+        .append("select")
+        .attr("id", name);
+
+      let value_items = values.split(";");
+
+      value_items.forEach(item => {
+        let option = selector
+          .append("option")
+          .attr("value", item)
+          .text(item);
+        });
+
+      break;
+    
+    case "checkbox":
+
+      d3
+        .select("#info-box")
+        .append("label")
+        .attr("id", name + "-label")
+        .attr("for", name)
+        .text(name);
+
+      d3
+        .select("#info-box")
+        .append("input")
+        .attr("id", name)
+        .attr("type", "checkbox");
+
+      break;
+  }
 }
 
 function textSelection() {
