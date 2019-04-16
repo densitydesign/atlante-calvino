@@ -6,6 +6,8 @@ var currentSelection;
 let currentSelectionStartRelative;
 let currentSelectionEndRelative;
 let max_span_id = 0;
+let controls_map = {};
+let annotations;
 
 function openTextFile(event) {
   var input = event.target;
@@ -45,6 +47,26 @@ function openStructureFile(event) {
                 let name = fields[0];
                 let type = fields[1];
                 let values = fields[2];
+
+                let readControl;
+                
+                switch(type)
+                {
+                  case "text" :
+                    readControl = readText;
+                    break;
+                  case "number" :
+                    readControl = readNumber;
+                    break;
+                  case "select" :
+                    readControl = readSelect;
+                    break;
+                  case "checkbox" :
+                    readControl = readCheckbox;
+                    break;
+                }
+
+                controls_map[name] = { type: type, values: values };
 
                 createControl(name, type, values);
             });
@@ -120,7 +142,8 @@ function createControl(name, type, values)
   }
 }
 
-function textSelection() {
+function textSelection() 
+{
   // console.log('selection changed');
   console.log(document.getSelection().getRangeAt(0));
 
@@ -141,6 +164,11 @@ function textSelection() {
     let currentSelectionEndAbsolute = currentSelectionEndRelative + (+parentElement.dataset.pos);
     d3.select('#current-selection-end').html(currentSelectionEndAbsolute);
   }
+}
+
+function saveData()
+{
+  alert("save!");
 }
 
 function spacesToHtmlSpaces(s)
@@ -217,5 +245,30 @@ function addInfoClick() {
 */
 }
 
+function readText(name)
+{
+  return d3.select(name).text();
+}
+
+function readNumber(name)
+{
+  return +d3.select(name).text();
+}
+
+function readSelect(name)
+{
+  return d3.select(name).value;  
+}
+
+function readCheckbox(name)
+{
+  return d3.select(name).checked;
+}
+
 document.addEventListener('selectionchange', textSelection);
+document.addEventListener('saveBtn', saveData);
 document.getElementById("add-info").addEventListener("click", addInfoClick);
+
+
+
+
