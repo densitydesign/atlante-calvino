@@ -6,7 +6,7 @@ var currentSelection;
 let currentSelectionStartRelative;
 let currentSelectionEndRelative;
 let max_span_id = 0;
-let controls_map = {};
+let annotation_fields_map = {};
 let annotations;
 
 function openTextFile(event) 
@@ -57,8 +57,11 @@ function openStructureFile(event)
             switch(type)
             {
               case "text" :
-                readControl = readText;
+              {
+                if(values == "") readControl = readTextInput;
+                else readControl = readText;
                 break;
+              }
               case "number" :
                 readControl = readNumber;
                 break;
@@ -70,7 +73,7 @@ function openStructureFile(event)
                 break;
             }
 
-            controls_map[name] = { type: type, values: values };
+            annotation_fields_map[name] = { type: type, values: values, readControl: readControl };
 
             createControl(name, type, values);
         });
@@ -149,22 +152,24 @@ function createControl(name, type, values)
 
 function textSelection() 
 {
-  console.log(document.getSelection().getRangeAt(0));
+//  console.log(document.getSelection().getRangeAt(0));
 
   parentElement = document.getSelection().focusNode.parentElement;
 
   if (document.getSelection().focusNode.parentElement.id.includes('output-span')) 
   {
     currentSelection = document.getSelection().toString();
-    d3.select('#current-selection').html(currentSelection);
+    if (currentSelection == "") return;
+
+    d3.select('#occorrenza').html(currentSelection);
 
     currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;
     let currentSelectionStartAbsolute = currentSelectionStartRelative + (+parentElement.dataset.pos);
-    d3.select('#current-selection-start').html(currentSelectionStartAbsolute);
+    d3.select('#starts_at').html(currentSelectionStartAbsolute);
 
     currentSelectionEndRelative = document.getSelection().getRangeAt(0).endOffset;
     let currentSelectionEndAbsolute = currentSelectionEndRelative + (+parentElement.dataset.pos);
-    d3.select('#current-selection-end').html(currentSelectionEndAbsolute);
+    d3.select('#ends_at').html(currentSelectionEndAbsolute);
   }
 }
 
@@ -190,58 +195,88 @@ function getNextSpanId()
     return max_span_id;
 }
 
-function addInfoClick() 
+function highlightAnnotationText()
 {
-    let innerHtml = parentElement.innerHTML;
+  let innerHtml = parentElement.innerHTML;
 
-    const originalText = htmlSpacesToSpaces(parentElement.innerHTML);
+  const originalText = htmlSpacesToSpaces(parentElement.innerHTML);
 
-    let textBeforeSelection = originalText.substring(0, currentSelectionStartRelative);
-    let s2 = spacesToHtmlSpaces(textBeforeSelection).replace(/\n\r?/g, "<br />");
-    parentElement.innerHTML = s2;
+  let textBeforeSelection = originalText.substring(0, currentSelectionStartRelative);
+  let s2 = spacesToHtmlSpaces(textBeforeSelection).replace(/\n\r?/g, "<br />");
+  parentElement.innerHTML = s2;
 
-    let span = document.createElement('span');
-    span.setAttribute("id", "output-span-" + getNextSpanId());    
+  let span = document.createElement('span');
+  span.setAttribute("id", "output-span-" + getNextSpanId());    
 
-    let parent_pos = +parentElement.getAttribute("data-pos");
-    span.setAttribute("data-pos", parent_pos + textBeforeSelection.length);
-    span.setAttribute("class", "highlight");
+  let parent_pos = +parentElement.getAttribute("data-pos");
+  span.setAttribute("data-pos", parent_pos + textBeforeSelection.length);
+  span.setAttribute("class", "highlight");
 
-    let selection = originalText.substring(currentSelectionStartRelative, currentSelectionEndRelative);
-    span.innerHTML = spacesToHtmlSpaces(selection);
-    parentElement.parentNode.insertBefore(span, parentElement.nextSibling);
+  let selection = originalText.substring(currentSelectionStartRelative, currentSelectionEndRelative);
+  span.innerHTML = spacesToHtmlSpaces(selection);
+  parentElement.parentNode.insertBefore(span, parentElement.nextSibling);
 
-    let spanAfterSelection = document.createElement('span');
-    spanAfterSelection.setAttribute("id", "output-span-" + getNextSpanId());
-    spanAfterSelection.setAttribute("data-pos", parent_pos + textBeforeSelection.length + selection.length);
+  let spanAfterSelection = document.createElement('span');
+  spanAfterSelection.setAttribute("id", "output-span-" + getNextSpanId());
+  spanAfterSelection.setAttribute("data-pos", parent_pos + textBeforeSelection.length + selection.length);
 
-    spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
-    parentElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
+  spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
+  parentElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
+}
+
+function createAnnotation()
+{
+  let annotation = {};
+
+  for(var key in annotation_fields_map)
+  {
+    let v = annotation_fields_map[key].readControl(key);
+    annotation[key] = v;
+
+    let a = 5;
+  }
+
+  return annotation;
+}
+
+function addAnnotationClick() 
+{
+  highlightAnnotationText();
+
+  let annotation = createAnnotation();
 }
 
 function readText(name)
 {
-  return d3.select(name).text();
+  return d3.select("#" + name).text();
+}
+
+function readTextInput(name)
+{
+//  let control = d3.select("#" + name);
+//  let s = control.property("value");
+  return d3.select("#" + name).property("value");
+//  return s;
 }
 
 function readNumber(name)
 {
-  return +d3.select(name).text();
+  return +d3.select("#" + name).text();
 }
 
 function readSelect(name)
 {
-  return d3.select(name).value;  
+  return d3.select("#" + name).property("value");
 }
 
 function readCheckbox(name)
 {
-  return d3.select(name).checked;
+  return d3.select("#" + name).property("checked");
 }
 
 document.addEventListener('selectionchange', textSelection);
 document.addEventListener('saveBtn', saveData);
-document.getElementById("add-info").addEventListener("click", addInfoClick);
+document.getElementById("add-info").addEventListener("click", addAnnotationClick);
 
 
 
