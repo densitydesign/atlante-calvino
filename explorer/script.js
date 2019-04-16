@@ -9,70 +9,75 @@ let max_span_id = 0;
 let controls_map = {};
 let annotations;
 
-function openTextFile(event) {
-  var input = event.target;
-  var reader = new FileReader();
-  reader.onload = function() {
-    text = reader.result;
+function openTextFile(event) 
+{
+  let reader = new FileReader();
 
-//    document.getElementById('output-box').innerHTML = text;
-    max_span_id = 0;
-    document.getElementById('output-box').innerHTML = "<span id='output-span-" + max_span_id + "' data-pos=0>" + text + "</span>";
+  reader.onload = 
+    function() 
+    {
+      text = reader.result;
 
-    if (text) {
-      $('#saveBtn').show()
-    } else {
-      $('#saveBtn').hide()
-    }
+      max_span_id = 0;
+      document.getElementById('output-box').innerHTML = "<span id='output-span-" + max_span_id + "' data-pos=0>" + text + "</span>";
 
-  };
+      if (text) {
+        $('#saveBtn').show()
+      } else {
+        $('#saveBtn').hide()
+      }
+    };
+
+  let input = event.target;
+
   reader.readAsText(input.files[0]);
 };
 
-function openStructureFile(event) {
-    var input = event.target;
-    var reader = new FileReader();
+function openStructureFile(event) 
+{
+  let reader = new FileReader();
 
-    reader.onload = 
-        function() 
-        {
-            text = reader.result;
-        
-            let data = text.split(/\r?\n/);
-            let lines = data.slice(1, data.length);
+  reader.onload = 
+    function() 
+    {
+        text = reader.result;
+    
+        let data = text.split(/\r?\n/);
+        let lines = data.slice(1, data.length);
 
-            lines.forEach(line => {
-                let fields = line.split("\t");
+        lines.forEach(line => {
+            let fields = line.split("\t");
 
-                let name = fields[0];
-                let type = fields[1];
-                let values = fields[2];
+            let name = fields[0];
+            let type = fields[1];
+            let values = fields[2];
 
-                let readControl;
-                
-                switch(type)
-                {
-                  case "text" :
-                    readControl = readText;
-                    break;
-                  case "number" :
-                    readControl = readNumber;
-                    break;
-                  case "select" :
-                    readControl = readSelect;
-                    break;
-                  case "checkbox" :
-                    readControl = readCheckbox;
-                    break;
-                }
+            let readControl;
+            
+            switch(type)
+            {
+              case "text" :
+                readControl = readText;
+                break;
+              case "number" :
+                readControl = readNumber;
+                break;
+              case "select" :
+                readControl = readSelect;
+                break;
+              case "checkbox" :
+                readControl = readCheckbox;
+                break;
+            }
 
-                controls_map[name] = { type: type, values: values };
+            controls_map[name] = { type: type, values: values };
 
-                createControl(name, type, values);
-            });
-        };
+            createControl(name, type, values);
+        });
+    };
 
-    reader.readAsText(input.files[0]);
+  let input = event.target;
+  reader.readAsText(input.files[0]);
 }
 
 function createControl(name, type, values)
@@ -144,15 +149,12 @@ function createControl(name, type, values)
 
 function textSelection() 
 {
-  // console.log('selection changed');
   console.log(document.getSelection().getRangeAt(0));
-
-  // console.log(document.getSelection().focusNode.parentElement.id)
 
   parentElement = document.getSelection().focusNode.parentElement;
 
-  if (document.getSelection().focusNode.parentElement.id.includes('output-span')) {
-//  if (parentElement.id.includes('output-box') && document.getSelection().toString().length >= 4) {
+  if (document.getSelection().focusNode.parentElement.id.includes('output-span')) 
+  {
     currentSelection = document.getSelection().toString();
     d3.select('#current-selection').html(currentSelection);
 
@@ -173,14 +175,12 @@ function saveData()
 
 function spacesToHtmlSpaces(s)
 {
-    return (s
-        .replace(" ", "&nbsp;"));
+    return s.replace(" ", "&nbsp;");
 }
 
 function htmlSpacesToSpaces(s)
 {
-    return (s
-        .replace("&nbsp;", " "));
+    return s.replace("&nbsp;", " ");
 }
 
 function getNextSpanId()
@@ -190,24 +190,14 @@ function getNextSpanId()
     return max_span_id;
 }
 
-function addInfoClick() {
-//  let innerHtml = d3.select("#output-box").nodes().map((d) => { return d.innerHTML; })
+function addInfoClick() 
+{
     let innerHtml = parentElement.innerHTML;
-
-/*
-    parentElement.innerHTML = 
-        parentElement.innerHTML.substring(0, currentSelectionStartRelative) + 
-        "</div><span>" + 
-        currentSelection +
-        "</span><div>" +
-        parentElement.innerHTML.substring(currentSelectionEndRelative, parentElement.innerHTML.length);
-*/
 
     const originalText = htmlSpacesToSpaces(parentElement.innerHTML);
 
     let textBeforeSelection = originalText.substring(0, currentSelectionStartRelative);
     let s2 = spacesToHtmlSpaces(textBeforeSelection).replace(/\n\r?/g, "<br />");
-//    let s2 = spacesToHtmlSpaces(textBeforeSelection);
     parentElement.innerHTML = s2;
 
     let span = document.createElement('span');
@@ -219,7 +209,6 @@ function addInfoClick() {
 
     let selection = originalText.substring(currentSelectionStartRelative, currentSelectionEndRelative);
     span.innerHTML = spacesToHtmlSpaces(selection);
-//    parentElement.parentNode.insertBefore(span, parentElement.nextSibling);
     parentElement.parentNode.insertBefore(span, parentElement.nextSibling);
 
     let spanAfterSelection = document.createElement('span');
@@ -227,22 +216,7 @@ function addInfoClick() {
     spanAfterSelection.setAttribute("data-pos", parent_pos + textBeforeSelection.length + selection.length);
 
     spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
-//    parentElement.parentNode.insertBefore(spanAfterSelection, parentElement.nextSibling);
     parentElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
-
-//    $(this).children(':gt('+half+')').detach().wrapAll('<ul></ul>').parent().insertAfter(this);
-
-/*
-    const originalText = parentElement.innerHTML;
-
-    $('#output-box')
-        .html(
-            originalText.slice(0, currentSelectionStartRelative) + 
-            '<span>' + 
-            originalText.slice(currentSelectionStartRelative, currentSelectionEndRelative) + 
-            '</span>' + 
-            originalText.slice(currentSelectionEndRelative));
-*/
 }
 
 function readText(name)
