@@ -28,6 +28,8 @@ function openTextFile(event)
       }
     };
 
+  annotations = [];
+
   let input = event.target;
 
   reader.readAsText(input.files[0]);
@@ -175,7 +177,30 @@ function textSelection()
 
 function saveData()
 {
-  alert("save!");
+  let s = "";
+
+  for(var key in annotation_fields_map)
+  {
+    s += key + "\t";
+  }
+
+  s += "\n";
+
+  for(let i = 0; i < annotations.length; ++i)
+  {
+    let annotation = annotations[i];
+
+    for(var key in annotation_fields_map)
+    {
+      s += annotation[key] + "\t";
+    }
+
+    s += "\n";
+  }
+
+  saveAs(
+    new self.Blob([s], {type: "text/plain;charset=utf-8"}),
+    "data.txt");
 }
 
 function spacesToHtmlSpaces(s)
@@ -244,6 +269,8 @@ function addAnnotationClick()
   highlightAnnotationText();
 
   let annotation = createAnnotation();
+
+  annotations.push(annotation);
 }
 
 function readText(name)
@@ -275,7 +302,7 @@ function readCheckbox(name)
 }
 
 document.addEventListener('selectionchange', textSelection);
-document.addEventListener('saveBtn', saveData);
+document.getElementById('saveBtn').addEventListener("click", saveData);
 document.getElementById("add-info").addEventListener("click", addAnnotationClick);
 
 
