@@ -1,8 +1,48 @@
+@import "../assets/fonts/hk/stylesheet.css";
+@import "../assets/fonts/crimson/stylesheet.css";
+
+:root {
+  font-size: 16px;
+  line-height: 1.5rem;
+}
+
+html, body {
+  font-family: 'HK Grotesk';
+  color: #4a4a4a;
+}
+
+h3 {
+  font-size: 1.125rem;
+}
+
+p.caption {
+  font-size: 0.75rem;
+  margin-top: 1rem;
+}
+
+input {
+  font-size: 0.75rem;
+  color: black;
+}
+
 .load-file {
 
 }
 
+.white-box {
+  background: white;
+  border-radius: 5px;
+  border: 1px solid #4a4a4a;
+  padding: 1rem 1rem 1.25rem 1rem;
+}
+
+.faded {
+  opacity: 0.35;
+  pointer-events: none;
+}
+
 #output-box {
+  font-family: 'Crimson Text';
   white-space: pre-line;
   /* white-space: pre; */
   width: 100%;
@@ -10,4 +50,65 @@
 
 .highlight {
     background-color: yellow;
+}
+
+#info-box {
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+  font-size: 0.75rem;
+}
+
+#info-box * {
+  margin: 0;
+}
+
+#info-box hr {
+  margin-bottom: 0.1rem;
+}
+
+#info-box label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+
+#info-box p#occorrenza {
+  height: auto;
+  max-height: 75px;
+  min-height: 50px;
+  overflow: hidden;
+  position: relative;
+}
+
+#info-box p#occorrenza:hover {
+  height: auto;
+  max-height: none;
+}
+
+#info-box p#occorrenza:after {
+  content: '';
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  top: 0;
+
+  background: linear-gradient(to bottom, rgba(255,255,255,0) 50%,rgba(255,255,255,1) 95%);
+
+  transition: opacity 0.65s ease;
+}
+
+#info-box p#occorrenza:hover:after{
+  opacity: 0;
+}
+
+#info-box .loaded-a-structure {
+  margin-top: 0.5rem;
+}
+
+#info-box .loaded-a-structure span{
+  font-weight: 400;
 }

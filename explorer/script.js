@@ -9,12 +9,14 @@ let max_span_id = 0;
 let annotation_fields_map = {};
 let annotations;
 
-function openTextFile(event) 
+$('.loaded-a-structure').hide();
+
+function openTextFile(event)
 {
   let reader = new FileReader();
 
-  reader.onload = 
-    function() 
+  reader.onload =
+    function()
     {
       text = reader.result;
 
@@ -22,9 +24,11 @@ function openTextFile(event)
       document.getElementById('output-box').innerHTML = "<span id='output-span-" + max_span_id + "' data-pos=0>" + text + "</span>";
 
       if (text) {
-        $('#saveBtn').show()
+        $('#saveBtn').show();
+        $('#load-a-text').hide();
+        $('.white-box.annotations').toggleClass('faded');
       } else {
-        $('#saveBtn').hide()
+        $('#saveBtn').hide();
       }
     };
 
@@ -35,15 +39,15 @@ function openTextFile(event)
   reader.readAsText(input.files[0]);
 };
 
-function openStructureFile(event) 
+function openStructureFile(event)
 {
   let reader = new FileReader();
 
-  reader.onload = 
-    function() 
+  reader.onload =
+    function()
     {
         let fileText = reader.result;
-    
+
         let fileLines = fileText.split(/\r?\n/);
         let dataLines = fileLines.slice(1, fileLines.length);
 
@@ -59,9 +63,15 @@ function openStructureFile(event)
             let readControl;
             let parseTextValue;
             let clearControl;
-            
+
             switch(type)
             {
+              case "data_structure_name" :
+              {
+                $('#data_structure_name').text(values);
+                $('.loaded-a-structure').show();
+                return;
+              }
               case "text" :
               {
                 if(values == "")
@@ -115,6 +125,8 @@ function openStructureFile(event)
 
             createControl(name, type, values);
         });
+
+        $('#load-a-structure').hide();
     };
 
   let input = event.target;
@@ -205,7 +217,7 @@ function createControl(name, type, values)
         });
 
       break;
-    
+
     case "checkbox":
 
       d3
@@ -225,15 +237,15 @@ function createControl(name, type, values)
   }
 }
 
-function textSelection() 
+function textSelection()
 {
-  console.log(document.getSelection().getRangeAt(0));
+//  console.log(document.getSelection().getRangeAt(0));
 
   let focusNode = document.getSelection().focusNode;
 
   if(focusNode == null) return;
 
-  if (document.getSelection().focusNode.parentElement.id.includes('output-span')) 
+  if (document.getSelection().focusNode.parentElement.id.includes('output-span'))
   {
     parentElement = focusNode.parentElement;
 
@@ -277,7 +289,7 @@ function saveData()
 
   saveAs(
     new self.Blob([s], {type: "text/plain;charset=utf-8"}),
-    "data.txt");
+    "data.tsv");
 }
 
 function spacesToHtmlSpaces(s)
@@ -296,36 +308,6 @@ function getNextSpanId()
 
     return max_span_id;
 }
-/*
-function highlightAnnotationText()
-{
-  let innerHtml = parentElement.innerHTML;
-
-  const originalText = htmlSpacesToSpaces(parentElement.innerHTML);
-
-  let textBeforeSelection = originalText.substring(0, currentSelectionStartRelative);
-  let s2 = spacesToHtmlSpaces(textBeforeSelection).replace(/\n\r?/g, "<br />");
-  parentElement.innerHTML = s2;
-
-  let span = document.createElement('span');
-  span.setAttribute("id", "output-span-" + getNextSpanId());    
-
-  let parent_pos = +parentElement.getAttribute("data-pos");
-  span.setAttribute("data-pos", parent_pos + textBeforeSelection.length);
-  span.setAttribute("class", "highlight");
-
-  let selection = originalText.substring(currentSelectionStartRelative, currentSelectionEndRelative);
-  span.innerHTML = spacesToHtmlSpaces(selection);
-  parentElement.parentNode.insertBefore(span, parentElement.nextSibling);
-
-  let spanAfterSelection = document.createElement('span');
-  spanAfterSelection.setAttribute("id", "output-span-" + getNextSpanId());
-  spanAfterSelection.setAttribute("data-pos", parent_pos + textBeforeSelection.length + selection.length);
-
-  spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
-  parentElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
-}
-*/
 
 function highlightAnnotationText(containingElement, annotation)
 {
@@ -430,7 +412,7 @@ function clearAnnotationFields()
   }  
 }
 
-function addAnnotationClick() 
+function addAnnotationClick()
 {
   let annotationValueMap = readValueMapFromPageFields();
   let annotation = new Annotation(annotationValueMap);
