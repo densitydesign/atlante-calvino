@@ -9,12 +9,14 @@ let max_span_id = 0;
 let annotation_fields_map = {};
 let annotations;
 
-function openTextFile(event) 
+$('.loaded-a-structure').hide();
+
+function openTextFile(event)
 {
   let reader = new FileReader();
 
-  reader.onload = 
-    function() 
+  reader.onload =
+    function()
     {
       text = reader.result;
 
@@ -22,7 +24,9 @@ function openTextFile(event)
       document.getElementById('output-box').innerHTML = "<span id='output-span-" + max_span_id + "' data-pos=0>" + text + "</span>";
 
       if (text) {
-        $('#saveBtn').show()
+        $('#saveBtn').show();
+        $('#load-a-text').hide();
+        $('.white-box.annotations').toggleClass('faded');
       } else {
         $('#saveBtn').hide()
       }
@@ -35,15 +39,15 @@ function openTextFile(event)
   reader.readAsText(input.files[0]);
 };
 
-function openStructureFile(event) 
+function openStructureFile(event)
 {
   let reader = new FileReader();
 
-  reader.onload = 
-    function() 
+  reader.onload =
+    function()
     {
         text = reader.result;
-    
+
         let data = text.split(/\r?\n/);
         let lines = data.slice(1, data.length);
 
@@ -55,9 +59,15 @@ function openStructureFile(event)
             let values = fields[2];
 
             let readControl;
-            
+
             switch(type)
             {
+              case "data_structure_name" :
+              {
+                $('#data_structure_name').text(values);
+                $('.loaded-a-structure').show();
+                return;
+              }
               case "text" :
               {
                 if(values == "") readControl = readTextInput;
@@ -79,6 +89,8 @@ function openStructureFile(event)
 
             createControl(name, type, values);
         });
+
+        $('#load-a-structure').hide();
     };
 
   let input = event.target;
@@ -132,7 +144,7 @@ function createControl(name, type, values)
         });
 
       break;
-    
+
     case "checkbox":
 
       d3
@@ -152,13 +164,13 @@ function createControl(name, type, values)
   }
 }
 
-function textSelection() 
+function textSelection()
 {
 //  console.log(document.getSelection().getRangeAt(0));
 
   parentElement = document.getSelection().focusNode.parentElement;
 
-  if (document.getSelection().focusNode.parentElement.id.includes('output-span')) 
+  if (document.getSelection().focusNode.parentElement.id.includes('output-span'))
   {
     currentSelection = document.getSelection().toString();
     if (currentSelection == "") return;
@@ -199,8 +211,7 @@ function saveData()
   }
 
   saveAs(
-    new self.Blob([s], {type: "text/plain;charset=utf-8"}),
-    "data.txt");
+    new self.Blob([s], {type: "text/plain;charset=utf-8"}), "data.tsv");
 }
 
 function spacesToHtmlSpaces(s)
@@ -231,7 +242,7 @@ function highlightAnnotationText()
   parentElement.innerHTML = s2;
 
   let span = document.createElement('span');
-  span.setAttribute("id", "output-span-" + getNextSpanId());    
+  span.setAttribute("id", "output-span-" + getNextSpanId());
 
   let parent_pos = +parentElement.getAttribute("data-pos");
   span.setAttribute("data-pos", parent_pos + textBeforeSelection.length);
@@ -264,7 +275,7 @@ function createAnnotation()
   return annotation;
 }
 
-function addAnnotationClick() 
+function addAnnotationClick()
 {
   highlightAnnotationText();
 
@@ -304,7 +315,3 @@ function readCheckbox(name)
 document.addEventListener('selectionchange', textSelection);
 document.getElementById('saveBtn').addEventListener("click", saveData);
 document.getElementById("add-info").addEventListener("click", addAnnotationClick);
-
-
-
-
