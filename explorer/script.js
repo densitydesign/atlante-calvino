@@ -28,7 +28,7 @@ function openTextFile(event)
         $('#load-a-text').hide();
         $('.white-box.annotations').toggleClass('faded');
       } else {
-        $('#saveBtn').hide()
+        $('#saveBtn').hide();
       }
     };
 
@@ -46,12 +46,14 @@ function openStructureFile(event)
   reader.onload =
     function()
     {
-        text = reader.result;
+        let fileText = reader.result;
 
-        let data = text.split(/\r?\n/);
-        let lines = data.slice(1, data.length);
+        let fileLines = fileText.split(/\r?\n/);
+        let dataLines = fileLines.slice(1, fileLines.length);
 
-        lines.forEach(line => {
+        let index = 0;
+
+        dataLines.forEach(line => {
             let fields = line.split("\t");
 
             let name = fields[0];
@@ -59,6 +61,8 @@ function openStructureFile(event)
             let values = fields[2];
 
             let readControl;
+            let parseTextValue;
+            let clearControl;
 
             switch(type)
             {
@@ -70,27 +74,96 @@ function openStructureFile(event)
               }
               case "text" :
               {
-                if(values == "") readControl = readTextInput;
-                else readControl = readText;
+                if(values == "")
+                {
+                   readControl = readTextInput;
+                   clearControl = clearTextInput;
+                }
+                else 
+                {
+                  readControl = readText;
+                  clearControl = clearText;
+                }
+
+                parseTextValue = parseStringField;                
+
                 break;
               }
               case "number" :
                 readControl = readNumber;
+
+                parseTextValue = parseNumberField;
+                clearControl = clearNumber;
+
                 break;
               case "select" :
                 readControl = readSelect;
+
+                parseTextValue = parseStringField;
+
+                clearControl = clearSelect;
+
                 break;
               case "checkbox" :
                 readControl = readCheckbox;
+
+                parseTextValue = parseBooleanField;
+
+                clearControl = clearCheckbox;
+
                 break;
             }
 
-            annotation_fields_map[name] = { type: type, values: values, readControl: readControl };
+            annotation_fields_map[name] = { 
+              type: type, 
+              values: values, 
+              readControl: readControl, 
+              parseTextValue: parseTextValue, 
+              index: index++,
+              clearControl: clearControl
+            };
 
             createControl(name, type, values);
         });
 
         $('#load-a-structure').hide();
+    };
+
+  let input = event.target;
+  reader.readAsText(input.files[0]);
+}
+
+function openExportedFile(event)
+{
+  let reader = new FileReader();
+
+  reader.onload =
+    function()
+    {
+      let fileText = reader.result;
+
+      let fileLines = fileText.split(/\r?\n/);
+
+      let dataLines = fileLines
+        .slice(1, fileLines.length)
+        .filter((line) => { return line.trim() != ""; });
+
+      annotations = dataLines.map(
+        function(line)
+        {
+          let valueMap = readValueMapFromTextLine(line);
+
+          let a = new Annotation(valueMap);
+
+          return a;
+        });
+
+      annotations.forEach(annotation => {
+
+        let containingElement = getContainingElementByInternalPos(annotation.starts_at);
+
+        highlightAnnotationText(containingElement, annotation);
+      });
     };
 
   let input = event.target;
@@ -168,10 +241,14 @@ function textSelection()
 {
 //  console.log(document.getSelection().getRangeAt(0));
 
-  parentElement = document.getSelection().focusNode.parentElement;
+  let focusNode = document.getSelection().focusNode;
+
+  if(focusNode == null) return;
 
   if (document.getSelection().focusNode.parentElement.id.includes('output-span'))
   {
+    parentElement = focusNode.parentElement;
+
     currentSelection = document.getSelection().toString();
     if (currentSelection == "") return;
 
@@ -211,7 +288,8 @@ function saveData()
   }
 
   saveAs(
-    new self.Blob([s], {type: "text/plain;charset=utf-8"}), "data.tsv");
+    new self.Blob([s], {type: "text/plain;charset=utf-8"}),
+    "data.tsv");
 }
 
 function spacesToHtmlSpaces(s)
@@ -231,62 +309,129 @@ function getNextSpanId()
     return max_span_id;
 }
 
-function highlightAnnotationText()
+function highlightAnnotationText(containingElement, annotation)
 {
-  let innerHtml = parentElement.innerHTML;
+  let innerHtml = containingElement.innerHTML;
 
-  const originalText = htmlSpacesToSpaces(parentElement.innerHTML);
+  const originalText = htmlSpacesToSpaces(containingElement.innerHTML);
 
-  let textBeforeSelection = originalText.substring(0, currentSelectionStartRelative);
+  let containingElement_pos = +containingElement.getAttribute("data-pos");
+  let annotation_relative_startPos = annotation.starts_at - containingElement_pos;
+
+  let textBeforeSelection = originalText.substring(0, annotation_relative_startPos);
   let s2 = spacesToHtmlSpaces(textBeforeSelection).replace(/\n\r?/g, "<br />");
-  parentElement.innerHTML = s2;
+  containingElement.innerHTML = s2;
 
   let span = document.createElement('span');
   span.setAttribute("id", "output-span-" + getNextSpanId());
-
-  let parent_pos = +parentElement.getAttribute("data-pos");
-  span.setAttribute("data-pos", parent_pos + textBeforeSelection.length);
+  
+  span.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length);
   span.setAttribute("class", "highlight");
 
-  let selection = originalText.substring(currentSelectionStartRelative, currentSelectionEndRelative);
-  span.innerHTML = spacesToHtmlSpaces(selection);
-  parentElement.parentNode.insertBefore(span, parentElement.nextSibling);
+  span.innerHTML = spacesToHtmlSpaces(annotation.occorrenza);
+  containingElement.parentNode.insertBefore(span, containingElement.nextSibling);
 
   let spanAfterSelection = document.createElement('span');
   spanAfterSelection.setAttribute("id", "output-span-" + getNextSpanId());
-  spanAfterSelection.setAttribute("data-pos", parent_pos + textBeforeSelection.length + selection.length);
+  spanAfterSelection.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length + annotation.occorrenza.length);
 
-  spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
-  parentElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
+  let annotation_relative_endPos = annotation_relative_startPos + Math.max(annotation.occorrenza.length - 1, 0);
+
+  spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(annotation_relative_endPos+1, originalText.length));
+  containingElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
 }
 
-function createAnnotation()
+function getContainingElementByInternalPos(pos)
+{
+  let outputBox = document.getElementById("output-box");
+
+  for(let i = outputBox.childNodes.length - 1; i >= 0; --i)
+  {
+    let textElement = outputBox.childNodes[i];
+
+    if(+textElement.dataset.pos <= pos)
+    {
+      return textElement;
+    }
+  }
+
+  return null;
+}
+
+function Annotation(valueMap)
 {
   let annotation = {};
 
-  for(var key in annotation_fields_map)
+  for(var key in valueMap)
   {
-    let v = annotation_fields_map[key].readControl(key);
-    annotation[key] = v;
-
-    let a = 5;
+    annotation[key] = valueMap[key];
   }
 
   return annotation;
 }
 
+function readValueMapFromPageFields()
+{
+  let valueMap = {};
+
+  for(var key in annotation_fields_map)
+  {
+    let value = annotation_fields_map[key].readControl(key);
+    valueMap[key] = value;
+  }
+
+  return valueMap;
+}
+
+function readValueMapFromTextLine(line)
+{
+  let fieldKeys = [];
+
+  for(var key in annotation_fields_map)
+  {
+    fieldKeys.push(key);
+  }
+
+  let valueMap = {};
+  let fieldValues = line.split(/\t/);
+
+  for(let i = 0; i < fieldKeys.length; ++i)
+  {
+    let key = fieldKeys[i];
+    valueMap[key] = annotation_fields_map[key].parseTextValue(fieldValues[i]);
+  }
+
+  return valueMap;
+}
+
+function clearAnnotationFields()
+{
+  for(var key in annotation_fields_map)
+  {
+    annotation_fields_map[key].clearControl(key);
+  }  
+}
+
 function addAnnotationClick()
 {
-  highlightAnnotationText();
+  let annotationValueMap = readValueMapFromPageFields();
+  let annotation = new Annotation(annotationValueMap);
 
-  let annotation = createAnnotation();
+  highlightAnnotationText(parentElement, annotation);
 
   annotations.push(annotation);
+
+  clearAnnotationFields();
 }
 
 function readText(name)
 {
   return d3.select("#" + name).text();
+}
+
+function clearText(name)
+{
+  d3.select("#" + name).text("");
 }
 
 function readTextInput(name)
@@ -297,9 +442,19 @@ function readTextInput(name)
 //  return s;
 }
 
+function clearTextInput(name)
+{
+  d3.select("#" + name).property("value", "");
+}
+
 function readNumber(name)
 {
   return +d3.select("#" + name).text();
+}
+
+function clearNumber(name)
+{
+  d3.select("#" + name).text("");
 }
 
 function readSelect(name)
@@ -307,11 +462,40 @@ function readSelect(name)
   return d3.select("#" + name).property("value");
 }
 
+function clearSelect(name)
+{
+  d3.select("#" + name).property("value", "");
+}
+
 function readCheckbox(name)
 {
   return d3.select("#" + name).property("checked");
 }
 
+function clearCheckbox(name)
+{
+  d3.select("#" + name).property("checked", false);
+}
+
+function parseStringField(string)
+{
+  return string;
+}
+
+function parseNumberField(string)
+{
+  return parseInt(string, 10);
+}
+
+function parseBooleanField(string)
+{
+  return (string === 'true');
+}
+
 document.addEventListener('selectionchange', textSelection);
 document.getElementById('saveBtn').addEventListener("click", saveData);
 document.getElementById("add-info").addEventListener("click", addAnnotationClick);
+
+
+
+
