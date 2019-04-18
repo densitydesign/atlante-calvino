@@ -58,15 +58,24 @@ function openStructureFile(event)
 
             let readControl;
             let parseTextValue;
+            let clearControl;
             
             switch(type)
             {
               case "text" :
               {
-                if(values == "") readControl = readTextInput;
-                else readControl = readText;
+                if(values == "")
+                {
+                   readControl = readTextInput;
+                   clearControl = clearTextInput;
+                }
+                else 
+                {
+                  readControl = readText;
+                  clearControl = clearText;
+                }
 
-                parseTextValue = parseStringField;
+                parseTextValue = parseStringField;                
 
                 break;
               }
@@ -74,6 +83,7 @@ function openStructureFile(event)
                 readControl = readNumber;
 
                 parseTextValue = parseNumberField;
+                clearControl = clearNumber;
 
                 break;
               case "select" :
@@ -81,11 +91,15 @@ function openStructureFile(event)
 
                 parseTextValue = parseStringField;
 
+                clearControl = clearSelect;
+
                 break;
               case "checkbox" :
                 readControl = readCheckbox;
 
                 parseTextValue = parseBooleanField;
+
+                clearControl = clearCheckbox;
 
                 break;
             }
@@ -95,7 +109,8 @@ function openStructureFile(event)
               values: values, 
               readControl: readControl, 
               parseTextValue: parseTextValue, 
-              index: index++ 
+              index: index++,
+              clearControl: clearControl
             };
 
             createControl(name, type, values);
@@ -212,9 +227,13 @@ function createControl(name, type, values)
 
 function textSelection() 
 {
-//  console.log(document.getSelection().getRangeAt(0));
+  console.log(document.getSelection().getRangeAt(0));
 
-  parentElement = document.getSelection().focusNode.parentElement;
+  let focusNode = document.getSelection().focusNode;
+
+  if(focusNode == null) return;
+
+  parentElement = focusNode.parentElement;
 
   if (document.getSelection().focusNode.parentElement.id.includes('output-span')) 
   {
@@ -403,6 +422,14 @@ function readValueMapFromTextLine(line)
   return valueMap;
 }
 
+function clearAnnotationFields()
+{
+  for(var key in annotation_fields_map)
+  {
+    annotation_fields_map[key].clearControl(key);
+  }  
+}
+
 function addAnnotationClick() 
 {
   let annotationValueMap = readValueMapFromPageFields();
@@ -411,11 +438,18 @@ function addAnnotationClick()
   highlightAnnotationText(parentElement, annotation);
 
   annotations.push(annotation);
+
+  clearAnnotationFields();
 }
 
 function readText(name)
 {
   return d3.select("#" + name).text();
+}
+
+function clearText(name)
+{
+  d3.select("#" + name).text("");
 }
 
 function readTextInput(name)
@@ -426,9 +460,19 @@ function readTextInput(name)
 //  return s;
 }
 
+function clearTextInput(name)
+{
+  d3.select("#" + name).property("value", "");
+}
+
 function readNumber(name)
 {
   return +d3.select("#" + name).text();
+}
+
+function clearNumber(name)
+{
+  d3.select("#" + name).text("");
 }
 
 function readSelect(name)
@@ -436,9 +480,19 @@ function readSelect(name)
   return d3.select("#" + name).property("value");
 }
 
+function clearSelect(name)
+{
+  d3.select("#" + name).property("value", "");
+}
+
 function readCheckbox(name)
 {
   return d3.select("#" + name).property("checked");
+}
+
+function clearCheckbox(name)
+{
+  d3.select("#" + name).property("checked", false);
 }
 
 function parseStringField(string)
