@@ -270,7 +270,7 @@ function getNextSpanId()
 
     return max_span_id;
 }
-
+/*
 function highlightAnnotationText()
 {
   let innerHtml = parentElement.innerHTML;
@@ -298,6 +298,36 @@ function highlightAnnotationText()
 
   spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
   parentElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
+}
+*/
+
+function highlightAnnotationText(containingElement)
+{
+  let innerHtml = containingElement.innerHTML;
+
+  const originalText = htmlSpacesToSpaces(containingElement.innerHTML);
+
+  let textBeforeSelection = originalText.substring(0, currentSelectionStartRelative);
+  let s2 = spacesToHtmlSpaces(textBeforeSelection).replace(/\n\r?/g, "<br />");
+  containingElement.innerHTML = s2;
+
+  let span = document.createElement('span');
+  span.setAttribute("id", "output-span-" + getNextSpanId());    
+
+  let parent_pos = +containingElement.getAttribute("data-pos");
+  span.setAttribute("data-pos", parent_pos + textBeforeSelection.length);
+  span.setAttribute("class", "highlight");
+
+  let selection = originalText.substring(currentSelectionStartRelative, currentSelectionEndRelative);
+  span.innerHTML = spacesToHtmlSpaces(selection);
+  containingElement.parentNode.insertBefore(span, containingElement.nextSibling);
+
+  let spanAfterSelection = document.createElement('span');
+  spanAfterSelection.setAttribute("id", "output-span-" + getNextSpanId());
+  spanAfterSelection.setAttribute("data-pos", parent_pos + textBeforeSelection.length + selection.length);
+
+  spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
+  containingElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
 }
 
 function Annotation(valueMap)
@@ -348,7 +378,7 @@ function readValueMapFromTextLine(line)
 
 function addAnnotationClick() 
 {
-  highlightAnnotationText();
+  highlightAnnotationText(parentElement);
 
   let annotationValueMap = readValueMapFromPageFields();
   let annotation = new Annotation(annotationValueMap);
