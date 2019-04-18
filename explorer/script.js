@@ -301,30 +301,31 @@ function highlightAnnotationText()
 }
 */
 
-function highlightAnnotationText(containingElement)
+function highlightAnnotationText(containingElement, annotation)
 {
   let innerHtml = containingElement.innerHTML;
 
   const originalText = htmlSpacesToSpaces(containingElement.innerHTML);
 
-  let textBeforeSelection = originalText.substring(0, currentSelectionStartRelative);
+  let containingElement_pos = +containingElement.getAttribute("data-pos");
+  let annotation_relativePos = annotation.starts_at - containingElement_pos;
+
+  let textBeforeSelection = originalText.substring(0, annotation_relativePos);
   let s2 = spacesToHtmlSpaces(textBeforeSelection).replace(/\n\r?/g, "<br />");
   containingElement.innerHTML = s2;
 
   let span = document.createElement('span');
-  span.setAttribute("id", "output-span-" + getNextSpanId());    
-
-  let parent_pos = +containingElement.getAttribute("data-pos");
-  span.setAttribute("data-pos", parent_pos + textBeforeSelection.length);
+  span.setAttribute("id", "output-span-" + getNextSpanId());
+  
+  span.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length);
   span.setAttribute("class", "highlight");
 
-  let selection = originalText.substring(currentSelectionStartRelative, currentSelectionEndRelative);
-  span.innerHTML = spacesToHtmlSpaces(selection);
+  span.innerHTML = spacesToHtmlSpaces(annotation.occorrenza);
   containingElement.parentNode.insertBefore(span, containingElement.nextSibling);
 
   let spanAfterSelection = document.createElement('span');
   spanAfterSelection.setAttribute("id", "output-span-" + getNextSpanId());
-  spanAfterSelection.setAttribute("data-pos", parent_pos + textBeforeSelection.length + selection.length);
+  spanAfterSelection.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length + annotation.occorrenza.length);
 
   spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
   containingElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
@@ -378,10 +379,10 @@ function readValueMapFromTextLine(line)
 
 function addAnnotationClick() 
 {
-  highlightAnnotationText(parentElement);
-
   let annotationValueMap = readValueMapFromPageFields();
   let annotation = new Annotation(annotationValueMap);
+
+  highlightAnnotationText(parentElement, annotation);
 
   annotations.push(annotation);
 }
