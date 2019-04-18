@@ -130,6 +130,13 @@ function openExportedFile(event)
 
           return a;
         });
+
+      annotations.forEach(annotation => {
+
+        let containingElement = getContainingElementByInternalPos(annotation.starts_at);
+
+        highlightAnnotationText(containingElement, annotation);
+      });
     };
 
   let input = event.target;
@@ -308,9 +315,9 @@ function highlightAnnotationText(containingElement, annotation)
   const originalText = htmlSpacesToSpaces(containingElement.innerHTML);
 
   let containingElement_pos = +containingElement.getAttribute("data-pos");
-  let annotation_relativePos = annotation.starts_at - containingElement_pos;
+  let annotation_relative_startPos = annotation.starts_at - containingElement_pos;
 
-  let textBeforeSelection = originalText.substring(0, annotation_relativePos);
+  let textBeforeSelection = originalText.substring(0, annotation_relative_startPos);
   let s2 = spacesToHtmlSpaces(textBeforeSelection).replace(/\n\r?/g, "<br />");
   containingElement.innerHTML = s2;
 
@@ -327,8 +334,27 @@ function highlightAnnotationText(containingElement, annotation)
   spanAfterSelection.setAttribute("id", "output-span-" + getNextSpanId());
   spanAfterSelection.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length + annotation.occorrenza.length);
 
-  spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(currentSelectionEndRelative, originalText.length));
+  let annotation_relative_endPos = annotation_relative_startPos + Math.max(annotation.occorrenza.length - 1, 0);
+
+  spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(annotation_relative_endPos+1, originalText.length));
   containingElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
+}
+
+function getContainingElementByInternalPos(pos)
+{
+  let outputBox = document.getElementById("output-box");
+
+  for(let i = outputBox.childNodes.length - 1; i >= 0; --i)
+  {
+    let textElement = outputBox.childNodes[i];
+
+    if(+textElement.dataset.pos <= pos)
+    {
+      return textElement;
+    }
+  }
+
+  return null;
 }
 
 function Annotation(valueMap)
