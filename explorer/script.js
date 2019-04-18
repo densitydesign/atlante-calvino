@@ -42,12 +42,14 @@ function openStructureFile(event)
   reader.onload = 
     function() 
     {
-        text = reader.result;
+        let fileText = reader.result;
     
-        let data = text.split(/\r?\n/);
-        let lines = data.slice(1, data.length);
+        let fileLines = fileText.split(/\r?\n/);
+        let dataLines = fileLines.slice(1, fileLines.length);
 
-        lines.forEach(line => {
+        let index = 0;
+
+        dataLines.forEach(line => {
             let fields = line.split("\t");
 
             let name = fields[0];
@@ -55,6 +57,7 @@ function openStructureFile(event)
             let values = fields[2];
 
             let readControl;
+            let parseTextValue;
             
             switch(type)
             {
@@ -62,22 +65,70 @@ function openStructureFile(event)
               {
                 if(values == "") readControl = readTextInput;
                 else readControl = readText;
+
+                parseTextValue = parseStringField;
+
                 break;
               }
               case "number" :
                 readControl = readNumber;
+
+                parseTextValue = parseNumberField;
+
                 break;
               case "select" :
                 readControl = readSelect;
+
+                parseTextValue = parseStringField;
+
                 break;
               case "checkbox" :
                 readControl = readCheckbox;
+
+                parseTextValue = parseBooleanField;
+
                 break;
             }
 
-            annotation_fields_map[name] = { type: type, values: values, readControl: readControl };
+            annotation_fields_map[name] = { 
+              type: type, 
+              values: values, 
+              readControl: readControl, 
+              parseTextValue: parseTextValue, 
+              index: index++ 
+            };
 
             createControl(name, type, values);
+        });
+    };
+
+  let input = event.target;
+  reader.readAsText(input.files[0]);
+}
+
+function openExportedFile(event)
+{
+  let reader = new FileReader();
+
+  reader.onload =
+    function()
+    {
+      let fileText = reader.result;
+
+      let fileLines = fileText.split(/\r?\n/);
+
+      let dataLines = fileLines
+        .slice(1, fileLines.length)
+        .filter((line) => { return line.trim() != ""; });
+
+      annotations = dataLines.map(
+        function(line)
+        {
+          let valueMap = readValueMapFromTextLine(line);
+
+          let a = new Annotation(valueMap);
+
+          return a;
         });
     };
 
@@ -249,26 +300,58 @@ function highlightAnnotationText()
   parentElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
 }
 
-function createAnnotation()
+function Annotation(valueMap)
 {
   let annotation = {};
 
-  for(var key in annotation_fields_map)
+  for(var key in valueMap)
   {
-    let v = annotation_fields_map[key].readControl(key);
-    annotation[key] = v;
-
-    let a = 5;
+    annotation[key] = valueMap[key];
   }
 
   return annotation;
+}
+
+function readValueMapFromPageFields()
+{
+  let valueMap = {};
+
+  for(var key in annotation_fields_map)
+  {
+    let value = annotation_fields_map[key].readControl(key);
+    valueMap[key] = value;
+  }
+
+  return valueMap;
+}
+
+function readValueMapFromTextLine(line)
+{
+  let fieldKeys = [];
+
+  for(var key in annotation_fields_map)
+  {
+    fieldKeys.push(key);
+  }
+
+  let valueMap = {};
+  let fieldValues = line.split(/\t/);
+
+  for(let i = 0; i < fieldKeys.length; ++i)
+  {
+    let key = fieldKeys[i];
+    valueMap[key] = annotation_fields_map[key].parseTextValue(fieldValues[i]);
+  }
+
+  return valueMap;
 }
 
 function addAnnotationClick() 
 {
   highlightAnnotationText();
 
-  let annotation = createAnnotation();
+  let annotationValueMap = readValueMapFromPageFields();
+  let annotation = new Annotation(annotationValueMap);
 
   annotations.push(annotation);
 }
@@ -299,6 +382,21 @@ function readSelect(name)
 function readCheckbox(name)
 {
   return d3.select("#" + name).property("checked");
+}
+
+function parseStringField(string)
+{
+  return string;
+}
+
+function parseNumberField(string)
+{
+  return parseInt(string, 10);
+}
+
+function parseBooleanField(string)
+{
+  return (string === 'true');
 }
 
 document.addEventListener('selectionchange', textSelection);
