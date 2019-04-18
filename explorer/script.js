@@ -233,10 +233,10 @@ function textSelection()
 
   if(focusNode == null) return;
 
-  parentElement = focusNode.parentElement;
-
   if (document.getSelection().focusNode.parentElement.id.includes('output-span')) 
   {
+    parentElement = focusNode.parentElement;
+
     currentSelection = document.getSelection().toString();
     if (currentSelection == "") return;
 
