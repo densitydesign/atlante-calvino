@@ -49,6 +49,13 @@
           <div class="sticky-top">
             <div id="info-box" class="info-boxpt-3">
               <label class="loaded-a-structure" style="grid-column-start: 1; grid-column-end: 3;">Struttura caricata: <span id="data_structure_name">Nessuna</span></label>
+              <div class="info-box pt-3 loaded-a-structure resumed-analysis" style="grid-column-start: 1; grid-column-end: 3;">
+                <hr style="grid-column-start: 1; grid-column-end: 3; width: 100%;"></hr>
+                <p class="caption">Continua un'analisi lasciata in sospeso:</p>
+                <input class="" type='file' accept='.tsv' onchange='openExportedFile(event)'>
+              </div>
+              <label class="loaded-a-structure">Annotazioni inserite</label>
+              <p id="annotations-count" class="loaded-a-structure">0</p>
               <hr style="grid-column-start: 1; grid-column-end: 3; width: 100%;"></hr>
               <label>Inizio – fine:</label>
               <p><span id="starts_at">1234</span> – <span id="ends_at">2345</span></p>
