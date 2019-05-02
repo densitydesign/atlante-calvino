@@ -11,6 +11,11 @@ html, body {
   color: #4a4a4a;
 }
 
+body {
+  border-top: 6px solid tomato;
+  padding-top: 2rem;
+}
+
 h3 {
   font-size: 1.125rem;
 }

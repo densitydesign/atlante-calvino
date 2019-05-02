@@ -1,5 +1,6 @@
 "use strict";
 
+var source_title; // the title corresponding to the injected text
 var text;
 var parentElement;
 var currentSelection;
@@ -19,6 +20,8 @@ function openTextFile(event)
     function()
     {
       text = reader.result;
+
+      source_title = input.files[0].name;
 
       max_span_id = 0;
       document.getElementById('output-box').innerHTML = "<span id='output-span-" + max_span_id + "' data-pos=0>" + text + "</span>";
@@ -79,13 +82,13 @@ function openStructureFile(event)
                    readControl = readTextInput;
                    clearControl = clearTextInput;
                 }
-                else 
+                else
                 {
                   readControl = readText;
                   clearControl = clearText;
                 }
 
-                parseTextValue = parseStringField;                
+                parseTextValue = parseStringField;
 
                 break;
               }
@@ -114,11 +117,11 @@ function openStructureFile(event)
                 break;
             }
 
-            annotation_fields_map[name] = { 
-              type: type, 
-              values: values, 
-              readControl: readControl, 
-              parseTextValue: parseTextValue, 
+            annotation_fields_map[name] = {
+              type: type,
+              values: values,
+              readControl: readControl,
+              parseTextValue: parseTextValue,
               index: index++,
               clearControl: clearControl
             };
@@ -164,6 +167,10 @@ function openExportedFile(event)
 
         highlightAnnotationText(containingElement, annotation);
       });
+
+      $('.resumed-analysis').hide();
+      $('#annotations-count').text(annotations.length);
+
     };
 
   let input = event.target;
@@ -287,9 +294,11 @@ function saveData()
     s += "\n";
   }
 
+  let fileName = `${source_title.replace(/.txt/g, '')} [${new Date().toJSON().slice(0,16).replace(/T/g,' ')}].tsv`;
+
   saveAs(
     new self.Blob([s], {type: "text/plain;charset=utf-8"}),
-    "data.tsv");
+    fileName);
 }
 
 function spacesToHtmlSpaces(s)
@@ -324,7 +333,7 @@ function highlightAnnotationText(containingElement, annotation)
 
   let span = document.createElement('span');
   span.setAttribute("id", "output-span-" + getNextSpanId());
-  
+
   span.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length);
   span.setAttribute("class", "highlight");
 
@@ -409,7 +418,7 @@ function clearAnnotationFields()
   for(var key in annotation_fields_map)
   {
     annotation_fields_map[key].clearControl(key);
-  }  
+  }
 }
 
 function addAnnotationClick()
@@ -420,6 +429,8 @@ function addAnnotationClick()
   highlightAnnotationText(parentElement, annotation);
 
   annotations.push(annotation);
+
+  $('#annotations-count').text(annotations.length);
 
   clearAnnotationFields();
 }
@@ -495,7 +506,3 @@ function parseBooleanField(string)
 document.addEventListener('selectionchange', textSelection);
 document.getElementById('saveBtn').addEventListener("click", saveData);
 document.getElementById("add-info").addEventListener("click", addAnnotationClick);
-
-
-
-
