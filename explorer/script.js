@@ -145,7 +145,7 @@ function openExportedFile(event)
     {
       let fileText = reader.result;
 
-      let fileLines = fileText.split(/\r?\n/);
+      let fileLines = fileText.split(/\r?\n|\r/);
 
       let dataLines = fileLines
         .slice(1, fileLines.length)
