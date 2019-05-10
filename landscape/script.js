@@ -212,17 +212,17 @@ d3
           .attr('stroke','#444')
           .attr('stroke-width',1.5)
           .attr('fill',function(d){
-            return col_collections(d.collection)
+            return colour(d.first_publication)
           })
           // .style('shape-rendering','crispedges')
           .attr('r',function(d){ return d.r })
           .attr('first_elem',function(d){ return d.first_elem })
           .attr("class", "hill" )
-          // .style('fill-opacity',0)
-          // .style('stroke-opacity',0)
-          // .transition()
-          // .duration(1000)
-          // .delay(function(d){return (d.first_publication - 1940)*100})
+          .style('fill-opacity',0)
+          .style('stroke-opacity',0)
+          .transition()
+          .duration(1000)
+          .delay(function(d){return (d.first_publication - 1940)*100})
           .attr('transform', function(d,i){
             i = i*step_increment
             return 'translate(0,'+i+')'
@@ -283,21 +283,19 @@ d3
 
   zoom_handler(svg);
 
-  centerTerritory(json_nodes);
+  centerTerritory(scale, 0, 0, 0);
 
   //Zoom functions
   function zoom_actions(){
-    console.log(d3.event.transform)
     g.attr("transform", d3.event.transform)
   }
 
   // Handle interface interactions
-
-  function centerTerritory(nodes) {
+  function centerTerritory(scale, x, y, duration) {
     svg.transition()
-      .duration(750)
+      .duration(duration)
       .call( zoom_handler.transform, d3.zoomIdentity
-        .translate((w/2), (h/2))
+        .translate((w/2) + x, (h/2) + y)
         .scale(scale)
       );
   }
@@ -316,7 +314,6 @@ d3
             return colour(d.first_publication)
           })
         break;
-
       case 'collections':
         svg_nodes.selectAll('circle')
           .transition().duration(350)
