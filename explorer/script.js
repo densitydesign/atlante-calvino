@@ -9,6 +9,7 @@ let currentSelectionEndRelative;
 let max_span_id = 0;
 let annotation_fields_map = {};
 let annotations;
+let atLeastOneAnnotationAdded;
 
 $('.loaded-a-structure').hide();
 
@@ -20,11 +21,15 @@ function openTextFile(event)
     function()
     {
       text = reader.result;
+//      text = text
+//        .replace("\n\r", "\n")
+//        .replace("\r", "\n");
 
       source_title = input.files[0].name;
 
       max_span_id = 0;
       document.getElementById('output-box').innerHTML = "<span id='output-span-" + max_span_id + "' data-pos=0>" + text + "</span>";
+      atLeastOneAnnotationAdded = false;
 
       if (text) {
         $('#saveBtn').show();
@@ -256,9 +261,17 @@ function textSelection()
   {
     parentElement = focusNode.parentElement;
 
-//    currentSelection = document.getSelection().toString();
-    currentSelection = document.getSelection().getRangeAt(0).toString();
-  console.log(currentSelection);
+//    if(atLeastOneAnnotationAdded)
+//    {
+//       currentSelection = document.getSelection().toString();
+//    }
+//    else
+//    {
+      currentSelection = document.getSelection().getRangeAt(0).toString();
+//    }
+//console.log("currentSelection : " + currentSelection);
+//let x = document.getSelection().getRangeAt(0).toString();
+//console.log("x : " + x);
     if (currentSelection == "") return;
 
     d3.select('#occorrenza').html(spacesToHtmlSpaces(currentSelection));
@@ -306,7 +319,7 @@ function saveData()
 function spacesToHtmlSpaces(s)
 {
   let x = s.replace(" ", "&nbsp;");
-  let x2 = x.replace(/\n\r?/g, "<br />");
+  let x2 = x.replace(/\n\r?|\r/g, "<br />");
 
 //  return s
 //    .replace(" ", "&nbsp;")
@@ -340,7 +353,8 @@ function highlightAnnotationText(containingElement, annotation)
 
   let textBeforeSelection = originalText.substring(0, annotation_relative_startPos);
   let s2 = spacesToHtmlSpaces(textBeforeSelection);
-  containingElement.innerHTML = s2;
+//  containingElement.innerHTML = s2;
+  containingElement.innerHTML = textBeforeSelection;
 
   let span = document.createElement('span');
   span.setAttribute("id", "output-span-" + getNextSpanId());
@@ -348,7 +362,9 @@ function highlightAnnotationText(containingElement, annotation)
   span.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length);
   span.setAttribute("class", "highlight");
 
-  span.innerHTML = spacesToHtmlSpaces(annotation.occorrenza);
+//  span.innerHTML = spacesToHtmlSpaces(annotation.occorrenza);
+  span.innerHTML = annotation.occorrenza;
+
   containingElement.parentNode.insertBefore(span, containingElement.nextSibling);
 
   let spanAfterSelection = document.createElement('span');
@@ -357,7 +373,9 @@ function highlightAnnotationText(containingElement, annotation)
 
   let annotation_relative_endPos = annotation_relative_startPos + Math.max(annotation.occorrenza.length - 1, 0);
 
-  spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(annotation_relative_endPos+1, originalText.length));
+//  spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(annotation_relative_endPos+1, originalText.length));
+  spanAfterSelection.innerHTML = originalText.substring(annotation_relative_endPos+1, originalText.length);
+
   containingElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
 }
 
@@ -441,6 +459,8 @@ let x2 = spacesToHtmlSpaces(x);
   highlightAnnotationText(parentElement, annotation);
 
   annotations.push(annotation);
+
+  atLeastOneAnnotationAdded = true;
 
   $('#annotations-count').text(annotations.length);
 
