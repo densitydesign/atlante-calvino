@@ -1,0 +1,33 @@
+svg {
+  cursor: grab;
+}
+
+svg:active {
+  cursor: grabbing;
+}
+
+.node {
+  cursor: pointer;
+}
+.node .label {
+  opacity: 0;
+  transition: opacity .5s;
+  pointer-events: none;
+  font-family: sans-serif;
+}
+
+.node circle {
+  /* shape-rendering: optimizeSpeed; */
+}
+.node:hover circle {
+  /* fill:white; */
+}
+.node:hover .label {
+  opacity: 1;
+}
+.g-circles {
+
+}
+.g-circles circle {
+
+}
