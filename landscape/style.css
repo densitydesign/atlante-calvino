@@ -1,4 +1,9 @@
-svg {
+body {
+  margin: 0;
+  border-top: 6px solid tomato;
+}
+
+svg#landscape {
   cursor: grab;
 }
 

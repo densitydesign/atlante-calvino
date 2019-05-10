@@ -1,0 +1,25 @@
+{
+  "name": "atlante-calvino",
+  "version": "0.0.1",
+  "description": "Repository containing the web application \"Atlante Calvino: letteratura e visualizzazione\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/densitydesign/atlante-calvino.git"
+  },
+  "author": "iosonosempreio, Marco Pappalepore",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/densitydesign/atlante-calvino/issues"
+  },
+  "homepage": "https://github.com/densitydesign/atlante-calvino#readme",
+  "dependencies": {
+    "bootstrap": "^4.3.1",
+    "d3": "^5.9.2",
+    "jquery": "^3.4.1",
+    "popper.js": "^1.15.0"
+  }
+}

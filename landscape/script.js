@@ -1,5 +1,5 @@
-let w = window.innerWidth-20
-let h = window.innerHeight-20
+let w = window.innerWidth
+let h = window.innerHeight
 let svg = d3
   .select('svg')
   .attr('width', w)
@@ -15,7 +15,7 @@ d3
       console.log(json.nodes)
 
       let json_nodes = json.nodes
-//                let json_nodes = json.nodes.slice(0, 1)
+      // let json_nodes = json.nodes.slice(0, 1)
 
       json_nodes.forEach(
         function(n)
@@ -55,24 +55,6 @@ d3
         .domain(collections.map(function(d){return d.id}))
         .range(collections.map(function(d){return d.c}))
         .unknown('#ffffff')
-
-/*
-  let metaballPoints = []
-  collections.map(function(d){return d.id}).forEach(function(d){
-    let thisCollection = {
-      'collection': d,
-      'nodes': []
-    }
-    nodes.forEach(function(n){
-      n.attributes.collections.forEach(function(c){
-        if (c == d) {
-          thisCollection.nodes.push(n)
-        }
-      })
-    })
-    metaballPoints.push(thisCollection)
-  })
-*/
 
       let radialGradient = svg
         .append("defs")
@@ -205,8 +187,6 @@ d3
       steps
           .filter(function(d) { return d.first_elem } )
           .append('circle')
-//              .attr('stroke','green')
-//              .attr('stroke-width',1.5)
           .attr('fill','url(#radial-gradient)')
           .attr('r',function(d){ return d.r * 1.5 })
           .attr("class", "halo")
@@ -413,106 +393,6 @@ function interpolateSpline(x) {
 
     // The cubic spline interpolation has been calculated "heuristically" by using this service:
     // https://tools.timodenk.com/cubic-spline-interpolation
-
-    // Inserted values are:
-    // x, y
-    // 0, 0
-    // 0.2, 0.25
-    // 0.5, 0.5
-    // 0.8, 0.75
-    // 1, 1
-
-    if (x>=0 && x<=0.2) {
-      y = (-2.0833*Math.pow(x,3)) + (1.25*Math.pow(10,-61)*Math.pow(x,2)) + (1.3333*x);
-    } else if (x>0.2 && x<=0.5) {
-      y = (1.3889*Math.pow(x,3)) + (-2.0833*Math.pow(x,2)) + (1.75*x) + (-2.7778*Math.pow(10,-2))
-    } else if (x>0.5 && x<=0.8) {
-      y = (1.3889*Math.pow(x,3)) + (-2.0833*Math.pow(x,2)) + (1.75*x) + (-2.7778*Math.pow(10,-2))
-    } else if (x>0.8 && x<=1) {
-      y = (-2.0833*Math.pow(x,3)) + (6.25*Math.pow(x,2)) + (-4.9167*x) + (1.75)
-    } else {
-      y=x
-    }
-
-    // Inserted values are:
-    // x, y
-    // 0, 0.1
-    // 0.15, 0.30
-    // 0.6, 0.6
-    // 0.8, 0.75
-    // 1, 1
-
-    if (x>=0 && x<=0.15) {
-      y = (-4.1854*Math.pow(x,3)) + (-1.0594*Math.pow(10,-60)*Math.pow(x,2)) + (1.4275*x) + (1*Math.pow(10,-1));
-    } else if (x>0.15 && x<=0.6) {
-      y = (1.8233*Math.pow(x,3)) + (-2.7039*Math.pow(x,2)) + (1.8331*x) + (7.9721*Math.pow(10,-2))
-    } else if (x>0.6 && x<=0.8) {
-      y = (1.9208*Math.pow(x,3)) + (-2.8793*Math.pow(x,2)) + (1.9383*x) + (5.8671*Math.pow(10,-2))
-    } else if (x>0.8 && x<=1) {
-      y = (-2.8842*Math.pow(x,3)) + (8.6525*Math.pow(x,2)) + (-7.2871*x) + (2.5188)
-    } else {
-      y=x
-    }
-
-    // Inserted values are:
-    // x, y
-    // 0, 0
-    // 0.13, 0.2
-    // 0.5, 0.5
-    // 0.8, 0.75
-    // 1, 1
-
-    if (x>=0 && x<=0.13) {
-      y = (-6.0237*Math.pow(x,3)) + (1*Math.pow(10,-61)*Math.pow(x,2)) + (1.6403*x) + (0);
-    } else if (x>0.13 && x<=0.5) {
-      y = (2.5213*Math.pow(x,3)) + (-3.3326*Math.pow(x,2)) + (2.0735*x) + (-1.8773*Math.pow(10,-2))
-    } else if (x>0.5 && x<=0.8) {
-      y = (7.3971*Math.pow(10,-1)*Math.pow(x,3)) + (-6.6014*Math.pow(10,-1)*Math.pow(x,2)) + (7.3729*Math.pow(10,-1)*x) + (2.0393*Math.pow(10,-1))
-    } else if (x>0.8 && x<=1) {
-      y = (-1.8586*Math.pow(x,3)) + (5.5759*Math.pow(x,2)) + (-4.2515*x) + (1.5343)
-    } else {
-      y=x
-    }
-
-    // Inserted values are:
-    // x, y
-    // 0, 0
-    // 0.1, 0.2
-    // 0.55, 0.5
-    // 0.8, 0.8
-    // 1, 1
-
-    if (x>=0 && x<=0.1) {
-      y = (-1.6169*Math.pow(10,1)*Math.pow(x,3)) + (-8.4013*Math.pow(10,-61)*Math.pow(x,2)) + (2.1617*x) + (0);
-    } else if (x>0.1 && x<=0.55) {
-      y = (5.7918*Math.pow(x,3)) + (-6.5882*Math.pow(x,2)) + (2.8205*x) + (-2.1961*Math.pow(10,-2))
-    } else if (x>0.55 && x<=0.8) {
-      y = (-5.9460*Math.pow(x,3)) + (1.2779*Math.pow(10,1)*Math.pow(x,2)) + (-7.8315*x) + (1.9309)
-    } else if (x>0.8 && x<=1) {
-      y = (2.4853*Math.pow(x,3)) + (-7.4559*Math.pow(x,2)) + (8.3565*x) + (-2.3859)
-    } else {
-      y=x
-    }
-
-    // Inserted values are:
-    // x, y
-    // 0, 0
-    // 0.1, 0.2
-    // 0.55, 0.6
-    // 0.8, 0.8
-    // 1, 1
-
-    if (x>=0 && x<=0.1) {
-      y = (-1.1208*Math.pow(10,1)*Math.pow(x,3)) + (4.9421*Math.pow(10,-61)*Math.pow(x,2)) + (2.11121*x) + (0);
-    } else if (x>0.1 && x<=0.55) {
-      y = (3.0916*Math.pow(x,3)) + (-4.2898*Math.pow(x,2)) + (2.5411*x) + (-1.4299*Math.pow(10,-2))
-    } else if (x>0.55 && x<=0.8) {
-      y = (-4.9359*Math.pow(10,-1)*Math.pow(x,3)) + (1.6259*Math.pow(x,2)) + (-7.1254*Math.pow(10,-1)*x) + (5.8219*Math.pow(10,-1))
-    } else if (x>0.8 && x<=1) {
-      y = (-7.3544*Math.pow(10,-1)*Math.pow(x,3)) + (2.2063*Math.pow(x,2)) + (-1.1769*x) + (7.0602*Math.pow(10,-1))
-    } else {
-      y=x
-    }
 
     // Inserted values are:
     // x, y
