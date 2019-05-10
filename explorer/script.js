@@ -303,7 +303,11 @@ function saveData()
 
     for(var key in annotation_fields_map)
     {
-      s += annotation[key] + "\t";
+      let annotationValue = annotation[key];
+
+      if(key === "occorrenza") annotationValue = annotationValue.replace("\n", "§");
+
+      s += annotationValue + "\t";
     }
 
     s += "\n";
@@ -436,7 +440,11 @@ function readValueMapFromTextLine(line)
   for(let i = 0; i < fieldKeys.length; ++i)
   {
     let key = fieldKeys[i];
-    valueMap[key] = annotation_fields_map[key].parseTextValue(fieldValues[i]);
+    let value = annotation_fields_map[key].parseTextValue(fieldValues[i]);
+
+    if(key === "occorrenza") value = value.replace("§", "\n");
+
+    valueMap[key] = value;
   }
 
   return valueMap;
