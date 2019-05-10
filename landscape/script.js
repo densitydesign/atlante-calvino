@@ -1,11 +1,10 @@
 let w = window.innerWidth
-let h = window.innerHeight
+let h = window.innerHeight - 6
 let svg = d3
   .select('svg')
   .attr('width', w)
   .attr('height', h)
-  .style('background-color','#e4e4e4')
-  .style('background-color','#EFEBE9')
+  .style('background-color','var(--main-bg-color)')
 
 d3
   .json("data.json")
@@ -38,12 +37,23 @@ d3
 
       let collections = getCollections()
 
-      let margin = {
-        "min_x": d3.min(json_nodes, function(d){ return d.x }),
-        "max_x": d3.max(json_nodes, function(d){ return d.x }),
-        "min_y": d3.min(json_nodes, function(d){ return d.y }),
-        "max_y": d3.max(json_nodes, function(d){ return d.y })
+      let boundaries = {
+        top: d3.min(json_nodes, function(d){ return d.y }),
+        right: d3.max(json_nodes, function(d){ return d.x }),
+        bottom: d3.max(json_nodes, function(d){ return d.y }),
+        left: d3.min(json_nodes, function(d){ return d.x })
       }
+
+      console.log(boundaries)
+
+      let center = {
+        x: (boundaries.left + boundaries.right) / 2,
+        y: (boundaries.bottom + boundaries.top) / 2
+      }
+
+      console.log(center)
+
+      let scale = (w / (boundaries.right - boundaries.left))*0.9
 
       let colour = d3
         .scaleLinear()
@@ -84,7 +94,7 @@ d3
           .append('g')
           .attr('class','node')
           .attr('transform',function(d){
-            return 'scale(1,0.5773) translate('+d.x+','+d.y+')'
+            return 'scale(1,0.5773) translate('+(d.x - center.x)+','+(d.y - center.y)+')'
           })
 
       // calculate the size of steps for hills
@@ -202,18 +212,17 @@ d3
           .attr('stroke','#444')
           .attr('stroke-width',1.5)
           .attr('fill',function(d){
-            return colour(d.first_publication)
             return col_collections(d.collection)
           })
           // .style('shape-rendering','crispedges')
           .attr('r',function(d){ return d.r })
           .attr('first_elem',function(d){ return d.first_elem })
           .attr("class", "hill" )
-          .style('fill-opacity',0)
-          .style('stroke-opacity',0)
-          .transition()
-          .duration(1000)
-          .delay(function(d){return (d.first_publication - 1940)*100})
+          // .style('fill-opacity',0)
+          // .style('stroke-opacity',0)
+          // .transition()
+          // .duration(1000)
+          // .delay(function(d){return (d.first_publication - 1940)*100})
           .attr('transform', function(d,i){
             i = i*step_increment
             return 'translate(0,'+i+')'
@@ -274,17 +283,64 @@ d3
 
   zoom_handler(svg);
 
-  svg.transition()
-    .duration(0)
-    .call( zoom_handler.transform, d3.zoomIdentity
-      .translate(w/2,h/2*1.2)
-      .scale(0.08)
-    ); // updated for d3 v4
+  centerTerritory(json_nodes);
 
   //Zoom functions
   function zoom_actions(){
-    // console.log(d3.event.transform)
+    console.log(d3.event.transform)
     g.attr("transform", d3.event.transform)
+  }
+
+  // Handle interface interactions
+
+  function centerTerritory(nodes) {
+    svg.transition()
+      .duration(750)
+      .call( zoom_handler.transform, d3.zoomIdentity
+        .translate((w/2), (h/2))
+        .scale(scale)
+      );
+  }
+
+  d3.selectAll('.colours-selector span').on('click', function(d){
+    setHillsColours(d3.select(this).attr('colour-by'));
+  })
+
+  function setHillsColours(coloursBy) {
+    switch (coloursBy) {
+      case 'years':
+        svg_nodes.selectAll('circle')
+          .transition()
+          .duration(350)
+          .attr('fill',function(d){
+            return colour(d.first_publication)
+          })
+        break;
+
+      case 'collections':
+        svg_nodes.selectAll('circle')
+          .transition().duration(350)
+          .attr('fill',function(d){
+            return col_collections(d.collection)
+          })
+        break;
+    }
+  }
+
+  d3.selectAll('.toggle-timeline').on('click', function(d){
+    toggleTimeline();
+  })
+
+  function toggleTimeline() {
+    d3.select('#timeline-container').classed("visible", d3.select('#timeline-container').classed("visible") ? false : true);
+  }
+
+  d3.selectAll('.toggle-legend').on('click', function(d){
+    toggleLegend();
+  })
+
+  function toggleLegend() {
+    $('#legendModal').modal('toggle');
   }
 
   d3.select('body').on("keyup", function(d) {
@@ -417,68 +473,68 @@ function interpolateSpline(x) {
     return y
   }
 
-  function getCollections() {
-    let collections = [
-      {
-        'n': 'Ultimo viene il corvo',
-        'id': 'V002',
-        'c': '#e9d05d'
-      },
-      {
-        'n': 'L\'entrata in guerra',
-        'id': 'V004',
-        'c': '#12b259'
-      },
-      {
-        'n': 'I racconti',
-        'id': 'V006',
-        'c': '#476a70'
-      },
-      {
-        'n': 'Marcovaldo',
-        'id': 'V011',
-        'c': '#9f73b2'
-      },
-      {
-        'n': 'Le cosmicomiche',
-        'id': 'V013',
-        'c': '#e89fc0'
-      },
-      {
-        'n': 'Ti con zero',
-        'id': 'V014',
-        'c': '#581745'
-      },
-      {
-        'n': 'La memoria del mondo',
-        'id': 'V015',
-        'c': '#00b1b3'
-      },
-      {
-        'n': 'Gli amori difficili',
-        'id': 'V017',
-        'c': '#f0be96'
-      },
-      {
-        'n': 'Palomar',
-        'id': 'V022',
-        'c': '#94d2ba'
-      },
-      {
-        'n': 'Cosmicomiche vecchie e nuove',
-        'id': 'V023',
-        'c': '#f1634b'
-      }
-    ]
-
-    return collections
-  }
-
-  function incrementDrawMode(drawMode)
-  {
-    if(drawMode >= 3)
+function getCollections() {
+  let collections = [
     {
-      return 1;
+      'n': 'Ultimo viene il corvo',
+      'id': 'V002',
+      'c': '#e9d05d'
+    },
+    {
+      'n': 'L\'entrata in guerra',
+      'id': 'V004',
+      'c': '#12b259'
+    },
+    {
+      'n': 'I racconti',
+      'id': 'V006',
+      'c': '#476a70'
+    },
+    {
+      'n': 'Marcovaldo',
+      'id': 'V011',
+      'c': '#9f73b2'
+    },
+    {
+      'n': 'Le cosmicomiche',
+      'id': 'V013',
+      'c': '#e89fc0'
+    },
+    {
+      'n': 'Ti con zero',
+      'id': 'V014',
+      'c': '#581745'
+    },
+    {
+      'n': 'La memoria del mondo',
+      'id': 'V015',
+      'c': '#00b1b3'
+    },
+    {
+      'n': 'Gli amori difficili',
+      'id': 'V017',
+      'c': '#f0be96'
+    },
+    {
+      'n': 'Palomar',
+      'id': 'V022',
+      'c': '#94d2ba'
+    },
+    {
+      'n': 'Cosmicomiche vecchie e nuove',
+      'id': 'V023',
+      'c': '#f1634b'
     }
-    else return drawMode + 1;
+  ]
+
+  return collections
+}
+
+function incrementDrawMode(drawMode)
+{
+  if(drawMode >= 3)
+  {
+    return 1;
   }
+  else return drawMode + 1;
+}

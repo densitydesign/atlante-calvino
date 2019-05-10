@@ -1,6 +1,15 @@
+:root {
+  --main-bg-color: #EFEBE9;
+}
+
 body {
   margin: 0;
   border-top: 6px solid tomato;
+  height: 100vh;
+}
+
+#interface {
+  height: calc(100% - 6px);
 }
 
 svg#landscape {
@@ -35,4 +44,28 @@ svg:active {
 }
 .g-circles circle {
 
+}
+
+._btn {
+  cursor: pointer;
+  font-style: italic;
+}
+
+.verbose-options-selector span {
+  border-bottom: 1px solid red;
+}
+
+#timeline-container {
+  height: 0;
+  bottom: 0;
+  background: var(--main-bg-color);
+  transition: all 0.35s ease;
+  overflow: hidden;
+  border-top: black 1px solid;
+  opacity: 0;
+}
+
+#timeline-container.visible {
+  height: 20vh;
+  opacity: 1;
 }

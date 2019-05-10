@@ -20,10 +20,51 @@
       </filter>
     </defs>
   </svg>
-  <div class="container-fluid">
+  <div id="interface" class="container-fluid d-flex d-flex-sm flex-column justify-content-between">
     <div class="row">
-      <div class="col-md-9">
-        <h1>L'opera di Calvino per <span>prima pubblicazione</span></h1
+      <div class="col-md-12">
+        <h1>L'opera di Calvino per
+          <span class="_btn verbose-options-selector colours-selector">
+            <span class="_btn" colour-by="years">prima pubblicazione</span>
+            <span class="_btn" colour-by="collections">raccolta</span>
+          </span>
+        </h1>
+        <h3>Esplora l'opera di Calvino attraverso un fenomeno</h3>
+        <h5 class="_btn toggle-cerca">Cerca</h5>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 text-right">
+        <h5 class="_btn toggle-timeline">Mostra timeline</h5>
+      </div>
+      <div id="timeline-container" class="col-md-12 position-absolute">
+        <svg id="timeline"></svg>
+        <span class="_btn toggle-timeline"><i class="fas fa-times"></i></span>
+      </div>
+      <div class="col-md-6 order-first">
+        <h5 class="_btn toggle-legend">Legenda</h5>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal Legend -->
+  <div class="modal fade" id="legendModal" tabindex="-1" role="dialog" aria-labelledby="legendModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+      <div class="modal-content p-3">
+        <div class="modal-header" style="border: none;">
+          <h5 class="pb-0">Come leggere la visualizzazione</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body legend">
+          <div class="row">
+            <div class="col-12 col-sm-10 col-lg-6 offset-sm-1 offset-lg-0 the-place pb-3"></div>
+            <div class="col-12 col-lg-6">
+              <p>legenda.</p>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -33,6 +74,7 @@
   <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
   <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="../node_modules/d3/dist/d3.min.js"></script>
+  <script src="../node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
   <script src="script.js"></script>
 </body>
 
