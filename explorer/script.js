@@ -256,10 +256,12 @@ function textSelection()
   {
     parentElement = focusNode.parentElement;
 
-    currentSelection = document.getSelection().toString();
+//    currentSelection = document.getSelection().toString();
+    currentSelection = document.getSelection().getRangeAt(0).toString();
+  console.log(currentSelection);
     if (currentSelection == "") return;
 
-    d3.select('#occorrenza').html(currentSelection);
+    d3.select('#occorrenza').html(spacesToHtmlSpaces(currentSelection));
 
     currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;
     let currentSelectionStartAbsolute = currentSelectionStartRelative + (+parentElement.dataset.pos);
@@ -303,12 +305,21 @@ function saveData()
 
 function spacesToHtmlSpaces(s)
 {
-    return s.replace(" ", "&nbsp;");
+  let x = s.replace(" ", "&nbsp;");
+  let x2 = x.replace(/\n\r?/g, "<br />");
+
+//  return s
+//    .replace(" ", "&nbsp;")
+//    .replace(/\n\r?/g, "<br />");
+
+  return x2;
 }
 
 function htmlSpacesToSpaces(s)
 {
-    return s.replace("&nbsp;", " ");
+    return s
+      .replace("&nbsp;", " ")
+      .replace(/<br\s?\/?>/, "\n");
 }
 
 function getNextSpanId()
@@ -328,7 +339,7 @@ function highlightAnnotationText(containingElement, annotation)
   let annotation_relative_startPos = annotation.starts_at - containingElement_pos;
 
   let textBeforeSelection = originalText.substring(0, annotation_relative_startPos);
-  let s2 = spacesToHtmlSpaces(textBeforeSelection).replace(/\n\r?/g, "<br />");
+  let s2 = spacesToHtmlSpaces(textBeforeSelection);
   containingElement.innerHTML = s2;
 
   let span = document.createElement('span');
@@ -425,7 +436,8 @@ function addAnnotationClick()
 {
   let annotationValueMap = readValueMapFromPageFields();
   let annotation = new Annotation(annotationValueMap);
-
+let x = document.getSelection().getRangeAt(0).toString();
+let x2 = spacesToHtmlSpaces(x);
   highlightAnnotationText(parentElement, annotation);
 
   annotations.push(annotation);
@@ -437,7 +449,12 @@ function addAnnotationClick()
 
 function readText(name)
 {
-  return d3.select("#" + name).text();
+//  let s = d3.select("#" + name).text();
+
+  let s = d3.select("#" + name).nodes()[0].innerHTML;
+  let s2 = htmlSpacesToSpaces(s);
+
+  return s2;
 }
 
 function clearText(name)
