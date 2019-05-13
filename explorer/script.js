@@ -13,6 +13,11 @@ let atLeastOneAnnotationAdded;
 
 $('.loaded-a-structure').hide();
 
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
+
 function openTextFile(event)
 {
   let reader = new FileReader();
@@ -148,9 +153,23 @@ function openExportedFile(event)
   reader.onload =
     function()
     {
-      let fileText = reader.result;
+      let fileText = reader.result.replaceAll(/\r\n|\r/, "\n");
 
-      let fileLines = fileText.split(/\r?\n|\r/);
+      let processedFileText = "";
+      let insideQuotes = false;
+
+      for(let i = 0; i < fileText.length; ++i)
+      {
+        let c = fileText[i];
+
+        if(c == "\"") insideQuotes = !insideQuotes;
+        else 
+          if(insideQuotes && c == '\n') processedFileText += '§';
+          else processedFileText += c;
+      }
+
+//      let fileLines = fileText.split(/\r?\n|\r/);
+      let fileLines = processedFileText.split("\n");
 
       let dataLines = fileLines
         .slice(1, fileLines.length)
@@ -159,6 +178,7 @@ function openExportedFile(event)
       annotations = dataLines.map(
         function(line)
         {
+          line = line.replaceAll("§", "\n");
           let valueMap = readValueMapFromTextLine(line);
 
           let a = new Annotation(valueMap);
@@ -305,7 +325,8 @@ function saveData()
     {
       let annotationValue = annotation[key];
 
-      if(key === "occorrenza") annotationValue = annotationValue.replace("\n", "§");
+//      if(key === "occorrenza") annotationValue = annotationValue.replace("\n", "§");
+      if(key === "occorrenza") annotationValue = "\"" + annotationValue + "\"";
 
       s += annotationValue + "\t";
     }
@@ -322,8 +343,8 @@ function saveData()
 
 function spacesToHtmlSpaces(s)
 {
-  let x = s.replace(" ", "&nbsp;");
-  let x2 = x.replace(/\n\r?|\r/g, "<br />");
+  let x = s.replaceAll(" ", "&nbsp;");
+  let x2 = x.replaceAll(/\n\r?|\r/g, "<br />");
 
 //  return s
 //    .replace(" ", "&nbsp;")
@@ -335,8 +356,8 @@ function spacesToHtmlSpaces(s)
 function htmlSpacesToSpaces(s)
 {
     return s
-      .replace("&nbsp;", " ")
-      .replace(/<br\s?\/?>/, "\n");
+      .replaceAll("&nbsp;", " ")
+      .replaceAll(/<br\s?\/?>/, "\n");
 }
 
 function getNextSpanId()
@@ -442,8 +463,9 @@ function readValueMapFromTextLine(line)
     let key = fieldKeys[i];
     let value = annotation_fields_map[key].parseTextValue(fieldValues[i]);
 
-    if(key === "occorrenza") value = value.replace("§", "\n");
-
+//    if(key === "occorrenza") value = value.replace("§", "\n");
+//    if(key === "occorrenza") value = value.substring(1, value.length - 1);
+    
     valueMap[key] = value;
   }
 
