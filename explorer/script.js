@@ -76,6 +76,7 @@ function openStructureFile(event)
             let readControl;
             let parseTextValue;
             let clearControl;
+            let writeOnControl;
 
             switch(type)
             {
@@ -91,11 +92,13 @@ function openStructureFile(event)
                 {
                    readControl = readTextInput;
                    clearControl = clearTextInput;
+                   writeOnControl = writeOnTextInput;
                 }
                 else
                 {
                   readControl = readText;
                   clearControl = clearText;
+                  writeOnControl = writeOnText;
                 }
 
                 parseTextValue = parseStringField;
@@ -107,6 +110,7 @@ function openStructureFile(event)
 
                 parseTextValue = parseNumberField;
                 clearControl = clearNumber;
+                writeOnControl = writeOnNumber;
 
                 break;
               case "select" :
@@ -115,6 +119,7 @@ function openStructureFile(event)
                 parseTextValue = parseStringField;
 
                 clearControl = clearSelect;
+                writeOnControl = writeOnSelect;
 
                 break;
               case "checkbox" :
@@ -123,6 +128,7 @@ function openStructureFile(event)
                 parseTextValue = parseBooleanField;
 
                 clearControl = clearCheckbox;
+                writeOnControl = writeOnCheckbox;
 
                 break;
             }
@@ -133,7 +139,8 @@ function openStructureFile(event)
               readControl: readControl,
               parseTextValue: parseTextValue,
               index: index++,
-              clearControl: clearControl
+              clearControl: clearControl,
+              writeOnControl: writeOnControl
             };
 
             createControl(name, type, values);
@@ -294,15 +301,32 @@ function textSelection()
 //console.log("x : " + x);
     if (currentSelection == "") return;
 
-    d3.select('#occorrenza').html(spacesToHtmlSpaces(currentSelection));
+    
 
     currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;
     let currentSelectionStartAbsolute = currentSelectionStartRelative + (+parentElement.dataset.pos);
-    d3.select('#starts_at').html(currentSelectionStartAbsolute);
-
+    
     currentSelectionEndRelative = document.getSelection().getRangeAt(0).endOffset;
     let currentSelectionEndAbsolute = currentSelectionEndRelative + (+parentElement.dataset.pos);
-    d3.select('#ends_at').html(currentSelectionEndAbsolute);
+    
+
+    var found = annotations.find(function(annotation) {
+      return (
+        annotation.starts_at === currentSelectionStartAbsolute &&
+        annotation.ends_at === currentSelectionEndAbsolute);
+    });
+
+    if(found != undefined)
+    {
+      writeValueMapOnPageFields(found);
+    }
+    else 
+    {
+      clearAnnotationFields();
+      d3.select('#occorrenza').html(spacesToHtmlSpaces(currentSelection));
+      d3.select('#starts_at').html(currentSelectionStartAbsolute);
+      d3.select('#ends_at').html(currentSelectionEndAbsolute);
+    }
   }
 }
 
@@ -369,6 +393,8 @@ function getNextSpanId()
 
 function highlightAnnotationText(containingElement, annotation)
 {
+  if(containingElement == null) return;
+
   let innerHtml = containingElement.innerHTML;
 
   const originalText = htmlSpacesToSpaces(containingElement.innerHTML);
@@ -446,6 +472,14 @@ function readValueMapFromPageFields()
   return valueMap;
 }
 
+function writeValueMapOnPageFields(valueMap)
+{
+  for(var key in annotation_fields_map)
+  {
+    annotation_fields_map[key].writeOnControl(key, valueMap[key]);
+  }
+}
+
 function readValueMapFromTextLine(line)
 {
   let fieldKeys = [];
@@ -512,6 +546,11 @@ function clearText(name)
   d3.select("#" + name).text("");
 }
 
+function writeOnText(name, value)
+{
+  d3.select("#" + name).text(value);
+}
+
 function readTextInput(name)
 {
 //  let control = d3.select("#" + name);
@@ -525,6 +564,11 @@ function clearTextInput(name)
   d3.select("#" + name).property("value", "");
 }
 
+function writeOnTextInput(name, value)
+{
+  d3.select("#" + name).property("value", value);
+}
+
 function readNumber(name)
 {
   return +d3.select("#" + name).text();
@@ -533,6 +577,11 @@ function readNumber(name)
 function clearNumber(name)
 {
   d3.select("#" + name).text("");
+}
+
+function writeOnNumber(name, value)
+{
+  d3.select("#" + name).text(value);
 }
 
 function readSelect(name)
@@ -545,6 +594,11 @@ function clearSelect(name)
   d3.select("#" + name).property("value", "");
 }
 
+function writeOnSelect(name, value)
+{
+  d3.select("#" + name).property("value", value);
+}
+
 function readCheckbox(name)
 {
   return d3.select("#" + name).property("checked");
@@ -553,6 +607,11 @@ function readCheckbox(name)
 function clearCheckbox(name)
 {
   d3.select("#" + name).property("checked", false);
+}
+
+function writeOnCheckbox(name, value)
+{
+  d3.select("#" + name).property("checked", value);
 }
 
 function parseStringField(string)
