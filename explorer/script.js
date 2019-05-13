@@ -330,7 +330,7 @@ function textSelection()
   }
 }
 
-function saveData()
+function exportData()
 {
   let s = "";
 
@@ -514,7 +514,7 @@ function clearAnnotationFields()
   }
 }
 
-function addAnnotationClick()
+function saveAnnotationClick()
 {
   let annotationValueMap = readValueMapFromPageFields();
   let annotation = new Annotation(annotationValueMap);
@@ -529,6 +529,11 @@ let x2 = spacesToHtmlSpaces(x);
   $('#annotations-count').text(annotations.length);
 
   clearAnnotationFields();
+}
+
+function deleteAnnotationClick()
+{
+  
 }
 
 function readText(name)
@@ -630,5 +635,6 @@ function parseBooleanField(string)
 }
 
 document.addEventListener('selectionchange', textSelection);
-document.getElementById('saveBtn').addEventListener("click", saveData);
-document.getElementById("add-info").addEventListener("click", addAnnotationClick);
+document.getElementById("save-info").addEventListener("click", saveAnnotationClick);
+document.getElementById("delete-info").addEventListener("click", deleteAnnotationClick);
+document.getElementById('exportBtn').addEventListener("click", exportData);
