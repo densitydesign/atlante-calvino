@@ -9,8 +9,14 @@ let currentSelectionEndRelative;
 let max_span_id = 0;
 let annotation_fields_map = {};
 let annotations;
+let atLeastOneAnnotationAdded;
 
 $('.loaded-a-structure').hide();
+
+String.prototype.replaceAll = function(search, replacement) {
+    var target = this;
+    return target.replace(new RegExp(search, 'g'), replacement);
+};
 
 function openTextFile(event)
 {
@@ -20,11 +26,15 @@ function openTextFile(event)
     function()
     {
       text = reader.result;
+//      text = text
+//        .replace("\n\r", "\n")
+//        .replace("\r", "\n");
 
       source_title = input.files[0].name;
 
       max_span_id = 0;
       document.getElementById('output-box').innerHTML = "<span id='output-span-" + max_span_id + "' data-pos=0>" + text + "</span>";
+      atLeastOneAnnotationAdded = false;
 
       if (text) {
         $('#saveBtn').show();
@@ -143,9 +153,23 @@ function openExportedFile(event)
   reader.onload =
     function()
     {
-      let fileText = reader.result;
+      let fileText = reader.result.replaceAll(/\r\n|\r/, "\n");
 
-      let fileLines = fileText.split(/\r?\n/);
+      let processedFileText = "";
+      let insideQuotes = false;
+
+      for(let i = 0; i < fileText.length; ++i)
+      {
+        let c = fileText[i];
+
+        if(c == "\"") insideQuotes = !insideQuotes;
+        else 
+          if(insideQuotes && c == '\n') processedFileText += '§';
+          else processedFileText += c;
+      }
+
+//      let fileLines = fileText.split(/\r?\n|\r/);
+      let fileLines = processedFileText.split("\n");
 
       let dataLines = fileLines
         .slice(1, fileLines.length)
@@ -154,6 +178,7 @@ function openExportedFile(event)
       annotations = dataLines.map(
         function(line)
         {
+          line = line.replaceAll("§", "\n");
           let valueMap = readValueMapFromTextLine(line);
 
           let a = new Annotation(valueMap);
@@ -256,10 +281,20 @@ function textSelection()
   {
     parentElement = focusNode.parentElement;
 
-    currentSelection = document.getSelection().toString();
+//    if(atLeastOneAnnotationAdded)
+//    {
+//       currentSelection = document.getSelection().toString();
+//    }
+//    else
+//    {
+      currentSelection = document.getSelection().getRangeAt(0).toString();
+//    }
+//console.log("currentSelection : " + currentSelection);
+//let x = document.getSelection().getRangeAt(0).toString();
+//console.log("x : " + x);
     if (currentSelection == "") return;
 
-    d3.select('#occorrenza').html(currentSelection);
+    d3.select('#occorrenza').html(spacesToHtmlSpaces(currentSelection));
 
     currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;
     let currentSelectionStartAbsolute = currentSelectionStartRelative + (+parentElement.dataset.pos);
@@ -288,7 +323,12 @@ function saveData()
 
     for(var key in annotation_fields_map)
     {
-      s += annotation[key] + "\t";
+      let annotationValue = annotation[key];
+
+//      if(key === "occorrenza") annotationValue = annotationValue.replace("\n", "§");
+      if(key === "occorrenza") annotationValue = "\"" + annotationValue + "\"";
+
+      s += annotationValue + "\t";
     }
 
     s += "\n";
@@ -303,12 +343,21 @@ function saveData()
 
 function spacesToHtmlSpaces(s)
 {
-    return s.replace(" ", "&nbsp;");
+  let x = s.replaceAll(" ", "&nbsp;");
+  let x2 = x.replaceAll(/\n\r?|\r/g, "<br />");
+
+//  return s
+//    .replace(" ", "&nbsp;")
+//    .replace(/\n\r?/g, "<br />");
+
+  return x2;
 }
 
 function htmlSpacesToSpaces(s)
 {
-    return s.replace("&nbsp;", " ");
+    return s
+      .replaceAll("&nbsp;", " ")
+      .replaceAll(/<br\s?\/?>/, "\n");
 }
 
 function getNextSpanId()
@@ -328,8 +377,9 @@ function highlightAnnotationText(containingElement, annotation)
   let annotation_relative_startPos = annotation.starts_at - containingElement_pos;
 
   let textBeforeSelection = originalText.substring(0, annotation_relative_startPos);
-  let s2 = spacesToHtmlSpaces(textBeforeSelection).replace(/\n\r?/g, "<br />");
-  containingElement.innerHTML = s2;
+  let s2 = spacesToHtmlSpaces(textBeforeSelection);
+//  containingElement.innerHTML = s2;
+  containingElement.innerHTML = textBeforeSelection;
 
   let span = document.createElement('span');
   span.setAttribute("id", "output-span-" + getNextSpanId());
@@ -337,7 +387,9 @@ function highlightAnnotationText(containingElement, annotation)
   span.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length);
   span.setAttribute("class", "highlight");
 
-  span.innerHTML = spacesToHtmlSpaces(annotation.occorrenza);
+//  span.innerHTML = spacesToHtmlSpaces(annotation.occorrenza);
+  span.innerHTML = annotation.occorrenza;
+
   containingElement.parentNode.insertBefore(span, containingElement.nextSibling);
 
   let spanAfterSelection = document.createElement('span');
@@ -346,7 +398,9 @@ function highlightAnnotationText(containingElement, annotation)
 
   let annotation_relative_endPos = annotation_relative_startPos + Math.max(annotation.occorrenza.length - 1, 0);
 
-  spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(annotation_relative_endPos+1, originalText.length));
+//  spanAfterSelection.innerHTML = spacesToHtmlSpaces(originalText.substring(annotation_relative_endPos+1, originalText.length));
+  spanAfterSelection.innerHTML = originalText.substring(annotation_relative_endPos+1, originalText.length);
+
   containingElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
 }
 
@@ -407,7 +461,12 @@ function readValueMapFromTextLine(line)
   for(let i = 0; i < fieldKeys.length; ++i)
   {
     let key = fieldKeys[i];
-    valueMap[key] = annotation_fields_map[key].parseTextValue(fieldValues[i]);
+    let value = annotation_fields_map[key].parseTextValue(fieldValues[i]);
+
+//    if(key === "occorrenza") value = value.replace("§", "\n");
+//    if(key === "occorrenza") value = value.substring(1, value.length - 1);
+    
+    valueMap[key] = value;
   }
 
   return valueMap;
@@ -425,10 +484,13 @@ function addAnnotationClick()
 {
   let annotationValueMap = readValueMapFromPageFields();
   let annotation = new Annotation(annotationValueMap);
-
+let x = document.getSelection().getRangeAt(0).toString();
+let x2 = spacesToHtmlSpaces(x);
   highlightAnnotationText(parentElement, annotation);
 
   annotations.push(annotation);
+
+  atLeastOneAnnotationAdded = true;
 
   $('#annotations-count').text(annotations.length);
 
@@ -437,7 +499,12 @@ function addAnnotationClick()
 
 function readText(name)
 {
-  return d3.select("#" + name).text();
+//  let s = d3.select("#" + name).text();
+
+  let s = d3.select("#" + name).nodes()[0].innerHTML;
+  let s2 = htmlSpacesToSpaces(s);
+
+  return s2;
 }
 
 function clearText(name)
