@@ -276,6 +276,24 @@ function createControl(name, type, values)
   }
 }
 
+function findAnnotation(starts_at, ends_at)
+{
+    let foundEntity = annotations.find(function(annotation) {
+      return (
+        annotation.starts_at === starts_at &&
+        annotation.ends_at === ends_at);
+    });
+
+    return foundEntity;
+}
+
+function selectionIsSaved(starts_at, ends_at)
+{
+  let foundEntity = findAnnotation(starts_at, ends_at);
+  
+  return foundEntity != undefined;
+}
+
 function textSelection()
 {
 //  console.log(document.getSelection().getRangeAt(0));
@@ -309,16 +327,11 @@ function textSelection()
     currentSelectionEndRelative = document.getSelection().getRangeAt(0).endOffset;
     let currentSelectionEndAbsolute = currentSelectionEndRelative + (+parentElement.dataset.pos);
     
+    let foundEntity = findAnnotation(currentSelectionStartAbsolute, currentSelectionEndAbsolute);
 
-    var found = annotations.find(function(annotation) {
-      return (
-        annotation.starts_at === currentSelectionStartAbsolute &&
-        annotation.ends_at === currentSelectionEndAbsolute);
-    });
-
-    if(found != undefined)
+    if(foundEntity != undefined)
     {
-      writeValueMapOnPageFields(found);
+      writeValueMapOnPageFields(foundEntity);
     }
     else 
     {
@@ -459,6 +472,14 @@ function Annotation(valueMap)
   return annotation;
 }
 
+function assignToAnnotation(valueMap, annotation)
+{
+  for(var key in valueMap)
+  {
+    annotation[key] = valueMap[key];
+  }
+}
+
 function readValueMapFromPageFields()
 {
   let valueMap = {};
@@ -517,23 +538,32 @@ function clearAnnotationFields()
 function saveAnnotationClick()
 {
   let annotationValueMap = readValueMapFromPageFields();
-  let annotation = new Annotation(annotationValueMap);
-let x = document.getSelection().getRangeAt(0).toString();
-let x2 = spacesToHtmlSpaces(x);
-  highlightAnnotationText(parentElement, annotation);
 
-  annotations.push(annotation);
+  if(selectionIsSaved(annotationValueMap.starts_at, annotationValueMap.ends_at))
+  {
+    let annotation = findAnnotation(annotationValueMap.starts_at, annotationValueMap.ends_at);
 
-  atLeastOneAnnotationAdded = true;
+    assignToAnnotation(annotationValueMap, annotation);
+  }
+  else
+  {
+    let annotation = new Annotation(annotationValueMap);  
 
-  $('#annotations-count').text(annotations.length);
+    highlightAnnotationText(parentElement, annotation);
 
-  clearAnnotationFields();
+    annotations.push(annotation);
+
+    atLeastOneAnnotationAdded = true;
+
+    $('#annotations-count').text(annotations.length);
+
+    clearAnnotationFields();
+  }
 }
 
 function deleteAnnotationClick()
 {
-  
+
 }
 
 function readText(name)
