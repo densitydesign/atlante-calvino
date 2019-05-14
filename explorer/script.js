@@ -10,6 +10,7 @@ let max_span_id = 0;
 let annotation_fields_map = {};
 let annotations;
 let atLeastOneAnnotationAdded;
+const highlightedElementPrefix = "output-span-";
 
 $('.loaded-a-structure').hide();
 
@@ -33,9 +34,16 @@ function openTextFile(event)
       source_title = input.files[0].name;
 
       max_span_id = 0;
-      document.getElementById('output-box').innerHTML = "<span id='output-span-" + max_span_id + "' data-pos=0>" + text + "</span>";
+      document.getElementById('output-box').innerHTML = "<span id='" + highlightedElementPrefix + max_span_id + "' data-pos=0>" + text + "</span>";
       atLeastOneAnnotationAdded = false;
 
+/*
+      document.getElementById('output-box').addEventListener( 'dblclick', function(event) {
+          event.preventDefault();  
+          event.stopPropagation(); 
+        },  true //capturing phase!!
+      );
+*/
       if (text) {
         $('#saveBtn').show();
         $('#load-a-text').hide();
@@ -302,7 +310,7 @@ function textSelection()
 
   if(focusNode == null) return;
 
-  if(document.getSelection().focusNode.parentElement.id.includes('output-span'))
+  if(document.getSelection().focusNode.parentElement.id.includes(highlightedElementPrefix))
   {
     parentElement = focusNode.parentElement;
 
@@ -321,12 +329,45 @@ function textSelection()
 
     
 
-    currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;
-    let currentSelectionStartAbsolute = currentSelectionStartRelative + (+parentElement.dataset.pos);
-    
+    currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;    
     currentSelectionEndRelative = document.getSelection().getRangeAt(0).endOffset;
-    let currentSelectionEndAbsolute = currentSelectionEndRelative + (+parentElement.dataset.pos);
+
+
+
+//    let currentSelectionStartAbsolute = currentSelectionEndRelative == 0 ? +currentSelectionStartRelative : currentSelectionStartRelative + (+parentElement.dataset.pos);
+
+    let currentSelectionEndAbsolute;
+
+console.log("------------------------------------");
+
+    currentSelectionEndAbsolute = currentSelectionEndRelative + (+parentElement.dataset.pos);
+
+    let currentSelectionStartAbsolute;
+
+    if(currentSelectionEndRelative == 0)
+    {
+      const code_s =  parentElement.id.substring(highlightedElementPrefix.length, parentElement.id.length);
+console.log("code_s : " + code_s);
+      const code = parseInt(code_s, 10);
+
+      const decrementedCode = code - 1;
+
+      const previousParentElementId = highlightedElementPrefix + decrementedCode;
+console.log("previousParentElementId : " + previousParentElementId);
+      currentSelectionStartAbsolute = currentSelectionEndAbsolute - document.getElementById(previousParentElementId).innerHTML.length;
+      //document.getElementById(previousParentElementId).innerHTML.length + (+parentElement.dataset.pos);
+    }
+    else
+    {
+      currentSelectionStartAbsolute = currentSelectionStartRelative + (+parentElement.dataset.pos);
+    }
     
+
+console.log("parentElement.id : " + parentElement.id);
+console.log("currentSelectionStartRelative : " + currentSelectionStartRelative);
+console.log("currentSelectionEndRelative : " + currentSelectionEndRelative);
+console.log("currentSelectionStartAbsolute : " + currentSelectionStartAbsolute);
+console.log("currentSelectionEndAbsolute : " + currentSelectionEndAbsolute);
     let foundEntity = findAnnotation(currentSelectionStartAbsolute, currentSelectionEndAbsolute);
 
     if(foundEntity != undefined)
@@ -421,7 +462,7 @@ function highlightAnnotationText(containingElement, annotation)
   containingElement.innerHTML = textBeforeSelection;
 
   let span = document.createElement('span');
-  span.setAttribute("id", "output-span-" + getNextSpanId());
+  span.setAttribute("id", highlightedElementPrefix + getNextSpanId());
 
   span.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length);
   span.setAttribute("class", "highlight");
@@ -432,7 +473,7 @@ function highlightAnnotationText(containingElement, annotation)
   containingElement.parentNode.insertBefore(span, containingElement.nextSibling);
 
   let spanAfterSelection = document.createElement('span');
-  spanAfterSelection.setAttribute("id", "output-span-" + getNextSpanId());
+  spanAfterSelection.setAttribute("id", highlightedElementPrefix + getNextSpanId());
   spanAfterSelection.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length + annotation.occorrenza.length);
 
   let annotation_relative_endPos = annotation_relative_startPos + Math.max(annotation.occorrenza.length - 1, 0);
@@ -451,7 +492,7 @@ function unhighlightAnnotationText(containingElement)
 
   if(focusNode == null) return;
 
-  if(document.getSelection().focusNode.parentElement.id.includes('output-span'))
+  if(document.getSelection().focusNode.parentElement.id.includes(highlightedElementPrefix))
   {
     focusNode.parentElement.previousSibling.innerHTML += focusNode.parentElement.innerHTML;
     focusNode.parentElement.parentElement.removeChild(focusNode.parentElement);    
