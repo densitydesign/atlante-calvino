@@ -302,7 +302,7 @@ function textSelection()
 
   if(focusNode == null) return;
 
-  if (document.getSelection().focusNode.parentElement.id.includes('output-span'))
+  if(document.getSelection().focusNode.parentElement.id.includes('output-span'))
   {
     parentElement = focusNode.parentElement;
 
@@ -443,6 +443,21 @@ function highlightAnnotationText(containingElement, annotation)
   containingElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
 }
 
+function unhighlightAnnotationText(containingElement)
+{
+  if(containingElement == null) return;
+
+  let focusNode = document.getSelection().focusNode;
+
+  if(focusNode == null) return;
+
+  if(document.getSelection().focusNode.parentElement.id.includes('output-span'))
+  {
+    focusNode.parentElement.previousSibling.innerHTML += focusNode.parentElement.innerHTML;
+    focusNode.parentElement.parentElement.removeChild(focusNode.parentElement);    
+  }
+}
+
 function getContainingElementByInternalPos(pos)
 {
   let outputBox = document.getElementById("output-box");
@@ -563,7 +578,18 @@ function saveAnnotationClick()
 
 function deleteAnnotationClick()
 {
+  let annotationValueMap = readValueMapFromPageFields();
 
+  if(selectionIsSaved(annotationValueMap.starts_at, annotationValueMap.ends_at))
+  {
+    let annotation = findAnnotation(annotationValueMap.starts_at, annotationValueMap.ends_at);
+
+    unhighlightAnnotationText(parentElement);
+
+    let index = annotations.indexOf(annotation);
+
+    annotations.slice(index, 1);
+  }
 }
 
 function readText(name)
