@@ -588,7 +588,9 @@ function deleteAnnotationClick()
 
     let index = annotations.indexOf(annotation);
 
-    annotations.slice(index, 1);
+    annotations.splice(index, 1);
+
+    clearAnnotationFields();
   }
 }
 
