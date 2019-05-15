@@ -295,10 +295,28 @@ function findAnnotation(starts_at, ends_at)
     return foundEntity;
 }
 
+function findOverlappingAnnotation(starts_at, ends_at)
+{
+  let foundEntity = annotations.find(function(annotation) {
+    return !(
+      annotation.ends_at <= starts_at ||
+      ends_at <= annotation.starts_at);
+  });
+
+  return foundEntity;
+}
+
 function selectionIsSaved(starts_at, ends_at)
 {
   let foundEntity = findAnnotation(starts_at, ends_at);
   
+  return foundEntity != undefined;
+}
+
+function selectionOverlapsWithOthers(starts_at, ends_at)
+{
+  let foundEntity = findOverlappingAnnotation(starts_at, ends_at);
+
   return foundEntity != undefined;
 }
 
@@ -569,7 +587,11 @@ function saveAnnotationClick()
 {
   let annotationValueMap = readValueMapFromPageFields();
 
-  if(selectionIsSaved(annotationValueMap.starts_at, annotationValueMap.ends_at))
+  if(selectionOverlapsWithOthers(annotationValueMap.starts_at, annotationValueMap.ends_at))
+  {
+    alert("Non è possibile salvare un'annotazione che si sovrappone ad altre già salvate. Si prega di selezionare solo testo non ancora evidenziato.");
+  }
+  else if(selectionIsSaved(annotationValueMap.starts_at, annotationValueMap.ends_at))
   {
     let annotation = findAnnotation(annotationValueMap.starts_at, annotationValueMap.ends_at);
 
