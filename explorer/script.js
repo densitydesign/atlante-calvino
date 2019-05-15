@@ -587,6 +587,12 @@ function getContainingElementByInternalPos(pos)
   return null;
 }
 
+function clearSelection()
+{
+ if (window.getSelection) {window.getSelection().removeAllRanges();}
+ else if (document.selection) {document.selection.empty();}
+}
+
 function Annotation(valueMap)
 {
   let annotation = {};
@@ -732,6 +738,8 @@ function deleteAnnotationClick()
     annotations.splice(index, 1);
 
     clearAnnotationFields();
+
+    clearSelection();
   }
 }
 
