@@ -357,6 +357,22 @@ console.log("previousParentElementId : " + previousParentElementId);
       currentSelectionStartAbsolute = currentSelectionEndAbsolute - document.getElementById(previousParentElementId).innerHTML.length;
       //document.getElementById(previousParentElementId).innerHTML.length + (+parentElement.dataset.pos);
     }
+    else if(currentSelectionEndRelative < currentSelectionStartRelative)
+    {
+      const code_s =  parentElement.id.substring(highlightedElementPrefix.length, parentElement.id.length);
+console.log("code_s : " + code_s);
+      const code = parseInt(code_s, 10);
+
+      const decrementedCode = code - 1;
+
+      const previousParentElementId = highlightedElementPrefix + decrementedCode;
+
+console.log("document.getElementById(previousParentElementId).dataset.pos : " + document.getElementById(previousParentElementId).dataset.pos);
+
+//      currentSelectionStartAbsolute = currentSelectionStartRelative + (+document.getElementById(previousParentElementId).dataset.pos);
+      //currentSelectionEndAbsolute - currentSelectionEndRelative;
+      currentSelectionStartAbsolute = currentSelectionEndAbsolute - currentSelection.length;
+    }
     else
     {
       currentSelectionStartAbsolute = currentSelectionStartRelative + (+parentElement.dataset.pos);
