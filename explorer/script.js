@@ -698,6 +698,15 @@ function deleteAnnotationClick()
 
   if(selectionIsSaved(annotationValueMap.starts_at, annotationValueMap.ends_at))
   {
+    let okToProceed = confirm(
+      "Si conferma di voler cancellare l'annotazione tra le posizioni " + 
+      annotationValueMap.starts_at + ", " +
+      annotationValueMap.ends_at + " - " + 
+      annotationValueMap.occorrenza.slice(0, 10) + (annotationValueMap.occorrenza.length > 10 ? "..." : "") +
+      " ?");
+
+    if(!okToProceed) return;
+
     let annotation = findAnnotation(annotationValueMap.starts_at, annotationValueMap.ends_at);
 
     unhighlightAnnotationText(parentElement);
