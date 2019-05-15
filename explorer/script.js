@@ -476,6 +476,45 @@ function highlightAnnotationText(containingElement, annotation)
   containingElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
 }
 
+function elementIsHighlighted(element)
+{
+  if(element == null) return false;
+
+  return element.getAttribute("class") == "highlight";
+}
+
+function previousElementIsHighlighted(element)
+{
+  return elementIsHighlighted(element.previousSibling);
+}
+
+function nextElementIsHighlighted(element)
+{
+  return elementIsHighlighted(element.nextSibling);
+}
+
+function merge_element_a_into_b(a, b)
+{
+  b.innerHTML = a.innerHTML + b.innerHTML;
+
+  b.parentElement.removeChild(a);
+}
+
+function merge_into_a_element_b(a, b)
+{
+  a.innerHTML = a.innerHTML + b.innerHTML;
+
+  a.parentElement.removeChild(b);
+}
+
+function merge_into_a_elements_b_c(a, b, c)
+{
+  a.innerHTML = a.innerHTML + b.innerHTML + c.innerHTML;
+
+  a.parentElement.removeChild(b);
+  a.parentElement.removeChild(c);
+}
+
 function unhighlightAnnotationText(containingElement)
 {
   if(containingElement == null) return;
@@ -484,10 +523,50 @@ function unhighlightAnnotationText(containingElement)
 
   if(focusNode == null) return;
 
-  if(document.getSelection().focusNode.parentElement.id.includes(highlightedElementPrefix))
+  if(focusNode.parentElement.id.includes(highlightedElementPrefix))
   {
-    focusNode.parentElement.previousSibling.innerHTML += focusNode.parentElement.innerHTML;
-    focusNode.parentElement.parentElement.removeChild(focusNode.parentElement);    
+//    focusNode.parentElement.previousSibling.innerHTML += focusNode.parentElement.innerHTML;
+//    focusNode.parentElement.parentElement.removeChild(focusNode.parentElement);
+
+      currentSelection = document.getSelection().getRangeAt(0).toString();
+//    }
+//console.log("currentSelection : " + currentSelection);
+//let x = document.getSelection().getRangeAt(0).toString();
+//console.log("x : " + x);
+    if (currentSelection == "") return;
+    
+
+    let currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;    
+    let currentSelectionEndRelative = document.getSelection().getRangeAt(0).endOffset;
+
+    let currentSelectionEndAbsolute = currentSelectionEndRelative + (+parentElement.dataset.pos);
+    let currentSelectionStartAbsolute = currentSelectionEndAbsolute - currentSelection.length;
+
+console.log("currentSelectionStartAbsolute : " + currentSelectionStartAbsolute);
+console.log("currentSelectionEndAbsolute : " + currentSelectionEndAbsolute);
+
+let element = getContainingElementByInternalPos(currentSelectionStartAbsolute);
+console.log("element.id : " + element.id);
+
+    const prevElemHighlighted = previousElementIsHighlighted(element);
+    const nextElemHighlighted = nextElementIsHighlighted(element);
+
+    if(prevElemHighlighted && !nextElemHighlighted)
+    {
+      merge_element_a_into_b(element, element.nextSibling);
+    }
+    else if(!prevElemHighlighted && nextElemHighlighted)
+    {
+      merge_into_a_element_b(element.previousSibling, element);
+    }
+    else if(!prevElemHighlighted && !nextElemHighlighted)
+    {
+      merge_into_a_elements_b_c(element.previousSibling, element, element.nextSibling);
+    }
+    else
+    {
+      element.setAttribute("class", "");
+    }
   }
 }
 
