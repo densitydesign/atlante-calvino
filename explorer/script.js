@@ -666,15 +666,31 @@ function saveAnnotationClick()
 {
   let annotationValueMap = readValueMapFromPageFields();
 
-  if(selectionOverlapsWithOthers(annotationValueMap.starts_at, annotationValueMap.ends_at))
+  if(selectionIsSaved(annotationValueMap.starts_at, annotationValueMap.ends_at))
   {
-    alert("Non è possibile salvare un'annotazione che si sovrappone ad altre già salvate. Si prega di selezionare solo testo non ancora evidenziato.");
-  }
-  else if(selectionIsSaved(annotationValueMap.starts_at, annotationValueMap.ends_at))
-  {
+    let okToProceed = confirm(
+      "Si conferma di voler salvare le modifiche all'annotazione tra le posizioni " + 
+      annotationValueMap.starts_at + ", " +
+      annotationValueMap.ends_at + " - " + 
+      annotationValueMap.occorrenza.slice(0, 10) + (annotationValueMap.occorrenza.length > 10 ? "..." : "") +
+      " ?");
+
+    if(!okToProceed)
+    { 
+      alert("Le modifiche NON sono state salvate. Selezionando altro testo, verranno perse. E' ancora possibile salvarle non selezionando altro testo e ripremendo Salva annotazione");
+
+      return;
+    }
+
     let annotation = findAnnotation(annotationValueMap.starts_at, annotationValueMap.ends_at);
 
     assignToAnnotation(annotationValueMap, annotation);
+
+    alert("Modifiche salvate.");
+  }
+  else if(selectionOverlapsWithOthers(annotationValueMap.starts_at, annotationValueMap.ends_at))
+  {
+    alert("Non è possibile salvare un'annotazione che si sovrappone ad altre già salvate. Si prega di selezionare solo testo non ancora evidenziato.");
   }
   else
   {
