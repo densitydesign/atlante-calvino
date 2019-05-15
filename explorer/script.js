@@ -10,6 +10,7 @@ let max_span_id = 0;
 let annotation_fields_map = {};
 let annotations;
 let atLeastOneAnnotationAdded;
+const highlightedElementPrefix = "output-span-";
 
 $('.loaded-a-structure').hide();
 
@@ -33,9 +34,16 @@ function openTextFile(event)
       source_title = input.files[0].name;
 
       max_span_id = 0;
-      document.getElementById('output-box').innerHTML = "<span id='output-span-" + max_span_id + "' data-pos=0>" + text + "</span>";
+      document.getElementById('output-box').innerHTML = "<span id='" + highlightedElementPrefix + max_span_id + "' data-pos=0>" + text + "</span>";
       atLeastOneAnnotationAdded = false;
 
+/*
+      document.getElementById('output-box').addEventListener( 'dblclick', function(event) {
+          event.preventDefault();  
+          event.stopPropagation(); 
+        },  true //capturing phase!!
+      );
+*/
       if (text) {
         $('#saveBtn').show();
         $('#load-a-text').hide();
@@ -76,6 +84,7 @@ function openStructureFile(event)
             let readControl;
             let parseTextValue;
             let clearControl;
+            let writeOnControl;
 
             switch(type)
             {
@@ -91,11 +100,13 @@ function openStructureFile(event)
                 {
                    readControl = readTextInput;
                    clearControl = clearTextInput;
+                   writeOnControl = writeOnTextInput;
                 }
                 else
                 {
                   readControl = readText;
                   clearControl = clearText;
+                  writeOnControl = writeOnText;
                 }
 
                 parseTextValue = parseStringField;
@@ -107,6 +118,7 @@ function openStructureFile(event)
 
                 parseTextValue = parseNumberField;
                 clearControl = clearNumber;
+                writeOnControl = writeOnNumber;
 
                 break;
               case "select" :
@@ -115,6 +127,7 @@ function openStructureFile(event)
                 parseTextValue = parseStringField;
 
                 clearControl = clearSelect;
+                writeOnControl = writeOnSelect;
 
                 break;
               case "checkbox" :
@@ -123,6 +136,7 @@ function openStructureFile(event)
                 parseTextValue = parseBooleanField;
 
                 clearControl = clearCheckbox;
+                writeOnControl = writeOnCheckbox;
 
                 break;
             }
@@ -133,7 +147,8 @@ function openStructureFile(event)
               readControl: readControl,
               parseTextValue: parseTextValue,
               index: index++,
-              clearControl: clearControl
+              clearControl: clearControl,
+              writeOnControl: writeOnControl
             };
 
             createControl(name, type, values);
@@ -269,6 +284,42 @@ function createControl(name, type, values)
   }
 }
 
+function findAnnotation(starts_at, ends_at)
+{
+    let foundEntity = annotations.find(function(annotation) {
+      return (
+        annotation.starts_at === starts_at &&
+        annotation.ends_at === ends_at);
+    });
+
+    return foundEntity;
+}
+
+function findOverlappingAnnotation(starts_at, ends_at)
+{
+  let foundEntity = annotations.find(function(annotation) {
+    return !(
+      annotation.ends_at <= starts_at ||
+      ends_at <= annotation.starts_at);
+  });
+
+  return foundEntity;
+}
+
+function selectionIsSaved(starts_at, ends_at)
+{
+  let foundEntity = findAnnotation(starts_at, ends_at);
+  
+  return foundEntity != undefined;
+}
+
+function selectionOverlapsWithOthers(starts_at, ends_at)
+{
+  let foundEntity = findOverlappingAnnotation(starts_at, ends_at);
+
+  return foundEntity != undefined;
+}
+
 function textSelection()
 {
 //  console.log(document.getSelection().getRangeAt(0));
@@ -277,7 +328,7 @@ function textSelection()
 
   if(focusNode == null) return;
 
-  if (document.getSelection().focusNode.parentElement.id.includes('output-span'))
+  if(document.getSelection().focusNode.parentElement.id.includes(highlightedElementPrefix))
   {
     parentElement = focusNode.parentElement;
 
@@ -293,20 +344,39 @@ function textSelection()
 //let x = document.getSelection().getRangeAt(0).toString();
 //console.log("x : " + x);
     if (currentSelection == "") return;
+    
 
-    d3.select('#occorrenza').html(spacesToHtmlSpaces(currentSelection));
-
-    currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;
-    let currentSelectionStartAbsolute = currentSelectionStartRelative + (+parentElement.dataset.pos);
-    d3.select('#starts_at').html(currentSelectionStartAbsolute);
-
+    currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;    
     currentSelectionEndRelative = document.getSelection().getRangeAt(0).endOffset;
+
+console.log("------------------------------------");
+
     let currentSelectionEndAbsolute = currentSelectionEndRelative + (+parentElement.dataset.pos);
-    d3.select('#ends_at').html(currentSelectionEndAbsolute);
+
+    let currentSelectionStartAbsolute = currentSelectionEndAbsolute - currentSelection.length;
+
+console.log("parentElement.id : " + parentElement.id);
+console.log("currentSelectionStartRelative : " + currentSelectionStartRelative);
+console.log("currentSelectionEndRelative : " + currentSelectionEndRelative);
+console.log("currentSelectionStartAbsolute : " + currentSelectionStartAbsolute);
+console.log("currentSelectionEndAbsolute : " + currentSelectionEndAbsolute);
+    let foundEntity = findAnnotation(currentSelectionStartAbsolute, currentSelectionEndAbsolute);
+
+    if(foundEntity != undefined)
+    {
+      writeValueMapOnPageFields(foundEntity);
+    }
+    else 
+    {
+      clearAnnotationFields();
+      d3.select('#occorrenza').html(spacesToHtmlSpaces(currentSelection));
+      d3.select('#starts_at').html(currentSelectionStartAbsolute);
+      d3.select('#ends_at').html(currentSelectionEndAbsolute);
+    }
   }
 }
 
-function saveData()
+function exportData()
 {
   let s = "";
 
@@ -369,6 +439,8 @@ function getNextSpanId()
 
 function highlightAnnotationText(containingElement, annotation)
 {
+  if(containingElement == null) return;
+
   let innerHtml = containingElement.innerHTML;
 
   const originalText = htmlSpacesToSpaces(containingElement.innerHTML);
@@ -382,7 +454,7 @@ function highlightAnnotationText(containingElement, annotation)
   containingElement.innerHTML = textBeforeSelection;
 
   let span = document.createElement('span');
-  span.setAttribute("id", "output-span-" + getNextSpanId());
+  span.setAttribute("id", highlightedElementPrefix + getNextSpanId());
 
   span.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length);
   span.setAttribute("class", "highlight");
@@ -393,7 +465,7 @@ function highlightAnnotationText(containingElement, annotation)
   containingElement.parentNode.insertBefore(span, containingElement.nextSibling);
 
   let spanAfterSelection = document.createElement('span');
-  spanAfterSelection.setAttribute("id", "output-span-" + getNextSpanId());
+  spanAfterSelection.setAttribute("id", highlightedElementPrefix + getNextSpanId());
   spanAfterSelection.setAttribute("data-pos", containingElement_pos + textBeforeSelection.length + annotation.occorrenza.length);
 
   let annotation_relative_endPos = annotation_relative_startPos + Math.max(annotation.occorrenza.length - 1, 0);
@@ -402,6 +474,100 @@ function highlightAnnotationText(containingElement, annotation)
   spanAfterSelection.innerHTML = originalText.substring(annotation_relative_endPos+1, originalText.length);
 
   containingElement.parentNode.insertBefore(spanAfterSelection, span.nextSibling);
+}
+
+function elementIsHighlighted(element)
+{
+  if(element == null) return false;
+
+  return element.getAttribute("class") == "highlight";
+}
+
+function previousElementIsHighlighted(element)
+{
+  return elementIsHighlighted(element.previousSibling);
+}
+
+function nextElementIsHighlighted(element)
+{
+  return elementIsHighlighted(element.nextSibling);
+}
+
+function merge_element_a_into_b(a, b)
+{
+  b.innerHTML = a.innerHTML + b.innerHTML;
+
+  b.parentElement.removeChild(a);
+}
+
+function merge_into_a_element_b(a, b)
+{
+  a.innerHTML = a.innerHTML + b.innerHTML;
+
+  a.parentElement.removeChild(b);
+}
+
+function merge_into_a_elements_b_c(a, b, c)
+{
+  a.innerHTML = a.innerHTML + b.innerHTML + c.innerHTML;
+
+  a.parentElement.removeChild(b);
+  a.parentElement.removeChild(c);
+}
+
+function unhighlightAnnotationText(containingElement)
+{
+  if(containingElement == null) return;
+
+  let focusNode = document.getSelection().focusNode;
+
+  if(focusNode == null) return;
+
+  if(focusNode.parentElement.id.includes(highlightedElementPrefix))
+  {
+//    focusNode.parentElement.previousSibling.innerHTML += focusNode.parentElement.innerHTML;
+//    focusNode.parentElement.parentElement.removeChild(focusNode.parentElement);
+
+      currentSelection = document.getSelection().getRangeAt(0).toString();
+//    }
+//console.log("currentSelection : " + currentSelection);
+//let x = document.getSelection().getRangeAt(0).toString();
+//console.log("x : " + x);
+    if (currentSelection == "") return;
+    
+
+    let currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;    
+    let currentSelectionEndRelative = document.getSelection().getRangeAt(0).endOffset;
+
+    let currentSelectionEndAbsolute = currentSelectionEndRelative + (+parentElement.dataset.pos);
+    let currentSelectionStartAbsolute = currentSelectionEndAbsolute - currentSelection.length;
+
+console.log("currentSelectionStartAbsolute : " + currentSelectionStartAbsolute);
+console.log("currentSelectionEndAbsolute : " + currentSelectionEndAbsolute);
+
+let element = getContainingElementByInternalPos(currentSelectionStartAbsolute);
+console.log("element.id : " + element.id);
+
+    const prevElemHighlighted = previousElementIsHighlighted(element);
+    const nextElemHighlighted = nextElementIsHighlighted(element);
+
+    if(prevElemHighlighted && !nextElemHighlighted)
+    {
+      merge_element_a_into_b(element, element.nextSibling);
+    }
+    else if(!prevElemHighlighted && nextElemHighlighted)
+    {
+      merge_into_a_element_b(element.previousSibling, element);
+    }
+    else if(!prevElemHighlighted && !nextElemHighlighted)
+    {
+      merge_into_a_elements_b_c(element.previousSibling, element, element.nextSibling);
+    }
+    else
+    {
+      element.setAttribute("class", "");
+    }
+  }
 }
 
 function getContainingElementByInternalPos(pos)
@@ -421,6 +587,12 @@ function getContainingElementByInternalPos(pos)
   return null;
 }
 
+function clearSelection()
+{
+ if (window.getSelection) {window.getSelection().removeAllRanges();}
+ else if (document.selection) {document.selection.empty();}
+}
+
 function Annotation(valueMap)
 {
   let annotation = {};
@@ -431,6 +603,14 @@ function Annotation(valueMap)
   }
 
   return annotation;
+}
+
+function assignToAnnotation(valueMap, annotation)
+{
+  for(var key in valueMap)
+  {
+    annotation[key] = valueMap[key];
+  }
 }
 
 function readValueMapFromPageFields()
@@ -444,6 +624,14 @@ function readValueMapFromPageFields()
   }
 
   return valueMap;
+}
+
+function writeValueMapOnPageFields(valueMap)
+{
+  for(var key in annotation_fields_map)
+  {
+    annotation_fields_map[key].writeOnControl(key, valueMap[key]);
+  }
 }
 
 function readValueMapFromTextLine(line)
@@ -480,21 +668,79 @@ function clearAnnotationFields()
   }
 }
 
-function addAnnotationClick()
+function saveAnnotationClick()
 {
   let annotationValueMap = readValueMapFromPageFields();
-  let annotation = new Annotation(annotationValueMap);
-let x = document.getSelection().getRangeAt(0).toString();
-let x2 = spacesToHtmlSpaces(x);
-  highlightAnnotationText(parentElement, annotation);
 
-  annotations.push(annotation);
+  if(selectionIsSaved(annotationValueMap.starts_at, annotationValueMap.ends_at))
+  {
+    let okToProceed = confirm(
+      "Si conferma di voler salvare le modifiche all'annotazione tra le posizioni " + 
+      annotationValueMap.starts_at + ", " +
+      annotationValueMap.ends_at + " - " + 
+      annotationValueMap.occorrenza.slice(0, 10) + (annotationValueMap.occorrenza.length > 10 ? "..." : "") +
+      " ?");
 
-  atLeastOneAnnotationAdded = true;
+    if(!okToProceed)
+    { 
+      alert("Le modifiche NON sono state salvate. Selezionando altro testo, verranno perse. E' ancora possibile salvarle non selezionando altro testo e ripremendo Salva annotazione");
 
-  $('#annotations-count').text(annotations.length);
+      return;
+    }
 
-  clearAnnotationFields();
+    let annotation = findAnnotation(annotationValueMap.starts_at, annotationValueMap.ends_at);
+
+    assignToAnnotation(annotationValueMap, annotation);
+
+    alert("Modifiche salvate.");
+  }
+  else if(selectionOverlapsWithOthers(annotationValueMap.starts_at, annotationValueMap.ends_at))
+  {
+    alert("Non è possibile salvare un'annotazione che si sovrappone ad altre già salvate. Si prega di selezionare solo testo non ancora evidenziato.");
+  }
+  else
+  {
+    let annotation = new Annotation(annotationValueMap);  
+
+    highlightAnnotationText(parentElement, annotation);
+
+    annotations.push(annotation);
+
+    atLeastOneAnnotationAdded = true;
+
+    $('#annotations-count').text(annotations.length);
+
+    clearAnnotationFields();
+  }
+}
+
+function deleteAnnotationClick()
+{
+  let annotationValueMap = readValueMapFromPageFields();
+
+  if(selectionIsSaved(annotationValueMap.starts_at, annotationValueMap.ends_at))
+  {
+    let okToProceed = confirm(
+      "Si conferma di voler cancellare l'annotazione tra le posizioni " + 
+      annotationValueMap.starts_at + ", " +
+      annotationValueMap.ends_at + " - " + 
+      annotationValueMap.occorrenza.slice(0, 10) + (annotationValueMap.occorrenza.length > 10 ? "..." : "") +
+      " ?");
+
+    if(!okToProceed) return;
+
+    let annotation = findAnnotation(annotationValueMap.starts_at, annotationValueMap.ends_at);
+
+    unhighlightAnnotationText(parentElement);
+
+    let index = annotations.indexOf(annotation);
+
+    annotations.splice(index, 1);
+
+    clearAnnotationFields();
+
+    clearSelection();
+  }
 }
 
 function readText(name)
@@ -512,6 +758,11 @@ function clearText(name)
   d3.select("#" + name).text("");
 }
 
+function writeOnText(name, value)
+{
+  d3.select("#" + name).text(value);
+}
+
 function readTextInput(name)
 {
 //  let control = d3.select("#" + name);
@@ -525,6 +776,11 @@ function clearTextInput(name)
   d3.select("#" + name).property("value", "");
 }
 
+function writeOnTextInput(name, value)
+{
+  d3.select("#" + name).property("value", value);
+}
+
 function readNumber(name)
 {
   return +d3.select("#" + name).text();
@@ -533,6 +789,11 @@ function readNumber(name)
 function clearNumber(name)
 {
   d3.select("#" + name).text("");
+}
+
+function writeOnNumber(name, value)
+{
+  d3.select("#" + name).text(value);
 }
 
 function readSelect(name)
@@ -545,6 +806,11 @@ function clearSelect(name)
   d3.select("#" + name).property("value", "");
 }
 
+function writeOnSelect(name, value)
+{
+  d3.select("#" + name).property("value", value);
+}
+
 function readCheckbox(name)
 {
   return d3.select("#" + name).property("checked");
@@ -553,6 +819,11 @@ function readCheckbox(name)
 function clearCheckbox(name)
 {
   d3.select("#" + name).property("checked", false);
+}
+
+function writeOnCheckbox(name, value)
+{
+  d3.select("#" + name).property("checked", value);
 }
 
 function parseStringField(string)
@@ -571,5 +842,6 @@ function parseBooleanField(string)
 }
 
 document.addEventListener('selectionchange', textSelection);
-document.getElementById('saveBtn').addEventListener("click", saveData);
-document.getElementById("add-info").addEventListener("click", addAnnotationClick);
+document.getElementById("save-info").addEventListener("click", saveAnnotationClick);
+document.getElementById("delete-info").addEventListener("click", deleteAnnotationClick);
+document.getElementById('exportBtn').addEventListener("click", exportData);
