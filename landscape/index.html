@@ -61,12 +61,50 @@
       .style('background-color','#e4e4e4')
       .style('background-color','#EFEBE9')
 
+
+    d3
+      .csv("donuts_data.csv")
+      .then(
+        function(csv)
+        {
+          let x_csv2 = csv.reduce(function(map, obj) {
+              map[obj.id] = { 
+/*
+                generico_non_terrestre: obj.generico_non_terrestre,
+                generico_terrestre: obj.generico_terrestre,
+                inventato: obj.inventato,
+                no_ambientazione: obj.no_ambientazione,
+                nominato_non_terrestre: obj.nominato_non_terrestre,
+                nominato_terrestre: obj.nominato_terrestre
+*/
+
+                generico_non_terrestre: (+obj.generico_non_terrestre),
+                generico_terrestre:     (+obj.generico_non_terrestre) + (+obj.generico_terrestre),
+                inventato:              (+obj.generico_non_terrestre) + (+obj.generico_terrestre) + (+obj.inventato),
+                no_ambientazione:       (+obj.generico_non_terrestre) + (+obj.generico_terrestre) + (+obj.inventato) + (+obj.no_ambientazione),
+                nominato_non_terrestre: (+obj.generico_non_terrestre) + (+obj.generico_terrestre) + (+obj.inventato) + (+obj.no_ambientazione) + (+obj.nominato_non_terrestre),
+                nominato_terrestre:     (+obj.generico_non_terrestre) + (+obj.generico_terrestre) + (+obj.inventato) + (+obj.no_ambientazione) + (+obj.nominato_non_terrestre) + (+obj.nominato_terrestre),
+
+                nebbia_normalizzata:        (+obj.pct_nebbia_normalizzata),
+                cancellazione_normalizzata: (+obj.pct_cancellazione_normalizzata),
+
+                nebbia:                     (+obj.pct_nebbia / 100),
+                cancellazione:              (+obj.pct_nebbia / 100) + (+obj.pct_cancellazione / 100)
+
+              };
+              return map;
+          }, {});                  
+//        });
+
+let a = 5;
+
+
     d3
       .json("data.json")
       .then(
         function(json)
         {
-          console.log(json.nodes)
+//          console.log(json.nodes)
 
           let json_nodes = json.nodes
 //                let json_nodes = json.nodes.slice(0, 1)
@@ -190,7 +228,25 @@
                   let collection_here = d.attributes.collections[Math.floor(pos_2)]
                   let first_elem = (i == (d.steps.length-1))
 
-                  return {'r': s, 'collection': collection_here, 'first_publication': d.attributes.first_publication, 'id': d.id, 'first_elem': first_elem }
+                  let csv_item = x_csv2[d.id];
+
+                  return {
+                    'r': s, 
+                    'collection': collection_here, 
+                    'first_publication': d.attributes.first_publication, 
+                    'id': d.id, 
+                    'first_elem': first_elem,
+                    'generico_non_terrestre': csv_item == undefined ? 0 : csv_item.generico_non_terrestre,
+                    'generico_terrestre':  csv_item == undefined ? 0 : csv_item.generico_terrestre,
+                    'inventato':  csv_item == undefined ? 0 : csv_item.inventato,
+                    'no_ambientazione':  csv_item == undefined ? 0 : csv_item.no_ambientazione,
+                    'nominato_non_terrestre':  csv_item == undefined ? 0 : csv_item.nominato_non_terrestre,
+                    'nominato_terrestre':  csv_item == undefined ? 0 : csv_item.nominato_terrestre,
+                    'nebbia_normalizzata': csv_item == undefined ? 0 : csv_item.nebbia_normalizzata,
+                    'cancellazione_normalizzata': csv_item == undefined ? 0 : csv_item.cancellazione_normalizzata,
+                    'nebbia': csv_item == undefined ? 0 : csv_item.nebbia,
+                    'cancellazione': csv_item == undefined ? 0 : csv_item.cancellazione
+                  }
                 });
 
                 // sort array so to have little circles on top, big at bottom
@@ -200,13 +256,55 @@
               })
             .enter();
 
+          steps
+              .filter(function(d) { return d.first_elem; })
+              .append('circle')
+//              .attr('stroke','green')
+//              .attr('stroke-width',1.5)
+              .attr('fill','url(#radial-gradient)')
+              .attr('r',function(d){ return d.r * 1.5 })
+              .attr("class", "halo")              
+              .style('fill-opacity',0)
+              .style('stroke-opacity',0)
+              .attr('transform', function(d,i){
+                i = i*step_increment
+                return 'translate(0,'+i+')'
+              });                          
+
+          steps
+              .append('circle')
+              .attr('stroke','#444')
+              .attr('stroke-width',1.5)
+              .attr('fill',function(d){
+                return colour(d.first_publication);
+//                return col_collections(d.collection)
+              })
+              // .style('shape-rendering','crispedges')
+              .attr('r',function(d){ return d.r })
+              .attr('first_elem',function(d){ return d.first_elem })
+              .attr("class", "hill" ) 
+              .style('fill-opacity',0)
+              .style('stroke-opacity',0)
+              .transition()
+              .duration(1000)
+              .delay(function(d){return (d.first_publication - 1940)*100})
+              .attr('transform', function(d,i){
+                i = i*step_increment
+                return 'translate(0,'+i+')'
+              })              
+              .style('fill-opacity',1)
+              .style('stroke-opacity',1);
+
+
+
+
             let PI = Math.PI;
             let arcMin = 75; // inner radius of the first arc
             let arcWidth = 15;
             let arcPad = 1; // padding between arcs
-            let drawMode = 1; // 1 : hills; 3 : hills with halo; 3 : bicolor rings;
+            let drawMode = 1; // 1 : hills; 2 : hills with halo; 3 : places; 4 : dubitative phenomena;
 
-            let drawArc = d3
+            let drawPlacesArc1 = d3
               .arc()
               .innerRadius(function(d, i) {
                   return d.r - (i+1) * arcWidth + arcPad;
@@ -216,10 +314,10 @@
               })
               .startAngle(0 * 2 * PI)
               .endAngle(function(d, i) {
-                  return 0.6 * 2 * PI;
-              })
+                  return d.generico_non_terrestre * 2 * PI;
+              });
 
-            let drawArc2 = d3
+            let drawPlacesArc2 = d3
               .arc()
               .innerRadius(function(d, i) {
                   return d.r - (i+1) * arcWidth + arcPad;
@@ -228,17 +326,96 @@
                   return d.r - i * arcWidth;
               })
               .startAngle(function(d, i) {
-                  return 0.6 * 2 * PI;
+                  return d.generico_non_terrestre * 2 * PI;
+              })
+              .endAngle(function(d, i) {
+                  return d.generico_terrestre * 2 * PI;
+              });
+
+            let drawPlacesArc3 = d3
+              .arc()
+              .innerRadius(function(d, i) {
+                  return d.r - (i+1) * arcWidth + arcPad;
+              })
+              .outerRadius(function(d, i) {
+                  return d.r - i * arcWidth;
+              })
+              .startAngle(function(d, i) {
+                  return d.generico_terrestre * 2 * PI;
+              })
+              .endAngle(function(d, i) {
+                  return d.inventato * 2 * PI;
+              });          
+
+            let drawPlacesArc4 = d3
+              .arc()
+              .innerRadius(function(d, i) {
+                  return d.r - (i+1) * arcWidth + arcPad;
+              })
+              .outerRadius(function(d, i) {
+                  return d.r - i * arcWidth;
+              })
+              .startAngle(function(d, i) {
+                  return d.inventato * 2 * PI;
+              })
+              .endAngle(function(d, i) {
+                  return d.no_ambientazione * 2 * PI;
+              });
+
+            let drawPlacesArc5 = d3
+              .arc()
+              .innerRadius(function(d, i) {
+                  return d.r - (i+1) * arcWidth + arcPad;
+              })
+              .outerRadius(function(d, i) {
+                  return d.r - i * arcWidth;
+              })
+              .startAngle(function(d, i) {
+                  return d.no_ambientazione * 2 * PI;
+              })
+              .endAngle(function(d, i) {
+                  return d.nominato_non_terrestre * 2 * PI;
+              });         
+
+            let drawPlacesArc6 = d3
+              .arc()
+              .innerRadius(function(d, i) {
+                  return d.r - (i+1) * arcWidth + arcPad;
+              })
+              .outerRadius(function(d, i) {
+                  return d.r - i * arcWidth;
+              })
+              .startAngle(function(d, i) {
+                  return d.nominato_non_terrestre * 2 * PI;
+              })
+              .endAngle(function(d, i) {
+                  return d.nominato_terrestre * 2 * PI;
+              });
+
+            let drawPlacesArc7 = d3
+              .arc()
+              .innerRadius(function(d, i) {
+                  return d.r - (i+1) * arcWidth + arcPad;
+              })
+              .outerRadius(function(d, i) {
+                  return d.r - i * arcWidth;
+              })
+              .startAngle(function(d, i) {
+                  return d.nominato_terrestre * 2 * PI;
               })
               .endAngle(function(d, i) {
                   return 2 * PI;
-              })
+              });   
+
+//////////////////
+
 
           steps
               .filter(function(d) { return d.first_elem } )
               .append("svg:path")
               .attr("fill", "red")
-              .attr("d", drawArc)
+              .attr("class", "places")
+              .attr("d", drawPlacesArc1)
               .attr('transform', function(d,i){
                 i = i*step_increment
                 return 'translate(0,'+i+')'
@@ -248,14 +425,162 @@
           steps
               .filter(function(d) { return d.first_elem } )
               .append("svg:path")
-              .attr("fill", "blue")
-              .attr("d", drawArc2)
+              .attr("fill", "orange")
+              .attr("class", "places")
+              .attr("d", drawPlacesArc2)
               .attr('transform', function(d,i){
                 i = i*step_increment
                 return 'translate(0,'+i+')'
               })
               .style('fill-opacity',0);
 
+          steps
+              .filter(function(d) { return d.first_elem } )
+              .append("svg:path")
+              .attr("fill", "fuchsia")
+              .attr("class", "places")
+              .attr("d", drawPlacesArc3)
+              .attr('transform', function(d,i){
+                i = i*step_increment
+                return 'translate(0,'+i+')'
+              })
+              .style('fill-opacity',0);
+
+          steps
+              .filter(function(d) { return d.first_elem } )
+              .append("svg:path")
+              .attr("fill", "darkgrey")
+              .attr("class", "places")
+              .attr("d", drawPlacesArc4)
+              .attr('transform', function(d,i){
+                i = i*step_increment
+                return 'translate(0,'+i+')'
+              })
+              .style('fill-opacity',0);                            
+
+          steps
+              .filter(function(d) { return d.first_elem } )
+              .append("svg:path")
+              .attr("fill", "blue")
+              .attr("class", "places")
+              .attr("d", drawPlacesArc5)
+              .attr('transform', function(d,i){
+                i = i*step_increment
+                return 'translate(0,'+i+')'
+              })
+              .style('fill-opacity',0);
+
+          steps
+              .filter(function(d) { return d.first_elem } )
+              .append("svg:path")
+              .attr("fill", "dodgerblue")
+              .attr("class", "places")
+              .attr("d", drawPlacesArc6)
+              .attr('transform', function(d,i){
+                i = i*step_increment
+                return 'translate(0,'+i+')'
+              })
+              .style('fill-opacity',0);
+
+          steps
+              .filter(function(d) { return d.first_elem } )
+              .append("svg:path")
+              .attr("fill", "white")
+              .attr("class", "places")
+              .attr("d", drawPlacesArc7)
+              .attr('transform', function(d,i){
+                i = i*step_increment
+                return 'translate(0,'+i+')'
+              })
+              .style('fill-opacity',0);
+
+//////////////////////////////
+
+            let drawDubitativePhenomenaArc1 = d3
+              .arc()
+              .innerRadius(function(d, i) {
+                  return d.r - (i+1) * arcWidth + arcPad;
+              })
+              .outerRadius(function(d, i) {
+                  return d.r - i * arcWidth;
+              })
+              .startAngle(0 * 2 * PI)
+              .endAngle(function(d, i) {
+                  return d.nebbia * 2 * PI;
+              });
+
+            let drawDubitativePhenomenaArc2 = d3
+              .arc()
+              .innerRadius(function(d, i) {
+                  return d.r - (i+1) * arcWidth + arcPad;
+              })
+              .outerRadius(function(d, i) {
+                  return d.r - i * arcWidth;
+              })
+              .startAngle(function(d, i) {
+                  return d.nebbia * 2 * PI;
+              })
+              .endAngle(function(d, i) {
+                  return d.cancellazione * 2 * PI;
+              });
+
+            let drawDubitativePhenomenaArc3 = d3
+              .arc()
+              .innerRadius(function(d, i) {
+                  return d.r - (i+1) * arcWidth + arcPad;
+              })
+              .outerRadius(function(d, i) {
+                  return d.r - i * arcWidth;
+              })
+              .startAngle(function(d, i) {
+                  return d.cancellazione * 2 * PI;
+              })
+              .endAngle(function(d, i) {
+                  return 2 * PI;
+              });       
+
+///////
+
+          steps
+              .filter(function(d) { return d.first_elem } )
+              .append("svg:path")
+              .attr("fill", "blue")
+              .attr("class", "dubitativePhenomena")
+              .attr("d", drawDubitativePhenomenaArc1)
+              .attr('transform', function(d,i){
+                i = i*step_increment
+                return 'translate(0,'+i+')'
+              })
+              .style('fill-opacity',0);
+
+          steps
+              .filter(function(d) { return d.first_elem } )
+              .append("svg:path")
+              .attr("fill", "red")
+              .attr("class", "dubitativePhenomena")
+              .attr("d", drawDubitativePhenomenaArc2)
+              .attr('transform', function(d,i){
+                i = i*step_increment
+                return 'translate(0,'+i+')'
+              })
+              .style('fill-opacity',0);
+
+          steps
+              .filter(function(d) { return d.first_elem } )
+              .append("svg:path")
+              .attr("fill", "white")
+              .attr("class", "dubitativePhenomena")
+              .attr("d", drawDubitativePhenomenaArc3)
+              .attr('transform', function(d,i){
+                i = i*step_increment
+                return 'translate(0,'+i+')'
+              })
+              .style('fill-opacity',0);
+
+
+///////////////////////////////
+
+/*
           steps
               .filter(function(d) { return d.first_elem } )
               .append('circle')
@@ -294,7 +619,7 @@
               })              
               .style('fill-opacity',1)
               .style('stroke-opacity',1)
-
+*/
           svg_nodes
             .on("Xmouseenter", function(){
               d3.selectAll('.node')
@@ -362,37 +687,41 @@
       }
 
       d3.select('body').on("keyup", function(d) {
-          // console.log(d3.event.key)
-          if (d3.event.key == "c") {
+          console.log(d3.event.key)
+
+          let eventKey = d3.event.key.toLowerCase();
+
+          if (eventKey == "c") {
             svg_nodes.selectAll('circle')
               .transition().duration(350)
               .attr('fill',function(d){
                 return col_collections(d.collection)
               })
-          } else if (d3.event.key == "y") {
+          } else if (eventKey == "y") {
             svg_nodes.selectAll('circle')
               .transition()
               .duration(350)
               .attr('fill',function(d){
                 return colour(d.first_publication)
               })
-          } else if (d3.event.key == "n") {
+          } else if (eventKey == "n") {
             svg_nodes.style('display','none')
             svg_nodes.filter(function(d){
                 console.log(d)
                 return d.attributes.nebbia
               })
               .style('display','block')
-          } else if (d3.event.key == "m") {
+          } else if (eventKey == "m") {
             svg_nodes.style('display','none')
             svg_nodes.filter(function(d){
                 console.log(d)
                 return d.attributes.cancellazione
               })
               .style('display','block')
-          } else if (d3.event.key == "p") {
+          } else if (eventKey == "p") {
 
             drawMode = incrementDrawMode(drawMode)
+console.log(drawMode);
 
             switch(drawMode)
             {
@@ -402,21 +731,33 @@
                   .transition()
                   .duration(450)
                   .style('fill-opacity',0)
-                  .style('stroke-opacity',0)
+                  .style('stroke-opacity',0);
 
                 svg_nodes
                   .selectAll('.halo')
                   .transition()
                   .duration(450)
                   .style('fill-opacity',0)
-                  .style('stroke-opacity',0)
+                  .style('stroke-opacity',0);
 
                 svg_nodes
                   .selectAll('.hill')
                   .transition()
                   .duration(450)
                   .style('fill-opacity',1)
+                  .style('stroke-opacity',1);
+
+                svg_nodes
+                  .selectAll('circle')
+                  .filter(function(d) { return d.first_elem && !this.classList.contains('halo'); } )
+                  .transition()
+                  .duration(450)
+                  .style('fill-opacity',1)
                   .style('stroke-opacity',1)
+                  .style('fill', function(d) 
+                  { 
+                    return colour(d.first_publication);
+                  });                  
 
                 break;
 
@@ -427,40 +768,113 @@
                   .transition()
                   .duration(450)
                   .style('fill-opacity',0)
-                  .style('stroke-opacity',0)
+                  .style('stroke-opacity',0);
 
                 svg_nodes
                   .selectAll('circle')
                   .transition()
                   .duration(450)
                   .style('fill-opacity',1)
-                  .style('stroke-opacity',1)
+                  .style('stroke-opacity',1);
 
                 break;                
 
-              case 3 : // bicolor rings
+              case 3 : // places
 
                 svg_nodes
-                  .selectAll('path')
+                  .selectAll('.places')
                   .style('fill-opacity',1)
-                  .style('stroke-opacity',1)
+                  .style('stroke-opacity',1);
 
                 svg_nodes
-                  .selectAll('circle')
+//                  .selectAll('circle')
+//                  .selectAll()
+//                  .filter(function(d) { return !this.classList.contains("places"); })
+                  .selectAll("circle:not(.places)")
                   .transition()
                   .duration(450)
                   .style('fill-opacity',0)
+                  .style('stroke-opacity',0);
+
+                svg_nodes
+                  .selectAll('circle')
+                  .filter(function(d) { return d.first_elem && !this.classList.contains('halo'); } )
+                  .transition()
+                  .duration(450)
+                  .style('fill-opacity',0.2)
+                  .style('stroke-opacity',0);              
+
+                break;
+
+              case 4 : // dubitative phenomena
+
+                svg_nodes
+                  .selectAll('.places')
+                  .style('fill-opacity',0)
+                  .style('stroke-opacity',0);              
+
+                svg_nodes
+                  .selectAll('.dubitativePhenomena')
+                  .style('fill-opacity',1)
+                  .style('stroke-opacity',1);
+
+                svg_nodes
+//                  .selectAll('circle')
+//                  .selectAll()
+//                  .filter(function(d) { return !this.classList.contains("dubitativePhenomena"); })
+                  .selectAll("circle:not(.dubitativePhenomena)")
+                  .transition()
+                  .duration(450)
+                  .style('fill-opacity',0)
+                  .style('stroke-opacity',0);
+
+                svg_nodes
+                  .selectAll('circle')
+                  .filter(function(d) { return d.first_elem && !this.classList.contains('halo'); } )
+                  .transition()
+                  .duration(450)
+                  .style('fill-opacity',0.2)
                   .style('stroke-opacity',0)
+                  .style('fill', function(d) 
+                  {                     
+                    let r = convertRatioToColorComponent(d.cancellazione_normalizzata);
+                    let g = "00";
+                    let b = convertRatioToColorComponent(d.nebbia_normalizzata);                    
+
+                    if(r == "00" && b == "00")
+                    {
+                      r = "B2";
+                      g = "B2";
+                      b = "B2";
+                    }
+
+                    let col = "#" + r + g + b;
+//                    console.log("r : " + r + "; b : " + b + "; col : " + col);
+//                    return col; 
+                      return "#" + r + g + b;
+                  });
 
                 break;
             }
           }
-          else if (d3.event.key == " ") {
+          else if (eventKey == " ") {
            svg_nodes.style('display','block')
          }
       })
 
     })
+
+});
+
+    function convertRatioToColorComponent(r)
+    {
+      // r is assumed to be in [0, 1]
+      let s = "00" + (r * 255).toString(16);
+
+      let s2 = s.substring(s.length - 3, s.length - 1);
+
+      return s2;
+    }
 
     function interpolateSpline(x) {
         let y;
@@ -650,7 +1064,7 @@
 
       function incrementDrawMode(drawMode)
       {
-        if(drawMode >= 3)
+        if(drawMode >= 4)
         {
           return 1;
         }
