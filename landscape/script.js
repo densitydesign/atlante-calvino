@@ -274,6 +274,7 @@ d3
         return 'translate(0,'+(d.steps.length+2)*step_increment+') scale(1,'+1/0.5773+')'
       })
       .text(function(d){
+        return d.id+'-'+d.attributes.title+'-'+d.attributes.first_publication;
         return d.id+'-'+d.attributes.first_publication;
       })
 
