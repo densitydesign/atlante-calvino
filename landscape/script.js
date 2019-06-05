@@ -662,6 +662,8 @@ function treat_json(json)
     }
   }
 
+  prepareTimeline(json_nodes);
+
   d3.selectAll('.toggle-timeline').on('click', function(d){
     toggleTimeline();
   })
@@ -1830,4 +1832,25 @@ function borderOrientationIsCounterclockwise(points)
   angles.unshift(angles.splice(-indexOfMin, this.length));
 
   return angles[2] > angles[1];
+}
+
+function prepareTimeline(json_nodes)
+{
+  let timelineSvg = d3
+    .select("#timeline");
+
+  let cell_group = timelineSvg
+    .append("g")
+    .attr("class", "cell_group");
+
+  let cell = cell_group
+    .selectAll(".cell_node")
+    .data(json_nodes)
+    .enter();
+    
+  cell
+    .append("circle")
+    .attr("r", 3)
+    .attr("cx", (d, i) => i * 5)
+    .attr("cy", d => 100);
 }
