@@ -1834,29 +1834,87 @@ function borderOrientationIsCounterclockwise(points)
   return angles[2] > angles[1];
 }
 
+function getDataRelativeYear(d)
+{
+  const startYear = 1940;
+
+  const relativeYear = +(d.attributes.first_publication) - startYear;
+
+  return relativeYear;
+}
+
 function prepareTimeline(json_nodes)
 {
   let timelineSvg = d3
     .select("#timeline")
     .attr("width", 1800);
 
+  const width = timelineSvg.attr("width");  
+  const height = 200;
+
+  let x = d3
+    .scaleLinear()
+    .rangeRound([0, width]);
+
+  x.domain(d3.extent(json_nodes, d => getDataRelativeYear(d)));
+
+  let simulation = d3
+    .forceSimulation(json_nodes)
+    .force("x", d3.forceX(d => x(getDataRelativeYear(d))).strength(1))
+    .force("y", d3.forceY(height / 2))
+    .force("collide", d3.forceCollide(4))
+    .stop();
+
+  for(let i = 0; i < 120; ++i) simulation.tick();
+
   let cell_group = timelineSvg
     .append("g")
     .attr("class", "cell_group");
 
-  let cell = cell_group
-    .selectAll(".cell_node")
-    .data(json_nodes)
-    .enter();
+  cell_group
+    .append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(0," + height + ")")
+    .call(d3.axisBottom(x).ticks(20, ".0s"));
 
-  let yearPointStep = 20;
+  let cell = cell_group
+    .append("g")
+    .attr("class", "cells")
+    .selectAll(".cell_node")
+    .data(d3
+      .voronoi()
+      .extent([[0, 0], [width, height]])
+      .x(d => d.x)
+      .y(d => d.y)
+      .polygons(json_nodes))
+    .enter()
+      .append("g");
+/*
+  const yearPointStep = 20;
+  
+  const height = 200;
     
   cell
     .append("circle")
     .attr("r", 3)
     .attr("cx", d => { 
-      let relative_year = +(d.attributes.first_publication) - 1940;
+      let relative_year = +(d.attributes.first_publication) - startYear;
+
       return relative_year * yearPointStep;
     })
-    .attr("cy", d => 100);
+    .attr("cy", d => height / 2);
+*/
+  cell
+    .append("circle")
+    .attr("r", 3)
+    .attr("cx", d => d.data.x)
+    .attr("cy", d => d.data.y);
+/*    
+  cell
+    .append("path")
+    .attr("d", d => "M" + d.join("L") + "Z");
+*/
+  cell
+    .append("title")
+    .text(d => d.data.id + "\n" + d.data.value);
 }
