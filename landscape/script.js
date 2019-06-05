@@ -1837,7 +1837,8 @@ function borderOrientationIsCounterclockwise(points)
 function prepareTimeline(json_nodes)
 {
   let timelineSvg = d3
-    .select("#timeline");
+    .select("#timeline")
+    .attr("width", 1800);
 
   let cell_group = timelineSvg
     .append("g")
@@ -1847,10 +1848,15 @@ function prepareTimeline(json_nodes)
     .selectAll(".cell_node")
     .data(json_nodes)
     .enter();
+
+  let yearPointStep = 20;
     
   cell
     .append("circle")
     .attr("r", 3)
-    .attr("cx", (d, i) => i * 5)
+    .attr("cx", d => { 
+      let relative_year = +(d.attributes.first_publication) - 1940;
+      return relative_year * yearPointStep;
+    })
     .attr("cy", d => 100);
 }
