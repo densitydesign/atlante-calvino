@@ -1,8 +1,10 @@
 
 let data = {
 
-  allowedCollections: "all" // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
-
+  allowedCollections: "all", // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
+  timeline_x: 0,
+  timeline_y: 0,
+  timeline_dot: null,
 };
 
 // Warn if overriding existing method
@@ -1836,7 +1838,7 @@ function borderOrientationIsCounterclockwise(points)
 
 function getDataRelativeYear(d)
 {
-  const startYear = 1940;
+  const startYear = 1943;
 
   const relativeYear = +(d.attributes.first_publication) - startYear;
 
@@ -1852,15 +1854,19 @@ function prepareTimeline(json_nodes)
   const width = timelineSvg.attr("width");  
   const height = 200;
 
-  let x = d3
+  data.timeline_x = d3
     .scaleLinear()
     .rangeRound([0, width]);
 
-  x.domain(d3.extent(json_nodes, d => getDataRelativeYear(d)));
+  data.timeline_x.domain(d3.extent(json_nodes, d => getDataRelativeYear(d)));
+
+  data.timeline_y = d3
+    .scaleLinear()
+    .range([height, 0]);
 
   let simulation = d3
     .forceSimulation(json_nodes)
-    .force("x", d3.forceX(d => x(getDataRelativeYear(d))).strength(1))
+    .force("x", d3.forceX(d => data.timeline_x(getDataRelativeYear(d))).strength(1))
     .force("y", d3.forceY(height / 2))
     .force("collide", d3.forceCollide(4))
     .stop();
@@ -1875,7 +1881,7 @@ function prepareTimeline(json_nodes)
     .append("g")
     .attr("class", "axis axis--x")
     .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(x).ticks(20, ".0s"));
+    .call(d3.axisBottom(data.timeline_x).ticks(20, ".0s"));
 
   let cell = cell_group
     .append("g")
@@ -1904,11 +1910,24 @@ function prepareTimeline(json_nodes)
     })
     .attr("cy", d => height / 2);
 */
-  cell
+  data.timeline_dot = cell
     .append("circle")
-    .attr("r", 3)
+    .attr("r", d => {console.log(d); return 3})
     .attr("cx", d => d.data.x)
     .attr("cy", d => d.data.y);
+
+  let brush = d3
+    .brushX()
+    .extent([[0, 0], [width, height]])
+    .on("start brush", brushed);      
+
+  cell_group
+    .append("g")
+    .call(brush)
+    .call(brush.move, [3, 5].map(data.timeline_x))
+    .selectAll(".overlay")
+    .each(d => d.type = "selection")
+    .on("mousedown touchstart", brushcentered);    
 /*    
   cell
     .append("path")
@@ -1916,5 +1935,24 @@ function prepareTimeline(json_nodes)
 */
   cell
     .append("title")
-    .text(d => d.data.id + "\n" + d.data.value);
+    .text(d => d.data.id + "\n" + d.data.first_publication);
+}
+
+function brushcentered()
+{
+  let dx = data.timeline_x(1) - data.timeline_x(0);
+  let cx = d3.mouse(this)[0];
+  let x0 = cx - dx / 2;
+  let x1 = cx + dx / 2;
+
+  d3
+    .select(this.parentNode)
+    .call(brush.move, x1 > width ? [width - dx, width] : x0 < 0 ? [0, dx] : [x0, x1]);
+}
+
+function brushed()
+{
+  var extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
+  console.log(extent);
+//  data.timeline_dot.classed("selected", d => (extent[0] <= d[0] && d[0] <= extent[1]));
 }
