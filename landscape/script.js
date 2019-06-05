@@ -182,7 +182,7 @@ function treat_json(json)
       .append("g")
       .attr("class", "metaball_node")
       .attr("transform", function(d) {
-        return 'scale(1,0.5773) translate('+d.x+','+d.y+')'
+        return 'scale(1,0.5773) translate('+ (d.x - center.x)  +','+ (d.y - center.y) +')'
       });
 
   let metaballs = metaball_nodes
