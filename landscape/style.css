@@ -2,7 +2,7 @@
   --main-bg-color: #EFEBE9;
   --main-bg-color: #dadedd;
   --main-bg-color: #e5e6e6;
-  --main-bg-color: linear-gradient(180deg, #FFFFFF 0%, #EFEBE9 67%);
+  --main-bg-color: linear-gradient(180deg, #FFFFFF 36%, #F7FAFA 63%);;
 }
 
 body {

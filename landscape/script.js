@@ -1,8 +1,10 @@
 
 let data = {
 
-  allowedCollections: "all" // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
-
+  allowedCollections: "all", // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
+  timeline_x: 0,
+  timeline_y: 0,
+  timeline_dot: null,
 };
 
 // Warn if overriding existing method
@@ -125,14 +127,14 @@ function treat_json(json)
     left: d3.min(json_nodes, function(d){ return d.x })
   };
 
-  //console.log(boundaries);
+  console.log(boundaries);
 
   let center = {
     x: (boundaries.left + boundaries.right) / 2,
     y: (boundaries.bottom + boundaries.top) / 2
   };
 
-  //console.log(center);
+  console.log(center);
 
   let colour = d3
     .scaleLinear()
@@ -173,8 +175,7 @@ function treat_json(json)
 
   let metaball_group = svg_main_group
     .append("g")
-    .attr("class", "metaball_nodes")
-    .style('display','none');
+    .attr("class", "metaball_nodes");
 
   let metaball_nodes = metaball_group
     .selectAll(".metaball_node")
@@ -184,8 +185,7 @@ function treat_json(json)
       .attr("class", "metaball_node")
       .attr("transform", function(d) {
         return 'scale(1,0.5773) translate('+ (d.x - center.x)  +','+ (d.y - center.y) +')'
-      })
-      .style('display','none');;
+      });
 
   let metaballs = metaball_nodes
     .selectAll(".metaball")
@@ -254,8 +254,7 @@ function treat_json(json)
     .attr('transform', function(d,i){
       i = i*step_increment
       return 'translate(0,'+i+')'
-    })
-    .style('display','none');
+    });
 
   steps
     .append('circle')
@@ -286,281 +285,281 @@ function treat_json(json)
   let drawMode = 1; // 1 : hills; 2 : hills with halo; 3 : places; 4 : dubitative phenomena;
   let metaballsVisible = new Map();
 
-// ///////////////////////////////////////////
-//
-//   let drawPlacesArc1 = d3
-//     .arc()
-//     .innerRadius(function(d, i) {
-//         return d.r - (i+1) * arcWidth + arcPad;
-//     })
-//     .outerRadius(function(d, i) {
-//         return d.r - i * arcWidth;
-//     })
-//     .startAngle(0 * 2 * PI)
-//     .endAngle(function(d, i) {
-//         return d.generico_non_terrestre * 2 * PI;
-//     });
-//
-//   let drawPlacesArc2 = d3
-//     .arc()
-//     .innerRadius(function(d, i) {
-//         return d.r - (i+1) * arcWidth + arcPad;
-//     })
-//     .outerRadius(function(d, i) {
-//         return d.r - i * arcWidth;
-//     })
-//     .startAngle(function(d, i) {
-//         return d.generico_non_terrestre * 2 * PI;
-//     })
-//     .endAngle(function(d, i) {
-//         return d.generico_terrestre * 2 * PI;
-//     });
-//
-//   let drawPlacesArc3 = d3
-//     .arc()
-//     .innerRadius(function(d, i) {
-//         return d.r - (i+1) * arcWidth + arcPad;
-//     })
-//     .outerRadius(function(d, i) {
-//         return d.r - i * arcWidth;
-//     })
-//     .startAngle(function(d, i) {
-//         return d.generico_terrestre * 2 * PI;
-//     })
-//     .endAngle(function(d, i) {
-//         return d.inventato * 2 * PI;
-//     });
-//
-//   let drawPlacesArc4 = d3
-//     .arc()
-//     .innerRadius(function(d, i) {
-//         return d.r - (i+1) * arcWidth + arcPad;
-//     })
-//     .outerRadius(function(d, i) {
-//         return d.r - i * arcWidth;
-//     })
-//     .startAngle(function(d, i) {
-//         return d.inventato * 2 * PI;
-//     })
-//     .endAngle(function(d, i) {
-//         return d.no_ambientazione * 2 * PI;
-//     });
-//
-//   let drawPlacesArc5 = d3
-//     .arc()
-//     .innerRadius(function(d, i) {
-//         return d.r - (i+1) * arcWidth + arcPad;
-//     })
-//     .outerRadius(function(d, i) {
-//         return d.r - i * arcWidth;
-//     })
-//     .startAngle(function(d, i) {
-//         return d.no_ambientazione * 2 * PI;
-//     })
-//     .endAngle(function(d, i) {
-//         return d.nominato_non_terrestre * 2 * PI;
-//     });
-//
-//   let drawPlacesArc6 = d3
-//     .arc()
-//     .innerRadius(function(d, i) {
-//         return d.r - (i+1) * arcWidth + arcPad;
-//     })
-//     .outerRadius(function(d, i) {
-//         return d.r - i * arcWidth;
-//     })
-//     .startAngle(function(d, i) {
-//         return d.nominato_non_terrestre * 2 * PI;
-//     })
-//     .endAngle(function(d, i) {
-//         return d.nominato_terrestre * 2 * PI;
-//     });
-//
-//   let drawPlacesArc7 = d3
-//     .arc()
-//     .innerRadius(function(d, i) {
-//         return d.r - (i+1) * arcWidth + arcPad;
-//     })
-//     .outerRadius(function(d, i) {
-//         return d.r - i * arcWidth;
-//     })
-//     .startAngle(function(d, i) {
-//         return d.nominato_terrestre * 2 * PI;
-//     })
-//     .endAngle(function(d, i) {
-//         return 2 * PI;
-//     });
-//
-// ///////////////////////////////////////////
-//
-//   steps
-//     .filter(function(d) { return d.first_elem } )
-//     .append("svg:path")
-//     .attr("fill", "red")
-//     .attr("class", "places")
-//     .attr("d", drawPlacesArc1)
-//     .attr('transform', function(d,i){
-//       i = i*step_increment
-//       return 'translate(0,'+i+')'
-//     })
-//     .style('fill-opacity',0);
-//
-//   steps
-//     .filter(function(d) { return d.first_elem } )
-//     .append("svg:path")
-//     .attr("fill", "orange")
-//     .attr("class", "places")
-//     .attr("d", drawPlacesArc2)
-//     .attr('transform', function(d,i){
-//       i = i*step_increment
-//       return 'translate(0,'+i+')'
-//     })
-//     .style('fill-opacity',0);
-//
-//   steps
-//     .filter(function(d) { return d.first_elem } )
-//     .append("svg:path")
-//     .attr("fill", "fuchsia")
-//     .attr("class", "places")
-//     .attr("d", drawPlacesArc3)
-//     .attr('transform', function(d,i){
-//       i = i*step_increment
-//       return 'translate(0,'+i+')'
-//     })
-//     .style('fill-opacity',0);
-//
-//   steps
-//     .filter(function(d) { return d.first_elem } )
-//     .append("svg:path")
-//     .attr("fill", "darkgrey")
-//     .attr("class", "places")
-//     .attr("d", drawPlacesArc4)
-//     .attr('transform', function(d,i){
-//       i = i*step_increment
-//       return 'translate(0,'+i+')'
-//     })
-//     .style('fill-opacity',0);
-//
-//   steps
-//     .filter(function(d) { return d.first_elem } )
-//     .append("svg:path")
-//     .attr("fill", "blue")
-//     .attr("class", "places")
-//     .attr("d", drawPlacesArc5)
-//     .attr('transform', function(d,i){
-//       i = i*step_increment
-//       return 'translate(0,'+i+')'
-//     })
-//     .style('fill-opacity',0);
-//
-//   steps
-//     .filter(function(d) { return d.first_elem } )
-//     .append("svg:path")
-//     .attr("fill", "dodgerblue")
-//     .attr("class", "places")
-//     .attr("d", drawPlacesArc6)
-//     .attr('transform', function(d,i){
-//       i = i*step_increment
-//       return 'translate(0,'+i+')'
-//     })
-//     .style('fill-opacity',0);
-//
-//   steps
-//     .filter(function(d) { return d.first_elem } )
-//     .append("svg:path")
-//     .attr("fill", "white")
-//     .attr("class", "places")
-//     .attr("d", drawPlacesArc7)
-//     .attr('transform', function(d,i){
-//       i = i*step_increment
-//       return 'translate(0,'+i+')'
-//     })
-//     .style('fill-opacity',0);
-//
-// ///////////////////////////////////////////
-//
-//   let drawDubitativePhenomenaArc1 = d3
-//     .arc()
-//     .innerRadius(function(d, i) {
-//         return d.r - (i+1) * arcWidth + arcPad;
-//     })
-//     .outerRadius(function(d, i) {
-//         return d.r - i * arcWidth;
-//     })
-//     .startAngle(0 * 2 * PI)
-//     .endAngle(function(d, i) {
-//         return d.nebbia * 2 * PI;
-//     });
-//
-//   let drawDubitativePhenomenaArc2 = d3
-//     .arc()
-//     .innerRadius(function(d, i) {
-//         return d.r - (i+1) * arcWidth + arcPad;
-//     })
-//     .outerRadius(function(d, i) {
-//         return d.r - i * arcWidth;
-//     })
-//     .startAngle(function(d, i) {
-//         return d.nebbia * 2 * PI;
-//     })
-//     .endAngle(function(d, i) {
-//         return d.cancellazione * 2 * PI;
-//     });
-//
-//   let drawDubitativePhenomenaArc3 = d3
-//     .arc()
-//     .innerRadius(function(d, i) {
-//         return d.r - (i+1) * arcWidth + arcPad;
-//     })
-//     .outerRadius(function(d, i) {
-//         return d.r - i * arcWidth;
-//     })
-//     .startAngle(function(d, i) {
-//         return d.cancellazione * 2 * PI;
-//     })
-//     .endAngle(function(d, i) {
-//         return 2 * PI;
-//     });
-//
-// ///////////////////////////////////////////
-//
-//   steps
-//     .filter(function(d) { return d.first_elem } )
-//     .append("svg:path")
-//     .attr("fill", "blue")
-//     .attr("class", "dubitativePhenomena")
-//     .attr("d", drawDubitativePhenomenaArc1)
-//     .attr('transform', function(d,i){
-//       i = i*step_increment
-//       return 'translate(0,'+i+')'
-//     })
-//     .style('fill-opacity',0);
-//
-//   steps
-//     .filter(function(d) { return d.first_elem } )
-//     .append("svg:path")
-//     .attr("fill", "red")
-//     .attr("class", "dubitativePhenomena")
-//     .attr("d", drawDubitativePhenomenaArc2)
-//     .attr('transform', function(d,i){
-//       i = i*step_increment
-//       return 'translate(0,'+i+')'
-//     })
-//     .style('fill-opacity',0);
-//
-//   steps
-//     .filter(function(d) { return d.first_elem } )
-//     .append("svg:path")
-//     .attr("fill", "white")
-//     .attr("class", "dubitativePhenomena")
-//     .attr("d", drawDubitativePhenomenaArc3)
-//     .attr('transform', function(d,i){
-//       i = i*step_increment
-//       return 'translate(0,'+i+')'
-//     })
-//     .style('fill-opacity',0);
-//
-// ///////////////////////////////////////////
+///////////////////////////////////////////
+
+  let drawPlacesArc1 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+        return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+        return d.r - i * arcWidth;
+    })
+    .startAngle(0 * 2 * PI)
+    .endAngle(function(d, i) {
+        return d.generico_non_terrestre * 2 * PI;
+    });
+
+  let drawPlacesArc2 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+        return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+        return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+        return d.generico_non_terrestre * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+        return d.generico_terrestre * 2 * PI;
+    });
+
+  let drawPlacesArc3 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+        return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+        return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+        return d.generico_terrestre * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+        return d.inventato * 2 * PI;
+    });
+
+  let drawPlacesArc4 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+        return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+        return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+        return d.inventato * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+        return d.no_ambientazione * 2 * PI;
+    });
+
+  let drawPlacesArc5 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+        return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+        return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+        return d.no_ambientazione * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+        return d.nominato_non_terrestre * 2 * PI;
+    });
+
+  let drawPlacesArc6 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+        return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+        return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+        return d.nominato_non_terrestre * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+        return d.nominato_terrestre * 2 * PI;
+    });
+
+  let drawPlacesArc7 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+        return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+        return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+        return d.nominato_terrestre * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+        return 2 * PI;
+    });
+
+///////////////////////////////////////////
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "red")
+    .attr("class", "places")
+    .attr("d", drawPlacesArc1)
+    .attr('transform', function(d,i){
+      i = i*step_increment
+      return 'translate(0,'+i+')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "orange")
+    .attr("class", "places")
+    .attr("d", drawPlacesArc2)
+    .attr('transform', function(d,i){
+      i = i*step_increment
+      return 'translate(0,'+i+')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "fuchsia")
+    .attr("class", "places")
+    .attr("d", drawPlacesArc3)
+    .attr('transform', function(d,i){
+      i = i*step_increment
+      return 'translate(0,'+i+')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "darkgrey")
+    .attr("class", "places")
+    .attr("d", drawPlacesArc4)
+    .attr('transform', function(d,i){
+      i = i*step_increment
+      return 'translate(0,'+i+')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "blue")
+    .attr("class", "places")
+    .attr("d", drawPlacesArc5)
+    .attr('transform', function(d,i){
+      i = i*step_increment
+      return 'translate(0,'+i+')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "dodgerblue")
+    .attr("class", "places")
+    .attr("d", drawPlacesArc6)
+    .attr('transform', function(d,i){
+      i = i*step_increment
+      return 'translate(0,'+i+')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "white")
+    .attr("class", "places")
+    .attr("d", drawPlacesArc7)
+    .attr('transform', function(d,i){
+      i = i*step_increment
+      return 'translate(0,'+i+')'
+    })
+    .style('fill-opacity',0);
+
+///////////////////////////////////////////
+
+  let drawDubitativePhenomenaArc1 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+        return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+        return d.r - i * arcWidth;
+    })
+    .startAngle(0 * 2 * PI)
+    .endAngle(function(d, i) {
+        return d.nebbia * 2 * PI;
+    });
+
+  let drawDubitativePhenomenaArc2 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+        return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+        return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+        return d.nebbia * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+        return d.cancellazione * 2 * PI;
+    });
+
+  let drawDubitativePhenomenaArc3 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+        return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+        return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+        return d.cancellazione * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+        return 2 * PI;
+    });
+
+///////////////////////////////////////////
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "blue")
+    .attr("class", "dubitativePhenomena")
+    .attr("d", drawDubitativePhenomenaArc1)
+    .attr('transform', function(d,i){
+      i = i*step_increment
+      return 'translate(0,'+i+')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "red")
+    .attr("class", "dubitativePhenomena")
+    .attr("d", drawDubitativePhenomenaArc2)
+    .attr('transform', function(d,i){
+      i = i*step_increment
+      return 'translate(0,'+i+')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "white")
+    .attr("class", "dubitativePhenomena")
+    .attr("d", drawDubitativePhenomenaArc3)
+    .attr('transform', function(d,i){
+      i = i*step_increment
+      return 'translate(0,'+i+')'
+    })
+    .style('fill-opacity',0);
+
+///////////////////////////////////////////
 
   text_nodes
     .on("Xmouseenter", function(){
@@ -619,22 +618,16 @@ function treat_json(json)
   centerTerritory(scale, 0, 0, 0);
 
   svg.transition()
-    .duration(1000)
+    .duration(0)
     .call( zoom_handler.transform, d3.zoomIdentity
       .translate(w/2,h/2*1.2)
       .scale(0.08)
     ); // updated for d3 v4
 
-
-  setTimeout(function(){
-    centerTerritory(0.5, 650, 90, 1000)
-  }, 5000);
-
   //Zoom functions
   function zoom_actions(){
     g.attr("transform", d3.event.transform);
     metaball_group.attr("transform", d3.event.transform);
-    //console.log(d3.event.transform)
   }
 
   // Handle interface interactions
@@ -670,6 +663,8 @@ function treat_json(json)
         break;
     }
   }
+
+  prepareTimeline(json_nodes, col_collections);
 
   d3.selectAll('.toggle-timeline').on('click', function(d){
     toggleTimeline();
@@ -1852,15 +1847,21 @@ function getDataRelativeYear(d)
 */
 function prepareTimeline(json_nodes, col_collections)
 {
-  let margin = { top: 0, right: 1, bottom: 10, left: 1 };
 
-  data.timeline_width = d3.select("#timeline").node().getBoundingClientRect().width - margin.left - margin.right;
-  data.timeline_height = d3.select("#timeline").node().getBoundingClientRect().height - margin.top - margin.bottom;
+  let margin = { top: 5, right: 0, bottom: 50, left: 0 };
+
+  data.timeline_width = d3.select('#timeline').node().getBoundingClientRect().width - margin.left - margin.right;
+  data.timeline_height = d3.select('#timeline').node().getBoundingClientRect().height - margin.top - margin.bottom;
 
   let timelineSvg = d3
     .select("#timeline")
-    .attr("width", data.timeline_width + margin.left + margin.right)
-    .attr("height", data.timeline_height + margin.top + margin.bottom);
+    .attr("width", data.timeline_width)
+    .attr("height", data.timeline_height);
+
+
+
+  console.log(data.timeline_width)
+
 
   data.timeline_x = d3
     .scaleLinear()
@@ -1869,6 +1870,8 @@ function prepareTimeline(json_nodes, col_collections)
   let x_time_ext = d3.extent(json_nodes, d => d.attributes.first_publication);
   x_time_ext[0] = +x_time_ext[0]-1;
   x_time_ext[1] = +x_time_ext[1]+1;
+  console.log(x_time_ext);
+
   data.timeline_x.domain(x_time_ext);
 
   data.timeline_y = d3
@@ -1907,9 +1910,6 @@ function prepareTimeline(json_nodes, col_collections)
       .axisBottom(data.timeline_x)
       .ticks(41, "0"));
 //      .tickFormat(d3.format()));
-
-  d3.select('.axis--x .tick:first-of-type').remove();
-  d3.select('.axis--x .tick:last-of-type').remove();
 
   let cell = cell_group
     .append("g")
@@ -1963,7 +1963,7 @@ function prepareTimeline(json_nodes, col_collections)
   cell_group
     .append("g")
     .call(data.brush)
-    .call(data.brush.move, data.timeline_x.domain().map(data.timeline_x))
+    .call(data.brush.move, [data.timeline_x.domain()[0]+0.5, data.timeline_x.domain()[1]-0.5].map(data.timeline_x))
     .selectAll(".overlay")
     .each(d => d.type = "selection")
     .on("mousedown touchstart", brushcentered);
@@ -1992,11 +1992,13 @@ function brushcentered()
 function brushed()
 {
   var extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
+  //console.log(extent);
   d3.selectAll('g.node').each(function(d){
 
 
     if(+d.attributes.first_publication >= extent[0] && +d.attributes.first_publication <= extent[1])
     {
+    //console.log(+d.attributes.first_publication);
     d3.select(this).style("opacity", 1);
     }
     else
@@ -2004,4 +2006,5 @@ function brushed()
       d3.select(this).style("opacity", 0.3);
     }
   })
+//  data.timeline_dot.classed("selected", d => (extent[0] <= d[0] && d[0] <= extent[1]));
 }
