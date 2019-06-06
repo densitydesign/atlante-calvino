@@ -1,5 +1,8 @@
 :root {
   --main-bg-color: #EFEBE9;
+  --main-bg-color: #dadedd;
+  --main-bg-color: #e5e6e6;
+  --main-bg-color: linear-gradient(180deg, #FFFFFF 36%, #F7FAFA 63%);;
 }
 
 body {
@@ -63,9 +66,20 @@ svg:active {
   overflow: hidden;
   border-top: black 1px solid;
   opacity: 0;
+  padding: 0 3rem;
 }
 
 #timeline-container.visible {
   height: 20vh;
   opacity: 1;
+}
+
+#timeline {
+  width: calc(100% - 3rem);
+}
+
+.toggle-timeline._close {
+  position: absolute;
+  top: 1rem;
+  margin-left: 1rem;
 }

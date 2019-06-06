@@ -1,8 +1,10 @@
 
 let data = {
 
-  allowedCollections: "all" // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
-
+  allowedCollections: "all", // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
+  timeline_x: 0,
+  timeline_y: 0,
+  timeline_dot: null,
 };
 
 // Warn if overriding existing method
@@ -14,7 +16,7 @@ Array.prototype.equals = function (array) {
     if (!array)
         return false;
 
-    // compare lengths - can save a lot of time 
+    // compare lengths - can save a lot of time
     if (this.length != array.length)
         return false;
 
@@ -23,18 +25,18 @@ Array.prototype.equals = function (array) {
         if (this[i] instanceof Array && array[i] instanceof Array) {
             // recurse into the nested arrays
             if (!this[i].equals(array[i]))
-                return false;       
-        }           
-        else if (this[i] != array[i]) { 
+                return false;
+        }
+        else if (this[i] != array[i]) {
             // Warning - two different object instances will never be equal: {x:20} != {x:20}
-            return false;   
-        }           
-    }       
+            return false;
+        }
+    }
     return true;
 }
 
 // Hide method from for-in loops
-Object.defineProperty(Array.prototype, "equals", {enumerable: false});        
+Object.defineProperty(Array.prototype, "equals", {enumerable: false});
 
 Array.prototype.includesArray = function(array)
 {
@@ -72,7 +74,7 @@ d3
 function treat_json(json)
 {
   let collections = getCollections();
-  let allowedCollections = data.allowedCollections.split(",");  
+  let allowedCollections = data.allowedCollections.split(",");
 
   let json_nodes = json.nodes.filter(function(item) {
 
@@ -105,10 +107,10 @@ function treat_json(json)
   let size_ext = d3.extent(json.nodes, function(d){return d.size});
   data.min_size = size_ext[0]/8;
 
-  json_nodes.forEach(create_item_steps);      
+  json_nodes.forEach(create_item_steps);
 
-  json_nodes.forEach(node => 
-    node.steps.forEach(step => 
+  json_nodes.forEach(node =>
+    node.steps.forEach(step =>
       collections.forEach(coll => {
         checkMapAndInsert(step, "metaballCorner", coll.id, false)
         let x = 6;
@@ -132,7 +134,7 @@ function treat_json(json)
     y: (boundaries.bottom + boundaries.top) / 2
   };
 
-  console.log(center);  
+  console.log(center);
 
   let colour = d3
     .scaleLinear()
@@ -151,7 +153,7 @@ function treat_json(json)
     .select('svg')
     .attr('width', w)
     .attr('height', h)
-    .style('background-color','var(--main-bg-color)');
+    .style('background','var(--main-bg-color)');
 
   let radialGradient = svg
     .append("defs")
@@ -194,8 +196,8 @@ function treat_json(json)
 
   collections.forEach(coll =>
     metaballs
-      .filter(function(d) { 
-        return d.metaballCorner[coll.id]; 
+      .filter(function(d) {
+        return d.metaballCorner[coll.id];
       })
       .append("svg:path")
       .attr("class", function(d) {
@@ -236,8 +238,8 @@ function treat_json(json)
 
   let steps = text_nodes
     .selectAll('circle')
-    .data((d, i) => { 
-      return d.steps; 
+    .data((d, i) => {
+      return d.steps;
     })
     .enter();
 
@@ -246,7 +248,7 @@ function treat_json(json)
     .append('circle')
     .attr('fill','url(#radial-gradient)')
     .attr('r',function(d){ return d.r * 1.5 })
-    .attr("class", "halo")              
+    .attr("class", "halo")
     .style('fill-opacity',0)
     .style('stroke-opacity',0)
     .attr('transform', function(d,i){
@@ -263,7 +265,7 @@ function treat_json(json)
     })
     .attr('r',function(d){ return d.r })
     .attr('first_elem',function(d){ return d.first_elem })
-    .attr("class", "hill" ) 
+    .attr("class", "hill" )
     .style('fill-opacity',0)
     .style('stroke-opacity',0)
     .transition()
@@ -272,9 +274,9 @@ function treat_json(json)
     .attr('transform', function(d,i){
       i = i*step_increment
       return 'translate(0,'+i+')'
-    })              
+    })
     .style('fill-opacity',1)
-    .style('stroke-opacity',1);    
+    .style('stroke-opacity',1);
 
   let PI = Math.PI;
   let arcMin = 75; // inner radius of the first arc
@@ -326,7 +328,7 @@ function treat_json(json)
     })
     .endAngle(function(d, i) {
         return d.inventato * 2 * PI;
-    });          
+    });
 
   let drawPlacesArc4 = d3
     .arc()
@@ -356,7 +358,7 @@ function treat_json(json)
     })
     .endAngle(function(d, i) {
         return d.nominato_non_terrestre * 2 * PI;
-    });         
+    });
 
   let drawPlacesArc6 = d3
     .arc()
@@ -620,7 +622,7 @@ function treat_json(json)
     .call( zoom_handler.transform, d3.zoomIdentity
       .translate(w/2,h/2*1.2)
       .scale(0.08)
-    ); // updated for d3 v4  
+    ); // updated for d3 v4
 
   //Zoom functions
   function zoom_actions(){
@@ -662,6 +664,8 @@ function treat_json(json)
     }
   }
 
+  prepareTimeline(json_nodes, col_collections);
+
   d3.selectAll('.toggle-timeline').on('click', function(d){
     toggleTimeline();
   })
@@ -680,8 +684,8 @@ function treat_json(json)
 
   d3
     .select('body')
-    .on("keyup", 
-      function(d) 
+    .on("keyup",
+      function(d)
       {
       console.log(d3.event.key)
 
@@ -750,10 +754,10 @@ console.log(drawMode);
               .duration(450)
               .style('fill-opacity',1)
               .style('stroke-opacity',1)
-              .style('fill', function(d) 
-              { 
+              .style('fill', function(d)
+              {
                 return colour(d.first_publication);
-              });                  
+              });
 
             break;
 
@@ -773,7 +777,7 @@ console.log(drawMode);
               .style('fill-opacity',1)
               .style('stroke-opacity',1);
 
-            break;                
+            break;
 
           case 3 : // places
 
@@ -795,7 +799,7 @@ console.log(drawMode);
               .transition()
               .duration(450)
               .style('fill-opacity',0.2)
-              .style('stroke-opacity',0);              
+              .style('stroke-opacity',0);
 
             break;
 
@@ -804,7 +808,7 @@ console.log(drawMode);
             text_nodes
               .selectAll('.places')
               .style('fill-opacity',0)
-              .style('stroke-opacity',0);              
+              .style('stroke-opacity',0);
 
             text_nodes
               .selectAll('.dubitativePhenomena')
@@ -894,10 +898,10 @@ function sample(value, min, max, nIntervals)
   }
 
   return stepSum;
-}    
+}
 
 function flatten_items_steps(nodes)
-{   
+{
   let flattened_steps = [];
 
   for(let i = 0; i < nodes.length; ++i)
@@ -908,11 +912,11 @@ function flatten_items_steps(nodes)
     {
       let step = node.steps[j];
 
-      let item = 
+      let item =
       {
           id: step.id,
           x: node.x,
-          y: node.y,              
+          y: node.y,
 
           r: step.r,
           steps_length: node.steps.length,
@@ -928,7 +932,7 @@ function flatten_items_steps(nodes)
           nominato_non_terrestre: step.nominato_non_terrestre,
           nominato_terrestre: step.nominato_terrestre,
 
-          nebbia_normalizzata: step.nebbia_normalizzata,              
+          nebbia_normalizzata: step.nebbia_normalizzata,
           cancellazione_normalizzata: step.cancellazione_normalizzata,
 
           nebbia: step.nebbia,
@@ -937,7 +941,7 @@ function flatten_items_steps(nodes)
           norma_pct_caratteri_nebbia_cancellazione: step.norma_pct_caratteri_nebbia_cancellazione
       };
 
-      flattened_steps.push(item);          
+      flattened_steps.push(item);
     }
   }
 
@@ -946,8 +950,8 @@ function flatten_items_steps(nodes)
 
 function calculate_item_data(obj)
 {
-  let item_data = 
-  { 
+  let item_data =
+  {
     generico_non_terrestre: (+obj.generico_non_terrestre),
     generico_terrestre:     (+obj.generico_non_terrestre) + (+obj.generico_terrestre),
     inventato:              (+obj.generico_non_terrestre) + (+obj.generico_terrestre) + (+obj.inventato),
@@ -993,10 +997,10 @@ function create_item_steps(d)
     let csv_item = data.x_csv2[d.id];
 
     return {
-      'r': s, 
-      'collection': collection_here, 
-      'first_publication': d.attributes.first_publication, 
-      'id': d.id, 
+      'r': s,
+      'collection': collection_here,
+      'first_publication': d.attributes.first_publication,
+      'id': d.id,
       'first_elem': first_elem,
       'generico_non_terrestre': csv_item == undefined ? 0 : csv_item.generico_non_terrestre,
       'generico_terrestre':  csv_item == undefined ? 0 : csv_item.generico_terrestre,
@@ -1118,13 +1122,13 @@ function prepareMetaballData(json_nodes, collection, lineColor)
   let flattened_steps = flatten_items_steps(json_nodes);
 
   let hillBases = flattened_steps
-    .filter(function(d) { 
-      return d.first_elem && d.collections.includes(collection); 
+    .filter(function(d) {
+      return d.first_elem && d.collections.includes(collection);
   });
 
-  let hillBase_circles = hillBases.map(hillBase => ({ 
-      p: { x: hillBase.x, y: hillBase.y }, 
-      r: hillBase.r * 1.2, 
+  let hillBase_circles = hillBases.map(hillBase => ({
+      p: { x: hillBase.x, y: hillBase.y },
+      r: hillBase.r * 1.2,
       color: "blue",
       step: hillBase.step,
       id: hillBase.id }));
@@ -1170,8 +1174,8 @@ function prepareMetaballData(json_nodes, collection, lineColor)
 
   let ordered_boundary_circles = boundary_points[0]
     .slice(0, boundary_points_count(boundary_points))
-    .map((point) => { 
-      return point_circle_map[point]; 
+    .map((point) => {
+      return point_circle_map[point];
     });
 
   let nCirclesToBeDrawn = ordered_boundary_circles.length;
@@ -1235,8 +1239,8 @@ function findShortestPointsPath(p1, points, p2)
   {
     let distances = [];
 
-    points.forEach(point => 
-    { 
+    points.forEach(point =>
+    {
       distances.push({
         point: point,
         target: p1,
@@ -1291,9 +1295,9 @@ function renderMetaballLogically(collection, hillBaseCircles, nCirclesToBeDrawn,
     checkMapAndInsert(centralCircle.step, "lobe", collection, lobe);
     checkMapAndInsert(centralCircle.step, "lobeColor", collection, lineColor);
     centralCircle.step.x = centralCircle.p.x;
-    centralCircle.step.y = centralCircle.p.y;     
+    centralCircle.step.y = centralCircle.p.y;
 
-let a = 6;    
+let a = 6;
   }
 }
 
@@ -1304,7 +1308,7 @@ function checkMapAndInsert(obj, mapName, key, value)
   obj[mapName][key] = value;
 }
 
-function arr_diff(a1, a2) 
+function arr_diff(a1, a2)
 {
   let diff = [];
 
@@ -1430,7 +1434,7 @@ function getCircleJoint(
   const center2 = circle2.p;
   const radius2 = circle2.r;
 
-  const d = dist(center1, center2);  
+  const d = dist(center1, center2);
 
   let u1;
 
@@ -1440,7 +1444,7 @@ function getCircleJoint(
     );
   } else { // Else set u1 and u2 to zero
     u1 = 0;
-  }  
+  }
 
   const angleBetweenCenters = angle(center1, center2);
   const maxSpread = Math.acos((radius1 - radius2) / d);
@@ -1524,17 +1528,17 @@ function calculate_u(circle1, circle2)
   } else { // Else set u1 and u2 to zero
     u1 = 0;
     u2 = 0;
-  }  
+  }
 
   return [u1, u2];
 }
 
 function metaball(
-  predecessorCircle, 
-  centralCircle, 
+  predecessorCircle,
+  centralCircle,
   successorCircle,
-  handleSize = 2.4, 
-  v = 0.5) 
+  handleSize = 2.4,
+  v = 0.5)
 {
   const predecessorCentralCenterDistance = dist(predecessorCircle.p, centralCircle.p);
 
@@ -1551,14 +1555,14 @@ function metaball(
 
   let centralSuccessor_u_values = calculate_u(centralCircle, successorCircle);
 
-  let u2 = predecessorCentral_u_values[1];  
+  let u2 = predecessorCentral_u_values[1];
 
   const angleBetweenCentralSuccessorCenters = angle(centralCircle.p, successorCircle.p);
 
   const angle3 = normalizeAngle(-(angleBetweenPredecessorCentralCenters + Math.PI - u2 - (Math.PI - u2 - maxSpread) * v));
 
 
-let svgContainer = d3.select("svg");  
+let svgContainer = d3.select("svg");
 
   // Point locations
   const p1 = getCircleJoint2(predecessorCircle, centralCircle, v);
@@ -1573,7 +1577,7 @@ let svgContainer = d3.select("svg");
   const d2Base = Math.min(v * handleSize, dist(p1, p3) / totalRadius);
 
 
-  const HALF_PI = Math.PI / 2;  
+  const HALF_PI = Math.PI / 2;
 
   // Handle locations
   const h1 = getCirclePoint(p1, HALF_PI + p1.angle, predecessorCircle.r);
@@ -1585,7 +1589,7 @@ let svgContainer = d3.select("svg");
   return metaballArc(p1, p3, p4, h1, h3, p3_p4_angle > Math.PI, centralCircle.r);
 }
 
-function metaballToPath(p1, p2, p3, p4, h1, h2, h3, h4, escaped, r) 
+function metaballToPath(p1, p2, p3, p4, h1, h2, h3, h4, escaped, r)
 {
   let s =
     'M' + p1.x + ' ' + p1.y + ' ' +
@@ -1601,19 +1605,19 @@ function metaballArc(p1, p3, p4, h1, h3, largeArc, r)
   let s =
     'M' + p1.x + ' ' + p1.y + ' ' +
     cubic1Path(p3, h1, h3)
-    
+
     +
     circleArcPath(p4, largeArc, r);
 
   return s;
 }
 
-function cubic1Path(p3, h1, h3) 
+function cubic1Path(p3, h1, h3)
 {
   return 'C' + h1.x + ' ' + h1.y + ', ' + h3.x + ' ' + h3.y + ', ' + p3.x + ' ' + p3.y + ' ';
 }
 
-function circleArcPath(p4, escaped, r) 
+function circleArcPath(p4, escaped, r)
 {
   return 'A' + r + ' ' + r + ' ' + 0 + ' ' + (escaped ? 1 : 0) + 0 + ' ' + p4.x + ' ' + p4.y + ' ';
 }
@@ -1623,7 +1627,7 @@ function circleArcPath2(p4, largeArc, r)
   return 'A' + r + ' ' + r + ' ' + 0 + ' ' + (largeArc ? 1 : 0) + ' ' + 0 + ' ' + p4.x + ' ' + p4.y + ' ';
 }
 
-function cubic2Path(p2, h2, h4) 
+function cubic2Path(p2, h2, h4)
 {
   return 'C' + h4.x + ' ' + h4.y + ', ' + h2.x + ' ' + h2.y + ', ' + p2.x + ' ' + p2.y;
 }
@@ -1635,7 +1639,7 @@ function offset_circles(circles, dx, dy)
 
 function circles_to_vector_points(circles)
 {
-  return circles.map((circle) => { 
+  return circles.map((circle) => {
     let coords = [ circle.p.x, circle.p.y ];
     coords.id = circle.id;
     return coords;
@@ -1657,7 +1661,7 @@ function offset_vector_points(vector_points, dx, dy)
     return vector_points.map((vector_point) => { return [vector_point[0] + dx, vector_point[1] + dy]; });
 }
 
-function dsq(a, b) 
+function dsq(a, b)
 {
     const dx = a[0] - b[0];
     const dy = a[1] - b[1];
@@ -1818,9 +1822,9 @@ function borderOrientationIsCounterclockwise(points)
 {
   const namedCoordPoints = points.map(vectorPoint_to_namedCoordPoint);
 
-  const barycenter = pointsBarycenter(namedCoordPoints);  
+  const barycenter = pointsBarycenter(namedCoordPoints);
 
-  const angles = namedCoordPoints.map(point => normalizeAngle(angle(barycenter, point)));      
+  const angles = namedCoordPoints.map(point => normalizeAngle(angle(barycenter, point)));
 
   const minAngle = Math.min(...angles);
 
@@ -1830,4 +1834,177 @@ function borderOrientationIsCounterclockwise(points)
   angles.unshift(angles.splice(-indexOfMin, this.length));
 
   return angles[2] > angles[1];
+}
+/*
+function getDataRelativeYear(d)
+{
+  const startYear = 1943;
+
+  const relativeYear = +(d.attributes.first_publication) - startYear;
+
+  return relativeYear;
+}
+*/
+function prepareTimeline(json_nodes, col_collections)
+{
+
+  let margin = { top: 5, right: 0, bottom: 50, left: 0 };
+
+  data.timeline_width = d3.select('#timeline').node().getBoundingClientRect().width - margin.left - margin.right;
+  data.timeline_height = d3.select('#timeline').node().getBoundingClientRect().height - margin.top - margin.bottom;
+
+  let timelineSvg = d3
+    .select("#timeline")
+    .attr("width", data.timeline_width)
+    .attr("height", data.timeline_height);
+
+
+
+  console.log(data.timeline_width)
+
+
+  data.timeline_x = d3
+    .scaleLinear()
+    .rangeRound([0, data.timeline_width]);
+
+  let x_time_ext = d3.extent(json_nodes, d => d.attributes.first_publication);
+  x_time_ext[0] = +x_time_ext[0]-1;
+  x_time_ext[1] = +x_time_ext[1]+1;
+  console.log(x_time_ext);
+
+  data.timeline_x.domain(x_time_ext);
+
+  data.timeline_y = d3
+    .scaleLinear()
+    .range([data.timeline_height, 0]);
+
+  let minCircleRadius = 3;
+  let maxCircleRadius = 20;
+
+  let dmax = d3.max(json_nodes, d => +d.attributes.txt_length);
+
+  let rscale = d3
+    .scaleLinear()
+    .range([minCircleRadius, maxCircleRadius])
+    .domain([0, dmax]);
+
+  let simulation = d3
+    .forceSimulation(json_nodes)
+    .force("x", d3.forceX(d => data.timeline_x(d.attributes.first_publication)).strength(1))
+    .force("y", d3.forceY(data.timeline_height / 2))
+    .force("collide", d3.forceCollide(d => rscale(d.attributes.txt_length) + 1))
+    .stop();
+
+  for(let i = 0; i < 120; ++i) simulation.tick();
+
+  let cell_group = timelineSvg
+    .append("g")
+    .attr("class", "cell_group")
+    .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
+
+  cell_group
+    .append("g")
+    .attr("class", "axis axis--x")
+    .attr("transform", "translate(0," + 110 + ")")
+    .call(d3
+      .axisBottom(data.timeline_x)
+      .ticks(41, "0"));
+//      .tickFormat(d3.format()));
+
+  let cell = cell_group
+    .append("g")
+    .attr("class", "cells")
+    .selectAll(".cell_node")
+    .data(d3
+      .voronoi()
+      .extent([[0, 0], [data.timeline_width, data.timeline_height]])
+      .x(d => d.x)
+      .y(d => d.y)
+      .polygons(json_nodes))
+    .enter()
+      .append("g");
+/*
+  const yearPointStep = 20;
+
+  const height = 200;
+
+  cell
+    .append("circle")
+    .attr("r", 3)
+    .attr("cx", d => {
+      let relative_year = +(d.attributes.first_publication) - startYear;
+
+      return relative_year * yearPointStep;
+    })
+    .attr("cy", d => height / 2);
+*/
+
+  let colls = getCollections().map(c => c.id);
+
+  data.timeline_dot = cell
+    .append("circle")
+    .attr("r", d => { return rscale(+d.data.attributes.txt_length)} )
+    .attr("cx", d => d.data.x)
+    .attr("cy", d => d.data.y)
+    .attr("fill", d => d.data.attributes.collections.length ? col_collections(d.data.attributes.collections[0]) : "#FFFFFF")
+    .attr("stroke", d => { if(d.data.attributes.collections.length) {
+      if(colls.includes(d.data.attributes.collections[0])) {
+        return "none";
+      }
+      else return "#000000";
+    }
+    else return "#000000" });
+
+  data.brush = d3
+    .brushX()
+    .extent([[0, 0], [data.timeline_width, data.timeline_height]])
+    .on("start brush", brushed);
+
+  cell_group
+    .append("g")
+    .call(data.brush)
+    .call(data.brush.move, [data.timeline_x.domain()[0]+0.5, data.timeline_x.domain()[1]-0.5].map(data.timeline_x))
+    .selectAll(".overlay")
+    .each(d => d.type = "selection")
+    .on("mousedown touchstart", brushcentered);
+/*
+  cell
+    .append("path")
+    .attr("d", d => "M" + d.join("L") + "Z");
+*/
+  cell
+    .append("title")
+    .text(d => d.data.id + "\n" + d.data.first_publication);
+}
+
+function brushcentered()
+{
+  let dx = data.timeline_x(1) - data.timeline_x(0);
+  let cx = d3.mouse(this)[0];
+  let x0 = cx - dx / 2;
+  let x1 = cx + dx / 2;
+
+  d3
+    .select(this.parentNode)
+    .call(data.brush.move, x1 > data.timeline_width ? [data.timeline_width - dx, data.timeline_width] : x0 < 0 ? [0, dx] : [x0, x1]);
+}
+
+function brushed()
+{
+  var extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
+  //console.log(extent);
+  d3.selectAll('g.node').each(function(d){
+
+
+    if(+d.attributes.first_publication >= extent[0] && +d.attributes.first_publication <= extent[1])
+    {
+    //console.log(+d.attributes.first_publication);
+    d3.select(this).style("opacity", 1);
+    }
+    else
+    {
+      d3.select(this).style("opacity", 0.3);
+    }
+  })
+//  data.timeline_dot.classed("selected", d => (extent[0] <= d[0] && d[0] <= extent[1]));
 }
