@@ -127,14 +127,14 @@ function treat_json(json)
     left: d3.min(json_nodes, function(d){ return d.x })
   };
 
-  console.log(boundaries);
+  // console.log(boundaries);
 
   let center = {
     x: (boundaries.left + boundaries.right) / 2,
     y: (boundaries.bottom + boundaries.top) / 2
   };
 
-  console.log(center);
+  // console.log(center);
 
   let colour = d3
     .scaleLinear()
@@ -671,7 +671,7 @@ function treat_json(json)
   })
 
   function toggleTimeline() {
-    d3.select('#timeline-container').classed("visible", d3.select('#timeline-container').classed("visible") ? false : true);
+    d3.select('#interface').classed("timeline-visible", d3.select('#interface').classed("timeline-visible") ? false : true);
   }
 
   d3.selectAll('.toggle-legend').on('click', function(d){
@@ -687,7 +687,7 @@ function treat_json(json)
     .on("keyup",
       function(d)
       {
-      console.log(d3.event.key)
+      // console.log(d3.event.key)
 
       let eventKey = d3.event.key.toLowerCase();
 
@@ -1848,20 +1848,21 @@ function getDataRelativeYear(d)
 function prepareTimeline(json_nodes, col_collections)
 {
 
-  let margin = { top: 5, right: 0, bottom: 50, left: 0 };
+  let margin = { top: 5, right: 5, bottom: 30, left: 5 };
 
   data.timeline_width = d3.select('#timeline').node().getBoundingClientRect().width - margin.left - margin.right;
   data.timeline_height = d3.select('#timeline').node().getBoundingClientRect().height - margin.top - margin.bottom;
 
   let timelineSvg = d3
     .select("#timeline")
-    .attr("width", data.timeline_width)
-    .attr("height", data.timeline_height);
+    .attr("width", data.timeline_width + margin.left + margin.right)
+    .attr("height", data.timeline_height + margin.top + margin.bottom);
 
+  let cell_group = timelineSvg.append("g")
+    .attr("class", "cell_group")
+    .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
-
-  console.log(data.timeline_width)
-
+  let brushGroup = timelineSvg.append("g")
 
   data.timeline_x = d3
     .scaleLinear()
@@ -1870,7 +1871,6 @@ function prepareTimeline(json_nodes, col_collections)
   let x_time_ext = d3.extent(json_nodes, d => d.attributes.first_publication);
   x_time_ext[0] = +x_time_ext[0]-1;
   x_time_ext[1] = +x_time_ext[1]+1;
-  console.log(x_time_ext);
 
   data.timeline_x.domain(x_time_ext);
 
@@ -1897,19 +1897,14 @@ function prepareTimeline(json_nodes, col_collections)
 
   for(let i = 0; i < 120; ++i) simulation.tick();
 
-  let cell_group = timelineSvg
-    .append("g")
-    .attr("class", "cell_group")
-    .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
-
-  cell_group
+  timelineSvg
     .append("g")
     .attr("class", "axis axis--x")
-    .attr("transform", "translate(0," + 110 + ")")
+    .attr("transform", "translate(0," + (data.timeline_height) + ")")
     .call(d3
       .axisBottom(data.timeline_x)
-      .ticks(41, "0"));
-//      .tickFormat(d3.format()));
+      .ticks(41, "0")
+    );
 
   let cell = cell_group
     .append("g")
@@ -1957,16 +1952,19 @@ function prepareTimeline(json_nodes, col_collections)
 
   data.brush = d3
     .brushX()
-    .extent([[0, 0], [data.timeline_width, data.timeline_height]])
+    .extent([[0, 5], [data.timeline_width, data.timeline_height-5]])
     .on("start brush", brushed);
 
-  cell_group
-    .append("g")
+  brushGroup
     .call(data.brush)
     .call(data.brush.move, [data.timeline_x.domain()[0]+0.5, data.timeline_x.domain()[1]-0.5].map(data.timeline_x))
     .selectAll(".overlay")
     .each(d => d.type = "selection")
     .on("mousedown touchstart", brushcentered);
+
+  d3.select('.handle--e').style('stroke-dasharray',`0,6,${data.timeline_height-4},117`)
+  d3.select('.handle--w').style('stroke-dasharray',`0,${data.timeline_height+6+6},0`)
+
 /*
   cell
     .append("path")
@@ -1994,17 +1992,13 @@ function brushed()
   var extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
   //console.log(extent);
   d3.selectAll('g.node').each(function(d){
-
-
     if(+d.attributes.first_publication >= extent[0] && +d.attributes.first_publication <= extent[1])
     {
-    //console.log(+d.attributes.first_publication);
-    d3.select(this).style("opacity", 1);
+      d3.select(this).style("opacity", 1);
     }
     else
     {
       d3.select(this).style("opacity", 0.3);
     }
   })
-//  data.timeline_dot.classed("selected", d => (extent[0] <= d[0] && d[0] <= extent[1]));
 }
