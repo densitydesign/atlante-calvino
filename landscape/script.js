@@ -5,6 +5,7 @@ let data = {
   timeline_x: 0,
   timeline_y: 0,
   timeline_dot: null,
+  keyboardCommandsOn: true
 };
 
 // Warn if overriding existing method
@@ -683,10 +684,25 @@ function treat_json(json)
   }
 
   d3
+    .select("#searchbox")
+    .on("focus", 
+      function()
+      {
+        data.keyboardCommandsOn = false;
+      })
+    .on("focusout",
+      function()
+      {
+        data.keyboardCommandsOn = true;
+      });
+
+  d3
     .select('body')
     .on("keyup", 
       function(d) 
       {
+        if(!data.keyboardCommandsOn) return;
+
       console.log(d3.event.key)
 
       let eventKey = d3.event.key.toLowerCase();
