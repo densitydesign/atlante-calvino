@@ -61,7 +61,7 @@ svg:active {
 #timeline-container {
   height: 0;
   bottom: 0;
-  background: var(--main-bg-color);
+  background: #f2f4f5;
   transition: all 0.35s ease;
   overflow: hidden;
   border-top: black 1px solid;
@@ -69,7 +69,7 @@ svg:active {
   padding: 0 3rem;
 }
 
-#timeline-container.visible {
+.timeline-visible #timeline-container {
   height: 20vh;
   opacity: 1;
 }
@@ -78,8 +78,34 @@ svg:active {
   width: calc(100% - 3rem);
 }
 
+#timeline .selection {
+  fill: rgba(255, 255, 255, 0.75);
+  /* fill: var(--main-bg-color); */
+  fill-opacity: 1;
+}
+
+#timeline .handle {
+  fill: black;
+  opacity: 1;
+  stroke: none;
+  stroke-width: 2px;
+}
+
 .toggle-timeline._close {
   position: absolute;
   top: 1rem;
   margin-left: 1rem;
+}
+
+.toggle-legend {
+  position: relative;
+  transition: all 0.35s ease;
+}
+
+.timeline-visible .toggle-legend {
+  bottom: 20vh;
+}
+
+.axis--x .tick:first-of-type, .axis--x .tick:last-of-type {
+  display: none;
 }
