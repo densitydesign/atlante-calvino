@@ -873,6 +873,21 @@ console.log(drawMode);
         text_nodes.style('display','block')
       }
   });
+
+  let titles = json_nodes.map(d => d.attributes.title);
+
+  $("#searchbox")
+    .autocomplete({
+      source: titles,
+      select: function(event, ui) {
+/*        
+          d3.selectAll(".kw")
+              .filter(function(d) {
+                  return d.keyword == ui.item.label
+              })
+              .each(mouseEnter)
+*/
+      } });
 }
 
 function convertRatioToColorComponent(r)
