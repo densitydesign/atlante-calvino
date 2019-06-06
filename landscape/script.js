@@ -664,7 +664,7 @@ function treat_json(json)
     }
   }
 
-  prepareTimeline(json_nodes);
+  prepareTimeline(json_nodes, col_collections);
 
   d3.selectAll('.toggle-timeline').on('click', function(d){
     toggleTimeline();
@@ -1845,32 +1845,47 @@ function getDataRelativeYear(d)
   return relativeYear;
 }
 */
-function prepareTimeline(json_nodes)
+function prepareTimeline(json_nodes, col_collections)
 {
   let timelineSvg = d3
     .select("#timeline")
-    .attr("width", 1800);
+    .attr("width", window.innerWidth);
 
   let margin = { top: 5, right: 50, bottom: 50, left: 50 };
 
-  const width = timelineSvg.attr("width") - margin.left - margin.right;
-  const height = 180 - margin.top - margin.bottom;
+  data.timeline_width = timelineSvg.attr("width") - margin.left - margin.right;
+  data.timeline_height = 180 - margin.top - margin.bottom;
 
   data.timeline_x = d3
     .scaleLinear()
-    .rangeRound([0, width]);
+    .rangeRound([0, data.timeline_width]);
 
-  data.timeline_x.domain(d3.extent(json_nodes, d => d.attributes.first_publication));
+  let x_time_ext = d3.extent(json_nodes, d => d.attributes.first_publication);
+  x_time_ext[0] = +x_time_ext[0]-1;
+  x_time_ext[1] = +x_time_ext[1]+1;
+  console.log(x_time_ext);
+
+  data.timeline_x.domain(x_time_ext);
 
   data.timeline_y = d3
     .scaleLinear()
-    .range([height, 0]);
+    .range([data.timeline_height, 0]);
+
+  let minCircleRadius = 3;
+  let maxCircleRadius = 20;
+
+  let dmax = d3.max(json_nodes, d => +d.attributes.txt_length);
+
+  let rscale = d3
+    .scaleLinear()
+    .range([minCircleRadius, maxCircleRadius])
+    .domain([0, dmax]);    
 
   let simulation = d3
     .forceSimulation(json_nodes)
     .force("x", d3.forceX(d => data.timeline_x(d.attributes.first_publication)).strength(1))
-    .force("y", d3.forceY(height / 2))
-    .force("collide", d3.forceCollide(4))
+    .force("y", d3.forceY(data.timeline_height / 2))
+    .force("collide", d3.forceCollide(d => rscale(d.attributes.txt_length) + 1))
     .stop();
 
   for(let i = 0; i < 120; ++i) simulation.tick();
@@ -1895,7 +1910,7 @@ function prepareTimeline(json_nodes)
     .selectAll(".cell_node")
     .data(d3
       .voronoi()
-      .extent([[0, 0], [width, height]])
+      .extent([[0, 0], [data.timeline_width, data.timeline_height]])
       .x(d => d.x)
       .y(d => d.y)
       .polygons(json_nodes))
@@ -1916,21 +1931,32 @@ function prepareTimeline(json_nodes)
     })
     .attr("cy", d => height / 2);
 */
+
+  let colls = getCollections().map(c => c.id);
+
   data.timeline_dot = cell
     .append("circle")
-    .attr("r", d => {console.log(d); return 3})
+    .attr("r", d => { return rscale(+d.data.attributes.txt_length)} )
     .attr("cx", d => d.data.x)
-    .attr("cy", d => d.data.y);
+    .attr("cy", d => d.data.y)
+    .attr("fill", d => d.data.attributes.collections.length ? col_collections(d.data.attributes.collections[0]) : "#FFFFFF")
+    .attr("stroke", d => { if(d.data.attributes.collections.length) { 
+      if(colls.includes(d.data.attributes.collections[0])) {
+        return "none";
+      }
+      else return "#000000";
+    } 
+    else return "#000000" });
 
-  let brush = d3
+  data.brush = d3
     .brushX()
-    .extent([[0, 0], [width, height]])
+    .extent([[0, 0], [data.timeline_width, data.timeline_height]])
     .on("start brush", brushed);      
 
   cell_group
     .append("g")
-    .call(brush)
-    .call(brush.move, [3, 5].map(data.timeline_x))
+    .call(data.brush)
+    .call(data.brush.move, data.timeline_x.domain().map(data.timeline_x))
     .selectAll(".overlay")
     .each(d => d.type = "selection")
     .on("mousedown touchstart", brushcentered);    
@@ -1953,12 +1979,25 @@ function brushcentered()
 
   d3
     .select(this.parentNode)
-    .call(brush.move, x1 > width ? [width - dx, width] : x0 < 0 ? [0, dx] : [x0, x1]);
+    .call(data.brush.move, x1 > data.timeline_width ? [data.timeline_width - dx, data.timeline_width] : x0 < 0 ? [0, dx] : [x0, x1]);
 }
 
 function brushed()
 {
   var extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
-  console.log(extent);
+  //console.log(extent);
+  d3.selectAll('g.node').each(function(d){
+    
+
+    if(+d.attributes.first_publication >= extent[0] && +d.attributes.first_publication <= extent[1])
+    {
+    //console.log(+d.attributes.first_publication);
+    d3.select(this).style("opacity", 1);
+    }
+    else
+    {
+      d3.select(this).style("opacity", 1e-16);
+    }
+  })
 //  data.timeline_dot.classed("selected", d => (extent[0] <= d[0] && d[0] <= extent[1]));
 }
