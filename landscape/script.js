@@ -89,8 +89,8 @@ function treat_json(json)
     function(n)
     {
       // fix orientation of the viz
-      // n.y*=-1;
-      n.x*=-1;
+      n.y*=-1;
+      // n.x*=-1;
       // handle collections
       if (n.attributes.collections){
         n.attributes.collections = n.attributes.collections.split(';')
