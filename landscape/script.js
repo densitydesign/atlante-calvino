@@ -1835,7 +1835,7 @@ function borderOrientationIsCounterclockwise(points)
 
   return angles[2] > angles[1];
 }
-
+/*
 function getDataRelativeYear(d)
 {
   const startYear = 1943;
@@ -1844,21 +1844,23 @@ function getDataRelativeYear(d)
 
   return relativeYear;
 }
-
+*/
 function prepareTimeline(json_nodes)
 {
   let timelineSvg = d3
     .select("#timeline")
     .attr("width", 1800);
 
-  const width = timelineSvg.attr("width");  
-  const height = 200;
+  let margin = { top: 5, right: 50, bottom: 50, left: 50 };
+
+  const width = timelineSvg.attr("width") - margin.left - margin.right;
+  const height = 180 - margin.top - margin.bottom;
 
   data.timeline_x = d3
     .scaleLinear()
     .rangeRound([0, width]);
 
-  data.timeline_x.domain(d3.extent(json_nodes, d => getDataRelativeYear(d)));
+  data.timeline_x.domain(d3.extent(json_nodes, d => d.attributes.first_publication));
 
   data.timeline_y = d3
     .scaleLinear()
@@ -1866,7 +1868,7 @@ function prepareTimeline(json_nodes)
 
   let simulation = d3
     .forceSimulation(json_nodes)
-    .force("x", d3.forceX(d => data.timeline_x(getDataRelativeYear(d))).strength(1))
+    .force("x", d3.forceX(d => data.timeline_x(d.attributes.first_publication)).strength(1))
     .force("y", d3.forceY(height / 2))
     .force("collide", d3.forceCollide(4))
     .stop();
@@ -1875,13 +1877,17 @@ function prepareTimeline(json_nodes)
 
   let cell_group = timelineSvg
     .append("g")
-    .attr("class", "cell_group");
+    .attr("class", "cell_group")
+    .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
   cell_group
     .append("g")
     .attr("class", "axis axis--x")
-    .attr("transform", "translate(0," + height + ")")
-    .call(d3.axisBottom(data.timeline_x).ticks(20, ".0s"));
+    .attr("transform", "translate(0," + 110 + ")")
+    .call(d3
+      .axisBottom(data.timeline_x)
+      .ticks(41, "0"));
+//      .tickFormat(d3.format()));
 
   let cell = cell_group
     .append("g")
