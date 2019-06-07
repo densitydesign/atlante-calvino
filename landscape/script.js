@@ -1941,7 +1941,10 @@ function prepareTimeline(json_nodes, col_collections)
 
   data.timeline_dot = cell
     .append("circle")
-    .attr("r", d => { return rscale(+d.data.attributes.txt_length)} )
+    .attr("r", d => {
+      d.data.attributes.collections = d.data.attributes.collections.reverse();
+      return rscale(+d.data.attributes.txt_length);
+    })
     .attr("cx", d => d.data.x)
     .attr("cy", d => d.data.y)
     .attr("fill", d => d.data.attributes.collections.length ? col_collections(d.data.attributes.collections[0]) : "#FFFFFF")
