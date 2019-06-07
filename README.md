@@ -6,6 +6,8 @@
 - [stesure](https://densitydesign.github.io/atlante-calvino/stesure)
 - [saggi persone-persone](https://densitydesign.github.io/atlante-calvino/saggi/persone-persone)
 - [saggi saggi-persone](https://densitydesign.github.io/atlante-calvino/saggi/saggi-persone)
+- [Landscape of Calvino's Literary Works](https://densitydesign.github.io/atlante-calvino/landscape)
+- [luoghi e categorie](https://densitydesign.github.io/atlante-calvino/luoghi-categorie)
 
 ##### Strumenti
 - [Estrai posizione parole](https://densitydesign.github.io/atlante-calvino/explorer)

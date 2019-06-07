@@ -1,11 +1,16 @@
 :root {
   --main-bg-color: #EFEBE9;
+  --main-bg-color: #dadedd;
+  --main-bg-color: #e5e6e6;
+  --main-bg-color: linear-gradient(180deg, #FFFFFF 36%, #F7FAFA 63%);
 }
 
 body {
   margin: 0;
   border-top: 6px solid tomato;
   height: 100vh;
+  background-color: darkslategrey;
+  color: darkslategrey;
 }
 
 #interface {
@@ -14,6 +19,13 @@ body {
 
 svg#landscape {
   cursor: grab;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+svg#landscape.hidden {
+  opacity: 1e-16;
+  transition: opacity 1s ease;
 }
 
 svg:active {
@@ -58,14 +70,51 @@ svg:active {
 #timeline-container {
   height: 0;
   bottom: 0;
-  background: var(--main-bg-color);
+  background: #f2f4f5;
   transition: all 0.35s ease;
   overflow: hidden;
   border-top: black 1px solid;
   opacity: 0;
+  padding: 0 3rem;
 }
 
-#timeline-container.visible {
+.timeline-visible #timeline-container {
   height: 20vh;
   opacity: 1;
+}
+
+#timeline {
+  width: calc(100% - 3rem);
+}
+
+#timeline .selection {
+  fill: rgba(255, 255, 255, 0.75);
+  /* fill: var(--main-bg-color); */
+  fill-opacity: 1;
+}
+
+#timeline .handle {
+  fill: black;
+  opacity: 1;
+  stroke: none;
+  stroke-width: 2px;
+}
+
+.toggle-timeline._close {
+  position: absolute;
+  top: 1rem;
+  margin-left: 1rem;
+}
+
+.toggle-legend {
+  position: relative;
+  transition: all 0.35s ease;
+}
+
+.timeline-visible .toggle-legend {
+  bottom: 20vh;
+}
+
+.axis--x .tick:first-of-type, .axis--x .tick:last-of-type {
+  display: none;
 }

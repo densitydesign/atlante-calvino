@@ -7,12 +7,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
   <link rel="stylesheet" href="../assets/general-style.css">
   <link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-  <svg id="landscape" class="position-absolute">
+  <svg id="landscape" class="position-absolute hidden">
     <defs>
       <filter id="goo">
         <feGaussianBlur in="SourceGraphic" stdDeviation="18" result="blur"></feGaussianBlur>
@@ -23,9 +24,9 @@
   <div id="interface" class="container-fluid d-flex d-flex-sm flex-column justify-content-between">
     <div class="row">
       <div class="col-md-12">
-        <h1>L'opera di Calvino per
+        <h1>L'opera di Calvino per:
           <span class="_btn verbose-options-selector colours-selector">
-            <span class="_btn" colour-by="years">prima pubblicazione</span>
+            <span class="_btn" colour-by="years">prima pubblicazione</span>,
             <span class="_btn" colour-by="collections">raccolta</span>
           </span>
         </h1>
@@ -40,7 +41,7 @@
       </div>
       <div id="timeline-container" class="col-md-12 position-absolute">
         <svg id="timeline"></svg>
-        <span class="_btn toggle-timeline"><i class="fas fa-times"></i></span>
+        <span class="_btn toggle-timeline _close"><i class="fas fa-times"></i></span>
       </div>
       <div class="col-md-6 order-first">
         <h5 class="_btn toggle-legend">Legenda</h5>
@@ -60,9 +61,9 @@
         </div>
         <div class="modal-body legend">
           <div class="row">
-            <div class="col-12 col-sm-10 col-lg-6 offset-sm-1 offset-lg-0 the-place pb-3"></div>
+            <div class="col-12 col-sm-10 col-lg-6 offset-sm-1 offset-lg-0 the-place"></div>
             <div class="col-12 col-lg-6">
-              <p>legenda.</p>
+              <img src="legend-draft.png" class="img-fluid" />
             </div>
           </div>
         </div>
@@ -74,9 +75,14 @@
   <script src="../node_modules/jquery/dist/jquery.min.js"></script>
   <script src="../node_modules/jquery-ui-dist/jquery-ui.min.js"></script>
   <script src="../node_modules/popper.js/dist/umd/popper.min.js"></script>
-  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
-  <script src="../node_modules/d3/dist/d3.min.js"></script>
-  <script src="../node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script>
+  <script src="../node_modules/bootstrap/dist/js/bootstrap.min.js"></script> -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <!-- <script src="../node_modules/d3/dist/d3.min.js"></script> -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- <script src="../node_modules/@fortawesome/fontawesome-free/js/all.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.2/js/all.min.js"></script>
   <script src="script.js"></script>
 </body>
 
