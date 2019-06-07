@@ -609,11 +609,12 @@ function treat_json(json)
       .attr('class','label')
       .attr('fill','black')
       .attr('font-size','5rem')
+      .attr('text-anchor','middle')
       .attr('transform',function(d){
         return 'translate(0,'+(d.steps.length+2)*step_increment+') scale(1,'+1/0.5773+')'
       })
       .text(function(d){
-        return d.id+'-'+d.attributes.first_publication;
+        return d.attributes.title//+'-'+d.attributes.first_publication;
       });
 
   //add zoom capabilities
