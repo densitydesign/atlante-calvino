@@ -231,7 +231,10 @@ function treat_json(json)
       .attr('class','node')
       .attr('transform',function(d){
         return 'scale(1,0.5773) translate('+(d.x - center.x)+','+(d.y - center.y)+')'
-      });
+      })
+      .on('click', function(d){
+        console.log(d);
+      })
 
   // calculate the size of steps for hills
   let step_increment = -23;
@@ -628,6 +631,7 @@ function treat_json(json)
   function zoom_actions(){
     g.attr("transform", d3.event.transform);
     metaball_group.attr("transform", d3.event.transform);
+    // console.log(d3.event.transform);
   }
 
   // Handle interface interactions
@@ -1848,7 +1852,7 @@ function getDataRelativeYear(d)
 function prepareTimeline(json_nodes, col_collections)
 {
 
-  let margin = { top: 5, right: 5, bottom: 30, left: 5 };
+  let margin = { top: 10, right: 5, bottom: 30, left: 10 };
 
   data.timeline_width = d3.select('#timeline').node().getBoundingClientRect().width - margin.left - margin.right;
   data.timeline_height = d3.select('#timeline').node().getBoundingClientRect().height - margin.top - margin.bottom;
@@ -1862,21 +1866,20 @@ function prepareTimeline(json_nodes, col_collections)
     .attr("class", "cell_group")
     .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
 
-  let brushGroup = timelineSvg.append("g")
-
-  data.timeline_x = d3
-    .scaleLinear()
-    .rangeRound([0, data.timeline_width]);
+  let brushGroup = timelineSvg.append("g").attr("transform", "translate("+margin.left+"," + 0 + ")")
 
   let x_time_ext = d3.extent(json_nodes, d => d.attributes.first_publication);
   x_time_ext[0] = +x_time_ext[0]-1;
   x_time_ext[1] = +x_time_ext[1]+1;
 
-  data.timeline_x.domain(x_time_ext);
-
-  data.timeline_y = d3
+  data.timeline_x = d3
     .scaleLinear()
-    .range([data.timeline_height, 0]);
+    .rangeRound([0, (data.timeline_width - margin.left - margin.right)])
+    .domain(x_time_ext);
+
+  // data.timeline_y = d3
+  //   .scaleLinear()
+  //   .range([data.timeline_height, 0]);
 
   let minCircleRadius = 3;
   let maxCircleRadius = 20;
@@ -1900,7 +1903,7 @@ function prepareTimeline(json_nodes, col_collections)
   timelineSvg
     .append("g")
     .attr("class", "axis axis--x")
-    .attr("transform", "translate(0," + (data.timeline_height) + ")")
+    .attr("transform", "translate("+margin.left+"," + (data.timeline_height) + ")")
     .call(d3
       .axisBottom(data.timeline_x)
       .ticks(41, "0")
@@ -1952,12 +1955,12 @@ function prepareTimeline(json_nodes, col_collections)
 
   data.brush = d3
     .brushX()
-    .extent([[0, 5], [data.timeline_width, data.timeline_height-5]])
+    .extent([[0, 5], [data.timeline_width-margin.left-margin.right, data.timeline_height-5]])
     .on("start brush", brushed);
 
   brushGroup
     .call(data.brush)
-    .call(data.brush.move, [data.timeline_x.domain()[0]+0.5, data.timeline_x.domain()[1]-0.5].map(data.timeline_x))
+    .call(data.brush.move, [data.timeline_x.domain()[0], data.timeline_x.domain()[1]].map(data.timeline_x))
     .selectAll(".overlay")
     .each(d => d.type = "selection")
     .on("mousedown touchstart", brushcentered);
