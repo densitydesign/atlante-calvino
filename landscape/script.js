@@ -73,6 +73,11 @@ d3
 
 function treat_json(json)
 {
+
+  //Firstly let svg appear
+
+  d3.select('svg#landscape').classed('hidden', false);
+
   let collections = getCollections();
   let allowedCollections = data.allowedCollections.split(",");
 

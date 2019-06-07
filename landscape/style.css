@@ -2,13 +2,15 @@
   --main-bg-color: #EFEBE9;
   --main-bg-color: #dadedd;
   --main-bg-color: #e5e6e6;
-  --main-bg-color: linear-gradient(180deg, #FFFFFF 36%, #F7FAFA 63%);;
+  --main-bg-color: linear-gradient(180deg, #FFFFFF 36%, #F7FAFA 63%);
 }
 
 body {
   margin: 0;
   border-top: 6px solid tomato;
   height: 100vh;
+  background-color: darkslategrey;
+  color: darkslategrey;
 }
 
 #interface {
@@ -17,6 +19,13 @@ body {
 
 svg#landscape {
   cursor: grab;
+  opacity: 1;
+  transition: opacity 1s ease;
+}
+
+svg#landscape.hidden {
+  opacity: 1e-16;
+  transition: opacity 1s ease;
 }
 
 svg:active {
