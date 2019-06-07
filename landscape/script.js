@@ -606,7 +606,7 @@ function treat_json(json)
         return 'translate(0,'+(d.steps.length+2)*step_increment+') scale(1,'+1/0.5773+')'
       })
       .text(function(d){
-        return d.id+'-'+d.attributes.first_publication;
+        return d.id + '-' + d.attributes.title + '-' + d.attributes.first_publication;
       });
 
   //add zoom capabilities
@@ -695,6 +695,10 @@ function treat_json(json)
       {
         data.keyboardCommandsOn = true;
       });
+
+  let zx = 1000;
+  let zy = 1000;
+  let scaleFactor = 0.4;
 
   d3
     .select('body')
@@ -885,17 +889,116 @@ console.log(drawMode);
             .style("stroke-opacity", 0);
         }
       }
+      else if(eventKey == "w")
+      {
+        zy -= 100;
+
+        console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
+
+        svg.transition()
+          .duration(0)
+          .call( zoom_handler.transform, d3.zoomIdentity
+//            .translate(-(coords[0]), -(coords[1]))
+            .translate(zx, zy)
+            .scale(scaleFactor)
+          ); // updated for d3 v4        
+      }
+      else if(eventKey == "a")
+      {
+        zx -= 100;
+
+        console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
+//        zy = 1000;
+
+        svg.transition()
+          .duration(0)
+          .call( zoom_handler.transform, d3.zoomIdentity
+//            .translate(-(coords[0]), -(coords[1]))
+            .translate(zx, zy)
+            .scale(scaleFactor)
+          ); // updated for d3 v4        
+      }   
+      else if(eventKey == "s")
+      {
+        zx += 100;
+
+        console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
+//        zy = 1000;
+
+        svg.transition()
+          .duration(0)
+          .call( zoom_handler.transform, d3.zoomIdentity
+//            .translate(-(coords[0]), -(coords[1]))
+            .translate(zx, zy)
+            .scale(scaleFactor)
+          ); // updated for d3 v4        
+      }
+      else if(eventKey == "z")
+      {
+        zy += 100;
+
+        console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
+//        zy = 1000;
+
+        svg.transition()
+          .duration(0)
+          .call( zoom_handler.transform, d3.zoomIdentity
+//            .translate(-(coords[0]), -(coords[1]))
+            .translate(zx, zy)
+            .scale(scaleFactor)
+          ); // updated for d3 v4        
+      }
+      else if(eventKey == "e")
+      {
+        scaleFactor /= 2;
+        zy -= 250 * scaleFactor;
+
+        console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
+//        zy = 1000;
+
+        svg.transition()
+          .duration(0)
+          .call( zoom_handler.transform, d3.zoomIdentity
+//            .translate(-(coords[0]), -(coords[1]))
+            .translate(zx, zy)
+            .scale(scaleFactor)
+          ); // updated for d3 v4        
+      }
+      else if(eventKey == "d")
+      {
+        zy += 250 * scaleFactor;
+        scaleFactor *= 2;        
+
+        console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
+//        zy = 1000;
+
+        svg.transition()
+          .duration(0)
+          .call( zoom_handler.transform, d3.zoomIdentity
+//            .translate(-(coords[0]), -(coords[1]))
+            .translate(zx, zy)
+            .scale(scaleFactor)
+          ); // updated for d3 v4        
+      }
       else if (eventKey == " ") {
         text_nodes.style('display','block')
       }
   });
 
   let titles = json_nodes.map(d => d.attributes.title);
+  let title_id_map = new Map();
+
+  json_nodes.forEach(d => title_id_map[d.attributes.title] = d.id);
 
   $("#searchbox")
     .autocomplete({
       source: titles,
       select: function(event, ui) {
+
+        let xxx = title_id_map[ui.item.value];
+
+        console.log(xxx);
+//        alert(xxx);
 /*        
           d3.selectAll(".kw")
               .filter(function(d) {
@@ -903,6 +1006,36 @@ console.log(drawMode);
               })
               .each(mouseEnter)
 */
+
+//        let chosen = steps.selectAll(d => d.first_elem).nodes()[0];
+//        let a = 5;
+
+//        let point_data = steps.filter(d => d.id == xxx && d.first_elem).nodes()[0]._parent.__data__;
+//        let x = (+point_data.x);
+//        let y = (+point_data.y);
+
+
+//        let transform_string = steps.filter(d => d.id == xxx && d.first_elem).nodes()[0]._parent.attributes.transform.nodeValue;
+//        "scale(1,0.5773) translate(2487.520751953125,2213.16162109375)"
+
+//        let s2 = transform_string.slice(26, transform_string.length - 2);
+//        let coords = s2.split(",");
+
+//391.468505859375,-6138.8857421875
+/*
+        svg.transition()
+          .duration(0)
+          .call( zoom_handler.transform, d3.zoomIdentity
+//            .translate(-(coords[0]), -(coords[1]))
+            .translate(x, y)
+            .scale(0.2)
+          ); // updated for d3 v4
+*/
+
+      let json_node = json_nodes.filter(d => d.id == xxx)[0];
+
+      centerTerritory(0.2, json_node.x, json_node.y, 0);
+
       } });
 }
 
