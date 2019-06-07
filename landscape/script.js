@@ -651,7 +651,7 @@ function treat_json(json)
   function setHillsColours(coloursBy) {
     switch (coloursBy) {
       case 'years':
-        svg_nodes.selectAll('circle')
+        text_nodes.selectAll('circle')
           .transition()
           .duration(350)
           .attr('fill',function(d){
@@ -659,7 +659,7 @@ function treat_json(json)
           })
         break;
       case 'collections':
-        svg_nodes.selectAll('circle')
+        text_nodes.selectAll('circle')
           .transition().duration(350)
           .attr('fill',function(d){
             return col_collections(d.collection)
