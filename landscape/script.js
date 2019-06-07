@@ -900,11 +900,24 @@ console.log(drawMode);
   });
 
   let titles = json_nodes.map(d => d.attributes.title);
+  let title_id_map = new Map();
+
+  json_nodes.forEach(d => title_id_map[d.attributes.title] = d.id);
 
   $("#searchbox")
     .autocomplete({
       source: titles,
       select: function(event, ui) {
+
+        let id = title_id_map[ui.item.value];
+
+        text_nodes
+          .filter(d => d.id == id)
+          .style("opacity", 1);
+
+        text_nodes
+          .filter(d => d.id != id)
+          .style("opacity", 0.3);
 /*        
           d3.selectAll(".kw")
               .filter(function(d) {
