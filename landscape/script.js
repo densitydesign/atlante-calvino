@@ -5,6 +5,7 @@ let data = {
   timeline_x: 0,
   timeline_y: 0,
   timeline_dot: null,
+  keyboardCommandsOn: true
 };
 
 // Warn if overriding existing method
@@ -693,11 +694,26 @@ function treat_json(json)
   }
 
   d3
+    .select("#searchbox")
+    .on("focus", 
+      function()
+      {
+        data.keyboardCommandsOn = false;
+      })
+    .on("focusout",
+      function()
+      {
+        data.keyboardCommandsOn = true;
+      });
+
+  d3
     .select('body')
     .on("keyup",
       function(d)
       {
-      // console.log(d3.event.key)
+        if(!data.keyboardCommandsOn) return;
+
+//      console.log(d3.event.key)
 
       let eventKey = d3.event.key.toLowerCase();
 
@@ -879,10 +895,41 @@ console.log(drawMode);
             .style("stroke-opacity", 0);
         }
       }
+      else if(eventKey == "f") {
+        applyBeeSwarmFilter();
+      }
       else if (eventKey == " ") {
         text_nodes.style('display','block')
       }
   });
+
+  let titles = json_nodes.map(d => d.attributes.title);
+  let title_id_map = new Map();
+
+  json_nodes.forEach(d => title_id_map[d.attributes.title] = d.id);
+
+  $("#searchbox")
+    .autocomplete({
+      source: titles,
+      select: function(event, ui) {
+
+        let id = title_id_map[ui.item.value];
+
+        text_nodes
+          .filter(d => d.id == id)
+          .style("opacity", 1);
+
+        text_nodes
+          .filter(d => d.id != id)
+          .style("opacity", 0.3);
+/*        
+          d3.selectAll(".kw")
+              .filter(function(d) {
+                  return d.keyword == ui.item.label
+              })
+              .each(mouseEnter)
+*/
+      } });
 }
 
 function convertRatioToColorComponent(r)
@@ -2001,16 +2048,25 @@ function brushcentered()
 
 function brushed()
 {
-  var extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
+  data.extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
   //console.log(extent);
-  d3.selectAll('g.node').each(function(d){
-    if(+d.attributes.first_publication >= extent[0] && +d.attributes.first_publication <= extent[1])
+
+  applyBeeSwarmFilter();
+}
+
+function applyBeeSwarmFilter()
+{
+  d3
+    .selectAll('g.node')
+    .each(function(d)
     {
-      d3.select(this).style("opacity", 1);
-    }
-    else
-    {
-      d3.select(this).style("opacity", 0.3);
-    }
-  })
+      if(+d.attributes.first_publication >= data.extent[0] && +d.attributes.first_publication <= data.extent[1])
+      {
+        d3.select(this).style("opacity", 1);
+      }
+      else
+      {
+        d3.select(this).style("opacity", 0.3);
+      }
+    });
 }
