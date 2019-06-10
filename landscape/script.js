@@ -894,6 +894,9 @@ console.log(drawMode);
             .style("stroke-opacity", 0);
         }
       }
+      else if(eventKey == "f") {
+        applyBeeSwarmFilter();
+      }
       else if (eventKey == " ") {
         text_nodes.style('display','block')
       }
@@ -2044,16 +2047,25 @@ function brushcentered()
 
 function brushed()
 {
-  var extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
+  data.extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
   //console.log(extent);
-  d3.selectAll('g.node').each(function(d){
-    if(+d.attributes.first_publication >= extent[0] && +d.attributes.first_publication <= extent[1])
+
+  applyBeeSwarmFilter();
+}
+
+function applyBeeSwarmFilter()
+{
+  d3
+    .selectAll('g.node')
+    .each(function(d)
     {
-      d3.select(this).style("opacity", 1);
-    }
-    else
-    {
-      d3.select(this).style("opacity", 0.3);
-    }
-  })
+      if(+d.attributes.first_publication >= data.extent[0] && +d.attributes.first_publication <= data.extent[1])
+      {
+        d3.select(this).style("opacity", 1);
+      }
+      else
+      {
+        d3.select(this).style("opacity", 0.3);
+      }
+    });
 }
