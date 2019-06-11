@@ -662,14 +662,15 @@ function treat_json(json)
           .transition()
           .duration(350)
           .attr('fill',function(d){
-            return colour(d.first_publication)
+            return colour(d.first_publication);
           })
         break;
       case 'collections':
         text_nodes.selectAll('circle')
           .transition().duration(350)
           .attr('fill',function(d){
-            return col_collections(d.collection)
+            console.log(d.collection, col_collections(d.collection));
+            return col_collections(d.collection);
           })
         break;
     }
@@ -721,7 +722,6 @@ function treat_json(json)
       function(d)
       {
         if(!data.keyboardCommandsOn) return;
-
 //      console.log(d3.event.key)
 
       let eventKey = d3.event.key.toLowerCase();
