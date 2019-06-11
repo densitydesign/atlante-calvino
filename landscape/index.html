@@ -23,7 +23,7 @@
   </svg>
   <div id="interface" class="container-fluid d-flex d-flex-sm flex-column justify-content-between">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-9">
         <h1>L'opera di Calvino per:
           <span class="_btn verbose-options-selector colours-selector">
             <span class="_btn" colour-by="years">prima pubblicazione</span>,
@@ -32,7 +32,11 @@
         </h1>
         <h3>Esplora l'opera di Calvino attraverso un fenomeno</h3>
         <h5 class="_btn toggle-cerca">Cerca <input id="searchbox" type="text"></h5>
-        
+
+      </div>
+
+      <div class="col-md-3 text-right">
+        <h5 class="_btn toggle-tutorial">Cosa è?</h5>
       </div>
     </div>
     <div class="row">
@@ -47,6 +51,81 @@
         <h5 class="_btn toggle-legend">Legenda</h5>
       </div>
     </div>
+  </div>
+
+  <div class="scrollitelling-box scrollitelling-visible position-absolute">
+
+    <div id="skip-tutorial" class="toggle-tutorial"><i class="fas fa-times"></i></div>
+
+    <div class="scrollitelling">
+
+      <div class="step-scrollitelling">
+        <h3>L'opera di Italo Calvino come un territorio</h3>
+
+        <h4 id="st-what-is">Di cosa si tratta</h4>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
+        <p>Di seguito spiegheremo come si legge, come si esplora e, soprattutto, <a href="#st-insights">cosa ci dice</a>.</p>
+        <p>Continua a scorrere &#8230;</p>
+        <!-- <p>&#8945; &#8945; &#8945; </p> -->
+      </div>
+
+      <div class="step-scrollitelling">
+        <h4 id="st-how-read">Come si legge</h4>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+        <p class="st-box">
+          Clicca <i class="far fa-hand-pointer"></i> <span class="font-italic">Legenda</span> per mostrare la legenda completa
+        </p>
+
+        <h5>Disposizione degli elementi</h5>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+        <img class="img-fluid" src="https://via.placeholder.com/400x200.png?text=Posizione"></img>
+
+        <h5>Dimensione</h5>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+        <img class="img-fluid" src="https://via.placeholder.com/400x200.png?text=Dimensione"></img>
+
+        <h5>Uso del colore</h5>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+        <img class="img-fluid" src="https://via.placeholder.com/400x200.png?text=Colore1"></img>
+        <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+        <img class="img-fluid" src="https://via.placeholder.com/400x200.png?text=Colore2"></img>
+        <p class="st-box">
+          Clicca <i class="far fa-hand-pointer"></i> <span class="font-italic">le parti sottolineate</span> dell'interfaccia per passare da una modalità all'altra.
+        </p>
+      </div>
+
+      <div class="step-scrollitelling">
+        <h5 id="st-how-explore">Come esplorarlo</h5>
+        <p><span class="font-weight-bold">Tooltip</span> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+        <img class="img-fluid" src="https://via.placeholder.com/400x200.png?text=Animazioni_tooltip"></img>
+
+        <p><span class="font-weight-bold">Filtro</span> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+        <img class="img-fluid" src="https://via.placeholder.com/400x200.png?text=Animazione_filtro"></img>
+
+        <p><span class="font-weight-bold">Cerca un'opera</span> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+        <p class="st-box">
+          Clicca <i class="far fa-hand-pointer"></i> <span class="font-italic">Legenda</span> per mostrare la legenda completa
+        </p>
+
+        <p><span class="font-weight-bold">Zoom</span> Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+        <img class="img-fluid" src="https://via.placeholder.com/400x200.png?text=Animazione_zoom"></img>
+      </div>
+
+    </div>
+
+    <div class="step-scrollitelling">
+      <h3 id="st-insights">Riflessioni</h3>
+
+      <h4 id="st-001">La prima cosa</h4>
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+
+      <h4 id="st-001">La seconda cosa</h4>
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+
+      <h4 id="st-001">La terza cosa</h4>
+      <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>
+    </div>
+
   </div>
 
   <!-- Modal Legend -->
@@ -70,7 +149,7 @@
       </div>
     </div>
   </div>
-  <!-- JavaScript -->  
+  <!-- JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 
 <!--

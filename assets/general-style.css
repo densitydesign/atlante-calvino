@@ -1,6 +1,14 @@
 @import "fonts/hk/stylesheet.css";
 @import "fonts/crimson/stylesheet.css";
 
+:root {
+  --main-bg-color: #EFEBE9;
+  --main-bg-color: #dadedd;
+  --main-bg-color: #e5e6e6;
+  --main-bg-color: linear-gradient(180deg, #FFFFFF 36%, #F7FAFA 63%);
+  --calvino-red: tomato;
+}
+
 body {
   background-color: #fffefa;
   color:#212529;
@@ -8,6 +16,26 @@ body {
   font-weight: normal;
   font-style: normal;
   font-size: 1rem;
+}
+
+h1 {
+
+}
+
+h2 {
+
+}
+
+h3 {
+
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-style: italic;
+}
+
+h5 {
 }
 
 h6 {

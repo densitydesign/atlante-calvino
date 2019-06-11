@@ -693,9 +693,18 @@ function treat_json(json)
     $('#legendModal').modal('toggle');
   }
 
+  d3.selectAll('.toggle-tutorial').on('click', function(d){
+    toggleTutorial();
+  })
+
+  function toggleTutorial() {
+    console.log('toggle tutorial');
+    d3.select('.scrollitelling-box').classed("scrollitelling-visible", d3.select('.scrollitelling-box').classed("scrollitelling-visible") ? false : true);
+  }
+
   d3
     .select("#searchbox")
-    .on("focus", 
+    .on("focus",
       function()
       {
         data.keyboardCommandsOn = false;
@@ -922,7 +931,7 @@ console.log(drawMode);
         text_nodes
           .filter(d => d.id != id)
           .style("opacity", 0.3);
-/*        
+/*
           d3.selectAll(".kw")
               .filter(function(d) {
                   return d.keyword == ui.item.label
