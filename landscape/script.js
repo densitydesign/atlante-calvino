@@ -627,6 +627,8 @@ function treat_json(json)
 
   //Zoom functions
   function zoom_actions(){
+    data.event_transform = d3.event.transform;
+console.log(data.event_transform);    
     g.attr("transform", d3.event.transform);
     metaball_group.attr("transform", d3.event.transform);
   }
@@ -698,6 +700,7 @@ function treat_json(json)
 
   let zx = 1000;
   let zy = 1000;
+  let scrollStep = 30;
   let scaleFactor = 0.4;
 
   d3
@@ -891,7 +894,7 @@ console.log(drawMode);
       }
       else if(eventKey == "w")
       {
-        zy -= 100;
+        zy -= scrollStep;
 
         console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
 
@@ -905,7 +908,7 @@ console.log(drawMode);
       }
       else if(eventKey == "a")
       {
-        zx -= 100;
+        zx -= scrollStep;
 
         console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
 //        zy = 1000;
@@ -920,7 +923,7 @@ console.log(drawMode);
       }   
       else if(eventKey == "s")
       {
-        zx += 100;
+        zx += scrollStep;
 
         console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
 //        zy = 1000;
@@ -935,7 +938,7 @@ console.log(drawMode);
       }
       else if(eventKey == "z")
       {
-        zy += 100;
+        zy += scrollStep;
 
         console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
 //        zy = 1000;
@@ -951,7 +954,7 @@ console.log(drawMode);
       else if(eventKey == "e")
       {
         scaleFactor /= 2;
-        zy -= 250 * scaleFactor;
+        zy -= 750 * scaleFactor + 100;
 
         console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
 //        zy = 1000;
@@ -966,7 +969,7 @@ console.log(drawMode);
       }
       else if(eventKey == "d")
       {
-        zy += 250 * scaleFactor;
+        zy += 750 * scaleFactor + 100;
         scaleFactor *= 2;        
 
         console.log("zx : " + zx + ", zy : " + zy + ", scaleFactor : " + scaleFactor);
@@ -1007,13 +1010,54 @@ console.log(drawMode);
               .each(mouseEnter)
 */
 
-//        let chosen = steps.selectAll(d => d.first_elem).nodes()[0];
+        let chosen = steps.selectAll(d => d.first_elem).nodes()[0];
 //        let a = 5;
 
-//        let point_data = steps.filter(d => d.id == xxx && d.first_elem).nodes()[0]._parent.__data__;
-//        let x = (+point_data.x);
-//        let y = (+point_data.y);
+        let point_data = steps.filter(d => d.id == xxx && d.first_elem).nodes()[0]._parent.__data__;
+console.log(point_data);
 
+        let x = (+point_data.x);
+        let y = (+point_data.y);
+
+//        centerTerritory(0.08, -x + w * 0.2, -y + h * 0.2, 0);
+//        centerTerritory(0.16, -x + w * 0.2, -y + h * 0.2, 0);
+
+        let a = -6.77;
+        let b = 5656.18;
+        let new_x = a * x + b;
+
+        let c = 43.6;
+        let d = -1563.6;
+        let new_y = c * y + d;
+
+        console.log ("new_x : " + new_x + ", new_y : " + new_y);
+
+        if(xxx == "S145")
+        {
+          let zx = 300;
+          let zy = 1100 * 0.5733;
+
+          svg.transition()
+            .duration(0)
+            .call( zoom_handler.transform, d3.zoomIdentity
+              .translate(zx, zy)
+              .scale(scaleFactor));
+        }
+        else if(xxx == "S171")
+        {
+          let zx = -430;
+          let zy = -710 * 0.5733;
+
+          svg.transition()
+            .duration(0)
+            .call( zoom_handler.transform, d3.zoomIdentity
+              .translate(zx, zy)
+              .scale(scaleFactor));
+        }
+        else
+        {
+          centerTerritory(0.04, new_x / 16, new_y / 16, 0);
+        }
 
 //        let transform_string = steps.filter(d => d.id == xxx && d.first_elem).nodes()[0]._parent.attributes.transform.nodeValue;
 //        "scale(1,0.5773) translate(2487.520751953125,2213.16162109375)"
@@ -1032,9 +1076,9 @@ console.log(drawMode);
           ); // updated for d3 v4
 */
 
-      let json_node = json_nodes.filter(d => d.id == xxx)[0];
+//      let json_node = json_nodes.filter(d => d.id == xxx)[0];
 
-      centerTerritory(0.2, json_node.x, json_node.y, 0);
+//      centerTerritory(0.2, json_node.x, json_node.y, 0);
 
       } });
 }
