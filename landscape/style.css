@@ -55,6 +55,8 @@ svg:active {
   border-bottom: 1px solid red;
 }
 
+.ui-autocomplete { position: absolute; cursor: default;z-index:30 !important;}  
+
 #timeline-container {
   height: 0;
   bottom: 0;

@@ -1000,18 +1000,9 @@ console.log(drawMode);
 
         let xxx = title_id_map[ui.item.value];
 
-        console.log(xxx);
-//        alert(xxx);
-/*        
-          d3.selectAll(".kw")
-              .filter(function(d) {
-                  return d.keyword == ui.item.label
-              })
-              .each(mouseEnter)
-*/
+        console.log("*" + xxx + "*");
 
         let chosen = steps.selectAll(d => d.first_elem).nodes()[0];
-//        let a = 5;
 
         let point_data = steps.filter(d => d.id == xxx && d.first_elem).nodes()[0]._parent.__data__;
 console.log(point_data);
@@ -1022,65 +1013,51 @@ console.log(point_data);
 //        centerTerritory(0.08, -x + w * 0.2, -y + h * 0.2, 0);
 //        centerTerritory(0.16, -x + w * 0.2, -y + h * 0.2, 0);
 
-        let a = -6.77;
-        let b = 5656.18;
-        let new_x = a * x + b;
+        // let a = -6.77;
+        // let b = 5656.18;
+        // let new_x = a * x + b;
 
-        let c = 43.6;
-        let d = -1563.6;
-        let new_y = c * y + d;
+        // let c = 43.6;
+        // let d = -1563.6;
+        // let new_y = c * y + d;
 
-        console.log ("new_x : " + new_x + ", new_y : " + new_y);
+//        console.log ("new_x : " + new_x + ", new_y : " + new_y);
+
+        let correct_x = 340;
+        let correct_y = 100;
 
         if(xxx == "S145")
         {
-          let zx = 300;
-          let zy = 1100 * 0.5733;
+          data.event_transform.k = 0.35;
+          data.event_transform.x = 550.42 - correct_x;
+          data.event_transform.y = 1031.96 - correct_y;
 
-          svg.transition()
-            .duration(0)
-            .call( zoom_handler.transform, d3.zoomIdentity
-              .translate(zx, zy)
-              .scale(scaleFactor));
+          g.attr("transform", data.event_transform);
         }
         else if(xxx == "S171")
         {
-          let zx = -430;
-          let zy = -710 * 0.5733;
+          data.event_transform.k = 0.30273844695219054;
+          data.event_transform.x = -422.97178536593776 - correct_x;
+          data.event_transform.y = -473.48879630824183 - correct_y;
 
-          svg.transition()
-            .duration(0)
-            .call( zoom_handler.transform, d3.zoomIdentity
-              .translate(zx, zy)
-              .scale(scaleFactor));
+          g.attr("transform", data.event_transform);
+        }
+        else if(xxx == "S088")
+        {
+          data.event_transform.k = 0.30273844695219054;
+          data.event_transform.x = 2257.4018583503466 - correct_x;
+//          data.event_transform.x = 1900.4018583503466;
+          data.event_transform.y = 157.77524528257038 - correct_y;
+
+          g.attr("transform", data.event_transform);
         }
         else
         {
           centerTerritory(0.04, new_x / 16, new_y / 16, 0);
         }
 
-//        let transform_string = steps.filter(d => d.id == xxx && d.first_elem).nodes()[0]._parent.attributes.transform.nodeValue;
-//        "scale(1,0.5773) translate(2487.520751953125,2213.16162109375)"
-
-//        let s2 = transform_string.slice(26, transform_string.length - 2);
-//        let coords = s2.split(",");
-
-//391.468505859375,-6138.8857421875
-/*
-        svg.transition()
-          .duration(0)
-          .call( zoom_handler.transform, d3.zoomIdentity
-//            .translate(-(coords[0]), -(coords[1]))
-            .translate(x, y)
-            .scale(0.2)
-          ); // updated for d3 v4
-*/
-
-//      let json_node = json_nodes.filter(d => d.id == xxx)[0];
-
-//      centerTerritory(0.2, json_node.x, json_node.y, 0);
-
       } });
+
 }
 
 function convertRatioToColorComponent(r)
