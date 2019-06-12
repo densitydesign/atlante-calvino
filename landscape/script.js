@@ -1,11 +1,12 @@
 
 let data = {
 
-  allowedCollections: "all", // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
+  allowedCollections: "V017", // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
   timeline_x: 0,
   timeline_y: 0,
   timeline_dot: null,
-  keyboardCommandsOn: true
+  keyboardCommandsOn: true,
+  metaballWantedCoves: true,
 };
 
 // Warn if overriding existing method
@@ -615,7 +616,7 @@ function treat_json(json)
         return 'translate(0,'+(d.steps.length+2)*step_increment+') scale(1,'+1/0.5773+')'
       })
       .text(function(d){
-        return d.id + ' - ' + d.attributes.title//+'-'+d.attributes.first_publication;
+        return d.id;// + ' - ' + d.attributes.title//+'-'+d.attributes.first_publication;
       });
 
   //add zoom capabilities
@@ -1227,7 +1228,8 @@ function prepareMetaballData(json_nodes, collection, lineColor)
     boundary_points[0] = boundary_points[0].reverse();
   }
 
-  boundary_points = addWantedCoves(vertex_array, boundary_points);
+  if(data.metaballWantedCoves)
+    boundary_points = addWantedCoves(vertex_array, boundary_points);
 
   if(boundary_points.length == 0) return;
 
@@ -1271,23 +1273,59 @@ function addWantedCoves(vertex_array, boundary_points)
 
     let boundary_dist = Math.sqrt(dsq(p1, p2));
 
-    let cove_points = [];
+    let added_new_internal_points = false;
 
-    for(let i = 0; i < internal_points.length; ++i)
+    let points_after_p1 = [];
+    let points_before_p2 = [];    
+
+    do
     {
-      let ip = internal_points[i];
+      let candidate_cove_points = [];
 
-      let distSum = Math.sqrt(dsq(p1, ip)) + Math.sqrt(dsq(p2, ip));
-
-      if(distSum / boundary_dist <= 1.2)
+      for(let i = 0; i < internal_points.length; ++i)
       {
-        cove_points.push(ip);
+        let ip = internal_points[i];
+
+        let distSum = Math.sqrt(dsq(p1, ip)) + Math.sqrt(dsq(p2, ip));
+
+        if(distSum / boundary_dist <= 1.2)
+        {
+          candidate_cove_points.push(ip);
+        }
       }
-    }
 
-    let pointsToBeAdded = findShortestPointsPath(p1, cove_points, p2);
+  //    let pointsToBeAdded = findShortestPointsPath(p1, cove_points, p2);
 
-    new_boundary_points = new_boundary_points.concat(pointsToBeAdded);
+      if(candidate_cove_points.length > 0)
+      {
+        let distances_from_p1 = candidate_cove_points.map(p => { p: p; dist: Math.sqrt(dsq(p1, p)) });
+        let nearest_point_to_p1_idx = d3.min(distances_from_p1, d => d.dist);
+        let nearest_point_to_p1 = distances_from_p1[nearest_point_to_p1_idx];
+
+        let distances_from_p2 = candidate_cove_points.map(p => { p: p; dist: Math.sqrt(dsq(p2, p)) });    
+        let nearest_point_to_p2_idx = d3.min(distances_from_p2, d => d.dist);
+        let nearest_point_to_p2 = distances_from_p2[nearest_point_to_p2_idx];
+
+        if(nearest_point_to_p1.dist <= nearest_point_to_p2.dist)
+        {
+          internal_points.splice(nearest_point_to_p1.idx, 1);
+  //        new_boundary_points.push(nearest_point_to_p1.p);
+          points_after_p1.push(nearest_point_to_p1.p);          
+        }
+        else
+        {
+          internal_points.splice(nearest_point_to_p2.idx, 1);
+  //        new_boundary_points.push(nearest_point_to_p2.p);
+          points_before_p2.push(nearest_point_to_p2.p);
+        }
+
+        added_new_internal_points = true;
+      }
+    } while(added_new_internal_points);
+
+    new_boundary_points = new_boundary_points.concat(points_after_p1).concat(points_before_p2.reverse());
+
+//    new_boundary_points = new_boundary_points.concat(pointsToBeAdded);
   }
 
   let result = [ new_boundary_points ];
