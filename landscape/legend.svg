@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="610px" height="566px" viewBox="0 0 610 566" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>legenda</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M15.8304498,0 L0,14.459854" id="path-1"></path>
+        <filter x="-62.6%" y="-54.7%" width="225.2%" height="237.1%" filterUnits="objectBoundingBox" id="filter-2">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowInner"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowInner" result="shadowInner"></feOffset>
+            <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"></feComposite>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.180392157   0 0 0 0 0.309803922   0 0 0 0 0.309803922  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+        <path d="M0,0 L15.8304498,14.459854" id="path-3"></path>
+        <filter x="-62.6%" y="-54.7%" width="225.2%" height="237.1%" filterUnits="objectBoundingBox" id="filter-4">
+            <feMorphology radius="1" operator="dilate" in="SourceAlpha" result="shadowSpreadOuter1"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowSpreadOuter1" result="shadowOffsetOuter1"></feOffset>
+            <feMorphology radius="1" operator="erode" in="SourceAlpha" result="shadowInner"></feMorphology>
+            <feOffset dx="0" dy="2" in="shadowInner" result="shadowInner"></feOffset>
+            <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"></feComposite>
+            <feGaussianBlur stdDeviation="2.5" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0.180392157   0 0 0 0 0.309803922   0 0 0 0 0.309803922  0 0 0 1 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="legenda" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="bg-and-x">
+            <g id="Group-4" fill="#FFFFFF" fill-opacity="0.95" stroke="#2E4F4F" stroke-width="2">
+                <rect id="Rectangle" x="1" y="1" width="608" height="564" rx="5"></rect>
+            </g>
+            <g id="Group-6" transform="translate(570.951557, 28.919708)">
+                <g id="Group-5">
+                    <g id="Path-2">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use stroke="#FF6347" stroke-width="2" xlink:href="#path-1"></use>
+                    </g>
+                    <g id="Path">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-4)" xlink:href="#path-3"></use>
+                        <use stroke="#FF6347" stroke-width="2" xlink:href="#path-3"></use>
+                    </g>
+                </g>
+            </g>
+        </g>
+        <text id="Lorem-ipsum-dolor-si" font-family="Helvetica" font-size="11" font-weight="normal" fill="#000000">
+            <tspan x="25.3287197" y="91.5948905">Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod </tspan>
+            <tspan x="25.3287197" y="104.594891">tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis </tspan>
+            <tspan x="25.3287197" y="117.594891">nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat</tspan>
+        </text>
+        <g id="Group-10" transform="translate(25.000000, 196.000000)">
+            <g id="Group-9" transform="translate(401.000000, 0.000000)">
+                <g id="Group-7" transform="translate(0.000000, 27.526800)">
+                    <g id="Group" transform="translate(0.000000, 1.000000)" stroke="#444444">
+                        <ellipse id="Oval" stroke-width="0.75" cx="31.1" cy="33.3" rx="30.7" ry="17.7"></ellipse>
+                        <ellipse id="Oval" stroke-width="0.5" opacity="0.3" cx="31.1" cy="29.2" rx="26.7" ry="15.4"></ellipse>
+                        <ellipse id="Oval" stroke-width="0.5" opacity="0.3" cx="31.1" cy="25.2" rx="23.6" ry="13.6"></ellipse>
+                        <ellipse id="Oval" stroke-width="0.5" opacity="0.3" cx="31.1" cy="21.1" rx="21.4" ry="12.4"></ellipse>
+                        <ellipse id="Oval" stroke-width="0.5" opacity="0.3" cx="31.1" cy="17" rx="19.4" ry="11.2"></ellipse>
+                        <ellipse id="Oval" stroke-width="0.5" opacity="0.3" cx="31.1" cy="12.9" rx="16.8" ry="9.7"></ellipse>
+                        <ellipse id="Oval" stroke-width="0.5" opacity="0.3" cx="31.1" cy="8.8" rx="13" ry="7.5"></ellipse>
+                        <ellipse id="Oval" stroke-width="0.5" opacity="0.3" cx="31.1" cy="4.7" rx="7.5" ry="4.3"></ellipse>
+                    </g>
+                    <g id="Group" transform="translate(0.000000, 58.000000)">
+                        <path d="M61.7,2 L0.5,2.2" id="Path" stroke="#444444" stroke-width="0.5"></path>
+                        <rect id="Rectangle" fill="#444444" fill-rule="nonzero" transform="translate(61.750450, 2.051009) rotate(-0.181846) translate(-61.750450, -2.051009) " x="61.5004484" y="0.401000698" width="1" height="3.30001662"></rect>
+                        <rect id="Rectangle" fill="#444444" fill-rule="nonzero" transform="translate(0.550121, 2.250895) rotate(-0.178348) translate(-0.550121, -2.250895) " x="0.300119805" y="0.600887088" width="1" height="3.30001599"></rect>
+                    </g>
+                    <g id="Group" transform="translate(68.000000, 1.000000)">
+                        <path d="M1.9,50.9 L1.9,0.3" id="Path" stroke="#444444" stroke-width="0.5"></path>
+                        <rect id="Rectangle" fill="#444444" fill-rule="nonzero" x="0.2" y="50.6" width="3.2" height="1"></rect>
+                        <rect id="Rectangle" fill="#444444" fill-rule="nonzero" x="0.2" y="0" width="3.2" height="1"></rect>
+                    </g>
+                    <text id="lunghezza-opera" fill="#000000" font-family="Helvetica" font-size="9" font-weight="normal">
+                        <tspan x="0.2771" y="73.4685">lunghezza opera</tspan>
+                    </text>
+                    <text id="lunghezza-opera" fill="#000000" transform="translate(80.222400, 34.294200) rotate(90.000000) translate(-80.222400, -34.294200) " font-family="Helvetica" font-size="9" font-weight="normal">
+                        <tspan x="46.7224" y="37.7942">lunghezza opera</tspan>
+                    </text>
+                    <g id="Group" transform="translate(61.000000, 32.000000)" stroke="#444444" stroke-width="0.25">
+                        <path d="M0.8,27 L0.8,26" id="Path"></path>
+                        <path d="M0.8,24.1 L0.8,2.2" id="Path" stroke-dasharray="1.8996,1.8996"></path>
+                        <path d="M0.8,1.3 L0.8,0.3" id="Path"></path>
+                    </g>
+                    <g id="Group" transform="translate(0.000000, 32.000000)" stroke="#444444" stroke-width="0.25">
+                        <path d="M0.5,27 L0.5,26" id="Path"></path>
+                        <path d="M0.5,24.1 L0.5,2.3" id="Path" stroke-dasharray="1.8996,1.8996"></path>
+                        <path d="M0.5,1.3 L0.5,0.3" id="Path"></path>
+                    </g>
+                    <g id="Group" transform="translate(31.000000, 0.000000)" stroke="#444444" stroke-width="0.25">
+                        <path d="M0.2,1.2 L1.2,1.2" id="Path"></path>
+                        <path d="M3.3,1.2 L36,1.2" id="Path" stroke-dasharray="2.1138,2.1138"></path>
+                        <path d="M37.1,1.2 L38.1,1.2" id="Path"></path>
+                    </g>
+                    <g id="Group" transform="translate(31.000000, 51.000000)" stroke="#444444" stroke-width="0.25">
+                        <path d="M0.2,0.9 L1.2,0.9" id="Path"></path>
+                        <path d="M3.3,0.9 L36,0.9" id="Path" stroke-dasharray="2.1138,2.1138"></path>
+                        <path d="M37.1,0.9 L38.1,0.9" id="Path"></path>
+                    </g>
+                </g>
+                <text id="Dimensione" fill="#000000" font-family="CrimsonText-Semibold, Crimson Text" font-size="12" font-weight="500">
+                    <tspan x="0.2771" y="12">Dimensione</tspan>
+                </text>
+            </g>
+            <g id="Group-8" transform="translate(0.000000, 0.292500)">
+                <text id="Modalità-“cronologia" fill="#000000" font-family="CrimsonText-Semibold, Crimson Text" font-size="12" font-weight="500">
+                    <tspan x="0.2773" y="12">Modalità “cronologia”</tspan>
+                </text>
+                <text id="1943" fill="#000000" font-family="Helvetica" font-size="9" font-weight="normal">
+                    <tspan x="18.0857" y="101.8671">1943</tspan>
+                </text>
+                <text id="1985" fill="#000000" font-family="Helvetica" font-size="9" font-weight="normal">
+                    <tspan x="169.945" y="101.8668">1985</tspan>
+                </text>
+                <g id="Group" transform="translate(0.000000, 28.398600)" fill="#FF6347" fill-rule="nonzero" stroke="#444444" stroke-width="0.25">
+                    <ellipse id="Oval" cx="31.1" cy="33.1" rx="30.6" ry="17.7"></ellipse>
+                    <ellipse id="Oval" cx="31.1" cy="29" rx="26.6" ry="15.4"></ellipse>
+                    <ellipse id="Oval" cx="31.1" cy="24.9" rx="23.6" ry="13.6"></ellipse>
+                    <ellipse id="Oval" cx="31.1" cy="20.9" rx="21.4" ry="12.4"></ellipse>
+                    <ellipse id="Oval" cx="31.1" cy="16.8" rx="19.4" ry="11.2"></ellipse>
+                    <ellipse id="Oval" cx="31.1" cy="12.7" rx="16.8" ry="9.7"></ellipse>
+                    <ellipse id="Oval" cx="31.1" cy="8.6" rx="13" ry="7.5"></ellipse>
+                    <ellipse id="Oval" cx="31.1" cy="4.6" rx="7.5" ry="4.3"></ellipse>
+                </g>
+                <g id="Group" transform="translate(73.000000, 28.398600)" fill="#A45F55" fill-rule="nonzero" stroke="#444444" stroke-width="0.25">
+                    <ellipse id="Oval" cx="31.2" cy="33.1" rx="30.6" ry="17.7"></ellipse>
+                    <ellipse id="Oval" cx="31.2" cy="29" rx="26.6" ry="15.4"></ellipse>
+                    <ellipse id="Oval" cx="31.2" cy="24.9" rx="23.6" ry="13.6"></ellipse>
+                    <ellipse id="Oval" cx="31.2" cy="20.9" rx="21.4" ry="12.4"></ellipse>
+                    <ellipse id="Oval" cx="31.2" cy="16.8" rx="19.4" ry="11.2"></ellipse>
+                    <ellipse id="Oval" cx="31.2" cy="12.7" rx="16.8" ry="9.7"></ellipse>
+                    <ellipse id="Oval" cx="31.2" cy="8.6" rx="13" ry="7.5"></ellipse>
+                    <ellipse id="Oval" cx="31.2" cy="4.6" rx="7.5" ry="4.3"></ellipse>
+                </g>
+                <ellipse id="Oval" stroke="#444444" stroke-width="0.25" fill="#455A64" fill-rule="nonzero" cx="179" cy="61.4986" rx="30.6" ry="17.7"></ellipse>
+                <ellipse id="Oval" stroke="#444444" stroke-width="0.25" fill="#455A64" fill-rule="nonzero" cx="179" cy="57.3986" rx="26.6" ry="15.4"></ellipse>
+                <ellipse id="Oval" stroke="#444444" stroke-width="0.25" fill="#455A64" fill-rule="nonzero" cx="179" cy="53.2986" rx="23.6" ry="13.6"></ellipse>
+                <ellipse id="Oval" stroke="#444444" stroke-width="0.25" fill="#455A64" fill-rule="nonzero" cx="179" cy="49.2986" rx="21.4" ry="12.4"></ellipse>
+                <ellipse id="Oval" stroke="#444444" stroke-width="0.25" fill="#455A64" fill-rule="nonzero" cx="179" cy="45.1986" rx="19.4" ry="11.2"></ellipse>
+                <ellipse id="Oval" stroke="#444444" stroke-width="0.25" fill="#455A64" fill-rule="nonzero" cx="179" cy="41.0986" rx="16.8" ry="9.7"></ellipse>
+                <ellipse id="Oval" stroke="#444444" stroke-width="0.25" fill="#455A64" fill-rule="nonzero" cx="179" cy="36.9986" rx="13" ry="7.5"></ellipse>
+                <ellipse id="Oval" stroke="#444444" stroke-width="0.25" fill="#455A64" fill-rule="nonzero" cx="179" cy="32.9986" rx="7.5" ry="4.3"></ellipse>
+                <g id="Group" transform="translate(27.000000, 88.398600)" fill-rule="nonzero">
+                    <rect id="Rectangle" fill="#B4BFC5" x="0.7" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#B3BEC4" x="1.8" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#B2BDC3" x="2.9" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#B1BCC2" x="4" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#B0BBC2" x="5.1" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#AFBAC1" x="6.3" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#AEBAC0" x="7.4" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#ADB9BF" x="8.5" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#ACB8BE" x="9.6" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#ABB7BD" x="10.7" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#AAB6BC" x="11.9" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#A9B5BC" x="13" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#A8B4BB" x="14.1" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#A7B3BA" x="15.2" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#A6B2B9" x="16.3" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#A5B1B8" x="17.4" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#A4B1B7" x="18.6" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#A3B0B6" x="19.7" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#A2AFB5" x="20.8" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#A1AEB5" x="21.9" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#A0ADB4" x="23" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#9FACB3" x="24.2" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#9EABB2" x="25.3" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#9DAAB1" x="26.4" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#9CA9B0" x="27.5" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#9BA8AF" x="28.6" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#9AA7AF" x="29.7" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#99A7AE" x="30.9" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#98A6AD" x="32" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#97A5AC" x="33.1" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#96A4AB" x="34.2" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#95A3AA" x="35.3" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#94A2A9" x="36.5" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#93A1A9" x="37.6" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#92A0A8" x="38.7" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#919FA7" x="39.8" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#909EA6" x="40.9" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#8F9EA5" x="42" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#8E9DA4" x="43.2" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#8D9CA3" x="44.3" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#8C9BA2" x="45.4" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#8B9AA2" x="46.5" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#8A99A1" x="47.6" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#8998A0" x="48.8" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#88979F" x="49.9" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#87969E" x="51" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#86959D" x="52.1" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#85949C" x="53.2" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#85949C" x="54.3" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#84939B" x="55.5" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#83929A" x="56.6" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#829199" x="57.7" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#819098" x="58.8" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#808F97" x="59.9" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#7F8E96" x="61.1" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#7E8D96" x="62.2" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#7D8C95" x="63.3" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#7C8B94" x="64.4" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#7B8A93" x="65.5" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#7A8A92" x="66.6" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#798991" x="67.8" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#788890" x="68.9" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#77878F" x="70" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#76868F" x="71.1" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#75858E" x="72.2" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#74848D" x="73.4" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#73838C" x="74.5" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#72828B" x="75.6" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#71818A" x="76.7" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#708189" x="77.8" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#6F8089" x="78.9" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#6E7F88" x="80.1" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#6D7E87" x="81.2" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#6C7D86" x="82.3" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#6B7C85" x="83.4" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#6A7B84" x="84.5" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#697A83" x="85.7" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#687983" x="86.8" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#677882" x="87.9" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#667781" x="89" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#657780" x="90.1" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#64767F" x="91.2" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#63757E" x="92.4" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#62747D" x="93.5" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#61737C" x="94.6" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#60727C" x="95.7" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#5F717B" x="96.8" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#5E707A" x="98" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#5D6F79" x="99.1" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#5C6E78" x="100.2" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#5B6E77" x="101.3" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#5A6D76" x="102.4" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#596C76" x="103.5" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#586B75" x="104.7" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#576A74" x="105.8" y="0.8" width="49" height="1"></rect>
+                    <rect id="Rectangle" fill="#566973" x="106.9" y="0.8" width="49" height="1"></rect>
+                </g>
+            </g>
+        </g>
+        <g id="Group-3" transform="translate(25.000000, 321.000000)">
+            <text id="Modalità-“raccolta”" fill="#000000" font-family="CrimsonText-Semibold, Crimson Text" font-size="12" font-weight="500" letter-spacing="0.5">
+                <tspan x="0.1996" y="12">Modalità “raccolta”</tspan>
+            </text>
+            <text id="Volume-opera-singola" fill="#000000" font-family="Helvetica" font-size="9" font-weight="normal">
+                <tspan x="16.4882812" y="91.4175">Volume</tspan>
+                <tspan x="4.48022461" y="102.4175">opera singola</tspan>
+            </text>
+            <g id="Group" transform="translate(0.000000, 22.691100)" fill="#D6DBDF" fill-rule="nonzero" stroke="#444444" stroke-width="0.25">
+                <ellipse id="Oval" cx="31" cy="32.8" rx="30.6" ry="17.7"></ellipse>
+                <ellipse id="Oval" cx="31" cy="28.7" rx="26.6" ry="15.4"></ellipse>
+                <ellipse id="Oval" cx="31" cy="24.6" rx="23.6" ry="13.6"></ellipse>
+                <ellipse id="Oval" cx="31" cy="20.6" rx="21.4" ry="12.4"></ellipse>
+                <ellipse id="Oval" cx="31" cy="16.5" rx="19.4" ry="11.2"></ellipse>
+                <ellipse id="Oval" cx="31" cy="12.4" rx="16.8" ry="9.7"></ellipse>
+                <ellipse id="Oval" cx="31" cy="8.3" rx="13" ry="7.5"></ellipse>
+                <ellipse id="Oval" cx="31" cy="4.3" rx="7.5" ry="4.3"></ellipse>
+            </g>
+            <text id="Racconto-opera-singo" fill="#000000" font-family="Helvetica" font-size="9" font-weight="normal">
+                <tspan x="109.489258" y="91.4175">Racconto</tspan>
+                <tspan x="101.480225" y="102.4175">opera singola</tspan>
+            </text>
+            <g id="Group" transform="translate(97.000000, 22.691100)" fill="#FFFFFF" fill-rule="nonzero" stroke="#444444" stroke-width="0.25">
+                <ellipse id="Oval" cx="31" cy="32.8" rx="30.6" ry="17.7"></ellipse>
+                <ellipse id="Oval" cx="31" cy="28.7" rx="26.6" ry="15.4"></ellipse>
+                <ellipse id="Oval" cx="31" cy="24.6" rx="23.6" ry="13.6"></ellipse>
+                <ellipse id="Oval" cx="31" cy="20.6" rx="21.4" ry="12.4"></ellipse>
+                <ellipse id="Oval" cx="31" cy="16.5" rx="19.4" ry="11.2"></ellipse>
+                <ellipse id="Oval" cx="31" cy="12.4" rx="16.8" ry="9.7"></ellipse>
+                <ellipse id="Oval" cx="31" cy="8.3" rx="13" ry="7.5"></ellipse>
+                <ellipse id="Oval" cx="31" cy="4.3" rx="7.5" ry="4.3"></ellipse>
+            </g>
+            <g id="Group" transform="translate(184.000000, 82.417500)" fill="#000000" font-family="Helvetica" font-size="9" font-weight="normal">
+                <text id="Racconto-contenuto-i">
+                    <tspan x="1.44311211" y="9">Racconto contenuto</tspan>
+                    <tspan x="12.2031219" y="20">in una raccolta</tspan>
+                </text>
+            </g>
+            <g id="Group" transform="translate(194.000000, 22.691100)" fill="#E9D05D" fill-rule="nonzero" stroke="#444444" stroke-linejoin="round" stroke-width="0.25">
+                <ellipse id="Oval" cx="31.2" cy="32.8" rx="30.6" ry="17.7"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="28.7" rx="26.6" ry="15.4"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="24.6" rx="23.6" ry="13.6"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="20.6" rx="21.4" ry="12.4"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="16.5" rx="19.4" ry="11.2"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="12.4" rx="16.8" ry="9.7"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="8.3" rx="13" ry="7.5"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="4.3" rx="7.5" ry="4.3"></ellipse>
+            </g>
+            <text id="prima-pubblicazione" fill="#000000" font-family="Helvetica" font-size="9" font-weight="normal">
+                <tspan x="372.1772" y="63">prima </tspan>
+                <tspan x="372.1772" y="74">pubblicazione</tspan>
+            </text>
+            <text id="ultima-ripubblicazio" fill="#000000" font-family="Helvetica" font-size="9" font-weight="normal">
+                <tspan x="370.1772" y="26.8105">ultima </tspan>
+                <tspan x="370.1772" y="37.8105">ripubblicazione</tspan>
+            </text>
+            <path d="M324.2,74.1911 L366.2,74.1911" id="Path" stroke="#444444" stroke-width="0.25"></path>
+            <g id="Group-2" transform="translate(291.000000, 22.691100)" fill-rule="nonzero" stroke="#444444" stroke-width="0.25">
+                <ellipse id="Oval" fill="#581745" cx="30.6" cy="32.8" rx="30.6" ry="17.7"></ellipse>
+                <ellipse id="Oval" fill="#581745" cx="30.6" cy="28.7" rx="26.6" ry="15.4"></ellipse>
+                <ellipse id="Oval" fill="#00B0B3" stroke-linejoin="round" cx="30.6" cy="24.6" rx="23.6" ry="13.6"></ellipse>
+                <ellipse id="Oval" fill="#00B0B3" stroke-linejoin="round" cx="30.6" cy="20.6" rx="21.4" ry="12.4"></ellipse>
+                <ellipse id="Oval" fill="#F0BE96" stroke-linejoin="round" cx="30.6" cy="16.5" rx="19.4" ry="11.2"></ellipse>
+                <ellipse id="Oval" fill="#F0BE96" stroke-linejoin="round" cx="30.6" cy="12.4" rx="16.8" ry="9.7"></ellipse>
+                <ellipse id="Oval" fill="#F1634B" stroke-linejoin="round" cx="30.6" cy="8.3" rx="13" ry="7.5"></ellipse>
+                <ellipse id="Oval" fill="#F1634B" stroke-linejoin="round" cx="30.6" cy="4.3" rx="7.5" ry="4.3"></ellipse>
+            </g>
+            <path d="M322.2,25.7911 L366.2,25.7911" id="Path" stroke="#444444" stroke-width="0.25"></path>
+            <text id="Racconto-contenuto-i" fill="#000000" font-family="Helvetica" font-size="9" font-weight="normal">
+                <tspan x="282.472412" y="91.4175">Racconto contenuto</tspan>
+                <tspan x="293.232422" y="102.4175">in una raccolta</tspan>
+            </text>
+        </g>
+        <text id="Positioning" fill="#000000" font-family="CrimsonText-Semibold, Crimson Text" font-size="12" font-weight="500">
+            <tspan x="25" y="22">Positioning</tspan>
+        </text>
+        <g id="COlori-raccolte" transform="translate(25.000000, 446.000000)">
+            <text id="Raccolte" fill="#000000" font-family="CrimsonText-Semibold, Crimson Text" font-size="12" font-weight="500" letter-spacing="0.5">
+                <tspan x="0" y="12">Raccolte</tspan>
+            </text>
+            <text id="Ultimo-viene-il-corvo" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="22.4361" y="38.4513">Ultimo viene il corvo</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#E9D05D" fill-rule="nonzero" stroke-linejoin="round" cx="6.2227" cy="33.8002" r="6.2"></circle>
+            <text id="L’entrata-in-guerra" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="22.4352" y="61.1701">L’entrata in guerra</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.5" fill="#12B259" fill-rule="nonzero" cx="6.2227" cy="56.6002" r="6.2"></circle>
+            <text id="I-racconti" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="22.4352" y="83.8879">I racconti</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#476A70" fill-rule="nonzero" stroke-linejoin="round" cx="6.2227" cy="79.3002" r="6.2"></circle>
+            <text id="Marcovaldo" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="22.4352" y="106.6047">Marcovaldo</tspan>
+            </text>
+            <circle id="Oval" fill="#9F73B2" fill-rule="nonzero" cx="6.2227" cy="102.0002" r="6.2"></circle>
+            <text id="Le-Cosmicomiche" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="144.942" y="38.4523">Le Cosmicomiche</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#E89EC0" fill-rule="nonzero" stroke-linejoin="round" cx="128.7227" cy="33.8002" r="6.2"></circle>
+            <text id="La-memoria-del-mondo" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="144.942" y="83.8859">La memoria del mondo</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#00B0B3" fill-rule="nonzero" stroke-linejoin="round" cx="128.7227" cy="79.3002" r="6.2"></circle>
+            <text id="Gli-amori-difficili" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="144.942" y="106.6047">Gli amori difficili</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#F0BE96" fill-rule="nonzero" stroke-linejoin="round" cx="128.7227" cy="102.0002" r="6.2"></circle>
+            <text id="Palomar" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="281.8932" y="38.4513">Palomar</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#94D2BA" fill-rule="nonzero" stroke-linejoin="round" cx="264.1227" cy="33.8002" r="6.2"></circle>
+            <g id="Group" transform="translate(281.722700, 52.000200)">
+                <rect id="Rectangle" x="0.2" y="1.7" width="161.8" height="21.1"></rect>
+                <text id="Le-Cosmicomiche-vecchie-e-nuove" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                    <tspan x="0.1724" y="8.4502">Le Cosmicomiche vecchie e nuove</tspan>
+                </text>
+            </g>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#F1634B" fill-rule="nonzero" stroke-linejoin="round" cx="264.1227" cy="56.9002" r="6.2"></circle>
+            <text id="Ti-con-Zero" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="144.942" y="61.1691">Ti con Zero</tspan>
+            </text>
+            <circle id="Oval" fill="#581745" fill-rule="nonzero" cx="128.7227" cy="56.6002" r="6.2"></circle>
+        </g>
+    </g>
+</svg>

@@ -270,13 +270,14 @@ function treat_json(json)
     .attr('stroke','#444')
     .attr('stroke-width',1.5)
     .attr('fill',function(d){
+      // return col_collections(d.collection);
       return colour(d.first_publication);
     })
     .attr('r',function(d){ return d.r })
     .attr('first_elem',function(d){ return d.first_elem })
     .attr("class", "hill" )
-    .style('fill-opacity',0)
-    .style('stroke-opacity',0)
+    .style('fill-opacity',1e-16)
+    .style('stroke-opacity',1e-16)
     .transition()
     .duration(1000)
     .delay(function(d){return (d.first_publication - 1940)*100})
@@ -285,7 +286,7 @@ function treat_json(json)
       return 'translate(0,'+i+')'
     })
     .style('fill-opacity',1)
-    .style('stroke-opacity',1);
+    .style('stroke-opacity',.5);
 
   let PI = Math.PI;
   let arcMin = 75; // inner radius of the first arc
@@ -641,7 +642,7 @@ function treat_json(json)
       .duration(duration)
       .call( zoom_handler.transform, d3.zoomIdentity
         .translate((w/2) + x, (h/2) + y)
-        .scale(scale/1.75)
+        .scale(scale*0.65)
       );
   }
 
@@ -657,7 +658,7 @@ function treat_json(json)
           .duration(350)
           .attr('fill',function(d){
             return colour(d.first_publication);
-          })
+          });
         break;
       case 'collections':
         text_nodes.selectAll('circle')
@@ -906,8 +907,12 @@ console.log(drawMode);
         }
       }
       else if(eventKey == "f") {
-        d3.select('#searchbox').node().value = '';
-        applyBeeSwarmFilter();
+        // d3.select('#searchbox').node().value = '';
+        // label.classed('visible', false);
+        // d3.select('#searchbox').style('min-width', '10ch');
+        // d3.select('#searchbox-box').classed('searchbox-visible', false);
+        // applyBeeSwarmFilter();
+        resetSearchBox();
       }
       else if (eventKey == " ") {
         text_nodes.style('display','block')
@@ -936,7 +941,7 @@ console.log(drawMode);
       source: function(req, response) {
         console.log(req.term.length);
         let searchedText = req.term;
-        if (searchedText.length-2 > 10) d3.select('#searchbox').style('width', searchedText.length-2+'ch')
+        // if (searchedText.length-2 > 10) d3.select('#searchbox').style('width', searchedText.length-2+'ch')
         var results = $.ui.autocomplete.filter(titles, req.term);
 
         response(results.slice(0, 12));//for getting 5 results
@@ -951,14 +956,38 @@ console.log(drawMode);
           .filter(d => d.id == id)
           .style("opacity", 1);
 
+        label
+          .classed('visible', false)
+          .filter(d => d.id == id)
+          .classed('visible', true)
+          // .style("opacity", 1);
+
         text_nodes
           .filter(d => d.id != id)
-          .style("opacity", 0.3);
+          .style("opacity", .35);
 
         let searchedText = ui.item.value;
-        if (searchedText.length-2 > 10) d3.select('#searchbox').style('width', searchedText.length+0+'ch')
+        if (searchedText.length-3.5 > 10) {
+          d3.select('#searchbox').style('min-width', searchedText.length-3.5+'ch');
+          d3.select('#clear-search').style('left', searchedText.length-3.5+16+'ch');
+        };
+        d3.select('#clear-search').classed('d-inline-block', true);
 
       } });
+
+  d3.select('#clear-search').on('click', function(){
+    resetSearchBox();
+  })
+
+  function resetSearchBox()
+  {
+    d3.select('#searchbox').node().value = '';
+    label.classed('visible', false);
+    d3.select('#searchbox').style('min-width', '10ch');
+    d3.select('#searchbox-box').classed('searchbox-visible', false);
+    d3.select('#clear-search').classed('d-inline-block', false);
+    applyBeeSwarmFilter();
+  }
 }
 
 function convertRatioToColorComponent(r)
