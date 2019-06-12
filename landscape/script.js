@@ -615,7 +615,7 @@ function treat_json(json)
         return 'translate(0,'+(d.steps.length+2)*step_increment+') scale(1,'+1/0.5773+')'
       })
       .text(function(d){
-        return d.attributes.title//+'-'+d.attributes.first_publication;
+        return d.id + ' - ' + d.attributes.title//+'-'+d.attributes.first_publication;
       });
 
   //add zoom capabilities
@@ -676,7 +676,7 @@ function treat_json(json)
     }
   }
 
-  prepareTimeline(json_nodes, col_collections);
+//  prepareTimeline(json_nodes, col_collections);
 
   d3.selectAll('.toggle-timeline').on('click', function(d){
     toggleTimeline();
@@ -1606,6 +1606,8 @@ function metaball(
   handleSize = 2.4,
   v = 0.5)
 {
+console.log("metaball()");
+console.log(predecessorCircle.id + " -> " + centralCircle.id + " -> " + successorCircle.id);
   const predecessorCentralCenterDistance = dist(predecessorCircle.p, centralCircle.p);
 
   const maxSpread = Math.cos((predecessorCircle.r - centralCircle.r) / predecessorCentralCenterDistance);
@@ -1627,6 +1629,12 @@ function metaball(
 
   const angle3 = normalizeAngle(-(angleBetweenPredecessorCentralCenters + Math.PI - u2 - (Math.PI - u2 - maxSpread) * v));
 
+
+const angleBetweenCentralPredecessorCenters = angle(centralCircle.p, predecessorCircle.p);
+
+const externalAngle = angleBetweenCentralPredecessorCenters - angleBetweenCentralSuccessorCenters;
+const externalAngleIsConcave = Math.abs(externalAngle) < Math.PI;
+console.log("externalAngleIsConcave : " + externalAngleIsConcave);
 
 let svgContainer = d3.select("svg");
 
@@ -1651,8 +1659,10 @@ let svgContainer = d3.select("svg");
   const h3 = getCirclePoint(p3, p3.angle - HALF_PI, centralCircle.r);
 
   const p3_p4_angle = normalizeAngle(p4.angle - p3.angle);
-
-  return metaballArc(p1, p3, p4, h1, h3, p3_p4_angle > Math.PI, centralCircle.r);
+const check_p3_p4_angle = p3_p4_angle > Math.PI;  
+console.log("p3_p4_angle : " + p3_p4_angle);
+console.log(" > pi : " + check_p3_p4_angle);
+  return metaballArc(p1, p3, p4, h1, h3, p3_p4_angle > Math.PI, p3_p4_angle > (Math.PI * 1.5), centralCircle.r);
 }
 
 function metaballToPath(p1, p2, p3, p4, h1, h2, h3, h4, escaped, r)
@@ -1666,13 +1676,14 @@ function metaballToPath(p1, p2, p3, p4, h1, h2, h3, h4, escaped, r)
   return s;
 }
 
-function metaballArc(p1, p3, p4, h1, h3, largeArc, r)
+function metaballArc(p1, p3, p4, h1, h3, largeArc, wrappingArc, r)
 {
   let s =
+    wrappingArc ?
     'M' + p1.x + ' ' + p1.y + ' ' +
-    cubic1Path(p3, h1, h3)
-
-    +
+    cubic1Path(p3, h1, h3) :
+    'M' + p1.x + ' ' + p1.y + ' ' +
+    cubic1Path(p3, h1, h3) +
     circleArcPath(p4, largeArc, r);
 
   return s;
