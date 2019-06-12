@@ -1,7 +1,7 @@
 body {
   margin: 0;
   border-top: 6px solid var(--calvino-red);
-  height: 100vh;
+  height: calc(100vh - 6px);
   width: 100vw;
   /* background-color: darkslategrey; */
   color: darkslategrey;
@@ -17,6 +17,55 @@ body {
 
 #interface > * {
   pointer-events: all;
+}
+
+#searchbox {
+  border: none;
+  border-bottom: 1px solid var(--calvino-red);
+  transition: width 0.35s ease;
+  width: 10ch;
+}
+
+#searchbox-box {
+  position: absolute;
+  height: auto;
+  max-height: 50vw;
+  width: auto;
+  min-width: 10vw;
+  display: block;
+  display: inline-block;
+  overflow: hidden;
+  /* background-color: pink; */
+  opacity: 1e-16;
+  transition: all 0.25s ease;
+}
+
+#searchbox-box.searchbox-visible {
+  opacity: 1;
+}
+
+#searchbox-results {
+  margin-top: 40px;
+}
+
+ul.ui-autocomplete {
+  padding: 0;
+}
+
+li.ui-menu-item {
+  list-style: none;
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+li.ui-menu-item:hover {
+  background-color: rgba(255,255,255,.75);
+  opacity:1;
+}
+
+li.ui-menu-item.extra {
+  color: blue;
+  pointer-events: none;
 }
 
 svg#landscape {
@@ -132,7 +181,7 @@ svg:active {
   overflow-y: visible;
   padding: 1rem 2rem;
   transition: right 0.35s ease;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .scrollitelling-box > * {

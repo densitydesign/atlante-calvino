@@ -30,13 +30,23 @@
             <span class="_btn" colour-by="collections">raccolta</span>
           </span>
         </h1>
-        <h3>Esplora l'opera di Calvino attraverso un fenomeno</h3>
-        <h5 class="_btn toggle-cerca">Cerca <input id="searchbox" type="text"></h5>
+        <!-- <h3>Esplora l'opera di Calvino attraverso un fenomeno</h3> -->
+        <div>
+          <h5 class="_btn toggle-search d-inline-block">Cerca&#160;&#160;</h5>
+
+          <div id="searchbox-box" class="searchbox-hidden">
+            <input id="searchbox" type="text">
+            <!-- <p>Risultati della ricerca</p> -->
+            <div id="searchbox-results">
+              <!-- search results will be put here -->
+            </div>
+          </div>
+        </div>
 
       </div>
 
       <div class="col-md-3 text-right">
-        <h5 class="_btn toggle-tutorial">Cosa è?</h5>
+        <h5 class="_btn toggle-tutorial">Di cosa si tratta</h5>
       </div>
     </div>
     <div class="row">
@@ -53,16 +63,17 @@
     </div>
   </div>
 
-  <div class="scrollitelling-box scrollitelling-visible position-absolute">
+  <div class="scrollitelling-box position-absolute">
 
     <div id="skip-tutorial" class="toggle-tutorial"><i class="fas fa-times"></i></div>
 
     <div class="scrollitelling">
 
       <div class="step-scrollitelling">
-        <h3>L'opera di Italo Calvino come un territorio</h3>
 
         <h4 id="st-what-is">Di cosa si tratta</h4>
+        <h3>L'opera di Italo Calvino come un territorio</h3>
+
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.</p>
         <p>Di seguito spiegheremo come si legge, come si esplora e, soprattutto, <a href="#st-insights">cosa ci dice</a>.</p>
         <p>Continua a scorrere &#8230;</p>

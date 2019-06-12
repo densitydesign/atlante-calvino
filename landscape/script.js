@@ -122,9 +122,9 @@ function treat_json(json)
         let x = 6;
       })));
 
-  collections
-    .filter(coll => data.allowedCollections == "all" || allowedCollections.includes(coll.id))
-    .forEach(coll => prepareMetaballData(json_nodes, coll.id, coll.c));
+  // collections
+  //   .filter(coll => data.allowedCollections == "all" || allowedCollections.includes(coll.id))
+  //   .forEach(coll => prepareMetaballData(json_nodes, coll.id, coll.c));
 
   let boundaries = {
     top: d3.min(json_nodes, function(d){ return d.y }),
@@ -179,50 +179,50 @@ function treat_json(json)
   let svg_main_group = svg
     .append('g');
 
-  let metaball_group = svg_main_group
-    .append("g")
-    .attr("class", "metaball_nodes");
+  // let metaball_group = svg_main_group
+  //   .append("g")
+  //   .attr("class", "metaball_nodes");
+  //
+  // let metaball_nodes = metaball_group
+  //   .selectAll(".metaball_node")
+  //   .data(json_nodes)
+  //   .enter()
+  //     .append("g")
+  //     .attr("class", "metaball_node")
+  //     .attr("transform", function(d) {
+  //       return 'scale(1,0.5773) translate('+ (d.x - center.x)  +','+ (d.y - center.y) +')'
+  //     });
 
-  let metaball_nodes = metaball_group
-    .selectAll(".metaball_node")
-    .data(json_nodes)
-    .enter()
-      .append("g")
-      .attr("class", "metaball_node")
-      .attr("transform", function(d) {
-        return 'scale(1,0.5773) translate('+ (d.x - center.x)  +','+ (d.y - center.y) +')'
-      });
-
-  let metaballs = metaball_nodes
-    .selectAll(".metaball")
-    .data((d, i) => {
-      return d.steps;
-    })
-    .enter();
-
-  collections.forEach(coll =>
-    metaballs
-      .filter(function(d) {
-        return d.metaballCorner[coll.id];
-      })
-      .append("svg:path")
-      .attr("class", function(d) {
-        return "metaball collection_" + coll.id;
-      })
-      .attr("d", function(d) {
-        return d.lobe[coll.id];
-      })
-      .attr("fill", "none")
-      .attr("stroke", function(d) {
-        return d.lobeColor[coll.id];
-      })
-      .attr("stroke-opacity", 0)
-      .attr("stroke-width", 30)
-      .attr('transform',function(d){
-        let delta_x = -(+d.x);
-        let delta_y = -(+d.y);
-        return 'translate(' + delta_x + ', ' + delta_y + ')'
-      }));
+  // let metaballs = metaball_nodes
+  //   .selectAll(".metaball")
+  //   .data((d, i) => {
+  //     return d.steps;
+  //   })
+  //   .enter();
+  //
+  // collections.forEach(coll =>
+  //   metaballs
+  //     .filter(function(d) {
+  //       return d.metaballCorner[coll.id];
+  //     })
+  //     .append("svg:path")
+  //     .attr("class", function(d) {
+  //       return "metaball collection_" + coll.id;
+  //     })
+  //     .attr("d", function(d) {
+  //       return d.lobe[coll.id];
+  //     })
+  //     .attr("fill", "none")
+  //     .attr("stroke", function(d) {
+  //       return d.lobeColor[coll.id];
+  //     })
+  //     .attr("stroke-opacity", 0)
+  //     .attr("stroke-width", 30)
+  //     .attr('transform',function(d){
+  //       let delta_x = -(+d.x);
+  //       let delta_y = -(+d.y);
+  //       return 'translate(' + delta_x + ', ' + delta_y + ')'
+  //     }));
 
   let g = svg_main_group
     .append('g')
@@ -625,19 +625,13 @@ function treat_json(json)
   zoom_handler(svg);
 
   let scale = (w / (boundaries.right - boundaries.left))*0.9;
-  centerTerritory(scale, 0, 0, 0);
 
-  svg.transition()
-    .duration(0)
-    .call( zoom_handler.transform, d3.zoomIdentity
-      .translate(w/2,h/2*1.2)
-      .scale(0.08)
-    ); // updated for d3 v4
+  centerTerritory(scale, 0, 0, 0);
 
   //Zoom functions
   function zoom_actions(){
     g.attr("transform", d3.event.transform);
-    metaball_group.attr("transform", d3.event.transform);
+    // metaball_group.attr("transform", d3.event.transform);
     // console.log(d3.event.transform);
   }
 
@@ -647,7 +641,7 @@ function treat_json(json)
       .duration(duration)
       .call( zoom_handler.transform, d3.zoomIdentity
         .translate((w/2) + x, (h/2) + y)
-        .scale(scale)
+        .scale(scale/1.75)
       );
   }
 
@@ -699,8 +693,15 @@ function treat_json(json)
   })
 
   function toggleTutorial() {
-    console.log('toggle tutorial');
     d3.select('.scrollitelling-box').classed("scrollitelling-visible", d3.select('.scrollitelling-box').classed("scrollitelling-visible") ? false : true);
+  }
+
+  d3.selectAll('.toggle-search').on('click', function(d){
+    toggleSearch();
+  })
+
+  function toggleSearch() {
+    d3.select('#searchbox-box').classed("searchbox-visible", d3.select('#searchbox-box').classed("searchbox-visible") ? false : true);
   }
 
   d3
@@ -905,6 +906,7 @@ console.log(drawMode);
         }
       }
       else if(eventKey == "f") {
+        d3.select('#searchbox').node().value = '';
         applyBeeSwarmFilter();
       }
       else if (eventKey == " ") {
@@ -912,15 +914,36 @@ console.log(drawMode);
       }
   });
 
-  let titles = json_nodes.map(d => d.attributes.title);
+  let titles = json_nodes.map(d => {
+    // console.log(d);
+    return d.attributes.title;
+  });
   let title_id_map = new Map();
 
   json_nodes.forEach(d => title_id_map[d.attributes.title] = d.id);
 
   $("#searchbox")
     .autocomplete({
+      appendTo: '#searchbox-results',
       source: titles,
+      minLength: 0,
+      close: function( event, ui ) {
+        //alert('closed')
+      },
+      change: function( event, ui ) {
+        console.log('change');
+      },
+      source: function(req, response) {
+        console.log(req.term.length);
+        let searchedText = req.term;
+        if (searchedText.length-2 > 10) d3.select('#searchbox').style('width', searchedText.length-2+'ch')
+        var results = $.ui.autocomplete.filter(titles, req.term);
+
+        response(results.slice(0, 12));//for getting 5 results
+      },
       select: function(event, ui) {
+
+        console.log(event, ui);
 
         let id = title_id_map[ui.item.value];
 
@@ -931,13 +954,10 @@ console.log(drawMode);
         text_nodes
           .filter(d => d.id != id)
           .style("opacity", 0.3);
-/*
-          d3.selectAll(".kw")
-              .filter(function(d) {
-                  return d.keyword == ui.item.label
-              })
-              .each(mouseEnter)
-*/
+
+        let searchedText = ui.item.value;
+        if (searchedText.length-2 > 10) d3.select('#searchbox').style('width', searchedText.length+0+'ch')
+
       } });
 }
 
@@ -1158,6 +1178,126 @@ function getCollections() {
       'n': 'Gli amori difficili',
       'id': 'V017',
       'c': '#f0be96'
+    },
+    {
+      'n': 'Palomar',
+      'id': 'V022',
+      'c': '#94d2ba'
+    },
+    {
+      'n': 'Cosmicomiche vecchie e nuove',
+      'id': 'V023',
+      'c': '#f1634b'
+    }
+  ]
+
+
+  // with all the volumes
+  collections = [
+    {
+      'n': 'Il sentiero dei nidi di ragno',
+      'id': 'V001',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Ultimo viene il corvo',
+      'id': 'V002',
+      'c': '#e9d05d'
+    },
+    {
+      'n': 'Il visconte dimezzato',
+      'id': 'V003',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'L\'entrata in guerra',
+      'id': 'V004',
+      'c': '#12b259'
+    },
+    {
+      'n': 'Il barone rampante',
+      'id': 'V005',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'I racconti',
+      'id': 'V006',
+      'c': '#476a70'
+    },
+    {
+      'n': 'La formica argentina',
+      'id': 'V007',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Il cavaliere inesistente',
+      'id': 'V008',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'La giornata di uno scrutatore',
+      'id': 'V009',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'La speculazione edilizia',
+      'id': 'V010',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Marcovaldo',
+      'id': 'V011',
+      'c': '#9f73b2'
+    },
+    {
+      'n': 'La nuvola di smog e la formica argentina',
+      'id': 'V012',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Le cosmicomiche',
+      'id': 'V013',
+      'c': '#e89fc0'
+    },
+    {
+      'n': 'Ti con zero',
+      'id': 'V014',
+      'c': '#581745'
+    },
+    {
+      'n': 'La memoria del mondo',
+      'id': 'V015',
+      'c': '#00b1b3'
+    },
+    {
+      'n': 'Il castello dei destini incrociati',
+      'id': 'V016',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Gli amori difficili',
+      'id': 'V017',
+      'c': '#f0be96'
+    },
+    {
+      'n': 'Le città invisibili',
+      'id': 'V018',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Il castello dei destini incrociati (riedizione)',
+      'id': 'V019',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Eremita a Parigi',
+      'id': 'V020',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Se una notte d\'inverno un viaggiatore',
+      'id': 'V021',
+      'c': '#D6DBDF'
     },
     {
       'n': 'Palomar',
