@@ -1032,14 +1032,17 @@ console.log(point_data);
           data.event_transform.x = 550.42 - correct_x;
           data.event_transform.y = 1031.96 - correct_y;
 
+          console.log("setting attr : " + data.event_transform);
           g.attr("transform", data.event_transform);
         }
+/*        
         else if(xxx == "S171")
         {
           data.event_transform.k = 0.30273844695219054;
           data.event_transform.x = -422.97178536593776 - correct_x;
           data.event_transform.y = -473.48879630824183 - correct_y;
 
+          console.log("setting attr : " + data.event_transform);
           g.attr("transform", data.event_transform);
         }
         else if(xxx == "S088")
@@ -1049,11 +1052,25 @@ console.log(point_data);
 //          data.event_transform.x = 1900.4018583503466;
           data.event_transform.y = 157.77524528257038 - correct_y;
 
+          console.log("setting attr : " + data.event_transform);
           g.attr("transform", data.event_transform);
         }
+*/
         else
         {
-          centerTerritory(0.04, new_x / 16, new_y / 16, 0);
+//          centerTerritory(0.04, new_x / 16, new_y / 16, 0);
+
+          a = -3.1680775663;
+          b = 4268.95108892;
+          c = 30.2161591095;
+          d = -2519.13988895;
+
+          data.event_transform.k = 0.30273844695219054;
+          data.event_transform.x = a * x + b - correct_x;
+          data.event_transform.y = c * y + d - correct_y;
+
+          console.log("setting attr : " + data.event_transform);
+          g.attr("transform", data.event_transform);
         }
 
       } });
