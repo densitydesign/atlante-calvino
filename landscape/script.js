@@ -1,7 +1,7 @@
 
 let data = {
 
-  allowedCollections: "V017", // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
+  allowedCollections: "all", // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
   timeline_x: 0,
   timeline_y: 0,
   timeline_dot: null,
@@ -1252,6 +1252,36 @@ function prepareMetaballData(json_nodes, collection, lineColor)
   renderMetaballLogically(collection, ordered_boundary_circles, nCirclesToBeDrawn, lineColor);
 }
 
+function minIndex(values, valueof) 
+{
+  let min;
+  let minIndex = -1;
+  let index = -1;
+
+  if(valueof === undefined) 
+  {
+    for(const value of values) 
+    {
+      ++index;
+      if(value != null
+          && (min > value || (min === undefined && value >= value))) {
+        min = value, minIndex = index;
+      }
+    }
+  } 
+  else 
+  {
+    for(let value of values) {
+      if((value = valueof(value, ++index, values)) != null
+          && (min > value || (min === undefined && value >= value))) {
+        min = value, minIndex = index;
+      }
+    }
+  }
+
+  return minIndex;
+}
+
 function addWantedCoves(vertex_array, boundary_points)
 {
   if(boundary_points.length == 0) return [];
@@ -1262,6 +1292,8 @@ function addWantedCoves(vertex_array, boundary_points)
 
   let new_boundary_points = [];
 
+  let toleranceFactor = 1.1;
+
   for(let i = 0; i < boundary_points[0].length; ++i)
   {
     let next_index = i == boundary_points[0].length - 1 ? 0 : i + 1;
@@ -1271,16 +1303,16 @@ function addWantedCoves(vertex_array, boundary_points)
 
     let p2 = boundary_points[0][next_index];
 
-    let boundary_dist = Math.sqrt(dsq(p1, p2));
-
-    let added_new_internal_points = false;
+    let added_new_internal_points;
 
     let points_after_p1 = [];
     let points_before_p2 = [];    
 
     do
     {
+      added_new_internal_points = false;
       let candidate_cove_points = [];
+      let boundary_dist = Math.sqrt(dsq(p1, p2));      
 
       for(let i = 0; i < internal_points.length; ++i)
       {
@@ -1288,7 +1320,7 @@ function addWantedCoves(vertex_array, boundary_points)
 
         let distSum = Math.sqrt(dsq(p1, ip)) + Math.sqrt(dsq(p2, ip));
 
-        if(distSum / boundary_dist <= 1.2)
+        if(distSum / boundary_dist <= toleranceFactor)
         {
           candidate_cove_points.push(ip);
         }
@@ -1300,23 +1332,23 @@ function addWantedCoves(vertex_array, boundary_points)
       {
 //        let distances_from_p1 = candidate_cove_points.map(p => { p: p; dist: Math.sqrt(dsq(p1, p)) });
         let distances_from_p1 = candidate_cove_points.map(function(p) { return { p: p, dist: Math.sqrt(dsq(p1, p)) }; });
-        let nearest_point_to_p1_idx = d3.minIndex(distances_from_p1, d => d.dist);
+        let nearest_point_to_p1_idx = minIndex(distances_from_p1, d => d.dist);
         let nearest_point_to_p1 = distances_from_p1[nearest_point_to_p1_idx];
 
         let distances_from_p2 = candidate_cove_points.map(function(p) { return { p: p, dist: Math.sqrt(dsq(p2, p)) }; });    
-        let nearest_point_to_p2_idx = d3.minIndex(distances_from_p2, d => d.dist);
+        let nearest_point_to_p2_idx = minIndex(distances_from_p2, d => d.dist);
         let nearest_point_to_p2 = distances_from_p2[nearest_point_to_p2_idx];
 
         if(nearest_point_to_p1.dist <= nearest_point_to_p2.dist)
         {
-          internal_points.splice(nearest_point_to_p1.idx, 1);
+          internal_points.splice(internal_points.indexOf(nearest_point_to_p1.p), 1);
   //        new_boundary_points.push(nearest_point_to_p1.p);
           points_after_p1.push(nearest_point_to_p1.p);
           p1 = nearest_point_to_p1.p;
         }
         else
         {
-          internal_points.splice(nearest_point_to_p2.idx, 1);
+          internal_points.splice(internal_points.indexOf(nearest_point_to_p2.p), 1);
   //        new_boundary_points.push(nearest_point_to_p2.p);
           points_before_p2.push(nearest_point_to_p2.p);
           p2 = nearest_point_to_p2.p;
