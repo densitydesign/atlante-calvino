@@ -151,7 +151,7 @@ function treat_json(json)
     .scaleOrdinal()
     .domain(collections.map(function(d){return d.id}))
     .range(collections.map(function(d){return d.c}))
-    .unknown('#ffffff');
+    .unknown('transparent');
 
   let w = window.innerWidth;
   let h = window.innerHeight - 6;
@@ -675,6 +675,7 @@ function treat_json(json)
 
   d3.selectAll('.toggle-timeline').on('click', function(d){
     toggleTimeline();
+    d3.select(this).classed('active', d3.select(this).classed("active") ? false : true)
   })
 
   function toggleTimeline() {
@@ -683,10 +684,11 @@ function treat_json(json)
 
   d3.selectAll('.toggle-legend').on('click', function(d){
     toggleLegend();
+    d3.select(this).classed('active', d3.select(this).classed("active") ? false : true)
   })
 
   function toggleLegend() {
-    $('#legendModal').modal('toggle');
+    d3.select('#interface').classed("legend-visible", d3.select('#interface').classed("legend-visible") ? false : true);
   }
 
   d3.selectAll('.toggle-tutorial').on('click', function(d){

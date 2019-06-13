@@ -5,7 +5,11 @@ body {
   width: 100vw;
   /* background-color: darkslategrey; */
   color: darkslategrey;
-  overflow:hidden;
+  overflow: hidden;
+}
+
+body * {
+  /* outline: 1px solid cyan; */
 }
 
 #interface {
@@ -123,23 +127,43 @@ svg:active {
   letter-spacing: 0.2px;
 }
 
+.verbose-container {
+  display: auto;
+}
+
+.verbose-container span {
+  display: inline-block;
+}
+
 .verbose-options-selector span {
-  border-bottom: 1px solid red;
+  border-bottom: 1px solid tomato;
+  transition: 0.3s cubic-bezier(.11,.31,.37,1) all;
+  display: inline-block;
+}
+
+.verbose-options-selector div:hover {
+  border-bottom: 5px solid tomato;
+}
+
+.verbose-options-selector .invisible {
+  opacity: 0;
+
+  margin-top: -1rem;
 }
 
 #timeline-container {
   height: 0;
   bottom: 0;
   background: #f2f4f5;
-  transition: all 0.35s ease;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   overflow: hidden;
-  border-top: black 1px solid;
+  border-top: rgba(0,0,0,.1) 1px solid;
   opacity: 0;
-  padding: 0 3rem;
+  padding: 1rem 3rem;
 }
 
 .timeline-visible #timeline-container {
-  height: 20vh;
+  height: 21vh;
   opacity: 1;
 }
 
@@ -165,14 +189,65 @@ svg:active {
   margin-left: 1rem;
 }
 
-.toggle-legend {
+.toggle-legend, .toggle-timeline {
   position: relative;
   transition: all 0.35s ease;
+  z-index: 9999;
+  text-align: center;
+  bottom: 0;
 }
 
-.timeline-visible .toggle-legend {
-  bottom: 20vh;
+.bottom-drawer ._btn {
+  border-bottom: 2px solid rgba(47, 79, 79, 0.3);
+  padding: 0.3rem 0;
 }
+
+.bottom-drawer ._btn:hover {
+  border-bottom: 2px solid rgba(47, 79, 79, 1);
+}
+
+.bottom-drawer .active {
+  border-bottom: 2px solid tomato !important;
+  color: tomato;
+}
+
+#legend-container {
+  height: 0vh;
+  bottom: 0;
+  background: #f2f4f5;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow-y: hidden;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  border-top: rgba(0,0,0,.1) 1px solid;
+  opacity: 0;
+  padding: 1rem 2rem 3rem 2rem;;
+  display: flex;
+}
+
+#legend-container .legend-block {
+  max-height: 100%;
+  margin-right: 4rem;
+}
+
+#legend-container .text-block {
+  min-width: 40vw;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.legend-block img {
+  max-height: 10vh;
+}
+
+.legend-visible #legend-container {
+  height: 21vh;
+  opacity: 1;
+}
+
+/* .timeline-visible .toggle-legend, .legend-visible .toggle-timeline {
+  bottom: 20vh;
+} */
 
 .axis--x .tick:first-of-type, .axis--x .tick:last-of-type {
   display: none;
