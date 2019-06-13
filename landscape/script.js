@@ -1298,25 +1298,28 @@ function addWantedCoves(vertex_array, boundary_points)
 
       if(candidate_cove_points.length > 0)
       {
-        let distances_from_p1 = candidate_cove_points.map(p => { p: p; dist: Math.sqrt(dsq(p1, p)) });
-        let nearest_point_to_p1_idx = d3.min(distances_from_p1, d => d.dist);
+//        let distances_from_p1 = candidate_cove_points.map(p => { p: p; dist: Math.sqrt(dsq(p1, p)) });
+        let distances_from_p1 = candidate_cove_points.map(function(p) { return { p: p, dist: Math.sqrt(dsq(p1, p)) }; });
+        let nearest_point_to_p1_idx = d3.minIndex(distances_from_p1, d => d.dist);
         let nearest_point_to_p1 = distances_from_p1[nearest_point_to_p1_idx];
 
-        let distances_from_p2 = candidate_cove_points.map(p => { p: p; dist: Math.sqrt(dsq(p2, p)) });    
-        let nearest_point_to_p2_idx = d3.min(distances_from_p2, d => d.dist);
+        let distances_from_p2 = candidate_cove_points.map(function(p) { return { p: p, dist: Math.sqrt(dsq(p2, p)) }; });    
+        let nearest_point_to_p2_idx = d3.minIndex(distances_from_p2, d => d.dist);
         let nearest_point_to_p2 = distances_from_p2[nearest_point_to_p2_idx];
 
         if(nearest_point_to_p1.dist <= nearest_point_to_p2.dist)
         {
           internal_points.splice(nearest_point_to_p1.idx, 1);
   //        new_boundary_points.push(nearest_point_to_p1.p);
-          points_after_p1.push(nearest_point_to_p1.p);          
+          points_after_p1.push(nearest_point_to_p1.p);
+          p1 = nearest_point_to_p1.p;
         }
         else
         {
           internal_points.splice(nearest_point_to_p2.idx, 1);
   //        new_boundary_points.push(nearest_point_to_p2.p);
           points_before_p2.push(nearest_point_to_p2.p);
+          p2 = nearest_point_to_p2.p;
         }
 
         added_new_internal_points = true;
