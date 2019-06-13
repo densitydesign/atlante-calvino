@@ -11,5 +11,3 @@
 
 ##### Strumenti
 - [Estrai posizione parole](https://densitydesign.github.io/atlante-calvino/explorer)
-
-hehe
