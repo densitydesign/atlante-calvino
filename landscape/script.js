@@ -1136,7 +1136,7 @@ function getCollections() {
       'n': 'I racconti',
       'id': 'V006',
       'c': '#476a70',
-      'concavityTolerance': 1.1
+      'concavityTolerance': 1.2
     },
     {
       'n': 'Marcovaldo',
