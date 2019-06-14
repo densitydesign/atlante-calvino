@@ -218,7 +218,7 @@ function treat_json(json)
         return d.lobeColor[coll.id];
       })
       .attr("stroke-opacity", 0)
-      .attr("stroke-width", 5)
+      .attr("stroke-width", 7)
       .attr('transform',function(d){
         let delta_x = -(+d.x);
         let delta_y = -(+d.y);
@@ -1123,52 +1123,62 @@ function getCollections() {
     {
       'n': 'Ultimo viene il corvo',
       'id': 'V002',
-      'c': '#e9d05d'
+      'c': '#e9d05d',
+      'concavityTolerance': 1.1
     },
     {
       'n': 'L\'entrata in guerra',
       'id': 'V004',
-      'c': '#12b259'
+      'c': '#12b259',
+      'concavityTolerance': 1.1
     },
     {
       'n': 'I racconti',
       'id': 'V006',
-      'c': '#476a70'
+      'c': '#476a70',
+      'concavityTolerance': 1.1
     },
     {
       'n': 'Marcovaldo',
       'id': 'V011',
-      'c': '#9f73b2'
+      'c': '#9f73b2',
+      'concavityTolerance': 1.1
     },
     {
       'n': 'Le cosmicomiche',
       'id': 'V013',
-      'c': '#e89fc0'
+      'c': '#e89fc0',
+      'concavityTolerance': 1.1
     },
     {
       'n': 'Ti con zero',
       'id': 'V014',
-      'c': '#581745'
+      'c': '#581745',
+      'concavityTolerance': 1.2
     },
     {
       'n': 'La memoria del mondo',
       'id': 'V015',
-      'c': '#00b1b3'
+      'c': '#00b1b3',
+      'concavityTolerance': 1.1
     },
     {
       'n': 'Gli amori difficili',
       'id': 'V017',
-      'c': '#f0be96'
+      'c': '#f0be96',
+      'concavityTolerance': 1.1
     },
     {
       'n': 'Palomar',
       'id': 'V022',
-      'c': '#94d2ba'
+      'c': '#94d2ba',
+      'concavityTolerance': 1.1
     },
     {
       'n': 'Cosmicomiche vecchie e nuove',
       'id': 'V023',
-      'c': '#f1634b'
+      'c': '#f1634b',
+      'concavityTolerance': 1.2
     }
   ]
 
@@ -1193,11 +1203,12 @@ function prepareMetaballData(json_nodes, collection, lineColor)
       return d.first_elem && d.collections.includes(collection);
   });
 
-  
+  let metaballLineBaseSeparation = 1.2;
+  let metaballLineStepSeparation = 0.20;
 
   let hillBase_circles = hillBases.map(hillBase => ({
       p: { x: hillBase.x, y: hillBase.y },
-      r: hillBase.r * (1.2 + 0.15 * (hillBase.collections.length - 1 - hillBase.collections.indexOf(collection))),
+      r: hillBase.r * (metaballLineBaseSeparation + metaballLineStepSeparation * (hillBase.collections.length - 1 - hillBase.collections.indexOf(collection))),
       color: "blue",
       step: hillBase.step,
       id: hillBase.id }));
@@ -1230,8 +1241,11 @@ function prepareMetaballData(json_nodes, collection, lineColor)
     boundary_points[0] = boundary_points[0].reverse();
   }
 
+  let collectionData = getCollections()
+    .filter(c => c.id == collection)[0];
+
   if(data.metaballWantedCoves)
-    boundary_points = addWantedCoves(vertex_array, boundary_points);
+    boundary_points = addWantedCoves(vertex_array, boundary_points, collectionData.concavityTolerance);
 
   if(boundary_points.length == 0) return;
 
@@ -1284,7 +1298,7 @@ function minIndex(values, valueof)
   return minIndex;
 }
 
-function addWantedCoves(vertex_array, boundary_points)
+function addWantedCoves(vertex_array, boundary_points, concavityTolerance)
 {
   if(boundary_points.length == 0) return [];
 
@@ -1294,7 +1308,7 @@ function addWantedCoves(vertex_array, boundary_points)
 
   let new_boundary_points = [];
 
-  let toleranceFactor = 1.1;
+//  let concavityTolerance = 1.1;
 
   for(let i = 0; i < boundary_points[0].length; ++i)
   {
@@ -1322,7 +1336,7 @@ function addWantedCoves(vertex_array, boundary_points)
 
         let distSum = Math.sqrt(dsq(p1, ip)) + Math.sqrt(dsq(p2, ip));
 
-        if(distSum / boundary_dist <= toleranceFactor)
+        if(distSum / boundary_dist <= concavityTolerance)
         {
           candidate_cove_points.push(ip);
         }
