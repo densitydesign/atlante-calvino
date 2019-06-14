@@ -728,13 +728,15 @@ function treat_json(json)
       let eventKey = d3.event.key.toLowerCase();
 
       if (eventKey == "c") {
-        text_nodes.selectAll('circle')
-          .transition().duration(350)
-          .attr('fill',function(d){
-            return col_collections(d.collection)
-          })
+        d3.selectAll('circle')
+          .filter(d => !this.classList.contains('halo'))
+          .transition()
+          .duration(350)
+          .attr('fill', d => col_collections(d.collection));
       } else if (eventKey == "y") {
-        text_nodes.selectAll('circle')
+        text_nodes
+          .selectAll('circle')
+          .filter(d => !this.classList.contains('halo'))
           .transition()
           .duration(350)
           .attr('fill',function(d){
