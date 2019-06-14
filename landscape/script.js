@@ -218,7 +218,7 @@ function treat_json(json)
         return d.lobeColor[coll.id];
       })
       .attr("stroke-opacity", 0)
-      .attr("stroke-width", 30)
+      .attr("stroke-width", 5)
       .attr('transform',function(d){
         let delta_x = -(+d.x);
         let delta_y = -(+d.y);
@@ -1193,9 +1193,11 @@ function prepareMetaballData(json_nodes, collection, lineColor)
       return d.first_elem && d.collections.includes(collection);
   });
 
+  
+
   let hillBase_circles = hillBases.map(hillBase => ({
       p: { x: hillBase.x, y: hillBase.y },
-      r: hillBase.r * 1.2,
+      r: hillBase.r * (1.2 + 0.15 * (hillBase.collections.length - 1 - hillBase.collections.indexOf(collection))),
       color: "blue",
       step: hillBase.step,
       id: hillBase.id }));
