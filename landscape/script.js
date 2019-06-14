@@ -648,8 +648,6 @@ d3
 
             d3.selectAll('.dropdown-menu li a').on('click', function(d){
               setHillsColours(d3.select(this).attr('colour-by'));
-              // $(this).parents(".dropdown").find('._btn').html($(this).text() + ' <span class="caret"></span>');
-              // $(this).parents(".dropdown").find('._btn').val($(this).data('value'));
             })
 
             $(".dropdown-menu li a").click(function(){
