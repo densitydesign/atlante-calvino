@@ -634,6 +634,9 @@ d3
               g.attr("transform", d3.event.transform);
               // metaball_group.attr("transform", d3.event.transform);
               // console.log(d3.event.transform);
+              label.style("font-size", () => {
+                return ( 1 / d3.event.transform.k ) + "rem";
+              })
             }
 
             // Handle interface interactions
@@ -938,7 +941,10 @@ d3
             .autocomplete({
               appendTo: '#searchbox-results',
               source: titles,
-              minLength: 0,
+              minLength: 3,
+              position: {
+                collision: 'flip',
+              },
               close: function( event, ui ) {
                 //alert('closed')
               },
@@ -948,10 +954,30 @@ d3
               source: function(req, response) {
                 console.log(req.term.length);
                 let searchedText = req.term;
-                // if (searchedText.length-2 > 10) d3.select('#searchbox').style('width', searchedText.length-2+'ch')
                 var results = $.ui.autocomplete.filter(titles, req.term);
 
-                response(results.slice(0, 12));//for getting 5 results
+                text_nodes
+                .style("opacity", .35);
+
+                label
+                .classed('visible', false)
+
+                results.forEach(d=>{
+                  console.log(d)
+                  let id = title_id_map[d];
+
+                  text_nodes
+                  .filter(d => d.id == id)
+                  .style("opacity", 1);
+
+                  label
+                  .filter(d => d.id == id)
+                  .classed('visible', true)
+                  // .style("opacity", 1);
+
+                });
+
+                response(results);//for getting 12 results
               },
               select: function(event, ui) {
 
