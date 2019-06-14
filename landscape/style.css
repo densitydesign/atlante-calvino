@@ -24,26 +24,23 @@ body * {
 }
 
 #searchbox {
-  border: none;
-  border-bottom: 1px solid var(--calvino-red);
-  transition: width 0.35s ease;
-  width: 20ch;
+  outline: none;
+  border: 1px solid var(--calvino-red);
+  border-radius: 4px;
+  width: 100%;
 }
 
 #searchbox-box {
-  position: absolute;
-  /* position: relative; */
   height: auto;
   max-height: 50vw;
-  /* width: 10vw; */
+  width: 25vw;
   min-width: 20ch;
-  display: block;
+  max-width: 30ch;
   display: inline-block;
+  margin-top: 1rem;
   overflow: hidden;
-  /* background-color: pink; */
   opacity: 1e-16;
-  transition: all 0.4s ease;
-  /* top: 9.5px; */
+  transition: opacity 0.4s ease;
 }
 
 #searchbox-box.searchbox-visible {
@@ -51,13 +48,13 @@ body * {
 }
 
 #searchbox-results {
-  /* margin-top: 40px; */
+  position: absolute;
 }
 
 #clear-search {
+  margin-left: 0.5rem;
+  font-size: 1rem;
   display: none;
-  left: 35ch;
-  position: absolute;
 }
 
 ul.ui-autocomplete {
@@ -127,6 +124,18 @@ svg:active {
   letter-spacing: 0.2px;
 }
 
+._btn:focus {
+  outline: none;
+}
+
+.dropdown h1 {
+  margin-bottom: 0;
+}
+
+.dropdown > * {
+  margin-right: 0.5rem;
+}
+
 .verbose-container {
   display: auto;
 }
@@ -135,20 +144,47 @@ svg:active {
   display: inline-block;
 }
 
-.verbose-options-selector span {
-  border-bottom: 1px solid tomato;
+.verbose-options-selector {
+  outline: none;
+  border: none;
+  border-bottom: 3px solid var(--calvino-red);
   transition: 0.3s cubic-bezier(.11,.31,.37,1) all;
-  display: inline-block;
+  background-color: transparent;
+  padding: 0 0.5rem;
+  font-size: 2.5rem;
+  text-transform: lowercase;
+  color: darkslategrey;
 }
 
-.verbose-options-selector div:hover {
-  border-bottom: 5px solid tomato;
+.verbose-options-selector:hover {
+  padding: 0 2rem;
 }
 
 .verbose-options-selector .invisible {
   opacity: 0;
-
   margin-top: -1rem;
+}
+
+.dropdown-menu {
+  background: transparent
+}
+
+.colours-selector {
+  border: none;
+}
+
+.colours-selector a {
+  color: darkslategrey;
+  opacity: 0.5;
+  font-size: 1.5rem;
+  text-align: left;
+  text-decoration: none;
+  transition: 0.3s cubic-bezier(.11,.31,.37,1) all;
+}
+
+.colours-selector a:hover {
+  opacity: 1;
+  padding-left: 1rem;
 }
 
 #timeline-container {
