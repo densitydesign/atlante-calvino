@@ -1621,7 +1621,7 @@ function getCircleJoint2(
 
   const maxSpreadCalculated = Math.acos((circle1.r - circle2.r) / distanceBetweenCenters);
   const maxSpread = normalizeAngle(maxSpreadCalculated);
-  const spread = maxSpread * circle1.r / (circle1.r + circle2.r) * 1.5;
+  const spread = maxSpread * circle1.r / (circle1.r + circle2.r) * 1.1;
 
   const jointAngle = normalizeAngle(angleBetweenCenters - spread);
 
@@ -1640,7 +1640,7 @@ function getCircleJoint3(
 
   const maxSpreadCalculated = Math.acos((circle1.r - circle2.r) / distanceBetweenCenters);
   const maxSpread = normalizeAngle(maxSpreadCalculated);
-  const spread = maxSpread * circle1.r / (circle1.r + circle2.r) * 1.5;
+  const spread = maxSpread * circle1.r / (circle1.r + circle2.r) * 1.1;
 
   const jointAngle = normalizeAngle(angleBetweenCenters + spread);
 
