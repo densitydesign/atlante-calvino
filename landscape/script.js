@@ -635,7 +635,7 @@ d3
               // metaball_group.attr("transform", d3.event.transform);
               // console.log(d3.event.transform);
               label.style("font-size", () => {
-                return ( 1 / d3.event.transform.k ) + "rem";
+                return ( 0.85 / d3.event.transform.k ) + "rem";
               })
             }
 
