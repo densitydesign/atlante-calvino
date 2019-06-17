@@ -822,7 +822,7 @@ console.log(drawMode);
                 .duration(450)
                 .style('fill-opacity',1)
                 .style('stroke-opacity',1)
-                .style('fill', d => col_collections(d.collections));
+                .style('fill', d => col_collections(d.collection));
             }
 
             break;
@@ -1233,8 +1233,8 @@ function prepareMetaballData(json_nodes, collection, lineColor)
       return d.first_elem && d.collections.includes(collection);
   });
 
-  let metaballLineBaseSeparation = 1.2;
-  let metaballLineStepSeparation = 0.20;
+  let metaballLineBaseSeparation = 1.3;
+  let metaballLineStepSeparation = 0.30;
 
   let hillBase_circles = hillBases.map(hillBase => ({
       p: { x: hillBase.x, y: hillBase.y },
