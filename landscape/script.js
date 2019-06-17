@@ -805,8 +805,8 @@ console.log(drawMode);
             if(hillColoringMode == 1)
             {
               text_nodes
-                .selectAll('circle')
-                .filter(function(d) { return d.first_elem && !this.classList.contains('halo'); } )
+                .selectAll('.hill')
+                .filter(d => d.first_elem)
                 .transition()
                 .duration(450)
                 .style('fill-opacity',1)
@@ -816,8 +816,8 @@ console.log(drawMode);
             else
             {
               text_nodes
-                .selectAll('circle')
-                .filter(function(d) { return d.first_elem && !this.classList.contains('halo'); } )
+                .selectAll('.hill')
+                .filter(d => d.first_elem)
                 .transition()
                 .duration(450)
                 .style('fill-opacity',1)
@@ -837,7 +837,7 @@ console.log(drawMode);
               .style('stroke-opacity',0);
 
             text_nodes
-              .selectAll('circle')
+              .selectAll('.halo')
               .transition()
               .duration(450)
               .style('fill-opacity',1)
@@ -860,8 +860,8 @@ console.log(drawMode);
               .style('stroke-opacity',0);
 
             text_nodes
-              .selectAll('circle')
-              .filter(function(d) { return d.first_elem && !this.classList.contains('halo'); } )
+              .selectAll('.hill')
+              .filter(d => d.first_elem)
               .transition()
               .duration(450)
               .style('fill-opacity',0.2)
@@ -889,8 +889,8 @@ console.log(drawMode);
               .style('stroke-opacity',0);
 
             text_nodes
-              .selectAll('circle')
-              .filter(function(d) { return d.first_elem && !this.classList.contains('halo'); } )
+              .selectAll('.hill')
+              .filter(d => d.first_elem)
               .transition()
               .duration(450)
               .style('fill-opacity', d => sample(d.norma_pct_caratteri_nebbia_cancellazione, 0, 1, 10))
