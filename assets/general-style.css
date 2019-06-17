@@ -2,6 +2,7 @@
 @import "fonts/crimson/stylesheet.css";
 
 :root {
+  font-size: 16px;
   --main-bg-color: #EFEBE9;
   --main-bg-color: #dadedd;
   --main-bg-color: #e5e6e6;
