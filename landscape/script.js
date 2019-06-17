@@ -710,6 +710,8 @@ d3
 
             function toggleTutorial() {
               d3.select('.scrollitelling-box').classed("scrollitelling-visible", d3.select('.scrollitelling-box').classed("scrollitelling-visible") ? false : true);
+              // Once opened, the scrollitelling is always at its top position
+              d3.select('.scrollitelling-box').node().scrollTop = 0;
             }
 
             d3.selectAll('.toggle-search').on('click', function(d){
