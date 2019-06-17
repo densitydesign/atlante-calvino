@@ -293,6 +293,7 @@ function treat_json(json)
   let arcWidth = 15;
   let arcPad = 1; // padding between arcs
   let drawMode = 1; // 1 : hills; 2 : hills with halo; 3 : places; 4 : dubitative phenomena;
+  let hillColoringMode = 1; // 1 : first publication year; 2 : collection
   let metaballsVisible = new Map();
 
 ///////////////////////////////////////////
@@ -728,20 +729,28 @@ function treat_json(json)
       let eventKey = d3.event.key.toLowerCase();
 
       if (eventKey == "c") {
+/*        
         d3.selectAll('circle')
           .filter(d => !this.classList.contains('halo'))
           .transition()
           .duration(350)
           .attr('fill', d => col_collections(d.collection));
-      } else if (eventKey == "y") {
-        text_nodes
-          .selectAll('circle')
-          .filter(d => !this.classList.contains('halo'))
+*/
+        hillColoringMode = 2;
+
+        d3.selectAll(".hill")
           .transition()
           .duration(350)
-          .attr('fill',function(d){
-            return colour(d.first_publication)
-          })
+          .style('fill', d => col_collections(d.collection));
+      } else if (eventKey == "y") {
+        hillColoringMode = 1;
+
+        text_nodes
+          .selectAll('.hill')
+//          .filter(d => !this.classList.contains('halo'))
+          .transition()
+          .duration(350)
+          .style('fill', d => colour(d.first_publication));
       } else if (eventKey == "n") {
         text_nodes.style('display','none')
         text_nodes.filter(function(d){
@@ -784,18 +793,37 @@ console.log(drawMode);
               .duration(450)
               .style('fill-opacity',1)
               .style('stroke-opacity',1);
+/*
+            let coloringFunction;
 
-            text_nodes
-              .selectAll('circle')
-              .filter(function(d) { return d.first_elem && !this.classList.contains('halo'); } )
-              .transition()
-              .duration(450)
-              .style('fill-opacity',1)
-              .style('stroke-opacity',1)
-              .style('fill', function(d)
-              {
-                return colour(d.first_publication);
-              });
+            switch(hillColoringMode)
+            {
+              case 1 : coloringFunction = d => colour(d.first_publication);
+              case 2 : coloringFunction = d => col_collections(d.collection);
+            }
+*/
+            if(hillColoringMode == 1)
+            {
+              text_nodes
+                .selectAll('circle')
+                .filter(function(d) { return d.first_elem && !this.classList.contains('halo'); } )
+                .transition()
+                .duration(450)
+                .style('fill-opacity',1)
+                .style('stroke-opacity',1)
+                .style('fill', d => colour(d => d.first_publication));
+            }
+            else
+            {
+              text_nodes
+                .selectAll('circle')
+                .filter(function(d) { return d.first_elem && !this.classList.contains('halo'); } )
+                .transition()
+                .duration(450)
+                .style('fill-opacity',1)
+                .style('stroke-opacity',1)
+                .style('fill', d => col_collections(d.collections));
+            }
 
             break;
 
