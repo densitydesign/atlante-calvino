@@ -11,30 +11,30 @@ let data = {
 
 // Warn if overriding existing method
 if(Array.prototype.equals)
-    console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
+  console.warn("Overriding existing Array.prototype.equals. Possible causes: New API defines the method, there's a framework conflict or you've got double inclusions in your code.");
 // attach the .equals method to Array's prototype to call it on any array
 Array.prototype.equals = function (array) {
-    // if the other array is a falsy value, return
-    if (!array)
-        return false;
+  // if the other array is a falsy value, return
+  if (!array)
+    return false;
 
-    // compare lengths - can save a lot of time
-    if (this.length != array.length)
-        return false;
+  // compare lengths - can save a lot of time
+  if (this.length != array.length)
+    return false;
 
-    for (var i = 0, l=this.length; i < l; i++) {
-        // Check if we have nested arrays
-        if (this[i] instanceof Array && array[i] instanceof Array) {
-            // recurse into the nested arrays
-            if (!this[i].equals(array[i]))
-                return false;
-        }
-        else if (this[i] != array[i]) {
-            // Warning - two different object instances will never be equal: {x:20} != {x:20}
-            return false;
-        }
+  for (var i = 0, l=this.length; i < l; i++) {
+    // Check if we have nested arrays
+    if (this[i] instanceof Array && array[i] instanceof Array) {
+      // recurse into the nested arrays
+      if (!this[i].equals(array[i]))
+        return false;
     }
-    return true;
+    else if (this[i] != array[i]) {
+      // Warning - two different object instances will never be equal: {x:20} != {x:20}
+      return false;
+    }
+  }
+  return true;
 }
 
 // Hide method from for-in loops
@@ -301,104 +301,104 @@ function treat_json(json)
   let drawPlacesArc1 = d3
     .arc()
     .innerRadius(function(d, i) {
-        return d.r - (i+1) * arcWidth + arcPad;
+      return d.r - (i+1) * arcWidth + arcPad;
     })
     .outerRadius(function(d, i) {
-        return d.r - i * arcWidth;
+      return d.r - i * arcWidth;
     })
     .startAngle(0 * 2 * PI)
     .endAngle(function(d, i) {
-        return d.generico_non_terrestre * 2 * PI;
+      return d.generico_non_terrestre * 2 * PI;
     });
 
   let drawPlacesArc2 = d3
     .arc()
     .innerRadius(function(d, i) {
-        return d.r - (i+1) * arcWidth + arcPad;
+      return d.r - (i+1) * arcWidth + arcPad;
     })
     .outerRadius(function(d, i) {
-        return d.r - i * arcWidth;
+      return d.r - i * arcWidth;
     })
     .startAngle(function(d, i) {
-        return d.generico_non_terrestre * 2 * PI;
+      return d.generico_non_terrestre * 2 * PI;
     })
     .endAngle(function(d, i) {
-        return d.generico_terrestre * 2 * PI;
+      return d.generico_terrestre * 2 * PI;
     });
 
   let drawPlacesArc3 = d3
     .arc()
     .innerRadius(function(d, i) {
-        return d.r - (i+1) * arcWidth + arcPad;
+      return d.r - (i+1) * arcWidth + arcPad;
     })
     .outerRadius(function(d, i) {
-        return d.r - i * arcWidth;
+      return d.r - i * arcWidth;
     })
     .startAngle(function(d, i) {
-        return d.generico_terrestre * 2 * PI;
+      return d.generico_terrestre * 2 * PI;
     })
     .endAngle(function(d, i) {
-        return d.inventato * 2 * PI;
+      return d.inventato * 2 * PI;
     });
 
   let drawPlacesArc4 = d3
     .arc()
     .innerRadius(function(d, i) {
-        return d.r - (i+1) * arcWidth + arcPad;
+      return d.r - (i+1) * arcWidth + arcPad;
     })
     .outerRadius(function(d, i) {
-        return d.r - i * arcWidth;
+      return d.r - i * arcWidth;
     })
     .startAngle(function(d, i) {
-        return d.inventato * 2 * PI;
+      return d.inventato * 2 * PI;
     })
     .endAngle(function(d, i) {
-        return d.no_ambientazione * 2 * PI;
+      return d.no_ambientazione * 2 * PI;
     });
 
   let drawPlacesArc5 = d3
     .arc()
     .innerRadius(function(d, i) {
-        return d.r - (i+1) * arcWidth + arcPad;
+      return d.r - (i+1) * arcWidth + arcPad;
     })
     .outerRadius(function(d, i) {
-        return d.r - i * arcWidth;
+      return d.r - i * arcWidth;
     })
     .startAngle(function(d, i) {
-        return d.no_ambientazione * 2 * PI;
+      return d.no_ambientazione * 2 * PI;
     })
     .endAngle(function(d, i) {
-        return d.nominato_non_terrestre * 2 * PI;
+      return d.nominato_non_terrestre * 2 * PI;
     });
 
   let drawPlacesArc6 = d3
     .arc()
     .innerRadius(function(d, i) {
-        return d.r - (i+1) * arcWidth + arcPad;
+      return d.r - (i+1) * arcWidth + arcPad;
     })
     .outerRadius(function(d, i) {
-        return d.r - i * arcWidth;
+      return d.r - i * arcWidth;
     })
     .startAngle(function(d, i) {
-        return d.nominato_non_terrestre * 2 * PI;
+      return d.nominato_non_terrestre * 2 * PI;
     })
     .endAngle(function(d, i) {
-        return d.nominato_terrestre * 2 * PI;
+      return d.nominato_terrestre * 2 * PI;
     });
 
   let drawPlacesArc7 = d3
     .arc()
     .innerRadius(function(d, i) {
-        return d.r - (i+1) * arcWidth + arcPad;
+      return d.r - (i+1) * arcWidth + arcPad;
     })
     .outerRadius(function(d, i) {
-        return d.r - i * arcWidth;
+      return d.r - i * arcWidth;
     })
     .startAngle(function(d, i) {
-        return d.nominato_terrestre * 2 * PI;
+      return d.nominato_terrestre * 2 * PI;
     })
     .endAngle(function(d, i) {
-        return 2 * PI;
+      return 2 * PI;
     });
 
 ///////////////////////////////////////////
@@ -492,44 +492,44 @@ function treat_json(json)
   let drawDubitativePhenomenaArc1 = d3
     .arc()
     .innerRadius(function(d, i) {
-        return d.r - (i+1) * arcWidth + arcPad;
+      return d.r - (i+1) * arcWidth + arcPad;
     })
     .outerRadius(function(d, i) {
-        return d.r - i * arcWidth;
+      return d.r - i * arcWidth;
     })
     .startAngle(0 * 2 * PI)
     .endAngle(function(d, i) {
-        return d.nebbia * 2 * PI;
+      return d.nebbia * 2 * PI;
     });
 
   let drawDubitativePhenomenaArc2 = d3
     .arc()
     .innerRadius(function(d, i) {
-        return d.r - (i+1) * arcWidth + arcPad;
+      return d.r - (i+1) * arcWidth + arcPad;
     })
     .outerRadius(function(d, i) {
-        return d.r - i * arcWidth;
+      return d.r - i * arcWidth;
     })
     .startAngle(function(d, i) {
-        return d.nebbia * 2 * PI;
+      return d.nebbia * 2 * PI;
     })
     .endAngle(function(d, i) {
-        return d.cancellazione * 2 * PI;
+      return d.cancellazione * 2 * PI;
     });
 
   let drawDubitativePhenomenaArc3 = d3
     .arc()
     .innerRadius(function(d, i) {
-        return d.r - (i+1) * arcWidth + arcPad;
+      return d.r - (i+1) * arcWidth + arcPad;
     })
     .outerRadius(function(d, i) {
-        return d.r - i * arcWidth;
+      return d.r - i * arcWidth;
     })
     .startAngle(function(d, i) {
-        return d.cancellazione * 2 * PI;
+      return d.cancellazione * 2 * PI;
     })
     .endAngle(function(d, i) {
-        return 2 * PI;
+      return 2 * PI;
     });
 
 ///////////////////////////////////////////
@@ -622,11 +622,12 @@ function treat_json(json)
 
   //add zoom capabilities
   var zoom_handler = d3.zoom()
-      .on("zoom", zoom_actions);
+    .on("zoom", zoom_actions);
 
   zoom_handler(svg);
 
   let scale = (w / (boundaries.right - boundaries.left))*0.9;
+
   centerTerritory(scale, 0, 0, 0);
 
   svg.transition()
@@ -665,7 +666,7 @@ function treat_json(json)
           .duration(350)
           .attr('fill',function(d){
             return colour(d.first_publication);
-          })
+          });
         break;
       case 'collections':
         text_nodes.selectAll('circle')
@@ -726,9 +727,9 @@ function treat_json(json)
         if(!data.keyboardCommandsOn) return;
 //      console.log(d3.event.key)
 
-      let eventKey = d3.event.key.toLowerCase();
+        let eventKey = d3.event.key.toLowerCase();
 
-      if (eventKey == "c") {
+        if (eventKey == "c") {
 /*        
         d3.selectAll('circle')
           .filter(d => !this.classList.contains('halo'))
@@ -736,63 +737,63 @@ function treat_json(json)
           .duration(350)
           .attr('fill', d => col_collections(d.collection));
 */
-        hillColoringMode = 2;
+          hillColoringMode = 2;
 
-        d3.selectAll(".hill")
-          .transition()
-          .duration(350)
-          .style('fill', d => col_collections(d.collection));
-      } else if (eventKey == "y") {
-        hillColoringMode = 1;
+          d3.selectAll(".hill")
+            .transition()
+            .duration(350)
+            .style('fill', d => col_collections(d.collection));
+        } else if (eventKey == "y") {
+          hillColoringMode = 1;
 
-        text_nodes
-          .selectAll('.hill')
+          text_nodes
+            .selectAll('.hill')
 //          .filter(d => !this.classList.contains('halo'))
-          .transition()
-          .duration(350)
-          .style('fill', d => colour(d.first_publication));
-      } else if (eventKey == "n") {
-        text_nodes.style('display','none')
-        text_nodes.filter(function(d){
+            .transition()
+            .duration(350)
+            .style('fill', d => colour(d.first_publication));
+        } else if (eventKey == "n") {
+          text_nodes.style('display','none')
+          text_nodes.filter(function(d){
             console.log(d)
             return d.attributes.nebbia
           })
           .style('display','block')
-      } else if (eventKey == "m") {
-        text_nodes.style('display','none')
-        text_nodes.filter(function(d){
+        } else if (eventKey == "m") {
+          text_nodes.style('display','none')
+          text_nodes.filter(function(d){
             console.log(d)
             return d.attributes.cancellazione
           })
           .style('display','block')
-      } else if (eventKey == "p") {
+        } else if (eventKey == "p") {
 
-        drawMode = incrementDrawMode(drawMode);
+          drawMode = incrementDrawMode(drawMode);
 console.log(drawMode);
 
-        switch(drawMode)
-        {
-          case 1 : // hills
-            text_nodes
-              .selectAll('path')
-              .transition()
-              .duration(450)
-              .style('fill-opacity',0)
-              .style('stroke-opacity',0);
+          switch(drawMode)
+          {
+            case 1 : // hills
+              text_nodes
+                .selectAll('path')
+                .transition()
+                .duration(450)
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);
 
-            text_nodes
-              .selectAll('.halo')
-              .transition()
-              .duration(450)
-              .style('fill-opacity',0)
-              .style('stroke-opacity',0);
+              text_nodes
+                .selectAll('.halo')
+                .transition()
+                .duration(450)
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);
 
-            text_nodes
-              .selectAll('.hill')
-              .transition()
-              .duration(450)
-              .style('fill-opacity',1)
-              .style('stroke-opacity',1);
+              text_nodes
+                .selectAll('.hill')
+                .transition()
+                .duration(450)
+                .style('fill-opacity',1)
+                .style('stroke-opacity',1);
 /*
             let coloringFunction;
 
@@ -802,146 +803,146 @@ console.log(drawMode);
               case 2 : coloringFunction = d => col_collections(d.collection);
             }
 */
-            if(hillColoringMode == 1)
-            {
+              if(hillColoringMode == 1)
+              {
+                text_nodes
+                  .selectAll('.hill')
+                  .filter(d => d.first_elem)
+                  .transition()
+                  .duration(450)
+                  .style('fill-opacity',1)
+                  .style('stroke-opacity',1)
+                  .style('fill', d => colour(d => d.first_publication));
+              }
+              else
+              {
+                text_nodes
+                  .selectAll('.hill')
+                  .filter(d => d.first_elem)
+                  .transition()
+                  .duration(450)
+                  .style('fill-opacity',1)
+                  .style('stroke-opacity',1)
+                  .style('fill', d => col_collections(d.collection));
+              }
+
+              break;
+
+            case 2 : // hills with halos
+
+              text_nodes
+                .selectAll('path')
+                .transition()
+                .duration(450)
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);
+
+              text_nodes
+                .selectAll('.halo')
+                .transition()
+                .duration(450)
+                .style('fill-opacity',1)
+                .style('stroke-opacity',1);
+
+              break;
+
+            case 3 : // places
+
+              text_nodes
+                .selectAll('.places')
+                .style('fill-opacity',1)
+                .style('stroke-opacity',1);
+
+              text_nodes
+                .selectAll("circle:not(.places)")
+                .transition()
+                .duration(450)
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);
+
               text_nodes
                 .selectAll('.hill')
                 .filter(d => d.first_elem)
                 .transition()
                 .duration(450)
+                .style('fill-opacity',0.2)
+                .style('stroke-opacity',0);
+
+              break;
+
+            case 4 : // dubitative phenomena
+
+              text_nodes
+                .selectAll('.places')
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);
+
+              text_nodes
+                .selectAll('.dubitativePhenomena')
                 .style('fill-opacity',1)
-                .style('stroke-opacity',1)
-                .style('fill', d => colour(d => d.first_publication));
-            }
-            else
-            {
+                .style('stroke-opacity',1);
+
+              text_nodes
+                .selectAll("circle:not(.dubitativePhenomena)")
+                .transition()
+                .duration(450)
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);
+
               text_nodes
                 .selectAll('.hill')
                 .filter(d => d.first_elem)
                 .transition()
                 .duration(450)
-                .style('fill-opacity',1)
-                .style('stroke-opacity',1)
-                .style('fill', d => col_collections(d.collection));
-            }
+                .style('fill-opacity', d => sample(d.norma_pct_caratteri_nebbia_cancellazione, 0, 1, 10))
+                .style('stroke-opacity',0)
+                .style('fill', '#9900FF');
 
-            break;
-
-          case 2 : // hills with halos
-
-            text_nodes
-              .selectAll('path')
-              .transition()
-              .duration(450)
-              .style('fill-opacity',0)
-              .style('stroke-opacity',0);
-
-            text_nodes
-              .selectAll('.halo')
-              .transition()
-              .duration(450)
-              .style('fill-opacity',1)
-              .style('stroke-opacity',1);
-
-            break;
-
-          case 3 : // places
-
-            text_nodes
-              .selectAll('.places')
-              .style('fill-opacity',1)
-              .style('stroke-opacity',1);
-
-            text_nodes
-              .selectAll("circle:not(.places)")
-              .transition()
-              .duration(450)
-              .style('fill-opacity',0)
-              .style('stroke-opacity',0);
-
-            text_nodes
-              .selectAll('.hill')
-              .filter(d => d.first_elem)
-              .transition()
-              .duration(450)
-              .style('fill-opacity',0.2)
-              .style('stroke-opacity',0);
-
-            break;
-
-          case 4 : // dubitative phenomena
-
-            text_nodes
-              .selectAll('.places')
-              .style('fill-opacity',0)
-              .style('stroke-opacity',0);
-
-            text_nodes
-              .selectAll('.dubitativePhenomena')
-              .style('fill-opacity',1)
-              .style('stroke-opacity',1);
-
-            text_nodes
-              .selectAll("circle:not(.dubitativePhenomena)")
-              .transition()
-              .duration(450)
-              .style('fill-opacity',0)
-              .style('stroke-opacity',0);
-
-            text_nodes
-              .selectAll('.hill')
-              .filter(d => d.first_elem)
-              .transition()
-              .duration(450)
-              .style('fill-opacity', d => sample(d.norma_pct_caratteri_nebbia_cancellazione, 0, 1, 10))
-              .style('stroke-opacity',0)
-              .style('fill', '#9900FF');
-
-            break;
+              break;
+          }
         }
-      }
-      else if(eventKey == "x")
-      {
-        collections.forEach(coll => metaballsVisible[coll.id] = !metaballsVisible[coll.id]);
-
-        metaballs
-          .selectAll(".metaball")
-          .transition()
-          .duration(450)
-          .style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
-      }
-      else if("0123456789".includes(eventKey))
-      {
-        let collectionId = collections[+eventKey].id;
-
-        let collectionClass = "collection_" + collectionId;
-
-        metaballsVisible[collectionId] = !metaballsVisible[collectionId];
-
-        if(metaballsVisible[collectionId])
+        else if(eventKey == "x")
         {
+          collections.forEach(coll => metaballsVisible[coll.id] = !metaballsVisible[coll.id]);
+
           metaballs
-            .selectAll(".metaball." + collectionClass)
+            .selectAll(".metaball")
             .transition()
             .duration(450)
-            .style("stroke-opacity", 1);
+            .style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
         }
-        else
+        else if("0123456789".includes(eventKey))
         {
-          metaballs
-            .selectAll(".metaball." + collectionClass)
-            .transition()
-            .duration(450)
-            .style("stroke-opacity", 0);
+          let collectionId = collections[+eventKey].id;
+
+          let collectionClass = "collection_" + collectionId;
+
+          metaballsVisible[collectionId] = !metaballsVisible[collectionId];
+
+          if(metaballsVisible[collectionId])
+          {
+            metaballs
+              .selectAll(".metaball." + collectionClass)
+              .transition()
+              .duration(450)
+              .style("stroke-opacity", 1);
+          }
+          else
+          {
+            metaballs
+              .selectAll(".metaball." + collectionClass)
+              .transition()
+              .duration(450)
+              .style("stroke-opacity", 0);
+          }
         }
-      }
-      else if(eventKey == "f") {
-        applyBeeSwarmFilter();
-      }
-      else if (eventKey == " ") {
-        text_nodes.style('display','block')
-      }
-  });
+        else if(eventKey == "f") {
+          applyBeeSwarmFilter();
+        }
+        else if (eventKey == " ") {
+          text_nodes.style('display','block')
+        }
+      });
 
   let titles = json_nodes.map(d => d.attributes.title);
   let title_id_map = new Map();
@@ -1011,31 +1012,31 @@ function flatten_items_steps(nodes)
 
       let item =
       {
-          id: step.id,
-          x: node.x,
-          y: node.y,
+        id: step.id,
+        x: node.x,
+        y: node.y,
 
-          r: step.r,
-          steps_length: node.steps.length,
-          step: step,
+        r: step.r,
+        steps_length: node.steps.length,
+        step: step,
 
-          collections: node.attributes.collections,
-          first_elem: step.first_elem,
-          first_publication: step.first_publication,
-          generico_non_terrestre: step.generico_non_terrestre,
-          generico_terrestre: step.generico_terrestre,
-          inventato: step.inventato,
-          no_ambientazione: step.no_ambientazione,
-          nominato_non_terrestre: step.nominato_non_terrestre,
-          nominato_terrestre: step.nominato_terrestre,
+        collections: node.attributes.collections,
+        first_elem: step.first_elem,
+        first_publication: step.first_publication,
+        generico_non_terrestre: step.generico_non_terrestre,
+        generico_terrestre: step.generico_terrestre,
+        inventato: step.inventato,
+        no_ambientazione: step.no_ambientazione,
+        nominato_non_terrestre: step.nominato_non_terrestre,
+        nominato_terrestre: step.nominato_terrestre,
 
-          nebbia_normalizzata: step.nebbia_normalizzata,
-          cancellazione_normalizzata: step.cancellazione_normalizzata,
+        nebbia_normalizzata: step.nebbia_normalizzata,
+        cancellazione_normalizzata: step.cancellazione_normalizzata,
 
-          nebbia: step.nebbia,
-          cancellazione: step.cancellazione,
+        nebbia: step.nebbia,
+        cancellazione: step.cancellazione,
 
-          norma_pct_caratteri_nebbia_cancellazione: step.norma_pct_caratteri_nebbia_cancellazione
+        norma_pct_caratteri_nebbia_cancellazione: step.norma_pct_caratteri_nebbia_cancellazione
       };
 
       flattened_steps.push(item);
@@ -1425,19 +1426,19 @@ function findShortestPointsPath(p1, points, p2)
     let distances = [];
 
     points.forEach(point =>
-    {
-      distances.push({
-        point: point,
-        target: p1,
-        distance: Math.sqrt(dsq(p1, point))
-      });
+      {
+        distances.push({
+          point: point,
+          target: p1,
+          distance: Math.sqrt(dsq(p1, point))
+        });
 
-      distances.push({
-        point: point,
-        target: p2,
-        distance: Math.sqrt(dsq(point, p2))
+        distances.push({
+          point: point,
+          target: p2,
+          distance: Math.sqrt(dsq(point, p2))
+        });
       });
-    });
 
     const nearest_point = distances.reduce(function(prev, current) {
       return (prev.distance < current.distance) ? prev : current;
@@ -1481,8 +1482,6 @@ function renderMetaballLogically(collection, hillBaseCircles, nCirclesToBeDrawn,
     checkMapAndInsert(centralCircle.step, "lobeColor", collection, lineColor);
     centralCircle.step.x = centralCircle.p.x;
     centralCircle.step.y = centralCircle.p.y;
-
-let a = 6;
   }
 }
 
@@ -1562,14 +1561,14 @@ function render(hillBases, hillBaseCircles, nCirclesToBeDrawn)
 
 function angle(p1, p2)
 {
-    let x = Math.atan2(p1.y - p2.y, p2.x - p1.x);
+  let x = Math.atan2(p1.y - p2.y, p2.x - p1.x);
 
-    return x;
+  return x;
 }
 
 function dist(p1, p2)
 {
-    return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
+  return Math.sqrt((p1.x - p2.x) * (p1.x - p2.x) + (p1.y - p2.y) * (p1.y - p2.y));
 }
 
 function normalizeNegativeAngle(angle)
@@ -1600,13 +1599,13 @@ function normalizeAngle(angle)
 
 function getCirclePoint(center, angle, radius)
 {
-    return {
-        x: center.x + Math.cos(angle) * radius,
-        y: center.y - Math.sin(angle) * radius,
-        center: center,
-        angle: normalizeAngle(angle),
-        radius: radius
-    };
+  return {
+    x: center.x + Math.cos(angle) * radius,
+    y: center.y - Math.sin(angle) * radius,
+    center: center,
+    angle: normalizeAngle(angle),
+    radius: radius
+  };
 }
 
 function getCircleJoint(
@@ -1830,7 +1829,7 @@ function cubic2Path(p2, h2, h4)
 
 function offset_circles(circles, dx, dy)
 {
-    return circles.map((circle) => { return { p: { x: circle.p.x + dx, y: circle.p.y + dy }, r: circle.r, color: circle.color }; });
+  return circles.map((circle) => { return { p: { x: circle.p.x + dx, y: circle.p.y + dy }, r: circle.r, color: circle.color }; });
 }
 
 function circles_to_vector_points(circles)
@@ -1849,20 +1848,20 @@ function vectorPoint_to_namedCoordPoint(point)
 
 function ascendingCoords(a, b)
 {
-    return a[0] === b[0] ? b[1] - a[1] : b[0] - a[0];
+  return a[0] === b[0] ? b[1] - a[1] : b[0] - a[0];
 }
 
 function offset_vector_points(vector_points, dx, dy)
 {
-    return vector_points.map((vector_point) => { return [vector_point[0] + dx, vector_point[1] + dy]; });
+  return vector_points.map((vector_point) => { return [vector_point[0] + dx, vector_point[1] + dy]; });
 }
 
 function dsq(a, b)
 {
-    const dx = a[0] - b[0];
-    const dy = a[1] - b[1];
+  const dx = a[0] - b[0];
+  const dy = a[1] - b[1];
 
-    return dx * dx + dy * dy;
+  return dx * dx + dy * dy;
 }
 
 function boundary(mesh)
@@ -2031,16 +2030,7 @@ function borderOrientationIsCounterclockwise(points)
 
   return angles[2] > angles[1];
 }
-/*
-function getDataRelativeYear(d)
-{
-  const startYear = 1943;
 
-  const relativeYear = +(d.attributes.first_publication) - startYear;
-
-  return relativeYear;
-}
-*/
 function prepareTimeline(json_nodes, col_collections)
 {
 
