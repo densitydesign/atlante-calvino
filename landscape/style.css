@@ -82,6 +82,11 @@ li.ui-menu-item.extra {
   left: 0;
   bottom: 0;
   height: 5vh;
+  transition: bottom 0.35s cubic-bezier(.11,.31,.37,1);
+}
+
+.legend-visible .bottom-bar, .timeline-visible .bottom-bar {
+  bottom: 21vh;
 }
 
 svg#landscape {
@@ -246,6 +251,7 @@ svg:active {
 
 .bottom-bar .toggle-legend, .bottom-bar .toggle-timeline {
   border-bottom: 2px solid rgba(47, 79, 79, 0.3);
+  padding-bottom: calc(0.3rem - 2px);
 }
 
 .bottom-bar .toggle-legend:hover, .bottom-bar .toggle-timeline:hover {

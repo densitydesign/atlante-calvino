@@ -687,7 +687,10 @@ d3
             })
 
             function toggleTimeline() {
-              d3.select('#interface').classed("timeline-visible", d3.select('#interface').classed("timeline-visible") ? false : true);
+              d3.select('#interface')
+                .classed("legend-visible", false)
+                .classed("timeline-visible", d3.select('#interface').classed("timeline-visible") ? false : true);
+              d3.selectAll('.toggle-legend').classed('active', false);
             }
 
             d3.selectAll('.toggle-legend').on('click', function(d){
@@ -696,7 +699,10 @@ d3
             })
 
             function toggleLegend() {
-              d3.select('#interface').classed("legend-visible", d3.select('#interface').classed("legend-visible") ? false : true);
+              d3.select('#interface')
+                .classed("timeline-visible", false)
+                .classed("legend-visible", d3.select('#interface').classed("legend-visible") ? false : true);
+              d3.selectAll('.toggle-timeline').classed('active', false);
             }
 
             d3.selectAll('.toggle-tutorial').on('click', function(d){
@@ -945,56 +951,36 @@ d3
               position: {
                 collision: 'flip',
               },
-              close: function( event, ui ) {
-                //alert('closed')
-              },
-              change: function( event, ui ) {
-                console.log('change');
-              },
               source: function(req, response) {
-                console.log(req.term.length);
                 let searchedText = req.term;
                 var results = $.ui.autocomplete.filter(titles, req.term);
-
                 text_nodes.style("opacity", .35);
                 label.classed('visible', false);
-
                 results.forEach(d=>{
                   let id = title_id_map[d];
-
                   text_nodes
                     .filter(d => d.id == id)
                     .style("opacity", 1);
-
                   label
                     .filter(d => d.id == id)
                     .classed('visible', true);
-
                 });
-
                 d3.select('#clear-search').classed('d-inline-block', true);
-
                 response(results);
               },
               select: function(event, ui) {
-
                 let id = title_id_map[ui.item.value];
-
                 text_nodes
                   .filter(d => d.id == id)
                   .style("opacity", 1);
-
                 label
                   .classed('visible', false)
                   .filter(d => d.id == id)
                     .classed('visible', true);
-
                 text_nodes
                   .filter(d => d.id != id)
                   .style("opacity", .35);
-
                 d3.select('#clear-search').classed('d-inline-block', true);
-
               } });
 
               d3.select('#clear-search').on('click', function(){
