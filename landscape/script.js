@@ -152,7 +152,7 @@ function treat_json(json)
     .scaleOrdinal()
     .domain(collections.map(function(d){return d.id}))
     .range(collections.map(function(d){return d.c}))
-    .unknown('#ffffff');
+    .unknown('transparent');
 
   let w = window.innerWidth;
   let h = window.innerHeight - 6;
@@ -276,8 +276,8 @@ function treat_json(json)
     .attr('r',function(d){ return d.r })
     .attr('first_elem',function(d){ return d.first_elem })
     .attr("class", "hill" )
-    .style('fill-opacity',0)
-    .style('stroke-opacity',0)
+    .style('fill-opacity',1e-16)
+    .style('stroke-opacity',1e-16)
     .transition()
     .duration(1000)
     .delay(function(d){return (d.first_publication - 1940)*100})
@@ -286,7 +286,7 @@ function treat_json(json)
       return 'translate(0,'+i+')'
     })
     .style('fill-opacity',1)
-    .style('stroke-opacity',1);
+    .style('stroke-opacity',.5);
 
   let PI = Math.PI;
   let arcMin = 75; // inner radius of the first arc
@@ -617,7 +617,7 @@ function treat_json(json)
         return 'translate(0,'+(d.steps.length+2)*step_increment+') scale(1,'+1/0.5773+')'
       })
       .text(function(d){
-        return d.id;// + ' - ' + d.attributes.title//+'-'+d.attributes.first_publication;
+        return d.attributes.title//+'-'+d.attributes.first_publication;
       });
 
   //add zoom capabilities
@@ -642,6 +642,9 @@ function treat_json(json)
     g.attr("transform", d3.event.transform);
     metaball_group.attr("transform", d3.event.transform);
     // console.log(d3.event.transform);
+    label.style("font-size", () => {
+      return ( 0.85 / d3.event.transform.k ) + "rem";
+    })
   }
 
   // Handle interface interactions
@@ -650,13 +653,18 @@ function treat_json(json)
       .duration(duration)
       .call( zoom_handler.transform, d3.zoomIdentity
         .translate((w/2) + x, (h/2) + y)
-        .scale(scale)
+        .scale(scale*0.65)
       );
   }
 
-  d3.selectAll('.colours-selector span').on('click', function(d){
+  d3.selectAll('.dropdown-menu li a').on('click', function(d){
     setHillsColours(d3.select(this).attr('colour-by'));
   })
+
+  $(".dropdown-menu li a").click(function(){
+    $(this).parents(".dropdown").find('._btn').html($(this).text() + ' <span class="caret"></span>');
+    $(this).parents(".dropdown").find('._btn').val($(this).data('value'));
+  });
 
   function setHillsColours(coloursBy) {
     switch (coloursBy) {
@@ -679,10 +687,11 @@ function treat_json(json)
     }
   }
 
-//  prepareTimeline(json_nodes, col_collections);
+  prepareTimeline(json_nodes, col_collections);
 
   d3.selectAll('.toggle-timeline').on('click', function(d){
     toggleTimeline();
+    d3.select(this).classed('active', d3.select(this).classed("active") ? false : true)
   })
 
   function toggleTimeline() {
@@ -691,10 +700,11 @@ function treat_json(json)
 
   d3.selectAll('.toggle-legend').on('click', function(d){
     toggleLegend();
+    d3.select(this).classed('active', d3.select(this).classed("active") ? false : true)
   })
 
   function toggleLegend() {
-    $('#legendModal').modal('toggle');
+    d3.select('#interface').classed("legend-visible", d3.select('#interface').classed("legend-visible") ? false : true);
   }
 
   d3.selectAll('.toggle-tutorial').on('click', function(d){
@@ -702,8 +712,15 @@ function treat_json(json)
   })
 
   function toggleTutorial() {
-    console.log('toggle tutorial');
     d3.select('.scrollitelling-box').classed("scrollitelling-visible", d3.select('.scrollitelling-box').classed("scrollitelling-visible") ? false : true);
+  }
+
+  d3.selectAll('.toggle-search').on('click', function(d){
+    toggleSearch();
+  })
+
+  function toggleSearch() {
+    d3.select('#searchbox-box').classed("searchbox-visible", d3.select('#searchbox-box').classed("searchbox-visible") ? false : true);
   }
 
   d3
@@ -937,7 +954,12 @@ console.log(drawMode);
           }
         }
         else if(eventKey == "f") {
-          applyBeeSwarmFilter();
+          // d3.select('#searchbox').node().value = '';
+          // label.classed('visible', false);
+          // d3.select('#searchbox').style('min-width', '10ch');
+          // d3.select('#searchbox-box').classed('searchbox-visible', false);
+          // applyBeeSwarmFilter();
+          resetSearchBox();
         }
         else if (eventKey == " ") {
           text_nodes.style('display','block')
@@ -951,26 +973,78 @@ console.log(drawMode);
 
   $("#searchbox")
     .autocomplete({
+      appendTo: '#searchbox-results',
       source: titles,
-      select: function(event, ui) {
+      minLength: 3,
+      position: {
+        collision: 'flip',
+      },
+      close: function( event, ui ) {
+        //alert('closed')
+      },
+      change: function( event, ui ) {
+        console.log('change');
+      },
+      source: function(req, response) 
+        {
+          console.log(req.term.length);
+          let searchedText = req.term;
+          var results = $.ui.autocomplete.filter(titles, req.term);
 
-        let id = title_id_map[ui.item.value];
+          text_nodes.style("opacity", .35);
+          label.classed('visible', false);
 
-        text_nodes
-          .filter(d => d.id == id)
-          .style("opacity", 1);
+          results.forEach(d => {
+            let id = title_id_map[d];
 
-        text_nodes
-          .filter(d => d.id != id)
-          .style("opacity", 0.3);
-/*
-          d3.selectAll(".kw")
-              .filter(function(d) {
-                  return d.keyword == ui.item.label
-              })
-              .each(mouseEnter)
-*/
-      } });
+            text_nodes
+              .filter(d => d.id == id)
+              .style("opacity", 1);
+
+            label
+              .filter(d => d.id == id)
+              .classed('visible', true);
+
+          });
+
+          d3.select('#clear-search').classed('d-inline-block', true);
+
+          response(results);
+        },
+        select: function(event, ui) {
+
+            let id = title_id_map[ui.item.value];
+
+            text_nodes
+              .filter(d => d.id == id)
+              .style("opacity", 1);
+
+            label
+              .classed('visible', false)
+              .filter(d => d.id == id)
+                .classed('visible', true);
+
+            text_nodes
+              .filter(d => d.id != id)
+              .style("opacity", .35);
+
+            d3.select('#clear-search').classed('d-inline-block', true);
+
+          } });
+
+  d3.select('#clear-search').on('click', function(){
+    resetSearchBox();
+  })
+
+  function resetSearchBox()
+  {
+    d3.select('#searchbox').node().value = '';
+    label.classed('visible', false);
+    d3.select('#searchbox').style('min-width', '10ch');
+    d3.select('#searchbox-box').classed('searchbox-visible', false);
+    d3.select('#clear-search').classed('d-inline-block', false);
+    applyBeeSwarmFilter();
+  }
 }
 
 function convertRatioToColorComponent(r)
@@ -1121,18 +1195,18 @@ function create_item_steps(d)
 }
 
 function interpolateSpline(x) {
-    let y;
+  let y;
 
-    // The cubic spline interpolation has been calculated "heuristically" by using this service:
-    // https://tools.timodenk.com/cubic-spline-interpolation
+  // The cubic spline interpolation has been calculated "heuristically" by using this service:
+  // https://tools.timodenk.com/cubic-spline-interpolation
 
-    // Inserted values are:
-    // x, y
-    // 0, 0
-    // 0.1, 0.2
-    // 0.55, 0.65
-    // 0.8, 0.8
-    // 1, 1
+  // Inserted values are:
+  // x, y
+  // 0, 0
+  // 0.1, 0.2
+  // 0.55, 0.65
+  // 0.8, 0.8
+  // 1, 1
 
     if (x>=0 && x<=0.1) {
       y = (-8.7269*Math.pow(x,3)) + (1.1764*Math.pow(10,-60)*Math.pow(x,2)) + (2.0873*x) + (0);
@@ -1213,6 +1287,126 @@ function getCollections() {
     }
   ]
 
+
+  // with all the volumes
+  collections = [
+    {
+      'n': 'Il sentiero dei nidi di ragno',
+      'id': 'V001',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Ultimo viene il corvo',
+      'id': 'V002',
+      'c': '#e9d05d'
+    },
+    {
+      'n': 'Il visconte dimezzato',
+      'id': 'V003',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'L\'entrata in guerra',
+      'id': 'V004',
+      'c': '#12b259'
+    },
+    {
+      'n': 'Il barone rampante',
+      'id': 'V005',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'I racconti',
+      'id': 'V006',
+      'c': '#476a70'
+    },
+    {
+      'n': 'La formica argentina',
+      'id': 'V007',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Il cavaliere inesistente',
+      'id': 'V008',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'La giornata di uno scrutatore',
+      'id': 'V009',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'La speculazione edilizia',
+      'id': 'V010',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Marcovaldo',
+      'id': 'V011',
+      'c': '#9f73b2'
+    },
+    {
+      'n': 'La nuvola di smog e la formica argentina',
+      'id': 'V012',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Le cosmicomiche',
+      'id': 'V013',
+      'c': '#e89fc0'
+    },
+    {
+      'n': 'Ti con zero',
+      'id': 'V014',
+      'c': '#581745'
+    },
+    {
+      'n': 'La memoria del mondo',
+      'id': 'V015',
+      'c': '#00b1b3'
+    },
+    {
+      'n': 'Il castello dei destini incrociati',
+      'id': 'V016',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Gli amori difficili',
+      'id': 'V017',
+      'c': '#f0be96'
+    },
+    {
+      'n': 'Le città invisibili',
+      'id': 'V018',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Il castello dei destini incrociati (riedizione)',
+      'id': 'V019',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Eremita a Parigi',
+      'id': 'V020',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Se una notte d\'inverno un viaggiatore',
+      'id': 'V021',
+      'c': '#D6DBDF'
+    },
+    {
+      'n': 'Palomar',
+      'id': 'V022',
+      'c': '#94d2ba'
+    },
+    {
+      'n': 'Cosmicomiche vecchie e nuove',
+      'id': 'V023',
+      'c': '#f1634b'
+    }
+  ]
+
   return collections
 }
 
@@ -1238,11 +1432,11 @@ function prepareMetaballData(json_nodes, collection, lineColor)
   let metaballLineStepSeparation = 0.30;
 
   let hillBase_circles = hillBases.map(hillBase => ({
-      p: { x: hillBase.x, y: hillBase.y },
-      r: hillBase.r * (metaballLineBaseSeparation + metaballLineStepSeparation * (hillBase.collections.length - 1 - hillBase.collections.indexOf(collection))),
-      color: "blue",
-      step: hillBase.step,
-      id: hillBase.id }));
+    p: { x: hillBase.x, y: hillBase.y },
+    r: hillBase.r * (metaballLineBaseSeparation + metaballLineStepSeparation * (hillBase.collections.length - 1 - hillBase.collections.indexOf(collection))),
+    color: "blue",
+    step: hillBase.step,
+    id: hillBase.id }));
 
   let vertex_array = circles_to_vector_points(hillBase_circles);
 
@@ -1338,8 +1532,6 @@ function addWantedCoves(vertex_array, boundary_points, concavityTolerance)
   let internal_points = arr_diff(vertex_array, boundary_points[0]);
 
   let new_boundary_points = [];
-
-//  let concavityTolerance = 1.1;
 
   for(let i = 0; i < boundary_points[0].length; ++i)
   {
