@@ -672,7 +672,6 @@ d3
                 text_nodes.selectAll('circle')
                 .transition().duration(350)
                 .attr('fill',function(d){
-                  console.log(d.collection, col_collections(d.collection));
                   return col_collections(d.collection);
                 })
                 break;
