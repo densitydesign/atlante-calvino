@@ -956,54 +956,43 @@ d3
                 let searchedText = req.term;
                 var results = $.ui.autocomplete.filter(titles, req.term);
 
-                text_nodes
-                .style("opacity", .35);
-
-                label
-                .classed('visible', false)
+                text_nodes.style("opacity", .35);
+                label.classed('visible', false);
 
                 results.forEach(d=>{
-                  console.log(d)
                   let id = title_id_map[d];
 
                   text_nodes
-                  .filter(d => d.id == id)
-                  .style("opacity", 1);
+                    .filter(d => d.id == id)
+                    .style("opacity", 1);
 
                   label
-                  .filter(d => d.id == id)
-                  .classed('visible', true)
-                  // .style("opacity", 1);
+                    .filter(d => d.id == id)
+                    .classed('visible', true);
 
                 });
 
-                response(results);//for getting 12 results
+                d3.select('#clear-search').classed('d-inline-block', true);
+
+                response(results);
               },
               select: function(event, ui) {
-
-                console.log(event, ui);
 
                 let id = title_id_map[ui.item.value];
 
                 text_nodes
-                .filter(d => d.id == id)
-                .style("opacity", 1);
+                  .filter(d => d.id == id)
+                  .style("opacity", 1);
 
                 label
-                .classed('visible', false)
-                .filter(d => d.id == id)
-                .classed('visible', true)
-                // .style("opacity", 1);
+                  .classed('visible', false)
+                  .filter(d => d.id == id)
+                    .classed('visible', true);
 
                 text_nodes
-                .filter(d => d.id != id)
-                .style("opacity", .35);
+                  .filter(d => d.id != id)
+                  .style("opacity", .35);
 
-                // let searchedText = ui.item.value;
-                // if (searchedText.length-3.5 > 10) {
-                //   d3.select('#searchbox').style('min-width', searchedText.length-3.5+'ch');
-                //   d3.select('#clear-search').style('left', searchedText.length-3.5+16+'ch');
-                // };
                 d3.select('#clear-search').classed('d-inline-block', true);
 
               } });
