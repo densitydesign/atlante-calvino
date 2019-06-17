@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="257px" height="76px" viewBox="0 0 257 76" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>modalita-cronologia</title>
+    <desc>Created with Sketch.</desc>
+    <g id="modalita-cronologia" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <text id="1943" fill="#000000" font-family="HKGrotesk-Regular, HK Grotesk" font-size="9" font-weight="normal">
+            <tspan x="18.4343328" y="73.8671">1943</tspan>
+        </text>
+        <text id="1985" fill="#000000" font-family="HKGrotesk-Regular, HK Grotesk" font-size="9" font-weight="normal">
+            <tspan x="216.366211" y="73.8668">1985</tspan>
+        </text>
+        <g id="Group" transform="translate(0.000000, 0.398600)" fill="#FF6347" fill-rule="nonzero" stroke="#444444" stroke-width="0.25">
+            <ellipse id="Oval" cx="31.1" cy="33.1" rx="30.6" ry="17.7"></ellipse>
+            <ellipse id="Oval" cx="31.1" cy="29" rx="26.6" ry="15.4"></ellipse>
+            <ellipse id="Oval" cx="31.1" cy="24.9" rx="23.6" ry="13.6"></ellipse>
+            <ellipse id="Oval" cx="31.1" cy="20.9" rx="21.4" ry="12.4"></ellipse>
+            <ellipse id="Oval" cx="31.1" cy="16.8" rx="19.4" ry="11.2"></ellipse>
+            <ellipse id="Oval" cx="31.1" cy="12.7" rx="16.8" ry="9.7"></ellipse>
+            <ellipse id="Oval" cx="31.1" cy="8.6" rx="13" ry="7.5"></ellipse>
+            <ellipse id="Oval" cx="31.1" cy="4.6" rx="7.5" ry="4.3"></ellipse>
+        </g>
+        <g id="Group" transform="translate(98.000000, 0.398600)" fill="#A45F55" fill-rule="nonzero" stroke="#444444" stroke-width="0.25">
+            <ellipse id="Oval" cx="31.2" cy="33.1" rx="30.6" ry="17.7"></ellipse>
+            <ellipse id="Oval" cx="31.2" cy="29" rx="26.6" ry="15.4"></ellipse>
+            <ellipse id="Oval" cx="31.2" cy="24.9" rx="23.6" ry="13.6"></ellipse>
+            <ellipse id="Oval" cx="31.2" cy="20.9" rx="21.4" ry="12.4"></ellipse>
+            <ellipse id="Oval" cx="31.2" cy="16.8" rx="19.4" ry="11.2"></ellipse>
+            <ellipse id="Oval" cx="31.2" cy="12.7" rx="16.8" ry="9.7"></ellipse>
+            <ellipse id="Oval" cx="31.2" cy="8.6" rx="13" ry="7.5"></ellipse>
+            <ellipse id="Oval" cx="31.2" cy="4.6" rx="7.5" ry="4.3"></ellipse>
+        </g>
+        <g id="Group-2" transform="translate(195.000000, 0.698600)" fill="#455A64" fill-rule="nonzero" stroke="#444444" stroke-width="0.25">
+            <ellipse id="Oval" cx="30.6" cy="32.8" rx="30.6" ry="17.7"></ellipse>
+            <ellipse id="Oval" cx="30.6" cy="28.7" rx="26.6" ry="15.4"></ellipse>
+            <ellipse id="Oval" cx="30.6" cy="24.6" rx="23.6" ry="13.6"></ellipse>
+            <ellipse id="Oval" cx="30.6" cy="20.6" rx="21.4" ry="12.4"></ellipse>
+            <ellipse id="Oval" cx="30.6" cy="16.5" rx="19.4" ry="11.2"></ellipse>
+            <ellipse id="Oval" cx="30.6" cy="12.4" rx="16.8" ry="9.7"></ellipse>
+            <ellipse id="Oval" cx="30.6" cy="8.3" rx="13" ry="7.5"></ellipse>
+            <ellipse id="Oval" cx="30.6" cy="4.3" rx="7.5" ry="4.3"></ellipse>
+        </g>
+        <g id="Group" transform="translate(30.000000, 60.398600)" fill="#566973" fill-rule="nonzero">
+            <rect id="Rectangle" x="0" y="0.8" width="197" height="1"></rect>
+        </g>
+    </g>
+</svg>

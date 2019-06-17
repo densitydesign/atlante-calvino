@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="431px" height="87px" viewBox="0 0 431 87" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>modalita-raccolta</title>
+    <desc>Created with Sketch.</desc>
+    <g id="modalita-raccolta" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <text id="Volume-opera-singola" fill="#000000" font-family="HKGrotesk-Regular, HK Grotesk" font-size="9" font-weight="normal">
+                <tspan x="16.800293" y="72.607">Volume</tspan>
+                <tspan x="5.5546875" y="83.607">opera singola</tspan>
+            </text>
+            <g id="Group" transform="translate(0.000000, 3.880600)" fill="#D6DBDF" fill-rule="nonzero" stroke="#444444" stroke-width="0.25">
+                <ellipse id="Oval" cx="31" cy="32.8" rx="30.6" ry="17.7"></ellipse>
+                <ellipse id="Oval" cx="31" cy="28.7" rx="26.6" ry="15.4"></ellipse>
+                <ellipse id="Oval" cx="31" cy="24.6" rx="23.6" ry="13.6"></ellipse>
+                <ellipse id="Oval" cx="31" cy="20.6" rx="21.4" ry="12.4"></ellipse>
+                <ellipse id="Oval" cx="31" cy="16.5" rx="19.4" ry="11.2"></ellipse>
+                <ellipse id="Oval" cx="31" cy="12.4" rx="16.8" ry="9.7"></ellipse>
+                <ellipse id="Oval" cx="31" cy="8.3" rx="13" ry="7.5"></ellipse>
+                <ellipse id="Oval" cx="31" cy="4.3" rx="7.5" ry="4.3"></ellipse>
+            </g>
+            <text id="Racconto-opera-singo" fill="#000000" font-family="HKGrotesk-Regular, HK Grotesk" font-size="9" font-weight="normal">
+                <tspan x="110.519775" y="72.607">Racconto</tspan>
+                <tspan x="102.554688" y="83.607">opera singola</tspan>
+            </text>
+            <g id="Group" transform="translate(97.000000, 3.880600)" fill-rule="nonzero" stroke="#444444" stroke-width="0.25">
+                <ellipse id="Oval" cx="31" cy="32.8" rx="30.6" ry="17.7"></ellipse>
+                <ellipse id="Oval" cx="31" cy="28.7" rx="26.6" ry="15.4"></ellipse>
+                <ellipse id="Oval" cx="31" cy="24.6" rx="23.6" ry="13.6"></ellipse>
+                <ellipse id="Oval" cx="31" cy="20.6" rx="21.4" ry="12.4"></ellipse>
+                <ellipse id="Oval" cx="31" cy="16.5" rx="19.4" ry="11.2"></ellipse>
+                <ellipse id="Oval" cx="31" cy="12.4" rx="16.8" ry="9.7"></ellipse>
+                <ellipse id="Oval" cx="31" cy="8.3" rx="13" ry="7.5"></ellipse>
+                <ellipse id="Oval" cx="31" cy="4.3" rx="7.5" ry="4.3"></ellipse>
+            </g>
+            <text id="Racconto-contenuto-i" fill="#000000" font-family="HKGrotesk-Regular, HK Grotesk" font-size="9" font-weight="normal">
+                <tspan x="186.73071" y="72.607">Racconto contenuto</tspan>
+                <tspan x="196.824948" y="83.607">in una raccolta</tspan>
+            </text>
+            <g id="Group" transform="translate(194.000000, 3.880600)" fill="#E9D05D" fill-rule="nonzero" stroke="#444444" stroke-linejoin="round" stroke-width="0.25">
+                <ellipse id="Oval" cx="31.2" cy="32.8" rx="30.6" ry="17.7"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="28.7" rx="26.6" ry="15.4"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="24.6" rx="23.6" ry="13.6"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="20.6" rx="21.4" ry="12.4"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="16.5" rx="19.4" ry="11.2"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="12.4" rx="16.8" ry="9.7"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="8.3" rx="13" ry="7.5"></ellipse>
+                <ellipse id="Oval" cx="31.2" cy="4.3" rx="7.5" ry="4.3"></ellipse>
+            </g>
+            <text id="prima-pubblicazione" fill="#000000" font-family="HKGrotesk-Regular, HK Grotesk" font-size="9" font-weight="normal">
+                <tspan x="372.1772" y="44.1895">prima</tspan>
+                <tspan x="372.1772" y="55.1895">pubblicazione</tspan>
+            </text>
+            <text id="ultima-ripubblicazio" fill="#000000" font-family="HKGrotesk-Regular, HK Grotesk" font-size="9" font-weight="normal">
+                <tspan x="370.1772" y="8">ultima</tspan>
+                <tspan x="370.1772" y="19">ripubblicazione</tspan>
+            </text>
+            <path d="M324.2,55.3806 L366.2,55.3806" id="Path" stroke="#444444" stroke-width="0.25"></path>
+            <g id="Group-2" transform="translate(291.000000, 3.880600)" fill-rule="nonzero" stroke="#444444" stroke-width="0.25">
+                <ellipse id="Oval" fill="#581745" cx="30.6" cy="32.8" rx="30.6" ry="17.7"></ellipse>
+                <ellipse id="Oval" fill="#581745" cx="30.6" cy="28.7" rx="26.6" ry="15.4"></ellipse>
+                <ellipse id="Oval" fill="#00B0B3" stroke-linejoin="round" cx="30.6" cy="24.6" rx="23.6" ry="13.6"></ellipse>
+                <ellipse id="Oval" fill="#00B0B3" stroke-linejoin="round" cx="30.6" cy="20.6" rx="21.4" ry="12.4"></ellipse>
+                <ellipse id="Oval" fill="#F0BE96" stroke-linejoin="round" cx="30.6" cy="16.5" rx="19.4" ry="11.2"></ellipse>
+                <ellipse id="Oval" fill="#F0BE96" stroke-linejoin="round" cx="30.6" cy="12.4" rx="16.8" ry="9.7"></ellipse>
+                <ellipse id="Oval" fill="#F1634B" stroke-linejoin="round" cx="30.6" cy="8.3" rx="13" ry="7.5"></ellipse>
+                <ellipse id="Oval" fill="#F1634B" stroke-linejoin="round" cx="30.6" cy="4.3" rx="7.5" ry="4.3"></ellipse>
+            </g>
+            <path d="M322.2,6.9806 L366.2,6.9806" id="Path" stroke="#444444" stroke-width="0.25"></path>
+            <text id="Racconto-contenuto-i" fill="#000000" font-family="HKGrotesk-Regular, HK Grotesk" font-size="9" font-weight="normal">
+                <tspan x="283.76001" y="72.607">Racconto contenuto</tspan>
+                <tspan x="295.005615" y="83.607">in più raccolte</tspan>
+            </text>
+        </g>
+    </g>
+</svg>

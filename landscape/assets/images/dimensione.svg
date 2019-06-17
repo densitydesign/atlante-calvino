@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="86px" height="77px" viewBox="0 0 86 77" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>dimensione</title>
+    <desc>Created with Sketch.</desc>
+    <g id="dimensione" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="dimensione-X">
+            <g id="Group-7" transform="translate(0.000000, 0.526800)">
+                <g id="Group" transform="translate(0.000000, 1.000000)" fill="#FFFFFF" stroke="#444444">
+                    <ellipse id="Oval" stroke-width="0.75" cx="31.1" cy="33.3" rx="30.7" ry="17.7"></ellipse>
+                    <ellipse id="Oval" stroke-width="0.5" cx="31.1" cy="29.2" rx="26.7" ry="15.4"></ellipse>
+                    <ellipse id="Oval" stroke-width="0.5" cx="31.1" cy="25.2" rx="23.6" ry="13.6"></ellipse>
+                    <ellipse id="Oval" stroke-width="0.5" cx="31.1" cy="21.1" rx="21.4" ry="12.4"></ellipse>
+                    <ellipse id="Oval" stroke-width="0.5" cx="31.1" cy="17" rx="19.4" ry="11.2"></ellipse>
+                    <ellipse id="Oval" stroke-width="0.5" cx="31.1" cy="12.9" rx="16.8" ry="9.7"></ellipse>
+                    <ellipse id="Oval" stroke-width="0.5" cx="31.1" cy="8.8" rx="13" ry="7.5"></ellipse>
+                    <ellipse id="Oval" stroke-width="0.5" cx="31.1" cy="4.7" rx="7.5" ry="4.3"></ellipse>
+                </g>
+                <g id="Group" transform="translate(0.000000, 58.000000)">
+                    <path d="M61.7,2 L0.5,2.2" id="Path" stroke="#444444" stroke-width="0.5"></path>
+                    <rect id="Rectangle" fill="#444444" fill-rule="nonzero" transform="translate(61.750450, 2.051009) rotate(-0.181846) translate(-61.750450, -2.051009) " x="61.5004484" y="0.401000698" width="1" height="3.30001662"></rect>
+                    <rect id="Rectangle" fill="#444444" fill-rule="nonzero" transform="translate(0.550121, 2.250895) rotate(-0.178348) translate(-0.550121, -2.250895) " x="0.300119805" y="0.600887088" width="1" height="3.30001599"></rect>
+                </g>
+                <g id="Group" transform="translate(68.000000, 1.000000)">
+                    <path d="M1.9,50.9 L1.9,0.3" id="Path" stroke="#444444" stroke-width="0.5"></path>
+                    <rect id="Rectangle" fill="#444444" fill-rule="nonzero" x="0.2" y="50.6" width="3.2" height="1"></rect>
+                    <rect id="Rectangle" fill="#444444" fill-rule="nonzero" x="0.2" y="0" width="3.2" height="1"></rect>
+                </g>
+                <text id="lunghezza-opera" fill="#000000" font-family="Helvetica" font-size="9" font-weight="normal">
+                    <tspan x="0.2771" y="73.4685">lunghezza opera</tspan>
+                </text>
+                <text id="lunghezza-opera" fill="#000000" transform="translate(80.222400, 34.294200) rotate(90.000000) translate(-80.222400, -34.294200) " font-family="Helvetica" font-size="9" font-weight="normal">
+                    <tspan x="46.7224" y="37.7942">lunghezza opera</tspan>
+                </text>
+                <g id="Group" transform="translate(61.000000, 32.000000)" stroke="#444444" stroke-width="0.25">
+                    <path d="M0.8,27 L0.8,26" id="Path"></path>
+                    <path d="M0.8,24.1 L0.8,2.2" id="Path" stroke-dasharray="1.8996,1.8996"></path>
+                    <path d="M0.8,1.3 L0.8,0.3" id="Path"></path>
+                </g>
+                <g id="Group" transform="translate(0.000000, 32.000000)" stroke="#444444" stroke-width="0.25">
+                    <path d="M0.5,27 L0.5,26" id="Path"></path>
+                    <path d="M0.5,24.1 L0.5,2.3" id="Path" stroke-dasharray="1.8996,1.8996"></path>
+                    <path d="M0.5,1.3 L0.5,0.3" id="Path"></path>
+                </g>
+                <g id="Group" transform="translate(31.000000, 0.000000)" stroke="#444444" stroke-width="0.25">
+                    <path d="M0.2,1.2 L1.2,1.2" id="Path"></path>
+                    <path d="M3.3,1.2 L36,1.2" id="Path" stroke-dasharray="2.1138,2.1138"></path>
+                    <path d="M37.1,1.2 L38.1,1.2" id="Path"></path>
+                </g>
+                <g id="Group" transform="translate(31.000000, 51.000000)" stroke="#444444" stroke-width="0.25">
+                    <path d="M0.2,0.9 L1.2,0.9" id="Path"></path>
+                    <path d="M3.3,0.9 L36,0.9" id="Path" stroke-dasharray="2.1138,2.1138"></path>
+                    <path d="M37.1,0.9 L38.1,0.9" id="Path"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
