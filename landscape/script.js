@@ -123,8 +123,11 @@ function treat_json(json)
         let x = 6;
       })));
 
+let xxx = collections
+  .filter(coll => (data.allowedCollections == "all" && coll.has_metaball) || allowedCollections.includes(coll.id));
+
   collections
-    .filter(coll => data.allowedCollections == "all" || allowedCollections.includes(coll.id))
+    .filter(coll => (data.allowedCollections == "all" && coll.has_metaball) || allowedCollections.includes(coll.id))
     .forEach(coll => prepareMetaballData(json_nodes, coll.id, coll.c));
 
   let boundaries = {
@@ -1209,189 +1212,159 @@ function interpolateSpline(x) {
   }
 
 function getCollections() {
+
+  // with all the volumes
   let collections = [
+    {
+      'n': 'Il sentiero dei nidi di ragno',
+      'id': 'V001',
+      'c': '#D6DBDF',
+      'has_metaball': false
+    },
     {
       'n': 'Ultimo viene il corvo',
       'id': 'V002',
       'c': '#e9d05d',
+      'has_metaball': true,
       'concavityTolerance': 1.1
+    },
+    {
+      'n': 'Il visconte dimezzato',
+      'id': 'V003',
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'L\'entrata in guerra',
       'id': 'V004',
       'c': '#12b259',
+      'has_metaball': true,
       'concavityTolerance': 1.1
+    },
+    {
+      'n': 'Il barone rampante',
+      'id': 'V005',
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'I racconti',
       'id': 'V006',
       'c': '#476a70',
+      'has_metaball': true,
       'concavityTolerance': 1.2
+    },
+    {
+      'n': 'La formica argentina',
+      'id': 'V007',
+      'c': '#D6DBDF',
+      'has_metaball': false
+    },
+    {
+      'n': 'Il cavaliere inesistente',
+      'id': 'V008',
+      'c': '#D6DBDF',
+      'has_metaball': false
+    },
+    {
+      'n': 'La giornata di uno scrutatore',
+      'id': 'V009',
+      'c': '#D6DBDF',
+      'has_metaball': false
+    },
+    {
+      'n': 'La speculazione edilizia',
+      'id': 'V010',
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'Marcovaldo',
       'id': 'V011',
       'c': '#9f73b2',
+      'has_metaball': true,
       'concavityTolerance': 1.1
+    },
+    {
+      'n': 'La nuvola di smog e la formica argentina',
+      'id': 'V012',
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'Le cosmicomiche',
       'id': 'V013',
       'c': '#e89fc0',
+      'has_metaball': true,
       'concavityTolerance': 1.1
     },
     {
       'n': 'Ti con zero',
       'id': 'V014',
       'c': '#581745',
+      'has_metaball': true,
       'concavityTolerance': 1.2
     },
     {
       'n': 'La memoria del mondo',
       'id': 'V015',
       'c': '#00b1b3',
+      'has_metaball': true,
       'concavityTolerance': 1.1
+    },
+    {
+      'n': 'Il castello dei destini incrociati',
+      'id': 'V016',
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'Gli amori difficili',
       'id': 'V017',
       'c': '#f0be96',
+      'has_metaball': true,
       'concavityTolerance': 1.1
+    },
+    {
+      'n': 'Le città invisibili',
+      'id': 'V018',
+      'c': '#D6DBDF',
+      'has_metaball': false
+    },
+    {
+      'n': 'Il castello dei destini incrociati (riedizione)',
+      'id': 'V019',
+      'c': '#D6DBDF',
+      'has_metaball': false
+    },
+    {
+      'n': 'Eremita a Parigi',
+      'id': 'V020',
+      'c': '#D6DBDF',
+      'has_metaball': false
+    },
+    {
+      'n': 'Se una notte d\'inverno un viaggiatore',
+      'id': 'V021',
+      'c': '#D6DBDF',
+      'has_metaball': false,
     },
     {
       'n': 'Palomar',
       'id': 'V022',
       'c': '#94d2ba',
+      'has_metaball': true,
       'concavityTolerance': 1.1
     },
     {
       'n': 'Cosmicomiche vecchie e nuove',
       'id': 'V023',
       'c': '#f1634b',
+      'has_metaball': true,
       'concavityTolerance': 1.2
     }
   ]
 
-/*
-  // with all the volumes
-  collections = [
-    {
-      'n': 'Il sentiero dei nidi di ragno',
-      'id': 'V001',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'Ultimo viene il corvo',
-      'id': 'V002',
-      'c': '#e9d05d'
-    },
-    {
-      'n': 'Il visconte dimezzato',
-      'id': 'V003',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'L\'entrata in guerra',
-      'id': 'V004',
-      'c': '#12b259'
-    },
-    {
-      'n': 'Il barone rampante',
-      'id': 'V005',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'I racconti',
-      'id': 'V006',
-      'c': '#476a70'
-    },
-    {
-      'n': 'La formica argentina',
-      'id': 'V007',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'Il cavaliere inesistente',
-      'id': 'V008',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'La giornata di uno scrutatore',
-      'id': 'V009',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'La speculazione edilizia',
-      'id': 'V010',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'Marcovaldo',
-      'id': 'V011',
-      'c': '#9f73b2'
-    },
-    {
-      'n': 'La nuvola di smog e la formica argentina',
-      'id': 'V012',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'Le cosmicomiche',
-      'id': 'V013',
-      'c': '#e89fc0'
-    },
-    {
-      'n': 'Ti con zero',
-      'id': 'V014',
-      'c': '#581745'
-    },
-    {
-      'n': 'La memoria del mondo',
-      'id': 'V015',
-      'c': '#00b1b3'
-    },
-    {
-      'n': 'Il castello dei destini incrociati',
-      'id': 'V016',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'Gli amori difficili',
-      'id': 'V017',
-      'c': '#f0be96'
-    },
-    {
-      'n': 'Le città invisibili',
-      'id': 'V018',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'Il castello dei destini incrociati (riedizione)',
-      'id': 'V019',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'Eremita a Parigi',
-      'id': 'V020',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'Se una notte d\'inverno un viaggiatore',
-      'id': 'V021',
-      'c': '#D6DBDF'
-    },
-    {
-      'n': 'Palomar',
-      'id': 'V022',
-      'c': '#94d2ba'
-    },
-    {
-      'n': 'Cosmicomiche vecchie e nuove',
-      'id': 'V023',
-      'c': '#f1634b'
-    }
-  ]
-*/
   return collections
 }
 
