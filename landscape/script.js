@@ -1254,7 +1254,8 @@ function getCollections() {
     {
       'n': 'Il visconte dimezzato',
       'id': 'V003',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'L\'entrata in guerra',
@@ -1272,7 +1273,8 @@ function getCollections() {
     {
       'n': 'Il barone rampante',
       'id': 'V005',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'I racconti',
@@ -1308,22 +1310,26 @@ function getCollections() {
     {
       'n': 'La formica argentina',
       'id': 'V007',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'Il cavaliere inesistente',
       'id': 'V008',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'La giornata di uno scrutatore',
       'id': 'V009',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'La speculazione edilizia',
       'id': 'V010',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'Marcovaldo',
@@ -1341,7 +1347,8 @@ function getCollections() {
     {
       'n': 'La nuvola di smog e la formica argentina',
       'id': 'V012',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'Le cosmicomiche',
@@ -1373,7 +1380,8 @@ function getCollections() {
     {
       'n': 'Il castello dei destini incrociati',
       'id': 'V016',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'Gli amori difficili',
@@ -1409,22 +1417,26 @@ function getCollections() {
     {
       'n': 'Le città invisibili',
       'id': 'V018',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'Il castello dei destini incrociati (riedizione)',
       'id': 'V019',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'Eremita a Parigi',
       'id': 'V020',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'Se una notte d\'inverno un viaggiatore',
       'id': 'V021',
-      'c': '#D6DBDF'
+      'c': '#D6DBDF',
+      'has_metaball': false
     },
     {
       'n': 'Palomar',
