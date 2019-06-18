@@ -31,8 +31,8 @@
             <span class="caret"></span>
           </button>
           <ul class="dropdown-menu colours-selector" aria-labelledby="dropdownMenu1">
-            <li><a href="#" data-value="years" colour-by="years">Cronologia</a></li>
-            <li><a href="#" data-value="collections" colour-by="collections">Raccolta</a></li>
+            <li><a href="#" data-value="years" colour-by="years">cronologia</a></li>
+            <li><a href="#" data-value="collections" colour-by="collections">volumi</a></li>
           </ul>
         </div>
         <!-- <h3>Esplora l'opera di Calvino attraverso un fenomeno</h3> -->
@@ -58,45 +58,38 @@
       </div>
 
       <div id="legend-container" class="col-md-12 position-absolute">
-        <div class="legend-block text-block">
+        <div class="legend-block">
           <h4>Posizione</h4>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            <img src="./assets/images/positioning.svg">
           </p>
         </div>
 
         <div class="legend-block">
           <h4>Dimensione</h4>
           <p>
-            <img src="dimensione.png">
+            <img src="./assets/images/dimensione.svg">
           </p>
         </div>
 
         <div class="legend-block">
-          <h4>Tipologia</h4>
+          <h4>Cronologia</h4>
           <p>
-            <img src="tipologia.png">
+            <img src="./assets/images/modalita-cronologia.svg">
           </p>
         </div>
 
         <div class="legend-block">
-          <h4>Prima pubblicazione</h4>
+          <h4>Volumi</h4>
           <p>
-            <img src="pubblicazione.png">
+            <img src="./assets/images/modalita-volumi.svg">
           </p>
         </div>
 
         <div class="legend-block">
-          <h4>Raccolta</h4>
+          <h4>Codice colori</h4>
           <p>
-            <img src="raccolta.png">
-          </p>
-        </div>
-
-        <div class="legend-block">
-          <h4>Lista di raccolte</h4>
-          <p>
-            <img src="colori.png">
+            <img src="./assets/images/codice-colori-large.svg">
           </p>
         </div>
       </div>
@@ -119,7 +112,7 @@
         </div>
 
         <div class="col-2">
-          <h5 class="_btn toggle-timeline">Timeline</h5>
+          <h5 class="_btn toggle-timeline">Filtro cronologico</h5>
         </div>
 
         <div class="col-4 text-right">
@@ -138,7 +131,6 @@
 
           <h4 id="st-what-is">Di cosa si tratta</h4>
           <h2>L'opera di Italo Calvino come un territorio</h2>
-
           <p>Questa visualizzazione rappresenta il corpus delle opere narrative di Calvino: oltre duecento testi scritti e pubblicati tra il 1943 e il 1984.<br/>A ogni elemento grafico corrisponde un testo, per cui l’unità minima della visualizzazione non sarà il volume ma il singolo testo. L’idea alla base di questo lavoro consiste nell’offrire un colpo d’occhio dell’intero corpus dell’autore, disegnando un territorio che permetta un nuovo accesso all’opera.</p>
           <p>Di seguito scopri: come si legge, come si esplora e <a href="#st-insights">cosa ci può dire</a>.</p>
           <p>Continua a scorrere &#8230;</p>
@@ -146,51 +138,67 @@
         </div>
 
         <div class="step-scrollitelling">
-          <h3 id="st-how-read">Come si legge</h3>
+          <h3 id="st-how-read">Come si legge il territorio</h3>
           <p>Per leggere correttamente la visualizzazione è necessario prestare attenzione a tre parametri: la disposizione degli elementi, la loro dimensione, l’uso del colore.</p>
           <p class="st-box">
-            Clicca <span class="highlight"><i class="far fa-hand-pointer"></i> <span class="font-italic">Legenda</span></span> per mostrare la legenda completa.
+            <i class="far fa-hand-pointer"></i> Clicca <span class="highlight"><span class="text-underlined">legenda</span></span> per mostrare la legenda completa.
           </p>
 
-          <h4>Disposizione degli elementi</h4>
+          <h4 class="mt-5">Disposizione degli elementi</h4>
           <p>Gli elementi sono posizionati sulla base di due criteri: l’appartenenza a uno stesso volume e la data di prima pubblicazione. Questo significa che un principio di attrazione agisce sia sui testi pubblicati in uno stesso volume sia sui testi cronologicamente coevi. Di conseguenza, osservando il territorio, è possibile riconoscere un anello esterno e alcuni gruppi di testi interni. Questi ultimi sono i testi che confluiscono in raccolte.</p>
-          <img class="img-fluid" src="https://via.placeholder.com/400x200/F9F9F9/333333/.png?text=Posizione"></img>
+          <img class="img-fluid" style="width: 38%;" src="./assets/images/positioning.svg"></img>
 
-          <h4>Dimensione</h4>
+          <h4 class="mt-5">Dimensione</h4>
           <p>la dimensione di ogni elemento è proporzionale alla lunghezza del testo che rappresenta; a colpo d’occhio è quindi possibile individuare le opere più consistenti del corpus.</p>
           <img class="img-fluid" style="width: 20%;" src="./assets/images/dimensione.svg"></img>
 
-          <h4>Uso del colore</h4>
+          <h4 class="mt-5">Uso del colore</h4>
           <p>L’uso del colore introduce due differenti modalità esplorative: la scala cromatica che va dall’arancione al grigio, attiva nella modalità Cronologia, segnala l’ordine cronologico di prima pubblicazione di tutti i testi del corpus.</p>
-          <img class="img-fluid" style="width: 60%;" src="./assets/images/modalita-cronologia.svg"></img>
+          <img class="img-fluid mb-3" style="width: 60%;" src="./assets/images/modalita-cronologia.svg"></img>
           <p>Selezionando invece la modalità Volumi, il colore consente di riconoscere tutti i volumi pubblicati in vita dall’autore, sia che si tratti di raccolte di racconti, sia che si tratti di altri tipi di testi. Le raccolte di racconti sono riconoscibili con gli stessi colori anche in modalità Cronologia, attraverso l’utilizzo di alcuni contorni (metaballs).</p>
-          <img class="img-fluid" style="width: 100%;" src="./assets/images/modalita-raccolta.svg"></img>
+          <img class="img-fluid mb-3" style="width: 100%;" src="./assets/images/modalita-volumi.svg"></img>
           <p class="st-box">
-            Clicca <span class="highlight"><i class="far fa-hand-pointer"></i> <span class="font-italic">la porzione sottolineata</span></span> del titolo per passare da una modalità all'altra.
+            <i class="far fa-hand-pointer"></i> Clicca la porzione <span class="highlight"><span class="text-underlined">sottolineata</span></span> del titolo per passare da una modalità all'altra.
           </p>
         </div>
 
         <div class="step-scrollitelling">
-          <h3 id="st-how-explore">Come esplorarlo</h3>
-          <p><span class="font-weight-bold">Informazioni</span>: interagendo con un singolo elemento grafico appaiono il titolo, l’anno di prima pubblicazione ed eventuali pubblicazioni successive.</p>
+          <h3 id="st-how-explore">Come si esplora il territorio</h3>
+          <p class="mt-3"><span class="font-weight-bold">Informazioni</span>: interagendo con un singolo elemento grafico appaiono il titolo, l’anno di prima pubblicazione ed eventuali pubblicazioni successive.</p>
           <img class="img-fluid" src="https://via.placeholder.com/400x200/F9F9F9/333333/.png?text=Immagine_tooltip"></img>
-
-          <p><span class="font-weight-bold">Filtro</span>: il filtro cronologico a comparsa, o timeline, consente di riorganizzare il corpus su una linea temporale e, se necessario, selezionare un intervallo di tempo specifico (un anno, un decennio ecc.)</p>
-          <img class="img-fluid" src="https://via.placeholder.com/400x200/F9F9F9/333333/.png?text=Immagine_filtro"></img>
-
-          <p><span class="font-weight-bold">Cerca</span>: utilizzando la funzione Cerca è possibile individuare singoli testi o raccolte di racconti.</p>
-          <p class="st-box">
-            Clicca <span class="highlight"><i class="far fa-hand-pointer"></i> <span class="font-italic">Cerca</span></span> per attivare la barra di ricerca
+          <p class="st-box only-pointer-coarse">
+            <i class="far fa-hand-pointer"></i> <span class="highlight"><span class="">Tocca</span></span> un elemento per mostrare le informazioni corrispondenti
+          </p>
+          <p class="st-box only-pointer-fine">
+            <i class="fas fa-mouse-pointer"></i> Posiziona il <span class="highlight"><span class="">cursore</span></span> su un elemento per mostrare le informazioni corrispondenti
           </p>
 
-          <p><span class="font-weight-bold">Zoom</span>: utilizzando la <span class="font-italic">scrollwhell</span> o il <span class="font-italic">pinchzoom</span> è possibile vedere da vicino una porzione del territorio.</p>
+          <p class="mt-5"><span class="font-weight-bold">Filtro cronologico</span>: il filtro a comparsa, o timeline, consente di riorganizzare il corpus su una linea temporale e, se necessario, selezionare un intervallo di tempo specifico (un anno, un decennio ecc.)</p>
+          <img class="img-fluid" src="https://via.placeholder.com/400x200/F9F9F9/333333/.png?text=Immagine_filtro"></img>
+          <p class="st-box">
+            <i class="far fa-hand-pointer"></i> Clicca <span class="highlight"><span class="text-underlined">filtro cronologico</span></span> per mostrare il filtro.
+          </p>
+
+          <p class="mt-5"><span class="font-weight-bold">Cerca</span>: utilizzando la funzione Cerca è possibile individuare singoli testi o raccolte di racconti.</p>
+          <img class="img-fluid" src="https://via.placeholder.com/400x200/F9F9F9/333333/.png?text=Immagine_cerca"></img>
+          <p class="st-box">
+            <i class="far fa-hand-pointer"></i> Clicca <span class="highlight"><span class="text-underlined">cerca</span></span> per attivare la barra di ricerca
+          </p>
+
+          <p class="mt-5"><span class="font-weight-bold">Zoom</span>: utilizzando la  <span class="text-underlined font-italic">scrollwhell</span> o il <span class="text-underlined font-italic">pinchzoom</span> è possibile vedere da vicino una porzione del territorio.</p>
           <img class="img-fluid" src="https://via.placeholder.com/400x200/F9F9F9/333333/.png?text=Immagine_zoom"></img>
+          <p class="st-box only-pointer-coarse">
+            <i class="far fa-hand-scissors"></i></i> Fai <span class="highlight"><span class="font-italic">pinchzoom</span></span> per avvicinarti o allontanarti da una porzione di territorio
+          </p>
+          <p class="st-box only-pointer-fine">
+            <i class="fas fa-angle-double-down"></i> Utilizza la <span class="highlight"><span class="font-italic">scrollwhell</span></span> per avvicinarti o allontanarti da una porzione di territorio
+          </p>
         </div>
 
       </div>
 
       <div class="step-scrollitelling">
-        <h3 id="st-insights">Riflessioni</h3>
+        <h3 id="st-insights">Cosa ci può dire</h3>
 
         <h4 id="st-001">La prima cosa</h4>
         <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo conseue duis dolore te feugait nulla facilisi.</p>

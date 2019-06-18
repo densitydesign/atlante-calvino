@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="407px" height="82px" viewBox="0 0 407 82" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>codice-colori</title>
+    <desc>Created with Sketch.</desc>
+    <g id="codice-colori" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g>
+            <text id="Ultimo-viene-il-corvo" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="22.4361" y="11.4513">Ultimo viene il corvo</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#E9D05D" fill-rule="nonzero" stroke-linejoin="round" cx="6.2227" cy="6.8002" r="6.2"></circle>
+            <text id="L’entrata-in-guerra" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="22.4352" y="34.1701">L’entrata in guerra</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.5" fill="#12B259" fill-rule="nonzero" cx="6.2227" cy="29.6002" r="6.2"></circle>
+            <text id="I-racconti" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="22.4352" y="56.8879">I racconti</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#476A70" fill-rule="nonzero" stroke-linejoin="round" cx="6.2227" cy="52.3002" r="6.2"></circle>
+            <text id="Marcovaldo" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="22.4352" y="79.6047">Marcovaldo</tspan>
+            </text>
+            <circle id="Oval" fill="#9F73B2" fill-rule="nonzero" cx="6.2227" cy="75.0002" r="6.2"></circle>
+            <text id="Le-Cosmicomiche" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="144.942" y="11.4523">Le Cosmicomiche</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#E89EC0" fill-rule="nonzero" stroke-linejoin="round" cx="128.7227" cy="6.8002" r="6.2"></circle>
+            <text id="La-memoria-del-mondo" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="144.942" y="56.8859">La memoria del mondo</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#00B0B3" fill-rule="nonzero" stroke-linejoin="round" cx="128.7227" cy="52.3002" r="6.2"></circle>
+            <text id="Gli-amori-difficili" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="144.942" y="79.6047">Gli amori difficili</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#F0BE96" fill-rule="nonzero" stroke-linejoin="round" cx="128.7227" cy="75.0002" r="6.2"></circle>
+            <text id="Palomar" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="281.8932" y="11.4513">Palomar</tspan>
+            </text>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#94D2BA" fill-rule="nonzero" stroke-linejoin="round" cx="264.1227" cy="6.8002" r="6.2"></circle>
+            <g id="Group" transform="translate(281.722700, 25.000200)" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <text id="Le-Cosmicomiche-vecchie-e-nuove">
+                    <tspan x="0.1724" y="8.4502">Le Cosmicomiche vecchie e nuove</tspan>
+                </text>
+                <text id="Altri-volumi">
+                    <tspan x="0.1724" y="53.75">Altri volumi</tspan>
+                </text>
+            </g>
+            <circle id="Oval" stroke="#FFFFFF" stroke-width="0.25" fill="#F1634B" fill-rule="nonzero" stroke-linejoin="round" cx="264.1227" cy="29.9002" r="6.2"></circle>
+            <circle id="Oval-Copy" stroke="#FFFFFF" stroke-width="0.25" fill="#C6CACF" fill-rule="nonzero" stroke-linejoin="round" cx="264.1227" cy="75.2" r="6.2"></circle>
+            <text id="Ti-con-Zero" fill="#000000" font-family="Helvetica" font-size="8" font-weight="normal">
+                <tspan x="144.942" y="34.1691">Ti con Zero</tspan>
+            </text>
+            <circle id="Oval" fill="#581745" fill-rule="nonzero" cx="128.7227" cy="29.6002" r="6.2"></circle>
+        </g>
+    </g>
+</svg>
