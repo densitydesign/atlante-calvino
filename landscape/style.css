@@ -12,9 +12,17 @@ body * {
   /* outline: 1px solid cyan; */
 }
 
+p {
+  font-size: 1rem;
+}
+
+p.text-bigger {
+  font-size: 1.2rem;
+}
+
 #interface {
   height: 100%;
-  top: 6px;
+  /* top: 6px; */
   position: relative;
   pointer-events: none;
 }
@@ -82,6 +90,11 @@ li.ui-menu-item.extra {
   left: 0;
   bottom: 0;
   height: 5vh;
+  transition: bottom 0.35s cubic-bezier(.11,.31,.37,1);
+}
+
+.legend-visible .bottom-bar, .timeline-visible .bottom-bar {
+  bottom: 21vh;
 }
 
 svg#landscape {
@@ -246,6 +259,7 @@ svg:active {
 
 .bottom-bar .toggle-legend, .bottom-bar .toggle-timeline {
   border-bottom: 2px solid rgba(47, 79, 79, 0.3);
+  padding-bottom: calc(0.3rem - 2px);
 }
 
 .bottom-bar .toggle-legend:hover, .bottom-bar .toggle-timeline:hover {
@@ -304,7 +318,7 @@ svg:active {
   background-color: rgba(255,255,255,0.85);
   width: 35vw;
   right: -35vw;
-  top: 6px;
+  /* top: 6px; */
   height: calc(100vh - 6px);
   overflow-x: hidden;
   overflow-y: visible;
@@ -332,18 +346,21 @@ svg:active {
 }
 
 .step-scrollitelling {
-  margin-bottom: 50vh;
+  margin-bottom: 7rem;
 }
 
 .st-box {
+  background-color: white;
   border: 2px solid var(--calvino-red);
   border-radius: 3px;
-  color: var(--calvino-red);
-  padding: 1rem;
+  padding: 1.5rem;
   box-shadow: 0px 1px 6px var(--calvino-red);
-  background-color: transparent;
   margin: 1rem 0;
   position: relative;
+}
+
+.highlight {
+  color: var(--calvino-red);
 }
 
 .st-box:before {
