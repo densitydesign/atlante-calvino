@@ -1,22 +1,100 @@
 body {
   margin: 0;
   border-top: 6px solid var(--calvino-red);
-  height: 100vh;
+  height: calc(100vh - 6px);
   width: 100vw;
   /* background-color: darkslategrey; */
   color: darkslategrey;
-  overflow:hidden;
+  overflow: hidden;
+}
+
+body * {
+  /* outline: 1px solid cyan; */
+}
+
+p {
+  font-size: 1rem;
+}
+
+p.text-bigger {
+  font-size: 1.2rem;
 }
 
 #interface {
   height: 100%;
-  top: 6px;
+  /* top: 6px; */
   position: relative;
   pointer-events: none;
 }
 
 #interface > * {
   pointer-events: all;
+}
+
+#searchbox {
+  outline: none;
+  border: 1px solid var(--calvino-red);
+  border-radius: 4px;
+  width: 100%;
+}
+
+#searchbox-box {
+  height: auto;
+  max-height: 50vw;
+  width: 25vw;
+  min-width: 20ch;
+  max-width: 30ch;
+  display: inline-block;
+  opacity: 1e-16;
+  transition: opacity 0.4s ease;
+  position: relative;
+}
+
+#searchbox-box.searchbox-visible {
+  opacity: 1;
+}
+
+#searchbox-results {
+  position: absolute;
+  width: max-content;
+}
+
+#clear-search {
+  margin-left: 0.5rem;
+  font-size: 1rem;
+  display: none;
+}
+
+ul.ui-autocomplete {
+  padding: 0;
+}
+
+li.ui-menu-item {
+  list-style: none;
+  opacity: 0.75;
+  cursor: pointer;
+}
+
+li.ui-menu-item:hover {
+  background-color: rgba(255,255,255,.75);
+  opacity: 1;
+}
+
+li.ui-menu-item.extra {
+  color: blue;
+  pointer-events: none;
+}
+
+.bottom-bar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 5vh;
+  transition: bottom 0.35s cubic-bezier(.11,.31,.37,1);
+}
+
+.legend-visible .bottom-bar, .timeline-visible .bottom-bar {
+  bottom: 21vh;
 }
 
 svg#landscape {
@@ -38,19 +116,19 @@ svg:active {
   cursor: pointer;
 }
 .node .label {
-  opacity: 0;
+  opacity: 1e-16;
   transition: opacity .5s;
   pointer-events: none;
-  font-family: sans-serif;
+  font-family: "HK Grotesk";
 }
 
 .node circle {
-  /* shape-rendering: optimizeSpeed; */
+  shape-rendering: geometricprecision;
 }
 .node:hover circle {
   /* fill:white; */
 }
-.node:hover .label {
+.node:hover .label, .node .label.visible {
   opacity: 1;
 }
 .g-circles {
@@ -63,25 +141,85 @@ svg:active {
 ._btn {
   cursor: pointer;
   font-style: italic;
+  letter-spacing: 0.2px;
 }
 
-.verbose-options-selector span {
-  border-bottom: 1px solid red;
+._btn:focus {
+  outline: none;
+}
+
+.dropdown h1 {
+  margin-bottom: 0;
+}
+
+.dropdown > * {
+  margin-right: 0.5rem;
+}
+
+.verbose-container {
+  display: auto;
+}
+
+.verbose-container span {
+  display: inline-block;
+}
+
+.verbose-options-selector {
+  outline: none;
+  border: none;
+  border-bottom: 3px solid var(--calvino-red);
+  transition: 0.3s cubic-bezier(.11,.31,.37,1) all;
+  background-color: transparent;
+  padding: 0 0.5rem;
+  font-size: 2.5rem;
+  text-transform: lowercase;
+  color: darkslategrey;
+}
+
+.verbose-options-selector:hover {
+  padding: 0 2rem;
+}
+
+.verbose-options-selector .invisible {
+  opacity: 0;
+  margin-top: -1rem;
+}
+
+.dropdown-menu {
+  background: transparent
+}
+
+.colours-selector {
+  border: none;
+}
+
+.colours-selector a {
+  color: var(--calvino-red);
+  opacity: 0.5;
+  font-size: 1.5rem;
+  text-align: left;
+  text-decoration: none;
+  transition: 0.3s cubic-bezier(.11,.31,.37,1) all;
+}
+
+.colours-selector a:hover {
+  opacity: 1;
+  padding-left: 1rem;
 }
 
 #timeline-container {
   height: 0;
   bottom: 0;
   background: #f2f4f5;
-  transition: all 0.35s ease;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
   overflow: hidden;
-  border-top: black 1px solid;
+  border-top: rgba(0,0,0,.1) 1px solid;
   opacity: 0;
-  padding: 0 3rem;
+  padding: 1rem 3rem;
 }
 
 .timeline-visible #timeline-container {
-  height: 20vh;
+  height: 21vh;
   opacity: 1;
 }
 
@@ -91,7 +229,6 @@ svg:active {
 
 #timeline .selection {
   fill: rgba(255, 255, 255, 0.75);
-  /* fill: var(--main-bg-color); */
   fill-opacity: 1;
 }
 
@@ -108,14 +245,69 @@ svg:active {
   margin-left: 1rem;
 }
 
-.toggle-legend {
+.toggle-legend, .toggle-timeline {
   position: relative;
   transition: all 0.35s ease;
+  z-index: 9999;
+  text-align: center;
+  bottom: 0;
 }
 
-.timeline-visible .toggle-legend {
-  bottom: 20vh;
+.bottom-bar ._btn {
+  padding: 0.3rem 0;
 }
+
+.bottom-bar .toggle-legend, .bottom-bar .toggle-timeline {
+  border-bottom: 2px solid rgba(47, 79, 79, 0.3);
+  padding-bottom: calc(0.3rem - 2px);
+}
+
+.bottom-bar .toggle-legend:hover, .bottom-bar .toggle-timeline:hover {
+  border-bottom: 2px solid rgba(47, 79, 79, 1);
+}
+
+.bottom-bar .active {
+  border-bottom: 2px solid tomato !important;
+  color: tomato;
+}
+
+#legend-container {
+  height: 0vh;
+  bottom: 0;
+  background: #f2f4f5;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow-y: hidden;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  border-top: rgba(0,0,0,.1) 1px solid;
+  opacity: 0;
+  padding: 1rem 2rem 3rem 2rem;;
+  display: flex;
+}
+
+#legend-container .legend-block {
+  max-height: 100%;
+  margin-right: 4rem;
+}
+
+#legend-container .text-block {
+  min-width: 40vw;
+  overflow-y: scroll;
+  scroll-behavior: smooth;
+}
+
+.legend-block img {
+  max-height: 10vh;
+}
+
+.legend-visible #legend-container {
+  height: 21vh;
+  opacity: 1;
+}
+
+/* .timeline-visible .toggle-legend, .legend-visible .toggle-timeline {
+  bottom: 20vh;
+} */
 
 .axis--x .tick:first-of-type, .axis--x .tick:last-of-type {
   display: none;
@@ -126,13 +318,13 @@ svg:active {
   background-color: rgba(255,255,255,0.85);
   width: 35vw;
   right: -35vw;
-  top: 6px;
+  /* top: 6px; */
   height: calc(100vh - 6px);
   overflow-x: hidden;
   overflow-y: visible;
   padding: 1rem 2rem;
   transition: right 0.35s ease;
-  pointer-events: none;
+  /* pointer-events: none; */
 }
 
 .scrollitelling-box > * {
@@ -154,15 +346,31 @@ svg:active {
 }
 
 .step-scrollitelling {
-  margin-bottom: 50vh;
+  margin-bottom: 7rem;
 }
 
 .st-box {
-    border: 2px solid var(--calvino-red);
-    border-radius: 3px;
-    color: var(--calvino-red);
-    padding: 1rem;
-    box-shadow: 0px 1px 6px var(--calvino-red);
-    background-color: transparent;
-    margin: 1rem 0;
+  background-color: white;
+  border: 2px solid var(--calvino-red);
+  border-radius: 3px;
+  padding: 1.5rem;
+  box-shadow: 0px 1px 6px var(--calvino-red);
+  margin: 1rem 0;
+  position: relative;
+}
+
+.highlight {
+  color: var(--calvino-red);
+}
+
+.st-box:before {
+  box-shadow: 0px 1px 6px var(--calvino-red) inset;
+  content: "";
+  width: 100%;
+  height: 20px;
+  display: block;
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
 }
