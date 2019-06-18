@@ -299,6 +299,16 @@ let xxx = collections
   let hillColoringMode = 1; // 1 : first publication year; 2 : collection
   let metaballsVisible = new Map();
 
+  collections
+    .filter(coll => coll.has_metaball)
+    .forEach(coll => metaballsVisible[coll.id] = 1);
+
+  metaballs
+    .selectAll(".metaball")
+    .transition()
+    .duration(450)
+    .style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
+
 ///////////////////////////////////////////
 
   let drawPlacesArc1 = d3
