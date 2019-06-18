@@ -1252,23 +1252,11 @@ function getCollections() {
       'has_metaball': false
     },
     {
-      'n': 'Il visconte dimezzato',
-      'id': 'V003',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
       'n': 'L\'entrata in guerra',
       'id': 'V004',
       'c': '#12b259',
       'has_metaball': true,
       'concavityTolerance': 1.1
-    },
-    {
-      'n': 'Il barone rampante',
-      'id': 'V005',
-      'c': '#D6DBDF',
-      'has_metaball': false
     },
     {
       'n': 'Il barone rampante',
@@ -1308,41 +1296,11 @@ function getCollections() {
       'has_metaball': false
     },
     {
-      'n': 'La formica argentina',
-      'id': 'V007',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Il cavaliere inesistente',
-      'id': 'V008',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'La giornata di uno scrutatore',
-      'id': 'V009',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'La speculazione edilizia',
-      'id': 'V010',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
       'n': 'Marcovaldo',
       'id': 'V011',
       'c': '#9f73b2',
       'has_metaball': true,
       'concavityTolerance': 1.1
-    },
-    {
-      'n': 'La nuvola di smog e la formica argentina',
-      'id': 'V012',
-      'c': '#D6DBDF',
-      'has_metaball': false
     },
     {
       'n': 'La nuvola di smog e la formica argentina',
@@ -1370,12 +1328,6 @@ function getCollections() {
       'c': '#00b1b3',
       'has_metaball': true,
       'concavityTolerance': 1.1
-    },
-    {
-      'n': 'Il castello dei destini incrociati',
-      'id': 'V016',
-      'c': '#D6DBDF',
-      'has_metaball': false
     },
     {
       'n': 'Il castello dei destini incrociati',
@@ -1413,30 +1365,6 @@ function getCollections() {
       'id': 'V021',
       'c': '#D6DBDF',
       'has_metaball': false,
-    },
-    {
-      'n': 'Le città invisibili',
-      'id': 'V018',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Il castello dei destini incrociati (riedizione)',
-      'id': 'V019',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Eremita a Parigi',
-      'id': 'V020',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Se una notte d\'inverno un viaggiatore',
-      'id': 'V021',
-      'c': '#D6DBDF',
-      'has_metaball': false
     },
     {
       'n': 'Palomar',
