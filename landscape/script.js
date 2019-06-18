@@ -629,14 +629,14 @@ function treat_json(json)
   let scale = (w / (boundaries.right - boundaries.left))*0.9;
 
   centerTerritory(scale, 0, 0, 0);
-
+/*
   svg.transition()
     .duration(0)
     .call( zoom_handler.transform, d3.zoomIdentity
       .translate(w/2,h/2*1.2)
       .scale(0.08)
     ); // updated for d3 v4
-
+*/
   //Zoom functions
   function zoom_actions(){
     g.attr("transform", d3.event.transform);
@@ -680,7 +680,6 @@ function treat_json(json)
         text_nodes.selectAll('circle')
           .transition().duration(350)
           .attr('fill',function(d){
-            console.log(d.collection, col_collections(d.collection));
             return col_collections(d.collection);
           })
         break;
@@ -695,7 +694,10 @@ function treat_json(json)
   })
 
   function toggleTimeline() {
-    d3.select('#interface').classed("timeline-visible", d3.select('#interface').classed("timeline-visible") ? false : true);
+    d3.select('#interface')
+      .classed("legend-visible", false)
+      .classed("timeline-visible", d3.select('#interface').classed("timeline-visible") ? false : true);
+    d3.selectAll('.toggle-legend').classed('active', false);
   }
 
   d3.selectAll('.toggle-legend').on('click', function(d){
@@ -704,7 +706,10 @@ function treat_json(json)
   })
 
   function toggleLegend() {
-    d3.select('#interface').classed("legend-visible", d3.select('#interface').classed("legend-visible") ? false : true);
+    d3.select('#interface')
+      .classed("timeline-visible", false)
+      .classed("legend-visible", d3.select('#interface').classed("legend-visible") ? false : true);
+    d3.selectAll('.toggle-timeline').classed('active', false);
   }
 
   d3.selectAll('.toggle-tutorial').on('click', function(d){
@@ -713,6 +718,8 @@ function treat_json(json)
 
   function toggleTutorial() {
     d3.select('.scrollitelling-box').classed("scrollitelling-visible", d3.select('.scrollitelling-box').classed("scrollitelling-visible") ? false : true);
+    // Once opened, the scrollitelling is always at its top position
+    d3.select('.scrollitelling-box').node().scrollTop = 0;
   }
 
   d3.selectAll('.toggle-search').on('click', function(d){
@@ -747,13 +754,7 @@ function treat_json(json)
         let eventKey = d3.event.key.toLowerCase();
 
         if (eventKey == "c") {
-/*        
-        d3.selectAll('circle')
-          .filter(d => !this.classList.contains('halo'))
-          .transition()
-          .duration(350)
-          .attr('fill', d => col_collections(d.collection));
-*/
+
           hillColoringMode = 2;
 
           d3.selectAll(".hill")
@@ -811,15 +812,7 @@ console.log(drawMode);
                 .duration(450)
                 .style('fill-opacity',1)
                 .style('stroke-opacity',1);
-/*
-            let coloringFunction;
 
-            switch(hillColoringMode)
-            {
-              case 1 : coloringFunction = d => colour(d.first_publication);
-              case 2 : coloringFunction = d => col_collections(d.collection);
-            }
-*/
               if(hillColoringMode == 1)
               {
                 text_nodes
@@ -979,31 +972,23 @@ console.log(drawMode);
       position: {
         collision: 'flip',
       },
-      close: function( event, ui ) {
-        //alert('closed')
-      },
-      change: function( event, ui ) {
-        console.log('change');
-      },
-      source: function(req, response) 
-        {
-          console.log(req.term.length);
-          let searchedText = req.term;
-          var results = $.ui.autocomplete.filter(titles, req.term);
+      source: function(req, response) {
+        let searchedText = req.term;
+        var results = $.ui.autocomplete.filter(titles, req.term);
 
-          text_nodes.style("opacity", .35);
-          label.classed('visible', false);
+        text_nodes.style("opacity", .35);
+        label.classed('visible', false);
 
-          results.forEach(d => {
-            let id = title_id_map[d];
+        results.forEach(d => {
+          let id = title_id_map[d];
 
-            text_nodes
-              .filter(d => d.id == id)
-              .style("opacity", 1);
+          text_nodes
+            .filter(d => d.id == id)
+            .style("opacity", 1);
 
-            label
-              .filter(d => d.id == id)
-              .classed('visible', true);
+          label
+            .filter(d => d.id == id)
+            .classed('visible', true);
 
           });
 
@@ -1287,7 +1272,7 @@ function getCollections() {
     }
   ]
 
-
+/*
   // with all the volumes
   collections = [
     {
@@ -1406,7 +1391,7 @@ function getCollections() {
       'c': '#f1634b'
     }
   ]
-
+*/
   return collections
 }
 
@@ -2295,21 +2280,7 @@ function prepareTimeline(json_nodes, col_collections)
       .polygons(json_nodes))
     .enter()
       .append("g");
-/*
-  const yearPointStep = 20;
 
-  const height = 200;
-
-  cell
-    .append("circle")
-    .attr("r", 3)
-    .attr("cx", d => {
-      let relative_year = +(d.attributes.first_publication) - startYear;
-
-      return relative_year * yearPointStep;
-    })
-    .attr("cy", d => height / 2);
-*/
 
   let colls = getCollections().map(c => c.id);
 
@@ -2391,3 +2362,4 @@ function applyBeeSwarmFilter()
       }
     });
 }
+
