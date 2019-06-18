@@ -24,6 +24,13 @@ p.text-bigger {
   text-decoration: underline;
 }
 
+.label .white-shadow {
+  stroke: white;
+  stroke-width: 0.4rem;
+  fill: white;
+  stroke-linejoin: round;
+}
+
 #interface {
   height: 100%;
   /* top: 6px; */
@@ -126,15 +133,17 @@ svg:active {
   font-family: "HK Grotesk";
 }
 
+.node:hover .label, .node .label.visible {
+  opacity: 1;
+}
+
 .node circle {
   shape-rendering: geometricprecision;
 }
 .node:hover circle {
   /* fill:white; */
 }
-.node:hover .label, .node .label.visible {
-  opacity: 1;
-}
+
 .g-circles {
 
 }

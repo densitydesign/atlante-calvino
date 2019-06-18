@@ -1,6 +1,4 @@
-
 let data = {
-
   allowedCollections: "all", // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
   timeline_x: 0,
   timeline_y: 0,
@@ -152,6 +150,10 @@ d3
             .domain(collections.map(function(d){return d.id}))
             .range(collections.map(function(d){return d.c}))
             .unknown('transparent');
+
+            let numerini = d3.scaleOrdinal()
+            .domain([0,1,2,3,4,5,6,7,8,9])
+            .range(['❶','❷','❸','❹','❺','❻','❼','❽','❾','❿']);
 
             let w = window.innerWidth;
             let h = window.innerHeight - 6;
@@ -571,53 +573,79 @@ d3
 
             ///////////////////////////////////////////
 
-            text_nodes
-            .on("Xmouseenter", function(){
-              d3.selectAll('.node')
-              .transition()
-              .duration(350)
-              .style('opacity',.4)
-
-              d3.select(this)
-              .selectAll('circle')
-              .transition()
-              .duration(350)
-              .attr('transform', function(d,i){
-                i = i*step_increment*1.5
-                return 'translate(0,'+i+')'
-              });
-            })
-            .on("Xmouseleave", function(){
-              d3.selectAll('.node')
-              .transition()
-              .duration(350)
-              .style('opacity',1);
-
-              d3.select(this).selectAll('circle')
-              .transition()
-              .duration(350)
-              .style('opacity',1)
-              .attr('transform', function(d,i){
-                i = i*step_increment
-                return 'translate(0,'+i+')'
-              });
-            });
+            // text_nodes
+            // .on("mouseenter", function(){
+            //   d3.select(this).selectAll('circle')
+            //     .transition()
+            //       .duration(350)
+            //       .attr('transform', function(d,i){
+            //         i = i*step_increment*1.5
+            //         return 'translate(0,'+i+')'
+            //       });
+            // })
+            // .on("mouseleave", function(){
+            //   d3.select(this).selectAll('circle')
+            //     .transition()
+            //       .duration(350)
+            //       .attr('transform', function(d,i){
+            //         i = i*step_increment
+            //         return 'translate(0,'+i+')'
+            //       });
+            // });
 
             let label = text_nodes
             .selectAll('.label')
-            .data(function(d){ return [d] })
-            .enter()
-            .append('text')
-            .attr('class','label')
-            .attr('fill','black')
-            .attr('font-size','5rem')
-            .attr('text-anchor','middle')
-            .attr('transform',function(d){
-              return 'translate(0,'+(d.steps.length+2)*step_increment+') scale(1,'+1/0.5773+')'
+            .data(function(d){
+              let one_rem = parseInt(d3.select('html').style('font-size'));
+              let collections = d.attributes.collections.reverse().map( (e,i) => {
+                let obj = {
+                  'id': e,
+                  'index': i,
+                  'length': d.attributes.collections.length,
+                  'rem': one_rem
+                }
+                return d.attributes.collections ? obj : {}
+              });
+              d.attributes.collectionsTooltip = collections;
+              return [d]
             })
-            .text(function(d){
-              return d.attributes.title//+'-'+d.attributes.first_publication;
+            .enter()
+            .append('g')
+            .attr('class','label')
+            .attr('transform',function(d){
+              // transform takes place in the zooming function, to handle labels size on zoom events
             });
+
+            // Append title
+            let labelTitle = label.append('text')
+              .attr('text-anchor','middle')
+              .attr('font-family', 'Crimson Text')
+              .attr('font-size', '1.1rem')
+              .text(function(d){
+                return d.attributes.title;
+              });
+
+            // Append collections years
+            let labelCollectionsYears = label
+              .append('text')
+                .attr('text-anchor', 'middle')
+                .attr('x', function(d){ return 0; })
+                .attr('y', parseInt(d3.select('html').style('font-size')) + 1.5 )
+                .attr('font-size', '0.8rem')
+              .selectAll('.labels-collections-years').data(function(d){ return d.attributes.collectionsTooltip }).enter()
+              .append('tspan')
+                .attr('dx', function(d,i){ return i!=0 ? d.rem/2 : 0 })
+                .html(function(d,i){
+                  return '<tspan fill="'+ col_collections(d.id) +'">'+numerini(i)+'</tspan> '+getCollections().filter( e => d.id == e.id )[0].year;
+                })
+
+            d3.selectAll('.label text').each(function(d, i) {
+          		clone_d3_selection(d3.select(this), '')
+          		d3.select(this).classed('white-shadow', true);
+          	})
+
+
+
 
             //add zoom capabilities
             var zoom_handler = d3.zoom()
@@ -625,7 +653,8 @@ d3
 
             zoom_handler(svg);
 
-            let scale = (w / (boundaries.right - boundaries.left))*0.9;
+            let usedSpace = 0.65;
+            let scale = ((w*usedSpace) / (boundaries.right - boundaries.left))*0.9;
 
             centerTerritory(scale, 0, 0, 0);
 
@@ -633,10 +662,13 @@ d3
             function zoom_actions(){
               g.attr("transform", d3.event.transform);
               // metaball_group.attr("transform", d3.event.transform);
-              // console.log(d3.event.transform);
-              label.style("font-size", () => {
-                return ( 0.85 / d3.event.transform.k ) + "rem";
-              })
+              label
+                .attr('transform',function(d){
+                  let one_rem = parseInt(d3.select('html').style('font-size'));
+                  let k = one_rem * (1 / (d3.event.transform.k / scale));
+                  let dy = (d.steps.length+11)*step_increment;
+                  return 'translate(0,'+dy+') scale(' + k + ','+ k*1/0.5773 + ')';
+                });
             }
 
             // Handle interface interactions
@@ -645,7 +677,7 @@ d3
               .duration(duration)
               .call( zoom_handler.transform, d3.zoomIdentity
                 .translate((w/2) + x, (h/2) + y)
-                .scale(scale*0.65)
+                .scale(scale)
               );
             }
 
@@ -1175,177 +1207,198 @@ d3
               return y
             }
 
+            function clone_d3_selection(selection, i) {
+            	// Assume the selection contains only one object, or just work
+            	// on the first object. 'i' is an index to add to the id of the
+            	// newly cloned DOM element.
+            	var attr = selection.node().attributes;
+            	var innerElements = selection.html()
+            	var length = attr.length;
+            	var node_name = selection.property("nodeName");
+            	var parent = d3.select(selection.node().parentNode);
+            	var cloned = parent.append(node_name)
+            		.attr("id", selection.attr("id") + i)
+            		.html(innerElements)
+
+            	for(var j = 0; j < length; j++) { // Iterate on attributes and skip on "id"
+            		if(attr[j].nodeName == "id") continue;
+            		cloned.attr(attr[j].name, attr[j].value);
+            	}
+            	return cloned;
+            }
+
             function getCollections() {
               let collections = [
                 {
-                  'n': 'Ultimo viene il corvo',
-                  'id': 'V002',
-                  'c': '#e9d05d'
-                },
-                {
-                  'n': 'L\'entrata in guerra',
-                  'id': 'V004',
-                  'c': '#12b259'
-                },
-                {
-                  'n': 'I racconti',
-                  'id': 'V006',
-                  'c': '#476a70'
-                },
-                {
-                  'n': 'Marcovaldo',
-                  'id': 'V011',
-                  'c': '#9f73b2'
-                },
-                {
-                  'n': 'Le cosmicomiche',
-                  'id': 'V013',
-                  'c': '#e89fc0'
-                },
-                {
-                  'n': 'Ti con zero',
-                  'id': 'V014',
-                  'c': '#581745'
-                },
-                {
-                  'n': 'La memoria del mondo',
-                  'id': 'V015',
-                  'c': '#00b1b3'
-                },
-                {
-                  'n': 'Gli amori difficili',
-                  'id': 'V017',
-                  'c': '#f0be96'
-                },
-                {
-                  'n': 'Palomar',
-                  'id': 'V022',
-                  'c': '#94d2ba'
-                },
-                {
-                  'n': 'Cosmicomiche vecchie e nuove',
-                  'id': 'V023',
-                  'c': '#f1634b'
-                }
-              ]
-
-
-              // with all the volumes
-              collections = [
-                {
                   'n': 'Il sentiero dei nidi di ragno',
                   'id': 'V001',
-                  'c': '#D6DBDF'
+                  'year': 1947,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'Ultimo viene il corvo',
                   'id': 'V002',
-                  'c': '#e9d05d'
+                  'year': 1949,
+                  'c': '#e9d05d',
+                  'has_metaball': true,
+                  'concavityTolerance': 1.1
                 },
                 {
                   'n': 'Il visconte dimezzato',
                   'id': 'V003',
-                  'c': '#D6DBDF'
+                  'year': 1952,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'L\'entrata in guerra',
                   'id': 'V004',
-                  'c': '#12b259'
+                  'year': 1954,
+                  'c': '#12b259',
+                  'has_metaball': true,
+                  'concavityTolerance': 1.1
                 },
                 {
                   'n': 'Il barone rampante',
                   'id': 'V005',
-                  'c': '#D6DBDF'
+                  'year': 1957,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'I racconti',
                   'id': 'V006',
-                  'c': '#476a70'
+                  'year': 1958,
+                  'c': '#476a70',
+                  'has_metaball': true,
+                  'concavityTolerance': 1.2
                 },
                 {
                   'n': 'La formica argentina',
                   'id': 'V007',
-                  'c': '#D6DBDF'
+                  'year': 1957,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'Il cavaliere inesistente',
                   'id': 'V008',
-                  'c': '#D6DBDF'
+                  'year': 1959,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'La giornata di uno scrutatore',
                   'id': 'V009',
-                  'c': '#D6DBDF'
+                  'year': 1963,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'La speculazione edilizia',
                   'id': 'V010',
-                  'c': '#D6DBDF'
+                  'year': 1963,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'Marcovaldo',
                   'id': 'V011',
-                  'c': '#9f73b2'
+                  'year': 1963,
+                  'c': '#9f73b2',
+                  'has_metaball': true,
+                  'concavityTolerance': 1.1
                 },
                 {
                   'n': 'La nuvola di smog e la formica argentina',
                   'id': 'V012',
-                  'c': '#D6DBDF'
+                  'year': 1965,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'Le cosmicomiche',
                   'id': 'V013',
-                  'c': '#e89fc0'
+                  'year': 1965,
+                  'c': '#e89fc0',
+                  'has_metaball': true,
+                  'concavityTolerance': 1.1
                 },
                 {
                   'n': 'Ti con zero',
                   'id': 'V014',
-                  'c': '#581745'
+                  'year': 1967,
+                  'c': '#581745',
+                  'has_metaball': true,
+                  'concavityTolerance': 1.2
                 },
                 {
                   'n': 'La memoria del mondo',
                   'id': 'V015',
-                  'c': '#00b1b3'
+                  'year': 1968,
+                  'c': '#00b1b3',
+                  'has_metaball': true,
+                  'concavityTolerance': 1.1
                 },
                 {
                   'n': 'Il castello dei destini incrociati',
                   'id': 'V016',
-                  'c': '#D6DBDF'
+                  'year': 1969,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'Gli amori difficili',
                   'id': 'V017',
-                  'c': '#f0be96'
+                  'year': 1970,
+                  'c': '#f0be96',
+                  'has_metaball': true,
+                  'concavityTolerance': 1.1
                 },
                 {
                   'n': 'Le città invisibili',
                   'id': 'V018',
-                  'c': '#D6DBDF'
+                  'year': 1972,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'Il castello dei destini incrociati (riedizione)',
                   'id': 'V019',
-                  'c': '#D6DBDF'
+                  'year': 1973,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'Eremita a Parigi',
                   'id': 'V020',
-                  'c': '#D6DBDF'
+                  'year': 1974,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'Se una notte d\'inverno un viaggiatore',
                   'id': 'V021',
-                  'c': '#D6DBDF'
+                  'year': 1979,
+                  'c': '#D6DBDF',
+                  'has_metaball': false
                 },
                 {
                   'n': 'Palomar',
                   'id': 'V022',
-                  'c': '#94d2ba'
+                  'year': 1983,
+                  'c': '#94d2ba',
+                  'has_metaball': true,
+                  'concavityTolerance': 1.1
                 },
                 {
                   'n': 'Cosmicomiche vecchie e nuove',
                   'id': 'V023',
-                  'c': '#f1634b'
+                  'year': 1984,
+                  'c': '#f1634b',
+                  'has_metaball': true,
+                  'concavityTolerance': 1.2
                 }
               ]
 
@@ -2092,7 +2145,7 @@ d3
                               function prepareTimeline(json_nodes, col_collections)
                               {
 
-                                let margin = { top: 10, right: 5, bottom: 30, left: 10 };
+                                let margin = { top: 10, right: 5, bottom: 10, left: 10 };
 
                                 data.timeline_width = d3.select('#timeline').node().getBoundingClientRect().width - margin.left - margin.right;
                                 data.timeline_height = d3.select('#timeline').node().getBoundingClientRect().height - margin.top - margin.bottom;
