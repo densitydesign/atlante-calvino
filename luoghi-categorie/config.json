@@ -9,17 +9,17 @@
   },
   "text": {
     "more": "",
-    "intro": "Dall\u0027alto al basso:\n- Nesuna ambientazione\n- Generici non terrestri\n- Nominati non terrestri\n- Inventati terrestri\n- Generici terrestri\n- Nominati terrestri",
+    "intro": "",
     "title": ""
   },
   "legend": {
     "edgeLabel": "Nella stessa opera",
     "colorLabel": "Prima publicazione",
-    "nodeLabel": "Place"
+    "nodeLabel": "Luogo"
   },
   "features": {
     "search": true,
-    "groupSelectorAttribute": "Categoria",
+    "groupSelectorAttribute": false,
     "hoverBehavior": "dim"
   },
   "informationPanel": {
@@ -43,7 +43,7 @@
       "maxEdgeSize": 0.5,
       "minEdgeSize": 0.2,
       "minNodeSize": 1,
-      "maxNodeSize": 1.5
+      "maxNodeSize": 7
     },
     "mouseProperties": {
       "maxRatio": 20,

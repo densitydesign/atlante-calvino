@@ -157,7 +157,7 @@ let xxx = collections
 
   let numerini = d3.scaleOrdinal()
     .domain([0,1,2,3,4,5,6,7,8,9])
-    .range(['❶','❷','❸','❹','❺','❻','❼','❽','❾','❿']);
+    .range(['➊','➋','➌','➍','➎','➏','➐','➑','➒','➓']);
 
   let w = window.innerWidth;
   let h = window.innerHeight - 6;
@@ -611,33 +611,41 @@ let xxx = collections
     .selectAll('.label')
     .data(function(d){
       let one_rem = parseInt(d3.select('html').style('font-size'));
-      let collections = d.attributes.collections.reverse().map( (e,i) => {
+      if (d.attributes.collections && d.attributes.collections.length) {
+        // console.log('handle collections')
+        let collections = d.attributes.collections.reverse().map( (e,i) => {
+          let obj = {
+            'id': e,
+            'index': i,
+            'length': d.attributes.collections.length,
+            'rem': one_rem
+          }
+          return obj;
+        });
+        d.attributes.collectionsTooltip = collections;
+      } else {
+        // console.log('handleNoCollections')
         let obj = {
-          'id': e,
-          'index': i,
-          'length': d.attributes.collections.length,
+          'first_publication': d.attributes.first_publication,
           'rem': one_rem
         }
-        return d.attributes.collections ? obj : {}
-      });
-      d.attributes.collectionsTooltip = collections;
+        d.attributes.collectionsTooltip = [obj];
+      }
       return [d]
     })
     .enter()
     .append('g')
       .attr('class','label')
-      .attr('transform',function(d){
-        // transform takes place in the zooming function, to handle labels size on zoom events
-      });
+      // .attr('transform',function(d){
+      //   // transform takes place in the zooming function, to handle labels size on zoom events
+      // });
 
     // Append title
     let labelTitle = label.append('text')
       .attr('text-anchor','middle')
       .attr('font-family', 'Crimson Text')
       .attr('font-size', '1.1rem')
-      .text(function(d){
-        return d.attributes.title;
-      });
+      .text(function(d){ return d.attributes.title; });
 
       // Append collections years
       let labelCollectionsYears = label.append('text')
@@ -649,7 +657,11 @@ let xxx = collections
         .append('tspan')
           .attr('dx', function(d,i){ return i!=0 ? d.rem/2 : 0 })
           .html(function(d,i){
-            return '<tspan fill="'+ col_collections(d.id) +'">'+numerini(i)+'</tspan> '+getCollections().filter( e => d.id == e.id )[0].year;
+            if (d.first_publication) {
+              return '&#9737; ' + d.first_publication;
+            } else {
+              return '<tspan fill="'+ col_collections(d.id) +'">'+numerini(i)+'</tspan> '+getCollections().filter( e => d.id == e.id )[0].year;
+            }
           })
 
       d3.selectAll('.label text').each(function(d, i) {
@@ -667,14 +679,7 @@ let xxx = collections
   let scale = ((w*usedSpace) / (boundaries.right - boundaries.left))*0.9;
 
   centerTerritory(scale, 0, 0, 0);
-/*
-  svg.transition()
-    .duration(0)
-    .call( zoom_handler.transform, d3.zoomIdentity
-      .translate(w/2,h/2*1.2)
-      .scale(0.08)
-    ); // updated for d3 v4
-*/
+
   //Zoom functions
   function zoom_actions(){
     g.attr("transform", d3.event.transform);
@@ -682,7 +687,7 @@ let xxx = collections
     label.attr('transform',function(d){
         let one_rem = parseInt(d3.select('html').style('font-size'));
         let k = one_rem * (1 / (d3.event.transform.k / scale));
-        let dy = (d.steps.length+11)*step_increment;
+        let dy = (d.steps.length+5)*step_increment;
         return 'translate(0,'+dy+') scale(' + k + ','+ k*1/0.5773 + ')';
       });
   }
