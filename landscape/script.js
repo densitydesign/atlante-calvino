@@ -1,6 +1,4 @@
-
 let data = {
-
   allowedCollections: "all", // all : all collections; undefined for texts with undefined collection; V002,V014 (no spaces) for setting some collection ids for filtering (you can also put undefined in this list)
   timeline_x: 0,
   timeline_y: 0,
@@ -156,6 +154,10 @@ let xxx = collections
     .domain(collections.map(function(d){return d.id}))
     .range(collections.map(function(d){return d.c}))
     .unknown('transparent');
+
+  let numerini = d3.scaleOrdinal()
+    .domain([0,1,2,3,4,5,6,7,8,9])
+    .range(['❶','❷','❸','❹','❺','❻','❼','❽','❾','❿']);
 
   let w = window.innerWidth;
   let h = window.innerHeight - 6;
@@ -585,53 +587,75 @@ let xxx = collections
 
 ///////////////////////////////////////////
 
-  text_nodes
-    .on("Xmouseenter", function(){
-      d3.selectAll('.node')
-        .transition()
-        .duration(350)
-        .style('opacity',.4)
-
-      d3.select(this)
-        .selectAll('circle')
-        .transition()
-        .duration(350)
-        .attr('transform', function(d,i){
-          i = i*step_increment*1.5
-          return 'translate(0,'+i+')'
-        });
-    })
-    .on("Xmouseleave", function(){
-      d3.selectAll('.node')
-        .transition()
-        .duration(350)
-        .style('opacity',1);
-
-      d3.select(this).selectAll('circle')
-        .transition()
-        .duration(350)
-        .style('opacity',1)
-        .attr('transform', function(d,i){
-          i = i*step_increment
-          return 'translate(0,'+i+')'
-        });
-    });
+// text_nodes
+// .on("mouseenter", function(){
+//   d3.select(this).selectAll('circle')
+//     .transition()
+//       .duration(350)
+//       .attr('transform', function(d,i){
+//         i = i*step_increment*1.5
+//         return 'translate(0,'+i+')'
+//       });
+// })
+// .on("mouseleave", function(){
+//   d3.select(this).selectAll('circle')
+//     .transition()
+//       .duration(350)
+//       .attr('transform', function(d,i){
+//         i = i*step_increment
+//         return 'translate(0,'+i+')'
+//       });
+// });
 
   let label = text_nodes
     .selectAll('.label')
-    .data(function(d){ return [d] })
-    .enter()
-      .append('text')
-      .attr('class','label')
-      .attr('fill','black')
-      .attr('font-size','5rem')
-      .attr('text-anchor','middle')
-      .attr('transform',function(d){
-        return 'translate(0,'+(d.steps.length+2)*step_increment+') scale(1,'+1/0.5773+')'
-      })
-      .text(function(d){
-        return d.attributes.title//+'-'+d.attributes.first_publication;
+    .data(function(d){
+      let one_rem = parseInt(d3.select('html').style('font-size'));
+      let collections = d.attributes.collections.reverse().map( (e,i) => {
+        let obj = {
+          'id': e,
+          'index': i,
+          'length': d.attributes.collections.length,
+          'rem': one_rem
+        }
+        return d.attributes.collections ? obj : {}
       });
+      d.attributes.collectionsTooltip = collections;
+      return [d]
+    })
+    .enter()
+    .append('g')
+      .attr('class','label')
+      .attr('transform',function(d){
+        // transform takes place in the zooming function, to handle labels size on zoom events
+      });
+
+    // Append title
+    let labelTitle = label.append('text')
+      .attr('text-anchor','middle')
+      .attr('font-family', 'Crimson Text')
+      .attr('font-size', '1.1rem')
+      .text(function(d){
+        return d.attributes.title;
+      });
+
+      // Append collections years
+      let labelCollectionsYears = label.append('text')
+          .attr('text-anchor', 'middle')
+          .attr('x', function(d){ return 0; })
+          .attr('y', parseInt(d3.select('html').style('font-size')) + 1.5 )
+          .attr('font-size', '0.8rem')
+        .selectAll('.labels-collections-years').data(function(d){ return d.attributes.collectionsTooltip }).enter()
+        .append('tspan')
+          .attr('dx', function(d,i){ return i!=0 ? d.rem/2 : 0 })
+          .html(function(d,i){
+            return '<tspan fill="'+ col_collections(d.id) +'">'+numerini(i)+'</tspan> '+getCollections().filter( e => d.id == e.id )[0].year;
+          })
+
+      d3.selectAll('.label text').each(function(d, i) {
+    		clone_d3_selection(d3.select(this), '')
+    		d3.select(this).classed('white-shadow', true);
+    	})
 
   //add zoom capabilities
   var zoom_handler = d3.zoom()
@@ -639,7 +663,8 @@ let xxx = collections
 
   zoom_handler(svg);
 
-  let scale = (w / (boundaries.right - boundaries.left))*0.9;
+  let usedSpace = 0.65;
+  let scale = ((w*usedSpace) / (boundaries.right - boundaries.left))*0.9;
 
   centerTerritory(scale, 0, 0, 0);
 /*
@@ -654,10 +679,12 @@ let xxx = collections
   function zoom_actions(){
     g.attr("transform", d3.event.transform);
     metaball_group.attr("transform", d3.event.transform);
-    // console.log(d3.event.transform);
-    label.style("font-size", () => {
-      return ( 0.85 / d3.event.transform.k ) + "rem";
-    })
+    label.attr('transform',function(d){
+        let one_rem = parseInt(d3.select('html').style('font-size'));
+        let k = one_rem * (1 / (d3.event.transform.k / scale));
+        let dy = (d.steps.length+11)*step_increment;
+        return 'translate(0,'+dy+') scale(' + k + ','+ k*1/0.5773 + ')';
+      });
   }
 
   // Handle interface interactions
@@ -666,7 +693,7 @@ let xxx = collections
       .duration(duration)
       .call( zoom_handler.transform, d3.zoomIdentity
         .translate((w/2) + x, (h/2) + y)
-        .scale(scale*0.65)
+        .scale(scale)
       );
   }
 
@@ -1228,160 +1255,180 @@ function interpolateSpline(x) {
     return y
   }
 
-function getCollections() {
-
-  // with all the volumes
-  let collections = [
-    {
-      'n': 'Il sentiero dei nidi di ragno',
-      'id': 'V001',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Ultimo viene il corvo',
-      'id': 'V002',
-      'c': '#e9d05d',
-      'has_metaball': true,
-      'concavityTolerance': 1.1
-    },
-    {
-      'n': 'Il visconte dimezzato',
-      'id': 'V003',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'L\'entrata in guerra',
-      'id': 'V004',
-      'c': '#12b259',
-      'has_metaball': true,
-      'concavityTolerance': 1.1
-    },
-    {
-      'n': 'Il barone rampante',
-      'id': 'V005',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'I racconti',
-      'id': 'V006',
-      'c': '#476a70',
-      'has_metaball': true,
-      'concavityTolerance': 1.2
-    },
-    {
-      'n': 'La formica argentina',
-      'id': 'V007',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Il cavaliere inesistente',
-      'id': 'V008',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'La giornata di uno scrutatore',
-      'id': 'V009',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'La speculazione edilizia',
-      'id': 'V010',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Marcovaldo',
-      'id': 'V011',
-      'c': '#9f73b2',
-      'has_metaball': true,
-      'concavityTolerance': 1.1
-    },
-    {
-      'n': 'La nuvola di smog e la formica argentina',
-      'id': 'V012',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Le cosmicomiche',
-      'id': 'V013',
-      'c': '#e89fc0',
-      'has_metaball': true,
-      'concavityTolerance': 1.1
-    },
-    {
-      'n': 'Ti con zero',
-      'id': 'V014',
-      'c': '#581745',
-      'has_metaball': true,
-      'concavityTolerance': 1.2
-    },
-    {
-      'n': 'La memoria del mondo',
-      'id': 'V015',
-      'c': '#00b1b3',
-      'has_metaball': true,
-      'concavityTolerance': 1.1
-    },
-    {
-      'n': 'Il castello dei destini incrociati',
-      'id': 'V016',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Gli amori difficili',
-      'id': 'V017',
-      'c': '#f0be96',
-      'has_metaball': true,
-      'concavityTolerance': 1.1
-    },
-    {
-      'n': 'Le città invisibili',
-      'id': 'V018',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Il castello dei destini incrociati (riedizione)',
-      'id': 'V019',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Eremita a Parigi',
-      'id': 'V020',
-      'c': '#D6DBDF',
-      'has_metaball': false
-    },
-    {
-      'n': 'Se una notte d\'inverno un viaggiatore',
-      'id': 'V021',
-      'c': '#D6DBDF',
-      'has_metaball': false,
-    },
-    {
-      'n': 'Palomar',
-      'id': 'V022',
-      'c': '#94d2ba',
-      'has_metaball': true,
-      'concavityTolerance': 1.1
-    },
-    {
-      'n': 'Cosmicomiche vecchie e nuove',
-      'id': 'V023',
-      'c': '#f1634b',
-      'has_metaball': true,
-      'concavityTolerance': 1.2
-    }
-  ]
-
+  function getCollections() {
+    let collections = [
+      {
+        'n': 'Il sentiero dei nidi di ragno',
+        'id': 'V001',
+        'year': 1947,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'Ultimo viene il corvo',
+        'id': 'V002',
+        'year': 1949,
+        'c': '#e9d05d',
+        'has_metaball': true,
+        'concavityTolerance': 1.1
+      },
+      {
+        'n': 'Il visconte dimezzato',
+        'id': 'V003',
+        'year': 1952,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'L\'entrata in guerra',
+        'id': 'V004',
+        'year': 1954,
+        'c': '#12b259',
+        'has_metaball': true,
+        'concavityTolerance': 1.1
+      },
+      {
+        'n': 'Il barone rampante',
+        'id': 'V005',
+        'year': 1957,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'I racconti',
+        'id': 'V006',
+        'year': 1958,
+        'c': '#476a70',
+        'has_metaball': true,
+        'concavityTolerance': 1.2
+      },
+      {
+        'n': 'La formica argentina',
+        'id': 'V007',
+        'year': 1957,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'Il cavaliere inesistente',
+        'id': 'V008',
+        'year': 1959,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'La giornata di uno scrutatore',
+        'id': 'V009',
+        'year': 1963,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'La speculazione edilizia',
+        'id': 'V010',
+        'year': 1963,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'Marcovaldo',
+        'id': 'V011',
+        'year': 1963,
+        'c': '#9f73b2',
+        'has_metaball': true,
+        'concavityTolerance': 1.1
+      },
+      {
+        'n': 'La nuvola di smog e la formica argentina',
+        'id': 'V012',
+        'year': 1965,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'Le cosmicomiche',
+        'id': 'V013',
+        'year': 1965,
+        'c': '#e89fc0',
+        'has_metaball': true,
+        'concavityTolerance': 1.1
+      },
+      {
+        'n': 'Ti con zero',
+        'id': 'V014',
+        'year': 1967,
+        'c': '#581745',
+        'has_metaball': true,
+        'concavityTolerance': 1.2
+      },
+      {
+        'n': 'La memoria del mondo',
+        'id': 'V015',
+        'year': 1968,
+        'c': '#00b1b3',
+        'has_metaball': true,
+        'concavityTolerance': 1.1
+      },
+      {
+        'n': 'Il castello dei destini incrociati',
+        'id': 'V016',
+        'year': 1969,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'Gli amori difficili',
+        'id': 'V017',
+        'year': 1970,
+        'c': '#f0be96',
+        'has_metaball': true,
+        'concavityTolerance': 1.1
+      },
+      {
+        'n': 'Le città invisibili',
+        'id': 'V018',
+        'year': 1972,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'Il castello dei destini incrociati (riedizione)',
+        'id': 'V019',
+        'year': 1973,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'Eremita a Parigi',
+        'id': 'V020',
+        'year': 1974,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'Se una notte d\'inverno un viaggiatore',
+        'id': 'V021',
+        'year': 1979,
+        'c': '#D6DBDF',
+        'has_metaball': false
+      },
+      {
+        'n': 'Palomar',
+        'id': 'V022',
+        'year': 1983,
+        'c': '#94d2ba',
+        'has_metaball': true,
+        'concavityTolerance': 1.1
+      },
+      {
+        'n': 'Cosmicomiche vecchie e nuove',
+        'id': 'V023',
+        'year': 1984,
+        'c': '#f1634b',
+        'has_metaball': true,
+        'concavityTolerance': 1.2
+      }
+    ]
   return collections
 }
 
@@ -1468,15 +1515,15 @@ function prepareMetaballData(json_nodes, collection, lineColor)
   renderMetaballLogically(collection, ordered_boundary_circles, nCirclesToBeDrawn, lineColor);
 }
 
-function minIndex(values, valueof) 
+function minIndex(values, valueof)
 {
   let min;
   let minIndex = -1;
   let index = -1;
 
-  if(valueof === undefined) 
+  if(valueof === undefined)
   {
-    for(const value of values) 
+    for(const value of values)
     {
       ++index;
       if(value != null
@@ -1484,8 +1531,8 @@ function minIndex(values, valueof)
         min = value, minIndex = index;
       }
     }
-  } 
-  else 
+  }
+  else
   {
     for(let value of values) {
       if((value = valueof(value, ++index, values)) != null
@@ -1520,13 +1567,13 @@ function addWantedCoves(vertex_array, boundary_points, concavityTolerance)
     let added_new_internal_points;
 
     let points_after_p1 = [];
-    let points_before_p2 = [];    
+    let points_before_p2 = [];
 
     do
     {
       added_new_internal_points = false;
       let candidate_cove_points = [];
-      let boundary_dist = Math.sqrt(dsq(p1, p2));      
+      let boundary_dist = Math.sqrt(dsq(p1, p2));
 
       for(let i = 0; i < internal_points.length; ++i)
       {
@@ -1549,7 +1596,7 @@ function addWantedCoves(vertex_array, boundary_points, concavityTolerance)
         let nearest_point_to_p1_idx = minIndex(distances_from_p1, d => d.dist);
         let nearest_point_to_p1 = distances_from_p1[nearest_point_to_p1_idx];
 
-        let distances_from_p2 = candidate_cove_points.map(function(p) { return { p: p, dist: Math.sqrt(dsq(p2, p)) }; });    
+        let distances_from_p2 = candidate_cove_points.map(function(p) { return { p: p, dist: Math.sqrt(dsq(p2, p)) }; });
         let nearest_point_to_p2_idx = minIndex(distances_from_p2, d => d.dist);
         let nearest_point_to_p2 = distances_from_p2[nearest_point_to_p2_idx];
 
@@ -1891,8 +1938,8 @@ function metaball(
   handleSize = 2.4,
   v = 0.5)
 {
-console.log("metaball()");
-console.log(predecessorCircle.id + " -> " + centralCircle.id + " -> " + successorCircle.id);
+// console.log("metaball()");
+// console.log(predecessorCircle.id + " -> " + centralCircle.id + " -> " + successorCircle.id);
   const predecessorCentralCenterDistance = dist(predecessorCircle.p, centralCircle.p);
 
   const maxSpread = Math.cos((predecessorCircle.r - centralCircle.r) / predecessorCentralCenterDistance);
@@ -1919,7 +1966,7 @@ const angleBetweenCentralPredecessorCenters = angle(centralCircle.p, predecessor
 
 const externalAngle = angleBetweenCentralPredecessorCenters - angleBetweenCentralSuccessorCenters;
 const externalAngleIsConcave = Math.abs(externalAngle) < Math.PI;
-console.log("externalAngleIsConcave : " + externalAngleIsConcave);
+// console.log("externalAngleIsConcave : " + externalAngleIsConcave);
 
 let svgContainer = d3.select("svg");
 
@@ -1944,9 +1991,9 @@ let svgContainer = d3.select("svg");
   const h3 = getCirclePoint(p3, p3.angle - HALF_PI, centralCircle.r);
 
   const p3_p4_angle = normalizeAngle(p4.angle - p3.angle);
-const check_p3_p4_angle = p3_p4_angle > Math.PI;  
-console.log("p3_p4_angle : " + p3_p4_angle);
-console.log(" > pi : " + check_p3_p4_angle);
+  const check_p3_p4_angle = p3_p4_angle > Math.PI;
+  // console.log("p3_p4_angle : " + p3_p4_angle);
+  // console.log(" > pi : " + check_p3_p4_angle);
   return metaballArc(p1, p3, p4, h1, h3, p3_p4_angle > Math.PI, p3_p4_angle > (Math.PI * 1.5), centralCircle.r);
 }
 
@@ -2201,7 +2248,7 @@ function borderOrientationIsCounterclockwise(points)
 function prepareTimeline(json_nodes, col_collections)
 {
 
-  let margin = { top: 10, right: 5, bottom: 30, left: 10 };
+  let margin = { top: 10, right: 5, bottom: 10, left: 10 };
 
   data.timeline_width = d3.select('#timeline').node().getBoundingClientRect().width - margin.left - margin.right;
   data.timeline_height = d3.select('#timeline').node().getBoundingClientRect().height - margin.top - margin.bottom;
@@ -2353,3 +2400,22 @@ function applyBeeSwarmFilter()
     });
 }
 
+function clone_d3_selection(selection, i) {
+	// Assume the selection contains only one object, or just work
+	// on the first object. 'i' is an index to add to the id of the
+	// newly cloned DOM element.
+	var attr = selection.node().attributes;
+	var innerElements = selection.html()
+	var length = attr.length;
+	var node_name = selection.property("nodeName");
+	var parent = d3.select(selection.node().parentNode);
+	var cloned = parent.append(node_name)
+		.attr("id", selection.attr("id") + i)
+		.html(innerElements)
+
+	for(var j = 0; j < length; j++) { // Iterate on attributes and skip on "id"
+		if(attr[j].nodeName == "id") continue;
+		cloned.attr(attr[j].name, attr[j].value);
+	}
+	return cloned;
+}
