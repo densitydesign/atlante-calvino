@@ -157,7 +157,7 @@ let xxx = collections
 
   let numerini = d3.scaleOrdinal()
     .domain([0,1,2,3,4,5,6,7,8,9])
-    .range(['❶','❷','❸','❹','❺','❻','❼','❽','❾','❿']);
+    .range(['➊','➋','➌','➍','➎','➏','➐','➑','➒','➓']);
 
   let w = window.innerWidth;
   let h = window.innerHeight - 6;
