@@ -20,6 +20,10 @@ p.text-bigger {
   font-size: 1.2rem;
 }
 
+.text-underlined {
+  text-decoration: underline;
+}
+
 #interface {
   height: 100%;
   /* top: 6px; */
@@ -120,6 +124,18 @@ svg:active {
   transition: opacity .5s;
   pointer-events: none;
   font-family: "HK Grotesk";
+  letter-spacing: 0.03rem;
+}
+
+.label .white-shadow {
+  stroke: white;
+  stroke-width: 0.3rem;
+  fill: white;
+  stroke-linejoin: round;
+}
+
+.node:hover .label, .node .label.visible {
+  opacity: 1;
 }
 
 .node circle {
@@ -128,9 +144,7 @@ svg:active {
 .node:hover circle {
   /* fill:white; */
 }
-.node:hover .label, .node .label.visible {
-  opacity: 1;
-}
+
 .g-circles {
 
 }
@@ -283,6 +297,7 @@ svg:active {
   opacity: 0;
   padding: 1rem 2rem 3rem 2rem;;
   display: flex;
+  justify-content: space-between;
 }
 
 #legend-container .legend-block {
@@ -294,6 +309,13 @@ svg:active {
   min-width: 40vw;
   overflow-y: scroll;
   scroll-behavior: smooth;
+}
+
+.legend-block h4 {
+  border-bottom: 1px solid rgba(0,0,0,.1);
+  text-align: center;
+  margin-bottom: 2.3rem;
+  padding-bottom: 0.2rem;
 }
 
 .legend-block img {
@@ -325,6 +347,7 @@ svg:active {
   padding: 1rem 2rem;
   transition: right 0.35s ease;
   /* pointer-events: none; */
+  max-width: 37rem;
 }
 
 .scrollitelling-box > * {
@@ -339,6 +362,13 @@ svg:active {
   /* background-color: pink; */
 }
 
+.scrollitelling .img-box {
+  background-color: white;
+  box-shadow: 0 0 5px 5px white;
+}
+
+
+
 #skip-tutorial{
   position: sticky;
   top: 0;
@@ -351,10 +381,10 @@ svg:active {
 
 .st-box {
   background-color: white;
-  border: 2px solid var(--calvino-red);
+  border: 1px solid var(--calvino-red);
   border-radius: 3px;
   padding: 1.5rem;
-  box-shadow: 0px 1px 6px var(--calvino-red);
+  box-shadow: 0px 1px 3px var(--calvino-red);
   margin: 1rem 0;
   position: relative;
 }
@@ -364,7 +394,7 @@ svg:active {
 }
 
 .st-box:before {
-  box-shadow: 0px 1px 6px var(--calvino-red) inset;
+  box-shadow: 0px 1px 3px var(--calvino-red) inset;
   content: "";
   width: 100%;
   height: 20px;
@@ -373,4 +403,18 @@ svg:active {
   left: 0;
   top: 0;
   height: 100%;
+}
+
+/* On touch devices */
+@media (pointer: coarse) {
+  .only-pointer-fine {
+    display: none;
+  }
+}
+
+/* On desktop devices with mouse or trackpad */
+@media (pointer: fine) {
+  .only-pointer-coarse {
+    display: none;
+  }
 }
