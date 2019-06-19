@@ -1455,12 +1455,12 @@ function prepareMetaballData(json_nodes, collection, lineColor)
       return d.first_elem && d.collections.includes(collection);
   });
 
-  let metaballLineBaseSeparation = 1.3;
-  let metaballLineStepSeparation = 0.30;
+  let metaballLineBaseSeparation = 30;
+  let metaballLineStepSeparation = 30;
 
   let hillBase_circles = hillBases.map(hillBase => ({
     p: { x: hillBase.x, y: hillBase.y },
-    r: hillBase.r * (metaballLineBaseSeparation + metaballLineStepSeparation * (hillBase.collections.length - 1 - hillBase.collections.indexOf(collection))),
+    r: hillBase.r + metaballLineBaseSeparation + metaballLineStepSeparation * (hillBase.collections.length - 1 - hillBase.collections.indexOf(collection)),
     color: "blue",
     step: hillBase.step,
     id: hillBase.id }));
