@@ -124,12 +124,12 @@ svg:active {
   transition: opacity .5s;
   pointer-events: none;
   font-family: "HK Grotesk";
-  letter-spacing: 0.03rem;
+  letter-spacing: 0.02rem;
 }
 
 .label .white-shadow {
   stroke: white;
-  stroke-width: 0.3rem;
+  stroke-width: 0.4rem;
   fill: white;
   stroke-linejoin: round;
 }
