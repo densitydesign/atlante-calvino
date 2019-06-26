@@ -645,7 +645,13 @@ let xxx = collections
       .attr('text-anchor','middle')
       .attr('font-family', 'Crimson Text')
       .attr('font-size', '1.1rem')
-      .text(function(d){ return d.attributes.title; });
+      .text(function(d){
+        if (d.attributes.type == 'romanzo' || d.attributes.type == 'ibrido') {
+          return d.attributes.title;
+        } else {
+          return d.attributes.title + ', ' + d.attributes.first_publication;
+        }
+      });
 
       // Append collections years
       let labelCollectionsYears = label.append('text')
@@ -658,7 +664,9 @@ let xxx = collections
           .attr('dx', function(d,i){ return i!=0 ? d.rem/2 : 0 })
           .html(function(d,i){
             if (d.first_publication) {
-              return '&#9737; ' + d.first_publication;
+              return;
+              // remove first publication in the second row for short stories
+              // return '&#9737; ' + d.first_publication;
             } else {
               return '<tspan fill="'+ col_collections(d.id) +'">'+numerini(i)+'</tspan> '+getCollections().filter( e => d.id == e.id )[0].year;
             }
@@ -1266,7 +1274,7 @@ function interpolateSpline(x) {
         'n': 'Il sentiero dei nidi di ragno',
         'id': 'V001',
         'year': 1947,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
@@ -1281,7 +1289,7 @@ function interpolateSpline(x) {
         'n': 'Il visconte dimezzato',
         'id': 'V003',
         'year': 1952,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
@@ -1296,7 +1304,7 @@ function interpolateSpline(x) {
         'n': 'Il barone rampante',
         'id': 'V005',
         'year': 1957,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
@@ -1311,28 +1319,28 @@ function interpolateSpline(x) {
         'n': 'La formica argentina',
         'id': 'V007',
         'year': 1957,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
         'n': 'Il cavaliere inesistente',
         'id': 'V008',
         'year': 1959,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
         'n': 'La giornata di uno scrutatore',
         'id': 'V009',
         'year': 1963,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
         'n': 'La speculazione edilizia',
         'id': 'V010',
         'year': 1963,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
@@ -1347,7 +1355,7 @@ function interpolateSpline(x) {
         'n': 'La nuvola di smog e la formica argentina',
         'id': 'V012',
         'year': 1965,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
@@ -1378,7 +1386,7 @@ function interpolateSpline(x) {
         'n': 'Il castello dei destini incrociati',
         'id': 'V016',
         'year': 1969,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
@@ -1393,28 +1401,28 @@ function interpolateSpline(x) {
         'n': 'Le città invisibili',
         'id': 'V018',
         'year': 1972,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
         'n': 'Il castello dei destini incrociati (riedizione)',
         'id': 'V019',
         'year': 1973,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
         'n': 'Eremita a Parigi',
         'id': 'V020',
         'year': 1974,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
         'n': 'Se una notte d\'inverno un viaggiatore',
         'id': 'V021',
         'year': 1979,
-        'c': '#D6DBDF',
+        'c': '#AEB6BF',
         'has_metaball': false
       },
       {
