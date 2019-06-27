@@ -280,6 +280,8 @@ let xxx = collections
     })
     .attr('r',function(d){ return d.r })
     .attr('first_elem',function(d){ return d.first_elem })
+    .attr('last_elem', d => d.last_elem)
+    .attr('n_steps', d => d.n_steps)
     .attr("class", "hill" )
     .style('fill-opacity',1e-16)
     .style('stroke-opacity',1e-16)
@@ -550,38 +552,35 @@ let xxx = collections
 ///////////////////////////////////////////
 
   steps
-    .filter(function(d) { return d.first_elem } )
+    .filter(function(d) { return d.last_elem } )
     .append("svg:path")
     .attr("fill", "blue")
     .attr("class", "dubitativePhenomena")
     .attr("d", drawDubitativePhenomenaArc1)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
   steps
-    .filter(function(d) { return d.first_elem } )
+    .filter(function(d) { return d.last_elem } )
     .append("svg:path")
     .attr("fill", "red")
     .attr("class", "dubitativePhenomena")
     .attr("d", drawDubitativePhenomenaArc2)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
-    })
+      return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
+   })
     .style('fill-opacity',0);
 
   steps
-    .filter(function(d) { return d.first_elem } )
+    .filter(function(d) { return d.last_elem } )
     .append("svg:path")
     .attr("fill", "white")
     .attr("class", "dubitativePhenomena")
     .attr("d", drawDubitativePhenomenaArc3)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
@@ -814,6 +813,11 @@ let xxx = collections
     .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
     .range(['#FFDDDD', 'red']);
 
+  data.dubitative_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
+    .range(['#FFDDFF', 'violet']);
+
   d3
     .select('body')
     .on("keyup",
@@ -959,6 +963,18 @@ console.log(drawMode);
 
             case 4 : // dubitative phenomena
 
+              d3.selectAll(".hill")
+                .filter(d => d.dubitative_ratio)
+                .style('fill', d => data.dubitative_color_scale(d.dubitative_ratio));
+
+              text_nodes
+                .selectAll('.hill')
+                .filter(d => d.dubitative_ratio)
+                .transition()
+                .duration(450)
+                .style('fill-opacity',1)
+                .style('stroke-opacity',1);            
+
               text_nodes
                 .selectAll('.places')
                 .style('fill-opacity',0)
@@ -968,14 +984,14 @@ console.log(drawMode);
                 .selectAll('.dubitativePhenomena')
                 .style('fill-opacity',1)
                 .style('stroke-opacity',1);
-
+/*
               text_nodes
                 .selectAll("circle:not(.dubitativePhenomena)")
                 .transition()
                 .duration(450)
                 .style('fill-opacity',0)
                 .style('stroke-opacity',0);
-
+*/
               text_nodes
                 .selectAll('.hill')
                 .filter(d => d.first_elem)
@@ -1173,6 +1189,8 @@ function flatten_items_steps(nodes)
 
         collections: node.attributes.collections,
         first_elem: step.first_elem,
+        last_elem: step.last_elem,
+        n_steps: step.n_steps,
         first_publication: step.first_publication,
         generico_non_terrestre: step.generico_non_terrestre,
         generico_terrestre: step.generico_terrestre,
@@ -1248,8 +1266,10 @@ function create_item_steps(d)
     // assign to each step a collection
     let pos_1 = i/d.steps.length;
     let pos_2 = pos_1 * d.attributes.collections.length;
-    let collection_here = d.attributes.collections[Math.floor(pos_2)]
-    let first_elem = (i == (d.steps.length-1))
+    let collection_here = d.attributes.collections[Math.floor(pos_2)];
+    let first_elem = (i == (d.steps.length-1));
+    let last_elem = (i == 0);
+    let n_steps = d.steps.length;
 
     let csv_item = data.x_csv2[d.id];
 
@@ -1259,6 +1279,8 @@ function create_item_steps(d)
       'first_publication': d.attributes.first_publication,
       'id': d.id,
       'first_elem': first_elem,
+      'last_elem': last_elem,
+      'n_steps': n_steps,
       'generico_non_terrestre': csv_item == undefined ? 0 : csv_item.generico_non_terrestre,
       'generico_terrestre':  csv_item == undefined ? 0 : csv_item.generico_terrestre,
       'inventato':  csv_item == undefined ? 0 : csv_item.inventato,
