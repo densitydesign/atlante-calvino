@@ -552,35 +552,35 @@ let xxx = collections
 ///////////////////////////////////////////
 
   steps
-    .filter(function(d) { return d.last_elem } )
+    .filter(function(d) { return d.first_elem } )
     .append("svg:path")
     .attr("fill", "blue")
     .attr("class", "dubitativePhenomena")
     .attr("d", drawDubitativePhenomenaArc1)
     .attr('transform', function(d,i){
-      return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
   steps
-    .filter(function(d) { return d.last_elem } )
+    .filter(function(d) { return d.first_elem } )
     .append("svg:path")
     .attr("fill", "red")
     .attr("class", "dubitativePhenomena")
     .attr("d", drawDubitativePhenomenaArc2)
     .attr('transform', function(d,i){
-      return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
    })
     .style('fill-opacity',0);
 
   steps
-    .filter(function(d) { return d.last_elem } )
+    .filter(function(d) { return d.first_elem } )
     .append("svg:path")
     .attr("fill", "white")
     .attr("class", "dubitativePhenomena")
     .attr("d", drawDubitativePhenomenaArc3)
     .attr('transform', function(d,i){
-      return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
@@ -992,6 +992,7 @@ console.log(drawMode);
                 .style('fill-opacity',0)
                 .style('stroke-opacity',0);
 */
+/*
               text_nodes
                 .selectAll('.hill')
                 .filter(d => d.first_elem)
@@ -1000,7 +1001,7 @@ console.log(drawMode);
                 .style('fill-opacity', d => sample(d.norma_pct_caratteri_nebbia_cancellazione, 0, 1, 10))
                 .style('stroke-opacity',0)
                 .style('fill', '#9900FF');
-
+*/
               break;
           }
         }
