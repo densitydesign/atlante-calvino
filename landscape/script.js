@@ -53,7 +53,7 @@ Array.prototype.includesArray = function(array)
 Object.defineProperty(Array.prototype, "includesArray", {enumerable: false});
 
 d3
-  .csv("donuts_data.csv")
+  .csv("texts_data.csv")
   .then(
     function(csv)
     {
@@ -804,6 +804,16 @@ let xxx = collections
         data.keyboardCommandsOn = true;
       });
 
+  data.nebbia_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+    .range(['#DDDDFF', 'blue']);
+
+  data.cancellazione_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+    .range(['#FFDDDD', 'red']);
+
   d3
     .select('body')
     .on("keyup",
@@ -831,19 +841,26 @@ let xxx = collections
             .duration(350)
             .style('fill', d => colour(d.first_publication));
         } else if (eventKey == "n") {
-          text_nodes.style('display','none')
-          text_nodes.filter(function(d){
-            console.log(d)
-            return d.attributes.nebbia
-          })
-          .style('display','block')
+          text_nodes.style('display','none');
+
+          text_nodes
+            .filter(d => d.attributes.nebbia)
+            .style('display', 'block');
+
+          d3.selectAll(".hill")
+            .filter(d => d.nebbia_words_ratio)
+            .style('fill', d => data.nebbia_color_scale(d.nebbia_words_ratio));
+
         } else if (eventKey == "m") {
-          text_nodes.style('display','none')
-          text_nodes.filter(function(d){
-            console.log(d)
-            return d.attributes.cancellazione
-          })
-          .style('display','block')
+          text_nodes.style('display','none');
+
+          text_nodes
+            .filter(d => d.attributes.cancellazione)
+            .style('display', 'block');
+            
+          d3.selectAll(".hill")
+            .filter(d => d.cancellazione_words_ratio)
+            .style('fill', d => data.cancellazione_color_scale(d.cancellazione_words_ratio));
         } else if (eventKey == "p") {
 
           drawMode = incrementDrawMode(drawMode);
@@ -1016,6 +1033,11 @@ console.log(drawMode);
         }
         else if (eventKey == " ") {
           text_nodes.style('display','block')
+
+//          d3.selectAll('.hill')
+//            .style('fill', d => 3);
+
+          
         }
       });
 
@@ -1155,7 +1177,11 @@ function flatten_items_steps(nodes)
         nebbia: step.nebbia,
         cancellazione: step.cancellazione,
 
-        norma_pct_caratteri_nebbia_cancellazione: step.norma_pct_caratteri_nebbia_cancellazione
+        norma_pct_caratteri_nebbia_cancellazione: step.norma_pct_caratteri_nebbia_cancellazione,
+
+        nebbia_words_ratio: step.nebbia_words_ratio,
+        cancellazione_words_ratio: step.cancellazione_words_ratio,
+        dubitative_ratio: step.dubitative_ratio
       };
 
       flattened_steps.push(item);
@@ -1182,7 +1208,11 @@ function calculate_item_data(obj)
     nebbia:                     (+obj.pct_nebbia / 100),
     cancellazione:              (+obj.pct_nebbia / 100) + (+obj.pct_cancellazione / 100),
 
-    norma_pct_caratteri_nebbia_cancellazione: (+obj.norma_pct_caratteri_nebbia_cancellazione)
+    norma_pct_caratteri_nebbia_cancellazione: (+obj.norma_pct_caratteri_nebbia_cancellazione),
+
+    nebbia_words_ratio: (+obj.nebbia_words_ratio),
+    cancellazione_words_ratio: (+obj.cancellazione_words_ratio),
+    dubitative_ratio: (+obj.dubitative_ratio)
   };
 
   return item_data;
@@ -1229,7 +1259,12 @@ function create_item_steps(d)
       'cancellazione_normalizzata': csv_item == undefined ? 0 : csv_item.cancellazione_normalizzata,
       'nebbia': csv_item == undefined ? 0 : csv_item.nebbia,
       'cancellazione': csv_item == undefined ? 0 : csv_item.cancellazione,
-      'norma_pct_caratteri_nebbia_cancellazione': csv_item == undefined ? 0 : csv_item.norma_pct_caratteri_nebbia_cancellazione
+      'norma_pct_caratteri_nebbia_cancellazione': csv_item == undefined ? 0 : csv_item.norma_pct_caratteri_nebbia_cancellazione,
+
+      'nebbia_words_ratio': csv_item == undefined ? 0 : csv_item.nebbia_words_ratio,
+      'cancellazione_words_ratio': csv_item == undefined ? 0 : csv_item.cancellazione_words_ratio,
+      'dubitative_ratio': csv_item == undefined ? 0 : csv_item.dubitative_ratio
+
     };
   });
 
