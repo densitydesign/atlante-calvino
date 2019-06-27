@@ -1034,10 +1034,20 @@ console.log(drawMode);
         else if (eventKey == " ") {
           text_nodes.style('display','block')
 
-//          d3.selectAll('.hill')
-//            .style('fill', d => 3);
+            d3.selectAll('.hill')
+              .style('fill-opacity', 1)
+              .style('stroke-opacity', 1);          
 
-          
+          if(hillColoringMode == 1)
+          {
+            d3.selectAll('.hill')
+              .style('fill', d => colour(d.first_publication));
+          }
+          else if(hillColoringMode == 2)
+          {
+            d3.selectAll('.hill')
+              .style('fill', d => col_collections(d.collection));
+          }
         }
       });
 
