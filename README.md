@@ -8,6 +8,7 @@
 - [saggi saggi-persone](https://densitydesign.github.io/atlante-calvino/saggi/saggi-persone)
 - [Landscape of Calvino's Literary Works](https://densitydesign.github.io/atlante-calvino/landscape)
 - [luoghi e categorie](https://densitydesign.github.io/atlante-calvino/luoghi-categorie)
+- [matrice luoghi](https://densitydesign.github.io/atlante-calvino/locations-matrix)
 
 ##### Strumenti
 - [Estrai posizione parole](https://densitydesign.github.io/atlante-calvino/explorer)
