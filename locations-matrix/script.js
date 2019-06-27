@@ -47,15 +47,15 @@ var simulation = d3.forceSimulation(nodes)
 	// .force("charge", d3.forceManyBody().strength(-0.5))
 	.force("link", d3.forceLink(links).strength(function(d) {
 		// console.log(d)
-		return d.kind == 'same_text' ? 0 : .2;
+		return d.kind == 'same_text' ? 0 : 0.2;
 	}).distance(10).id(function(d) { return d.id; }))
 	.force("x", d3.forceX(function(d) { return d.x }).strength(function(d) {
-		return d.part_of == '' ? 0.3 : 0;
+		return d.part_of == '' ? 0.5 : 0;
 	}))
 	.force("y", d3.forceY(function(d) { return d.y }).strength(function(d) {
-		return d.part_of == '' ? 0.3 : 0;
+		return d.part_of == '' ? 0.5 : 0;
 	}))
-	.force("collision", d3.forceCollide(minRadius + 1).iterations(4).strength(0))
+	.force("collision", d3.forceCollide(minRadius + 1).iterations(4).strength(.5))
 	.on("tick", ticked);
 
 function restart() {
@@ -97,10 +97,12 @@ function ticked() {
 		.attr("x2", function(d) { return d.target.x; })
 		.attr("y2", function(d) { return d.target.y; });
 
-    if (simulation.alpha() < 0.5 && simulation.force('collision').strength() == 0) {
-        console.log('ye')
-        simulation.force('collision').strength(0.5)
-    }
+    // if (simulation.alpha() < 0.5 && simulation.force('collision').strength() == 0) {
+    //     console.log('ye')
+    //     simulation.force('collision').strength(0.5)
+    //
+    //     simulation.force("link").strength(function(d) { return d.kind == 'same_text' ? 0 : .2; })
+    // }
 }
 
 Promise.all([
