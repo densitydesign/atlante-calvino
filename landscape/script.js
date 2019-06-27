@@ -313,6 +313,22 @@ let xxx = collections
     .duration(450)
     .style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
 
+
+  data.nebbia_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+    .range(['#DDDDFF', 'blue']);
+
+  data.cancellazione_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+    .range(['#FFDDDD', 'red']);
+
+  data.dubitative_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
+    .range(['#FFDDFF', 'violet']);    
+
 ///////////////////////////////////////////
 
   let drawPlacesArc1 = d3
@@ -555,7 +571,7 @@ let xxx = collections
     .filter(function(d) { return d.first_elem } )
     .append("svg:path")
     .attr("fill", "blue")
-    .attr("class", "dubitativePhenomena")
+    .attr("class", "dubitativePhenomena_level_2")
     .attr("d", drawDubitativePhenomenaArc1)
     .attr('transform', function(d,i){
       return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
@@ -566,19 +582,99 @@ let xxx = collections
     .filter(function(d) { return d.first_elem } )
     .append("svg:path")
     .attr("fill", "red")
-    .attr("class", "dubitativePhenomena")
+    .attr("class", "dubitativePhenomena_level_2")
     .attr("d", drawDubitativePhenomenaArc2)
     .attr('transform', function(d,i){
       return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
-   })
+    })
     .style('fill-opacity',0);
 
   steps
     .filter(function(d) { return d.first_elem } )
     .append("svg:path")
     .attr("fill", "white")
-    .attr("class", "dubitativePhenomena")
+    .attr("class", "dubitativePhenomena_level_2")
     .attr("d", drawDubitativePhenomenaArc3)
+    .attr('transform', function(d,i){
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+    })
+    .style('fill-opacity',0);
+
+///////////////////////////////////////////
+
+  let drawDubitativePhenomenaSlice1 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+      return 0;
+    })
+    .outerRadius(function(d, i) {
+      return d.r - i * arcWidth;
+    })
+    .startAngle(0 * 2 * PI)
+    .endAngle(function(d, i) {
+      return d.nebbia * 2 * PI;
+    });
+
+  let drawDubitativePhenomenaSlice2 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+      return 0;
+    })
+    .outerRadius(function(d, i) {
+      return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+      return d.nebbia * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+      return d.cancellazione * 2 * PI;
+    });
+
+  let drawDubitativePhenomenaSlice3 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+      return 0;
+    })
+    .outerRadius(function(d, i) {
+      return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+      return d.cancellazione * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+      return 2 * PI;
+    });
+
+///////////////////////////////////////////
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", d => data.nebbia_color_scale(d.nebbia_words_ratio))
+    .attr("class", "dubitativePhenomena_level_3")
+    .attr("d", drawDubitativePhenomenaSlice1)
+    .attr('transform', function(d,i){
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", d => data.cancellazione_color_scale(d.cancellazione_words_ratio))
+    .attr("class", "dubitativePhenomena_level_3")
+    .attr("d", drawDubitativePhenomenaSlice2)
+    .attr('transform', function(d,i){
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "white")
+    .attr("class", "dubitativePhenomena_level_3")
+    .attr("d", drawDubitativePhenomenaSlice3)
     .attr('transform', function(d,i){
       return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
@@ -802,7 +898,7 @@ let xxx = collections
       {
         data.keyboardCommandsOn = true;
       });
-
+/*
   data.nebbia_color_scale = d3
     .scaleLinear()
     .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
@@ -817,6 +913,7 @@ let xxx = collections
     .scaleLinear()
     .domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
     .range(['#FFDDFF', 'violet']);
+*/
 
   d3
     .select('body')
@@ -961,7 +1058,7 @@ console.log(drawMode);
 
               break;
 
-            case 4 : // dubitative phenomena
+            case 4 : // dubitative phenomena - 2nd level
 
               d3.selectAll(".hill")
                 .filter(d => d.dubitative_ratio)
@@ -981,7 +1078,7 @@ console.log(drawMode);
                 .style('stroke-opacity',0);
 
               text_nodes
-                .selectAll('.dubitativePhenomena')
+                .selectAll('.dubitativePhenomena_level_2')
                 .style('fill-opacity',1)
                 .style('stroke-opacity',1);
 /*
@@ -1002,6 +1099,37 @@ console.log(drawMode);
                 .style('stroke-opacity',0)
                 .style('fill', '#9900FF');
 */
+              break;
+
+            case 5 : // dubitative phenomena - 3rd level
+
+              text_nodes
+                .selectAll('.dubitativePhenomena_level_2')
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);            
+
+              d3.selectAll(".hill")
+                .filter(d => d.dubitative_ratio)
+                .style('fill', 'transparent');
+
+              text_nodes
+                .selectAll('.hill')
+                .filter(d => d.dubitative_ratio)
+                .transition()
+                .duration(450)
+                .style('fill-opacity',1)
+                .style('stroke-opacity',1);
+
+              text_nodes
+                .selectAll('.places')
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);
+
+              text_nodes
+                .selectAll('.dubitativePhenomena_level_3')
+                .style('fill-opacity',0.7)
+                .style('stroke-opacity',1);
+
               break;
           }
         }
@@ -1515,7 +1643,7 @@ function interpolateSpline(x) {
 
 function incrementDrawMode(drawMode)
 {
-  if(drawMode >= 4)
+  if(drawMode >= 5)
   {
     return 1;
   }
