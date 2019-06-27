@@ -1,0 +1,14 @@
+#matrix-container {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+}
+
+.node {
+    cursor: pointer;
+}
+
+.link {
+    stroke-width: 1px;
+    stroke: #666;
+}
