@@ -108,13 +108,17 @@ function restart() {
 			// console.log(d.label, d.id);
 			if (d.subNodes && d.subNodes.length){
 				console.log('There are nodes to expand: ', d.subNodes.length)
+				d.subNodes.forEach(function(subNode){
+					subNode.x = d.x;
+					subNode.y = d.y;
+				})
 				d.opened = true;
-				var augmentedNodes = nodes.concat(d.subNodes);
 				// Make convex hull
 				var thisHullNodes = [d].concat(d.subNodes); // first element in array is always the one opened, so we can use its ID as identifier for the convex hull
 				console.log('this hull nodes', thisHullNodes);
 				hullsData.push(thisHullNodes);
 				// calculate Graph
+				var augmentedNodes = nodes.concat(d.subNodes);
 				var graph = calculateNetwork(augmentedNodes);
 				nodes = graph.nodes;
 				links = graph.edges;
@@ -125,9 +129,10 @@ function restart() {
 		})
 		.call(d3.drag().on("drag", dragged))
 		.merge(node)
-		.attr("r", function(d){
-			return d.opened ? r(1) : r(d.totalSubNodes + 1)
-		}) // +1 means plus itself
+		.style('cursor', function(d){
+			return d.subNodes && d.subNodes.length ? 'pointer' : 'auto';
+		})
+		.attr("r", function(d){ return d.opened ? r(1) : r(d.totalSubNodes + 1) }) // +1 means plus itself
 
 	// Apply the general update pattern to the links.
 	link = link.data(links, function(d) {
