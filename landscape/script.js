@@ -942,26 +942,43 @@ let xxx = collections
             .duration(350)
             .style('fill', d => colour(d.first_publication));
         } else if (eventKey == "n") {
-          text_nodes.style('display','none');
+//          text_nodes.style('display','none');
 
-          text_nodes
-            .filter(d => d.attributes.nebbia)
-            .style('display', 'block');
+          // text_nodes
+          //   .filter(d => d.attributes.nebbia)
+          //   .style('display', 'block');
+
+          d3.selectAll(".hill")
+            .filter(d => !d.nebbia_words_ratio)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
 
           d3.selectAll(".hill")
             .filter(d => d.nebbia_words_ratio)
+            .transition()
+            .duration(350)            
             .style('fill', d => data.nebbia_color_scale(d.nebbia_words_ratio));
 
         } else if (eventKey == "m") {
-          text_nodes.style('display','none');
+//          text_nodes.style('display','none');
 
-          text_nodes
-            .filter(d => d.attributes.cancellazione)
-            .style('display', 'block');
+          // text_nodes
+          //   .filter(d => d.attributes.cancellazione)
+          //   .style('display', 'block');
+
+          d3.selectAll(".hill")
+            .filter(d => !d.cancellazione_words_ratio)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
             
           d3.selectAll(".hill")
             .filter(d => d.cancellazione_words_ratio)
+            .transition()
+            .duration(350)
             .style('fill', d => data.cancellazione_color_scale(d.cancellazione_words_ratio));
+
         } else if (eventKey == "p") {
 
           drawMode = incrementDrawMode(drawMode);
