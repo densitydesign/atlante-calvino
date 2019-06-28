@@ -14,7 +14,8 @@ var categories = [
 	'inventato',
 	'no_ambientazione'
 ]
-var minRadius = 3;
+// var minRadius = 5;
+var collisionPadding = 2;
 
 var w = container.node().getBoundingClientRect().width;
 var h = container.node().getBoundingClientRect().height;
@@ -35,7 +36,7 @@ var y = d3.scalePoint()
 	.range([0 + margin.top, h - margin.bottom]);
 
 var r = d3.scalePow().exponent(0.5)
-	.range([3,25])
+	.range([4,25])
 
 var color = d3.scaleOrdinal()
 	.domain(categories)
@@ -47,9 +48,9 @@ var nodes = [],
 	links = [];
 
 var simulation = d3.forceSimulation(nodes)
-	// .force("charge", d3.forceManyBody().strength(-0.5))
+	.force("charge", d3.forceManyBody().strength(-1))
 	.force("link", d3.forceLink(links)
-		.strength(function(d) { return d.kind == 'same_text' ? 0 : 0.2; })
+		.strength(function(d) { return d.kind == 'same_text' ? 0 : 0.6; })
 		.distance(20)
 		.id(function(d) { return d.id; })
 	)
@@ -60,12 +61,41 @@ var simulation = d3.forceSimulation(nodes)
 		.strength(function(d) { return d.part_of == '' ? 0.7 : 0; })
 	)
 	.force("collision", d3.forceCollide(function(d){
-			return d.opened ? r(1)+2 : r(d.totalSubNodes + 1)+2
+			return d.opened ? r(1)+collisionPadding : r(d.totalSubNodes + 1)+collisionPadding
 		})
 		.iterations(4)
 		.strength(.5)
 	)
 	.on("tick", ticked);
+
+function ticked() {
+	node.attr("cx", function(d) { return d.x; })
+		.attr("cy", function(d) { return d.y; });
+
+	label.attr("x", function(d) { return d.x; })
+		.attr("y", function(d) { return d.y; });
+
+	link.attr("x1", function(d) { return d.source.x; })
+		.attr("y1", function(d) { return d.source.y; })
+		.attr("x2", function(d) { return d.target.x; })
+		.attr("y2", function(d) { return d.target.y; });
+
+	hull.attr("d", function(d){
+		let thisHullPoints = d.map( d => { return [d.x, d.y] });
+		var points = thisHullPoints;
+		var convexHull = (points.length < 3) ? points : d3.polygonHull(points);
+		return roundedHull(convexHull,d);
+	})
+}
+
+function dragged(d) {
+	d.x = d3.event.x, d.y = d3.event.y;
+	d3.select(this).attr("cx", d.x).attr("cy", d.y);
+	// link.filter(function(l) { return l.source === d; }).attr("x1", d.x).attr("y1", d.y);
+	// link.filter(function(l) { return l.target === d; }).attr("x2", d.x).attr("y2", d.y);
+	// ticked();
+	// simulation.alpha(1).restart();
+}
 
 function restart() {
 	// Apply the general update pattern to the nodes.
@@ -73,8 +103,6 @@ function restart() {
 	node.exit().remove();
 	node = node.enter().append("circle")
 		.classed('node', true)
-		.attr("fill", function(d) { return color(d.category) })
-		.attr('stroke', function(d) { if(d.part_of) return 'black' })
 		.attr("cx", function(d) { return d.x })
 		.attr("cy", function(d) { return d.y })
 		.on('mouseenter', function(d){
@@ -133,6 +161,13 @@ function restart() {
 			return d.subNodes && d.subNodes.length ? 'pointer' : 'auto';
 		})
 		.attr("r", function(d){ return d.opened ? r(1) : r(d.totalSubNodes + 1) }) // +1 means plus itself
+		.attr("fill", function(d) {
+			// console.log(d)
+			return d.opened==true ? 'transparent' : color(d.category);
+		})
+		.attr('stroke', function(d) {
+			if(d.totalSubNodes > 0) return d3.color(color(d.category)).darker(0.5)
+		})
 
 	// Apply the general update pattern to the links.
 	link = link.data(links, function(d) {
@@ -164,7 +199,7 @@ function restart() {
 		.attr('fill', function(d){
 			return color(d[0].category)
 		})
-		.style('opacity', .5)
+		.style('opacity', .25)
 		.merge(hull);
 
 
@@ -174,29 +209,8 @@ function restart() {
 	simulation.alpha(1).restart();
 }
 
-function ticked() {
-	node.attr("cx", function(d) { return d.x; })
-		.attr("cy", function(d) { return d.y; });
-
-	label.attr("x", function(d) { return d.x; })
-		.attr("y", function(d) { return d.y; });
-
-	link.attr("x1", function(d) { return d.source.x; })
-		.attr("y1", function(d) { return d.source.y; })
-		.attr("x2", function(d) { return d.target.x; })
-		.attr("y2", function(d) { return d.target.y; });
-
-	hull.attr("d", function(d){
-		let thisHullPoints = d.map( d => { return [d.x, d.y] });
-
-		var points = thisHullPoints;
-		var convexHull = (points.length < 3) ? points : d3.polygonHull(points);
-		return roundedHull(convexHull)
-	})
-}
-
 Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
-	var locations = data[0].filter(function(d) { return +d.year >= 1966 && +d.year <= 1973 });
+	var locations = data[0]//.filter(function(d) { return +d.year >= 1966 && +d.year <= 1973 });
 
 	x.domain(d3.extent(locations, function(d) { return d.year }));
 	y.domain(categories);
@@ -329,18 +343,6 @@ function calculateNetwork(nodes) {
 	return { 'nodes': nodes, 'edges': edges }
 }
 
-// function getRandomArbitrary(min, max) {
-// 	return Math.random() * (max - min) + min;
-// }
-
-function dragged(d) {
-    d.x = d3.event.x, d.y = d3.event.y;
-    d3.select(this).attr("cx", d.x).attr("cy", d.y);
-    link.filter(function(l) { return l.source === d; }).attr("x1", d.x).attr("y1", d.y);
-    link.filter(function(l) { return l.target === d; }).attr("x2", d.x).attr("y2", d.y);
-	// simulation.alpha(1).restart();
-  }
-
 //
 //
 //
@@ -351,7 +353,7 @@ function dragged(d) {
 //
 //
 
-var hullPadding = 10;
+var hullPadding = collisionPadding;
 var pointRadius = 5;
 // var margin = hullPadding + pointRadius;
 
@@ -373,9 +375,7 @@ var unitNormal = function (p0, p1) {
 };
 
 var strictHull = function(polyPoints) {
-    // This method returns a polygon given the specified points. The points are assumed to be
-    // in polygon order.
-
+    // This method returns a polygon given the specified points. The points are assumed to be in polygon order.
     return (
         'M ' + polyPoints[0]
         + ' L '
@@ -386,15 +386,19 @@ var strictHull = function(polyPoints) {
     );
 };
 
-var roundedHull = function (polyPoints) {
+var roundedHull = function (polyPoints, data) {
     // Returns the SVG path data string representing the polygon, expanded and rounded.
 
-	console.log(polyPoints);
+	// console.log(polyPoints, data);
+
+	hullPadding = d3.max(data, function(d){
+		return d.opened ? r(1) + collisionPadding : r(d.totalSubNodes + 1) + collisionPadding;
+	})
 
     // Handle special cases
     if (!polyPoints || polyPoints.length < 1) return "";
-    if (polyPoints.length === 1) return roundedHull1 (polyPoints);
-    if (polyPoints.length === 2) return roundedHull2 (polyPoints);
+    if (polyPoints.length === 1) return roundedHull1 (polyPoints, data);
+    if (polyPoints.length === 2) return roundedHull2 (polyPoints, data);
 
     var segments = new Array (polyPoints.length);
 
@@ -424,7 +428,7 @@ var roundedHull = function (polyPoints) {
     return segments.join(' ');
 }
 
-var roundedHull1 = function (polyPoints) {
+var roundedHull1 = function (polyPoints, data) {
     // Returns the path for a rounded hull around a single point (a circle).
 
     var p1 = [polyPoints[0][0], polyPoints[0][1] - hullPadding];
@@ -436,7 +440,7 @@ var roundedHull1 = function (polyPoints) {
 };
 
 
-var roundedHull2 = function (polyPoints) {
+var roundedHull2 = function (polyPoints, data) {
     // Returns the path for a rounded hull around two points (a "capsule" shape).
 
     var offsetVector = vecScale (hullPadding, unitNormal (polyPoints[0], polyPoints[1]));
