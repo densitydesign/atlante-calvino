@@ -445,8 +445,7 @@ let xxx = collections
     .attr("class", "places")
     .attr("d", drawPlacesArc1)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
@@ -457,8 +456,7 @@ let xxx = collections
     .attr("class", "places")
     .attr("d", drawPlacesArc2)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
@@ -469,8 +467,7 @@ let xxx = collections
     .attr("class", "places")
     .attr("d", drawPlacesArc3)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
@@ -481,8 +478,7 @@ let xxx = collections
     .attr("class", "places")
     .attr("d", drawPlacesArc4)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
@@ -494,7 +490,7 @@ let xxx = collections
     .attr("d", drawPlacesArc5)
     .attr('transform', function(d,i){
       i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
@@ -505,20 +501,18 @@ let xxx = collections
     .attr("class", "places")
     .attr("d", drawPlacesArc6)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
   steps
     .filter(function(d) { return d.first_elem } )
     .append("svg:path")
-    .attr("fill", "white")
+    .attr("fill", "transparent")
     .attr("class", "places")
     .attr("d", drawPlacesArc7)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
@@ -1054,10 +1048,35 @@ console.log(drawMode);
             case 3 : // places
 
               text_nodes
+                .selectAll('.halo')
+                .transition()
+                .duration(450)
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);
+
+/*
+              text_nodes
+                .selectAll('.hill')
+                .transition()
+                .duration(250)
+                .style('stroke-opacity',1);
+*/
+              text_nodes
+                .selectAll('.hill')
+                .transition()
+                .duration(250)
+//                .style('fill-opacity', 0)
+                .style('stroke-opacity', 1)
+                .style('stroke', stepBorderColor);                
+
+              d3.selectAll(".hill")
+                .style('fill', 'white');
+
+              text_nodes
                 .selectAll('.places')
                 .style('fill-opacity',1)
                 .style('stroke-opacity',1);
-
+/*
               text_nodes
                 .selectAll("circle:not(.places)")
                 .transition()
@@ -1072,17 +1091,17 @@ console.log(drawMode);
                 .duration(450)
                 .style('fill-opacity',0.2)
                 .style('stroke-opacity',0);
-
+*/
               break;
 
             case 4 : // dubitative phenomena - 2nd level
-
+/*
               text_nodes
                 .selectAll('.hill')
                 .transition()
                 .duration(250)
                 .style('stroke-opacity',1);
-
+*/
               text_nodes
                 .selectAll('.hill')
                 .filter(d => !d.dubitative_ratio)
@@ -1680,6 +1699,10 @@ function incrementDrawMode(drawMode)
   if(drawMode >= 5)
   {
     return 1;
+  }
+  else if(drawMode == 1)
+  {
+    return 3; // bypass halo mode
   }
   else return drawMode + 1;
 }
