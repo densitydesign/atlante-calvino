@@ -271,9 +271,11 @@ let xxx = collections
       return 'translate(0,'+i+')'
     });
 
+  let stepBorderColor = "#444";
+
   steps
     .append('circle')
-    .attr('stroke','#444')
+    .attr('stroke', stepBorderColor)
     .attr('stroke-width',1.5)
     .attr('fill',function(d){
       return colour(d.first_publication);
@@ -592,7 +594,7 @@ let xxx = collections
   steps
     .filter(function(d) { return d.first_elem } )
     .append("svg:path")
-    .attr("fill", "white")
+    .attr("fill", "transparent")
     .attr("class", "dubitativePhenomena_level_2")
     .attr("d", drawDubitativePhenomenaArc3)
     .attr('transform', function(d,i){
@@ -672,7 +674,7 @@ let xxx = collections
   steps
     .filter(function(d) { return d.first_elem } )
     .append("svg:path")
-    .attr("fill", "white")
+    .attr("fill", "transparent")
     .attr("class", "dubitativePhenomena_level_3")
     .attr("d", drawDubitativePhenomenaSlice3)
     .attr('transform', function(d,i){
@@ -1012,7 +1014,6 @@ console.log(drawMode);
               {
                 text_nodes
                   .selectAll('.hill')
-                  .filter(d => d.first_elem)
                   .transition()
                   .duration(450)
                   .style('fill-opacity',1)
@@ -1023,7 +1024,6 @@ console.log(drawMode);
               {
                 text_nodes
                   .selectAll('.hill')
-                  .filter(d => d.first_elem)
                   .transition()
                   .duration(450)
                   .style('fill-opacity',1)
@@ -1076,6 +1076,23 @@ console.log(drawMode);
               break;
 
             case 4 : // dubitative phenomena - 2nd level
+
+              text_nodes
+                .selectAll('.hill')
+                .transition()
+                .duration(250)
+                .style('stroke-opacity',1);
+
+              text_nodes
+                .selectAll('.hill')
+                .filter(d => !d.dubitative_ratio)
+                .transition()
+                .duration(250)
+//                .style('fill', 'transparent')
+                .style('fill-opacity', 0)
+                .style('stroke-opacity', 1)
+                .style('stroke', stepBorderColor);
+                
 
               d3.selectAll(".hill")
                 .filter(d => d.dubitative_ratio)
