@@ -41,6 +41,8 @@ var color = d3.scaleOrdinal()
 	.range(d3.schemeCategory10)
 
 var nodes = [],
+	hullsData = [],
+	hulls = [],
 	links = [];
 
 var simulation = d3.forceSimulation(nodes)
@@ -88,30 +90,32 @@ function restart() {
 				let filtered = nodes.filter( el => {
 					return !toRemove.includes( el.id );
 				})
+				// remove this hull
+				hullsData = hullsData.filter(function(h){
+					return h[0].id != d.id
+				})
+				// calculate graph
 				var graph = calculateNetwork(filtered)
 				nodes = graph.nodes;
 				links = graph.edges;
 				restart();
-
 				// important to return here so to not do the following instructions
 				return;
 			}
 			// console.log(d.label, d.id);
 			if (d.subNodes && d.subNodes.length){
-				console.log('There are nodes to expand', d.subNodes)
+				console.log('There are nodes to expand: ', d.subNodes.length)
 				d.opened = true;
 				var augmentedNodes = nodes.concat(d.subNodes);
-
 				// Make convex hull
-
-				
-
-
+				var thisHullNodes = [d].concat(d.subNodes); // first element in array is always the one opened, so we can use its ID as identifier for the convex hull
+				console.log('this hull nodes', thisHullNodes);
+				hullsData.push(thisHullNodes);
+				// calculate Graph
 				var graph = calculateNetwork(augmentedNodes);
 				nodes = graph.nodes;
 				links = graph.edges;
 				restart();
-
 			} else {
 				console.log('No nodes to expand')
 			}
@@ -133,6 +137,18 @@ function restart() {
 		.on('click', d => console.log(d))
 		.merge(link);
 
+	// Apply the general update pattern to the convex hulls.
+	hull = hull.data(hullsData, function(d) {
+		return d[0].id;
+	});
+	hull.exit().remove();
+	hull = hull.enter().append("path")
+		.classed('hull', true)
+		.attr('fill', function(d){
+			return color(d[0].category);
+		})
+		.merge(hull);
+
 	// Update and restart the simulation.
 	simulation.nodes(nodes);
 	simulation.force("link").links(links);
@@ -148,18 +164,24 @@ function ticked() {
 		.attr("x2", function(d) { return d.target.x; })
 		.attr("y2", function(d) { return d.target.y; });
 
-    // if (simulation.alpha() < 0.5 && simulation.force('collision').strength() == 0) {
-    //     console.log('ye')
-    //     simulation.force('collision').strength(0.5)
-    //
-    //     simulation.force("link").strength(function(d) { return d.kind == 'same_text' ? 0 : .2; })
-    // }
+	hull.attr("d", function(d){
+		// console.log(d);
+		if (d.length < 3) {
+			// console.log('just 2 points, ipmossible to create hull');
+			return;
+		}
+		let thisHullPoints = d.map( d => { return [d.x, d.y] });
+		// console.log(thisHullPoints);
+		let thisHullPath = "M" + d3.polygonHull(thisHullPoints).join("L") + "Z";
+		// console.log(thisHullPath);
+		return thisHullPath;
+	})
 }
 
 Promise.all([
 	d3.tsv('data.tsv')
 ]).then(function(data) {
-	var locations = data[0].filter(function(d) { return +d.year >= 1965 && +d.year <= 1975 });
+	var locations = data[0].filter(function(d) { return +d.year >= 1965 && +d.year <= 1980 });
 
 	x.domain(d3.extent(locations, function(d) { return d.year }));
 	y.domain(categories);
@@ -243,7 +265,7 @@ function handleHierarchies(nodes) {
 }
 
 function calculateNetwork(nodes) {
-	console.log('calculate network')
+	// console.log('calculate network')
 
 	// create the array of edges
 	var edges = []
