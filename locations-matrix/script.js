@@ -14,7 +14,8 @@ var categories = [
 	'inventato',
 	'no_ambientazione'
 ]
-var minRadius = 3;
+
+var collisionPadding = 1.5;
 
 var w = container.node().getBoundingClientRect().width;
 var h = container.node().getBoundingClientRect().height;
@@ -35,7 +36,7 @@ var y = d3.scalePoint()
 	.range([0 + margin.top, h - margin.bottom]);
 
 var r = d3.scalePow().exponent(0.5)
-	.range([2.5,25])
+	.range([4,25])
 
 var color = d3.scaleOrdinal()
 	.domain(categories)
@@ -47,9 +48,9 @@ var nodes = [],
 	links = [];
 
 var simulation = d3.forceSimulation(nodes)
-	// .force("charge", d3.forceManyBody().strength(-0.5))
+	.force("charge", d3.forceManyBody().strength(-1))
 	.force("link", d3.forceLink(links)
-		.strength(function(d) { return d.kind == 'same_text' ? 0 : 0.2; })
+		.strength(function(d) { return d.kind == 'same_text' ? 0 : 0.6; })
 		.distance(20)
 		.id(function(d) { return d.id; })
 	)
@@ -60,12 +61,41 @@ var simulation = d3.forceSimulation(nodes)
 		.strength(function(d) { return d.part_of == '' ? 0.7 : 0; })
 	)
 	.force("collision", d3.forceCollide(function(d){
-			return d.opened ? r(1)+2 : r(d.totalSubNodes + 1)+2
+			return d.opened ? r(1)+collisionPadding : r(d.totalSubNodes + 1)+collisionPadding
 		})
 		.iterations(4)
 		.strength(.5)
 	)
 	.on("tick", ticked);
+
+function ticked() {
+	node.attr("cx", function(d) { return d.x; })
+		.attr("cy", function(d) { return d.y; });
+
+	label.attr("x", function(d) { return d.x; })
+		.attr("y", function(d) { return d.y; });
+
+	link.attr("x1", function(d) { return d.source.x; })
+		.attr("y1", function(d) { return d.source.y; })
+		.attr("x2", function(d) { return d.target.x; })
+		.attr("y2", function(d) { return d.target.y; });
+
+	hull.attr("d", function(d){
+		let thisHullPoints = d.map( d => { return [d.x, d.y] });
+		var points = thisHullPoints;
+		var convexHull = (points.length < 3) ? points : d3.polygonHull(points);
+		return roundedHull(convexHull, d);
+	})
+}
+
+function dragged(d) {
+	d.fx = d3.event.x, d.fy = d3.event.y;
+	// d3.select(this).attr("cx", d.x).attr("cy", d.y);
+	// link.filter(function(l) { return l.source === d; }).attr("x1", d.x).attr("y1", d.y);
+	// link.filter(function(l) { return l.target === d; }).attr("x2", d.x).attr("y2", d.y);
+	ticked();
+	// simulation.alpha(1).restart();
+}
 
 function restart() {
 	// Apply the general update pattern to the nodes.
@@ -73,12 +103,10 @@ function restart() {
 	node.exit().remove();
 	node = node.enter().append("circle")
 		.classed('node', true)
-		.attr("fill", function(d) { return color(d.category) })
-		.attr('stroke', function(d) { if(d.part_of) return 'black' })
 		.attr("cx", function(d) { return d.x })
 		.attr("cy", function(d) { return d.y })
 		.on('mouseenter', function(d){
-			node.filter(function(e){ return e.source != d.source; }).style('opacity', 0.2);
+			node.filter(function(e){ return e.source != d.source; }).style('opacity', 0.1);
 			label.filter(function(e){ return d.id == e.id }).style('display', 'block');
 		})
 		.on('mouseleave', function(d){
@@ -86,17 +114,28 @@ function restart() {
 			label.style('display', 'none');
 		})
 		.on('click', d => {
+			d.fx = null;
+			d.fy = null;
 			if (d.opened) {
 				d.opened = false;
-				console.log('Collect all sub-nodes', d.subNodes);
+				// console.log('Collect all sub-nodes', d.subNodes);
 				let toRemove = d.subNodes.map( d => d.id)
 				let filtered = nodes.filter( el => {
 					return !toRemove.includes( el.id );
 				})
+
 				// remove this hull
 				hullsData = hullsData.filter(function(h){
 					return h[0].id != d.id
 				})
+
+				// remove extra points from the outer hull
+				hullsData.forEach(function(thisHull,i){
+					hullsData[i] = thisHull.filter(function(n){
+						return !toRemove.includes( n.id )
+					})
+				})
+
 				// calculate graph
 				var graph = calculateNetwork(filtered)
 				nodes = graph.nodes;
@@ -108,15 +147,32 @@ function restart() {
 			// console.log(d.label, d.id);
 			if (d.subNodes && d.subNodes.length){
 				console.log('There are nodes to expand: ', d.subNodes.length)
-				d.subNodes.forEach(function(subNode){
-					subNode.x = d.x;
-					subNode.y = d.y;
+				d.subNodes.forEach(function(subNode, i){
+					if (i > 0) {
+						subNode.x = d.x;
+						subNode.y = d.y;
+					}
 				})
 				d.opened = true;
 				// Make convex hull
 				var thisHullNodes = [d].concat(d.subNodes); // first element in array is always the one opened, so we can use its ID as identifier for the convex hull
-				console.log('this hull nodes', thisHullNodes);
+				// console.log('this hull nodes', thisHullNodes);
 				hullsData.push(thisHullNodes);
+
+				// check if the first point of the hull is inside another hulls
+				// if so it means this hull should be part of that opened
+				// add these points to that hullsData
+				hullsData.forEach(function(thisHull){
+					// if the element is in the array, but is not the first
+					if (thisHull.indexOf(thisHullNodes[0]) > 0) {
+						thisHullNodes.forEach(function(n,i){
+							if (i != 0) {
+								thisHull.push(n);
+							}
+						})
+					}
+				})
+
 				// calculate Graph
 				var augmentedNodes = nodes.concat(d.subNodes);
 				var graph = calculateNetwork(augmentedNodes);
@@ -133,6 +189,13 @@ function restart() {
 			return d.subNodes && d.subNodes.length ? 'pointer' : 'auto';
 		})
 		.attr("r", function(d){ return d.opened ? r(1) : r(d.totalSubNodes + 1) }) // +1 means plus itself
+		.attr("fill", function(d) {
+			// console.log(d)
+			return d.opened==true ? 'transparent' : color(d.category);
+		})
+		.attr('stroke', function(d) {
+			if(d.totalSubNodes > 0) return d3.color(color(d.category)).darker(0.5)
+		})
 
 	// Apply the general update pattern to the links.
 	link = link.data(links, function(d) {
@@ -164,7 +227,7 @@ function restart() {
 		.attr('fill', function(d){
 			return color(d[0].category)
 		})
-		.style('opacity', .5)
+		.style('opacity', .25)
 		.merge(hull);
 
 
@@ -174,36 +237,8 @@ function restart() {
 	simulation.alpha(1).restart();
 }
 
-function ticked() {
-	node.attr("cx", function(d) { return d.x; })
-		.attr("cy", function(d) { return d.y; });
-
-	label.attr("x", function(d) { return d.x; })
-		.attr("y", function(d) { return d.y; });
-
-	link.attr("x1", function(d) { return d.source.x; })
-		.attr("y1", function(d) { return d.source.y; })
-		.attr("x2", function(d) { return d.target.x; })
-		.attr("y2", function(d) { return d.target.y; });
-
-	hull.attr("d", function(d){
-		// console.log(d);
-		if (d.length < 3) {
-			// console.log('just 2 points, ipmossible to create hull');
-			return;
-		}
-		let thisHullPoints = d.map( d => { return [d.x, d.y] });
-		// console.log(thisHullPoints);
-		let thisHullPath = "M" + d3.polygonHull(thisHullPoints).join("L") + "Z";
-		// console.log(thisHullPath);
-		return thisHullPath;
-	})
-}
-
-Promise.all([
-	d3.tsv('data.tsv')
-]).then(function(data) {
-	var locations = data[0]//.filter(function(d) { return +d.year >= 1965 && +d.year <= 1980 });
+Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
+	var locations = data[0]//.filter(function(d) { return +d.year >= 1966 && +d.year <= 1973 });
 
 	x.domain(d3.extent(locations, function(d) { return d.year }));
 	y.domain(categories);
@@ -298,24 +333,24 @@ function calculateNetwork(nodes) {
 		.forEach((d) => {
 
             //removing links that are not hierarchical increase performance A LOT
-			d.values.filter(function(e) {
-				return e.part_of == '';
-			}).forEach((n, i) => {
-				if(i < d.values.length - 1) {
-					for(var k = i + 1; k <= d.values.length - 1; k++) {
-						var obj = {}
-						obj = {
-							'source': n.id,
-							'target': d.values[k].id,
-							'volume': d.key,
-							// 'year': n.year,
-							'source_part_of': n.part_of,
-							'kind': 'same_text'
-						}
-						edges.push(obj);
-					}
-				}
-			})
+			// d.values.filter(function(e) {
+			// 	return e.part_of == '';
+			// }).forEach((n, i) => {
+			// 	if(i < d.values.length - 1) {
+			// 		for(var k = i + 1; k <= d.values.length - 1; k++) {
+			// 			var obj = {}
+			// 			obj = {
+			// 				'source': n.id,
+			// 				'target': d.values[k].id,
+			// 				'volume': d.key,
+			// 				// 'year': n.year,
+			// 				'source_part_of': n.part_of,
+			// 				'kind': 'same_text'
+			// 			}
+			// 			edges.push(obj);
+			// 		}
+			// 	}
+			// })
 
 			d.values.filter(function(e) {
 				return e.part_of != '';
@@ -336,14 +371,115 @@ function calculateNetwork(nodes) {
 	return { 'nodes': nodes, 'edges': edges }
 }
 
-function getRandomArbitrary(min, max) {
-	return Math.random() * (max - min) + min;
+//
+//
+//
+//
+// convex hull from http://bl.ocks.org/hollasch/f70f1fe7700f092b5a505e3efd1d9232
+//
+//
+//
+//
+
+var hullPadding = collisionPadding;
+var pointRadius = 5;
+// var margin = hullPadding + pointRadius;
+
+var vecScale = function (scale, v) {
+    // Returns the vector 'v' scaled by 'scale'.
+    return [ scale * v[0], scale * v[1] ];
 }
 
-function dragged(d) {
-    d.x = d3.event.x, d.y = d3.event.y;
-    d3.select(this).attr("cx", d.x).attr("cy", d.y);
-    link.filter(function(l) { return l.source === d; }).attr("x1", d.x).attr("y1", d.y);
-    link.filter(function(l) { return l.target === d; }).attr("x2", d.x).attr("y2", d.y);
-	simulation.alpha(1).restart();
-  }
+var vecSum = function (pv1, pv2) {
+    // Returns the sum of two vectors, or a combination of a point and a vector.
+    return [ pv1[0] + pv2[0], pv1[1] + pv2[1] ];
+}
+
+var unitNormal = function (p0, p1) {
+    // Returns the unit normal to the line segment from p0 to p1.
+    var n = [ p0[1] - p1[1], p1[0] - p0[0] ];
+    var nLength = Math.sqrt (n[0]*n[0] + n[1]*n[1]);
+    return [ n[0] / nLength, n[1] / nLength ];
+};
+
+var strictHull = function(polyPoints) {
+    // This method returns a polygon given the specified points. The points are assumed to be in polygon order.
+    return (
+        'M ' + polyPoints[0]
+        + ' L '
+        + d3.range(1,polyPoints.length)
+            .map(function(i) {return polyPoints[i];})
+            .join(' L')
+        + ' Z'
+    );
+};
+
+var roundedHull = function (polyPoints, data) {
+    // Returns the SVG path data string representing the polygon, expanded and rounded.
+
+	// console.log(polyPoints, data);
+
+	hullPadding = d3.max(data, function(d){
+		return d.opened ? r(1) + collisionPadding : r(d.totalSubNodes + 1) + collisionPadding;
+	})
+
+    // Handle special cases
+    if (!polyPoints || polyPoints.length < 1) return "";
+    if (polyPoints.length === 1) return roundedHull1 (polyPoints, data);
+    if (polyPoints.length === 2) return roundedHull2 (polyPoints, data);
+
+    var segments = new Array (polyPoints.length);
+
+    // Calculate each offset (outwards) segment of the convex hull.
+    for (var segmentIndex = 0;  segmentIndex < segments.length;  ++segmentIndex) {
+        var p0 = (segmentIndex === 0) ? polyPoints[polyPoints.length-1] : polyPoints[segmentIndex-1];
+        var p1 = polyPoints[segmentIndex];
+
+        // Compute the offset vector for the line segment, with length = hullPadding.
+        var offset = vecScale (hullPadding, unitNormal (p0, p1));
+
+        segments[segmentIndex] = [ vecSum (p0, offset), vecSum (p1, offset) ];
+    }
+
+    var arcData = 'A ' + [hullPadding, hullPadding, '0,0,0,'].join(',');
+
+    segments = segments.map (function (segment, index) {
+        var pathFragment = "";
+        if (index === 0) {
+            var pathFragment = 'M ' + segments[segments.length-1][1] + ' ';
+        }
+        pathFragment += arcData + segment[0] + ' L ' + segment[1];
+
+        return pathFragment;
+    });
+
+    return segments.join(' ');
+}
+
+var roundedHull1 = function (polyPoints, data) {
+    // Returns the path for a rounded hull around a single point (a circle).
+
+    var p1 = [polyPoints[0][0], polyPoints[0][1] - hullPadding];
+    var p2 = [polyPoints[0][0], polyPoints[0][1] + hullPadding];
+
+    return 'M ' + p1
+        + ' A ' + [hullPadding, hullPadding, '0,0,0', p2].join(',')
+        + ' A ' + [hullPadding, hullPadding, '0,0,0', p1].join(',');
+};
+
+
+var roundedHull2 = function (polyPoints, data) {
+    // Returns the path for a rounded hull around two points (a "capsule" shape).
+
+    var offsetVector = vecScale (hullPadding, unitNormal (polyPoints[0], polyPoints[1]));
+    var invOffsetVector = vecScale (-1, offsetVector);
+
+    var p0 = vecSum (polyPoints[0], offsetVector);
+    var p1 = vecSum (polyPoints[1], offsetVector);
+    var p2 = vecSum (polyPoints[1], invOffsetVector);
+    var p3 = vecSum (polyPoints[0], invOffsetVector);
+
+    return 'M ' + p0
+        + ' L ' + p1 + ' A ' + [hullPadding, hullPadding, '0,0,0', p2].join(',')
+        + ' L ' + p3 + ' A ' + [hullPadding, hullPadding, '0,0,0', p0].join(',');
+};
