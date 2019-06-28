@@ -203,7 +203,7 @@ function ticked() {
 Promise.all([
 	d3.tsv('data.tsv')
 ]).then(function(data) {
-	var locations = data[0].filter(function(d) { return +d.year >= 1965 && +d.year <= 1980 });
+	var locations = data[0]//.filter(function(d) { return +d.year >= 1965 && +d.year <= 1980 });
 
 	x.domain(d3.extent(locations, function(d) { return d.year }));
 	y.domain(categories);
