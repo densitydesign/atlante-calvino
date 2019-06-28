@@ -2,6 +2,7 @@ var container = d3.select('#matrix-container');
 var svg = d3.select('#matrix');
 var g = svg.append('g');
 var link = g.append('g').classed('links', true).selectAll('.link');
+var hull = g.append('g').classed('hulls', true).selectAll('.hull');
 var node = g.append('g').classed('nodes', true).selectAll('.node');
 
 var categories = [
@@ -33,7 +34,7 @@ var y = d3.scalePoint()
 	.range([0 + margin.top, h - margin.bottom]);
 
 var r = d3.scalePow().exponent(0.5)
-	.range([2.5,35])
+	.range([2.5,25])
 
 var color = d3.scaleOrdinal()
 	.domain(categories)
@@ -71,19 +72,55 @@ function restart() {
 		.classed('node', true)
 		.attr("fill", function(d) { return color(d.category) })
 		.attr('stroke', function(d) { if(d.part_of) return 'black' })
-		.attr("r", function(d){return r(d.totalSubNodes + 1)}) // +1 means plus itself
 		.attr("cx", function(d) { return d.x })
 		.attr("cy", function(d) { return d.y })
-		.on('click', d => console.log(d.label, d.id, d))
 		.on('mouseenter', function(d){
-			node.filter(function(e){ return e.source != d.source; }).style('opacity', 0.35)
-
+			node.filter(function(e){ return e.source != d.source; }).style('opacity', 0.2)
 		})
 		.on('mouseleave', function(d){
 			node.style('opacity', 1)
 		})
+		.on('click', d => {
+			if (d.opened) {
+				d.opened = false;
+				console.log('Collect all sub-nodes', d.subNodes);
+				let toRemove = d.subNodes.map( d => d.id)
+				let filtered = nodes.filter( el => {
+					return !toRemove.includes( el.id );
+				})
+				var graph = calculateNetwork(filtered)
+				nodes = graph.nodes;
+				links = graph.edges;
+				restart();
+
+				// important to return here so to not do the following instructions
+				return;
+			}
+			// console.log(d.label, d.id);
+			if (d.subNodes && d.subNodes.length){
+				console.log('There are nodes to expand', d.subNodes)
+				d.opened = true;
+				var augmentedNodes = nodes.concat(d.subNodes);
+
+				// Make convex hull
+
+				
+
+
+				var graph = calculateNetwork(augmentedNodes);
+				nodes = graph.nodes;
+				links = graph.edges;
+				restart();
+
+			} else {
+				console.log('No nodes to expand')
+			}
+		})
 		.call(d3.drag().on("drag", dragged))
-		.merge(node);
+		.merge(node)
+		.attr("r", function(d){
+			return d.opened ? r(1) : r(d.totalSubNodes + 1)}
+		) // +1 means plus itself
 
 	// Apply the general update pattern to the links.
 	link = link.data(links, function(d) {
@@ -91,7 +128,8 @@ function restart() {
 	});
 	link.exit().remove();
 	link = link.enter().append("line")
-		.classed('link', function(d) { return d.kind == 'part_of' })
+		.classed('link', true)
+		.classed('part-of', function(d) { return d.kind == 'part_of' })
 		.on('click', d => console.log(d))
 		.merge(link);
 
@@ -122,21 +160,12 @@ Promise.all([
 	d3.tsv('data.tsv')
 ]).then(function(data) {
 	var locations = data[0].filter(function(d) { return +d.year >= 1965 && +d.year <= 1975 });
-	locations.forEach(function(d) { if(!d.id) { d.id = d['data.id'] } })
 
 	x.domain(d3.extent(locations, function(d) { return d.year }));
 	y.domain(categories);
 
-	let graph = calculateNetwork(locations);
-
-	nodes = graph.nodes;
-	links = graph.edges;
-	restart();
-})
-
-function calculateNetwork(data) {
-	console.log('calculate network')
-	var nodes = data.map(function(d) {
+	locations.forEach(function(d) { if(!d.id) { d.id = d['data.id'] } })
+	locations = locations.map(function(d) {
 		var obj = {
 			'id': d.id,
 			'label': d['Occorrenza'],
@@ -152,23 +181,32 @@ function calculateNetwork(data) {
 		return obj
 	})
 
+	locations = handleHierarchies(locations);
+	let graph = calculateNetwork(locations);
+	nodes = graph.nodes;
+	links = graph.edges;
+	restart();
+})
+
+function handleHierarchies(nodes) {
 	// calculate hierarchies of sub-nodes
 	let hierarchies = d3.nest()
 		.key(function(d){ return d.part_of })
 		.entries(nodes);
 
-	hierarchies.filter(function(d){ return d.key == '' })[0]
+	hierarchies
+		.filter(function(d){ return d.key == '' })[0]
 		.values.forEach(function(d){
 			var part_of_d = hierarchies.find(function(e){ return e.key == d.id })
 			if (part_of_d) {
-				console.log('LVL 0',d.id, d.label, 'is parent of', part_of_d.values.length);
+				// console.log('LVL 0',d.id, d.label, 'is parent of', part_of_d.values.length);
 				d.subNodes = part_of_d.values;
 				d.totalSubNodes = part_of_d.values.length
 
 				part_of_d.values.forEach(function(e){
 					var part_of_e = hierarchies.find(function(f){ return f.key == e.id })
 					if (part_of_e) {
-						console.log('LVL 1',e.id, e.label, 'is parent of', part_of_e.values.length);
+						// console.log('LVL 1',e.id, e.label, 'is parent of', part_of_e.values.length);
 						e.subNodes = part_of_e.values
 						e.totalSubNodes = part_of_e.values.length
 						d.totalSubNodes += e.totalSubNodes
@@ -176,7 +214,7 @@ function calculateNetwork(data) {
 						part_of_e.values.forEach(function(f){
 							var part_of_f = hierarchies.find(function(g){ return g.key == f.id})
 							if (part_of_f) {
-								console.log('LVL 2', f.id, f.label, 'is parent of', part_of_f.values.length)
+								// console.log('LVL 2', f.id, f.label, 'is parent of', part_of_f.values.length)
 								f.subNodes = part_of_f.values
 								f.totalSubNodes = part_of_f.values.length
 								d.totalSubNodes += f.totalSubNodes
@@ -184,7 +222,7 @@ function calculateNetwork(data) {
 								part_of_f.values.forEach(function(g){
 									var part_of_g = hierarchies.find(function(h){ return h.key == g.id })
 									if (part_of_g) {
-										console.log('LVL 3', g.id, g.label, 'is parent of', part_of_g.values.length)
+										// console.log('LVL 3', g.id, g.label, 'is parent of', part_of_g.values.length)
 										g.subNodes = part_of_g.values
 										g.totalSubNodes = part_of_g.values.length
 										d.totalSubNodes += f.totalSubNodes
@@ -197,12 +235,15 @@ function calculateNetwork(data) {
 				})
 			}
 		})
-
-	console.log(hierarchies);
-
-	nodes = hierarchies.filter(function(d){ return d.key == '' })[0].values;
-
+	// console.log(hierarchies);
+	// set domain of the radii scale
 	r.domain([1,d3.max(nodes, function(d){ return d.totalSubNodes })])
+	// return array of hierarchical nodes
+	return hierarchies.filter(function(d){ return d.key == '' })[0].values;
+}
+
+function calculateNetwork(nodes) {
+	console.log('calculate network')
 
 	// create the array of edges
 	var edges = []
@@ -213,25 +254,24 @@ function calculateNetwork(data) {
 		.forEach((d) => {
 
             //removing links that are not hierarchical increase performance A LOT
-
-			// d.values.filter(function(e) {
-			// 	return e.part_of == '';
-			// }).forEach((n, i) => {
-			// 	if(i < d.values.length - 1) {
-			// 		for(var k = i + 1; k <= d.values.length - 1; k++) {
-			// 			var obj = {}
-			// 			obj = {
-			// 				'source': n.id,
-			// 				'target': d.values[k].id,
-			// 				'volume': d.key,
-			// 				// 'year': n.year,
-			// 				'source_part_of': n.part_of,
-			// 				'kind': 'same_text'
-			// 			}
-			// 			edges.push(obj);
-			// 		}
-			// 	}
-			// })
+			d.values.filter(function(e) {
+				return e.part_of == '';
+			}).forEach((n, i) => {
+				if(i < d.values.length - 1) {
+					for(var k = i + 1; k <= d.values.length - 1; k++) {
+						var obj = {}
+						obj = {
+							'source': n.id,
+							'target': d.values[k].id,
+							'volume': d.key,
+							// 'year': n.year,
+							'source_part_of': n.part_of,
+							'kind': 'same_text'
+						}
+						edges.push(obj);
+					}
+				}
+			})
 
 			d.values.filter(function(e) {
 				return e.part_of != '';

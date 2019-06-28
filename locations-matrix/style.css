@@ -6,10 +6,9 @@
 
 .node {
     cursor: pointer;
-    opacity: 0.5;
 }
 
 .link {
-    stroke-width: 1px;
-    stroke: #666;
+    stroke-width: 0.5px;
+    stroke: #999;
 }
