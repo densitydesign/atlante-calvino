@@ -59,7 +59,7 @@ var simulation = d3.forceSimulation(nodes)
 		.strength(function(d) { return d.part_of == '' ? 0.7 : 0; })
 	)
 	.force("collision", d3.forceCollide(function(d){
-			return r(d.totalSubNodes+1)+1
+			return d.opened ? r(1)+2 : r(d.totalSubNodes + 1)+2
 		})
 		.iterations(4)
 		.strength(.5)
@@ -123,8 +123,8 @@ function restart() {
 		.call(d3.drag().on("drag", dragged))
 		.merge(node)
 		.attr("r", function(d){
-			return d.opened ? r(1) : r(d.totalSubNodes + 1)}
-		) // +1 means plus itself
+			return d.opened ? r(1) : r(d.totalSubNodes + 1)
+		}) // +1 means plus itself
 
 	// Apply the general update pattern to the links.
 	link = link.data(links, function(d) {
