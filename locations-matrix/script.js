@@ -33,6 +33,7 @@ var y = d3.scalePoint()
 	.range([0 + margin.top, h - margin.bottom]);
 
 var r = d3.scalePow().exponent(0.5)
+	.range([2.5,35])
 
 var color = d3.scaleOrdinal()
 	.domain(categories)
@@ -120,7 +121,7 @@ function ticked() {
 Promise.all([
 	d3.tsv('data.tsv')
 ]).then(function(data) {
-	var locations = data[0].filter(function(d) { return +d.year >= 1972 && +d.year <= 1972 });
+	var locations = data[0].filter(function(d) { return +d.year >= 1965 && +d.year <= 1975 });
 	locations.forEach(function(d) { if(!d.id) { d.id = d['data.id'] } })
 
 	x.domain(d3.extent(locations, function(d) { return d.year }));
@@ -202,7 +203,6 @@ function calculateNetwork(data) {
 	nodes = hierarchies.filter(function(d){ return d.key == '' })[0].values;
 
 	r.domain([1,d3.max(nodes, function(d){ return d.totalSubNodes })])
-		.range([3,d3.max(nodes, function(d){ return d.totalSubNodes })])
 
 	// create the array of edges
 	var edges = []
