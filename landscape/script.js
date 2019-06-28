@@ -299,7 +299,7 @@ let xxx = collections
 
   let PI = Math.PI;
   let arcMin = 75; // inner radius of the first arc
-  let arcWidth = 15;
+  let arcWidth = 38;
   let arcPad = 1; // padding between arcs
   let drawMode = 1; // 1 : hills; 2 : hills with halo; 3 : places; 4 : dubitative phenomena;
   let hillColoringMode = 1; // 1 : first publication year; 2 : collection
