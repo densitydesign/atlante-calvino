@@ -4,6 +4,7 @@ var g = svg.append('g');
 var link = g.append('g').classed('links', true).selectAll('.link');
 var hull = g.append('g').classed('hulls', true).selectAll('.hull');
 var node = g.append('g').classed('nodes', true).selectAll('.node');
+var label = g.append('g').classed('labels', true).selectAll('.label');
 
 var categories = [
 	'generico_non_terrestre',
@@ -77,10 +78,12 @@ function restart() {
 		.attr("cx", function(d) { return d.x })
 		.attr("cy", function(d) { return d.y })
 		.on('mouseenter', function(d){
-			node.filter(function(e){ return e.source != d.source; }).style('opacity', 0.2)
+			node.filter(function(e){ return e.source != d.source; }).style('opacity', 0.2);
+			label.filter(function(e){ return d.id == e.id }).style('display', 'block');
 		})
 		.on('mouseleave', function(d){
-			node.style('opacity', 1)
+			node.style('opacity', 1);
+			label.style('display', 'none');
 		})
 		.on('click', d => {
 			if (d.opened) {
@@ -137,6 +140,15 @@ function restart() {
 		.on('click', d => console.log(d))
 		.merge(link);
 
+	// Apply the general update pattern to the labels.
+	label = label.data(nodes, function(d) { return d.id; });
+	label.exit().remove();
+	label = label.enter().append("text")
+		.classed('label', true)
+		.attr('text-anchor', 'middle')
+		.text(function(d){return d.label})
+		.merge(label);
+
 	// Apply the general update pattern to the convex hulls.
 	hull = hull.data(hullsData, function(d) {
 		return d[0].id;
@@ -145,9 +157,11 @@ function restart() {
 	hull = hull.enter().append("path")
 		.classed('hull', true)
 		.attr('fill', function(d){
-			return color(d[0].category);
+			return color(d[0].category)
 		})
+		.style('opacity', .5)
 		.merge(hull);
+
 
 	// Update and restart the simulation.
 	simulation.nodes(nodes);
@@ -158,6 +172,9 @@ function restart() {
 function ticked() {
 	node.attr("cx", function(d) { return d.x; })
 		.attr("cy", function(d) { return d.y; });
+
+	label.attr("x", function(d) { return d.x; })
+		.attr("y", function(d) { return d.y; });
 
 	link.attr("x1", function(d) { return d.source.x; })
 		.attr("y1", function(d) { return d.source.y; })

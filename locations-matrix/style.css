@@ -4,6 +4,13 @@
   display: flex;
 }
 
+.label {
+    font-size: 0.8rem;
+    font-family: 'HK Grotesk';
+    display: none;
+    pointer-events: none;
+}
+
 .node {
     cursor: pointer;
 }
