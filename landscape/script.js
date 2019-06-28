@@ -53,7 +53,7 @@ Array.prototype.includesArray = function(array)
 Object.defineProperty(Array.prototype, "includesArray", {enumerable: false});
 
 d3
-  .csv("donuts_data.csv")
+  .csv("texts_data.csv")
   .then(
     function(csv)
     {
@@ -271,15 +271,19 @@ let xxx = collections
       return 'translate(0,'+i+')'
     });
 
+  let stepBorderColor = "#444";
+
   steps
     .append('circle')
-    .attr('stroke','#444')
+    .attr('stroke', stepBorderColor)
     .attr('stroke-width',1.5)
     .attr('fill',function(d){
       return colour(d.first_publication);
     })
     .attr('r',function(d){ return d.r })
     .attr('first_elem',function(d){ return d.first_elem })
+    .attr('last_elem', d => d.last_elem)
+    .attr('n_steps', d => d.n_steps)
     .attr("class", "hill" )
     .style('fill-opacity',1e-16)
     .style('stroke-opacity',1e-16)
@@ -295,7 +299,7 @@ let xxx = collections
 
   let PI = Math.PI;
   let arcMin = 75; // inner radius of the first arc
-  let arcWidth = 15;
+  let arcWidth = 38;
   let arcPad = 1; // padding between arcs
   let drawMode = 1; // 1 : hills; 2 : hills with halo; 3 : places; 4 : dubitative phenomena;
   let hillColoringMode = 1; // 1 : first publication year; 2 : collection
@@ -310,6 +314,22 @@ let xxx = collections
     .transition()
     .duration(450)
     .style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
+
+
+  data.nebbia_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+    .range(['#DDDDFF', 'blue']);
+
+  data.cancellazione_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+    .range(['#FFDDDD', 'red']);
+
+  data.dubitative_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
+    .range(['#FFDDFF', 'violet']);    
 
 ///////////////////////////////////////////
 
@@ -553,11 +573,10 @@ let xxx = collections
     .filter(function(d) { return d.first_elem } )
     .append("svg:path")
     .attr("fill", "blue")
-    .attr("class", "dubitativePhenomena")
+    .attr("class", "dubitativePhenomena_level_2")
     .attr("d", drawDubitativePhenomenaArc1)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
@@ -565,23 +584,101 @@ let xxx = collections
     .filter(function(d) { return d.first_elem } )
     .append("svg:path")
     .attr("fill", "red")
-    .attr("class", "dubitativePhenomena")
+    .attr("class", "dubitativePhenomena_level_2")
     .attr("d", drawDubitativePhenomenaArc2)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
   steps
     .filter(function(d) { return d.first_elem } )
     .append("svg:path")
-    .attr("fill", "white")
-    .attr("class", "dubitativePhenomena")
+    .attr("fill", "transparent")
+    .attr("class", "dubitativePhenomena_level_2")
     .attr("d", drawDubitativePhenomenaArc3)
     .attr('transform', function(d,i){
-      i = i*step_increment
-      return 'translate(0,'+i+')'
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+    })
+    .style('fill-opacity',0);
+
+///////////////////////////////////////////
+
+  let drawDubitativePhenomenaSlice1 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+      return 0;
+    })
+    .outerRadius(function(d, i) {
+      return d.r - i * arcWidth;
+    })
+    .startAngle(0 * 2 * PI)
+    .endAngle(function(d, i) {
+      return d.nebbia * 2 * PI;
+    });
+
+  let drawDubitativePhenomenaSlice2 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+      return 0;
+    })
+    .outerRadius(function(d, i) {
+      return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+      return d.nebbia * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+      return d.cancellazione * 2 * PI;
+    });
+
+  let drawDubitativePhenomenaSlice3 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+      return 0;
+    })
+    .outerRadius(function(d, i) {
+      return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+      return d.cancellazione * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+      return 2 * PI;
+    });
+
+///////////////////////////////////////////
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", d => data.nebbia_color_scale(d.nebbia_words_ratio))
+    .attr("class", "dubitativePhenomena_level_3")
+    .attr("d", drawDubitativePhenomenaSlice1)
+    .attr('transform', function(d,i){
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", d => data.cancellazione_color_scale(d.cancellazione_words_ratio))
+    .attr("class", "dubitativePhenomena_level_3")
+    .attr("d", drawDubitativePhenomenaSlice2)
+    .attr('transform', function(d,i){
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "transparent")
+    .attr("class", "dubitativePhenomena_level_3")
+    .attr("d", drawDubitativePhenomenaSlice3)
+    .attr('transform', function(d,i){
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
     })
     .style('fill-opacity',0);
 
@@ -803,6 +900,22 @@ let xxx = collections
       {
         data.keyboardCommandsOn = true;
       });
+/*
+  data.nebbia_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+    .range(['#DDDDFF', 'blue']);
+
+  data.cancellazione_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+    .range(['#FFDDDD', 'red']);
+
+  data.dubitative_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
+    .range(['#FFDDFF', 'violet']);
+*/
 
   d3
     .select('body')
@@ -831,19 +944,43 @@ let xxx = collections
             .duration(350)
             .style('fill', d => colour(d.first_publication));
         } else if (eventKey == "n") {
-          text_nodes.style('display','none')
-          text_nodes.filter(function(d){
-            console.log(d)
-            return d.attributes.nebbia
-          })
-          .style('display','block')
+//          text_nodes.style('display','none');
+
+          // text_nodes
+          //   .filter(d => d.attributes.nebbia)
+          //   .style('display', 'block');
+
+          d3.selectAll(".hill")
+            .filter(d => !d.nebbia_words_ratio)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.nebbia_words_ratio)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.nebbia_color_scale(d.nebbia_words_ratio));
+
         } else if (eventKey == "m") {
-          text_nodes.style('display','none')
-          text_nodes.filter(function(d){
-            console.log(d)
-            return d.attributes.cancellazione
-          })
-          .style('display','block')
+//          text_nodes.style('display','none');
+
+          // text_nodes
+          //   .filter(d => d.attributes.cancellazione)
+          //   .style('display', 'block');
+
+          d3.selectAll(".hill")
+            .filter(d => !d.cancellazione_words_ratio)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+            
+          d3.selectAll(".hill")
+            .filter(d => d.cancellazione_words_ratio)
+            .transition()
+            .duration(350)
+            .style('fill', d => data.cancellazione_color_scale(d.cancellazione_words_ratio));
+
         } else if (eventKey == "p") {
 
           drawMode = incrementDrawMode(drawMode);
@@ -877,7 +1014,6 @@ console.log(drawMode);
               {
                 text_nodes
                   .selectAll('.hill')
-                  .filter(d => d.first_elem)
                   .transition()
                   .duration(450)
                   .style('fill-opacity',1)
@@ -888,7 +1024,6 @@ console.log(drawMode);
               {
                 text_nodes
                   .selectAll('.hill')
-                  .filter(d => d.first_elem)
                   .transition()
                   .duration(450)
                   .style('fill-opacity',1)
@@ -940,7 +1075,36 @@ console.log(drawMode);
 
               break;
 
-            case 4 : // dubitative phenomena
+            case 4 : // dubitative phenomena - 2nd level
+
+              text_nodes
+                .selectAll('.hill')
+                .transition()
+                .duration(250)
+                .style('stroke-opacity',1);
+
+              text_nodes
+                .selectAll('.hill')
+                .filter(d => !d.dubitative_ratio)
+                .transition()
+                .duration(250)
+//                .style('fill', 'transparent')
+                .style('fill-opacity', 0)
+                .style('stroke-opacity', 1)
+                .style('stroke', stepBorderColor);
+                
+
+              d3.selectAll(".hill")
+                .filter(d => d.dubitative_ratio)
+                .style('fill', d => data.dubitative_color_scale(d.dubitative_ratio));
+
+              text_nodes
+                .selectAll('.hill')
+                .filter(d => d.dubitative_ratio)
+                .transition()
+                .duration(450)
+                .style('fill-opacity',1)
+                .style('stroke-opacity',1);            
 
               text_nodes
                 .selectAll('.places')
@@ -948,17 +1112,18 @@ console.log(drawMode);
                 .style('stroke-opacity',0);
 
               text_nodes
-                .selectAll('.dubitativePhenomena')
+                .selectAll('.dubitativePhenomena_level_2')
                 .style('fill-opacity',1)
                 .style('stroke-opacity',1);
-
+/*
               text_nodes
                 .selectAll("circle:not(.dubitativePhenomena)")
                 .transition()
                 .duration(450)
                 .style('fill-opacity',0)
                 .style('stroke-opacity',0);
-
+*/
+/*
               text_nodes
                 .selectAll('.hill')
                 .filter(d => d.first_elem)
@@ -967,6 +1132,37 @@ console.log(drawMode);
                 .style('fill-opacity', d => sample(d.norma_pct_caratteri_nebbia_cancellazione, 0, 1, 10))
                 .style('stroke-opacity',0)
                 .style('fill', '#9900FF');
+*/
+              break;
+
+            case 5 : // dubitative phenomena - 3rd level
+
+              text_nodes
+                .selectAll('.dubitativePhenomena_level_2')
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);            
+
+              d3.selectAll(".hill")
+                .filter(d => d.dubitative_ratio)
+                .style('fill', 'transparent');
+
+              text_nodes
+                .selectAll('.hill')
+                .filter(d => d.dubitative_ratio)
+                .transition()
+                .duration(450)
+                .style('fill-opacity',1)
+                .style('stroke-opacity',1);
+
+              text_nodes
+                .selectAll('.places')
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);
+
+              text_nodes
+                .selectAll('.dubitativePhenomena_level_3')
+                .style('fill-opacity',0.7)
+                .style('stroke-opacity',1);
 
               break;
           }
@@ -1016,6 +1212,21 @@ console.log(drawMode);
         }
         else if (eventKey == " ") {
           text_nodes.style('display','block')
+
+            d3.selectAll('.hill')
+              .style('fill-opacity', 1)
+              .style('stroke-opacity', 1);          
+
+          if(hillColoringMode == 1)
+          {
+            d3.selectAll('.hill')
+              .style('fill', d => colour(d.first_publication));
+          }
+          else if(hillColoringMode == 2)
+          {
+            d3.selectAll('.hill')
+              .style('fill', d => col_collections(d.collection));
+          }
         }
       });
 
@@ -1141,6 +1352,8 @@ function flatten_items_steps(nodes)
 
         collections: node.attributes.collections,
         first_elem: step.first_elem,
+        last_elem: step.last_elem,
+        n_steps: step.n_steps,
         first_publication: step.first_publication,
         generico_non_terrestre: step.generico_non_terrestre,
         generico_terrestre: step.generico_terrestre,
@@ -1155,7 +1368,11 @@ function flatten_items_steps(nodes)
         nebbia: step.nebbia,
         cancellazione: step.cancellazione,
 
-        norma_pct_caratteri_nebbia_cancellazione: step.norma_pct_caratteri_nebbia_cancellazione
+        norma_pct_caratteri_nebbia_cancellazione: step.norma_pct_caratteri_nebbia_cancellazione,
+
+        nebbia_words_ratio: step.nebbia_words_ratio,
+        cancellazione_words_ratio: step.cancellazione_words_ratio,
+        dubitative_ratio: step.dubitative_ratio
       };
 
       flattened_steps.push(item);
@@ -1182,7 +1399,11 @@ function calculate_item_data(obj)
     nebbia:                     (+obj.pct_nebbia / 100),
     cancellazione:              (+obj.pct_nebbia / 100) + (+obj.pct_cancellazione / 100),
 
-    norma_pct_caratteri_nebbia_cancellazione: (+obj.norma_pct_caratteri_nebbia_cancellazione)
+    norma_pct_caratteri_nebbia_cancellazione: (+obj.norma_pct_caratteri_nebbia_cancellazione),
+
+    nebbia_words_ratio: (+obj.nebbia_words_ratio),
+    cancellazione_words_ratio: (+obj.cancellazione_words_ratio),
+    dubitative_ratio: (+obj.dubitative_ratio)
   };
 
   return item_data;
@@ -1208,8 +1429,10 @@ function create_item_steps(d)
     // assign to each step a collection
     let pos_1 = i/d.steps.length;
     let pos_2 = pos_1 * d.attributes.collections.length;
-    let collection_here = d.attributes.collections[Math.floor(pos_2)]
-    let first_elem = (i == (d.steps.length-1))
+    let collection_here = d.attributes.collections[Math.floor(pos_2)];
+    let first_elem = (i == (d.steps.length-1));
+    let last_elem = (i == 0);
+    let n_steps = d.steps.length;
 
     let csv_item = data.x_csv2[d.id];
 
@@ -1219,6 +1442,8 @@ function create_item_steps(d)
       'first_publication': d.attributes.first_publication,
       'id': d.id,
       'first_elem': first_elem,
+      'last_elem': last_elem,
+      'n_steps': n_steps,
       'generico_non_terrestre': csv_item == undefined ? 0 : csv_item.generico_non_terrestre,
       'generico_terrestre':  csv_item == undefined ? 0 : csv_item.generico_terrestre,
       'inventato':  csv_item == undefined ? 0 : csv_item.inventato,
@@ -1229,7 +1454,12 @@ function create_item_steps(d)
       'cancellazione_normalizzata': csv_item == undefined ? 0 : csv_item.cancellazione_normalizzata,
       'nebbia': csv_item == undefined ? 0 : csv_item.nebbia,
       'cancellazione': csv_item == undefined ? 0 : csv_item.cancellazione,
-      'norma_pct_caratteri_nebbia_cancellazione': csv_item == undefined ? 0 : csv_item.norma_pct_caratteri_nebbia_cancellazione
+      'norma_pct_caratteri_nebbia_cancellazione': csv_item == undefined ? 0 : csv_item.norma_pct_caratteri_nebbia_cancellazione,
+
+      'nebbia_words_ratio': csv_item == undefined ? 0 : csv_item.nebbia_words_ratio,
+      'cancellazione_words_ratio': csv_item == undefined ? 0 : csv_item.cancellazione_words_ratio,
+      'dubitative_ratio': csv_item == undefined ? 0 : csv_item.dubitative_ratio
+
     };
   });
 
@@ -1447,7 +1677,7 @@ function interpolateSpline(x) {
 
 function incrementDrawMode(drawMode)
 {
-  if(drawMode >= 4)
+  if(drawMode >= 5)
   {
     return 1;
   }
