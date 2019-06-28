@@ -14,8 +14,8 @@ var categories = [
 	'inventato',
 	'no_ambientazione'
 ]
-// var minRadius = 5;
-var collisionPadding = 2;
+
+var collisionPadding = 1.5;
 
 var w = container.node().getBoundingClientRect().width;
 var h = container.node().getBoundingClientRect().height;
@@ -84,16 +84,16 @@ function ticked() {
 		let thisHullPoints = d.map( d => { return [d.x, d.y] });
 		var points = thisHullPoints;
 		var convexHull = (points.length < 3) ? points : d3.polygonHull(points);
-		return roundedHull(convexHull,d);
+		return roundedHull(convexHull, d);
 	})
 }
 
 function dragged(d) {
-	d.x = d3.event.x, d.y = d3.event.y;
-	d3.select(this).attr("cx", d.x).attr("cy", d.y);
+	d.fx = d3.event.x, d.fy = d3.event.y;
+	// d3.select(this).attr("cx", d.x).attr("cy", d.y);
 	// link.filter(function(l) { return l.source === d; }).attr("x1", d.x).attr("y1", d.y);
 	// link.filter(function(l) { return l.target === d; }).attr("x2", d.x).attr("y2", d.y);
-	// ticked();
+	ticked();
 	// simulation.alpha(1).restart();
 }
 
@@ -114,17 +114,28 @@ function restart() {
 			label.style('display', 'none');
 		})
 		.on('click', d => {
+			d.fx = null;
+			d.fy = null;
 			if (d.opened) {
 				d.opened = false;
-				console.log('Collect all sub-nodes', d.subNodes);
+				// console.log('Collect all sub-nodes', d.subNodes);
 				let toRemove = d.subNodes.map( d => d.id)
 				let filtered = nodes.filter( el => {
 					return !toRemove.includes( el.id );
 				})
+
 				// remove this hull
 				hullsData = hullsData.filter(function(h){
 					return h[0].id != d.id
 				})
+
+				// remove extra points from the outer hull
+				hullsData.forEach(function(thisHull,i){
+					hullsData[i] = thisHull.filter(function(n){
+						return !toRemove.includes( n.id )
+					})
+				})
+
 				// calculate graph
 				var graph = calculateNetwork(filtered)
 				nodes = graph.nodes;
@@ -136,15 +147,32 @@ function restart() {
 			// console.log(d.label, d.id);
 			if (d.subNodes && d.subNodes.length){
 				console.log('There are nodes to expand: ', d.subNodes.length)
-				d.subNodes.forEach(function(subNode){
-					subNode.x = d.x;
-					subNode.y = d.y;
+				d.subNodes.forEach(function(subNode, i){
+					if (i > 0) {
+						subNode.x = d.x;
+						subNode.y = d.y;
+					}
 				})
 				d.opened = true;
 				// Make convex hull
 				var thisHullNodes = [d].concat(d.subNodes); // first element in array is always the one opened, so we can use its ID as identifier for the convex hull
-				console.log('this hull nodes', thisHullNodes);
+				// console.log('this hull nodes', thisHullNodes);
 				hullsData.push(thisHullNodes);
+
+				// check if the first point of the hull is inside another hulls
+				// if so it means this hull should be part of that opened
+				// add these points to that hullsData
+				hullsData.forEach(function(thisHull){
+					// if the element is in the array, but is not the first
+					if (thisHull.indexOf(thisHullNodes[0]) > 0) {
+						thisHullNodes.forEach(function(n,i){
+							if (i != 0) {
+								thisHull.push(n);
+							}
+						})
+					}
+				})
+
 				// calculate Graph
 				var augmentedNodes = nodes.concat(d.subNodes);
 				var graph = calculateNetwork(augmentedNodes);
