@@ -1129,11 +1129,13 @@ console.log(drawMode);
                 .selectAll('.places')
                 .style('fill-opacity',0)
                 .style('stroke-opacity',0);
-
+/*
+// bicolor rings, no longer shown as per customer's request
               text_nodes
                 .selectAll('.dubitativePhenomena_level_2')
                 .style('fill-opacity',1)
                 .style('stroke-opacity',1);
+*/
 /*
               text_nodes
                 .selectAll("circle:not(.dubitativePhenomena)")
@@ -1172,6 +1174,13 @@ console.log(drawMode);
                 .duration(450)
                 .style('fill-opacity',1)
                 .style('stroke-opacity',1);
+
+              text_nodes
+                .selectAll('.hill')
+                .filter(d => !d.dubitative_ratio && !d.first_elem)
+                .style('fill-opacity', 0)
+                .style('stroke-opacity', 0);
+                
 
               text_nodes
                 .selectAll('.places')
