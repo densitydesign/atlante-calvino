@@ -15,6 +15,15 @@ var categories = [
 	'no_ambientazione'
 ]
 
+var categoriesColors = [
+	'#3131ff',
+	'#bbbbff',
+	'#ffce00',
+	'#ff6c39',
+	'#00c19c',
+	'#cecece'
+]
+
 var collisionPadding = 1.5;
 
 var w = container.node().getBoundingClientRect().width;
@@ -40,7 +49,8 @@ var r = d3.scalePow().exponent(0.5)
 
 var color = d3.scaleOrdinal()
 	.domain(categories)
-	.range(d3.schemeCategory10)
+	//.range(d3.schemeCategory10)
+	.range(categoriesColors)
 
 var nodes = [],
 	hullsData = [],
@@ -191,10 +201,10 @@ function restart() {
 		.attr("r", function(d){ return d.opened ? r(1) : r(d.totalSubNodes + 1) }) // +1 means plus itself
 		.attr("fill", function(d) {
 			// console.log(d)
-			return d.opened==true ? 'transparent' : color(d.category);
+			return d.opened==true ? 'white' : color(d.category);
 		})
 		.attr('stroke', function(d) {
-			if(d.totalSubNodes > 0) return d3.color(color(d.category)).darker(0.5)
+			if(d.totalSubNodes > 0) return d3.color(color(d.category)).darker(0.7)
 		})
 
 	// Apply the general update pattern to the links.
