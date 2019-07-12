@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+  <link rel="stylesheet" href="../assets/general-style.css">
+  <link rel="stylesheet" href="my-style.css">
+  </link>
+  <title>Wanderer</title>
+</head>
+
+<body>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-8">
+        <h1>Wanderer</h1>
+        <p>Carica un testo in formato .txt e una struttura dati in .tsv. <br/>Questo strumento ti permetterà di annotare porzioni di testo secondo le tue necessità e di salvare le informazioni raccolte in un file .tsv in modo da poterlo successivamente
+          analizzare o visualizzare. Sviluppato nel contesto del progetto <a href="http://atlantecalvino.unige.ch/" target="_blank">Atlante Calvino: letteratura e visualizzazione</a>.</p>
+      </div>
+    </div>
+    <hr style="border-style: dashed;" />
+  </div>
+
+  <div class="load-file container-fluid pb-3 mb-3">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-8">
+          <div id="load-a-text" class="white-box">
+            <h3>Carica un testo (.txt):</h3>
+            <input class="" type='file' accept='text/plain' onchange='openTextFile(event)'>
+            <p class="caption">Carica qui un testo che vuoi analizzare.</p>
+          </div>
+          <div id="output-box" class="output-box">
+            <!-- Text will be loaded here -->
+          </div>
+        </div>
+
+        <div class="col-4 white-box annotations faded">
+          <h3>Annotazioni</h3>
+          <p class="caption">Prima di iniziare ad annotare, carica una struttura dati: un file .tsv dove sono definite le colonne del dataset, il formato dei dati e, se necessario, dei valori preimpostati.</p>
+          <input id="load-a-structure" class="w-100" type='file' accept='.tsv' onchange='openStructureFile(event)'>
+          <div class="sticky-top">
+            <div id="info-box" class="info-boxpt-3">
+              <label class="loaded-a-structure" style="grid-column-start: 1; grid-column-end: 3;">Struttura caricata: <span id="data_structure_name">Nessuna</span></label>
+              <div class="info-box pt-3 loaded-a-structure resumed-analysis" style="grid-column-start: 1; grid-column-end: 3;">
+                <hr style="grid-column-start: 1; grid-column-end: 3; width: 100%;"></hr>
+                <p class="caption">Continua un'analisi lasciata in sospeso:</p>
+                <input class="w-100" type='file' accept='.tsv' onchange='openExportedFile(event)'>
+              </div>
+              <label class="loaded-a-structure">Annotazioni inserite</label>
+              <p id="annotations-count" class="loaded-a-structure">0</p>
+              <hr style="grid-column-start: 1; grid-column-end: 3; width: 100%;"></hr>
+<!--              <label>Inizio – fine:</label>
+              <p><span id="starts_at">1234</span> – <span id="ends_at">2345</span></p>
+              <label>Selected text:</label>
+              <p id="occorrenza">.</p>
+-->
+            </div>
+            <div class="info-box pt-3 loaded-a-structure">
+              <button type="button" class="btn btn-outline-primary btn-sm btn-block" id="save-info">Salva l'annotazione</button>
+              <button type="button" class="btn btn-outline-primary btn-sm btn-block" id="delete-info">Elimina l'annotazione</button>
+              <button type="button" class="btn btn-outline-primary btn-sm btn-block" id="exportBtn">Esporta le annotazioni</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- Optional JavaScript -->
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!--    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/1.3.8/FileSaver.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/voca/1.4.0/voca.min.js"></script>
+  <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>
+  <script src="script.js"></script>
+</body>
+
+</html>
