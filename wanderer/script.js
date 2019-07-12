@@ -34,7 +34,9 @@ function openTextFile(event)
       source_title = input.files[0].name;
 
       max_span_id = 0;
-      document.getElementById('output-box').innerHTML = "<span id='" + highlightedElementPrefix + max_span_id + "' data-pos=0>" + text + "</span>";
+//      document.getElementById('output-box').innerHTML = "<span id='" + highlightedElementPrefix + max_span_id + "' data-pos=0>" + text + "</span>";
+
+      renderText();
       atLeastOneAnnotationAdded = false;
 
 /*
@@ -85,6 +87,8 @@ function openStructureFile(event)
             let parseTextValue;
             let clearControl;
             let writeOnControl;
+
+            let controlFieldIsToBeRegistered = true;
 
             switch(type)
             {
@@ -139,17 +143,23 @@ function openStructureFile(event)
                 writeOnControl = writeOnCheckbox;
 
                 break;
+              default :
+                // in case of special control-fields (aka subselection switches), we don't register controls as others on tsv file (these controls will be used in a special way)
+                controlFieldIsToBeRegistered = false;
             }
 
-            annotation_fields_map[name] = {
-              type: type,
-              values: values,
-              readControl: readControl,
-              parseTextValue: parseTextValue,
-              index: index++,
-              clearControl: clearControl,
-              writeOnControl: writeOnControl
-            };
+            if(controlFieldIsToBeRegistered)
+            {
+              annotation_fields_map[name] = {
+                type: type,
+                values: values,
+                readControl: readControl,
+                parseTextValue: parseTextValue,
+                index: index++,
+                clearControl: clearControl,
+                writeOnControl: writeOnControl
+              };
+            }
 
             createControl(name, type, values);
         });
@@ -200,13 +210,15 @@ function openExportedFile(event)
 
           return a;
         });
-
+/*
       annotations.forEach(annotation => {
 
         let containingElement = getContainingElementByInternalPos(annotation.starts_at);
 
         highlightAnnotationText(containingElement, annotation);
       });
+*/
+      renderText();
 
       $('.resumed-analysis').hide();
       $('#annotations-count').text(annotations.length);
@@ -223,20 +235,71 @@ function createControl(name, type, values)
   {
     case "text":
 
-      if (values == "currentSelection") break;
+      if(["currentSelection", "currentSubselection"].includes(values))
+      {
+        d3
+          .select("#info-box")
+          .append("label")
+          .attr("id", name + "-label")
+          .attr("for", name)
+          .text(name);
 
-      d3
-        .select("#info-box")
-        .append("label")
-        .attr("id", name + "-label")
-        .attr("for", name)
-        .text(name);
+        d3
+          .select("#info-box")
+          .append("p")
+          .attr("id", name)
+          .text("");
+      }
+      else
+      {
+        d3
+          .select("#info-box")
+          .append("label")
+          .attr("id", name + "-label")
+          .attr("for", name)
+          .text(name);
 
-      d3
-        .select("#info-box")
-        .append("input")
-        .attr("id", name)
-        .attr("type", "text");
+        d3
+          .select("#info-box")
+          .append("input")
+          .attr("id", name)
+          .attr("type", "text");
+      }
+
+      break;
+
+    case "number":
+
+      if(["currentSelectionStart", "currentSelectionEnd", "currentSubselectionStart", "currentSubselectionEnd"].includes(values))
+      {
+        d3
+          .select("#info-box")
+          .append("label")
+          .attr("id", name + "-label")
+          .attr("for", name)
+          .text(name);
+
+        d3
+          .select("#info-box")
+          .append("span")
+          .attr("id", name)
+          .text("");        
+      }
+      else
+      {
+        d3
+          .select("#info-box")
+          .append("label")
+          .attr("id", name + "-label")
+          .attr("for", name)
+          .text(name);
+
+        d3
+          .select("#info-box")
+          .append("input")
+          .attr("id", name)
+          .attr("type", "text");
+      }
 
       break;
 
@@ -266,6 +329,23 @@ function createControl(name, type, values)
       break;
 
     case "checkbox":
+
+      d3
+        .select("#info-box")
+        .append("label")
+        .attr("id", name + "-label")
+        .attr("for", name)
+        .text(name);
+
+      d3
+        .select("#info-box")
+        .append("input")
+        .attr("id", name)
+        .attr("type", "checkbox");
+
+      break;
+
+    case "subselectionCheckbox":
 
       d3
         .select("#info-box")
@@ -330,48 +410,55 @@ function textSelection()
 
   if(document.getSelection().focusNode.parentElement.id.includes(highlightedElementPrefix))
   {
-    parentElement = focusNode.parentElement;
+    let subselectionActivated = readCheckbox("subselection");
 
-//    if(atLeastOneAnnotationAdded)
-//    {
-//       currentSelection = document.getSelection().toString();
-//    }
-//    else
-//    {
-      currentSelection = document.getSelection().getRangeAt(0).toString();
-//    }
-//console.log("currentSelection : " + currentSelection);
-//let x = document.getSelection().getRangeAt(0).toString();
-//console.log("x : " + x);
-    if (currentSelection == "") return;
-    
-
-    currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;    
-    currentSelectionEndRelative = document.getSelection().getRangeAt(0).endOffset;
-
-console.log("------------------------------------");
-
-    let currentSelectionEndAbsolute = currentSelectionEndRelative + (+parentElement.dataset.pos);
-
-    let currentSelectionStartAbsolute = currentSelectionEndAbsolute - currentSelection.length;
-
-console.log("parentElement.id : " + parentElement.id);
-console.log("currentSelectionStartRelative : " + currentSelectionStartRelative);
-console.log("currentSelectionEndRelative : " + currentSelectionEndRelative);
-console.log("currentSelectionStartAbsolute : " + currentSelectionStartAbsolute);
-console.log("currentSelectionEndAbsolute : " + currentSelectionEndAbsolute);
-    let foundEntity = findAnnotation(currentSelectionStartAbsolute, currentSelectionEndAbsolute);
-
-    if(foundEntity != undefined)
+    if(subselectionActivated)
     {
-      writeValueMapOnPageFields(foundEntity);
+      parentElement = focusNode.parentElement;
+
+      let subselection = document.getSelection().getRangeAt(0).toString();
+
+      if (subselection == "") return;
+
+      let subselectionStartRelative = document.getSelection().getRangeAt(0).startOffset;    
+      let subselectionEndRelative = document.getSelection().getRangeAt(0).endOffset;
+
+      let subselectionEndAbsolute = subselectionEndRelative + (+parentElement.dataset.pos);
+
+      let subselectionStartAbsolute = subselectionEndAbsolute - subselection.length;
+
+      d3.select('#soggetto').html(spacesToHtmlSpaces(subselection));
+      d3.select('#soggetto_starts_at').html(subselectionStartAbsolute);
+      d3.select('#soggetto_ends_at').html(subselectionEndAbsolute);
     }
-    else 
+    else
     {
-      clearAnnotationFields();
-      d3.select('#occorrenza').html(spacesToHtmlSpaces(currentSelection));
-      d3.select('#starts_at').html(currentSelectionStartAbsolute);
-      d3.select('#ends_at').html(currentSelectionEndAbsolute);
+      parentElement = focusNode.parentElement;
+
+      currentSelection = document.getSelection().getRangeAt(0).toString();
+
+      if (currentSelection == "") return;    
+
+      currentSelectionStartRelative = document.getSelection().getRangeAt(0).startOffset;    
+      currentSelectionEndRelative = document.getSelection().getRangeAt(0).endOffset;
+
+      let currentSelectionEndAbsolute = currentSelectionEndRelative + (+parentElement.dataset.pos);
+
+      let currentSelectionStartAbsolute = currentSelectionEndAbsolute - currentSelection.length;
+
+      let foundEntity = findAnnotation(currentSelectionStartAbsolute, currentSelectionEndAbsolute);
+
+      if(foundEntity != undefined)
+      {
+        writeValueMapOnPageFields(foundEntity);
+      }
+      else 
+      {
+        clearAnnotationFields();
+        d3.select('#occorrenza').html(spacesToHtmlSpaces(currentSelection));
+        d3.select('#starts_at').html(currentSelectionStartAbsolute);
+        d3.select('#ends_at').html(currentSelectionEndAbsolute);
+      }
     }
   }
 }
@@ -396,7 +483,7 @@ function exportData()
       let annotationValue = annotation[key];
 
 //      if(key === "occorrenza") annotationValue = annotationValue.replace("\n", "§");
-      if(key === "occorrenza") annotationValue = "\"" + annotationValue + "\"";
+      if(["occorrenza", "soggetto"].includes(key)) annotationValue = "\"" + annotationValue + "\"";
 
       s += annotationValue + "\t";
     }
@@ -409,6 +496,8 @@ function exportData()
   saveAs(
     new self.Blob([s], {type: "text/plain;charset=utf-8"}),
     fileName);
+
+  writeOnCheckbox("subselection", false);
 }
 
 function spacesToHtmlSpaces(s)
@@ -666,6 +755,8 @@ function clearAnnotationFields()
   {
     annotation_fields_map[key].clearControl(key);
   }
+
+  writeOnCheckbox("subselection", false);
 }
 
 function saveAnnotationClick()
@@ -692,7 +783,11 @@ function saveAnnotationClick()
 
     assignToAnnotation(annotationValueMap, annotation);
 
+    renderText();
+
     alert("Modifiche salvate.");
+
+    writeOnCheckbox("subselection", false);    
   }
   else if(selectionOverlapsWithOthers(annotationValueMap.starts_at, annotationValueMap.ends_at))
   {
@@ -702,15 +797,17 @@ function saveAnnotationClick()
   {
     let annotation = new Annotation(annotationValueMap);  
 
-    highlightAnnotationText(parentElement, annotation);
+//    highlightAnnotationText(parentElement, annotation);
 
     annotations.push(annotation);
+
+    renderText();
 
     atLeastOneAnnotationAdded = true;
 
     $('#annotations-count').text(annotations.length);
 
-    clearAnnotationFields();
+    clearAnnotationFields();    
   }
 }
 
@@ -731,15 +828,19 @@ function deleteAnnotationClick()
 
     let annotation = findAnnotation(annotationValueMap.starts_at, annotationValueMap.ends_at);
 
-    unhighlightAnnotationText(parentElement);
+//    unhighlightAnnotationText(parentElement);
 
     let index = annotations.indexOf(annotation);
 
     annotations.splice(index, 1);
 
+    $('#annotations-count').text(annotations.length);
+
     clearAnnotationFields();
 
     clearSelection();
+
+    renderText();
   }
 }
 
@@ -839,6 +940,144 @@ function parseNumberField(string)
 function parseBooleanField(string)
 {
   return (string === 'true');
+}
+
+function renderText()
+{
+/*  
+  let annotations = [
+    { start : 23, end : 80  },
+    { start : 75, end : 87 },
+    { start : 60, end : 95 },    
+  ];
+*/
+
+  let multilevelAnnotations = [];
+
+  annotations.forEach(a => {
+    multilevelAnnotations.push({ type : "selection", starts_at : a.starts_at, ends_at : a.ends_at });
+    if(a.soggetto_starts_at !== undefined && a.soggetto_ends_at !== undefined)
+    {
+      multilevelAnnotations.push({ type : "subselection", starts_at : a.soggetto_starts_at, ends_at : a.soggetto_ends_at });
+    }
+  });
+
+  for(let i = 0; i < multilevelAnnotations.length - 1; ++i)
+  {
+    multilevelAnnotations[i].next = multilevelAnnotations[i + 1].starts_at;
+  }
+
+  let characterMarking = [];
+
+  for(let i = 0; i < text.length; ++i)
+  {
+    characterMarking.push([]);
+
+    for(let j = 0; j < multilevelAnnotations.length; ++j)
+    {
+      let annotation = multilevelAnnotations[j];
+
+      if(annotation.starts_at <= i && i < annotation.ends_at)
+      {
+        characterMarking[i].push(j);
+      }
+    }
+  }
+
+  let characterMarkingKeys = characterMarking.map(d => d.join("-"));
+
+  let ranges = [];
+  let currentRangeStart = 0;
+  let oldKey = characterMarkingKeys[currentRangeStart];
+  let ii;
+  let key;
+  let n_selections = 0;
+  let n_subselections = 0;
+
+  for(ii = 1; ii < characterMarkingKeys.length; ++ii)
+  {
+    key = characterMarkingKeys[ii];
+    
+    if(key != oldKey)
+    {
+      characterMarking[ii - 1].forEach(d => {
+        switch(multilevelAnnotations[d].type) 
+        {
+          case "selection"    :    ++n_selections; break;
+          case "subselection" : ++n_subselections; break;
+        }
+      });
+
+      ranges.push({
+        starts_at : currentRangeStart,
+        ends_at : ii,
+        key : oldKey,
+        n_selections : n_selections,
+        n_subselections : n_subselections
+      });
+
+      oldKey = key;
+      currentRangeStart = ii;
+      n_selections = 0;
+      n_subselections = 0;
+    }
+  }
+console.log("ii-1 : " + (ii-1));
+  characterMarking[ii - 1].forEach(d => {
+    switch(multilevelAnnotations[d].type)
+    {
+      case "selection"    :    ++n_selections; break;
+      case "subselection" : ++n_subselections; break;
+    }
+  });
+
+  ranges.push({
+    starts_at : currentRangeStart,
+    ends_at : ii,
+    key : key,
+    n_selections : n_selections,
+    n_subselection : n_subselections
+  });
+
+//  let colors = [ "lightsalmon", "cyan", "orange", "palevioletred", "bisque", "goldenrod", "palegoldenrod" ];
+
+  let textParts = ranges.map((r, i) => {
+
+    let class_tag;
+    if(r.key == "")
+    {
+      class_tag = "";
+    }
+    else
+    {      
+      let class_value = "";
+console.log("r.n_selections : " + r.n_selections);
+console.log("r.n_subselections : " + r.n_subselections);
+      if(r.n_selections == 1 && r.n_subselections == 0) class_value = "selection";
+      else if(r.n_selections == 0 && r.n_subselections == 1) class_value = "subselection";
+      else if(r.n_selections > 1 && r.n_subselections == 0) class_value = "sel_sel";
+      else if(r.n_selections == 0 && r.n_subselections > 1) class_value = "subsel_subsel";
+      else if(r.n_selections > 0 && r.n_subselections > 0) class_value = "sel_subsel";
+
+//      class_tag = "class='" + (r.type == "selection" ? "selection" : "subselection") + "'");      
+      class_tag = "class='" + class_value + "'";
+    }
+
+    let s = 
+      "<span id='" + highlightedElementPrefix + i + "' data-pos=" + r.starts_at + " " +
+      class_tag +
+      ">" +
+      text.slice(r.starts_at, r.ends_at) + 
+      "</span>";
+
+    return s;
+  });
+
+  let text2 = text.slice(0, ranges[0].starts_at) + textParts.join("");
+  
+  console.log(text2);
+//  d3.select("#text").html(text2);
+  document.getElementById('output-box').innerHTML = text2;
 }
 
 document.addEventListener('selectionchange', textSelection);

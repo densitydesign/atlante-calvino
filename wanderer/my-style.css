@@ -53,8 +53,24 @@ input {
   width: 100%;
 }
 
-.highlight {
-    background-color: yellow;
+.selection {
+  background-color: yellow;
+}
+
+.subselection {
+  background-color: lightseagreen;
+}
+
+.sel_sel {
+  background-color: goldenrod;
+}
+
+.subsel_subsel {
+  background-color: olive;
+}
+
+.sel_subsel {
+  background-color: orange;
 }
 
 #info-box {
@@ -79,7 +95,7 @@ input {
   text-transform: capitalize;
 }
 
-#info-box p#occorrenza {
+#info-box p#occorrenza,#soggetto {
   height: auto;
   max-height: 75px;
   min-height: 50px;
@@ -87,12 +103,12 @@ input {
   position: relative;
 }
 
-#info-box p#occorrenza:hover {
+#info-box p#occorrenza:hover,#soggetto:hover {
   height: auto;
   max-height: none;
 }
 
-#info-box p#occorrenza:after {
+#info-box p#occorrenza:after,#soggetto:after {
   content: '';
   display: block;
   position: absolute;
