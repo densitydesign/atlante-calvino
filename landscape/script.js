@@ -737,7 +737,8 @@ let xxx = collections
       .attr('font-family', 'Crimson Text')
       .attr('font-size', '1.1rem')
       .text(function(d){
-        if (d.attributes.type == 'romanzo' || d.attributes.type == 'ibrido') {
+        // V016 - "il castello dei destini incrociati" gets anyway the first publication year in the label
+        if ((d.attributes.type == 'romanzo' || d.attributes.type == 'ibrido') && d.id != "V016") {
           return d.attributes.title;
         } else {
           return d.attributes.title + ', ' + d.attributes.first_publication;
