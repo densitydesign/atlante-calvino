@@ -762,23 +762,48 @@ function writeValueMapOnPageFields(valueMap)
 
 function readValueMapFromTextLine(line)
 {
+
   let fieldKeys = Array.from(annotation_fields_map.keys());
 
   let valueMap = {};
   let fieldValues = line.split(/\t/);
+  let fieldValues2 = [];
+
+  if(fieldKeys.length != fieldValues.length)
+  {    
+    let o = fieldKeys.indexOf("occorrenza");
+    let s = fieldKeys.indexOf("soggetto");
+
+    fieldValues2 = fieldValues.slice(0, o);
+    fieldValues2.push("");
+    fieldValues2 = fieldValues2.concat(fieldValues.slice(o, s));
+    fieldValues2.push("");
+    fieldValues2 = fieldValues2.concat(fieldValues.slice(s, fieldValues.length));
+  }
 
   for(let i = 0; i < fieldKeys.length; ++i)
   {
     let key = fieldKeys[i];
-    let value = annotation_fields_map.get(key).parseTextValue(fieldValues[i]);
+    let value = annotation_fields_map.get(key).parseTextValue(fieldValues2[i]);
 
+    // in case we've reloaded an export without text captions
+    
 //    if(key === "occorrenza") value = value.replace("§", "\n");
 //    if(key === "occorrenza") value = value.substring(1, value.length - 1);
     
     valueMap[key] = value;
   }
 
+  if(fieldKeys.length != fieldValues.length)
+  {
+      valueMap["occorrenza"] = text.slice(+(valueMap["starts_at"]), +(valueMap["ends_at"]));
+      valueMap["soggetto"] = text.slice(+(valueMap["soggetto_starts_at"]), +(valueMap["soggetto_ends_at"]));
+  }
+
   return valueMap;
+
+
+  return [];
 }
 
 function clearAnnotationFields()
