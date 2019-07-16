@@ -1129,13 +1129,13 @@ console.log(drawMode);
                 .selectAll('.places')
                 .style('fill-opacity',0)
                 .style('stroke-opacity',0);
-/*
-// bicolor rings, no longer shown as per customer's request
+
+              // donuts
               text_nodes
                 .selectAll('.dubitativePhenomena_level_2')
                 .style('fill-opacity',1)
                 .style('stroke-opacity',1);
-*/
+
 /*
               text_nodes
                 .selectAll("circle:not(.dubitativePhenomena)")
