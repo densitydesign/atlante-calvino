@@ -7,7 +7,7 @@ var currentSelection;
 let currentSelectionStartRelative;
 let currentSelectionEndRelative;
 let max_span_id = 0;
-let annotation_fields_map = {};
+let annotation_fields_map = new Map();
 let annotations;
 let atLeastOneAnnotationAdded;
 const highlightedElementPrefix = "output-span-";
@@ -150,7 +150,7 @@ function openStructureFile(event)
 
             if(controlFieldIsToBeRegistered)
             {
-              annotation_fields_map[name] = {
+              annotation_fields_map.set(name, {
                 type: type,
                 values: values,
                 readControl: readControl,
@@ -158,13 +158,14 @@ function openStructureFile(event)
                 index: index++,
                 clearControl: clearControl,
                 writeOnControl: writeOnControl
-              };
+              });
             }
 
             createControl(name, type, values);
         });
 
         $('#load-a-structure').hide();
+        clearAnnotationFields();
     };
 
   let input = event.target;
@@ -466,8 +467,8 @@ function textSelection()
 function exportData()
 {
   let s = "";
-
-  for(var key in annotation_fields_map)
+  
+  for(var key of annotation_fields_map.keys())
   {
     s += key + "\t";
   }
@@ -478,7 +479,7 @@ function exportData()
   {
     let annotation = annotations[i];
 
-    for(var key in annotation_fields_map)
+    for(var key of annotation_fields_map.keys())
     {
       let annotationValue = annotation[key];
 
@@ -492,6 +493,42 @@ function exportData()
   }
 
   let fileName = `${source_title.replace(/.txt/g, '')} [${new Date().toJSON().slice(0,16).replace(/T/g,' ')}].tsv`;
+
+  saveAs(
+    new self.Blob([s], {type: "text/plain;charset=utf-8"}),
+    fileName);
+
+  writeOnCheckbox("subselection", false);
+}
+
+function exportDataWithoutOccurrences()
+{
+  let s = "";
+  
+  for(var key of annotation_fields_map.keys())
+  {
+    s += key + "\t";
+  }
+
+  s += "\n";
+
+  for(let i = 0; i < annotations.length; ++i)
+  {
+    let annotation = annotations[i];
+
+    for(var key of annotation_fields_map.keys())
+    {
+      let annotationValue = annotation[key];
+
+      if(["occorrenza", "soggetto"].includes(key)) continue;
+
+      s += annotationValue + "\t";
+    }
+
+    s += "\n";
+  }
+
+  let fileName = `${source_title.replace(/.txt/g, '')} [${new Date().toJSON().slice(0,16).replace(/T/g,' ')}] no_occ.tsv`;
 
   saveAs(
     new self.Blob([s], {type: "text/plain;charset=utf-8"}),
@@ -706,9 +743,9 @@ function readValueMapFromPageFields()
 {
   let valueMap = {};
 
-  for(var key in annotation_fields_map)
+  for(var key of annotation_fields_map.keys())
   {
-    let value = annotation_fields_map[key].readControl(key);
+    let value = annotation_fields_map.get(key).readControl(key);
     valueMap[key] = value;
   }
 
@@ -717,20 +754,15 @@ function readValueMapFromPageFields()
 
 function writeValueMapOnPageFields(valueMap)
 {
-  for(var key in annotation_fields_map)
+  for(var key of annotation_fields_map.keys())
   {
-    annotation_fields_map[key].writeOnControl(key, valueMap[key]);
+    annotation_fields_map.get(key).writeOnControl(key, valueMap[key]);
   }
 }
 
 function readValueMapFromTextLine(line)
 {
-  let fieldKeys = [];
-
-  for(var key in annotation_fields_map)
-  {
-    fieldKeys.push(key);
-  }
+  let fieldKeys = Array.from(annotation_fields_map.keys());
 
   let valueMap = {};
   let fieldValues = line.split(/\t/);
@@ -738,7 +770,7 @@ function readValueMapFromTextLine(line)
   for(let i = 0; i < fieldKeys.length; ++i)
   {
     let key = fieldKeys[i];
-    let value = annotation_fields_map[key].parseTextValue(fieldValues[i]);
+    let value = annotation_fields_map.get(key).parseTextValue(fieldValues[i]);
 
 //    if(key === "occorrenza") value = value.replace("§", "\n");
 //    if(key === "occorrenza") value = value.substring(1, value.length - 1);
@@ -751,9 +783,9 @@ function readValueMapFromTextLine(line)
 
 function clearAnnotationFields()
 {
-  for(var key in annotation_fields_map)
+  for(var key of annotation_fields_map.keys())
   {
-    annotation_fields_map[key].clearControl(key);
+    annotation_fields_map.get(key).clearControl(key);
   }
 
   writeOnCheckbox("subselection", false);
@@ -1069,7 +1101,6 @@ console.log("r.n_subselections : " + r.n_subselections);
       ">" +
       text.slice(r.starts_at, r.ends_at) + 
       "</span>";
-
     return s;
   });
 
@@ -1084,3 +1115,4 @@ document.addEventListener('selectionchange', textSelection);
 document.getElementById("save-info").addEventListener("click", saveAnnotationClick);
 document.getElementById("delete-info").addEventListener("click", deleteAnnotationClick);
 document.getElementById('exportBtn').addEventListener("click", exportData);
+document.getElementById('exportWithoutOccurrencesBtn').addEventListener("click", exportDataWithoutOccurrences);
