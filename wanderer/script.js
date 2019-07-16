@@ -12,6 +12,16 @@ let annotations;
 let atLeastOneAnnotationAdded;
 const highlightedElementPrefix = "output-span-";
 
+const mainCaptionField = "occorrenza";
+const mainCaptionFieldStartsAt = "starts_at";
+const mainCaptionFieldEndsAt = "ends_at";
+
+const subCaptionField = "soggetto";
+const subCaptionFieldStartsAt = "soggetto_starts_at";
+const subCaptionFieldEndsAt = "soggetto_ends_at";
+
+const textCaptionsFields = [mainCaptionField, subCaptionField];
+
 $('.loaded-a-structure').hide();
 
 String.prototype.replaceAll = function(search, replacement) {
@@ -483,8 +493,7 @@ function exportData()
     {
       let annotationValue = annotation[key];
 
-//      if(key === "occorrenza") annotationValue = annotationValue.replace("\n", "§");
-      if(["occorrenza", "soggetto"].includes(key)) annotationValue = "\"" + annotationValue + "\"";
+      if(textCaptionsFields.includes(key)) annotationValue = "\"" + annotationValue + "\"";
 
       s += annotationValue + "\t";
     }
@@ -520,7 +529,7 @@ function exportDataWithoutOccurrences()
     {
       let annotationValue = annotation[key];
 
-      if(["occorrenza", "soggetto"].includes(key)) continue;
+      if(textCaptionsFields.includes(key)) continue;
 
       s += annotationValue + "\t";
     }
@@ -762,48 +771,58 @@ function writeValueMapOnPageFields(valueMap)
 
 function readValueMapFromTextLine(line)
 {
-
   let fieldKeys = Array.from(annotation_fields_map.keys());
 
   let valueMap = {};
   let fieldValues = line.split(/\t/);
   let fieldValues2 = [];
 
-  if(fieldKeys.length != fieldValues.length)
-  {    
-    let o = fieldKeys.indexOf("occorrenza");
-    let s = fieldKeys.indexOf("soggetto");
+  // in case there are more keys than fields. (= when we have imported a file without text captions)
+  // we don't check against equality of fields number because there could be some trailing empty fields appended to the fieldValues array,
+  // which would make fieldKeys and fieldValues of different lengths, even if the text captions are present.
+
+  let importedWithoutCaptions = fieldKeys.length > fieldValues.length;
+
+  if(importedWithoutCaptions)
+  {
+/*    
+    let o = fieldKeys.indexOf(mainCaptionField);
+    let s = fieldKeys.indexOf(subCaptionField);
 
     fieldValues2 = fieldValues.slice(0, o);
     fieldValues2.push("");
     fieldValues2 = fieldValues2.concat(fieldValues.slice(o, s));
     fieldValues2.push("");
     fieldValues2 = fieldValues2.concat(fieldValues.slice(s, fieldValues.length));
+*/
+    let pos = 0;
+    textCaptionsFields.forEach(captionField => 
+    {
+      let captionFieldIdx = fieldKeys.indexOf(captionField);
+      fieldValues2 = fieldValues2.concat(fieldValues.slice(pos, captionFieldIdx));
+      fieldValues2.push("");
+      pos = captionFieldIdx;
+    });
+
+    fieldValues2 = fieldValues2.concat(fieldValues.slice(pos, fieldValues.length));
   }
+  else fieldValues2 = fieldValues;
 
   for(let i = 0; i < fieldKeys.length; ++i)
   {
     let key = fieldKeys[i];
     let value = annotation_fields_map.get(key).parseTextValue(fieldValues2[i]);
-
-    // in case we've reloaded an export without text captions
-    
-//    if(key === "occorrenza") value = value.replace("§", "\n");
-//    if(key === "occorrenza") value = value.substring(1, value.length - 1);
     
     valueMap[key] = value;
   }
 
-  if(fieldKeys.length != fieldValues.length)
+  if(importedWithoutCaptions)
   {
-      valueMap["occorrenza"] = text.slice(+(valueMap["starts_at"]), +(valueMap["ends_at"]));
-      valueMap["soggetto"] = text.slice(+(valueMap["soggetto_starts_at"]), +(valueMap["soggetto_ends_at"]));
+      valueMap[mainCaptionField] = text.slice(+(valueMap[mainCaptionFieldStartsAt]), +(valueMap[mainCaptionFieldEndsAt]));
+      valueMap[subCaptionField] = text.slice(+(valueMap[subCaptionFieldStartsAt]), +(valueMap[subCaptionFieldEndsAt]));
   }
 
   return valueMap;
-
-
-  return [];
 }
 
 function clearAnnotationFields()
