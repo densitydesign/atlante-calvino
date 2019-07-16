@@ -516,6 +516,8 @@ function exportDataWithoutOccurrences()
   
   for(var key of annotation_fields_map.keys())
   {
+    if(textCaptionsFields.includes(key)) continue;
+
     s += key + "\t";
   }
 
