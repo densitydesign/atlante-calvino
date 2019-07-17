@@ -1281,14 +1281,14 @@ console.log(drawMode);
   let titles = json_nodes.map(d => {
     return {
       label : d.attributes.title,
-      value : title_fn(d),
+      value : d.attributes.title,
       desc : title_fn(d)
     };
   });
 
   let title_id_map = new Map();
 
-  json_nodes.forEach(d => title_id_map.set(title_fn(d), d.id));
+  json_nodes.forEach(d => title_id_map.set(d.attributes.title, d.id));
 
   $("#searchbox")
     .autocomplete({
@@ -1301,12 +1301,10 @@ console.log(drawMode);
       source: function(req, response) {
 //        var results = $.ui.autocomplete.filter(titles, req.term);
 
-        let results = titles.filter(d => d.value.toLowerCase().includes(req.term.toLowerCase()));
+        let results = titles.filter(d => d.desc.toLowerCase().includes(req.term.toLowerCase()));
 
         text_nodes.style("opacity", .35);
         label.classed('visible', false);
-
-
 
         results.forEach(d => {
           let id = title_id_map.get(d.value);
@@ -1327,7 +1325,7 @@ console.log(drawMode);
         },
         select: function(event, ui) {
 
-            let id = title_id_map[ui.item.value];
+            let id = title_id_map.get(ui.item.value);
 
             text_nodes
               .filter(d => d.id == id)
