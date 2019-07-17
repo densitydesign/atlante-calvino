@@ -1029,7 +1029,15 @@ console.log(drawMode);
   let title_fn = d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" ");
 
 //  let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" "));
-  let titles = json_nodes.map(title_fn);
+//  let titles = json_nodes.map(title_fn);
+  let titles = json_nodes.map(d => {
+    return {
+      label : d.attributes.title,
+      value : title_fn(d),
+      desc : title_fn(d)
+    };
+  });
+
   let title_id_map = new Map();
 
   json_nodes.forEach(d => title_id_map[title_fn(d)] = d.id);
@@ -1037,14 +1045,15 @@ console.log(drawMode);
   $("#searchbox")
     .autocomplete({
       appendTo: '#searchbox-results',
-      source: titles,
+//      source: titles,
       minLength: 3,
       position: {
         collision: 'flip',
       },
       source: function(req, response) {
-        let searchedText = req.term;
-        var results = $.ui.autocomplete.filter(titles, req.term);
+//        var results = $.ui.autocomplete.filter(titles, req.term);
+
+        let results = titles.filter(d => d.value.toLowerCase().includes(req.term.toLowerCase()));
 
         text_nodes.style("opacity", .35);
         label.classed('visible', false);
