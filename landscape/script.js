@@ -266,6 +266,7 @@ let xxx = collections
     .attr("class", "halo")
     .style('fill-opacity',0)
     .style('stroke-opacity',0)
+    .style('pointer-events', 'none')
     .attr('transform', function(d,i){
       i = i*step_increment
       return 'translate(0,'+i+')'
@@ -737,7 +738,8 @@ let xxx = collections
       .attr('font-family', 'Crimson Text')
       .attr('font-size', '1.1rem')
       .text(function(d){
-        if (d.attributes.type == 'romanzo' || d.attributes.type == 'ibrido') {
+        // V016 - "il castello dei destini incrociati" gets anyway the first publication year in the label
+        if ((d.attributes.type == 'romanzo' || d.attributes.type == 'ibrido') && d.id != "V016") {
           return d.attributes.title;
         } else {
           return d.attributes.title + ', ' + d.attributes.first_publication;
@@ -877,10 +879,6 @@ let xxx = collections
   d3.selectAll('.toggle-search').on('click', function(d){
     toggleSearch();
   })
-
-  function toggleSearch() {
-    d3.select('#searchbox-box').classed("searchbox-visible", d3.select('#searchbox-box').classed("searchbox-visible") ? false : true);
-  }
 
   d3
     .select("#searchbox")
@@ -1130,10 +1128,12 @@ console.log(drawMode);
                 .style('fill-opacity',0)
                 .style('stroke-opacity',0);
 
+              // donuts
               text_nodes
                 .selectAll('.dubitativePhenomena_level_2')
                 .style('fill-opacity',1)
                 .style('stroke-opacity',1);
+
 /*
               text_nodes
                 .selectAll("circle:not(.dubitativePhenomena)")
@@ -1172,6 +1172,13 @@ console.log(drawMode);
                 .duration(450)
                 .style('fill-opacity',1)
                 .style('stroke-opacity',1);
+
+              text_nodes
+                .selectAll('.hill')
+                .filter(d => !d.dubitative_ratio && !d.first_elem)
+                .style('fill-opacity', 0)
+                .style('stroke-opacity', 0);
+                
 
               text_nodes
                 .selectAll('.places')
@@ -1249,28 +1256,58 @@ console.log(drawMode);
         }
       });
 
-  let titles = json_nodes.map(d => d.attributes.title);
+  let collectionMap = new Map();
+
+  collections.forEach(coll => collectionMap[coll.id] = coll.n);
+
+  let textCollectionsMap = new Map();
+
+  json_nodes.forEach(d => {
+    if(!textCollectionsMap[d.id]) textCollectionsMap[d.id] = [];
+    d.attributes.collections.forEach(coll_id => {
+      if(!textCollectionsMap[d.id].includes(coll_id)) textCollectionsMap[d.id].push(collectionMap[coll_id]);
+    });
+//    if(!textCollectionsMap[d.id].includes(d.collection)) textCollectionsMap[d.id].push(d.collection);
+
+  });
+
+//  let titles = json_nodes.map(d => d.attributes.title);
+//  let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.attributes.id][0]);
+
+  let title_fn = d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" ");
+
+//  let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" "));
+//  let titles = json_nodes.map(title_fn);
+  let titles = json_nodes.map(d => {
+    return {
+      label : d.attributes.title,
+      value : d.attributes.title,
+      desc : title_fn(d)
+    };
+  });
+
   let title_id_map = new Map();
 
-  json_nodes.forEach(d => title_id_map[d.attributes.title] = d.id);
+  json_nodes.forEach(d => title_id_map.set(d.attributes.title, d.id));
 
   $("#searchbox")
     .autocomplete({
       appendTo: '#searchbox-results',
-      source: titles,
+//      source: titles,
       minLength: 3,
       position: {
         collision: 'flip',
       },
       source: function(req, response) {
-        let searchedText = req.term;
-        var results = $.ui.autocomplete.filter(titles, req.term);
+//        var results = $.ui.autocomplete.filter(titles, req.term);
+
+        let results = titles.filter(d => d.desc.toLowerCase().includes(req.term.toLowerCase()));
 
         text_nodes.style("opacity", .35);
         label.classed('visible', false);
 
         results.forEach(d => {
-          let id = title_id_map[d];
+          let id = title_id_map.get(d.value);
 
           text_nodes
             .filter(d => d.id == id)
@@ -1288,7 +1325,7 @@ console.log(drawMode);
         },
         select: function(event, ui) {
 
-            let id = title_id_map[ui.item.value];
+            let id = title_id_map.get(ui.item.value);
 
             text_nodes
               .filter(d => d.id == id)
