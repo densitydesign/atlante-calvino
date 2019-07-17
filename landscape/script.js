@@ -1288,7 +1288,7 @@ console.log(drawMode);
 
   let title_id_map = new Map();
 
-  json_nodes.forEach(d => title_id_map[title_fn(d)] = d.id);
+  json_nodes.forEach(d => title_id_map.set(title_fn(d), d.id));
 
   $("#searchbox")
     .autocomplete({
@@ -1306,8 +1306,10 @@ console.log(drawMode);
         text_nodes.style("opacity", .35);
         label.classed('visible', false);
 
+
+
         results.forEach(d => {
-          let id = title_id_map[d];
+          let id = title_id_map.get(d.value);
 
           text_nodes
             .filter(d => d.id == id)
