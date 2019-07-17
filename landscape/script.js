@@ -266,6 +266,7 @@ let xxx = collections
     .attr("class", "halo")
     .style('fill-opacity',0)
     .style('stroke-opacity',0)
+    .style('pointer-events', 'none')
     .attr('transform', function(d,i){
       i = i*step_increment
       return 'translate(0,'+i+')'
@@ -879,10 +880,6 @@ let xxx = collections
     toggleSearch();
   })
 
-  function toggleSearch() {
-    d3.select('#searchbox-box').classed("searchbox-visible", d3.select('#searchbox-box').classed("searchbox-visible") ? false : true);
-  }
-
   d3
     .select("#searchbox")
     .on("focus",
@@ -1259,22 +1256,52 @@ console.log(drawMode);
         }
       });
 
-  let titles = json_nodes.map(d => d.attributes.title);
+  let collectionMap = new Map();
+
+  collections.forEach(coll => collectionMap[coll.id] = coll.n);
+
+  let textCollectionsMap = new Map();
+
+  json_nodes.forEach(d => {
+    if(!textCollectionsMap[d.id]) textCollectionsMap[d.id] = [];
+    d.attributes.collections.forEach(coll_id => {
+      if(!textCollectionsMap[d.id].includes(coll_id)) textCollectionsMap[d.id].push(collectionMap[coll_id]);
+    });
+//    if(!textCollectionsMap[d.id].includes(d.collection)) textCollectionsMap[d.id].push(d.collection);
+
+  });
+
+//  let titles = json_nodes.map(d => d.attributes.title);
+//  let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.attributes.id][0]);
+
+  let title_fn = d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" ");
+
+//  let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" "));
+//  let titles = json_nodes.map(title_fn);
+  let titles = json_nodes.map(d => {
+    return {
+      label : d.attributes.title,
+      value : title_fn(d),
+      desc : title_fn(d)
+    };
+  });
+
   let title_id_map = new Map();
 
-  json_nodes.forEach(d => title_id_map[d.attributes.title] = d.id);
+  json_nodes.forEach(d => title_id_map[title_fn(d)] = d.id);
 
   $("#searchbox")
     .autocomplete({
       appendTo: '#searchbox-results',
-      source: titles,
+//      source: titles,
       minLength: 3,
       position: {
         collision: 'flip',
       },
       source: function(req, response) {
-        let searchedText = req.term;
-        var results = $.ui.autocomplete.filter(titles, req.term);
+//        var results = $.ui.autocomplete.filter(titles, req.term);
+
+        let results = titles.filter(d => d.value.toLowerCase().includes(req.term.toLowerCase()));
 
         text_nodes.style("opacity", .35);
         label.classed('visible', false);
