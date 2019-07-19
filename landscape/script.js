@@ -327,6 +327,36 @@ let xxx = collections
     .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
     .range(['#FFDDDD', 'red']);
 
+  data.generico_non_terrestre_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.generico_non_terrestre))
+    .range(['#DDDDDD', 'red']);
+
+  data.generico_terrestre_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.generico_terrestre))
+    .range(['#DDDDDD', 'orange']);
+
+  data.inventato_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.inventato))
+    .range(['#DDDDDD', 'fuchsia']);
+
+  data.no_ambientazione_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.no_ambientazione))
+    .range(['#DDDDDD', 'darkgrey']);
+
+  data.nominato_non_terrestre_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nominato_non_terrestre))
+    .range(['#DDDDDD', 'blue']);
+
+  data.nominato_terrestre_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nominato_terrestre))
+    .range(['#DDDDDD', 'dodgerblue']);
+
   data.dubitative_color_scale = d3
     .scaleLinear()
     .domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
@@ -972,6 +1002,90 @@ let xxx = collections
             .transition()
             .duration(350)
             .style('fill', d => data.cancellazione_color_scale(d.cancellazione_words_ratio));
+
+        } else if (eventKey == "g") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.generico_non_terrestre)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.generico_non_terrestre)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.generico_non_terrestre_color_scale(d.generico_non_terrestre));
+
+        } else if (eventKey == "h") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.generico_terrestre)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.generico_terrestre)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.generico_terrestre_color_scale(d.generico_terrestre));
+
+        } else if (eventKey == "j") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.inventato)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.inventato)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.inventato_color_scale(d.inventato));
+
+        } else if (eventKey == "k") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.no_ambientazione)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.no_ambientazione)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.inventato_color_scale(d.no_ambientazione));
+
+        } else if (eventKey == "l") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.nominato_non_terrestre)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.nominato_non_terrestre)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.nominato_non_terrestre_color_scale(d.nominato_non_terrestre));
+
+        } else if (eventKey == "ò") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.nominato_terrestre)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.nominato_terrestre)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.nominato_terrestre_color_scale(d.nominato_terrestre));
 
         } else if (eventKey == "p") {
 
