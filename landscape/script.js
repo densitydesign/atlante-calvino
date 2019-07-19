@@ -327,6 +327,36 @@ let xxx = collections
     .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
     .range(['#FFDDDD', 'red']);
 
+  data.generico_non_terrestre_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.generico_non_terrestre_abs))
+    .range(['#DDDDDD', 'red']);
+
+  data.generico_terrestre_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.generico_terrestre_abs))
+    .range(['#DDDDDD', 'orange']);
+
+  data.inventato_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.inventato_abs))
+    .range(['#DDDDDD', 'fuchsia']);
+
+  data.no_ambientazione_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.no_ambientazione_abs))
+    .range(['#DDDDDD', 'darkgrey']);
+
+  data.nominato_non_terrestre_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nominato_non_terrestre_abs))
+    .range(['#DDDDDD', 'blue']);
+
+  data.nominato_terrestre_color_scale = d3
+    .scaleLinear()
+    .domain(d3.extent(Object.values(data.x_csv2), d => d.nominato_terrestre_abs))
+    .range(['#DDDDDD', 'dodgerblue']);
+
   data.dubitative_color_scale = d3
     .scaleLinear()
     .domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
@@ -973,6 +1003,90 @@ let xxx = collections
             .duration(350)
             .style('fill', d => data.cancellazione_color_scale(d.cancellazione_words_ratio));
 
+        } else if (eventKey == "g") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.generico_non_terrestre_abs)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.generico_non_terrestre_abs)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.generico_non_terrestre_color_scale(d.generico_non_terrestre_abs));
+
+        } else if (eventKey == "h") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.generico_terrestre_abs)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.generico_terrestre_abs)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.generico_terrestre_color_scale(d.generico_terrestre_abs));
+
+        } else if (eventKey == "j") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.inventato_abs)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.inventato_abs)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.inventato_color_scale(d.inventato_abs));
+
+        } else if (eventKey == "k") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.no_ambientazione_abs)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.no_ambientazione_abs)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.no_ambientazione_color_scale(d.no_ambientazione_abs));
+
+        } else if (eventKey == "l") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.nominato_non_terrestre_abs)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.nominato_non_terrestre_abs)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.nominato_non_terrestre_color_scale(d.nominato_non_terrestre_abs));
+
+        } else if (eventKey == "ò") {
+
+          d3.selectAll(".hill")
+            .filter(d => !d.nominato_terrestre_abs)
+            .transition()
+            .duration(350)
+            .style('fill', 'transparent');
+
+          d3.selectAll(".hill")
+            .filter(d => d.nominato_terrestre_abs)
+            .transition()
+            .duration(350)            
+            .style('fill', d => data.nominato_terrestre_color_scale(d.nominato_terrestre_abs));
+
         } else if (eventKey == "p") {
 
           drawMode = incrementDrawMode(drawMode);
@@ -1443,11 +1557,22 @@ function calculate_item_data(obj)
   let item_data =
   {
     generico_non_terrestre: (+obj.generico_non_terrestre),
+    generico_non_terrestre_abs: +obj.generico_non_terrestre,
+
     generico_terrestre:     (+obj.generico_non_terrestre) + (+obj.generico_terrestre),
+    generico_terrestre_abs: +obj.generico_terrestre,
+
     inventato:              (+obj.generico_non_terrestre) + (+obj.generico_terrestre) + (+obj.inventato),
+    inventato_abs: +obj.inventato,
+
     no_ambientazione:       (+obj.generico_non_terrestre) + (+obj.generico_terrestre) + (+obj.inventato) + (+obj.no_ambientazione),
+    no_ambientazione_abs: +obj.no_ambientazione,
+
     nominato_non_terrestre: (+obj.generico_non_terrestre) + (+obj.generico_terrestre) + (+obj.inventato) + (+obj.no_ambientazione) + (+obj.nominato_non_terrestre),
+    nominato_non_terrestre_abs: +obj.nominato_non_terrestre,
+
     nominato_terrestre:     (+obj.generico_non_terrestre) + (+obj.generico_terrestre) + (+obj.inventato) + (+obj.no_ambientazione) + (+obj.nominato_non_terrestre) + (+obj.nominato_terrestre),
+    nominato_terrestre_abs: +obj.nominato_terrestre,
 
     nebbia_normalizzata:        (+obj.pct_nebbia_normalizzata),
     cancellazione_normalizzata: (+obj.pct_cancellazione_normalizzata),
@@ -1500,12 +1625,25 @@ function create_item_steps(d)
       'first_elem': first_elem,
       'last_elem': last_elem,
       'n_steps': n_steps,
+
       'generico_non_terrestre': csv_item == undefined ? 0 : csv_item.generico_non_terrestre,
+      'generico_non_terrestre_abs': csv_item == undefined ? 0 : csv_item.generico_non_terrestre_abs,
+
       'generico_terrestre':  csv_item == undefined ? 0 : csv_item.generico_terrestre,
+      'generico_terrestre_abs':  csv_item == undefined ? 0 : csv_item.generico_terrestre_abs,
+
       'inventato':  csv_item == undefined ? 0 : csv_item.inventato,
+      'inventato_abs':  csv_item == undefined ? 0 : csv_item.inventato_abs,
+
       'no_ambientazione':  csv_item == undefined ? 0 : csv_item.no_ambientazione,
+      'no_ambientazione_abs':  csv_item == undefined ? 0 : csv_item.no_ambientazione_abs,
+
       'nominato_non_terrestre':  csv_item == undefined ? 0 : csv_item.nominato_non_terrestre,
+      'nominato_non_terrestre_abs':  csv_item == undefined ? 0 : csv_item.nominato_non_terrestre_abs,
+
       'nominato_terrestre':  csv_item == undefined ? 0 : csv_item.nominato_terrestre,
+      'nominato_terrestre_abs':  csv_item == undefined ? 0 : csv_item.nominato_terrestre_abs,
+
       'nebbia_normalizzata': csv_item == undefined ? 0 : csv_item.nebbia_normalizzata,
       'cancellazione_normalizzata': csv_item == undefined ? 0 : csv_item.cancellazione_normalizzata,
       'nebbia': csv_item == undefined ? 0 : csv_item.nebbia,
