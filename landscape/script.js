@@ -1057,7 +1057,7 @@ let xxx = collections
             .filter(d => d.no_ambientazione)
             .transition()
             .duration(350)            
-            .style('fill', d => data.inventato_color_scale(d.no_ambientazione));
+            .style('fill', d => data.no_ambientazione_color_scale(d.no_ambientazione));
 
         } else if (eventKey == "l") {
 
