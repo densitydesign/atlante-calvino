@@ -709,6 +709,137 @@ let xxx = collections
 
 ///////////////////////////////////////////
 
+  let drawListsArc1 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+      return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+      return d.r - i * arcWidth;
+    })
+    .startAngle(0 * 2 * PI)
+    .endAngle(function(d, i) {
+      return d.lists_f_ratio * 2 * PI;
+    });
+
+  let drawListsArc2 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+      return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+      return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+      return d.lists_f_ratio * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+      return d.lists_m_ratio * 2 * PI;
+    });
+
+  let drawListsArc3 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+      return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+      return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+      return d.lists_m_ratio * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+      return d.lists_p_ratio * 2 * PI;
+    });
+
+  let drawListsArc4 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+      return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+      return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+      return d.lists_p_ratio * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+      return d.lists_s_ratio * 2 * PI;
+    });  
+
+  let drawListsArc5 = d3
+    .arc()
+    .innerRadius(function(d, i) {
+      return d.r - (i+1) * arcWidth + arcPad;
+    })
+    .outerRadius(function(d, i) {
+      return d.r - i * arcWidth;
+    })
+    .startAngle(function(d, i) {
+      return d.lists_s_ratio * 2 * PI;
+    })
+    .endAngle(function(d, i) {
+      return 2 * PI;
+    });      
+
+///////////////////////////////////////////
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "blue")
+    .attr("class", "lists_level_1")
+    .attr("d", drawListsArc1)
+    .attr('transform', function(d,i){
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "red")
+    .attr("class", "lists_level_1")
+    .attr("d", drawListsArc2)
+    .attr('transform', function(d,i){
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "green")
+    .attr("class", "lists_level_1")
+    .attr("d", drawListsArc3)
+    .attr('transform', function(d,i){
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "yellow")
+    .attr("class", "lists_level_1")
+    .attr("d", drawListsArc4)
+    .attr('transform', function(d,i){
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+    })
+    .style('fill-opacity',0);
+
+  steps
+    .filter(function(d) { return d.first_elem } )
+    .append("svg:path")
+    .attr("fill", "transparent")
+    .attr("class", "lists_level_1")
+    .attr("d", drawListsArc5)
+    .attr('transform', function(d,i){
+      return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+    })
+    .style('fill-opacity',0);
+
+///////////////////////////////////////////
 // text_nodes
 // .on("mouseenter", function(){
 //   d3.select(this).selectAll('circle')
@@ -1305,6 +1436,45 @@ console.log(drawMode);
                 .style('stroke-opacity',1);
 
               break;
+
+            case 6 : // lists - 1st level
+
+              text_nodes
+                .selectAll('.dubitativePhenomena_level_3')
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0);                
+/*
+              d3.selectAll(".hill")
+                .filter(d => d.dubitative_ratio)
+                .style('fill', d => data.dubitative_color_scale(d.dubitative_ratio));
+*/
+
+              text_nodes
+                .selectAll('.hill')
+//                .filter(d => d.n_lists_f_ratio == 1e-16 && d.n_lists_m_ratio == 1e-16 && d.n_lists_p_ratio == 1e-16 && d.n_lists_s_ratio == 1e-16)
+                .filter(d => d.lists_f_ratio == 0 && d.lists_m_ratio == 0 && d.lists_p_ratio == 0 && d.lists_s_ratio == 0)                
+                .transition()
+                .duration(450)
+                .style('fill-opacity',0)
+                .style('stroke-opacity',0.3);
+
+              text_nodes
+                .selectAll('.hill')
+//                .filter(d => d.n_lists_f_ratio > 1e-16 || d.n_lists_m_ratio > 1e-16 || d.n_lists_p_ratio > 1e-16 || d.n_lists_s_ratio > 1e-16)
+                .filter(d => {
+                  console.log("d.lists_f_ratio : " + d.lists_f_ratio + ", d.lists_m_ratio : " + d.lists_m_ratio + ", d.lists_p_ratio : " + d.lists_p_ratio + ", d.lists_s_ratio : " + d.lists_s_ratio);
+                  return d.lists_f_ratio > 0 || d.lists_m_ratio > 0 || d.lists_p_ratio > 0 || d.lists_s_ratio > 0;
+                })
+                .transition()
+                .duration(450)
+                .style('fill-opacity',1)
+                .style('stroke-opacity',1);
+
+              // donuts
+              text_nodes
+                .selectAll('.lists_level_1')
+                .style('fill-opacity',1)
+                .style('stroke-opacity',1);            
           }
         }
         else if(eventKey == "x")
@@ -1554,6 +1724,8 @@ function flatten_items_steps(nodes)
 
 function calculate_item_data(obj)
 {
+  const lists_sum = (+obj.n_lists_f) + (+obj.n_lists_m) + (+obj.n_lists_p) + (+obj.n_lists_s);
+
   let item_data =
   {
     generico_non_terrestre: (+obj.generico_non_terrestre),
@@ -1584,8 +1756,15 @@ function calculate_item_data(obj)
 
     nebbia_words_ratio: (+obj.nebbia_words_ratio),
     cancellazione_words_ratio: (+obj.cancellazione_words_ratio),
-    dubitative_ratio: (+obj.dubitative_ratio)
+    dubitative_ratio: (+obj.dubitative_ratio),
+
+    lists_f_ratio: lists_sum == 0 ? 0 : (+obj.n_lists_f) / lists_sum,
+    lists_m_ratio: lists_sum == 0 ? 0 : ((+obj.n_lists_f) + (+obj.n_lists_m)) / lists_sum,
+    lists_p_ratio: lists_sum == 0 ? 0 : ((+obj.n_lists_f) + (+obj.n_lists_m) + (+obj.n_lists_p)) / lists_sum,
+    lists_s_ratio: lists_sum == 0 ? 0 : ((+obj.n_lists_f) + (+obj.n_lists_m) + (+obj.n_lists_p) + (+obj.n_lists_s)) / lists_sum
   };
+
+  console.log("lists_sum : " + lists_sum + ", item_data.lists_f_ratio : " + item_data.lists_f_ratio);
 
   return item_data;
 }
@@ -1652,8 +1831,12 @@ function create_item_steps(d)
 
       'nebbia_words_ratio': csv_item == undefined ? 0 : csv_item.nebbia_words_ratio,
       'cancellazione_words_ratio': csv_item == undefined ? 0 : csv_item.cancellazione_words_ratio,
-      'dubitative_ratio': csv_item == undefined ? 0 : csv_item.dubitative_ratio
+      'dubitative_ratio': csv_item == undefined ? 0 : csv_item.dubitative_ratio,
 
+      'lists_f_ratio': csv_item == undefined ? 0 : csv_item.lists_f_ratio,
+      'lists_m_ratio': csv_item == undefined ? 0 : csv_item.lists_m_ratio,
+      'lists_p_ratio': csv_item == undefined ? 0 : csv_item.lists_p_ratio,
+      'lists_s_ratio': csv_item == undefined ? 0 : csv_item.lists_s_ratio
     };
   });
 
@@ -1871,7 +2054,7 @@ function interpolateSpline(x) {
 
 function incrementDrawMode(drawMode)
 {
-  if(drawMode >= 5)
+  if(drawMode >= 6)
   {
     return 1;
   }
