@@ -1493,6 +1493,10 @@ console.log(drawMode);
 
             case 6 : // lists - 2nd level
 
+              d3.selectAll(".hill")
+                .style('fill', 'white')
+                .style('fill-opacity',1);
+
               text_nodes
                 .selectAll('.dubitativePhenomena_level_3')
                 .style('fill-opacity',0)
@@ -1534,6 +1538,10 @@ console.log(drawMode);
               break;
 
             case 7 : // lists - 3rd level
+
+              d3.selectAll(".hill")
+                .style('fill', 'white')
+                .style('fill-opacity',1);
 
               text_nodes
                 .selectAll('.lists_level_2')
