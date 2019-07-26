@@ -955,7 +955,7 @@ function treat_json(json) {
 			);
 	}
 
-	d3.selectAll('.dropdown-menu li a').on('click', function(d) {
+	d3.selectAll('#color-coding-selector li a').on('click', function(d) {
 		setHillsColours(d3.select(this).attr('colour-by'));
 	})
 
@@ -965,7 +965,6 @@ function treat_json(json) {
 	});
 
 	function setHillsColours(coloursBy) {
-        console.log(coloursBy);
 		switch (coloursBy) {
 			case 'years':
                 hillColoringMode = 1;
@@ -978,6 +977,29 @@ function treat_json(json) {
 		}
 	}
 
+    d3.selectAll('#analysis-selector li a').on('click', function(d) {
+        var analysis = d3.select(this).attr('data-value');
+        console.log(analysis)
+
+        d3.selectAll('.an-analysis').style('display', 'none');
+
+        switch (analysis) {
+            case 'doubt-sphere':
+                d3.select('#analysis-dubbio').style('display', 'flex');
+                break;
+            case 'form-sphere':
+                console.log('forma')
+                d3.select('#analysis-forma').style('display', 'flex');
+                break;
+            case 'realism-sphere':
+                console.log('realismo')
+                d3.select('#analysis-realismo').style('display', 'flex');
+                break;
+            case 'no-sphere':
+                break;
+        }
+	})
+
 	prepareTimeline(json_nodes, col_collections);
 
 	d3.selectAll('.toggle-timeline').on('click', function(d) {
@@ -987,7 +1009,6 @@ function treat_json(json) {
 
 	function toggleTimeline() {
 		d3.select('#interface')
-			.classed("timeline-visible", false)
 			.classed("legend-visible", false)
 			.classed("analysis-visible", false)
 			.classed("timeline-visible", d3.select('#interface').classed("timeline-visible") ? false : true);
@@ -1004,7 +1025,6 @@ function treat_json(json) {
 	function toggleLegend() {
 		d3.select('#interface')
 			.classed("timeline-visible", false)
-			.classed("legend-visible", false)
 			.classed("analysis-visible", false)
 			.classed("legend-visible", d3.select('#interface').classed("legend-visible") ? false : true);
 
@@ -1021,7 +1041,6 @@ function treat_json(json) {
 		d3.select('#interface')
 			.classed("timeline-visible", false)
 			.classed("legend-visible", false)
-			.classed("analysis-visible", false)
 			.classed("analysis-visible", d3.select('#interface').classed("analysis-visible") ? false : true);
 
 		d3.selectAll('.toggle-legend').classed('active', false);
@@ -1077,6 +1096,8 @@ function treat_json(json) {
 	    .range(['#FFDDFF', 'violet']);
 	*/
 
+    // Dubbio
+
     d3.select('#dubbio-first-lvl-nebbia').on('click', function(){
         highlightHills('nebbia_words_ratio', data.cancellazione_color_scale);
     })
@@ -1087,6 +1108,34 @@ function treat_json(json) {
     d3.select('#dubbio-first-lvl-reset').on('click', function(){
         highlightHills();
     })
+
+    // realismo
+    d3.select('#realismo-first-lvl-generico-non-terrestre').on('click', function(){
+        highlightHills('generico_non_terrestre_abs', data.generico_non_terrestre_color_scale);
+    })
+    d3.select('#realismo-first-lvl-nominato-non-terrestre').on('click', function(){
+        highlightHills('nominato_non_terrestre_abs', data.nominato_non_terrestre_color_scale);
+    })
+
+    d3.select('#realismo-first-lvl-generico-terrestre').on('click', function(){
+        highlightHills('generico_terrestre_abs', data.generico_terrestre_color_scale);
+    })
+    d3.select('#realismo-first-lvl-nominato-terrestre').on('click', function(){
+        highlightHills('nominato_terrestre_abs', data.nominato_terrestre_color_scale);
+    })
+
+    d3.select('#realismo-first-lvl-inventato').on('click', function(){
+        highlightHills('inventato_abs', data.inventato_color_scale);
+    })
+
+    d3.select('#realismo-first-lvl-no-ambientazione').on('click', function(){
+        highlightHills('no_ambientazione_abs', data.no_ambientazione_color_scale);
+    })
+
+    d3.select('#realismo-first-lvl-reset').on('click', function(){
+        highlightHills();
+    })
+
 
     function highlightHills(filterCondition, colorScale) {
         if (!filterCondition) {

@@ -346,8 +346,13 @@ svg:active {
 .btn-analysis {
     padding: .1rem 0.3rem;
     text-align: center;
-    max-width: 100px;
+    /* max-width: 100px; */
     margin-bottom: 0.3rem;
+}
+
+.btn-analysis.btn-primary {
+    background-color: var(--calvino-red);
+    border-color: var(--calvino-red);
 }
 
 .analysis-visible #analysis-container {

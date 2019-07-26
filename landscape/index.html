@@ -48,7 +48,7 @@
     <div id="interface" class="container-fluid d-flex d-flex-sm flex-column justify-content-between">
         <div class="row">
             <div class="col-md-9">
-                <div class="dropdown d-flex align-items-baseline">
+                <div id="color-coding-selector" class="dropdown d-flex align-items-baseline">
                     <h1>L'opera come arcipelago per
                         <button id="dropdownMenu1" class="_btn btn-default verbose-options-selector" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             cronologia
@@ -61,7 +61,7 @@
                     </h1>
                 </div>
 
-                <div class="dropdown d-flex align-items-baseline">
+                <div id="analysis-selector" class="dropdown d-flex align-items-baseline">
                     <h3>Guarda in dettaglio
                         <button id="dropdownMenu2" class="_btn btn-default verbose-options-selector" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
                             una sfera di analisi
@@ -69,8 +69,8 @@
                         </button>
                         <ul class="dropdown-menu options-selector" aria-labelledby="dropdownMenu2">
                             <li><a href="#" data-value="doubt-sphere">la sfera del dubbio</a></li>
-                            <li><a href="#" data-value="realism-sphere">la sfera del realismo</a></li>
                             <li><a href="#" data-value="form-sphere">la sfera della forma</a></li>
+                            <li><a href="#" data-value="realism-sphere">la sfera del realismo</a></li>
                             <li><a href="#" data-value="no-sphere">nessuna</a></li>
                         </ul>
                     </h3>
@@ -136,32 +136,68 @@
 
             <div id="analysis-container" class="col-md-12 position-absolute">
                 <div class="container-fluid">
-                    <div id="analysis-dubbio" class="row">
+                    <div id="analysis-dubbio" class="row an-analysis">
                         <div class="col-12 text-center">
                             <h4>Stai guardando la sfera di analisi del <span class="font-italic">dubbio</span></h4>
                         </div>
-                        <div class="col-4" style="xbackground-color: rgba(100,100,100,0.1)">
+                        <div class="col-4">
                             <p>Il dubbio si manifesta tramite due fenomeni misurabili nel testo:</p>
                             <button id="dubbio-first-lvl-nebbia" type="button" class="btn btn-analysis btn-primary btn-sm d-block">Nebbia</button>
                             <button id="dubbio-first-lvl-cancellazione" type="button" class="btn btn-analysis btn-primary btn-sm d-block">Cancellazione</button>
                             <button id="dubbio-first-lvl-reset" type="button" class="btn btn-analysis btn-link btn-sm d-block">Reset</button>
                         </div>
-                        <div class="col-4" style="xbackground-color: rgba(100,100,100,0.2)">
+                        <div class="col-4">
                             <p>Guarda la proporzione tra i due fenomeni:</p>
                             <button type="button" class="btn btn-analysis btn-primary btn-sm d-block">Proporzione</button>
                             <button type="button" class="btn btn-analysis btn-link btn-sm d-block">Reset</button>
                         </div>
-                        <div class="col-4" style="xbackground-color: rgba(100,100,100,0.1)">
+                        <div class="col-4">
                             <p>Guarda la quantità dei i due fenomeni:</p>
                             <button type="button" class="btn btn-analysis btn-primary btn-sm d-block">Quantità</button>
                             <button type="button" class="btn btn-analysis btn-link btn-sm d-block">Reset</button>
                         </div>
                     </div>
-                    <div id="analysis-forma" class="row d-none">
-
+                    <div id="analysis-forma" class="row an-analysis">
+                        <p>FORMAAAAA</p>
                     </div>
-                    <div id="analysis-realismo" class="row d-none">
+                    <div id="analysis-realismo" class="row an-analysis">
+                        <div class="col-12 text-center">
+                            <h4>Stai guardando la sfera di analisi del <span class="font-italic">realismo</span></h4>
+                        </div>
+                        <div class="col-4">
+                            <p>L'analisi del realismo passa attraverso i luoghi:</p>
+                            <div class="row">
+                                <div class="col-12">
+                                    <button id="realismo-first-lvl-generico-non-terrestre" type="button" class="btn btn-analysis btn-primary btn-sm d-blockX">Generici non terrestri</button>
+                                    <button id="realismo-first-lvl-nominato-non-terrestre" type="button" class="btn btn-analysis btn-primary btn-sm d-blockX">Nominato non terrestre</button>
 
+                                    <button id="realismo-first-lvl-generico-terrestre" type="button" class="btn btn-analysis btn-primary btn-sm d-blockX">Generico terrestre</button>
+                                    <button id="realismo-first-lvl-nominato-terrestre" type="button" class="btn btn-analysis btn-primary btn-sm d-blockX">Nominato terrestre</button>
+                                    <button id="realismo-first-lvl-inventato" type="button" class="btn btn-analysis btn-primary btn-sm d-blockX">Inventato</button>
+
+                                    <button id="realismo-first-lvl-no-ambientazione" type="button" class="btn btn-analysis btn-primary btn-sm d-blockX">No ambientazione</button>
+
+                                    <button id="realismo-first-lvl-reset" type="button" class="btn btn-analysis btn-link btn-sm d-blockX">Reset</button>
+                                </div>
+                                <div class="col-8"></div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <p>Guarda la proporzione tra le tipologie di luoghi:</p>
+                            <div class="row">
+                                <div class="col-4">
+                                    <button type="button" class="btn btn-analysis btn-primary btn-sm d-block">Proporzione</button>
+                                    <button type="button" class="btn btn-analysis btn-link btn-sm d-block">Reset</button>
+                                </div>
+                                <div class="col-8">
+                                    <img class="img-fluid" src="assets/images/sfere_realismo_2.svg" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <p>Clicca su un elemento della visualizzazione per vedere i luoghi presenti al suo interno e la loro organizzazione.</p>
+                            <img class="img-fluid w-75" src="assets/images/sfere_realismo_3.svg" >
+                        </div>
                     </div>
                 </div>
             </div>
