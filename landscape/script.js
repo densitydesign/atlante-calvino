@@ -1096,46 +1096,125 @@ function treat_json(json) {
 	    .range(['#FFDDFF', 'violet']);
 	*/
 
-    // Dubbio
+	d3.selectAll('.reset-analysis').on('click', function(){
+		resetAnalysis();
+	})
 
+	function resetAnalysis(){
+		highlightHills();
+		text_nodes.selectAll('.dubitativePhenomena_level_2')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+		text_nodes.selectAll('.dubitativePhenomena_level_3')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+	}
+
+    // Dubbio
     d3.select('#dubbio-first-lvl-nebbia').on('click', function(){
+		resetAnalysis();
         highlightHills('nebbia_words_ratio', data.cancellazione_color_scale);
     })
     d3.select('#dubbio-first-lvl-cancellazione').on('click', function(){
+		resetAnalysis();
         highlightHills('cancellazione_words_ratio', data.nebbia_color_scale);
     })
+	d3.select('#dubbio-second-lvl').on('click', function(){
+		resetAnalysis();
 
-    d3.select('#dubbio-first-lvl-reset').on('click', function(){
-        highlightHills();
-    })
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => !d.dubitative_ratio)
+			.transition()
+			.duration(250)
+			//                .style('fill', 'transparent')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 1)
+			.style('stroke', stepBorderColor);
+
+		d3.selectAll(".hill")
+			.filter(d => d.dubitative_ratio)
+			.style('fill', d => data.dubitative_color_scale(d.dubitative_ratio));
+
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => d.dubitative_ratio)
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+
+		text_nodes
+			.selectAll('.places')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+
+		// donuts
+		text_nodes
+			.selectAll('.dubitativePhenomena_level_2')
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+	})
+	d3.select('#dubbio-terzo-lvl').on('click', function(){
+		resetAnalysis();
+
+		d3.selectAll(".hill")
+			.filter(d => d.dubitative_ratio)
+			.style('fill', 'transparent');
+
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => d.dubitative_ratio)
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+
+		text_nodes
+			.selectAll('.hill')
+			.style('fill-opacity', 0)
+			.filter(d => !d.dubitative_ratio && !d.first_elem)
+			.style('stroke-opacity', 0);
+
+		text_nodes
+			.selectAll('.places')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+
+		text_nodes
+			.selectAll('.dubitativePhenomena_level_3')
+			.style('fill-opacity', 0.7)
+			.style('stroke-opacity', 1);
+	})
 
     // realismo
     d3.select('#realismo-first-lvl-generico-non-terrestre').on('click', function(){
+		resetAnalysis();
         highlightHills('generico_non_terrestre_abs', data.generico_non_terrestre_color_scale);
     })
     d3.select('#realismo-first-lvl-nominato-non-terrestre').on('click', function(){
+		resetAnalysis();
         highlightHills('nominato_non_terrestre_abs', data.nominato_non_terrestre_color_scale);
     })
 
     d3.select('#realismo-first-lvl-generico-terrestre').on('click', function(){
+		resetAnalysis();
         highlightHills('generico_terrestre_abs', data.generico_terrestre_color_scale);
     })
     d3.select('#realismo-first-lvl-nominato-terrestre').on('click', function(){
+		resetAnalysis();
         highlightHills('nominato_terrestre_abs', data.nominato_terrestre_color_scale);
     })
 
     d3.select('#realismo-first-lvl-inventato').on('click', function(){
+		resetAnalysis();
         highlightHills('inventato_abs', data.inventato_color_scale);
     })
 
     d3.select('#realismo-first-lvl-no-ambientazione').on('click', function(){
+		resetAnalysis();
         highlightHills('no_ambientazione_abs', data.no_ambientazione_color_scale);
     })
-
-    d3.select('#realismo-first-lvl-reset').on('click', function(){
-        highlightHills();
-    })
-
 
     function highlightHills(filterCondition, colorScale) {
         if (!filterCondition) {
@@ -1550,7 +1629,7 @@ function treat_json(json) {
 								.selectAll('.hill')
 								//                .filter(d => d.n_lists_f_ratio > 1e-16 || d.n_lists_m_ratio > 1e-16 || d.n_lists_p_ratio > 1e-16 || d.n_lists_s_ratio > 1e-16)
 								.filter(d => {
-									console.log("d.lists_f_ratio : " + d.lists_f_ratio + ", d.lists_m_ratio : " + d.lists_m_ratio + ", d.lists_p_ratio : " + d.lists_p_ratio + ", d.lists_s_ratio : " + d.lists_s_ratio);
+									// console.log("d.lists_f_ratio : " + d.lists_f_ratio + ", d.lists_m_ratio : " + d.lists_m_ratio + ", d.lists_p_ratio : " + d.lists_p_ratio + ", d.lists_s_ratio : " + d.lists_s_ratio);
 									return d.lists_f_ratio > 0 || d.lists_m_ratio > 0 || d.lists_p_ratio > 0 || d.lists_s_ratio > 0;
 								})
 								.transition()
@@ -1831,7 +1910,7 @@ function calculate_item_data(obj) {
 		lists_s_ratio: lists_sum == 0 ? 0 : ((+obj.n_lists_f) + (+obj.n_lists_m) + (+obj.n_lists_p) + (+obj.n_lists_s)) / lists_sum
 	};
 
-	console.log("lists_sum : " + lists_sum + ", item_data.lists_f_ratio : " + item_data.lists_f_ratio);
+	// console.log("lists_sum : " + lists_sum + ", item_data.lists_f_ratio : " + item_data.lists_f_ratio);
 
 	return item_data;
 }
