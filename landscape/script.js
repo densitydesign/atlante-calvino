@@ -1097,6 +1097,7 @@ function treat_json(json) {
 	*/
 
 	d3.selectAll('.reset-analysis').on('click', function(){
+		d3.event.preventDefault();
 		resetAnalysis();
 	})
 
@@ -1106,6 +1107,10 @@ function treat_json(json) {
 			.style('fill-opacity', 0)
 			.style('stroke-opacity', 0);
 		text_nodes.selectAll('.dubitativePhenomena_level_3')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);	
+		text_nodes
+			.selectAll('.places')
 			.style('fill-opacity', 0)
 			.style('stroke-opacity', 0);
 	}
@@ -1215,6 +1220,32 @@ function treat_json(json) {
 		resetAnalysis();
         highlightHills('no_ambientazione_abs', data.no_ambientazione_color_scale);
     })
+
+	d3.select('#realismo-secondo-lvl').on('click', function(){
+		console.log('#realismo-secondo-lvl')
+		resetAnalysis();
+		text_nodes
+			.selectAll('.halo')
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+
+		text_nodes
+			.selectAll('.hill')
+			.transition()
+			.duration(250)
+			.style('stroke-opacity', 1)
+			.style('stroke', stepBorderColor);
+
+		d3.selectAll(".hill")
+			.style('fill', 'white');
+
+		text_nodes
+			.selectAll('.places')
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+	})
 
     function highlightHills(filterCondition, colorScale) {
         if (!filterCondition) {
@@ -1401,21 +1432,21 @@ function treat_json(json) {
 							text_nodes
 								.selectAll('path')
 								.transition()
-								.duration(450)
+								.duration(350)
 								.style('fill-opacity', 0)
 								.style('stroke-opacity', 0);
 
 							text_nodes
 								.selectAll('.halo')
 								.transition()
-								.duration(450)
+								.duration(350)
 								.style('fill-opacity', 0)
 								.style('stroke-opacity', 0);
 
 							text_nodes
 								.selectAll('.hill')
 								.transition()
-								.duration(450)
+								.duration(350)
 								.style('fill-opacity', 1)
 								.style('stroke-opacity', 1);
 
@@ -1423,7 +1454,7 @@ function treat_json(json) {
 								text_nodes
 									.selectAll('.hill')
 									.transition()
-									.duration(450)
+									.duration(350)
 									.style('fill-opacity', 1)
 									.style('stroke-opacity', 1)
 									.style('fill', d => colour(d => d.first_publication));
@@ -1431,7 +1462,7 @@ function treat_json(json) {
 								text_nodes
 									.selectAll('.hill')
 									.transition()
-									.duration(450)
+									.duration(350)
 									.style('fill-opacity', 1)
 									.style('stroke-opacity', 1)
 									.style('fill', d => col_collections(d.collection));
