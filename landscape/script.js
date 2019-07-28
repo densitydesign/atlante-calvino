@@ -961,7 +961,15 @@ function treat_json(json) {
 
 	$(".dropdown-menu li a").click(function() {
 		$(this).parents(".dropdown").find('._btn').html($(this).text() + ' <span class="caret"></span>');
+
+		if ($(this).data('value') != 'no-sphere') {
+			$(this).parents(".dropdown").find('._btn').html($(this).text() + ' <span class="caret"></span>');
+		} else {
+			$(this).parents(".dropdown").find('._btn').html('una sfera di analisi <span class="caret"></span>');
+		}
+
 		$(this).parents(".dropdown").find('._btn').val($(this).data('value'));
+
 	});
 
 	function setHillsColours(coloursBy) {
@@ -979,23 +987,29 @@ function treat_json(json) {
 
     d3.selectAll('#analysis-selector li a').on('click', function(d) {
         var analysis = d3.select(this).attr('data-value');
-        console.log(analysis)
 
         d3.selectAll('.an-analysis').style('display', 'none');
+
+		if (!d3.select('#interface').classed("analysis-visible")) {
+			toggleAnalysis();
+		}
 
         switch (analysis) {
             case 'doubt-sphere':
                 d3.select('#analysis-dubbio').style('display', 'flex');
                 break;
             case 'form-sphere':
-                console.log('forma')
                 d3.select('#analysis-forma').style('display', 'flex');
                 break;
             case 'realism-sphere':
-                console.log('realismo')
                 d3.select('#analysis-realismo').style('display', 'flex');
                 break;
             case 'no-sphere':
+				var isOpen = d3.select('#interface').classed("analysis-visible")
+				if (isOpen) {
+					toggleAnalysis();
+				}
+				resetAnalysis();
                 break;
         }
 	})
@@ -1034,10 +1048,10 @@ function treat_json(json) {
 
 	d3.selectAll('.toggle-analysis').on('click', function(d) {
 		toggleAnalysis();
-		d3.select(this).classed('active', d3.select(this).classed("active") ? false : true)
 	})
 
 	function toggleAnalysis() {
+		 console.log('toggle analysis')
 		d3.select('#interface')
 			.classed("timeline-visible", false)
 			.classed("legend-visible", false)
@@ -1045,6 +1059,7 @@ function treat_json(json) {
 
 		d3.selectAll('.toggle-legend').classed('active', false);
 		d3.selectAll('.toggle-timeline').classed('active', false);
+		d3.selectAll('.toggle-analysis').classed('active', d3.select('.toggle-analysis').classed("active") ? false : true)
 	}
 
 	d3.selectAll('.toggle-tutorial').on('click', function(d) {
@@ -1097,7 +1112,6 @@ function treat_json(json) {
 	*/
 
 	d3.selectAll('.reset-analysis').on('click', function(){
-		d3.event.preventDefault();
 		resetAnalysis();
 	})
 
@@ -1108,9 +1122,13 @@ function treat_json(json) {
 			.style('stroke-opacity', 0);
 		text_nodes.selectAll('.dubitativePhenomena_level_3')
 			.style('fill-opacity', 0)
-			.style('stroke-opacity', 0);	
+			.style('stroke-opacity', 0);
 		text_nodes
 			.selectAll('.places')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+		text_nodes
+			.selectAll('.lists_level_1')
 			.style('fill-opacity', 0)
 			.style('stroke-opacity', 0);
 	}
@@ -1192,6 +1210,39 @@ function treat_json(json) {
 			.style('stroke-opacity', 1);
 	})
 
+	// forma
+	d3.select('#forma-secondo-lvl').on('click', function(){
+		resetAnalysis();
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => d.lists_f_ratio == 0 && d.lists_m_ratio == 0 && d.lists_p_ratio == 0 && d.lists_s_ratio == 0)
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0.3);
+
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => {
+				return d.lists_f_ratio > 0 || d.lists_m_ratio > 0 || d.lists_p_ratio > 0 || d.lists_s_ratio > 0;
+			})
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+
+		// donuts
+		text_nodes
+			.selectAll('.lists_level_1')
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+	})
+
+	d3.select('#forma-terzo-lvl').on('click', function(){
+		resetAnalysis();
+		console.log('da implementare');
+	})
+
     // realismo
     d3.select('#realismo-first-lvl-generico-non-terrestre').on('click', function(){
 		resetAnalysis();
@@ -1222,7 +1273,6 @@ function treat_json(json) {
     })
 
 	d3.select('#realismo-secondo-lvl').on('click', function(){
-		console.log('#realismo-secondo-lvl')
 		resetAnalysis();
 		text_nodes
 			.selectAll('.halo')

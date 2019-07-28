@@ -268,6 +268,18 @@ svg:active {
   bottom: 0;
 }
 
+.toggle-analysis {
+    opacity: .6;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.analysis-visible .toggle-analysis {
+    opacity: 1;
+    pointer-events: all;
+    cursor: pointer;
+}
+
 .bottom-bar ._btn {
   padding: 0.3rem 0;
 }
@@ -277,7 +289,7 @@ svg:active {
   padding-bottom: calc(0.3rem - 2px);
 }
 
-.bottom-bar .toggle-legend:hover, .bottom-bar .toggle-timeline:hover, .bottom-bar .toggle-analysis {
+.bottom-bar .toggle-legend:hover, .bottom-bar .toggle-timeline:hover, .bottom-bar .toggle-analysis:hover {
   border-bottom: 2px solid rgba(47, 79, 79, 1);
 }
 
