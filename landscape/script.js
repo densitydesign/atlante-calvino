@@ -1213,6 +1213,11 @@ function treat_json(json) {
 	// forma
 	d3.select('#forma-secondo-lvl').on('click', function(){
 		resetAnalysis();
+		console.log('da implementare');
+	})
+
+	d3.select('#forma-terzo-lvl').on('click', function(){
+		resetAnalysis();
 		text_nodes
 			.selectAll('.hill')
 			.filter(d => d.lists_f_ratio == 0 && d.lists_m_ratio == 0 && d.lists_p_ratio == 0 && d.lists_s_ratio == 0)
@@ -1236,11 +1241,6 @@ function treat_json(json) {
 			.selectAll('.lists_level_1')
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1);
-	})
-
-	d3.select('#forma-terzo-lvl').on('click', function(){
-		resetAnalysis();
-		console.log('da implementare');
 	})
 
     // realismo

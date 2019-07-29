@@ -340,6 +340,13 @@ svg:active {
   opacity: 1;
 }
 
+.an-analysis > div {
+    border-left: 1px solid rgba(0,0,0,.1);
+}
+.an-analysis > div:first-child {
+    border-left: none;
+}
+
 #analysis-container {
   height: 0vh;
   bottom: 0;
@@ -350,7 +357,8 @@ svg:active {
   scroll-behavior: smooth;
   border-top: rgba(0,0,0,.1) 1px solid;
   opacity: 0;
-  padding: 1rem 2rem 3rem 2rem;;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
   display: flex;
   justify-content: space-between;
 }
