@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 23.0.4, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 viewBox="0 0 261.6 82" style="enable-background:new 0 0 261.6 82;" xml:space="preserve">
+<style type="text/css">
+	.st0{font-family:'HKGrotesk-Regular';}
+	.st1{font-size:9px;}
+	.st2{fill:#FF0000;}
+	.st3{fill:#0000FF;}
+	.st4{fill:none;stroke:#000000;stroke-width:0.25;}
+	.st5{fill:url(#SVGID_1_);}
+	.st6{fill:url(#SVGID_2_);}
+	.st7{fill:#CCCCFF;}
+	.st8{fill:#FFCCCC;}
+</style>
+<g id="back">
+</g>
+<g id="svg">
+	<g>
+		<text transform="matrix(1 0 0 1 -2.441406e-04 7.604)" class="st0 st1">Quantità:</text>
+		<text transform="matrix(1 0 0 1 0.74 79.7055)" class="st0 st1">Cancellazione</text>
+		<text transform="matrix(1 0 0 1 41.9745 30.6456)" class="st0 st1">Nebbia</text>
+		<path class="st2" d="M25,63.9C14.6,63.9,6.1,55.4,6.1,45S14.6,26.1,25,26.1"/>
+		<path class="st3" d="M25.1,26.1C35.5,26.1,44,34.6,44,45s-8.5,18.9-18.9,18.9"/>
+		<path class="st4" d="M62.1,31.9c0,8.4-6.8,15.3-15.3,15.3"/>
+		<path class="st4" d="M3.8,71.2c0-4.7,2.1-8.9,5.4-11.7"/>
+		<text transform="matrix(1 0 0 1 150.2838 71.4958)" class="st0 st1">minimo</text>
+		<text transform="matrix(1 0 0 1 95.0673 34.3347)" class="st0 st1">Nebbia</text>
+		<text transform="matrix(1 0 0 1 95.0673 57.5604)" class="st0 st1">Cancellazione</text>
+		<text transform="matrix(1 0 0 1 227.4626 71.4963)" class="st0 st1">massimo</text>
+		
+			<linearGradient id="SVGID_1_" gradientUnits="userSpaceOnUse" x1="176.4" y1="53.85" x2="232.8" y2="53.85" gradientTransform="matrix(1 0 0 -1 0 84)">
+			<stop  offset="0" style="stop-color:#0000FF;stop-opacity:0.2"/>
+			<stop  offset="1" style="stop-color:#0000FF"/>
+		</linearGradient>
+		<rect x="176.4" y="25.1" class="st5" width="56.4" height="10.1"/>
+		
+			<linearGradient id="SVGID_2_" gradientUnits="userSpaceOnUse" x1="176.4" y1="30.45" x2="232.8" y2="30.45" gradientTransform="matrix(1 0 0 -1 0 84)">
+			<stop  offset="0" style="stop-color:#FF0000;stop-opacity:0.2"/>
+			<stop  offset="0.9996" style="stop-color:#FF0000"/>
+		</linearGradient>
+		<rect x="176.4" y="48.5" class="st6" width="56.4" height="10.1"/>
+		<text transform="matrix(1 0 0 1 95.0674 8.4709)" class="st0 st1">Numero di occorrenze dei fenomeni:</text>
+		<circle class="st7" cx="165.1" cy="29.9" r="6.1"/>
+		<circle class="st8" cx="165.1" cy="53.4" r="6.1"/>
+		<circle class="st3" cx="244.7" cy="29.9" r="6.1"/>
+		<circle class="st2" cx="244.7" cy="53.4" r="6.1"/>
+	</g>
+</g>
+</svg>

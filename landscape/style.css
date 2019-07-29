@@ -340,6 +340,64 @@ svg:active {
   opacity: 1;
 }
 
+.analysis-title {
+    font-size: 1.3rem;
+}
+
+.an-analysis > div.col-4 {
+    border-left: 1px solid rgba(0,0,0,.1);
+}
+.an-analysis > div.col-4:first-of-type {
+    border-left: none;
+}
+
+.an-analysis .reset-analysis {
+    color: var(--calvino-red);
+    text-decoration: underline;
+}
+
+#analysis-container {
+  height: 0vh;
+  bottom: 0;
+  background: #f2f4f5;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  overflow-y: hidden;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  border-top: rgba(0,0,0,.1) 1px solid;
+  opacity: 0;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+button.btn-analysis {
+    padding: .1rem 0.3rem;
+    text-align: center;
+    /* max-width: 100px; */
+    margin-bottom: 0.3rem;
+}
+span.btn-analysis {
+    cursor: pointer;
+    background-color: var(--calvino-red);
+    padding: .1rem 0.35rem;
+    border-radius: 3px;
+    color: white;
+    font-family: 'HK Grotesk';
+    font-size: 86%;
+}
+
+.btn-analysis.btn-primary {
+    background-color: var(--calvino-red);
+    border-color: var(--calvino-red);
+}
+
+.analysis-visible #analysis-container {
+  height: 21vh;
+  opacity: 1;
+}
+
 /* .timeline-visible .toggle-legend, .legend-visible .toggle-timeline {
   bottom: 20vh;
 } */
