@@ -876,7 +876,7 @@ let metaballs = metaball_nodes
 	steps
 		.filter(function(d) { return d.first_elem } )
 		.append("svg:path")
-		.attr("fill", "grey")
+		.attr("fill", "lightgrey")
 		.attr("class", "lists_level_2")
 		.attr("d", drawListsOverallArc2)
 		.attr('transform', function(d,i){
