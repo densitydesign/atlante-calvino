@@ -340,11 +340,20 @@ svg:active {
   opacity: 1;
 }
 
-.an-analysis > div {
+.analysis-title {
+    font-size: 1.3rem;
+}
+
+.an-analysis > div.col-4 {
     border-left: 1px solid rgba(0,0,0,.1);
 }
-.an-analysis > div:first-child {
+.an-analysis > div.col-4:first-of-type {
     border-left: none;
+}
+
+.an-analysis .reset-analysis {
+    color: var(--calvino-red);
+    text-decoration: underline;
 }
 
 #analysis-container {
