@@ -113,8 +113,8 @@ function treat_json(json) {
 				let x = 6;
 			})));
 
-	let xxx = collections
-		.filter(coll => (data.allowedCollections == "all" && coll.has_metaball) || allowedCollections.includes(coll.id));
+let xxx = collections
+	.filter(coll => (data.allowedCollections == "all" && coll.has_metaball) || allowedCollections.includes(coll.id));
 
 	collections
 		.filter(coll => (data.allowedCollections == "all" && coll.has_metaball) || allowedCollections.includes(coll.id))
@@ -191,7 +191,7 @@ function treat_json(json) {
 			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 		});
 
-	let metaballs = metaball_nodes
+let metaballs = metaball_nodes
 		.selectAll(".metaball")
 		.data((d, i) => {
 			return d.steps;
@@ -200,27 +200,27 @@ function treat_json(json) {
 
 	collections.forEach(coll =>
 		metaballs
-		.filter(function(d) {
-			return d.metaballCorner[coll.id];
-		})
-		.append("svg:path")
-		.attr("class", function(d) {
-			return "metaball collection_" + coll.id;
-		})
-		.attr("d", function(d) {
-			return d.lobe[coll.id];
-		})
-		.attr("fill", "none")
-		.attr("stroke", function(d) {
-			return d.lobeColor[coll.id];
-		})
-		.attr("stroke-opacity", 0)
-		.attr("stroke-width", 7)
-		.attr('transform', function(d) {
-			let delta_x = -(+d.x);
-			let delta_y = -(+d.y);
-			return 'translate(' + delta_x + ', ' + delta_y + ')'
-		}));
+			.filter(function(d) {
+				return d.metaballCorner[coll.id];
+			})
+			.append("svg:path")
+			.attr("class", function(d) {
+				return "metaball collection_" + coll.id;
+			})
+			.attr("d", function(d) {
+				return d.lobe[coll.id];
+			})
+			.attr("fill", "none")
+			.attr("stroke", function(d) {
+				return d.lobeColor[coll.id];
+			})
+			.attr("stroke-opacity", 0)
+			.attr("stroke-width", 7)
+			.attr('transform', function(d) {
+				let delta_x = -(+d.x);
+				let delta_y = -(+d.y);
+				return 'translate(' + delta_x + ', ' + delta_y + ')'
+			}));
 
 	let g = svg_main_group
 		.append('g')
@@ -353,7 +353,7 @@ function treat_json(json) {
 		.domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
 		.range(['#FFDDFF', 'violet']);
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	let drawPlacesArc1 = d3
 		.arc()
@@ -458,7 +458,7 @@ function treat_json(json) {
 			return 2 * PI;
 		});
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	steps
 		.filter(function(d) { return d.first_elem })
@@ -538,7 +538,7 @@ function treat_json(json) {
 		})
 		.style('fill-opacity', 0);
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	let drawDubitativePhenomenaArc1 = d3
 		.arc()
@@ -583,7 +583,7 @@ function treat_json(json) {
 			return 2 * PI;
 		});
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	steps
 		.filter(function(d) { return d.first_elem })
@@ -618,7 +618,7 @@ function treat_json(json) {
 		})
 		.style('fill-opacity', 0);
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	let drawDubitativePhenomenaSlice1 = d3
 		.arc()
@@ -663,7 +663,7 @@ function treat_json(json) {
 			return 2 * PI;
 		});
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	steps
 		.filter(function(d) { return d.first_elem })
@@ -698,7 +698,7 @@ function treat_json(json) {
 		})
 		.style('fill-opacity', 0);
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	let drawListsArc1 = d3
 		.arc()
@@ -773,13 +773,13 @@ function treat_json(json) {
 			return 2 * PI;
 		});
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
 		.attr("fill", "blue")
-		.attr("class", "lists_level_2")
+		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc1)
 		.attr('transform', function(d, i) {
 			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
@@ -790,7 +790,7 @@ function treat_json(json) {
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
 		.attr("fill", "red")
-		.attr("class", "lists_level_2")
+		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc2)
 		.attr('transform', function(d, i) {
 			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
@@ -801,7 +801,7 @@ function treat_json(json) {
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
 		.attr("fill", "green")
-		.attr("class", "lists_level_2")
+		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc3)
 		.attr('transform', function(d, i) {
 			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
@@ -812,7 +812,7 @@ function treat_json(json) {
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
 		.attr("fill", "yellow")
-		.attr("class", "lists_level_2")
+		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc4)
 		.attr('transform', function(d, i) {
 			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
@@ -823,19 +823,19 @@ function treat_json(json) {
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
 		.attr("fill", "transparent")
-		.attr("class", "lists_level_2")
+		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc5)
 		.attr('transform', function(d, i) {
 			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
 		})
 		.style('fill-opacity', 0);
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	let drawListsOverallArc1 = d3
 		.arc()
 		.innerRadius(function(d, i) {
-			return d.r - (i + 1) * arcWidth + arcPad;
+			return d.r - (i+1) * arcWidth + arcPad;
 		})
 		.outerRadius(function(d, i) {
 			return d.r - i * arcWidth;
@@ -848,7 +848,7 @@ function treat_json(json) {
 	let drawListsOverallArc2 = d3
 		.arc()
 		.innerRadius(function(d, i) {
-			return d.r - (i + 1) * arcWidth + arcPad;
+			return d.r - (i+1) * arcWidth + arcPad;
 		})
 		.outerRadius(function(d, i) {
 			return d.r - i * arcWidth;
@@ -858,52 +858,52 @@ function treat_json(json) {
 		})
 		.endAngle(function(d, i) {
 			return 2 * PI;
-		});
+		});			
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	steps
-		.filter(function(d) { return d.first_elem })
+		.filter(function(d) { return d.first_elem } )
 		.append("svg:path")
 		.attr("fill", d => d.lists_ratio_is_below_threshold ? "black" : "red")
-		.attr("class", "lists_level_3")
+		.attr("class", "lists_level_2")
 		.attr("d", drawListsOverallArc1)
-		.attr('transform', function(d, i) {
-			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
+		.attr('transform', function(d,i){
+			return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
 		})
-		.style('fill-opacity', 0);
+		.style('fill-opacity',0);
 
 	steps
-		.filter(function(d) { return d.first_elem })
+		.filter(function(d) { return d.first_elem } )
 		.append("svg:path")
 		.attr("fill", "grey")
-		.attr("class", "lists_level_3")
+		.attr("class", "lists_level_2")
 		.attr("d", drawListsOverallArc2)
-		.attr('transform', function(d, i) {
-			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
+		.attr('transform', function(d,i){
+			return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
 		})
-		.style('fill-opacity', 0);
+		.style('fill-opacity',0);
 
-	///////////////////////////////////////////
-	// text_nodes
-	// .on("mouseenter", function(){
-	//   d3.select(this).selectAll('circle')
-	//     .transition()
-	//       .duration(350)
-	//       .attr('transform', function(d,i){
-	//         i = i*step_increment*1.5
-	//         return 'translate(0,'+i+')'
-	//       });
-	// })
-	// .on("mouseleave", function(){
-	//   d3.select(this).selectAll('circle')
-	//     .transition()
-	//       .duration(350)
-	//       .attr('transform', function(d,i){
-	//         i = i*step_increment
-	//         return 'translate(0,'+i+')'
-	//       });
-	// });
+///////////////////////////////////////////
+// text_nodes
+// .on("mouseenter", function(){
+//	 d3.select(this).selectAll('circle')
+//		 .transition()
+//			 .duration(350)
+//			 .attr('transform', function(d,i){
+//				 i = i*step_increment*1.5
+//				 return 'translate(0,'+i+')'
+//			 });
+// })
+// .on("mouseleave", function(){
+//	 d3.select(this).selectAll('circle')
+//		 .transition()
+//			 .duration(350)
+//			 .attr('transform', function(d,i){
+//				 i = i*step_increment
+//				 return 'translate(0,'+i+')'
+//			 });
+// });
 
 	let label = text_nodes
 		.selectAll('.label')
@@ -1009,34 +1009,63 @@ function treat_json(json) {
 			);
 	}
 
-	d3.selectAll('.dropdown-menu li a').on('click', function(d) {
+	d3.selectAll('#color-coding-selector li a').on('click', function(d) {
 		setHillsColours(d3.select(this).attr('colour-by'));
 	})
 
 	$(".dropdown-menu li a").click(function() {
 		$(this).parents(".dropdown").find('._btn').html($(this).text() + ' <span class="caret"></span>');
+
+		if ($(this).data('value') != 'no-sphere') {
+			$(this).parents(".dropdown").find('._btn').html($(this).text() + ' <span class="caret"></span>');
+		} else {
+			$(this).parents(".dropdown").find('._btn').html('una sfera di analisi <span class="caret"></span>');
+		}
+
 		$(this).parents(".dropdown").find('._btn').val($(this).data('value'));
 	});
 
 	function setHillsColours(coloursBy) {
 		switch (coloursBy) {
 			case 'years':
-				text_nodes.selectAll('circle')
-					.transition()
-					.duration(350)
-					.attr('fill', function(d) {
-						return colour(d.first_publication);
-					});
+                		hillColoringMode = 1;
+                		highlightHills();
 				break;
 			case 'collections':
-				text_nodes.selectAll('circle')
-					.transition().duration(350)
-					.attr('fill', function(d) {
-						return col_collections(d.collection);
-					})
+                		hillColoringMode = 2;
+                		highlightHills();
 				break;
 		}
 	}
+
+    d3.selectAll('#analysis-selector li a').on('click', function(d) {
+        var analysis = d3.select(this).attr('data-value');
+
+        d3.selectAll('.an-analysis').style('display', 'none');
+
+		if (!d3.select('#interface').classed("analysis-visible")) {
+			toggleAnalysis();
+		}
+
+        switch (analysis) {
+            case 'doubt-sphere':
+                d3.select('#analysis-dubbio').style('display', 'flex');
+                break;
+            case 'form-sphere':
+                d3.select('#analysis-forma').style('display', 'flex');
+                break;
+            case 'realism-sphere':
+                d3.select('#analysis-realismo').style('display', 'flex');
+                break;
+            case 'no-sphere':
+				var isOpen = d3.select('#interface').classed("analysis-visible")
+				if (isOpen) {
+					toggleAnalysis();
+				}
+				resetAnalysis();
+                break;
+        }
+	})
 
 	prepareTimeline(json_nodes, col_collections);
 
@@ -1048,8 +1077,11 @@ function treat_json(json) {
 	function toggleTimeline() {
 		d3.select('#interface')
 			.classed("legend-visible", false)
+			.classed("analysis-visible", false)
 			.classed("timeline-visible", d3.select('#interface').classed("timeline-visible") ? false : true);
+
 		d3.selectAll('.toggle-legend').classed('active', false);
+		d3.selectAll('.toggle-analysis').classed('active', false);
 	}
 
 	d3.selectAll('.toggle-legend').on('click', function(d) {
@@ -1060,8 +1092,27 @@ function treat_json(json) {
 	function toggleLegend() {
 		d3.select('#interface')
 			.classed("timeline-visible", false)
+			.classed("analysis-visible", false)
 			.classed("legend-visible", d3.select('#interface').classed("legend-visible") ? false : true);
+
 		d3.selectAll('.toggle-timeline').classed('active', false);
+		d3.selectAll('.toggle-analysis').classed('active', false);
+	}
+
+	d3.selectAll('.toggle-analysis').on('click', function(d) {
+		toggleAnalysis();
+	})
+
+	function toggleAnalysis() {
+		 console.log('toggle analysis')
+		d3.select('#interface')
+			.classed("timeline-visible", false)
+			.classed("legend-visible", false)
+			.classed("analysis-visible", d3.select('#interface').classed("analysis-visible") ? false : true);
+
+		d3.selectAll('.toggle-legend').classed('active', false);
+		d3.selectAll('.toggle-timeline').classed('active', false);
+		d3.selectAll('.toggle-analysis').classed('active', d3.select('.toggle-analysis').classed("active") ? false : true)
 	}
 
 	d3.selectAll('.toggle-tutorial').on('click', function(d) {
@@ -1096,475 +1147,276 @@ function treat_json(json) {
 			function() {
 				data.keyboardCommandsOn = true;
 			});
-	/*
-	  data.nebbia_color_scale = d3
-	    .scaleLinear()
-	    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
-	    .range(['#DDDDFF', 'blue']);
+/*
+	data.nebbia_color_scale = d3
+		.scaleLinear()
+		.domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+		.range(['#DDDDFF', 'blue']);
 
-	  data.cancellazione_color_scale = d3
-	    .scaleLinear()
-	    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
-	    .range(['#FFDDDD', 'red']);
+	data.cancellazione_color_scale = d3
+		.scaleLinear()
+		.domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+		.range(['#FFDDDD', 'red']);
 
-	  data.dubitative_color_scale = d3
-	    .scaleLinear()
-	    .domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
-	    .range(['#FFDDFF', 'violet']);
-	*/
+	data.dubitative_color_scale = d3
+		.scaleLinear()
+		.domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
+		.range(['#FFDDFF', 'violet']);
+*/
+
+	d3.selectAll('.reset-analysis').on('click', function(){
+		resetAnalysis();
+	})
+
+	function resetAnalysis(){
+		highlightHills();
+		text_nodes.selectAll('.dubitativePhenomena_level_2')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+		text_nodes.selectAll('.dubitativePhenomena_level_3')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+		text_nodes
+			.selectAll('.places')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+		text_nodes
+			.selectAll('.lists_level_1')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+		text_nodes
+			.selectAll('.lists_level_2')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+		text_nodes
+			.selectAll('.lists_level_3')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);            
+	}
+
+    // Dubbio
+    d3.select('#dubbio-first-lvl-nebbia').on('click', function(){
+		resetAnalysis();
+        highlightHills('nebbia_words_ratio', data.cancellazione_color_scale);
+    })
+    d3.select('#dubbio-first-lvl-cancellazione').on('click', function(){
+		resetAnalysis();
+        highlightHills('cancellazione_words_ratio', data.nebbia_color_scale);
+    })
+	d3.select('#dubbio-second-lvl').on('click', function(){
+		resetAnalysis();
+
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => !d.dubitative_ratio)
+			.transition()
+			.duration(250)
+			//                .style('fill', 'transparent')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 1)
+			.style('stroke', stepBorderColor);
+
+		d3.selectAll(".hill")
+			.filter(d => d.dubitative_ratio)
+			.style('fill', d => data.dubitative_color_scale(d.dubitative_ratio));
+
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => d.dubitative_ratio)
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+
+		text_nodes
+			.selectAll('.places')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+
+		// donuts
+		text_nodes
+			.selectAll('.dubitativePhenomena_level_2')
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+	})
+	d3.select('#dubbio-terzo-lvl').on('click', function(){
+		resetAnalysis();
+
+		d3.selectAll(".hill")
+			.filter(d => d.dubitative_ratio)
+			.style('fill', 'transparent');
+
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => d.dubitative_ratio)
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+
+		text_nodes
+			.selectAll('.hill')
+			.style('fill-opacity', 0)
+			.filter(d => !d.dubitative_ratio && !d.first_elem)
+			.style('stroke-opacity', 0);
+
+		text_nodes
+			.selectAll('.places')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+
+		text_nodes
+			.selectAll('.dubitativePhenomena_level_3')
+			.style('fill-opacity', 0.7)
+			.style('stroke-opacity', 1);
+	})
+
+	// forma
+	d3.select('#forma-secondo-lvl').on('click', function(){
+		resetAnalysis();
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => d.lists_f_ratio == 0 && d.lists_m_ratio == 0 && d.lists_p_ratio == 0 && d.lists_s_ratio == 0)
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0.3);
+
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => {
+				return d.lists_f_ratio > 0 || d.lists_m_ratio > 0 || d.lists_p_ratio > 0 || d.lists_s_ratio > 0;
+			})
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+
+		// donuts
+		text_nodes
+			.selectAll('.lists_level_2')
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+	})
+
+	d3.select('#forma-terzo-lvl').on('click', function(){
+		resetAnalysis();
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => d.lists_f_ratio == 0 && d.lists_m_ratio == 0 && d.lists_p_ratio == 0 && d.lists_s_ratio == 0)
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0.3);
+
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => {
+				return d.lists_f_ratio > 0 || d.lists_m_ratio > 0 || d.lists_p_ratio > 0 || d.lists_s_ratio > 0;
+			})
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+
+		// donuts
+		text_nodes
+			.selectAll('.lists_level_3')
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+	})
+
+    // realismo
+    d3.select('#realismo-first-lvl-generico-non-terrestre').on('click', function(){
+		resetAnalysis();
+        highlightHills('generico_non_terrestre_abs', data.generico_non_terrestre_color_scale);
+    })
+    d3.select('#realismo-first-lvl-nominato-non-terrestre').on('click', function(){
+		resetAnalysis();
+        highlightHills('nominato_non_terrestre_abs', data.nominato_non_terrestre_color_scale);
+    })
+
+    d3.select('#realismo-first-lvl-generico-terrestre').on('click', function(){
+		resetAnalysis();
+        highlightHills('generico_terrestre_abs', data.generico_terrestre_color_scale);
+    })
+    d3.select('#realismo-first-lvl-nominato-terrestre').on('click', function(){
+		resetAnalysis();
+        highlightHills('nominato_terrestre_abs', data.nominato_terrestre_color_scale);
+    })
+
+    d3.select('#realismo-first-lvl-inventato').on('click', function(){
+		resetAnalysis();
+        highlightHills('inventato_abs', data.inventato_color_scale);
+    })
+
+    d3.select('#realismo-first-lvl-no-ambientazione').on('click', function(){
+		resetAnalysis();
+        highlightHills('no_ambientazione_abs', data.no_ambientazione_color_scale);
+    })
+
+	d3.select('#realismo-secondo-lvl').on('click', function(){
+		resetAnalysis();
+		text_nodes
+			.selectAll('.halo')
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+
+		text_nodes
+			.selectAll('.hill')
+			.transition()
+			.duration(250)
+			.style('stroke-opacity', 1)
+			.style('stroke', stepBorderColor);
+
+		d3.selectAll(".hill")
+			.style('fill', 'white');
+
+		text_nodes
+			.selectAll('.places')
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+	})
+
+    function highlightHills(filterCondition, colorScale) {
+        if (!filterCondition) {
+
+            text_nodes.style('display', 'block');
+
+            d3.selectAll('.hill').style('fill-opacity', 1).style('stroke-opacity', 1);
+
+            if(hillColoringMode == 1) {
+                d3.selectAll('.hill').style('fill', d => colour(d.first_publication));
+            } else if(hillColoringMode == 2) {
+                d3.selectAll('.hill').style('fill', d => col_collections(d.collection));
+            }
+            return;
+        }
+
+        d3.selectAll(".hill")
+          .filter(d => !d[filterCondition])
+          .transition()
+          .duration(350)
+          .style('fill', 'transparent');
+
+        d3.selectAll(".hill")
+          .filter(d => d[filterCondition])
+          .transition()
+          .duration(350)
+          .style('fill', d => colorScale(d[filterCondition]));
+    }
 
 	d3
 		.select('body')
 		.on("keyup",
 			function(d) {
 				if(!data.keyboardCommandsOn) return;
-				//      console.log(d3.event.key)
 
 				let eventKey = d3.event.key.toLowerCase();
 
-				if(eventKey == "c") {
-					hillColoringMode = 2;
-
-					d3.selectAll(".hill")
-						.transition()
-						.duration(350)
-						.style('fill', d => col_collections(d.collection));
-				} else if(eventKey == "y") {
-					hillColoringMode = 1;
-
-					text_nodes
-						.selectAll('.hill')
-						//          .filter(d => !this.classList.contains('halo'))
-						.transition()
-						.duration(350)
-						.style('fill', d => colour(d.first_publication));
-				} else if(eventKey == "n") {
-					//          text_nodes.style('display','none');
-
-					// text_nodes
-					//   .filter(d => d.attributes.nebbia)
-					//   .style('display', 'block');
-
-					d3.selectAll(".hill")
-						.filter(d => !d.nebbia_words_ratio)
-						.transition()
-						.duration(350)
-						.style('fill', 'transparent');
-
-					d3.selectAll(".hill")
-						.filter(d => d.nebbia_words_ratio)
-						.transition()
-						.duration(350)
-						.style('fill', d => data.nebbia_color_scale(d.nebbia_words_ratio));
-
-				} else if(eventKey == "m") {
-					//          text_nodes.style('display','none');
-
-					// text_nodes
-					//   .filter(d => d.attributes.cancellazione)
-					//   .style('display', 'block');
-
-					d3.selectAll(".hill")
-						.filter(d => !d.cancellazione_words_ratio)
-						.transition()
-						.duration(350)
-						.style('fill', 'transparent');
-
-					d3.selectAll(".hill")
-						.filter(d => d.cancellazione_words_ratio)
-						.transition()
-						.duration(350)
-						.style('fill', d => data.cancellazione_color_scale(d.cancellazione_words_ratio));
-
-				} else if(eventKey == "g") {
-
-					d3.selectAll(".hill")
-						.filter(d => !d.generico_non_terrestre_abs)
-						.transition()
-						.duration(350)
-						.style('fill', 'transparent');
-
-					d3.selectAll(".hill")
-						.filter(d => d.generico_non_terrestre_abs)
-						.transition()
-						.duration(350)
-						.style('fill', d => data.generico_non_terrestre_color_scale(d.generico_non_terrestre_abs));
-
-				} else if(eventKey == "h") {
-
-					d3.selectAll(".hill")
-						.filter(d => !d.generico_terrestre_abs)
-						.transition()
-						.duration(350)
-						.style('fill', 'transparent');
-
-					d3.selectAll(".hill")
-						.filter(d => d.generico_terrestre_abs)
-						.transition()
-						.duration(350)
-						.style('fill', d => data.generico_terrestre_color_scale(d.generico_terrestre_abs));
-
-				} else if(eventKey == "j") {
-
-					d3.selectAll(".hill")
-						.filter(d => !d.inventato_abs)
-						.transition()
-						.duration(350)
-						.style('fill', 'transparent');
-
-					d3.selectAll(".hill")
-						.filter(d => d.inventato_abs)
-						.transition()
-						.duration(350)
-						.style('fill', d => data.inventato_color_scale(d.inventato_abs));
-
-				} else if(eventKey == "k") {
-
-					d3.selectAll(".hill")
-						.filter(d => !d.no_ambientazione_abs)
-						.transition()
-						.duration(350)
-						.style('fill', 'transparent');
-
-					d3.selectAll(".hill")
-						.filter(d => d.no_ambientazione_abs)
-						.transition()
-						.duration(350)
-						.style('fill', d => data.no_ambientazione_color_scale(d.no_ambientazione_abs));
-
-				} else if(eventKey == "l") {
-
-					d3.selectAll(".hill")
-						.filter(d => !d.nominato_non_terrestre_abs)
-						.transition()
-						.duration(350)
-						.style('fill', 'transparent');
-
-					d3.selectAll(".hill")
-						.filter(d => d.nominato_non_terrestre_abs)
-						.transition()
-						.duration(350)
-						.style('fill', d => data.nominato_non_terrestre_color_scale(d.nominato_non_terrestre_abs));
-
-				} else if(eventKey == "ò") {
-
-					d3.selectAll(".hill")
-						.filter(d => !d.nominato_terrestre_abs)
-						.transition()
-						.duration(350)
-						.style('fill', 'transparent');
-
-					d3.selectAll(".hill")
-						.filter(d => d.nominato_terrestre_abs)
-						.transition()
-						.duration(350)
-						.style('fill', d => data.nominato_terrestre_color_scale(d.nominato_terrestre_abs));
-
-				} else if(eventKey == "p") {
-
-					drawMode = incrementDrawMode(drawMode);
-					console.log(drawMode);
-
-					switch (drawMode) {
-						case 1: // hills
-							text_nodes
-								.selectAll('path')
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0);
-
-							text_nodes
-								.selectAll('.halo')
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0);
-
-							text_nodes
-								.selectAll('.hill')
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 1)
-								.style('stroke-opacity', 1);
-
-							if(hillColoringMode == 1) {
-								text_nodes
-									.selectAll('.hill')
-									.transition()
-									.duration(450)
-									.style('fill-opacity', 1)
-									.style('stroke-opacity', 1)
-									.style('fill', d => colour(d => d.first_publication));
-							} else {
-								text_nodes
-									.selectAll('.hill')
-									.transition()
-									.duration(450)
-									.style('fill-opacity', 1)
-									.style('stroke-opacity', 1)
-									.style('fill', d => col_collections(d.collection));
-							}
-
-							break;
-
-						case 2: // hills with halos
-
-							text_nodes
-								.selectAll('path')
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0);
-
-							text_nodes
-								.selectAll('.halo')
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 1)
-								.style('stroke-opacity', 1);
-
-							break;
-
-						case 3: // places
-
-							text_nodes
-								.selectAll('.halo')
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0);
-
-							/*
-							              text_nodes
-							                .selectAll('.hill')
-							                .transition()
-							                .duration(250)
-							                .style('stroke-opacity',1);
-							*/
-							text_nodes
-								.selectAll('.hill')
-								.transition()
-								.duration(250)
-								//                .style('fill-opacity', 0)
-								.style('stroke-opacity', 1)
-								.style('stroke', stepBorderColor);
-
-							d3.selectAll(".hill")
-								.style('fill', 'white');
-
-							text_nodes
-								.selectAll('.places')
-								.style('fill-opacity', 1)
-								.style('stroke-opacity', 1);
-							/*
-							              text_nodes
-							                .selectAll("circle:not(.places)")
-							                .transition()
-							                .duration(450)
-							                .style('fill-opacity',0)
-							                .style('stroke-opacity',0);
-
-							              text_nodes
-							                .selectAll('.hill')
-							                .filter(d => d.first_elem)
-							                .transition()
-							                .duration(450)
-							                .style('fill-opacity',0.2)
-							                .style('stroke-opacity',0);
-							*/
-							break;
-
-						case 4: // dubitative phenomena - 2nd level
-							/*
-							              text_nodes
-							                .selectAll('.hill')
-							                .transition()
-							                .duration(250)
-							                .style('stroke-opacity',1);
-							*/
-							text_nodes
-								.selectAll('.hill')
-								.filter(d => !d.dubitative_ratio)
-								.transition()
-								.duration(250)
-								//                .style('fill', 'transparent')
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 1)
-								.style('stroke', stepBorderColor);
-
-							d3.selectAll(".hill")
-								.filter(d => d.dubitative_ratio)
-								.style('fill', d => data.dubitative_color_scale(d.dubitative_ratio));
-
-							text_nodes
-								.selectAll('.hill')
-								.filter(d => d.dubitative_ratio)
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 1)
-								.style('stroke-opacity', 1);
-
-							text_nodes
-								.selectAll('.places')
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0);
-
-							// donuts
-							text_nodes
-								.selectAll('.dubitativePhenomena_level_2')
-								.style('fill-opacity', 1)
-								.style('stroke-opacity', 1);
-
-							/*
-							              text_nodes
-							                .selectAll("circle:not(.dubitativePhenomena)")
-							                .transition()
-							                .duration(450)
-							                .style('fill-opacity',0)
-							                .style('stroke-opacity',0);
-							*/
-							/*
-							              text_nodes
-							                .selectAll('.hill')
-							                .filter(d => d.first_elem)
-							                .transition()
-							                .duration(450)
-							                .style('fill-opacity', d => sample(d.norma_pct_caratteri_nebbia_cancellazione, 0, 1, 10))
-							                .style('stroke-opacity',0)
-							                .style('fill', '#9900FF');
-							*/
-							break;
-
-						case 5: // dubitative phenomena - 3rd level
-
-							text_nodes
-								.selectAll('.dubitativePhenomena_level_2')
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0);
-
-							d3.selectAll(".hill")
-								.filter(d => d.dubitative_ratio)
-								.style('fill', 'transparent');
-
-							text_nodes
-								.selectAll('.hill')
-								.filter(d => d.dubitative_ratio)
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 1)
-								.style('stroke-opacity', 1);
-
-							text_nodes
-								.selectAll('.hill')
-								.filter(d => !d.dubitative_ratio && !d.first_elem)
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0);
-
-							text_nodes
-								.selectAll('.places')
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0);
-
-							text_nodes
-								.selectAll('.dubitativePhenomena_level_3')
-								.style('fill-opacity', 0.7)
-								.style('stroke-opacity', 1);
-
-							break;
-
-						case 6: // lists - 2nd level
-
-							d3.selectAll(".hill")
-								.style('fill', 'white')
-								.style('fill-opacity', 1);
-
-							text_nodes
-								.selectAll('.dubitativePhenomena_level_3')
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0);
-							/*
-							              d3.selectAll(".hill")
-							                .filter(d => d.dubitative_ratio)
-							                .style('fill', d => data.dubitative_color_scale(d.dubitative_ratio));
-							*/
-
-							text_nodes
-								.selectAll('.hill')
-								//                .filter(d => d.n_lists_f_ratio == 1e-16 && d.n_lists_m_ratio == 1e-16 && d.n_lists_p_ratio == 1e-16 && d.n_lists_s_ratio == 1e-16)
-								.filter(d => d.lists_f_ratio == 0 && d.lists_m_ratio == 0 && d.lists_p_ratio == 0 && d.lists_s_ratio == 0)
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0.3);
-
-							text_nodes
-								.selectAll('.hill')
-								//                .filter(d => d.n_lists_f_ratio > 1e-16 || d.n_lists_m_ratio > 1e-16 || d.n_lists_p_ratio > 1e-16 || d.n_lists_s_ratio > 1e-16)
-								.filter(d => {
-									console.log("d.lists_f_ratio : " + d.lists_f_ratio + ", d.lists_m_ratio : " + d.lists_m_ratio + ", d.lists_p_ratio : " + d.lists_p_ratio + ", d.lists_s_ratio : " + d.lists_s_ratio);
-									//                  return d.lists_f_ratio > 0 || d.lists_m_ratio > 0 || d.lists_p_ratio > 0 || d.lists_s_ratio > 0;
-									return d.lists_are_present;
-								})
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 1)
-								.style('stroke-opacity', 1);
-
-							// donuts
-							text_nodes
-								.selectAll('.lists_level_2')
-								.style('fill-opacity', 1)
-								.style('stroke-opacity', 1);
-
-							break;
-
-						case 7: // lists - 3rd level
-
-							d3.selectAll(".hill")
-								.style('fill', 'white')
-								.style('fill-opacity', 1);
-
-							text_nodes
-								.selectAll('.lists_level_2')
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0);
-							/*
-							              d3.selectAll(".hill")
-							                .filter(d => d.dubitative_ratio)
-							                .style('fill', d => data.dubitative_color_scale(d.dubitative_ratio));
-							*/
-
-							text_nodes
-								.selectAll('.hill')
-								//                .filter(d => d.n_lists_f_ratio == 1e-16 && d.n_lists_m_ratio == 1e-16 && d.n_lists_p_ratio == 1e-16 && d.n_lists_s_ratio == 1e-16)
-								.filter(d => d.lists_f_ratio == 0 && d.lists_m_ratio == 0 && d.lists_p_ratio == 0 && d.lists_s_ratio == 0)
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 0)
-								.style('stroke-opacity', 0.3);
-
-							text_nodes
-								.selectAll('.hill')
-								//                .filter(d => d.n_lists_f_ratio > 1e-16 || d.n_lists_m_ratio > 1e-16 || d.n_lists_p_ratio > 1e-16 || d.n_lists_s_ratio > 1e-16)
-								.filter(d => {
-									console.log("d.lists_f_ratio : " + d.lists_f_ratio + ", d.lists_m_ratio : " + d.lists_m_ratio + ", d.lists_p_ratio : " + d.lists_p_ratio + ", d.lists_s_ratio : " + d.lists_s_ratio);
-									return d.lists_are_present;
-								})
-								.transition()
-								.duration(450)
-								.style('fill-opacity', 1)
-								.style('stroke-opacity', 1);
-
-							// donuts
-							text_nodes
-								.selectAll('.lists_level_3')
-								.style('fill-opacity', 1)
-								.style('stroke-opacity', 1);
-
-							break;
-					}
-				} else if(eventKey == "x") {
+				if(eventKey == "x") {
 					collections.forEach(coll => metaballsVisible[coll.id] = !metaballsVisible[coll.id]);
 
 					metaballs
@@ -1592,27 +1444,8 @@ function treat_json(json) {
 							.duration(450)
 							.style("stroke-opacity", 0);
 					}
-				} else if(eventKey == "f") {
-					// d3.select('#searchbox').node().value = '';
-					// label.classed('visible', false);
-					// d3.select('#searchbox').style('min-width', '10ch');
-					// d3.select('#searchbox-box').classed('searchbox-visible', false);
-					// applyBeeSwarmFilter();
-					resetSearchBox();
 				} else if(eventKey == " ") {
-					text_nodes.style('display', 'block')
-
-					d3.selectAll('.hill')
-						.style('fill-opacity', 1)
-						.style('stroke-opacity', 1);
-
-					if(hillColoringMode == 1) {
-						d3.selectAll('.hill')
-							.style('fill', d => colour(d.first_publication));
-					} else if(hillColoringMode == 2) {
-						d3.selectAll('.hill')
-							.style('fill', d => col_collections(d.collection));
-					}
+					resetAnalysis();
 				}
 			});
 
@@ -1627,22 +1460,22 @@ function treat_json(json) {
 		d.attributes.collections.forEach(coll_id => {
 			if(!textCollectionsMap[d.id].includes(coll_id)) textCollectionsMap[d.id].push(collectionMap[coll_id]);
 		});
-		//    if(!textCollectionsMap[d.id].includes(d.collection)) textCollectionsMap[d.id].push(d.collection);
+//		if(!textCollectionsMap[d.id].includes(d.collection)) textCollectionsMap[d.id].push(d.collection);
 
 	});
 
-	//  let titles = json_nodes.map(d => d.attributes.title);
-	//  let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.attributes.id][0]);
+//	let titles = json_nodes.map(d => d.attributes.title);
+//	let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.attributes.id][0]);
 
 	let title_fn = d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" ");
 
-	//  let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" "));
-	//  let titles = json_nodes.map(title_fn);
+//	let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" "));
+//	let titles = json_nodes.map(title_fn);
 	let titles = json_nodes.map(d => {
 		return {
-			label: d.attributes.title,
-			value: d.attributes.title,
-			desc: title_fn(d)
+			label : d.attributes.title,
+			value : d.attributes.title,
+			desc : title_fn(d)
 		};
 	});
 
@@ -1653,13 +1486,13 @@ function treat_json(json) {
 	$("#searchbox")
 		.autocomplete({
 			appendTo: '#searchbox-results',
-			//      source: titles,
+//			source: titles,
 			minLength: 3,
 			position: {
 				collision: 'flip',
 			},
 			source: function(req, response) {
-				//        var results = $.ui.autocomplete.filter(titles, req.term);
+//				var results = $.ui.autocomplete.filter(titles, req.term);
 
 				let results = titles.filter(d => d.desc.toLowerCase().includes(req.term.toLowerCase()));
 
@@ -1838,7 +1671,7 @@ function calculate_item_data(obj) {
 		lists_ratio_is_below_threshold: lists_ratio < lists_ratio_threshold
 	};
 
-	console.log("lists_sum : " + lists_sum + ", item_data.lists_f_ratio : " + item_data.lists_f_ratio);
+	// console.log("lists_sum : " + lists_sum + ", item_data.lists_f_ratio : " + item_data.lists_f_ratio);
 
 	return item_data;
 }
@@ -2128,8 +1961,10 @@ function getCollections() {
 	return collections
 }
 
-function incrementDrawMode(drawMode) {
-	if(drawMode >= 7) {
+function incrementDrawMode(drawMode)
+{
+	if(drawMode >= 7)
+	{
 		return 1;
 	} else if(drawMode == 1) {
 		return 3; // bypass halo mode
@@ -2202,7 +2037,7 @@ function prepareMetaballData(json_nodes, collection, lineColor) {
 		});
 
 	let nCirclesToBeDrawn = ordered_boundary_circles.length;
-	//      let nCirclesToBeDrawn = 1;
+//			let nCirclesToBeDrawn = 1;
 
 	renderMetaballLogically(collection, ordered_boundary_circles, nCirclesToBeDrawn, lineColor);
 }
@@ -2299,7 +2134,7 @@ function addWantedCoves(vertex_array, boundary_points, concavityTolerance) {
 
 		new_boundary_points = new_boundary_points.concat(points_after_p1).concat(points_before_p2.reverse());
 
-		//    new_boundary_points = new_boundary_points.concat(pointsToBeAdded);
+//		new_boundary_points = new_boundary_points.concat(pointsToBeAdded);
 	}
 
 	let result = [new_boundary_points];
@@ -2610,13 +2445,14 @@ function metaball(
 
 	const angle3 = normalizeAngle(-(angleBetweenPredecessorCentralCenters + Math.PI - u2 - (Math.PI - u2 - maxSpread) * v));
 
-	const angleBetweenCentralPredecessorCenters = angle(centralCircle.p, predecessorCircle.p);
 
-	const externalAngle = angleBetweenCentralPredecessorCenters - angleBetweenCentralSuccessorCenters;
-	const externalAngleIsConcave = Math.abs(externalAngle) < Math.PI;
-	// console.log("externalAngleIsConcave : " + externalAngleIsConcave);
+const angleBetweenCentralPredecessorCenters = angle(centralCircle.p, predecessorCircle.p);
 
-	let svgContainer = d3.select("svg");
+const externalAngle = angleBetweenCentralPredecessorCenters - angleBetweenCentralSuccessorCenters;
+const externalAngleIsConcave = Math.abs(externalAngle) < Math.PI;
+// console.log("externalAngleIsConcave : " + externalAngleIsConcave);
+
+let svgContainer = d3.select("svg");
 
 	// Point locations
 	const p1 = getCircleJoint2(predecessorCircle, centralCircle, v);
@@ -2856,7 +2692,7 @@ function borderOrientationIsCounterclockwise(points) {
 
 	const indexOfMin = angles.indexOf(minAngle);
 
-	//      let angles2 = angles.rotate(-indexOfMin);
+//			let angles2 = angles.rotate(-indexOfMin);
 	angles.unshift(angles.splice(-indexOfMin, this.length));
 
 	return angles[2] > angles[1];
@@ -2890,8 +2726,8 @@ function prepareTimeline(json_nodes, col_collections) {
 		.domain(x_time_ext);
 
 	// data.timeline_y = d3
-	//   .scaleLinear()
-	//   .range([data.timeline_height, 0]);
+	//	 .scaleLinear()
+	//	 .range([data.timeline_height, 0]);
 
 	let minCircleRadius = 3;
 	let maxCircleRadius = 20;
@@ -2974,11 +2810,11 @@ function prepareTimeline(json_nodes, col_collections) {
 	d3.select('.handle--e').style('stroke-dasharray', `0,6,${data.timeline_height-4},117`)
 	d3.select('.handle--w').style('stroke-dasharray', `0,${data.timeline_height+6+6},0`)
 
-	/*
-	  cell
-	    .append("path")
-	    .attr("d", d => "M" + d.join("L") + "Z");
-	*/
+/*
+	cell
+		.append("path")
+		.attr("d", d => "M" + d.join("L") + "Z");
+*/
 	cell
 		.append("title")
 		.text(d => d.data.id + "\n" + d.data.first_publication);
