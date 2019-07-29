@@ -48,23 +48,32 @@
     <div id="interface" class="container-fluid d-flex d-flex-sm flex-column justify-content-between">
         <div class="row">
             <div class="col-md-9">
-                <div class="dropdown d-flex align-items-baseline">
-                    <h1>L'opera come arcipelago per </h1>
-                    <button class="_btn btn-default verbose-options-selector" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-                        cronologia
-                        <span class="caret"></span>
-                    </button>
-                    <ul class="dropdown-menu colours-selector" aria-labelledby="dropdownMenu1">
-                        <li><a href="#" data-value="years" colour-by="years">cronologia</a></li>
-                        <li><a href="#" data-value="collections" colour-by="collections">volumi</a></li>
-                    </ul>
+                <div id="color-coding-selector" class="dropdown d-flex align-items-baseline">
+                    <h1>L'opera come arcipelago per
+                        <button id="dropdownMenu1" class="_btn btn-default verbose-options-selector" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            cronologia
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu options-selector" aria-labelledby="dropdownMenu1">
+                            <li><a href="#" Xdata-value="years" colour-by="years">cronologia</a></li>
+                            <li><a href="#" Xdata-value="collections" colour-by="collections">volumi</a></li>
+                        </ul>
+                    </h1>
                 </div>
-                <!-- <h3>Esplora l'opera di Calvino attraverso un fenomeno</h3> -->
 
-                <div class="row">
-                    <div class="col-lg-12">
-
-                    </div>
+                <div id="analysis-selector" class="dropdown d-flex align-items-baseline">
+                    <h3>Guarda in dettaglio
+                        <button id="dropdownMenu2" class="_btn btn-default verbose-options-selector" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            una sfera di analisi
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu options-selector" aria-labelledby="dropdownMenu2">
+                            <li><a href="#" data-value="doubt-sphere">la sfera del dubbio</a></li>
+                            <li><a href="#" data-value="form-sphere">la sfera della forma</a></li>
+                            <li><a href="#" data-value="realism-sphere">la sfera del realismo</a></li>
+                            <li><a href="#" data-value="no-sphere">nessuna</a></li>
+                        </ul>
+                    </h3>
                 </div>
 
             </div>
@@ -117,11 +126,67 @@
                     </p>
                 </div>
             </div>
+
+            <div id="analysis-container" class="col-md-12 position-absolute">
+                <div class="container-fluid">
+                    <div id="analysis-dubbio" class="row an-analysis">
+                        <p class="col-8 offset-2 text-center analysis-title">Sfera di analisi del dubbio</p> <p class="col-2 _btn reset-analysis text-right">reset</p>
+                        <div class="col-4">
+                            <p>La presenza del <span class="font-italic">dubbio</span> è stata misurata tramite la presenza delle parole <span id="dubbio-first-lvl-nebbia" class="btn-analysis">nebbia</span> e <span id="dubbio-first-lvl-cancellazione" class="btn-analysis">cancellazione</span>.</p>
+                            <img class="img-fluid" src="assets/images/sfere_dubbio_1.svg" style="max-width: 164px;" >
+                        </div>
+                        <div class="col-4">
+                            <p>Guarda la <span id="dubbio-second-lvl" class="btn-analysis">proporzione</span> tra i due fenomeni.</p>
+                            <img class="img-fluid" src="assets/images/sfere_dubbio_2.svg" style="max-width: 210px;" >
+                        </div>
+                        <div class="col-4">
+                            <p>Guarda la <span id="dubbio-terzo-lvl" class="btn-analysis">quantità</span> dei i due fenomeni.</p>
+                            <img class="img-fluid" src="assets/images/sfere_dubbio_3.svg" style="max-width: 261px;" >
+                        </div>
+                    </div>
+                    <div id="analysis-forma" class="row an-analysis">
+                        <p class="col-8 offset-2 text-center analysis-title">Sfera di analisi della forma</p> <p class="col-2 _btn reset-analysis text-right">reset</p>
+                        <div class="col-4">
+                            <p>L'analisi della forma è avvenuta tramite un'analisi delle <span class="font-italic">strutture elencatorie</span>, presenti in quasi tutti i testi.</p>
+                        </div>
+                        <div class="col-4">
+                            <p>Guarda la <span id="forma-secondo-lvl" class="btn-analysis">proporzione</span> di elenchi di cui sono composti i testi.</p>
+                            <img class="img-fluid" src="assets/images/sfere_forma_2.svg" style="max-width: 239px;" >
+                        </div>
+                        <div class="col-4">
+                            <p>Guarda le diverse <span id="forma-terzo-lvl" class="btn-analysis">tipologie</span> di elenchi presenti nei testi.</p>
+                            <img class="img-fluid" src="assets/images/sfere_forma_3.svg" style="max-width: 105px;" >
+                        </div>
+                    </div>
+                    <div id="analysis-realismo" class="row an-analysis">
+                        <p class="col-8 offset-2 text-center analysis-title">Sfera di analisi del realismo</p> <p class="col-2 _btn reset-analysis text-right">reset</p>
+                        <div class="col-4">
+                            <p>L'analisi del realismo è avvenuta attraverso un'analisi dei luoghi:
+                                <span id="realismo-first-lvl-generico-non-terrestre" class="btn-analysis">generici non terrestri</span>,
+                                <span id="realismo-first-lvl-nominato-non-terrestre" class="btn-analysis">nominati non terrestri</span>,
+                                <span id="realismo-first-lvl-generico-terrestre" class="btn-analysis">generici terrestri</span>,
+                                <span id="realismo-first-lvl-nominato-terrestre" class="btn-analysis">nominati terrestri</span>,
+                                <span id="realismo-first-lvl-inventato" class="btn-analysis">inventati</span>. Inoltre alcuni racconti risultatno
+                                <span id="realismo-first-lvl-no-ambientazione" class="btn-analysis">senza ambientazione</span>.
+                            </p>
+                        </div>
+                        <div class="col-4">
+                            <p>Guarda la <span id="realismo-secondo-lvl" class="btn-analysis">proporzione</span> tra le tipologie di luoghi.</p>
+                            <img class="img-fluid" src="assets/images/sfere_realismo_2.svg" style="max-width: 229px;">
+                        </div>
+                        <div class="col-4">
+                            <p>Clicca e osserva la gerarchia fra i luoghi.</p>
+                            <img class="img-fluid" src="assets/images/sfere_realismo_3.svg" style="max-width: 178px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <div class="container-fluid bottom-bar">
             <div class="row">
-                <div class="col-4 d-flex align-items-baseline flex-nowrap">
+                <div class="col-3 d-flex align-items-baseline flex-nowrap">
                     <h5 class="_btn toggle-search d-inline-block">Cerca&#160;&#160;&#160;</h5>
                     <div id="searchbox-box">
                         <input id="searchbox" type="text" placeholder="Almeno 3 caratteri">
@@ -139,13 +204,17 @@
                     <h5 class="_btn toggle-timeline">Filtro cronologico</h5>
                 </div>
 
-                <div class="col-4 text-right">
+                <div class="col-2">
+                    <h5 class="_btn toggle-analysis">sfere di analisi</h5>
+                </div>
+
+                <div class="col-3 text-right">
                     <h5 class="_btn toggle-tutorial">Di cosa si tratta?</h5>
                 </div>
             </div>
         </div>
 
-        <div class="scrollitelling-box position-absolute scrollitelling-visible">
+        <div class="scrollitelling-box position-absolute Xscrollitelling-visible">
 
             <div id="skip-tutorial" class="toggle-tutorial"><i class="fas fa-times"></i></div>
 

@@ -97,7 +97,7 @@ li.ui-menu-item.extra {
   transition: bottom 0.35s cubic-bezier(.11,.31,.37,1);
 }
 
-.legend-visible .bottom-bar, .timeline-visible .bottom-bar {
+.legend-visible .bottom-bar, .timeline-visible .bottom-bar, .analysis-visible .bottom-bar {
   bottom: 21vh;
 }
 
@@ -186,6 +186,7 @@ svg:active {
   background-color: transparent;
   padding: 0 0.5rem;
   font-size: 2.5rem;
+  font-size: inherit;
   text-transform: lowercase;
   color: darkslategrey;
 }
@@ -203,20 +204,20 @@ svg:active {
   background: transparent
 }
 
-.colours-selector {
+.options-selector {
   border: none;
 }
 
-.colours-selector a {
+.options-selector a {
   color: var(--calvino-red);
   opacity: 0.5;
-  font-size: 1.5rem;
+  font-size: 1.15rem;
   text-align: left;
   text-decoration: none;
   transition: 0.3s cubic-bezier(.11,.31,.37,1) all;
 }
 
-.colours-selector a:hover {
+.options-selector a:hover {
   opacity: 1;
   padding-left: 1rem;
 }
@@ -259,7 +260,7 @@ svg:active {
   margin-left: 1rem;
 }
 
-.toggle-legend, .toggle-timeline {
+.toggle-legend, .toggle-timeline, .toggle-analysis  {
   position: relative;
   transition: all 0.35s ease;
   z-index: 9999;
@@ -267,16 +268,28 @@ svg:active {
   bottom: 0;
 }
 
+.toggle-analysis {
+    opacity: .6;
+    pointer-events: none;
+    cursor: not-allowed;
+}
+
+.analysis-visible .toggle-analysis {
+    opacity: 1;
+    pointer-events: all;
+    cursor: pointer;
+}
+
 .bottom-bar ._btn {
   padding: 0.3rem 0;
 }
 
-.bottom-bar .toggle-legend, .bottom-bar .toggle-timeline {
+.bottom-bar .toggle-legend, .bottom-bar .toggle-timeline, .bottom-bar .toggle-analysis {
   border-bottom: 2px solid rgba(47, 79, 79, 0.3);
   padding-bottom: calc(0.3rem - 2px);
 }
 
-.bottom-bar .toggle-legend:hover, .bottom-bar .toggle-timeline:hover {
+.bottom-bar .toggle-legend:hover, .bottom-bar .toggle-timeline:hover, .bottom-bar .toggle-analysis:hover {
   border-bottom: 2px solid rgba(47, 79, 79, 1);
 }
 
