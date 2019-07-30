@@ -863,7 +863,7 @@ let metaballs = metaball_nodes
 ///////////////////////////////////////////
 
 	steps
-		.filter(function(d) { return d.first_elem } )
+		.filter(d => d.first_elem && d.lists_are_present)
 		.append("svg:path")
 		.attr("fill", d => d.lists_ratio_is_below_threshold ? "black" : "red")
 		.attr("class", "lists_level_2")
@@ -874,7 +874,7 @@ let metaballs = metaball_nodes
 		.style('fill-opacity',0);
 
 	steps
-		.filter(function(d) { return d.first_elem } )
+		.filter(d => d.first_elem && d.lists_are_present)
 		.append("svg:path")
 		.attr("fill", "lightgrey")
 		.attr("class", "lists_level_2")
@@ -1169,6 +1169,7 @@ let metaballs = metaball_nodes
 	})
 
 	function resetAnalysis(){
+
 		highlightHills();
 		text_nodes.selectAll('.dubitativePhenomena_level_2')
 			.style('fill-opacity', 0)
@@ -1196,8 +1197,8 @@ let metaballs = metaball_nodes
 
     // Dubbio
     d3.select('#dubbio-first-lvl-nebbia').on('click', function(){
-		resetAnalysis();
-        highlightHills('nebbia_words_ratio', data.cancellazione_color_scale);
+		  resetAnalysis();
+      highlightHills('nebbia_words_ratio', data.cancellazione_color_scale);
     })
     d3.select('#dubbio-first-lvl-cancellazione').on('click', function(){
 		resetAnalysis();
@@ -1274,9 +1275,10 @@ let metaballs = metaball_nodes
 	// forma
 	d3.select('#forma-secondo-lvl').on('click', function(){
 		resetAnalysis();
+  
 		text_nodes
 			.selectAll('.hill')
-			.filter(d => d.lists_f_ratio == 0 && d.lists_m_ratio == 0 && d.lists_p_ratio == 0 && d.lists_s_ratio == 0)
+			.filter(d => !d.lists_are_present)
 			.transition()
 			.duration(450)
 			.style('fill-opacity', 0)
@@ -1284,11 +1286,10 @@ let metaballs = metaball_nodes
 
 		text_nodes
 			.selectAll('.hill')
-			.filter(d => {
-				return d.lists_f_ratio > 0 || d.lists_m_ratio > 0 || d.lists_p_ratio > 0 || d.lists_s_ratio > 0;
-			})
+			.filter(d => d.lists_are_present)
 			.transition()
 			.duration(450)
+      .style('fill', 'white')
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1);
 
@@ -1301,9 +1302,10 @@ let metaballs = metaball_nodes
 
 	d3.select('#forma-terzo-lvl').on('click', function(){
 		resetAnalysis();
+
 		text_nodes
 			.selectAll('.hill')
-			.filter(d => d.lists_f_ratio == 0 && d.lists_m_ratio == 0 && d.lists_p_ratio == 0 && d.lists_s_ratio == 0)
+			.filter(d => !d.lists_are_present)
 			.transition()
 			.duration(450)
 			.style('fill-opacity', 0)
@@ -1311,11 +1313,10 @@ let metaballs = metaball_nodes
 
 		text_nodes
 			.selectAll('.hill')
-			.filter(d => {
-				return d.lists_f_ratio > 0 || d.lists_m_ratio > 0 || d.lists_p_ratio > 0 || d.lists_s_ratio > 0;
-			})
+			.filter(d => d.lists_are_present)
 			.transition()
 			.duration(450)
+      .style('fill', 'white')
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1);
 
@@ -1381,6 +1382,7 @@ let metaballs = metaball_nodes
 	})
 
     function highlightHills(filterCondition, colorScale) {
+
         if (!filterCondition) {
 
             text_nodes.style('display', 'block');
