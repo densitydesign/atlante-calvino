@@ -9,6 +9,8 @@
 - [Landscape of Calvino's Literary Works](https://densitydesign.github.io/atlante-calvino/landscape)
 - [luoghi e categorie](https://densitydesign.github.io/atlante-calvino/luoghi-categorie)
 - [matrice luoghi](https://densitydesign.github.io/atlante-calvino/locations-matrix)
+- [scheda dubbio](https://bea92.github.io/dubbio/index.html)
+- [scheda forma](https://bea92.github.io/stream-elenchi/index.html)
 
 ##### Strumenti
 - [Estrai posizione parole](https://densitydesign.github.io/atlante-calvino/explorer)
