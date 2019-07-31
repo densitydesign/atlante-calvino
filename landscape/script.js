@@ -113,8 +113,8 @@ function treat_json(json) {
 				let x = 6;
 			})));
 
-	let xxx = collections
-		.filter(coll => (data.allowedCollections == "all" && coll.has_metaball) || allowedCollections.includes(coll.id));
+let xxx = collections
+	.filter(coll => (data.allowedCollections == "all" && coll.has_metaball) || allowedCollections.includes(coll.id));
 
 	collections
 		.filter(coll => (data.allowedCollections == "all" && coll.has_metaball) || allowedCollections.includes(coll.id))
@@ -191,7 +191,7 @@ function treat_json(json) {
 			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 		});
 
-	let metaballs = metaball_nodes
+let metaballs = metaball_nodes
 		.selectAll(".metaball")
 		.data((d, i) => {
 			return d.steps;
@@ -200,27 +200,27 @@ function treat_json(json) {
 
 	collections.forEach(coll =>
 		metaballs
-		.filter(function(d) {
-			return d.metaballCorner[coll.id];
-		})
-		.append("svg:path")
-		.attr("class", function(d) {
-			return "metaball collection_" + coll.id;
-		})
-		.attr("d", function(d) {
-			return d.lobe[coll.id];
-		})
-		.attr("fill", "none")
-		.attr("stroke", function(d) {
-			return d.lobeColor[coll.id];
-		})
-		.attr("stroke-opacity", 0)
-		.attr("stroke-width", 7)
-		.attr('transform', function(d) {
-			let delta_x = -(+d.x);
-			let delta_y = -(+d.y);
-			return 'translate(' + delta_x + ', ' + delta_y + ')'
-		}));
+			.filter(function(d) {
+				return d.metaballCorner[coll.id];
+			})
+			.append("svg:path")
+			.attr("class", function(d) {
+				return "metaball collection_" + coll.id;
+			})
+			.attr("d", function(d) {
+				return d.lobe[coll.id];
+			})
+			.attr("fill", "none")
+			.attr("stroke", function(d) {
+				return d.lobeColor[coll.id];
+			})
+			.attr("stroke-opacity", 0)
+			.attr("stroke-width", 7)
+			.attr('transform', function(d) {
+				let delta_x = -(+d.x);
+				let delta_y = -(+d.y);
+				return 'translate(' + delta_x + ', ' + delta_y + ')'
+			}));
 
 	let g = svg_main_group
 		.append('g')
@@ -353,7 +353,7 @@ function treat_json(json) {
 		.domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
 		.range(['#FFDDFF', 'violet']);
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	let drawPlacesArc1 = d3
 		.arc()
@@ -458,7 +458,7 @@ function treat_json(json) {
 			return 2 * PI;
 		});
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	steps
 		.filter(function(d) { return d.first_elem })
@@ -538,7 +538,7 @@ function treat_json(json) {
 		})
 		.style('fill-opacity', 0);
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	let drawDubitativePhenomenaArc1 = d3
 		.arc()
@@ -583,7 +583,7 @@ function treat_json(json) {
 			return 2 * PI;
 		});
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	steps
 		.filter(function(d) { return d.first_elem })
@@ -618,7 +618,7 @@ function treat_json(json) {
 		})
 		.style('fill-opacity', 0);
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	let drawDubitativePhenomenaSlice1 = d3
 		.arc()
@@ -663,7 +663,7 @@ function treat_json(json) {
 			return 2 * PI;
 		});
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	steps
 		.filter(function(d) { return d.first_elem })
@@ -698,7 +698,7 @@ function treat_json(json) {
 		})
 		.style('fill-opacity', 0);
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	let drawListsArc1 = d3
 		.arc()
@@ -773,13 +773,13 @@ function treat_json(json) {
 			return 2 * PI;
 		});
 
-	///////////////////////////////////////////
+///////////////////////////////////////////
 
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
 		.attr("fill", "blue")
-		.attr("class", "lists_level_1")
+		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc1)
 		.attr('transform', function(d, i) {
 			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
@@ -790,7 +790,7 @@ function treat_json(json) {
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
 		.attr("fill", "red")
-		.attr("class", "lists_level_1")
+		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc2)
 		.attr('transform', function(d, i) {
 			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
@@ -801,7 +801,7 @@ function treat_json(json) {
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
 		.attr("fill", "green")
-		.attr("class", "lists_level_1")
+		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc3)
 		.attr('transform', function(d, i) {
 			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
@@ -812,7 +812,7 @@ function treat_json(json) {
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
 		.attr("fill", "yellow")
-		.attr("class", "lists_level_1")
+		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc4)
 		.attr('transform', function(d, i) {
 			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
@@ -823,33 +823,87 @@ function treat_json(json) {
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
 		.attr("fill", "transparent")
-		.attr("class", "lists_level_1")
+		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc5)
 		.attr('transform', function(d, i) {
 			return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
 		})
 		.style('fill-opacity', 0);
 
-	///////////////////////////////////////////
-	// text_nodes
-	// .on("mouseenter", function(){
-	//   d3.select(this).selectAll('circle')
-	//     .transition()
-	//       .duration(350)
-	//       .attr('transform', function(d,i){
-	//         i = i*step_increment*1.5
-	//         return 'translate(0,'+i+')'
-	//       });
-	// })
-	// .on("mouseleave", function(){
-	//   d3.select(this).selectAll('circle')
-	//     .transition()
-	//       .duration(350)
-	//       .attr('transform', function(d,i){
-	//         i = i*step_increment
-	//         return 'translate(0,'+i+')'
-	//       });
-	// });
+///////////////////////////////////////////
+
+	let drawListsOverallArc1 = d3
+		.arc()
+		.innerRadius(function(d, i) {
+			return d.r - (i+1) * arcWidth + arcPad;
+		})
+		.outerRadius(function(d, i) {
+			return d.r - i * arcWidth;
+		})
+		.startAngle(0 * 2 * PI)
+		.endAngle(function(d, i) {
+			return d.lists_ratio_with_threshold * 2 * PI;
+		});
+
+	let drawListsOverallArc2 = d3
+		.arc()
+		.innerRadius(function(d, i) {
+			return d.r - (i+1) * arcWidth + arcPad;
+		})
+		.outerRadius(function(d, i) {
+			return d.r - i * arcWidth;
+		})
+		.startAngle(function(d, i) {
+			return d.lists_ratio_with_threshold * 2 * PI;
+		})
+		.endAngle(function(d, i) {
+			return 2 * PI;
+		});			
+
+///////////////////////////////////////////
+
+	steps
+		.filter(d => d.first_elem && d.lists_are_present)
+		.append("svg:path")
+		.attr("fill", d => d.lists_ratio_is_below_threshold ? "black" : "red")
+		.attr("class", "lists_level_2")
+		.attr("d", drawListsOverallArc1)
+		.attr('transform', function(d,i){
+			return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+		})
+		.style('fill-opacity',0);
+
+	steps
+		.filter(d => d.first_elem && d.lists_are_present)
+		.append("svg:path")
+		.attr("fill", "lightgrey")
+		.attr("class", "lists_level_2")
+		.attr("d", drawListsOverallArc2)
+		.attr('transform', function(d,i){
+			return 'translate(0,' + (d.n_steps-i) * step_increment + ')'
+		})
+		.style('fill-opacity',0);
+
+///////////////////////////////////////////
+// text_nodes
+// .on("mouseenter", function(){
+//	 d3.select(this).selectAll('circle')
+//		 .transition()
+//			 .duration(350)
+//			 .attr('transform', function(d,i){
+//				 i = i*step_increment*1.5
+//				 return 'translate(0,'+i+')'
+//			 });
+// })
+// .on("mouseleave", function(){
+//	 d3.select(this).selectAll('circle')
+//		 .transition()
+//			 .duration(350)
+//			 .attr('transform', function(d,i){
+//				 i = i*step_increment
+//				 return 'translate(0,'+i+')'
+//			 });
+// });
 
 	let label = text_nodes
 		.selectAll('.label')
@@ -969,18 +1023,17 @@ function treat_json(json) {
 		}
 
 		$(this).parents(".dropdown").find('._btn').val($(this).data('value'));
-
 	});
 
 	function setHillsColours(coloursBy) {
 		switch (coloursBy) {
 			case 'years':
-                hillColoringMode = 1;
-                highlightHills();
+                		hillColoringMode = 1;
+                		highlightHills();
 				break;
 			case 'collections':
-                hillColoringMode = 2;
-                highlightHills();
+                		hillColoringMode = 2;
+                		highlightHills();
 				break;
 		}
 	}
@@ -1094,28 +1147,29 @@ function treat_json(json) {
 			function() {
 				data.keyboardCommandsOn = true;
 			});
-	/*
-	  data.nebbia_color_scale = d3
-	    .scaleLinear()
-	    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
-	    .range(['#DDDDFF', 'blue']);
+/*
+	data.nebbia_color_scale = d3
+		.scaleLinear()
+		.domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+		.range(['#DDDDFF', 'blue']);
 
-	  data.cancellazione_color_scale = d3
-	    .scaleLinear()
-	    .domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
-	    .range(['#FFDDDD', 'red']);
+	data.cancellazione_color_scale = d3
+		.scaleLinear()
+		.domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
+		.range(['#FFDDDD', 'red']);
 
-	  data.dubitative_color_scale = d3
-	    .scaleLinear()
-	    .domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
-	    .range(['#FFDDFF', 'violet']);
-	*/
+	data.dubitative_color_scale = d3
+		.scaleLinear()
+		.domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
+		.range(['#FFDDFF', 'violet']);
+*/
 
 	d3.selectAll('.reset-analysis').on('click', function(){
 		resetAnalysis();
 	})
 
 	function resetAnalysis(){
+
 		highlightHills();
 		text_nodes.selectAll('.dubitativePhenomena_level_2')
 			.style('fill-opacity', 0)
@@ -1131,12 +1185,20 @@ function treat_json(json) {
 			.selectAll('.lists_level_1')
 			.style('fill-opacity', 0)
 			.style('stroke-opacity', 0);
+		text_nodes
+			.selectAll('.lists_level_2')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+		text_nodes
+			.selectAll('.lists_level_3')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);            
 	}
 
     // Dubbio
     d3.select('#dubbio-first-lvl-nebbia').on('click', function(){
-		resetAnalysis();
-        highlightHills('nebbia_words_ratio', data.cancellazione_color_scale);
+		  resetAnalysis();
+      highlightHills('nebbia_words_ratio', data.cancellazione_color_scale);
     })
     d3.select('#dubbio-first-lvl-cancellazione').on('click', function(){
 		resetAnalysis();
@@ -1213,14 +1275,10 @@ function treat_json(json) {
 	// forma
 	d3.select('#forma-secondo-lvl').on('click', function(){
 		resetAnalysis();
-		console.log('da implementare');
-	})
-
-	d3.select('#forma-terzo-lvl').on('click', function(){
-		resetAnalysis();
+  
 		text_nodes
 			.selectAll('.hill')
-			.filter(d => d.lists_f_ratio == 0 && d.lists_m_ratio == 0 && d.lists_p_ratio == 0 && d.lists_s_ratio == 0)
+			.filter(d => !d.lists_are_present)
 			.transition()
 			.duration(450)
 			.style('fill-opacity', 0)
@@ -1228,17 +1286,43 @@ function treat_json(json) {
 
 		text_nodes
 			.selectAll('.hill')
-			.filter(d => {
-				return d.lists_f_ratio > 0 || d.lists_m_ratio > 0 || d.lists_p_ratio > 0 || d.lists_s_ratio > 0;
-			})
+			.filter(d => d.lists_are_present)
 			.transition()
 			.duration(450)
+      .style('fill', 'white')
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1);
 
 		// donuts
 		text_nodes
-			.selectAll('.lists_level_1')
+			.selectAll('.lists_level_2')
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+	})
+
+	d3.select('#forma-terzo-lvl').on('click', function(){
+		resetAnalysis();
+
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => !d.lists_are_present)
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0.3);
+
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => d.lists_are_present)
+			.transition()
+			.duration(450)
+      .style('fill', 'white')
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+
+		// donuts
+		text_nodes
+			.selectAll('.lists_level_3')
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1);
 	})
@@ -1298,6 +1382,7 @@ function treat_json(json) {
 	})
 
     function highlightHills(filterCondition, colorScale) {
+
         if (!filterCondition) {
 
             text_nodes.style('display', 'block');
@@ -1377,22 +1462,22 @@ function treat_json(json) {
 		d.attributes.collections.forEach(coll_id => {
 			if(!textCollectionsMap[d.id].includes(coll_id)) textCollectionsMap[d.id].push(collectionMap[coll_id]);
 		});
-		//    if(!textCollectionsMap[d.id].includes(d.collection)) textCollectionsMap[d.id].push(d.collection);
+//		if(!textCollectionsMap[d.id].includes(d.collection)) textCollectionsMap[d.id].push(d.collection);
 
 	});
 
-	//  let titles = json_nodes.map(d => d.attributes.title);
-	//  let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.attributes.id][0]);
+//	let titles = json_nodes.map(d => d.attributes.title);
+//	let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.attributes.id][0]);
 
 	let title_fn = d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" ");
 
-	//  let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" "));
-	//  let titles = json_nodes.map(title_fn);
+//	let titles = json_nodes.map(d => d.attributes.title + " - " + textCollectionsMap[d.id].join(" "));
+//	let titles = json_nodes.map(title_fn);
 	let titles = json_nodes.map(d => {
 		return {
-			label: d.attributes.title,
-			value: d.attributes.title,
-			desc: title_fn(d)
+			label : d.attributes.title,
+			value : d.attributes.title,
+			desc : title_fn(d)
 		};
 	});
 
@@ -1403,13 +1488,13 @@ function treat_json(json) {
 	$("#searchbox")
 		.autocomplete({
 			appendTo: '#searchbox-results',
-			//      source: titles,
+//			source: titles,
 			minLength: 3,
 			position: {
 				collision: 'flip',
 			},
 			source: function(req, response) {
-				//        var results = $.ui.autocomplete.filter(titles, req.term);
+//				var results = $.ui.autocomplete.filter(titles, req.term);
 
 				let results = titles.filter(d => d.desc.toLowerCase().includes(req.term.toLowerCase()));
 
@@ -1543,6 +1628,9 @@ function flatten_items_steps(nodes) {
 
 function calculate_item_data(obj) {
 	const lists_sum = (+obj.n_lists_f) + (+obj.n_lists_m) + (+obj.n_lists_p) + (+obj.n_lists_s);
+	const text_length = +obj.text_length;
+	const lists_ratio_threshold = 0.04;
+	const lists_ratio = lists_sum / text_length;
 
 	let item_data = {
 		generico_non_terrestre: (+obj.generico_non_terrestre),
@@ -1578,7 +1666,11 @@ function calculate_item_data(obj) {
 		lists_f_ratio: lists_sum == 0 ? 0 : (+obj.n_lists_f) / lists_sum,
 		lists_m_ratio: lists_sum == 0 ? 0 : ((+obj.n_lists_f) + (+obj.n_lists_m)) / lists_sum,
 		lists_p_ratio: lists_sum == 0 ? 0 : ((+obj.n_lists_f) + (+obj.n_lists_m) + (+obj.n_lists_p)) / lists_sum,
-		lists_s_ratio: lists_sum == 0 ? 0 : ((+obj.n_lists_f) + (+obj.n_lists_m) + (+obj.n_lists_p) + (+obj.n_lists_s)) / lists_sum
+		lists_s_ratio: lists_sum == 0 ? 0 : ((+obj.n_lists_f) + (+obj.n_lists_m) + (+obj.n_lists_p) + (+obj.n_lists_s)) / lists_sum,
+
+		lists_are_present: lists_sum > 0,
+		lists_ratio_with_threshold: Math.max(lists_ratio_threshold, lists_ratio),
+		lists_ratio_is_below_threshold: lists_ratio < lists_ratio_threshold
 	};
 
 	// console.log("lists_sum : " + lists_sum + ", item_data.lists_f_ratio : " + item_data.lists_f_ratio);
@@ -1652,7 +1744,11 @@ function create_item_steps(d) {
 			'lists_f_ratio': csv_item == undefined ? 0 : csv_item.lists_f_ratio,
 			'lists_m_ratio': csv_item == undefined ? 0 : csv_item.lists_m_ratio,
 			'lists_p_ratio': csv_item == undefined ? 0 : csv_item.lists_p_ratio,
-			'lists_s_ratio': csv_item == undefined ? 0 : csv_item.lists_s_ratio
+			'lists_s_ratio': csv_item == undefined ? 0 : csv_item.lists_s_ratio,
+
+			'lists_are_present': csv_item == undefined ? 0 : csv_item.lists_are_present,
+			'lists_ratio_with_threshold': csv_item == undefined ? 0 : csv_item.lists_ratio_with_threshold,
+			'lists_ratio_is_below_threshold': csv_item == undefined ? false : csv_item.lists_ratio_is_below_threshold
 		};
 	});
 
@@ -1867,8 +1963,10 @@ function getCollections() {
 	return collections
 }
 
-function incrementDrawMode(drawMode) {
-	if(drawMode >= 6) {
+function incrementDrawMode(drawMode)
+{
+	if(drawMode >= 7)
+	{
 		return 1;
 	} else if(drawMode == 1) {
 		return 3; // bypass halo mode
@@ -1941,7 +2039,7 @@ function prepareMetaballData(json_nodes, collection, lineColor) {
 		});
 
 	let nCirclesToBeDrawn = ordered_boundary_circles.length;
-	//      let nCirclesToBeDrawn = 1;
+//			let nCirclesToBeDrawn = 1;
 
 	renderMetaballLogically(collection, ordered_boundary_circles, nCirclesToBeDrawn, lineColor);
 }
@@ -2038,7 +2136,7 @@ function addWantedCoves(vertex_array, boundary_points, concavityTolerance) {
 
 		new_boundary_points = new_boundary_points.concat(points_after_p1).concat(points_before_p2.reverse());
 
-		//    new_boundary_points = new_boundary_points.concat(pointsToBeAdded);
+//		new_boundary_points = new_boundary_points.concat(pointsToBeAdded);
 	}
 
 	let result = [new_boundary_points];
@@ -2349,13 +2447,14 @@ function metaball(
 
 	const angle3 = normalizeAngle(-(angleBetweenPredecessorCentralCenters + Math.PI - u2 - (Math.PI - u2 - maxSpread) * v));
 
-	const angleBetweenCentralPredecessorCenters = angle(centralCircle.p, predecessorCircle.p);
 
-	const externalAngle = angleBetweenCentralPredecessorCenters - angleBetweenCentralSuccessorCenters;
-	const externalAngleIsConcave = Math.abs(externalAngle) < Math.PI;
-	// console.log("externalAngleIsConcave : " + externalAngleIsConcave);
+const angleBetweenCentralPredecessorCenters = angle(centralCircle.p, predecessorCircle.p);
 
-	let svgContainer = d3.select("svg");
+const externalAngle = angleBetweenCentralPredecessorCenters - angleBetweenCentralSuccessorCenters;
+const externalAngleIsConcave = Math.abs(externalAngle) < Math.PI;
+// console.log("externalAngleIsConcave : " + externalAngleIsConcave);
+
+let svgContainer = d3.select("svg");
 
 	// Point locations
 	const p1 = getCircleJoint2(predecessorCircle, centralCircle, v);
@@ -2595,7 +2694,7 @@ function borderOrientationIsCounterclockwise(points) {
 
 	const indexOfMin = angles.indexOf(minAngle);
 
-	//      let angles2 = angles.rotate(-indexOfMin);
+//			let angles2 = angles.rotate(-indexOfMin);
 	angles.unshift(angles.splice(-indexOfMin, this.length));
 
 	return angles[2] > angles[1];
@@ -2629,8 +2728,8 @@ function prepareTimeline(json_nodes, col_collections) {
 		.domain(x_time_ext);
 
 	// data.timeline_y = d3
-	//   .scaleLinear()
-	//   .range([data.timeline_height, 0]);
+	//	 .scaleLinear()
+	//	 .range([data.timeline_height, 0]);
 
 	let minCircleRadius = 3;
 	let maxCircleRadius = 20;
@@ -2713,11 +2812,11 @@ function prepareTimeline(json_nodes, col_collections) {
 	d3.select('.handle--e').style('stroke-dasharray', `0,6,${data.timeline_height-4},117`)
 	d3.select('.handle--w').style('stroke-dasharray', `0,${data.timeline_height+6+6},0`)
 
-	/*
-	  cell
-	    .append("path")
-	    .attr("d", d => "M" + d.join("L") + "Z");
-	*/
+/*
+	cell
+		.append("path")
+		.attr("d", d => "M" + d.join("L") + "Z");
+*/
 	cell
 		.append("title")
 		.text(d => d.data.id + "\n" + d.data.first_publication);
