@@ -540,6 +540,36 @@ let metaballs = metaball_nodes
 
 ///////////////////////////////////////////
 
+			let drawPlaceHierarchiesArc1 = d3
+				.arc()
+				.innerRadius(function(d, i) {
+					return d.r - (i + 1) * arcWidth + arcPad;
+				})
+				.outerRadius(function(d, i) {
+					return d.r - i * arcWidth;
+				})
+				.startAngle(0 * 2 * PI)
+				.endAngle(function(d, i) {
+//					return d.generico_non_terrestre * 2 * PI;
+					return 2 * PI;
+				});
+
+
+///////////////////////////////////////////
+
+			steps
+				.filter(function(d) { return d.first_elem })
+				.append("svg:path")
+				.attr("fill", "purple")
+				.attr("class", "place_hierarchies")
+				.attr("d", drawPlaceHierarchiesArc1)
+				.attr('transform', function(d, i) {
+					return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
+				})
+				.style('fill-opacity', 0);
+
+///////////////////////////////////////////
+
 	let drawDubitativePhenomenaArc1 = d3
 		.arc()
 		.innerRadius(function(d, i) {
