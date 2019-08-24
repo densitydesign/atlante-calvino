@@ -858,7 +858,7 @@ let metaballs = metaball_nodes
 		})
 		.endAngle(function(d, i) {
 			return 2 * PI;
-		});			
+		});
 
 ///////////////////////////////////////////
 
@@ -1192,7 +1192,7 @@ let metaballs = metaball_nodes
 		text_nodes
 			.selectAll('.lists_level_3')
 			.style('fill-opacity', 0)
-			.style('stroke-opacity', 0);            
+			.style('stroke-opacity', 0);
 	}
 
     // Dubbio
@@ -1275,7 +1275,7 @@ let metaballs = metaball_nodes
 	// forma
 	d3.select('#forma-secondo-lvl').on('click', function(){
 		resetAnalysis();
-  
+
 		text_nodes
 			.selectAll('.hill')
 			.filter(d => !d.lists_are_present)
@@ -1379,7 +1379,32 @@ let metaballs = metaball_nodes
 			.selectAll('.places')
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1);
-	})
+	});
+
+	d3.select('#realismo-third-lvl').on('click', function(){
+		resetAnalysis();
+		text_nodes
+			.selectAll('.halo')
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+
+		text_nodes
+			.selectAll('.hill')
+			.transition()
+			.duration(250)
+			.style('stroke-opacity', 1)
+			.style('stroke', stepBorderColor);
+
+		d3.selectAll(".hill")
+			.style('fill', 'white');
+
+		text_nodes
+			.selectAll('.place_hierarchies')
+			.style('fill-opacity', 1)
+			.style('stroke-opacity', 1);
+	});
 
     function highlightHills(filterCondition, colorScale) {
 
