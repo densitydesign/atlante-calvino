@@ -1735,9 +1735,12 @@ function calculate_item_data(obj) {
 		lists_ratio_with_threshold: Math.max(lists_ratio_threshold, lists_ratio),
 		lists_ratio_is_below_threshold: lists_ratio < lists_ratio_threshold,
 
-		places_hierarchy: data.places_hierarchies.get(obj.id)
+		places_hierarchy: data.places_hierarchies.get(obj.id),
+		jellyfish: data.jellyfishes.get(obj.id)
 	};
-let s = item_data.places_hierarchy ? item_data.places_hierarchy.children.length : "";
+//let s = item_data.places_hierarchy ? item_data.places_hierarchy.children.length : "";
+//console.log(obj.id + " : " + s);
+let s = item_data.jellyfish ? item_data.jellyfish.children.length : "";
 console.log(obj.id + " : " + s);
 	// console.log("lists_sum : " + lists_sum + ", item_data.lists_f_ratio : " + item_data.lists_f_ratio);
 
@@ -2951,4 +2954,10 @@ async function load_places_hierarchies()
 	data.places_hierarchies = new Map();
 
 	places_hierarchies_json.hierarchies.forEach(d => data.places_hierarchies.set(d.id, d));
+
+	data.jellyfishes = new Map();
+
+	let center = { x : 0, y : 0 };
+
+	places_hierarchies_json.hierarchies.forEach(d => data.jellyfishes.set(d.id, prepare_jellyfish_data(d, center)));
 }
