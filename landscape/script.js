@@ -49,6 +49,8 @@ Array.prototype.includesArray = function(array) {
 
 Object.defineProperty(Array.prototype, "includesArray", { enumerable: false });
 
+load_places_hierarchies();
+
 d3
 	.csv("texts_data.csv")
 	.then(
@@ -1731,9 +1733,12 @@ function calculate_item_data(obj) {
 
 		lists_are_present: lists_sum > 0,
 		lists_ratio_with_threshold: Math.max(lists_ratio_threshold, lists_ratio),
-		lists_ratio_is_below_threshold: lists_ratio < lists_ratio_threshold
-	};
+		lists_ratio_is_below_threshold: lists_ratio < lists_ratio_threshold,
 
+		places_hierarchy: data.places_hierarchies.get(obj.id)
+	};
+let s = item_data.places_hierarchy ? item_data.places_hierarchy.children.length : "";
+console.log(obj.id + " : " + s);
 	// console.log("lists_sum : " + lists_sum + ", item_data.lists_f_ratio : " + item_data.lists_f_ratio);
 
 	return item_data;
@@ -2937,4 +2942,13 @@ function clone_d3_selection(selection, i) {
 		cloned.attr(attr[j].name, attr[j].value);
 	}
 	return cloned;
+}
+
+async function load_places_hierarchies()
+{
+	let places_hierarchies_json = await d3.json("places_hierarchy.json");
+
+	data.places_hierarchies = new Map();
+
+	places_hierarchies_json.hierarchies.forEach(d => data.places_hierarchies.set(d.id, d));
 }
