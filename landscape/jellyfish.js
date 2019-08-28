@@ -157,12 +157,12 @@ function prepare_for_graphics(jellyfish)
 
   jellyfish.children.forEach(d => prepare_for_graphics(d));
 }
-
-function draw_point(svgContainer, point, color)
+/*
+function draw_point(graphicsContainer, point, color)
 {
   const point_radius = 5;
 
-  svgContainer
+  graphicsContainer
     .append("circle")
     .attr("cx", point.x)
     .attr("cy", point.y)
@@ -171,11 +171,11 @@ function draw_point(svgContainer, point, color)
     .attr("stroke", color);
 }
 
-function draw_line(svgContainer, line, color)
+function draw_line(graphicsContainer, line, color)
 {
   const line_width = 3;
 
-  svgContainer
+  graphicsContainer
     .append("line")
     .attr("x1", line.point1.x)
     .attr("y1", line.point1.y)
@@ -185,7 +185,7 @@ function draw_line(svgContainer, line, color)
     .attr("stroke-width", line_width);
 }
 
-function draw_arc(svgContainer, arc, color)
+function draw_arc(graphicsContainer, arc, color)
 {
   const drawArc = d3
     .arc()
@@ -194,7 +194,7 @@ function draw_arc(svgContainer, arc, color)
     .startAngle(arc.startAngle)
     .endAngle(arc.endAngle);
 
-  svgContainer
+  graphicsContainer
     .append("svg:path")
     .attr("fill", color)
     .attr("d", drawArc)
@@ -203,9 +203,9 @@ function draw_arc(svgContainer, arc, color)
     .style("stroke-opacity", 1);
 }
 
-function draw_text(svgContainer, text_info)
+function draw_text(graphicsContainer, text_info)
 {
-  svgContainer
+  graphicsContainer
     .append("text")
     .style("fill", text_info.textColor)
     .style("font-size", "15px")
@@ -215,15 +215,15 @@ function draw_text(svgContainer, text_info)
     .attr("transform", "translate(" + (text_info.tx) + ", " + (text_info.ty) + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")")
     .text(text_info.text);
 }
-
-function draw_jellyfish_stripe(svgContainer, jellyfish)
+*/
+function draw_jellyfish_stripe(graphicsContainer, jellyfish)
 {
   if(jellyfish.children.length > 0)
   {
     let target_point = { x : jellyfish.stripe_position.x, y : jellyfish.children[0].stripe_position.y };
 
     draw_line(
-        svgContainer,
+        graphicsContainer,
         {
             point1 : jellyfish.stripe_position,
             point2 : target_point
@@ -233,7 +233,7 @@ function draw_jellyfish_stripe(svgContainer, jellyfish)
     for(let i = 1; i < jellyfish.children.length; ++i)
     {
       draw_line(
-          svgContainer,
+          graphicsContainer,
           {
               point1 : jellyfish.children[i - 1].stripe_position,
               point2 : jellyfish.children[i].stripe_position
@@ -242,9 +242,9 @@ function draw_jellyfish_stripe(svgContainer, jellyfish)
     }
   }
 
-  draw_point(svgContainer, jellyfish.stripe_position, jellyfish.color);
+  draw_point(graphicsContainer, jellyfish.stripe_position, jellyfish.color);
 
-  jellyfish.children.forEach(d => draw_jellyfish_stripe(svgContainer, d));
+  jellyfish.children.forEach(d => draw_jellyfish_stripe(graphicsContainer, d));
 }
 
 function prepare_jellyfish_data(hierarchy, center)
@@ -320,9 +320,9 @@ function prepare_jellyfish_data(hierarchy, center)
   return jellyfish;
 }
 
-function draw_jellyfish_node(svgContainer, d, status, center)
+function draw_jellyfish_node(graphicsContainer, d, status, center)
 {
-  draw_point(svgContainer, d.circle_position, d.color);
+  draw_point(graphicsContainer, d.circle_position, d.color);
 
   let inLeftEmicircle = Math.PI / 2 < d.angle && d.angle < 3 * Math.PI / 2;
   let textDistanceFactor = 1; //1.5;
@@ -351,7 +351,7 @@ function draw_jellyfish_node(svgContainer, d, status, center)
     text : d.id
   };
 
-  draw_text(svgContainer, text_info);
+  draw_text(graphicsContainer, text_info);
 
   if(d.children.length > 0)
   {
@@ -374,7 +374,7 @@ function draw_jellyfish_node(svgContainer, d, status, center)
     target_point.y = center.y + target_point.radius * Math.sin(target_point.angle);
 
     draw_line(
-      svgContainer,
+      graphicsContainer,
       {
           point1 : start_point,
           point2 : target_point
@@ -415,7 +415,7 @@ function draw_jellyfish_node(svgContainer, d, status, center)
             endAngle : endAngle + Math.PI / 2
           };
 
-          draw_arc(svgContainer, arc, d.children[i].color);
+          draw_arc(graphicsContainer, arc, d.children[i].color);
         }
       }
       else
@@ -428,18 +428,18 @@ function draw_jellyfish_node(svgContainer, d, status, center)
           endAngle : (d.children[d.children.length - 1].angle + Math.PI / 2)
         };
 
-        draw_arc(svgContainer, arc, d.color);
+        draw_arc(graphicsContainer, arc, d.color);
       }
     }
   }
 }
 
-function draw_jellyfish(svgContainer, jellyfish, center)
+function draw_jellyfish(graphicsContainer, jellyfish, center)
 {
   visit(
     jellyfish,
     {},
-    (d, status) => draw_jellyfish_node(svgContainer, d, status, center));
+    (d, status) => draw_jellyfish_node(graphicsContainer, d, status, center));
 }
 
 /////////////////////////
@@ -464,7 +464,7 @@ function normalizeAngle(angle) {
 	if(angle < 0) return normalizeNegativeAngle(angle);
 	else return normalizePositiveAngle(angle);
 }
-*/
+
 function deltaAngle(angle1, angle2)
 {
   let a1 = normalizeAngle(angle1);
@@ -473,3 +473,4 @@ function deltaAngle(angle1, angle2)
   if(a1 > a2) return a2 + (2 * Math.PI - a1);
   else return a2 - a1;
 }
+*/

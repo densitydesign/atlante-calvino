@@ -2443,6 +2443,15 @@ function normalizeAngle(angle) {
 	else return normalizePositiveAngle(angle);
 }
 
+function deltaAngle(angle1, angle2)
+{
+  let a1 = normalizeAngle(angle1);
+  let a2 = normalizeAngle(angle2);
+
+  if(a1 > a2) return a2 + (2 * Math.PI - a1);
+  else return a2 - a1;
+}
+
 function getCirclePoint(center, angle, radius) {
 	return {
 		x: center.x + Math.cos(angle) * radius,
