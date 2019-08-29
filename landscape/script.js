@@ -348,7 +348,10 @@ console.log(d.id + ' - scale(1,0.5773) translate(' + (center.x) + ',' + (center.
 			.attr("class", "jellyfish_node")
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1)
-			.attr("transform", d => "translate(" + d.x + ", " + d.y + ")");
+			.attr("transform", d => {
+console.log("d.cx : " + d.cx + ", d.cy : " + d.cy);
+				return "translate(" + d.cx + ", " + d.cy + ")"
+			});
 /*
 			.attr('transform', function(d, i) {
 				i = i * step_increment
@@ -3039,15 +3042,20 @@ async function load_places_hierarchies()
 		d => {
 			let text_group = {
 				id : d.id,
-				graphical_ops : [
-					{ x : -20, y : +10 },
-					{ x : 20, y : -10 }
-				]
+				graphical_ops : []
 			};
 
 			return text_group;
 		});
 
-		data.places_hierarchies_graphics_item_map = new Map();
-		data.places_hierarchies_graphics_items.forEach(d => data.places_hierarchies_graphics_item_map.set(d.id, d));
+	data.places_hierarchies_graphics_item_map = new Map();
+
+	data.places_hierarchies_graphics_items.forEach(d => {
+		let jellyfish = data.jellyfishes.get(d.id);
+		if(jellyfish)
+		{
+			draw_jellyfish(d.graphical_ops, jellyfish, d);
+			data.places_hierarchies_graphics_item_map.set(d.id, d);
+		}
+	});
 }
