@@ -1,5 +1,5 @@
 
-function draw_point(graphicsContainer, point, color)
+function draw_point(graphicsContainer, point, color, text_id)
 {
   const point_radius = 5;
 /*
@@ -14,6 +14,7 @@ function draw_point(graphicsContainer, point, color)
 
   graphicsContainer.push({
     type : "circle",
+    text_id : text_id,
     cx : point.x,
     cy : point.y,
     r : point_radius,
@@ -38,7 +39,7 @@ function draw_line(graphicsContainer, line, color)
   */
 }
 
-function draw_arc(graphicsContainer, arc, color)
+function draw_arc(graphicsContainer, arc, color, text_id)
 {
 /*
   const drawArc = d3
@@ -56,6 +57,18 @@ function draw_arc(graphicsContainer, arc, color)
     .style("fill-opacity", 1)
     .style("stroke-opacity", 1);
 */
+
+  graphicsContainer.push({
+    type : "arc",
+    text_id : text_id,
+    center : arc.center,
+    innerRadius : arc.radius,
+    outerRadius : arc.radius + arc.width,
+    startAngle : arc.startAngle,
+    endAngle : arc.endAngle,
+    fill : color,
+    stroke : color
+  });
 }
 
 function draw_text(graphicsContainer, text_info)

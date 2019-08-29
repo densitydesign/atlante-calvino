@@ -124,6 +124,21 @@ function treat_json(json) {
 				let x = 6;
 			})));
 
+//	json_nodes.sort((a, b) => a.id > b.id ? 1 : -1);
+
+	let json_node_map = new Map();
+	json_nodes.forEach(d => json_node_map.set(d.id, d));
+
+	data.places_hierarchies_graphics_items.forEach(d => {
+		let jn = json_node_map.get(d.id);
+
+		if(jn)
+		{
+			d.n_steps = jn.steps.length;
+console.log("d.id : " + d.id + ", n_steps : " + jn.n_steps);
+		}
+	});
+
 let xxx = collections
 	.filter(coll => (data.allowedCollections == "all" && coll.has_metaball) || allowedCollections.includes(coll.id));
 
@@ -239,6 +254,9 @@ let metaballs = metaball_nodes
 		.append("g")
 		.attr("class", "jellyfish_nodes");
 
+	// set the size of steps for hills
+	let step_increment = -23;
+
 	let jellyfish_nodes = jellyfish_group
 		.selectAll(".jellyfish_node")
 		.data(data.places_hierarchies_graphics_items)
@@ -247,8 +265,9 @@ let metaballs = metaball_nodes
 		.attr("class", "jellyfish_node")
 		.attr("transform", function(d) {
 			if(!d.x || !d.y) return "";
-console.log(d.id + ' - scale(1,0.5773) translate(' + (center.x) + ',' + (center.y) + ')');
-			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
+console.log("d.n_steps : " + d.n_steps);
+			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y + d.n_steps * step_increment) + ')'
+//			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 		});
 //		.on("click", d =>	console.log(d));
 
@@ -278,7 +297,6 @@ console.log(d.id + ' - scale(1,0.5773) translate(' + (center.x) + ',' + (center.
 		})
 
 	// calculate the size of steps for hills
-	let step_increment = -23;
 
 	let steps = text_nodes
 		.selectAll('circle')
@@ -342,16 +360,36 @@ console.log(d.id + ' - scale(1,0.5773) translate(' + (center.x) + ',' + (center.
 			});
 */
 		jellyfishes
+			.filter(d => d.type == "circle")
 			.append('circle')
-			.attr('fill', 'black')
-			.attr('r', 50)
+			.attr('fill', d => d.fill)
+			.attr('r', d => d.r)
 			.attr("class", "jellyfish_node")
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1)
 			.attr("transform", d => {
-console.log("d.cx : " + d.cx + ", d.cy : " + d.cy);
+//console.log("d.cx : " + d.cx + ", d.cy : " + d.cy);
+console.log("point - d.text_id : " + d.text_id);
 				return "translate(" + d.cx + ", " + d.cy + ")"
 			});
+
+		let drawJellyfishArc = d3
+			.arc()
+			.innerRadius(d => d.innerRadius)
+			.outerRadius(d => d.outerRadius)
+			.startAngle(d => d.startAngle)
+			.endAngle(d => d.endAngle);
+
+		jellyfishes
+			.filter(d => d.type == "arc")
+			.append("svg:path")
+			.attr("fill", d => d.fill)
+			.attr("class", "jellyfish")
+			.attr("d", drawJellyfishArc)
+			.attr("transform", d => {
+console.log("arc - d.text_id : " + d.text_id);
+				 "translate(" + d.center.x + ", " + d.center.y + ")"
+			 });
 /*
 			.attr('transform', function(d, i) {
 				i = i * step_increment
@@ -1806,6 +1844,11 @@ function calculate_item_data(obj) {
 		places_hierarchy: data.places_hierarchies.get(obj.id),
 		jellyfish: data.jellyfishes.get(obj.id)
 	};
+
+	if(item_data.jellyfish)
+	{
+		item_data.jellyfish.n_steps = obj.n_steps;
+	}
 //let s = item_data.places_hierarchy ? item_data.places_hierarchy.children.length : "";
 //console.log(obj.id + " : " + s);
 let s = item_data.jellyfish ? item_data.jellyfish.children.length : "";
@@ -3054,7 +3097,7 @@ async function load_places_hierarchies()
 		let jellyfish = data.jellyfishes.get(d.id);
 		if(jellyfish)
 		{
-			draw_jellyfish(d.graphical_ops, jellyfish, d);
+			draw_jellyfish(d.graphical_ops, jellyfish, d, jellyfish.id);
 			data.places_hierarchies_graphics_item_map.set(d.id, d);
 		}
 	});

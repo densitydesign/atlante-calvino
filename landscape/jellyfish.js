@@ -216,7 +216,7 @@ function draw_text(graphicsContainer, text_info)
     .text(text_info.text);
 }
 */
-function draw_jellyfish_stripe(graphicsContainer, jellyfish)
+function draw_jellyfish_stripe(graphicsContainer, jellyfish, text_id)
 {
   if(jellyfish.children.length > 0)
   {
@@ -242,7 +242,7 @@ function draw_jellyfish_stripe(graphicsContainer, jellyfish)
     }
   }
 
-  draw_point(graphicsContainer, jellyfish.stripe_position, jellyfish.color);
+  draw_point(graphicsContainer, jellyfish.stripe_position, jellyfish.color, text_id);
 
   jellyfish.children.forEach(d => draw_jellyfish_stripe(graphicsContainer, d));
 }
@@ -320,9 +320,9 @@ function prepare_jellyfish_data(hierarchy, center)
   return jellyfish;
 }
 
-function draw_jellyfish_node(graphicsContainer, d, status, center)
+function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
 {
-  draw_point(graphicsContainer, d.circle_position, d.color);
+  draw_point(graphicsContainer, d.circle_position, d.color, text_id);
 
   let inLeftEmicircle = Math.PI / 2 < d.angle && d.angle < 3 * Math.PI / 2;
   let textDistanceFactor = 1; //1.5;
@@ -415,7 +415,7 @@ function draw_jellyfish_node(graphicsContainer, d, status, center)
             endAngle : endAngle + Math.PI / 2
           };
 
-          draw_arc(graphicsContainer, arc, d.children[i].color);
+          draw_arc(graphicsContainer, arc, d.children[i].color, text_id);
         }
       }
       else
@@ -428,18 +428,18 @@ function draw_jellyfish_node(graphicsContainer, d, status, center)
           endAngle : (d.children[d.children.length - 1].angle + Math.PI / 2)
         };
 
-        draw_arc(graphicsContainer, arc, d.color);
+        draw_arc(graphicsContainer, arc, d.color, text_id);
       }
     }
   }
 }
 
-function draw_jellyfish(graphicsContainer, jellyfish, center)
+function draw_jellyfish(graphicsContainer, jellyfish, center, text_id)
 {
   visit(
     jellyfish,
     {},
-    (d, status) => draw_jellyfish_node(graphicsContainer, d, status, center));
+    (d, status) => draw_jellyfish_node(graphicsContainer, d, status, center, text_id));
 }
 
 /////////////////////////
