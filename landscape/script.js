@@ -49,7 +49,7 @@ Array.prototype.includesArray = function(array) {
 
 Object.defineProperty(Array.prototype, "includesArray", { enumerable: false });
 
-load_places_hierarchies();
+load_place_hierarchies();
 
 d3
 	.csv("texts_data.csv")
@@ -104,7 +104,7 @@ function treat_json(json) {
 	json_nodes = json_nodes.sort(function(a, b) { return a.y - b.y });
 
 	json_nodes.forEach(d => {
-		let item = data.places_hierarchies_graphics_item_map.get(d.id);
+		let item = data.place_hierarchies_graphics_item_map.get(d.id);
 		if(item)
 		{
 			item.x = d.x;
@@ -129,7 +129,7 @@ function treat_json(json) {
 	let json_node_map = new Map();
 	json_nodes.forEach(d => json_node_map.set(d.id, d));
 
-	data.places_hierarchies_graphics_items.forEach(d => {
+	data.place_hierarchies_graphics_items.forEach(d => {
 		let jn = json_node_map.get(d.id);
 
 		if(jn)
@@ -326,7 +326,7 @@ let metaballs = metaball_nodes
 			.append('circle')
 			.attr('fill', 'black')
 			.attr('r', 5)
-			.attr("class", "jellyfish")
+			.attr("class", "place_hierarchy")
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1)
 			.style('pointer-events', 'none')
@@ -335,16 +335,16 @@ let metaballs = metaball_nodes
 				return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
 			});
 */
-		let jellyfish_group = svg_main_group
+		let place_hierarchies_group = svg_main_group
 			.append("g")
-			.attr("class", "jellyfish_nodes");
+			.attr("class", "place_hierarchies_nodes");
 
-		let jellyfish_nodes = jellyfish_group
-			.selectAll(".jellyfish_node")
-			.data(data.places_hierarchies_graphics_items)
+		let place_hierarchies_nodes = place_hierarchies_group
+			.selectAll(".place_hierarchy_node")
+			.data(data.place_hierarchies_graphics_items)
 			.enter()
 			.append("g")
-			.attr("class", "jellyfish_node")
+			.attr("class", "place_hierarchy_node")
 			.attr("transform", function(d) {
 				if(!d.x || !d.y) return "";
 console.log("d.n_steps : " + d.n_steps);
@@ -354,17 +354,17 @@ console.log("d.n_steps : " + d.n_steps);
 //		.on("click", d =>	console.log(d));
 
 
-		let jellyfishes = jellyfish_nodes
-			.selectAll(".jellyfish")
+		let place_hierarchies = place_hierarchies_nodes
+			.selectAll(".place_hierarchy")
 			.data(d => d.graphical_ops)
 			.enter();
 
-		jellyfishes
+		place_hierarchies
 			.filter(d => d.type == "circle")
 			.append('circle')
 			.attr('fill', d => d.fill)
 			.attr('r', d => d.r)
-			.attr("class", "jellyfish_node")
+			.attr("class", "place_hierarchy_node")
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1)
 			.attr("transform", d => {
@@ -372,27 +372,27 @@ console.log("d.n_steps : " + d.n_steps);
 console.log("point - d.text_id : " + d.text_id);
 				return "translate(" + d.cx + ", " + d.cy + ")"
 			})
-			.attr("class", d => "jellyfish jellyfish_" + d.text_id);;
+			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);;
 
-		let drawJellyfishArc = d3
+		let drawplace_hierarchyArc = d3
 			.arc()
 			.innerRadius(d => d.innerRadius)
 			.outerRadius(d => d.outerRadius)
 			.startAngle(d => d.startAngle)
 			.endAngle(d => d.endAngle);
 
-		jellyfishes
+		place_hierarchies
 			.filter(d => d.type == "arc")
 			.append("svg:path")
 			.attr("fill", d => d.fill)
-			.attr("class", d => "jellyfish jellyfish_" + d.text_id)
-			.attr("d", drawJellyfishArc)
+			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id)
+			.attr("d", drawplace_hierarchyArc)
 			.attr("transform", d => {
 console.log("arc - d.text_id : " + d.text_id);
 				 "translate(" + d.center.x + ", " + d.center.y + ")"
 			});
 
-		jellyfishes
+		place_hierarchies
  			.filter(d => d.type == "line")
  			.append("line")
 			.attr("x1", d => d.x1)
@@ -401,10 +401,10 @@ console.log("arc - d.text_id : " + d.text_id);
 			.attr("y2", d => d.y2)
  			.attr("stroke", d => d.stroke)
 			.attr("stroke-width", d => d.stroke_width)
- 			.attr("class", d => "jellyfish jellyfish_" + d.text_id);
+ 			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
 
 
-		jellyfishes
+		place_hierarchies
  			.filter(d => d.type == "text")
 			.append("text")
 	    .style("fill", d => d.fill)
@@ -414,7 +414,7 @@ console.log("arc - d.text_id : " + d.text_id);
 	    .style("text-anchor", d => d.text_anchor)
 	    .attr("transform", d => d.transform)
 	    .text(d => d.text)
-			.attr("class", d => "jellyfish jellyfish_" + d.text_id);
+			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
 /*
 			.attr('transform', function(d, i) {
 				i = i * step_increment
@@ -1153,7 +1153,7 @@ console.log("arc - d.text_id : " + d.text_id);
 	function zoom_actions() {
 		g.attr("transform", d3.event.transform);
 		metaball_group.attr("transform", d3.event.transform);
-		jellyfish_group.attr("transform", d3.event.transform);
+		place_hierarchies_group.attr("transform", d3.event.transform);
 		label.attr('transform', function(d) {
 			let one_rem = parseInt(d3.select('html').style('font-size'));
 			let k = one_rem * (1 / (d3.event.transform.k / scale));
@@ -1866,17 +1866,17 @@ function calculate_item_data(obj) {
 		lists_ratio_with_threshold: Math.max(lists_ratio_threshold, lists_ratio),
 		lists_ratio_is_below_threshold: lists_ratio < lists_ratio_threshold,
 
-		places_hierarchy: data.places_hierarchies.get(obj.id),
-		jellyfish: data.jellyfishes.get(obj.id)
+		places_hierarchy: data.place_hierarchies.get(obj.id),
+		place_hierarchy: data.place_hierarchies.get(obj.id)
 	};
 
-	if(item_data.jellyfish)
+	if(item_data.place_hierarchy)
 	{
-		item_data.jellyfish.n_steps = obj.n_steps;
+		item_data.place_hierarchy.n_steps = obj.n_steps;
 	}
 //let s = item_data.places_hierarchy ? item_data.places_hierarchy.children.length : "";
 //console.log(obj.id + " : " + s);
-let s = item_data.jellyfish ? item_data.jellyfish.children.length : "";
+let s = item_data.place_hierarchy ? item_data.place_hierarchy.children.length : "";
 console.log(obj.id + " : " + s);
 	// console.log("lists_sum : " + lists_sum + ", item_data.lists_f_ratio : " + item_data.lists_f_ratio);
 
@@ -3092,21 +3092,21 @@ function clone_d3_selection(selection, i) {
 	return cloned;
 }
 
-async function load_places_hierarchies()
+async function load_place_hierarchies()
 {
-	let places_hierarchies_json = await d3.json("places_hierarchy.json");
+	let place_hierarchies_json = await d3.json("places_hierarchy.json");
 
-	data.places_hierarchies = new Map();
+	data.place_hierarchies = new Map();
 
-	places_hierarchies_json.hierarchies.forEach(d => data.places_hierarchies.set(d.id, d));
+	place_hierarchies_json.hierarchies.forEach(d => data.place_hierarchies.set(d.id, d));
 
-	data.jellyfishes = new Map();
+	data.place_hierarchies = new Map();
 
 	let center = { x : 0, y : 0 };
 
-	places_hierarchies_json.hierarchies.forEach(d => data.jellyfishes.set(d.id, prepare_jellyfish_data(d, center)));
+	place_hierarchies_json.hierarchies.forEach(d => data.place_hierarchies.set(d.id, prepare_jellyfish_data(d, center)));
 
-	data.places_hierarchies_graphics_items = places_hierarchies_json.hierarchies.map(
+	data.place_hierarchies_graphics_items = place_hierarchies_json.hierarchies.map(
 		d => {
 			let text_group = {
 				id : d.id,
@@ -3116,14 +3116,14 @@ async function load_places_hierarchies()
 			return text_group;
 		});
 
-	data.places_hierarchies_graphics_item_map = new Map();
+	data.place_hierarchies_graphics_item_map = new Map();
 
-	data.places_hierarchies_graphics_items.forEach(d => {
-		let jellyfish = data.jellyfishes.get(d.id);
-		if(jellyfish)
+	data.place_hierarchies_graphics_items.forEach(d => {
+		let place_hierarchy = data.place_hierarchies.get(d.id);
+		if(place_hierarchy)
 		{
-			draw_jellyfish(d.graphical_ops, jellyfish, jellyfish.circle_position, jellyfish.id);
-			data.places_hierarchies_graphics_item_map.set(d.id, d);
+			draw_jellyfish(d.graphical_ops, place_hierarchy, place_hierarchy.circle_position, place_hierarchy.id);
+			data.place_hierarchies_graphics_item_map.set(d.id, d);
 		}
 	});
 }
