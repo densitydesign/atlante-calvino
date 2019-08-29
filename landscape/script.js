@@ -365,8 +365,8 @@ console.log("d.n_steps : " + d.n_steps);
 			.attr('fill', d => d.fill)
 			.attr('r', d => d.r)
 			.attr("class", "place_hierarchy_node")
-			.style('fill-opacity', 1)
-			.style('stroke-opacity', 1)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0)
 			.attr("transform", d => {
 //console.log("d.cx : " + d.cx + ", d.cy : " + d.cy);
 console.log("point - d.text_id : " + d.text_id);
@@ -387,6 +387,8 @@ console.log("point - d.text_id : " + d.text_id);
 			.attr("fill", d => d.fill)
 			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id)
 			.attr("d", drawplace_hierarchyArc)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0)
 			.attr("transform", d => {
 console.log("arc - d.text_id : " + d.text_id);
 				 "translate(" + d.center.x + ", " + d.center.y + ")"
@@ -401,6 +403,8 @@ console.log("arc - d.text_id : " + d.text_id);
 			.attr("y2", d => d.y2)
  			.attr("stroke", d => d.stroke)
 			.attr("stroke-width", d => d.stroke_width)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0)
  			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
 
 
@@ -411,6 +415,8 @@ console.log("arc - d.text_id : " + d.text_id);
 	    .style("font-size", d => d.font_size)
 	    .attr("dy", d => d.dy)
 	    .attr("dx", d => d.dx)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0)
 	    .style("text-anchor", d => d.text_anchor)
 	    .attr("transform", d => d.transform)
 	    .text(d => d.text)
@@ -1356,6 +1362,10 @@ console.log("arc - d.text_id : " + d.text_id);
 			.selectAll('.lists_level_3')
 			.style('fill-opacity', 0)
 			.style('stroke-opacity', 0);
+		place_hierarchies
+			.selectAll('.place_hierarchy')
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
 	}
 
     // Dubbio
@@ -1563,8 +1573,8 @@ console.log("arc - d.text_id : " + d.text_id);
 		d3.selectAll(".hill")
 			.style('fill', 'white');
 
-		text_nodes
-			.selectAll('.place_hierarchies')
+		place_hierarchies
+			.selectAll('.place_hierarchy')
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1);
 	});
