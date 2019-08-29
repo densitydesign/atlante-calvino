@@ -250,32 +250,8 @@ let metaballs = metaball_nodes
 
 //////////////////////////////////
 
-	let jellyfish_group = svg_main_group
-		.append("g")
-		.attr("class", "jellyfish_nodes");
-
 	// set the size of steps for hills
 	let step_increment = -23;
-
-	let jellyfish_nodes = jellyfish_group
-		.selectAll(".jellyfish_node")
-		.data(data.places_hierarchies_graphics_items)
-		.enter()
-		.append("g")
-		.attr("class", "jellyfish_node")
-		.attr("transform", function(d) {
-			if(!d.x || !d.y) return "";
-console.log("d.n_steps : " + d.n_steps);
-			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y + d.n_steps * step_increment) + ')'
-//			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
-		});
-//		.on("click", d =>	console.log(d));
-
-
-	let jellyfishes = jellyfish_nodes
-		.selectAll(".jellyfish")
-		.data(d => d.graphical_ops)
-		.enter();
 
 //////////////////////////////////
 	let g = svg_main_group
@@ -359,6 +335,30 @@ console.log("d.n_steps : " + d.n_steps);
 				return 'translate(0,' + (d.n_steps - i) * step_increment + ')'
 			});
 */
+		let jellyfish_group = svg_main_group
+			.append("g")
+			.attr("class", "jellyfish_nodes");
+
+		let jellyfish_nodes = jellyfish_group
+			.selectAll(".jellyfish_node")
+			.data(data.places_hierarchies_graphics_items)
+			.enter()
+			.append("g")
+			.attr("class", "jellyfish_node")
+			.attr("transform", function(d) {
+				if(!d.x || !d.y) return "";
+console.log("d.n_steps : " + d.n_steps);
+				return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y + d.n_steps * step_increment) + ')'
+//			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
+			});
+//		.on("click", d =>	console.log(d));
+
+
+		let jellyfishes = jellyfish_nodes
+			.selectAll(".jellyfish")
+			.data(d => d.graphical_ops)
+			.enter();
+
 		jellyfishes
 			.filter(d => d.type == "circle")
 			.append('circle')
