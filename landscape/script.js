@@ -400,11 +400,7 @@ console.log("arc - d.text_id : " + d.text_id);
 			.attr("y2", d => d.y2)
  			.attr("stroke", d => d.stroke)
 			.attr("stroke-width", d => d.stroke_width)
- 			.attr("class", "jellyfish")
- 			.attr("transform", d => {
-console.log("line - d.text_id : " + d.text_id + ", d.x1 : " + d.x1);
-				return "translate(" + ((d.x1 + d.x2) / 2) + ", " + ((d.y1 + d.y2) / 2) + ")";
-	 		});
+ 			.attr("class", "jellyfish");
 
 
 			jellyfishes
