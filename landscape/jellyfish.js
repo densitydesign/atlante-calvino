@@ -379,7 +379,8 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
           point1 : start_point,
           point2 : target_point
       },
-      d.color);
+      d.color,
+      text_id);
 
     if(d.children.length > 1)
     {

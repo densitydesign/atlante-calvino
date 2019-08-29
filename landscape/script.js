@@ -390,6 +390,33 @@ console.log("point - d.text_id : " + d.text_id);
 console.log("arc - d.text_id : " + d.text_id);
 				 "translate(" + d.center.x + ", " + d.center.y + ")"
 			 });
+
+		jellyfishes
+ 			.filter(d => d.type == "line")
+ 			.append("line")
+			.attr("x1", d => d.x1)
+			.attr("y1", d => d.y1)
+			.attr("x2", d => d.x2)
+			.attr("y2", d => d.y2)
+ 			.attr("stroke", d => d.stroke)
+			.attr("stroke-width", d => d.stroke_width)
+ 			.attr("class", "jellyfish")
+ 			.attr("transform", d => {
+console.log("line - d.text_id : " + d.text_id + ", d.x1 : " + d.x1);
+				return "translate(" + ((d.x1 + d.x2) / 2) + ", " + ((d.y1 + d.y2) / 2) + ")";
+	 		});
+
+
+			jellyfishes
+	 			.filter(d => d.type == "text")
+				.append("text")
+		    .style("fill", d => d.fill)
+		    .style("font-size", d => d.font_size)
+		    .attr("dy", d => d.dy)
+		    .attr("dx", d => d.dx)
+		    .style("text-anchor", d => d.text_anchor)
+		    .attr("transform", d => d.transform)
+		    .text(d => d.text);
 /*
 			.attr('transform', function(d, i) {
 				i = i * step_increment
@@ -3097,7 +3124,7 @@ async function load_places_hierarchies()
 		let jellyfish = data.jellyfishes.get(d.id);
 		if(jellyfish)
 		{
-			draw_jellyfish(d.graphical_ops, jellyfish, d, jellyfish.id);
+			draw_jellyfish(d.graphical_ops, jellyfish, jellyfish.circle_position, jellyfish.id);
 			data.places_hierarchies_graphics_item_map.set(d.id, d);
 		}
 	});

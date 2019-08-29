@@ -23,7 +23,7 @@ function draw_point(graphicsContainer, point, color, text_id)
   });
 }
 
-function draw_line(graphicsContainer, line, color)
+function draw_line(graphicsContainer, line, color, text_id)
 {
 /*
   const line_width = 3;
@@ -37,6 +37,18 @@ function draw_line(graphicsContainer, line, color)
     .attr("stroke", color)
     .attr("stroke-width", line_width);
   */
+  const line_width = 3;
+
+  graphicsContainer.push({
+    type: "line",
+    text_id : text_id,
+    x1 : line.point1.x,
+    y1 : line.point1.y,
+    x2 : line.point2.x,
+    y2 : line.point2.y,
+    stroke : color,
+    stroke_width : line_width
+  });
 }
 
 function draw_arc(graphicsContainer, arc, color, text_id)
@@ -71,7 +83,7 @@ function draw_arc(graphicsContainer, arc, color, text_id)
   });
 }
 
-function draw_text(graphicsContainer, text_info)
+function draw_text(graphicsContainer, text_info, text_id)
 {
 /*
   graphicsContainer
@@ -84,4 +96,15 @@ function draw_text(graphicsContainer, text_info)
     .attr("transform", "translate(" + (text_info.tx) + ", " + (text_info.ty) + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")")
     .text(text_info.text);
 */
+  graphicsContainer.push({
+    type : "text",
+    text_id : text_id,
+    fill : text_info.textColor,
+    font_size : "15px",
+    dy : ".35em",
+    dx : "1em",
+    text_anchor : text_info.textAnchor,
+    transform : "translate(" + (text_info.tx) + ", " + (text_info.ty) + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")",
+    text : text_info.text
+  });
 }
