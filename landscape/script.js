@@ -371,7 +371,8 @@ console.log("d.n_steps : " + d.n_steps);
 //console.log("d.cx : " + d.cx + ", d.cy : " + d.cy);
 console.log("point - d.text_id : " + d.text_id);
 				return "translate(" + d.cx + ", " + d.cy + ")"
-			});
+			})
+			.attr("class", d => "jellyfish jellyfish_" + d.text_id);;
 
 		let drawJellyfishArc = d3
 			.arc()
@@ -384,12 +385,12 @@ console.log("point - d.text_id : " + d.text_id);
 			.filter(d => d.type == "arc")
 			.append("svg:path")
 			.attr("fill", d => d.fill)
-			.attr("class", "jellyfish")
+			.attr("class", d => "jellyfish jellyfish_" + d.text_id)
 			.attr("d", drawJellyfishArc)
 			.attr("transform", d => {
 console.log("arc - d.text_id : " + d.text_id);
 				 "translate(" + d.center.x + ", " + d.center.y + ")"
-			 });
+			});
 
 		jellyfishes
  			.filter(d => d.type == "line")
@@ -400,19 +401,20 @@ console.log("arc - d.text_id : " + d.text_id);
 			.attr("y2", d => d.y2)
  			.attr("stroke", d => d.stroke)
 			.attr("stroke-width", d => d.stroke_width)
- 			.attr("class", "jellyfish");
+ 			.attr("class", d => "jellyfish jellyfish_" + d.text_id);
 
 
-			jellyfishes
-	 			.filter(d => d.type == "text")
-				.append("text")
-		    .style("fill", d => d.fill)
-		    .style("font-size", d => d.font_size)
-		    .attr("dy", d => d.dy)
-		    .attr("dx", d => d.dx)
-		    .style("text-anchor", d => d.text_anchor)
-		    .attr("transform", d => d.transform)
-		    .text(d => d.text);
+		jellyfishes
+ 			.filter(d => d.type == "text")
+			.append("text")
+	    .style("fill", d => d.fill)
+	    .style("font-size", d => d.font_size)
+	    .attr("dy", d => d.dy)
+	    .attr("dx", d => d.dx)
+	    .style("text-anchor", d => d.text_anchor)
+	    .attr("transform", d => d.transform)
+	    .text(d => d.text)
+			.attr("class", d => "jellyfish jellyfish_" + d.text_id);
 /*
 			.attr('transform', function(d, i) {
 				i = i * step_increment

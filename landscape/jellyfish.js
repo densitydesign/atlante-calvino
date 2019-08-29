@@ -351,7 +351,7 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
     text : d.id
   };
 
-  draw_text(graphicsContainer, text_info);
+  draw_text(graphicsContainer, text_info, text_id);
 
   if(d.children.length > 0)
   {
