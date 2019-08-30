@@ -367,7 +367,7 @@ let metaballs = metaball_nodes
 //console.log("d.cx : " + d.cx + ", d.cy : " + d.cy);
 				return "translate(" + d.cx + ", " + d.cy + ")"
 			})
-			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);;
+			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
 
 		let drawplace_hierarchyArc = d3
 			.arc()
@@ -3099,9 +3099,9 @@ async function load_place_hierarchies()
 {
 	let place_hierarchies_json = await d3.json("places_hierarchy.json");
 
-	data.place_hierarchies = new Map();
+//	data.place_hierarchies = new Map();
 
-	place_hierarchies_json.hierarchies.forEach(d => data.place_hierarchies.set(d.id, d));
+//	place_hierarchies_json.hierarchies.forEach(d => data.place_hierarchies.set(d.id, d));
 
 	data.place_hierarchies = new Map();
 
