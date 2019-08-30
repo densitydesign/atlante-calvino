@@ -135,7 +135,6 @@ function treat_json(json) {
 		if(jn)
 		{
 			d.n_steps = jn.steps.length;
-console.log("d.id : " + d.id + ", n_steps : " + jn.n_steps);
 		}
 	});
 
@@ -152,8 +151,6 @@ let xxx = collections
 		bottom: d3.max(json_nodes, function(d) { return d.y }),
 		left: d3.min(json_nodes, function(d) { return d.x })
 	};
-
-	// console.log(boundaries);
 
 	let center = {
 		x: (boundaries.left + boundaries.right) / 2,
@@ -347,7 +344,6 @@ let metaballs = metaball_nodes
 			.attr("class", "place_hierarchy_node")
 			.attr("transform", function(d) {
 				if(!d.x || !d.y) return "";
-console.log("d.n_steps : " + d.n_steps);
 				return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y + d.n_steps * step_increment) + ')'
 //			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 			});
@@ -369,7 +365,6 @@ console.log("d.n_steps : " + d.n_steps);
 			.style('stroke-opacity', 0)
 			.attr("transform", d => {
 //console.log("d.cx : " + d.cx + ", d.cy : " + d.cy);
-console.log("point - d.text_id : " + d.text_id);
 				return "translate(" + d.cx + ", " + d.cy + ")"
 			})
 			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);;
@@ -390,7 +385,6 @@ console.log("point - d.text_id : " + d.text_id);
 			.style('fill-opacity', 0)
 			.style('stroke-opacity', 0)
 			.attr("transform", d => {
-console.log("arc - d.text_id : " + d.text_id);
 				 "translate(" + d.center.x + ", " + d.center.y + ")"
 			});
 
@@ -1887,7 +1881,6 @@ function calculate_item_data(obj) {
 //let s = item_data.places_hierarchy ? item_data.places_hierarchy.children.length : "";
 //console.log(obj.id + " : " + s);
 let s = item_data.place_hierarchy ? item_data.place_hierarchy.children.length : "";
-console.log(obj.id + " : " + s);
 	// console.log("lists_sum : " + lists_sum + ", item_data.lists_f_ratio : " + item_data.lists_f_ratio);
 
 	return item_data;

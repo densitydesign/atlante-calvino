@@ -96,6 +96,7 @@ function draw_text(graphicsContainer, text_info, text_id)
     .attr("transform", "translate(" + (text_info.tx) + ", " + (text_info.ty) + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")")
     .text(text_info.text);
 */
+console.log("draw_text...");
   graphicsContainer.push({
     type : "text",
     text_id : text_id,
@@ -105,6 +106,19 @@ function draw_text(graphicsContainer, text_info, text_id)
     dx : "1em",
     text_anchor : text_info.textAnchor,
     transform : "translate(" + (text_info.tx) + ", " + (text_info.ty) + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")",
-    text : text_info.text
+    text : clean_string(text_info.text)
   });
+}
+
+function clean_string(s)
+{
+  let s2 = "";
+
+  for(let i = 0; i < s.length; ++i)
+  {
+    if(s.charCodeAt(i) == 65533) s2 += "à";
+    else s2 += s[i];
+  }
+  
+  return s2;
 }
