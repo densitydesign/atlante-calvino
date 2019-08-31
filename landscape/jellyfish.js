@@ -324,7 +324,7 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
       d.color,
       text_id);
 
-    if(d.children.length > 1)
+    if(d.level == 0 || d.children.length > 1)
     {
       let arcWidth = 2;
 

@@ -98,20 +98,8 @@ function draw_arc(graphicsContainer, arc, color, text_id)
 
     return;
   }
-/*
-  graphicsContainer.push({
-    type : "arc",
-    text_id : text_id,
-    center : arc.center,
-    innerRadius : arc.radius,
-    outerRadius : arc.radius + arc.width,
-    startAngle : arc.startAngle,
-    endAngle : arc.endAngle,
-    fill : color,
-    stroke : color
-  });
-*/
-  draw_simple_arc(graphicsContainer, arc, color);
+
+  draw_simple_arc(graphicsContainer, arc, color, text_id);
 }
 
 function draw_text(graphicsContainer, text_info, text_id)
