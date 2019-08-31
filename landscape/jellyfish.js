@@ -157,65 +157,7 @@ function prepare_for_graphics(jellyfish)
 
   jellyfish.children.forEach(d => prepare_for_graphics(d));
 }
-/*
-function draw_point(graphicsContainer, point, color)
-{
-  const point_radius = 5;
 
-  graphicsContainer
-    .append("circle")
-    .attr("cx", point.x)
-    .attr("cy", point.y)
-    .attr("r", point_radius)
-    .attr("fill", color)
-    .attr("stroke", color);
-}
-
-function draw_line(graphicsContainer, line, color)
-{
-  const line_width = 3;
-
-  graphicsContainer
-    .append("line")
-    .attr("x1", line.point1.x)
-    .attr("y1", line.point1.y)
-    .attr("x2", line.point2.x)
-    .attr("y2", line.point2.y)
-    .attr("stroke", color)
-    .attr("stroke-width", line_width);
-}
-
-function draw_arc(graphicsContainer, arc, color)
-{
-  const drawArc = d3
-    .arc()
-    .innerRadius(arc.radius)
-    .outerRadius(arc.radius + arc.width)
-    .startAngle(arc.startAngle)
-    .endAngle(arc.endAngle);
-
-  graphicsContainer
-    .append("svg:path")
-    .attr("fill", color)
-    .attr("d", drawArc)
-    .attr("transform", "translate(" + arc.center.x + ", " + arc.center.y + ")")
-    .style("fill-opacity", 1)
-    .style("stroke-opacity", 1);
-}
-
-function draw_text(graphicsContainer, text_info)
-{
-  graphicsContainer
-    .append("text")
-    .style("fill", text_info.textColor)
-    .style("font-size", "15px")
-    .attr("dy", ".35em")
-    .attr("dx", "1em")
-    .style("text-anchor", text_info.textAnchor)
-    .attr("transform", "translate(" + (text_info.tx) + ", " + (text_info.ty) + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")")
-    .text(text_info.text);
-}
-*/
 function draw_jellyfish_stripe(graphicsContainer, jellyfish, text_id)
 {
   if(jellyfish.children.length > 0)
@@ -386,34 +328,19 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
     {
       let arcWidth = 2;
 
-      const mod = (x, n) => (x % n + n) % n;
-
       if(d.level == 0)
       {
         for(let i = 0; i < d.children.length; ++i)
         {
-          let startAngle =
-            d.children[i].angle -
-            deltaAngle(
-              d.children[mod(i - 1, d.children.length)].angle,
-              d.children[i].angle) / 2;
-
-          startAngle = normalizeAngle(startAngle);
-
-          let endAngle =
-            d.children[i].angle +
-            deltaAngle(
-              d.children[i].angle,
-              d.children[mod(i + 1, d.children.length)].angle) / 2;
-
-          endAngle = normalizeAngle(endAngle);
+          let startAngle = calculate_startAngle(d.children, i);
+          let endAngle = calculate_endAngle(d.children, i);
 
           let arc = {
             center : center,
             radius : d.children[0].radius,
             width : arcWidth,
-            startAngle : startAngle + Math.PI / 2,
-            endAngle : endAngle + Math.PI / 2
+            startAngle : startAngle,
+            endAngle : endAngle
           };
 
           draw_arc(graphicsContainer, arc, d.children[i].color, text_id);
@@ -442,36 +369,3 @@ function draw_jellyfish(graphicsContainer, jellyfish, center, text_id)
     {},
     (d, status) => draw_jellyfish_node(graphicsContainer, d, status, center, text_id));
 }
-
-/////////////////////////
-/*
-function normalizeNegativeAngle(angle) {
-	while(angle < -Math.PI * 2) {
-		angle += Math.PI;
-	}
-
-	return 2 * Math.PI + angle;
-}
-
-function normalizePositiveAngle(angle) {
-	while(2 * Math.PI < angle) {
-		angle -= 2 * Math.PI;
-	}
-
-	return angle;
-}
-
-function normalizeAngle(angle) {
-	if(angle < 0) return normalizeNegativeAngle(angle);
-	else return normalizePositiveAngle(angle);
-}
-
-function deltaAngle(angle1, angle2)
-{
-  let a1 = normalizeAngle(angle1);
-  let a2 = normalizeAngle(angle2);
-
-  if(a1 > a2) return a2 + (2 * Math.PI - a1);
-  else return a2 - a1;
-}
-*/

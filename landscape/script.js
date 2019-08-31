@@ -2526,6 +2526,37 @@ function deltaAngle(angle1, angle2)
   else return a2 - a1;
 }
 
+function mod(x, n)
+{
+  return (x % n + n) % n;
+}
+
+function calculate_startAngle(nodes, i)
+{
+  let startAngle =
+    nodes[i].angle -
+    deltaAngle(
+      nodes[mod(i - 1, nodes.length)].angle,
+      nodes[i].angle) / 2;
+
+  startAngle = normalizeAngle(startAngle + Math.PI / 2);
+
+  return startAngle;
+}
+
+function calculate_endAngle(nodes, i)
+{
+  let endAngle =
+    nodes[i].angle +
+    deltaAngle(
+      nodes[i].angle,
+      nodes[mod(i + 1, nodes.length)].angle) / 2;
+
+  endAngle = normalizeAngle(endAngle + Math.PI / 2);
+
+  return endAngle;
+}
+
 function getCirclePoint(center, angle, radius) {
 	return {
 		x: center.x + Math.cos(angle) * radius,
