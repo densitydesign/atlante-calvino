@@ -30,31 +30,8 @@ function draw_line(graphicsContainer, line, color, text_id)
   });
 }
 
-function draw_arc(graphicsContainer, arc, color, text_id)
+function draw_simple_arc(graphicsContainer, arc, color, text_id)
 {
-  if(arc.endAngle < arc.startAngle)
-  {
-    let arc1 = {
-      center : arc.center,
-      radius : arc.radius,
-      width : arc.width,
-      startAngle : arc.startAngle,
-      endAngle : 2 * Math.PI,
-    };
-    draw_arc(graphicsContainer, arc1, color);
-
-    let arc2 = {
-      center : arc.center,
-      radius : arc.radius,
-      width : arc.width,
-      startAngle : 0,
-      endAngle : arc.endAngle,
-    };
-    draw_arc(graphicsContainer, arc2, color);
-
-    return;
-  }
-
   graphicsContainer.push({
     type : "arc",
     text_id : text_id,
@@ -66,6 +43,75 @@ function draw_arc(graphicsContainer, arc, color, text_id)
     fill : color,
     stroke : color
   });
+}
+
+function draw_arc(graphicsContainer, arc, color, text_id)
+{
+  let epsilonAngle = 0.01
+  if(arc.endAngle == arc.startAngle)
+  {
+    if(Math.abs(arc.startAngle - Math.PI / 2) > epsilonAngle)
+    {
+      let newArc = {
+        center : arc.center,
+        radius : arc.radius,
+        width : arc.width,
+        startAngle : arc.startAngle,
+        endAngle : arc.endAngle - epsilonAngle,
+      };
+      draw_arc(graphicsContainer, newArc, color, text_id);
+      return;
+    }
+    else
+    {
+      let newArc = {
+        center : arc.center,
+        radius : arc.radius,
+        width : arc.width,
+        startAngle : 0,
+        endAngle : Math.PI * 2,
+      };
+      draw_simple_arc(graphicsContainer, newArc, color, text_id);
+      return;
+    }
+  }
+
+  if(arc.endAngle < arc.startAngle)
+  {
+    let arc1 = {
+      center : arc.center,
+      radius : arc.radius,
+      width : arc.width,
+      startAngle : arc.startAngle,
+      endAngle : 2 * Math.PI,
+    };
+    draw_simple_arc(graphicsContainer, arc1, color, text_id);
+
+    let arc2 = {
+      center : arc.center,
+      radius : arc.radius,
+      width : arc.width,
+      startAngle : 0,
+      endAngle : arc.endAngle,
+    };
+    draw_simple_arc(graphicsContainer, arc2, color, text_id);
+
+    return;
+  }
+/*
+  graphicsContainer.push({
+    type : "arc",
+    text_id : text_id,
+    center : arc.center,
+    innerRadius : arc.radius,
+    outerRadius : arc.radius + arc.width,
+    startAngle : arc.startAngle,
+    endAngle : arc.endAngle,
+    fill : color,
+    stroke : color
+  });
+*/
+  draw_simple_arc(graphicsContainer, arc, color);
 }
 
 function draw_text(graphicsContainer, text_info, text_id)
