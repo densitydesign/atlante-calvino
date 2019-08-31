@@ -224,7 +224,7 @@ function prepare_jellyfish_data(hierarchy, center)
   var max_x_value = status.extremes.max_x;
   var delta = max_x_value - min_x_value;
 
-  var scalingCoefficient = delta * (max_x_value2 + 1) / max_x_value2;
+  var scalingCoefficient = max_x_value2 == 0 ? 1 : delta * (max_x_value2 + 1) / max_x_value2;
 
   visit(
     jellyfish,
@@ -264,7 +264,7 @@ function prepare_jellyfish_data(hierarchy, center)
 
 function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
 {
-  draw_point(graphicsContainer, d.circle_position, d.color, text_id);
+  if(d.level > 0) draw_point(graphicsContainer, d.circle_position, d.color, text_id);
 
   let inLeftEmicircle = Math.PI / 2 < d.angle && d.angle < 3 * Math.PI / 2;
   let textDistanceFactor = 1; //1.5;
@@ -293,7 +293,7 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
     text : d.id
   };
 
-  draw_text(graphicsContainer, text_info, text_id);
+  /*if(d.level > 0) */ draw_text(graphicsContainer, text_info, text_id);
 
   if(d.children.length > 0)
   {
