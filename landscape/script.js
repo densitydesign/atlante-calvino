@@ -1360,6 +1360,12 @@ let metaballs = metaball_nodes
 			.selectAll('.place_hierarchy')
 			.style('fill-opacity', 0)
 			.style('stroke-opacity', 0);
+
+		metaballs
+			.selectAll(".metaball")
+			.transition()
+			.duration(450)
+			.style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });			
 	}
 
     // Dubbio
@@ -1561,8 +1567,14 @@ let metaballs = metaball_nodes
 			.selectAll('.hill')
 			.transition()
 			.duration(250)
-			.style('stroke-opacity', 1)
+			.style('stroke-opacity', 0.2)
 			.style('stroke', stepBorderColor);
+
+			metaballs
+				.selectAll(".metaball")
+				.transition()
+				.duration(450)
+				.style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 0.2 : 0; });
 
 		d3.selectAll(".hill")
 			.style('fill', 'white');
@@ -3138,7 +3150,9 @@ async function load_place_hierarchies()
 
 	let center = { x : 0, y : 0 };
 
-	place_hierarchies_json.hierarchies.forEach(d => data.place_hierarchies.set(d.id, prepare_jellyfish_data(d, center)));
+	place_hierarchies_json.hierarchies.forEach(d => {
+		if(d.id != "Terra" && d.id != "S152") data.place_hierarchies.set(d.id, prepare_jellyfish_data(d, center))
+	});
 
 	data.place_hierarchies_graphics_items = place_hierarchies_json.hierarchies.map(
 		d => {

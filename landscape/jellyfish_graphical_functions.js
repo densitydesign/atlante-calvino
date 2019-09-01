@@ -113,19 +113,7 @@ function draw_text(graphicsContainer, text_info, text_id)
     dx : "1em",
     text_anchor : text_info.textAnchor,
     transform : "translate(" + (text_info.tx) + ", " + (text_info.ty) + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")",
-    text : fix_accents(text_info.text)
+    text : text_info.text
   });
 }
 
-function fix_accents(s)
-{
-  let s2 = "";
-
-  for(let i = 0; i < s.length; ++i)
-  {
-    if(s.charCodeAt(i) == 65533) s2 += "à";
-    else s2 += s[i];
-  }
-
-  return s2;
-}

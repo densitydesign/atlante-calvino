@@ -448,7 +448,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -556,7 +556,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "Torino (citt‡)",
+          "id": "Torino (citt√†)",
           "level": "1",
           "basal_type": "nominato_terrestre",
           "local_type": "nominato_terrestre",
@@ -661,7 +661,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "Val BÈvera",
+          "id": "Val B√©vera",
           "level": "1",
           "basal_type": "nominato_terrestre",
           "local_type": "nominato_terrestre",
@@ -681,7 +681,7 @@
               "children": []
             },
             {
-              "id": "BÈvera",
+              "id": "B√©vera",
               "level": "2",
               "basal_type": "nominato_terrestre",
               "local_type": "nominato_terrestre",
@@ -780,7 +780,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -800,7 +800,7 @@
               "children": []
             },
             {
-              "id": "caffË Imperia",
+              "id": "caff√® Imperia",
               "level": "2",
               "basal_type": "generico_terrestre",
               "local_type": "nominato_terrestre",
@@ -846,7 +846,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -988,7 +988,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "Torino (citt‡)",
+          "id": "Torino (citt√†)",
           "level": "1",
           "basal_type": "nominato_terrestre",
           "local_type": "nominato_terrestre",
@@ -1214,14 +1214,14 @@
               "children": []
             },
             {
-              "id": "CaffË dei viaggiatori",
+              "id": "Caff√® dei viaggiatori",
               "level": "2",
               "basal_type": "nominato_terrestre",
               "local_type": "inventato",
               "children": []
             },
             {
-              "id": "CaffÈ Lamarmora",
+              "id": "Caff√© Lamarmora",
               "level": "2",
               "basal_type": "nominato_terrestre",
               "local_type": "inventato",
@@ -1304,7 +1304,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "Torino (citt‡)",
+          "id": "Torino (citt√†)",
           "level": "1",
           "basal_type": "nominato_terrestre",
           "local_type": "nominato_terrestre",
@@ -1646,7 +1646,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -2012,7 +2012,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -2294,7 +2294,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -2393,7 +2393,7 @@
                   ]
                 },
                 {
-                  "id": "citt‡ vecchia",
+                  "id": "citt√† vecchia",
                   "level": "3",
                   "basal_type": "generico_terrestre",
                   "local_type": "generico_terrestre",
@@ -2461,7 +2461,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -2534,7 +2534,7 @@
           "children": []
         },
         {
-          "id": "caffË",
+          "id": "caff√®",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -2748,7 +2748,7 @@
           "children": []
         },
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -3135,7 +3135,7 @@
           "children": []
         },
         {
-          "id": "Sanremo (citt‡)",
+          "id": "Sanremo (citt√†)",
           "level": "1",
           "basal_type": "nominato_terrestre",
           "local_type": "nominato_terrestre",
@@ -3148,7 +3148,7 @@
               "children": []
             },
             {
-              "id": "citt‡ vecchia",
+              "id": "citt√† vecchia",
               "level": "2",
               "basal_type": "nominato_terrestre",
               "local_type": "generico_terrestre",
@@ -3200,7 +3200,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -3294,7 +3294,7 @@
           "children": []
         },
         {
-          "id": "Sanremo (citt‡)",
+          "id": "Sanremo (citt√†)",
           "level": "1",
           "basal_type": "nominato_terrestre",
           "local_type": "nominato_terrestre",
@@ -3374,7 +3374,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -3387,7 +3387,7 @@
               "children": []
             },
             {
-              "id": "caffË",
+              "id": "caff√®",
               "level": "2",
               "basal_type": "generico_terrestre",
               "local_type": "generico_terrestre",
@@ -3587,7 +3587,7 @@
           "children": []
         },
         {
-          "id": "Sanremo (citt‡)",
+          "id": "Sanremo (citt√†)",
           "level": "1",
           "basal_type": "nominato_terrestre",
           "local_type": "nominato_terrestre",
@@ -3659,7 +3659,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -3783,7 +3783,7 @@
               "children": []
             },
             {
-              "id": "Champs ElysËes",
+              "id": "Champs Elys√®es",
               "level": "2",
               "basal_type": "nominato_terrestre",
               "local_type": "nominato_terrestre",
@@ -3966,7 +3966,7 @@
               "local_type": "generico_terrestre",
               "children": [
                 {
-                  "id": "citt‡",
+                  "id": "citt√†",
                   "level": "3",
                   "basal_type": "nominato_non_terrestre",
                   "local_type": "generico_terrestre",
@@ -4000,7 +4000,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -4088,7 +4088,7 @@
           ]
         },
         {
-          "id": "fuori citt‡",
+          "id": "fuori citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -4117,7 +4117,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -4280,7 +4280,7 @@
                   "children": []
                 },
                 {
-                  "id": "caffË Melina",
+                  "id": "caff√® Melina",
                   "level": "3",
                   "basal_type": "nominato_terrestre",
                   "local_type": "nominato_terrestre",
@@ -4471,7 +4471,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -4618,7 +4618,7 @@
           ]
         },
         {
-          "id": "Torino (citt‡)",
+          "id": "Torino (citt√†)",
           "level": "1",
           "basal_type": "nominato_terrestre",
           "local_type": "nominato_terrestre",
@@ -4737,7 +4737,7 @@
               "children": []
             },
             {
-              "id": "caffË",
+              "id": "caff√®",
               "level": "2",
               "basal_type": "nominato_terrestre",
               "local_type": "generico_terrestre",
@@ -4773,7 +4773,7 @@
               "children": []
             },
             {
-              "id": "birreria ´Urbano Rattazziª",
+              "id": "birreria ¬´Urbano Rattazzi¬ª",
               "level": "2",
               "basal_type": "nominato_terrestre",
               "local_type": "inventato",
@@ -4805,7 +4805,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -4892,7 +4892,7 @@
           "local_type": "nominato_terrestre",
           "children": [
             {
-              "id": "citt‡",
+              "id": "citt√†",
               "level": "2",
               "basal_type": "nominato_terrestre",
               "local_type": "generico_terrestre",
@@ -5040,7 +5040,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡ nuova",
+          "id": "citt√† nuova",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -5055,7 +5055,7 @@
           ]
         },
         {
-          "id": "citt‡ vecchia",
+          "id": "citt√† vecchia",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -5078,7 +5078,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -5437,7 +5437,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -5467,7 +5467,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -5568,7 +5568,7 @@
           "children": []
         },
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -5675,7 +5675,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -5770,7 +5770,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -5814,7 +5814,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -5894,7 +5894,7 @@
           "children": []
         },
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -5969,13 +5969,13 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
           "children": [
             {
-              "id": "caffË",
+              "id": "caff√®",
               "level": "2",
               "basal_type": "generico_terrestre",
               "local_type": "generico_terrestre",
@@ -6028,7 +6028,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -6211,7 +6211,7 @@
               "children": []
             },
             {
-              "id": "caffË",
+              "id": "caff√®",
               "level": "2",
               "basal_type": "nominato_non_terrestre",
               "local_type": "generico_terrestre",
@@ -6817,7 +6817,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -7213,7 +7213,7 @@
               ]
             },
             {
-              "id": "New York (citt‡)",
+              "id": "New York (citt√†)",
               "level": "2",
               "basal_type": "nominato_non_terrestre",
               "local_type": "nominato_terrestre",
@@ -7775,14 +7775,14 @@
               "children": []
             },
             {
-              "id": "Champs ElysËes",
+              "id": "Champs Elys√®es",
               "level": "2",
               "basal_type": "nominato_terrestre",
               "local_type": "nominato_terrestre",
               "children": []
             },
             {
-              "id": "Faubourg Saint-HonorÈ",
+              "id": "Faubourg Saint-Honor√©",
               "level": "2",
               "basal_type": "nominato_terrestre",
               "local_type": "nominato_terrestre",
@@ -7882,7 +7882,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -7999,7 +7999,7 @@
           "local_type": "nominato_terrestre",
           "children": [
             {
-              "id": "citt‡",
+              "id": "citt√†",
               "level": "2",
               "basal_type": "nominato_terrestre",
               "local_type": "generico_terrestre",
@@ -8187,7 +8187,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -8412,7 +8412,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -8553,7 +8553,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -8612,7 +8612,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -8661,7 +8661,7 @@
                   "children": []
                 },
                 {
-                  "id": "caffË",
+                  "id": "caff√®",
                   "level": "3",
                   "basal_type": "nominato_terrestre",
                   "local_type": "generico_terrestre",
@@ -8761,7 +8761,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -9038,7 +9038,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -9082,7 +9082,7 @@
           "children": []
         },
         {
-          "id": "caffË",
+          "id": "caff√®",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -9140,7 +9140,7 @@
           ]
         },
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -9223,7 +9223,7 @@
       "local_type": "",
       "children": [
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -10198,7 +10198,7 @@
           "children": []
         },
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -10895,7 +10895,7 @@
                   "children": []
                 },
                 {
-                  "id": "reggia di Kemenf˘",
+                  "id": "reggia di Kemenf√π",
                   "level": "3",
                   "basal_type": "nominato_terrestre",
                   "local_type": "nominato_terrestre",
@@ -10990,7 +10990,7 @@
           ]
         },
         {
-          "id": "universit‡",
+          "id": "universit√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -11075,7 +11075,7 @@
           "children": []
         },
         {
-          "id": "citt‡",
+          "id": "citt√†",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
@@ -11162,7 +11162,7 @@
           "children": []
         },
         {
-          "id": "caffË",
+          "id": "caff√®",
           "level": "1",
           "basal_type": "generico_terrestre",
           "local_type": "generico_terrestre",
