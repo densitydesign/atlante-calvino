@@ -293,7 +293,7 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
     text : d.id
   };
 
-  /*if(d.level > 0) */ draw_text(graphicsContainer, text_info, text_id);
+  if(d.level > 0) draw_text(graphicsContainer, text_info, text_id);
 
   if(d.children.length > 0)
   {
