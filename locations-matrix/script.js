@@ -1,10 +1,4 @@
 var container = d3.select('#matrix-container');
-var svg = d3.select('#matrix');
-var g = svg.append('g');
-var link = g.append('g').classed('links', true).selectAll('.link');
-var hull = g.append('g').classed('hulls', true).selectAll('.hull');
-var node = g.append('g').classed('nodes', true).selectAll('.node');
-var label = g.append('g').classed('labels', true).selectAll('.label');
 
 var categories = [
 	'generico_non_terrestre',
@@ -26,23 +20,34 @@ var categoriesColors = [
 
 var collisionPadding = 1.5;
 
-var w = container.node().getBoundingClientRect().width;
-var h = container.node().getBoundingClientRect().height;
 var margin = {
-	'top': 50,
+	'top': 0,
 	'right': 50,
-	'bottom': 50,
+	'bottom': 75,
 	'left': 50
 }
+var w = container.node().getBoundingClientRect().width - margin.left - margin.right;
+var h = container.node().getBoundingClientRect().height - margin.top - margin.bottom;
 
-svg.attr('width', w)
-	.attr('height', h);
+var svg = d3.select('#matrix')
+	.attr('width', w + margin.left + margin.right)
+	.attr('height', h + margin.top + margin.bottom);
 
-var x = d3.scaleLinear()
-	.range([0 + margin.left, w - margin.right]);
+var g = svg.append('g').attr("transform", `translate(${margin.left},${margin.top})`);
+var xAxis = g.append("g").attr("class", "x-axis");
+var yAxis = g.append('g').attr("class", "y-axis");
+
+var link = g.append('g').classed('links', true).selectAll('.link');
+var hull = g.append('g').classed('hulls', true).selectAll('.hull');
+var node = g.append('g').classed('nodes', true).selectAll('.node');
+var label = g.append('g').classed('labels', true).selectAll('.label');
+
+var x = d3.scaleTime()
+	.range([0, w]);
 
 var y = d3.scalePoint()
-	.range([0 + margin.top, h - margin.bottom]);
+	.range([0, h])
+	.padding(0.5);
 
 var r = d3.scalePow().exponent(0.5)
 	.range([4,25])
@@ -248,10 +253,42 @@ function restart() {
 }
 
 Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
-	var locations = data[0]//.filter(function(d) { return +d.year >= 1966 && +d.year <= 1973 });
+	var locations = data[0];
 
+	locations.forEach(function(d){ d.year = new Date(d.year); }) // convert all years in JS Date
+
+	// horizontal scale and axis
 	x.domain(d3.extent(locations, function(d) { return d.year }));
+
+	var xAxisCall = d3.axisBottom(x)
+		.ticks(d3.timeYear.every(5));
+	xAxis.attr("transform", `translate(${0}, ${h})`)
+	    .call(xAxisCall)
+
+	// vertical scale and axis
 	y.domain(categories);
+
+	var yAxisCall = d3.axisRight(y)
+		.tickSize(w)
+		.tickFormat(function(d){
+			console.log(d);
+			d = d.replace(/_/g, ' ')
+			console.log(d);
+			return d;
+		})
+
+	yAxis.attr("transform", `translate(${0}, ${0})`)
+		.call(yAxisCall)
+		.call(g => g.selectAll(".tick text")
+        	.style("text-transform", "capitalize"))
+		.call(g => g.select(".domain")
+        	.remove())
+	    .call(g => g.selectAll(".tick line")
+	        .attr("stroke-opacity", 0.5)
+	        .attr("stroke-dasharray", "2,2"))
+	    .call(g => g.selectAll(".tick text")
+	        .attr("x", 4)
+	        .attr("dy", -y.step()/10));
 
 	locations.forEach(function(d) { if(!d.id) { d.id = d['data.id'] } })
 	locations = locations.map(function(d) {
