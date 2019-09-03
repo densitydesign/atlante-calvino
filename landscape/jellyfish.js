@@ -343,7 +343,7 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
             endAngle : endAngle
           };
 
-          draw_arc(graphicsContainer, arc, d.children[i].color, text_id);
+//          draw_arc(graphicsContainer, arc, d.children[i].color, text_id);
         }
       }
       else
