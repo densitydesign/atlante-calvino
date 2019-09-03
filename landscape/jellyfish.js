@@ -264,8 +264,6 @@ function prepare_jellyfish_data(hierarchy, center)
 
 function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
 {
-  if(d.level > 0) draw_point(graphicsContainer, d.circle_position, d.color, text_id);
-
   let inLeftEmicircle = Math.PI / 2 < d.angle && d.angle < 3 * Math.PI / 2;
   let textDistanceFactor = 1; //1.5;
   let textDistanceFactor2 = 1.15;
@@ -292,6 +290,8 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
     ty : center.y + (d.radius + (inLeftEmicircle ? textDistance1 : textDistance2)) * Math.sin(d.angle),
     text : d.id
   };
+
+  if(d.level > 0) draw_point(graphicsContainer, d.circle_position, textColor, text_id);
 
   if(d.level > 0) draw_text(graphicsContainer, text_info, text_id);
 

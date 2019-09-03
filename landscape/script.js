@@ -355,19 +355,6 @@ let metaballs = metaball_nodes
 			.data(d => d.graphical_ops)
 			.enter();
 
-		place_hierarchies
-			.filter(d => d.type == "circle")
-			.append('circle')
-			.attr('fill', d => d.fill)
-			.attr('r', d => d.r)
-			.attr("class", "place_hierarchy_node")
-			.style("display", "none")
-			.attr("transform", d => {
-//console.log("d.cx : " + d.cx + ", d.cy : " + d.cy);
-				return "translate(" + d.cx + ", " + d.cy + ")"
-			})
-			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
-
 		let drawplace_hierarchyArc = d3
 			.arc()
 			.innerRadius(d => d.innerRadius)
@@ -397,6 +384,20 @@ let metaballs = metaball_nodes
 			.attr("stroke-width", d => d.stroke_width)
 			.style("display", "none")
  			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
+
+		place_hierarchies
+			.filter(d => d.type == "circle")
+			.append('circle')
+			.attr('fill', d => d.fill)
+			.attr('stroke', 'white')
+			.attr('stroke-width', 2)
+			.attr('r', d => d.r)
+			.attr("class", "place_hierarchy_node")
+			.style("display", "none")
+			.attr("transform", d => {
+				return "translate(" + d.cx + ", " + d.cy + ")"
+			})
+			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
 
 
 		place_hierarchies
