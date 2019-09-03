@@ -18,7 +18,7 @@ var categoriesColors = [
 	'#cecece'
 ]
 
-var collisionPadding = 1.5;
+var collisionPadding = 1;
 
 var margin = {
 	'top': 0,
@@ -112,7 +112,7 @@ function dragged(d) {
 	// simulation.alpha(1).restart();
 }
 
-function toggleSubnodes(d) {
+function toggleSubnodes(d, noRestart) {
 	d.fx = null;
 	d.fy = null;
 	if (d.opened) {
@@ -164,8 +164,10 @@ function toggleSubnodes(d) {
 			links = graph.edges;
 		} )
 
+		if (noRestart != false) {
+			restart();
+		}
 
-		restart();
 		// important to return here so to not do the following instructions
 		return;
 	}
@@ -204,10 +206,34 @@ function toggleSubnodes(d) {
 		var graph = calculateNetwork(augmentedNodes);
 		nodes = graph.nodes;
 		links = graph.edges;
-		restart();
+		if (noRestart != false) {
+			restart();
+		}
 	} else {
 		console.log('No nodes to expand')
 	}
+}
+
+var rootNodes;
+
+function openAll() {
+	runAll(rootNodes);
+	function runAll(nodesList) {
+		nodesList.forEach( n => {
+			if (n.totalSubNodes > 0) {
+				toggleSubnodes(n, false);
+				runAll(n.subNodes);
+			}
+		});
+	}
+	restart();
+}
+
+function closeAll() {
+	rootNodes.forEach( d => {
+		toggleSubnodes(d, false);
+	})
+	restart();
 }
 
 function restart() {
@@ -274,6 +300,10 @@ function restart() {
 			return color(d[0].category)
 		})
 		.style('opacity', .25)
+		.on('click', d => {
+			// console.log(d[0])
+			toggleSubnodes(d[0]);
+		})
 		.merge(hull);
 
 
@@ -284,7 +314,9 @@ function restart() {
 }
 
 Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
-	var locations = data[0]//.filter(function(d) { return +d.year >= 1963 && +d.year <= 1963 });
+	var locations = data[0]
+		// .filter(function(d) { return +d.year >= 1963 && +d.year <= 1963 })
+		// .filter(function(d) { return +d.year >= 1948 && +d.year <= 1960 });
 
 	locations.forEach(function(d){ d.year = new Date(d.year); }) // convert all years in JS Date
 
@@ -341,6 +373,8 @@ Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
 	nodes = graph.nodes;
 	links = graph.edges;
 	restart();
+
+	rootNodes = nodes.filter(d => d.subNodes);
 })
 
 function handleHierarchies(nodes) {
