@@ -112,6 +112,104 @@ function dragged(d) {
 	// simulation.alpha(1).restart();
 }
 
+function toggleSubnodes(d) {
+	d.fx = null;
+	d.fy = null;
+	if (d.opened) {
+		d.opened = false;
+
+		var subNodes2Remove = [];
+		var hulls2Remove = [d.id]
+
+		// recursive functions, it makes possible to close contained cluster of nodes
+		function collectSubNodes(parentNode) {
+			// console.log(`There are ${parentNode.subNodes.length} sub-nodes of ${parentNode.label}`)
+			parentNode.subNodes.forEach( childNode => {
+				if (childNode.opened) {
+					childNode.opened = false;
+					hulls2Remove.push(childNode.id);
+					collectSubNodes(childNode);
+				}
+			});
+			subNodes2Remove.push(parentNode.subNodes);
+			// console.log(`${parentNode.label} has ${parentNode.subNodes} nodes to be removed`);
+		}
+
+		collectSubNodes(d);
+
+		// cycle in the subNodes2Remove array and for each list of sub-nodes to be removed remove and re-calculate the network.
+		// Probably not the best way, but the simplest at the moment of the coding.
+		subNodes2Remove.forEach( subNodes => {
+
+			let toRemove = subNodes.map( d => d.id)
+			let filtered = nodes.filter( el => {
+				return !toRemove.includes( el.id );
+			})
+
+			// remove this hull
+			hullsData = hullsData.filter(function(h){
+				return !hulls2Remove.includes( h[0].id );
+			})
+
+			// remove extra points from the outer hull
+			hullsData.forEach(function(thisHull,i){
+				hullsData[i] = thisHull.filter(function(n){
+					return !toRemove.includes( n.id );
+				})
+			})
+
+			// calculate graph
+			var graph = calculateNetwork(filtered)
+			nodes = graph.nodes;
+			links = graph.edges;
+		} )
+
+
+		restart();
+		// important to return here so to not do the following instructions
+		return;
+	}
+	// console.log(d.label, d.id);
+	if (d.subNodes && d.subNodes.length){
+		// console.log(`${d.label} has ${d.subNodes.length} nodes to be expanded`);
+		d.subNodes.forEach(function(subNode, i){
+			if (i > 0) {
+				subNode.x = d.x;
+				subNode.y = d.y;
+			}
+		})
+		d.opened = true;
+
+		// Make convex hull
+		var thisHullNodes = [d].concat(d.subNodes); // first element in array is always the one opened, so we can use its ID as identifier for the convex hull
+		// console.log('this hull nodes', thisHullNodes);
+		hullsData.push(thisHullNodes);
+
+		// check if the first point of the hull is inside another hulls
+		// if so it means this hull should be part of that opened
+		// add these points to that hullsData
+		hullsData.forEach(function(thisHull){
+			// if the element is in the array, but is not the first
+			if (thisHull.indexOf(thisHullNodes[0]) > 0) {
+				thisHullNodes.forEach(function(n,i){
+					if (i != 0) {
+						thisHull.push(n);
+					}
+				})
+			}
+		})
+
+		// calculate Graph
+		var augmentedNodes = nodes.concat(d.subNodes);
+		var graph = calculateNetwork(augmentedNodes);
+		nodes = graph.nodes;
+		links = graph.edges;
+		restart();
+	} else {
+		console.log('No nodes to expand')
+	}
+}
+
 function restart() {
 	// Apply the general update pattern to the nodes.
 	node = node.data(nodes, function(d) { return d.id; });
@@ -129,74 +227,7 @@ function restart() {
 			label.style('display', 'none');
 		})
 		.on('click', d => {
-			d.fx = null;
-			d.fy = null;
-			if (d.opened) {
-				d.opened = false;
-				// console.log('Collect all sub-nodes', d.subNodes);
-				let toRemove = d.subNodes.map( d => d.id)
-				let filtered = nodes.filter( el => {
-					return !toRemove.includes( el.id );
-				})
-
-				// remove this hull
-				hullsData = hullsData.filter(function(h){
-					return h[0].id != d.id
-				})
-
-				// remove extra points from the outer hull
-				hullsData.forEach(function(thisHull,i){
-					hullsData[i] = thisHull.filter(function(n){
-						return !toRemove.includes( n.id )
-					})
-				})
-
-				// calculate graph
-				var graph = calculateNetwork(filtered)
-				nodes = graph.nodes;
-				links = graph.edges;
-				restart();
-				// important to return here so to not do the following instructions
-				return;
-			}
-			// console.log(d.label, d.id);
-			if (d.subNodes && d.subNodes.length){
-				console.log('There are nodes to expand: ', d.subNodes.length)
-				d.subNodes.forEach(function(subNode, i){
-					if (i > 0) {
-						subNode.x = d.x;
-						subNode.y = d.y;
-					}
-				})
-				d.opened = true;
-				// Make convex hull
-				var thisHullNodes = [d].concat(d.subNodes); // first element in array is always the one opened, so we can use its ID as identifier for the convex hull
-				// console.log('this hull nodes', thisHullNodes);
-				hullsData.push(thisHullNodes);
-
-				// check if the first point of the hull is inside another hulls
-				// if so it means this hull should be part of that opened
-				// add these points to that hullsData
-				hullsData.forEach(function(thisHull){
-					// if the element is in the array, but is not the first
-					if (thisHull.indexOf(thisHullNodes[0]) > 0) {
-						thisHullNodes.forEach(function(n,i){
-							if (i != 0) {
-								thisHull.push(n);
-							}
-						})
-					}
-				})
-
-				// calculate Graph
-				var augmentedNodes = nodes.concat(d.subNodes);
-				var graph = calculateNetwork(augmentedNodes);
-				nodes = graph.nodes;
-				links = graph.edges;
-				restart();
-			} else {
-				console.log('No nodes to expand')
-			}
+			toggleSubnodes(d);
 		})
 		.call(d3.drag().on("drag", dragged))
 		.merge(node)
@@ -253,7 +284,7 @@ function restart() {
 }
 
 Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
-	var locations = data[0];
+	var locations = data[0]//.filter(function(d) { return +d.year >= 1963 && +d.year <= 1963 });
 
 	locations.forEach(function(d){ d.year = new Date(d.year); }) // convert all years in JS Date
 
@@ -261,7 +292,7 @@ Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
 	x.domain(d3.extent(locations, function(d) { return d.year }));
 
 	var xAxisCall = d3.axisBottom(x)
-		.ticks(d3.timeYear.every(5));
+		.ticks(d3.timeYear.every(1));
 	xAxis.attr("transform", `translate(${0}, ${h})`)
 	    .call(xAxisCall)
 
@@ -271,9 +302,7 @@ Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
 	var yAxisCall = d3.axisRight(y)
 		.tickSize(w)
 		.tickFormat(function(d){
-			console.log(d);
 			d = d.replace(/_/g, ' ')
-			console.log(d);
 			return d;
 		})
 
