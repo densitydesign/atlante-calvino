@@ -361,8 +361,7 @@ let metaballs = metaball_nodes
 			.attr('fill', d => d.fill)
 			.attr('r', d => d.r)
 			.attr("class", "place_hierarchy_node")
-			.style('fill-opacity', 0)
-			.style('stroke-opacity', 0)
+			.style("display", "none")
 			.attr("transform", d => {
 //console.log("d.cx : " + d.cx + ", d.cy : " + d.cy);
 				return "translate(" + d.cx + ", " + d.cy + ")"
@@ -382,8 +381,7 @@ let metaballs = metaball_nodes
 			.attr("fill", d => d.fill)
 			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id)
 			.attr("d", drawplace_hierarchyArc)
-			.style('fill-opacity', 0)
-			.style('stroke-opacity', 0)
+			.style("display", "none")
 			.attr("transform", d => {
 				 "translate(" + d.center.x + ", " + d.center.y + ")"
 			});
@@ -397,8 +395,7 @@ let metaballs = metaball_nodes
 			.attr("y2", d => d.y2)
  			.attr("stroke", d => d.stroke)
 			.attr("stroke-width", d => d.stroke_width)
-			.style('fill-opacity', 0)
-			.style('stroke-opacity', 0)
+			.style("display", "none")
  			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
 
 
@@ -409,8 +406,7 @@ let metaballs = metaball_nodes
 	    .style("font-size", d => d.font_size)
 	    .attr("dy", d => d.dy)
 	    .attr("dx", d => d.dx)
-			.style('fill-opacity', 0)
-			.style('stroke-opacity', 0)
+			.style("display", "none")
 	    .style("text-anchor", d => d.text_anchor)
 	    .attr("transform", d => d.transform)
 	    .text(d => d.text)
@@ -1358,8 +1354,7 @@ let metaballs = metaball_nodes
 			.style('stroke-opacity', 0);
 		place_hierarchies
 			.selectAll('.place_hierarchy')
-			.style('fill-opacity', 0)
-			.style('stroke-opacity', 0);
+			.style('display', 'none')
 
 		metaballs
 			.selectAll(".metaball")
@@ -1581,8 +1576,7 @@ let metaballs = metaball_nodes
 
 		place_hierarchies
 			.selectAll('.place_hierarchy')
-			.style('fill-opacity', 1)
-			.style('stroke-opacity', 1);
+			.style('display', 'block')
 	});
 
     function highlightHills(filterCondition, colorScale) {
