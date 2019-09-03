@@ -344,7 +344,7 @@ let metaballs = metaball_nodes
 			.attr("class", "place_hierarchy_node")
 			.attr("transform", function(d) {
 				if(!d.x || !d.y) return "";
-				return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y + d.n_steps * step_increment) + ')'
+				return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 //			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 			});
 //		.on("click", d =>	console.log(d));
@@ -1365,7 +1365,7 @@ let metaballs = metaball_nodes
 			.selectAll(".metaball")
 			.transition()
 			.duration(450)
-			.style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });			
+			.style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
 	}
 
     // Dubbio
