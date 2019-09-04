@@ -262,7 +262,7 @@ function prepare_jellyfish_data(hierarchy, center, radiusScaleFactor)
   return jellyfish;
 }
 
-function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
+function draw_jellyfish_node(graphicsContainer, d, status, center, text_id, scaleFactor)
 {
   let inLeftEmicircle = Math.PI / 2 < d.angle && d.angle < 3 * Math.PI / 2;
   let textDistanceFactor = 1; //1.5;
@@ -293,7 +293,7 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
 
   if(d.level > 0) draw_point(graphicsContainer, d.circle_position, textColor, text_id);
 
-  if(d.level > 0) draw_text(graphicsContainer, text_info, text_id);
+  if(d.level > 0) draw_text(graphicsContainer, text_info, text_id, scaleFactor);
 
   if(d.children.length > 0)
   {
@@ -322,7 +322,8 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
           point2 : target_point
       },
       d.color,
-      text_id);
+      text_id,
+      scaleFactor);
 
     if(d.level == 0 || d.children.length > 1)
     {
@@ -356,16 +357,16 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
           endAngle : (d.children[d.children.length - 1].angle + Math.PI / 2)
         };
 
-        draw_arc(graphicsContainer, arc, d.color, text_id);
+        draw_arc(graphicsContainer, arc, d.color, text_id, scaleFactor);
       }
     }
   }
 }
 
-function draw_jellyfish(graphicsContainer, jellyfish, center, text_id)
+function draw_jellyfish(graphicsContainer, jellyfish, center, text_id, scaleFactor)
 {
   visit(
     jellyfish,
     {},
-    (d, status) => draw_jellyfish_node(graphicsContainer, d, status, center, text_id));
+    (d, status) => draw_jellyfish_node(graphicsContainer, d, status, center, text_id, scaleFactor));
 }

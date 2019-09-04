@@ -3138,6 +3138,14 @@ function clone_d3_selection(selection, i) {
 	return cloned;
 }
 
+function get_jellyfish_scaleFactor(text_id)
+{
+	let jn = data.json_node_map.get(text_id);
+	let radiusScaleFactor = jn.steps[0].r / 30;
+
+	return radiusScaleFactor;
+}
+
 async function load_place_hierarchies()
 {
 	let place_hierarchies_json = await d3.json("places_hierarchy.json");
@@ -3153,8 +3161,7 @@ async function load_place_hierarchies()
 	place_hierarchies_json.hierarchies.forEach(d => {
 		if(d.id != "Terra" && d.id != "S152")
 		{
-			let jn = data.json_node_map.get(d.id);
-			let radiusScaleFactor = jn.steps[0].r / 30;
+			let radiusScaleFactor = get_jellyfish_scaleFactor(d.id);
 			data.place_hierarchies.set(d.id, prepare_jellyfish_data(d, center, radiusScaleFactor));
 		}
 	});
@@ -3175,7 +3182,8 @@ async function load_place_hierarchies()
 		let place_hierarchy = data.place_hierarchies.get(d.id);
 		if(place_hierarchy)
 		{
-			draw_jellyfish(d.graphical_ops, place_hierarchy, place_hierarchy.circle_position, place_hierarchy.id);
+			let radiusScaleFactor = get_jellyfish_scaleFactor(d.id);
+			draw_jellyfish(d.graphical_ops, place_hierarchy, place_hierarchy.circle_position, place_hierarchy.id, radiusScaleFactor);
 			data.place_hierarchies_graphics_item_map.set(d.id, d);
 		}
 	});
