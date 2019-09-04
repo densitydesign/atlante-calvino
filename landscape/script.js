@@ -49,7 +49,7 @@ Array.prototype.includesArray = function(array) {
 
 Object.defineProperty(Array.prototype, "includesArray", { enumerable: false });
 
-load_place_hierarchies();
+//load_place_hierarchies();
 
 d3
 	.csv("texts_data.csv")
@@ -67,7 +67,7 @@ d3
 				.then(treat_json);
 		});
 
-function treat_json(json) {
+async function treat_json(json) {
 
 	//Firstly let svg appear
 
@@ -103,6 +103,16 @@ function treat_json(json) {
 	// sort node so to have the upper in the background and not covering the ones in the foreground
 	json_nodes = json_nodes.sort(function(a, b) { return a.y - b.y });
 
+	let size_ext = d3.extent(json.nodes, function(d) { return d.size });
+	data.min_size = size_ext[0] / 8;
+
+	json_nodes.forEach(create_item_steps);
+
+	data.json_node_map = new Map();
+	json_nodes.forEach(d => data.json_node_map.set(d.id, d));
+
+	await load_place_hierarchies();
+
 	json_nodes.forEach(d => {
 		let item = data.place_hierarchies_graphics_item_map.get(d.id);
 		if(item)
@@ -111,11 +121,6 @@ function treat_json(json) {
 			item.y = d.y;
 		}
 	});
-
-	let size_ext = d3.extent(json.nodes, function(d) { return d.size });
-	data.min_size = size_ext[0] / 8;
-
-	json_nodes.forEach(create_item_steps);
 
 	json_nodes.forEach(node =>
 		node.steps.forEach(step =>
@@ -126,15 +131,15 @@ function treat_json(json) {
 
 //	json_nodes.sort((a, b) => a.id > b.id ? 1 : -1);
 
-	let json_node_map = new Map();
-	json_nodes.forEach(d => json_node_map.set(d.id, d));
+
 
 	data.place_hierarchies_graphics_items.forEach(d => {
-		let jn = json_node_map.get(d.id);
+		let jn = data.json_node_map.get(d.id);
 
 		if(jn)
 		{
 			d.n_steps = jn.steps.length;
+//			d.r = jn.steps[0].r;
 		}
 	});
 
@@ -1877,17 +1882,17 @@ function calculate_item_data(obj) {
 		lists_ratio_with_threshold: Math.max(lists_ratio_threshold, lists_ratio),
 		lists_ratio_is_below_threshold: lists_ratio < lists_ratio_threshold,
 
-		places_hierarchy: data.place_hierarchies.get(obj.id),
-		place_hierarchy: data.place_hierarchies.get(obj.id)
+//		places_hierarchy: data.place_hierarchies.get(obj.id),
+//		place_hierarchy: data.place_hierarchies.get(obj.id)
 	};
 
-	if(item_data.place_hierarchy)
-	{
-		item_data.place_hierarchy.n_steps = obj.n_steps;
-	}
+//	if(item_data.place_hierarchy)
+//	{
+//		item_data.place_hierarchy.n_steps = obj.n_steps;
+//	}
 //let s = item_data.places_hierarchy ? item_data.places_hierarchy.children.length : "";
 //console.log(obj.id + " : " + s);
-let s = item_data.place_hierarchy ? item_data.place_hierarchy.children.length : "";
+//let s = item_data.place_hierarchy ? item_data.place_hierarchy.children.length : "";
 	// console.log("lists_sum : " + lists_sum + ", item_data.lists_f_ratio : " + item_data.lists_f_ratio);
 
 	return item_data;
@@ -3146,7 +3151,12 @@ async function load_place_hierarchies()
 	let center = { x : 0, y : 0 };
 
 	place_hierarchies_json.hierarchies.forEach(d => {
-		if(d.id != "Terra" && d.id != "S152") data.place_hierarchies.set(d.id, prepare_jellyfish_data(d, center))
+		if(d.id != "Terra" && d.id != "S152")
+		{
+			let jn = data.json_node_map.get(d.id);
+			let radiusScaleFactor = jn.steps[0].r / 30;
+			data.place_hierarchies.set(d.id, prepare_jellyfish_data(d, center, radiusScaleFactor));
+		}
 	});
 
 	data.place_hierarchies_graphics_items = place_hierarchies_json.hierarchies.map(

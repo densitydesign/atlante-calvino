@@ -189,7 +189,7 @@ function draw_jellyfish_stripe(graphicsContainer, jellyfish, text_id)
   jellyfish.children.forEach(d => draw_jellyfish_stripe(graphicsContainer, d));
 }
 
-function prepare_jellyfish_data(hierarchy, center)
+function prepare_jellyfish_data(hierarchy, center, radiusScaleFactor)
 {
   let jellyfish = process_hierarchy_continuously(hierarchy, 0, 0);
 
@@ -233,7 +233,7 @@ function prepare_jellyfish_data(hierarchy, center)
       d.angle = d.stripe_position.x / scalingCoefficient * 2 * Math.PI;
     });
 
-  let radiusScaleFactor = 6;
+//  let radiusScaleFactor = 6;
 
   visit(
     jellyfish,
