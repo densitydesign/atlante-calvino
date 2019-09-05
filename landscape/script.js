@@ -139,6 +139,9 @@ async function treat_json(json) {
 		if(jn)
 		{
 			d.n_steps = jn.steps.length;
+			d.graphical_ops.forEach(grop => {
+				grop.hill_size = jn.size;
+			});
 //			d.r = jn.steps[0].r;
 		}
 	});
@@ -353,12 +356,19 @@ let metaballs = metaball_nodes
 //			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 			});
 //		.on("click", d =>	console.log(d));
+		let vv = [];
+// place_hierarchies.each(d => { vv.push(d)});
 
 
 		let place_hierarchies = place_hierarchies_nodes
 			.selectAll(".place_hierarchy")
-			.data(d => d.graphical_ops)
+			.data(d => {
+				vv = vv.concat(d.graphical_ops);
+				return d.graphical_ops
+			})
 			.enter();
+
+console.log(vv)
 
 		let drawplace_hierarchyArc = d3
 			.arc()
@@ -405,11 +415,27 @@ let metaballs = metaball_nodes
 			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
 
 
+
+		var fontSizeScale = d3
+			.scaleLinear()
+//			.domain(d3.extent(Object.values(place_hierarchies), d => d.hill_size))
+			.domain(d3.extent(vv, d => d.hill_size))
+			.range([15, 30]);
+
 		place_hierarchies
  			.filter(d => d.type == "text")
 			.append("text")
 	    .style("fill", d => d.fill)
-	    .style("font-size", d => d.font_size)
+	    .style("font-size", d => {
+				let fs = +d.font_size.substring(0, d.font_size.length - 2);
+console.log("d.font_size : " + fs);
+console.log("d.hill_size : " + d.hill_size);
+console.log(Math.trunc(fs * d.hill_size / 1000) + "px");
+console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
+//				return Math.trunc(fs * d.hill_size / 1000) + "px";
+				return fontSizeScale(d.hill_size);
+			})
+//			.style("font-size", "40px")
 	    .attr("dy", d => d.dy)
 	    .attr("dx", d => d.dx)
 			.style("display", "none")

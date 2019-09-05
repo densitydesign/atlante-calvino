@@ -367,8 +367,6 @@ console.log("d.radius : " + d.radius);
 //        d.radius = d.stripe_position.y * radiusScaleFactor;
 //        d.radius = level_progressiveRadius_map.get(+d.level - 1) * radiusScaleFactor / 5;
         d.radius = level_progressiveRadius_map.get(+d.level - 1);
-console.log("d.stripe_position.y * radiusScaleFactor : " + d.stripe_position.y * radiusScaleFactor);
-console.log("d.radius : " + d.radius);
 
         let x = Math.cos(d.angle) * d.radius + center.x;
         let y = Math.sin(d.angle) * d.radius + center.y;
@@ -418,9 +416,11 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
   {
     let line_angle = d.children[0].angle + (d.children[d.children.length - 1].angle - d.children[0].angle) / 2;
 
+    let textLenSaturationValue = 35;
+
     let start_point = {
       angle : line_angle,
-      radius : d.radius + 10 * text_info.text.length
+      radius : d.radius + 20 * Math.min(text_info.text.length, textLenSaturationValue)
     };
 
     start_point.x = center.x + start_point.radius * Math.cos(start_point.angle);
