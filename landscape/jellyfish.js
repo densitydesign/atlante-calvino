@@ -140,6 +140,41 @@ function visit(hierarchy, status, processItem)
   hierarchy.children.forEach(d => visit(d, status, processItem));
 }
 
+function visit_level(hierarchy, level, status, processItem)
+{
+  if(+hierarchy.level > level) return;
+  else if(+hierarchy.level == level) processItem(hierarchy, level, status);
+  else hierarchy.children.forEach(d => visit_level(d, level, status, processItem));
+}
+
+function get_max_level(hierarchy)
+{
+  var max_level = 0;
+
+  visit(
+    hierarchy,
+    max_level,
+    d => {
+      max_level = Math.max(max_level, +d.level);
+    });
+
+  return max_level;
+}
+
+function visit_levels(hierarchy, status, processItem)
+{
+  let max_level = get_max_level(hierarchy);
+
+  for(let level = 0; level <= max_level; ++level)
+  {
+    visit_level(
+      hierarchy,
+      level,
+      status,
+      processItem);
+  }
+}
+
 function prepare_for_graphics(jellyfish)
 {
   switch(jellyfish.basal_type)
@@ -189,6 +224,38 @@ function draw_jellyfish_stripe(graphicsContainer, jellyfish, text_id)
   jellyfish.children.forEach(d => draw_jellyfish_stripe(graphicsContainer, d));
 }
 
+function getProgressiveSumMap(valueMap)
+{
+  let orderedKeys = Array.from(valueMap.keys()).sort();
+  let values = orderedKeys.map(d => valueMap.get(d));
+
+  var result = values.reduce((r, a) => {
+    r.push((r.length && r[r.length - 1] || 0) + a);
+    return r;
+  }, []);
+
+  var progressiveSum = new Map();
+
+  for(let i = 0; i < orderedKeys.length; ++i)
+  {
+    progressiveSum.set(orderedKeys[i], result[i]);
+  }
+
+  return progressiveSum;
+}
+
+function MapToMap(map, f)
+{
+  let map2 = new Map();
+
+  for([key, value] of map)
+  {
+    map2.set(key, f(value));
+  }
+
+  return map2;
+}
+
 function prepare_jellyfish_data(hierarchy, center, radiusScaleFactor)
 {
   let jellyfish = process_hierarchy_continuously(hierarchy, 0, 0);
@@ -206,6 +273,8 @@ function prepare_jellyfish_data(hierarchy, center, radiusScaleFactor)
 
   var min_x_value2 = 0; //status2.extremes.min_x;
   var max_x_value2 = status2.extremes.max_x;
+
+
 
   prepare_for_graphics(jellyfish);
 
@@ -233,7 +302,37 @@ function prepare_jellyfish_data(hierarchy, center, radiusScaleFactor)
       d.angle = d.stripe_position.x / scalingCoefficient * 2 * Math.PI;
     });
 
-//  let radiusScaleFactor = 6;
+  var level_maxTextLen_map = new Map();
+
+  visit_levels(
+    jellyfish,
+    level_maxTextLen_map,
+    (d, level) => {
+      let maxTextLen = level_maxTextLen_map.get(level) || 0;
+      level_maxTextLen_map.set(level, Math.max(maxTextLen, d.id.length));
+    });
+
+  // set level 0 at length 0
+  level_maxTextLen_map.set(0, 0);
+/*
+  // force first item to the hill radius, scaled
+  level_maxTextLen_map.set(1, jellyfish.children[0].stripe_position.y * radiusScaleFactor);
+
+  let level_deltaRadius_map = MapToMap(
+    level_maxTextLen_map,
+    d => 1 * d);
+*/
+
+  let textLenScaleFactor = 15;
+
+  // force first item to the hill radius, scaled
+  level_maxTextLen_map.set(0, jellyfish.children[0].stripe_position.y * radiusScaleFactor / textLenScaleFactor);
+
+  let level_deltaRadius_map = MapToMap(
+    level_maxTextLen_map,
+    d => d * textLenScaleFactor);
+
+  let level_progressiveRadius_map = getProgressiveSumMap(level_deltaRadius_map);
 
   visit(
     jellyfish,
@@ -246,10 +345,30 @@ function prepare_jellyfish_data(hierarchy, center, radiusScaleFactor)
         d.radius = 0;
         d.angle = 0;
       }
-      if(d.level > 0)
+/*
+      if(+d.level == 1)
       {
         d.angle = d.angle;
         d.radius = d.stripe_position.y * radiusScaleFactor;
+//        d.radius = level_progressiveRadius_map.get(+d.level - 1) * radiusScaleFactor / 5;
+console.log("d.stripe_position.y * radiusScaleFactor : " + d.stripe_position.y * radiusScaleFactor);
+console.log("d.radius : " + d.radius);
+
+        let x = Math.cos(d.angle) * d.radius + center.x;
+        let y = Math.sin(d.angle) * d.radius + center.y;
+
+        d.circle_position.x = x;
+        d.circle_position.y = y;
+      }
+*/
+      if(+d.level > 0)
+      {
+        d.angle = d.angle;
+//        d.radius = d.stripe_position.y * radiusScaleFactor;
+//        d.radius = level_progressiveRadius_map.get(+d.level - 1) * radiusScaleFactor / 5;
+        d.radius = level_progressiveRadius_map.get(+d.level - 1);
+console.log("d.stripe_position.y * radiusScaleFactor : " + d.stripe_position.y * radiusScaleFactor);
+console.log("d.radius : " + d.radius);
 
         let x = Math.cos(d.angle) * d.radius + center.x;
         let y = Math.sin(d.angle) * d.radius + center.y;
