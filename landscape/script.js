@@ -704,6 +704,16 @@ console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
 		})
 		.style('fill-opacity', 0);
 
+	steps
+		.selectAll(".places")
+		.on("click", function(d) {
+			if(data.mode == "realismo-secondo-lvl")
+			{
+				togglePlaceHierarchy(d.id);
+				data.mode = "realismo-third-lvl";
+			}			
+		});
+
 ///////////////////////////////////////////
 
 			let drawPlaceHierarchiesArc1 = d3
