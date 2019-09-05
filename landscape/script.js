@@ -4,7 +4,8 @@ let data = {
 	timeline_y: 0,
 	timeline_dot: null,
 	keyboardCommandsOn: true,
-	metaballWantedCoves: true
+	metaballWantedCoves: true,
+	mode: 'default'
 };
 
 // Warn if overriding existing method
@@ -275,6 +276,11 @@ let metaballs = metaball_nodes
 		})
 		.on('click', function(d) {
 			console.log(d);
+			if(data.mode == "realismo-secondo-lvl")
+			{
+				togglePlaceHierarchy(d.id);
+				data.mode = "realismo-third-lvl";
+			}
 		})
 
 	// calculate the size of steps for hills
@@ -1328,6 +1334,42 @@ console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
 		toggleSearch();
 	})
 
+	function togglePlaceHierarchy(id) {
+
+		text_nodes
+			.selectAll('.halo')
+			.transition()
+			.duration(450)
+			.style('fill-opacity', 0)
+			.style('stroke-opacity', 0);
+
+		text_nodes
+			.selectAll('.hill')
+			.filter(d => d.id != id || !d.first_elem)
+			.transition()
+			.duration(250)
+			.style('stroke-opacity', 0)
+			.style('fill-opacity', 0)
+			.style('stroke', stepBorderColor);
+
+			metaballs
+				.selectAll(".metaball")
+				.transition()
+				.duration(450)
+				.style("stroke-opacity", "0");
+
+//		d3.selectAll(".hill")
+//			.style('fill', 'white');
+
+		d3
+			.selectAll(".places")
+			.style("fill-opacity", 0);
+
+		place_hierarchies
+			.selectAll('.place_hierarchy_' + id)
+			.style('display', 'block')
+	}
+
 	d3
 		.select("#searchbox")
 		.on("focus",
@@ -1393,6 +1435,8 @@ console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
 			.transition()
 			.duration(450)
 			.style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
+
+		data.mode = "default";
 	}
 
     // Dubbio
@@ -1579,6 +1623,8 @@ console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
 			.selectAll('.places')
 			.style('fill-opacity', 1)
 			.style('stroke-opacity', 1);
+
+		data.mode = "realismo-secondo-lvl";
 	});
 
 	d3.select('#realismo-third-lvl').on('click', function(){
