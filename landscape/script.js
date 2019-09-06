@@ -280,6 +280,9 @@ let metaballs = metaball_nodes
 			{
 				togglePlaceHierarchy(d.id);
 				data.mode = "realismo-third-lvl";
+
+				let trans = d3.select(this).select("g.label").attr("transform");
+				d3.select(this).select("g.label").attr("transform", trans.split(" ")[1]);
 			}
 		})
 
@@ -1202,7 +1205,8 @@ console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
 			let one_rem = parseInt(d3.select('html').style('font-size'));
 			let k = one_rem * (1 / (d3.event.transform.k / scale));
 			let dy = (d.steps.length + 5) * step_increment;
-			return 'translate(0,' + dy + ') scale(' + k + ',' + k * 1 / 0.5773 + ')';
+			let translate_string = data.mode != "realismo-third-lvl" ? 'translate(0,' + dy + ') ' : "";
+			return translate_string + 'scale(' + k + ',' + k * 1 / 0.5773 + ')';
 		});
 	}
 
@@ -1447,6 +1451,16 @@ console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
 			.style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
 
 		data.mode = "default";
+
+		label.attr('transform', function(d) {
+
+			let trans = d3.select(this).attr("transform");
+
+			let dy = (d.steps.length + 5) * step_increment;
+
+			let translate_string = trans.includes("translate") ? "" : 'translate(0,' + dy + ') ';
+			return translate_string + trans;
+		});
 	}
 
     // Dubbio
