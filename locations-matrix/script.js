@@ -41,6 +41,7 @@ var link = g.append('g').classed('links', true).selectAll('.link');
 var hull = g.append('g').classed('hulls', true).selectAll('.hull');
 var node = g.append('g').classed('nodes', true).selectAll('.node');
 var label = g.append('g').classed('labels', true).selectAll('.label');
+var information = g.append('g').classed('informations', true).selectAll('.information')
 
 var x = d3.scaleTime()
 	.range([0, w]);
@@ -50,7 +51,7 @@ var y = d3.scalePoint()
 	.padding(0.5);
 
 var r = d3.scalePow().exponent(0.5)
-	.range([4,25])
+	.range([5,25])
 
 var color = d3.scaleOrdinal()
 	.domain(categories)
@@ -247,10 +248,26 @@ function restart() {
 		.on('mouseenter', function(d){
 			node.filter(function(e){ return e.source != d.source; }).style('opacity', 0.1);
 			label.filter(function(e){ return d.id == e.id }).style('display', 'block');
+
+			// show work title
+			information = information.data([d], function(d) { return d.id; });
+			information.exit().remove();
+			information = information.enter().append("text")
+				.classed('information', true)
+				.classed('label', true)
+				.attr('text-anchor', d => (x(d.year) >= w/2) ? 'end' : 'start')
+				.attr('x', d => (x(d.year) >= w/2) ? x(d.year)+4.8 : x(d.year)-3.2)
+				.attr('y', h - 10)
+				.text( d => (x(d.year) >= w/2) ? d.sourceTitle + ' ↓' : '↓ ' + d.sourceTitle)
+				.merge(information);
 		})
 		.on('mouseleave', function(d){
 			node.style('opacity', 1);
 			label.style('display', 'none');
+
+			// remove work title
+			information = information.data([], function(d) { return d.id; });
+			information.exit().remove();
 		})
 		.on('click', d => {
 			toggleSubnodes(d);
@@ -285,6 +302,7 @@ function restart() {
 	label.exit().remove();
 	label = label.enter().append("text")
 		.classed('label', true)
+		.style('display', 'none')
 		.attr('text-anchor', 'middle')
 		.text(function(d){return d.label})
 		.merge(label);
@@ -316,7 +334,7 @@ function restart() {
 Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
 	var locations = data[0]
 		// .filter(function(d) { return +d.year >= 1963 && +d.year <= 1963 })
-		// .filter(function(d) { return +d.year >= 1948 && +d.year <= 1960 });
+		// .filter(function(d) { return +d.year >= 1962 && +d.year <= 1969 });
 
 	locations.forEach(function(d){ d.year = new Date(d.year); }) // convert all years in JS Date
 
@@ -358,6 +376,7 @@ Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
 			'label': d['Occorrenza'],
 			'part_of': d['Parte di ID'],
 			'source': d['Fonte'],
+			'sourceTitle': d['Titolo Fonte'],
 			'year': +d.year,
 			'category': d['Categoria'],
 			'totalSubNodes':0,
