@@ -711,7 +711,7 @@ console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
 			{
 				togglePlaceHierarchy(d.id);
 				data.mode = "realismo-third-lvl";
-			}			
+			}
 		});
 
 ///////////////////////////////////////////
@@ -2618,6 +2618,27 @@ function deltaAngle(angle1, angle2)
 
   if(a1 > a2) return a2 + (2 * Math.PI - a1);
   else return a2 - a1;
+}
+
+function algebraicShortestAngleDifference(angle1, angle2)
+{
+  let a1 = normalizeAngle(angle1);
+  let a2 = normalizeAngle(angle2);
+
+  if(a2 == a1) return 0;
+
+  if(a2 > a1)
+  {
+	  let delta = a2 - a1;
+	  if(delta > Math.PI) return 2 * Math.PI - (delta);
+	  else return delta;
+  }
+  else
+  {
+	  let delta = a1 - a2;
+	  if(delta > Math.PI) return -(2 * Math.PI - (delta));
+	  else return -delta;
+  }
 }
 
 function mod(x, n)

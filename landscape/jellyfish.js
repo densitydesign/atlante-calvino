@@ -302,6 +302,31 @@ function prepare_jellyfish_data(hierarchy, center, radiusScaleFactor)
       d.angle = d.stripe_position.x / scalingCoefficient * 2 * Math.PI;
     });
 
+  visit(
+    jellyfish,
+    {},
+    (d, status) => {
+      if(d.level > 0 && d.children.length > 1 && d.children.every(dd => dd.children.length == 0))
+      {
+        let childrenAngles = d.children.map(d => d.angle);
+
+        var averageChildrenAngle = childrenAngles
+          .reduce((sum, num) => sum + num, 0) / d.children.length;
+
+        let angleDeltas = childrenAngles.map(d => algebraicShortestAngleDifference(averageChildrenAngle, d));
+
+        let scaling = 0.3;
+        let modifiedAngleDeltas = angleDeltas.map(d => d * scaling);
+
+        let modifiedChildrenAngles = modifiedAngleDeltas.map(d => averageChildrenAngle + d);
+
+        for(let i = 0; i < d.children.length; ++i)
+        {
+          d.children[i].angle = modifiedChildrenAngles[i];
+        }
+      }
+    });
+
   var level_maxTextLen_map = new Map();
 
   visit_levels(
