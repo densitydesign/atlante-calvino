@@ -420,7 +420,9 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
 
     let start_point = {
       angle : line_angle,
-      radius : d.radius + 20 * Math.min(text_info.text.length, textLenSaturationValue)
+      radius : Math.min(
+        d.radius + 20 * Math.min(text_info.text.length, textLenSaturationValue),
+        d.children[0].radius - 10)
     };
 
     start_point.x = center.x + start_point.radius * Math.cos(start_point.angle);
