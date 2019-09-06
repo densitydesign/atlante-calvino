@@ -414,7 +414,7 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
 
   if(d.children.length > 0)
   {
-    let line_angle = d.children[0].angle + (d.children[d.children.length - 1].angle - d.children[0].angle) / 2;
+    let line_angle = d.angle;
 
     let textLenSaturationValue = 35;
 

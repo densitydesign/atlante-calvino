@@ -7801,21 +7801,6 @@
       ]
     },
     {
-      "id": "S152",
-      "level": "0",
-      "basal_type": "",
-      "local_type": "",
-      "children": [
-        {
-          "id": "taverna",
-          "level": "1",
-          "basal_type": "generico_terrestre",
-          "local_type": "generico_terrestre",
-          "children": []
-        }
-      ]
-    },
-    {
       "id": "S153",
       "level": "0",
       "basal_type": "",
@@ -9202,21 +9187,6 @@
       ]
     },
     {
-      "id": "Terra",
-      "level": "0",
-      "basal_type": "",
-      "local_type": "",
-      "children": [
-        {
-          "id": "nominato_non_terrestre",
-          "level": "1",
-          "basal_type": "L00977",
-          "local_type": "L00977",
-          "children": []
-        }
-      ]
-    },
-    {
       "id": "V001",
       "level": "0",
       "basal_type": "",
@@ -10474,6 +10444,13 @@
               "children": []
             }
           ]
+        },
+        {
+          "id": "taverna",
+          "level": "1",
+          "basal_type": "generico_terrestre",
+          "local_type": "generico_terrestre",
+          "children": []
         }
       ]
     },
