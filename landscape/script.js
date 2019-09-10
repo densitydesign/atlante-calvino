@@ -431,7 +431,7 @@ console.log(vv)
 			.domain(d3.extent(vv, d => d.hill_size))
 			.range([15, 30]);
 
-		place_hierarchies
+		let text_ph_labels = place_hierarchies
  			.filter(d => d.type == "text")
 			.append("text")
 	    .style("fill", d => d.fill)
@@ -449,9 +449,39 @@ console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
 	    .attr("dx", d => d.dx)
 			.style("display", "none")
 	    .style("text-anchor", d => d.text_anchor)
-	    .attr("transform", d => d.transform)
-	    .text(d => d.text)
-			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
+	    .attr("transform", d => {
+//console.log(d.text_segments);
+				return d.transform;
+			})
+//	    .text(d => d.text)
+			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id)
+
+			;
+
+		text_ph_labels
+			.selectAll(".text_segment")
+			.data(d => {
+console.log(d.text_segments);
+				 return d.text_segments;
+			 })
+			.enter()
+			.append("tspan")
+			.attr("x", "0")
+			.attr("dx", "1em")
+			.attr("dy", (d,i) => {
+				return (i>0) ? "1.35em" : "0";
+			})
+			.classed("text_segment", true)
+			.text(d => d);
+
+		text_ph_labels.each( function(d) {
+			console.log(this)
+			let this_width = d3.select(this).getBoundingClientRect().width;
+			console.log(this_width);
+		})
+
+
+
 /*
 			.attr('transform', function(d, i) {
 				i = i * step_increment

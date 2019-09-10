@@ -102,8 +102,22 @@ function draw_arc(graphicsContainer, arc, color, text_id)
   draw_simple_arc(graphicsContainer, arc, color, text_id);
 }
 
+function split_text(text, threshold)
+{
+  let i = text.indexOf(" ", threshold);
+  if(i >= 0)
+  {
+    let s1 = text.substring(0, i);
+    let s2 = text.substring(i, text.length);
+    return [s1.trim(), s2.trim()];
+  }
+  else return [text];
+}
+
 function draw_text(graphicsContainer, text_info, text_id)
 {
+  let text_split_threshold = 19;
+
   graphicsContainer.push({
     type : "text",
     text_id : text_id,
@@ -113,7 +127,7 @@ function draw_text(graphicsContainer, text_info, text_id)
     dx : "1em",
     text_anchor : text_info.textAnchor,
     transform : "translate(" + (text_info.tx) + ", " + (text_info.ty) + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")",
-    text : text_info.text
+    text : text_info.text,
+    text_segments : split_text(text_info.text, text_split_threshold)
   });
 }
-
