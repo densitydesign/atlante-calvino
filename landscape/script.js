@@ -474,10 +474,13 @@ console.log(d.text_segments);
 			.classed("text_segment", true)
 			.text(d => d);
 
-		text_ph_labels.each( function(d) {
-			console.log(this)
-			let this_width = d3.select(this).getBoundingClientRect().width;
-			console.log(this_width);
+		text_ph_labels
+      .selectAll(".text_segment")
+      .each( function(d) {
+console.log(this)
+//			let this_width = d3.select(this).getBoundingClientRect().width;
+let bbox = this.getBBox();
+console.log(bbox);
 		})
 
 
