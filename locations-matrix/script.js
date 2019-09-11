@@ -1,10 +1,4 @@
 var container = d3.select('#matrix-container');
-var svg = d3.select('#matrix');
-var g = svg.append('g');
-var link = g.append('g').classed('links', true).selectAll('.link');
-var hull = g.append('g').classed('hulls', true).selectAll('.hull');
-var node = g.append('g').classed('nodes', true).selectAll('.node');
-var label = g.append('g').classed('labels', true).selectAll('.label');
 
 var categories = [
 	'generico_non_terrestre',
@@ -24,28 +18,40 @@ var categoriesColors = [
 	'#cecece'
 ]
 
-var collisionPadding = 1.5;
+var collisionPadding = 1;
 
-var w = container.node().getBoundingClientRect().width;
-var h = container.node().getBoundingClientRect().height;
 var margin = {
-	'top': 50,
+	'top': 0,
 	'right': 50,
-	'bottom': 50,
+	'bottom': 75,
 	'left': 50
 }
+var w = container.node().getBoundingClientRect().width - margin.left - margin.right;
+var h = container.node().getBoundingClientRect().height - margin.top - margin.bottom;
 
-svg.attr('width', w)
-	.attr('height', h);
+var svg = d3.select('#matrix')
+	.attr('width', w + margin.left + margin.right)
+	.attr('height', h + margin.top + margin.bottom);
 
-var x = d3.scaleLinear()
-	.range([0 + margin.left, w - margin.right]);
+var g = svg.append('g').attr("transform", `translate(${margin.left},${margin.top})`);
+var xAxis = g.append("g").attr("class", "x-axis");
+var yAxis = g.append('g').attr("class", "y-axis");
+
+var link = g.append('g').classed('links', true).selectAll('.link');
+var hull = g.append('g').classed('hulls', true).selectAll('.hull');
+var node = g.append('g').classed('nodes', true).selectAll('.node');
+var label = g.append('g').classed('labels', true).selectAll('.label');
+var information = g.append('g').classed('informations', true).selectAll('.information')
+
+var x = d3.scaleTime()
+	.range([0, w]);
 
 var y = d3.scalePoint()
-	.range([0 + margin.top, h - margin.bottom]);
+	.range([0, h])
+	.padding(0.5);
 
 var r = d3.scalePow().exponent(0.5)
-	.range([4,25])
+	.range([5,25])
 
 var color = d3.scaleOrdinal()
 	.domain(categories)
@@ -107,6 +113,130 @@ function dragged(d) {
 	// simulation.alpha(1).restart();
 }
 
+function toggleSubnodes(d, noRestart) {
+	d.fx = null;
+	d.fy = null;
+	if (d.opened) {
+		d.opened = false;
+
+		var subNodes2Remove = [];
+		var hulls2Remove = [d.id]
+
+		// recursive functions, it makes possible to close contained cluster of nodes
+		function collectSubNodes(parentNode) {
+			// console.log(`There are ${parentNode.subNodes.length} sub-nodes of ${parentNode.label}`)
+			parentNode.subNodes.forEach( childNode => {
+				if (childNode.opened) {
+					childNode.opened = false;
+					hulls2Remove.push(childNode.id);
+					collectSubNodes(childNode);
+				}
+			});
+			subNodes2Remove.push(parentNode.subNodes);
+			// console.log(`${parentNode.label} has ${parentNode.subNodes} nodes to be removed`);
+		}
+
+		collectSubNodes(d);
+
+		// cycle in the subNodes2Remove array and for each list of sub-nodes to be removed remove and re-calculate the network.
+		// Probably not the best way, but the simplest at the moment of the coding.
+		subNodes2Remove.forEach( subNodes => {
+
+			let toRemove = subNodes.map( d => d.id)
+			let filtered = nodes.filter( el => {
+				return !toRemove.includes( el.id );
+			})
+
+			// remove this hull
+			hullsData = hullsData.filter(function(h){
+				return !hulls2Remove.includes( h[0].id );
+			})
+
+			// remove extra points from the outer hull
+			hullsData.forEach(function(thisHull,i){
+				hullsData[i] = thisHull.filter(function(n){
+					return !toRemove.includes( n.id );
+				})
+			})
+
+			// calculate graph
+			var graph = calculateNetwork(filtered)
+			nodes = graph.nodes;
+			links = graph.edges;
+		} )
+
+		if (noRestart != false) {
+			restart();
+		}
+
+		// important to return here so to not do the following instructions
+		return;
+	}
+	// console.log(d.label, d.id);
+	if (d.subNodes && d.subNodes.length){
+		// console.log(`${d.label} has ${d.subNodes.length} nodes to be expanded`);
+		d.subNodes.forEach(function(subNode, i){
+			if (i > 0) {
+				subNode.x = d.x;
+				subNode.y = d.y;
+			}
+		})
+		d.opened = true;
+
+		// Make convex hull
+		var thisHullNodes = [d].concat(d.subNodes); // first element in array is always the one opened, so we can use its ID as identifier for the convex hull
+		// console.log('this hull nodes', thisHullNodes);
+		hullsData.push(thisHullNodes);
+
+		// check if the first point of the hull is inside another hulls
+		// if so it means this hull should be part of that opened
+		// add these points to that hullsData
+		hullsData.forEach(function(thisHull){
+			// if the element is in the array, but is not the first
+			if (thisHull.indexOf(thisHullNodes[0]) > 0) {
+				thisHullNodes.forEach(function(n,i){
+					if (i != 0) {
+						thisHull.push(n);
+					}
+				})
+			}
+		})
+
+		// calculate Graph
+		var augmentedNodes = nodes.concat(d.subNodes);
+		var graph = calculateNetwork(augmentedNodes);
+		nodes = graph.nodes;
+		links = graph.edges;
+		if (noRestart != false) {
+			restart();
+		}
+	} else {
+		console.log('No nodes to expand')
+	}
+}
+
+var rootNodes;
+
+function openAll() {
+	runAll(rootNodes);
+	function runAll(nodesList) {
+		nodesList.forEach( n => {
+			if (n.totalSubNodes > 0) {
+				toggleSubnodes(n, false);
+				runAll(n.subNodes);
+			}
+		});
+	}
+	restart();
+}
+
+function closeAll() {
+	rootNodes.forEach( d => {
+		toggleSubnodes(d, false);
+	})
+	restart();
+}
+
 function restart() {
 	// Apply the general update pattern to the nodes.
 	node = node.data(nodes, function(d) { return d.id; });
@@ -118,80 +248,29 @@ function restart() {
 		.on('mouseenter', function(d){
 			node.filter(function(e){ return e.source != d.source; }).style('opacity', 0.1);
 			label.filter(function(e){ return d.id == e.id }).style('display', 'block');
+
+			// show work title
+			information = information.data([d], function(d) { return d.id; });
+			information.exit().remove();
+			information = information.enter().append("text")
+				.classed('information', true)
+				.classed('label', true)
+				.attr('text-anchor', d => (x(d.year) >= w/2) ? 'end' : 'start')
+				.attr('x', d => (x(d.year) >= w/2) ? x(d.year)+4.8 : x(d.year)-3.2)
+				.attr('y', h - 10)
+				.text( d => (x(d.year) >= w/2) ? d.sourceTitle + ' ↓' : '↓ ' + d.sourceTitle)
+				.merge(information);
 		})
 		.on('mouseleave', function(d){
 			node.style('opacity', 1);
 			label.style('display', 'none');
+
+			// remove work title
+			information = information.data([], function(d) { return d.id; });
+			information.exit().remove();
 		})
 		.on('click', d => {
-			d.fx = null;
-			d.fy = null;
-			if (d.opened) {
-				d.opened = false;
-				// console.log('Collect all sub-nodes', d.subNodes);
-				let toRemove = d.subNodes.map( d => d.id)
-				let filtered = nodes.filter( el => {
-					return !toRemove.includes( el.id );
-				})
-
-				// remove this hull
-				hullsData = hullsData.filter(function(h){
-					return h[0].id != d.id
-				})
-
-				// remove extra points from the outer hull
-				hullsData.forEach(function(thisHull,i){
-					hullsData[i] = thisHull.filter(function(n){
-						return !toRemove.includes( n.id )
-					})
-				})
-
-				// calculate graph
-				var graph = calculateNetwork(filtered)
-				nodes = graph.nodes;
-				links = graph.edges;
-				restart();
-				// important to return here so to not do the following instructions
-				return;
-			}
-			// console.log(d.label, d.id);
-			if (d.subNodes && d.subNodes.length){
-				console.log('There are nodes to expand: ', d.subNodes.length)
-				d.subNodes.forEach(function(subNode, i){
-					if (i > 0) {
-						subNode.x = d.x;
-						subNode.y = d.y;
-					}
-				})
-				d.opened = true;
-				// Make convex hull
-				var thisHullNodes = [d].concat(d.subNodes); // first element in array is always the one opened, so we can use its ID as identifier for the convex hull
-				// console.log('this hull nodes', thisHullNodes);
-				hullsData.push(thisHullNodes);
-
-				// check if the first point of the hull is inside another hulls
-				// if so it means this hull should be part of that opened
-				// add these points to that hullsData
-				hullsData.forEach(function(thisHull){
-					// if the element is in the array, but is not the first
-					if (thisHull.indexOf(thisHullNodes[0]) > 0) {
-						thisHullNodes.forEach(function(n,i){
-							if (i != 0) {
-								thisHull.push(n);
-							}
-						})
-					}
-				})
-
-				// calculate Graph
-				var augmentedNodes = nodes.concat(d.subNodes);
-				var graph = calculateNetwork(augmentedNodes);
-				nodes = graph.nodes;
-				links = graph.edges;
-				restart();
-			} else {
-				console.log('No nodes to expand')
-			}
+			toggleSubnodes(d);
 		})
 		.call(d3.drag().on("drag", dragged))
 		.merge(node)
@@ -223,6 +302,7 @@ function restart() {
 	label.exit().remove();
 	label = label.enter().append("text")
 		.classed('label', true)
+		.style('display', 'none')
 		.attr('text-anchor', 'middle')
 		.text(function(d){return d.label})
 		.merge(label);
@@ -238,6 +318,10 @@ function restart() {
 			return color(d[0].category)
 		})
 		.style('opacity', .25)
+		.on('click', d => {
+			// console.log(d[0])
+			toggleSubnodes(d[0]);
+		})
 		.merge(hull);
 
 
@@ -248,10 +332,42 @@ function restart() {
 }
 
 Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
-	var locations = data[0]//.filter(function(d) { return +d.year >= 1966 && +d.year <= 1973 });
+	var locations = data[0]
+		// .filter(function(d) { return +d.year >= 1963 && +d.year <= 1963 })
+		// .filter(function(d) { return +d.year >= 1962 && +d.year <= 1969 });
 
+	locations.forEach(function(d){ d.year = new Date(d.year); }) // convert all years in JS Date
+
+	// horizontal scale and axis
 	x.domain(d3.extent(locations, function(d) { return d.year }));
+
+	var xAxisCall = d3.axisBottom(x)
+		.ticks(d3.timeYear.every(1));
+	xAxis.attr("transform", `translate(${0}, ${h})`)
+	    .call(xAxisCall)
+
+	// vertical scale and axis
 	y.domain(categories);
+
+	var yAxisCall = d3.axisRight(y)
+		.tickSize(w)
+		.tickFormat(function(d){
+			d = d.replace(/_/g, ' ')
+			return d;
+		})
+
+	yAxis.attr("transform", `translate(${0}, ${0})`)
+		.call(yAxisCall)
+		.call(g => g.selectAll(".tick text")
+        	.style("text-transform", "capitalize"))
+		.call(g => g.select(".domain")
+        	.remove())
+	    .call(g => g.selectAll(".tick line")
+	        .attr("stroke-opacity", 0.5)
+	        .attr("stroke-dasharray", "2,2"))
+	    .call(g => g.selectAll(".tick text")
+	        .attr("x", 4)
+	        .attr("dy", -y.step()/10));
 
 	locations.forEach(function(d) { if(!d.id) { d.id = d['data.id'] } })
 	locations = locations.map(function(d) {
@@ -260,6 +376,7 @@ Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
 			'label': d['Occorrenza'],
 			'part_of': d['Parte di ID'],
 			'source': d['Fonte'],
+			'sourceTitle': d['Titolo Fonte'],
 			'year': +d.year,
 			'category': d['Categoria'],
 			'totalSubNodes':0,
@@ -275,6 +392,8 @@ Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
 	nodes = graph.nodes;
 	links = graph.edges;
 	restart();
+
+	rootNodes = nodes.filter(d => d.subNodes);
 })
 
 function handleHierarchies(nodes) {

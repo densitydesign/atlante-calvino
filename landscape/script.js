@@ -2859,7 +2859,7 @@ function applyBeeSwarmFilter() {
 			if(+d.attributes.first_publication >= data.extent[0] && +d.attributes.first_publication <= data.extent[1]) {
 				d3.select(this).style("opacity", 1);
 			} else {
-				d3.select(this).style("opacity", 0.3);
+				d3.select(this).style("opacity", 0.15);
 			}
 		});
 }
