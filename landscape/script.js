@@ -858,7 +858,7 @@ let metaballs = metaball_nodes
 		})
 		.endAngle(function(d, i) {
 			return 2 * PI;
-		});			
+		});
 
 ///////////////////////////////////////////
 
@@ -1192,7 +1192,7 @@ let metaballs = metaball_nodes
 		text_nodes
 			.selectAll('.lists_level_3')
 			.style('fill-opacity', 0)
-			.style('stroke-opacity', 0);            
+			.style('stroke-opacity', 0);
 	}
 
     // Dubbio
@@ -1275,7 +1275,7 @@ let metaballs = metaball_nodes
 	// forma
 	d3.select('#forma-secondo-lvl').on('click', function(){
 		resetAnalysis();
-  
+
 		text_nodes
 			.selectAll('.hill')
 			.filter(d => !d.lists_are_present)
@@ -2785,7 +2785,8 @@ function prepareTimeline(json_nodes, col_collections) {
 			.y(d => d.y)
 			.polygons(json_nodes))
 		.enter()
-		.append("g");
+		.append("g")
+		.classed("cell_node", true);
 
 	let colls = getCollections().map(c => c.id);
 
@@ -2847,7 +2848,14 @@ function brushcentered() {
 
 function brushed() {
 	data.extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
-	//console.log(extent);
+	// console.log(data.extent);
+
+	d3.selectAll(".cell_node").style('opacity', 1).filter( d => {
+		// console.log(+d.data.attributes.first_publication)
+		var fp = +d.data.attributes.first_publication
+		return fp < data.extent[0] || fp > data.extent[1]
+	})
+	.style('opacity', 0.1)
 
 	applyBeeSwarmFilter();
 }
