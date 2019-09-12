@@ -392,7 +392,7 @@ console.log(vv)
 			.attr("fill", d => d.fill)
 			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id)
 			.attr("d", drawplace_hierarchyArc)
-			.style("display", "none")
+//			.style("display", "none")
 			.attr("transform", d => {
 				 "translate(" + d.center.x + ", " + d.center.y + ")"
 			});
@@ -437,10 +437,10 @@ console.log(vv)
 	    .style("fill", d => d.fill)
 	    .style("font-size", d => {
 				let fs = +d.font_size.substring(0, d.font_size.length - 2);
-console.log("d.font_size : " + fs);
-console.log("d.hill_size : " + d.hill_size);
-console.log(Math.trunc(fs * d.hill_size / 1000) + "px");
-console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
+//console.log("d.font_size : " + fs);
+//console.log("d.hill_size : " + d.hill_size);
+//console.log(Math.trunc(fs * d.hill_size / 1000) + "px");
+//console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
 //				return Math.trunc(fs * d.hill_size / 1000) + "px";
 				return fontSizeScale(d.hill_size);
 			})
@@ -454,16 +454,17 @@ console.log("fontSizeScale(d.hill_size) : " + fontSizeScale(d.hill_size));
 				return d.transform;
 			})
 //	    .text(d => d.text)
-			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id)
+			.attr("class", d => "place_hierarchy place_hierarchy_text place_hierarchy_" + d.text_id)
 
 			;
 
 		text_ph_labels
 			.selectAll(".text_segment")
 			.data(d => {
-console.log(d.text_segments);
+//console.log(d.text_segments);
 				 return d.text_segments;
 			 })
+//			.append("g")
 			.enter()
 			.append("tspan")
 			.attr("x", "0")
@@ -474,17 +475,44 @@ console.log(d.text_segments);
 			.classed("text_segment", true)
 			.text(d => d);
 
+console.log("getting bbox...");
+
+let xxxy = d3
+			.selectAll(".place_hierarchy_text")
+			.nodes();
+
+//console.log(xxxy[0].attributes["dx"].value);
+//console.log(xxxy[100].getBBox());
+console.log(d3.select(".place_hierarchy_V021").node().getBBox());
+//			.enter();
+
+//		d3
+//			.selectAll(".text_segment")
+//			xxxy
+//			.each(d => {
+//let bbox = this.getBBox();
+//console.log("this : " + this);
+//			});
+
+/*
 		text_ph_labels
       .selectAll(".text_segment")
+//			.selectAll()
       .each( function(d) {
 console.log(this)
 //			let this_width = d3.select(this).getBoundingClientRect().width;
 let bbox = this.getBBox();
-console.log(bbox);
-		})
-
-
-
+console.log("bbox : " + bbox);
+			})
+*/
+/*
+		text_ph_labels
+			.enter()
+			.each(d => {
+let bbox = this.getBBox();
+console.log("bbox : " + bbox);
+			});
+*/
 /*
 			.attr('transform', function(d, i) {
 				i = i * step_increment
