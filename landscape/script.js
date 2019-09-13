@@ -365,19 +365,19 @@ let metaballs = metaball_nodes
 //			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 			});
 //		.on("click", d =>	console.log(d));
-		let vv = [];
-// place_hierarchies.each(d => { vv.push(d)});
+		let graphical_ops = [];
+// place_hierarchies.each(d => { graphical_ops.push(d)});
 
 
 		let place_hierarchies = place_hierarchies_nodes
 			.selectAll(".place_hierarchy")
 			.data(d => {
-				vv = vv.concat(d.graphical_ops);
-				return d.graphical_ops
+				graphical_ops = graphical_ops.concat(d.graphical_ops);
+				return d.graphical_ops;
 			})
 			.enter();
 
-console.log(vv)
+console.log(graphical_ops)
 
 		let drawplace_hierarchyArc = d3
 			.arc()
@@ -428,8 +428,10 @@ console.log(vv)
 		var fontSizeScale = d3
 			.scaleLinear()
 //			.domain(d3.extent(Object.values(place_hierarchies), d => d.hill_size))
-			.domain(d3.extent(vv, d => d.hill_size))
+			.domain(d3.extent(graphical_ops, d => d.hill_size))
 			.range([15, 30]);
+
+		var label_classes = [];
 
 		let text_ph_labels = place_hierarchies
  			.filter(d => d.type == "text")
@@ -454,9 +456,11 @@ console.log(vv)
 				return d.transform;
 			})
 //	    .text(d => d.text)
-			.attr("class", d => "place_hierarchy place_hierarchy_text place_hierarchy_" + d.text_id)
-
-			;
+			.attr("class", d => {
+				let label_class = "place_hierarchy_" + d.text_id;
+				"place_hierarchy place_hierarchy_text " + label_class;
+				label_classes.push(label_class);
+			});
 
 		text_ph_labels
 			.selectAll(".text_segment")
@@ -475,15 +479,34 @@ console.log(vv)
 			.classed("text_segment", true)
 			.text(d => d);
 
-console.log("getting bbox...");
+console.log("getting bboxes...");
 
-let xxxy = d3
+
+		label_classes.forEach(
+			d => {
+				let item = d3.select("." + d);
+//				let bbox = d3.select("." + d).node().getBBox();
+				let bbox = item.node().getBBox();
+console.log(bbox);
+console.log(item.datum());
+			});
+/*
+		let aa = d3.selectAll(".place_hierarchy_text");
+
+		d3
 			.selectAll(".place_hierarchy_text")
-			.nodes();
-
+			.each(d => {
+				let bbox = d.node().getBBox();
+			});
+*/
 //console.log(xxxy[0].attributes["dx"].value);
 //console.log(xxxy[100].getBBox());
-console.log(d3.select(".place_hierarchy_V021").node().getBBox());
+
+//let bbox = d3.select(".place_hierarchy_V021").node().getBBox();
+
+//console.log(bbox);
+
+//svgContainer
 //			.enter();
 
 //		d3
