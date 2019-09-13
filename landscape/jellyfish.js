@@ -515,3 +515,8 @@ function draw_jellyfish(graphicsContainer, jellyfish, center, text_id)
     {},
     (d, status) => draw_jellyfish_node(graphicsContainer, d, status, center, text_id));
 }
+
+function prepare_jellyfish_data_2()
+{
+
+}

@@ -458,14 +458,14 @@ console.log(graphical_ops)
 //	    .text(d => d.text)
 			.attr("class", d => {
 				let label_class = "place_hierarchy_" + d.text_id;
-				"place_hierarchy place_hierarchy_text " + label_class;
 				label_classes.push(label_class);
+				return "place_hierarchy place_hierarchy_text " + label_class;
 			});
 
 		text_ph_labels
 			.selectAll(".text_segment")
 			.data(d => {
-//console.log(d.text_segments);
+console.log(d.text_segments);
 				 return d.text_segments;
 			 })
 //			.append("g")
@@ -487,8 +487,8 @@ console.log("getting bboxes...");
 				let item = d3.select("." + d);
 //				let bbox = d3.select("." + d).node().getBBox();
 				let bbox = item.node().getBBox();
-console.log(bbox);
-console.log(item.datum());
+//console.log(bbox);
+//console.log(item.datum());
 			});
 /*
 		let aa = d3.selectAll(".place_hierarchy_text");
