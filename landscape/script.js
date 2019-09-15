@@ -423,8 +423,6 @@ console.log(graphical_ops)
 			})
 			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
 
-
-
 		var fontSizeScale = d3
 			.scaleLinear()
 //			.domain(d3.extent(Object.values(place_hierarchies), d => d.hill_size))
@@ -463,10 +461,10 @@ console.log(graphical_ops)
 			});
 
 		text_ph_labels
-			.selectAll(".text_segment")
+			.selectAll(".caption_segment")
 			.data(d => {
-console.log(d.text_segments);
-				 return d.text_segments;
+console.log(d.caption_segments);
+				 return d.caption_segments;
 			 })
 //			.append("g")
 			.enter()
@@ -476,11 +474,11 @@ console.log(d.text_segments);
 			.attr("dy", (d,i) => {
 				return (i>0) ? "1.35em" : "0";
 			})
-			.classed("text_segment", true)
+			.classed("caption_segment", true)
 			.text(d => d);
 
-console.log("getting bboxes...");
 
+console.log("getting bboxes...");
 
 		label_classes.forEach(
 			d => {
@@ -490,6 +488,12 @@ console.log("getting bboxes...");
 //console.log(bbox);
 //console.log(item.datum());
 			});
+
+console.log("data.place_hierarchies.size : " + data.place_hierarchies.size);
+
+    // place_hierarchies
+    //   .selectAll(".place_hierarchy")
+    //   .remove();
 /*
 		let aa = d3.selectAll(".place_hierarchy_text");
 
@@ -3352,18 +3356,18 @@ async function load_place_hierarchies()
 	let center = { x : 0, y : 0 };
 
 	place_hierarchies_json.hierarchies.forEach(d => {
-		if(d.id != "Terra" && d.id != "S152")
+		if(d.caption != "Terra" && d.caption != "S152")
 		{
-			let jn = data.json_node_map.get(d.id);
+			let jn = data.json_node_map.get(d.caption);
 			let radiusScaleFactor = jn.steps[0].r / 30;
-			data.place_hierarchies.set(d.id, prepare_jellyfish_data(d, center, radiusScaleFactor));
+			data.place_hierarchies.set(d.caption, prepare_jellyfish_data(d, center, radiusScaleFactor));
 		}
 	});
 
 	data.place_hierarchies_graphics_items = place_hierarchies_json.hierarchies.map(
 		d => {
 			let text_group = {
-				id : d.id,
+				caption : d.caption,
 				graphical_ops : []
 			};
 
@@ -3373,11 +3377,11 @@ async function load_place_hierarchies()
 	data.place_hierarchies_graphics_item_map = new Map();
 
 	data.place_hierarchies_graphics_items.forEach(d => {
-		let place_hierarchy = data.place_hierarchies.get(d.id);
+		let place_hierarchy = data.place_hierarchies.get(d.caption);
 		if(place_hierarchy)
 		{
-			draw_jellyfish(d.graphical_ops, place_hierarchy, place_hierarchy.circle_position, place_hierarchy.id);
-			data.place_hierarchies_graphics_item_map.set(d.id, d);
+			draw_jellyfish(d.graphical_ops, place_hierarchy, place_hierarchy.circle_position, place_hierarchy.caption);
+			data.place_hierarchies_graphics_item_map.set(d.caption, d);
 		}
 	});
 }

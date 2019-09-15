@@ -62,7 +62,7 @@ function calculate_continuous_extension(hierarchy)
 function process_hierarchy(hierarchy, x, y)
 {
   let jellyfish = {
-    id : hierarchy.id,
+    caption : hierarchy.caption,
     type : hierarchy.type,
     position : { x : x, y : y },
     children : []
@@ -90,7 +90,7 @@ function process_hierarchy(hierarchy, x, y)
 function process_hierarchy_continuously(hierarchy, x, y)
 {
   let jellyfish = {
-    id : hierarchy.id,
+    caption : hierarchy.caption,
     level : hierarchy.level,
     basal_type : hierarchy.basal_type,
     local_type : hierarchy.local_type,
@@ -334,7 +334,7 @@ function prepare_jellyfish_data(hierarchy, center, radiusScaleFactor)
     level_maxTextLen_map,
     (d, level) => {
       let maxTextLen = level_maxTextLen_map.get(level) || 0;
-      level_maxTextLen_map.set(level, Math.max(maxTextLen, d.id.length));
+      level_maxTextLen_map.set(level, Math.max(maxTextLen, d.caption.length));
     });
 
   // set level 0 at length 0
@@ -430,7 +430,7 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
     textAnchor : inLeftEmicircle ? "end" : "start",
     tx : center.x + (d.radius + (inLeftEmicircle ? textDistance1 : textDistance2)) * Math.cos(d.angle),
     ty : center.y + (d.radius + (inLeftEmicircle ? textDistance1 : textDistance2)) * Math.sin(d.angle),
-    text : d.id
+    caption : d.caption
   };
 
   if(d.level > 0) draw_point(graphicsContainer, d.circle_position, textColor, text_id);
@@ -441,12 +441,12 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
   {
     let line_angle = d.angle;
 
-    let textLenSaturationValue = 35;
+    let captionLenSaturationValue = 35;
 
     let start_point = {
       angle : line_angle,
       radius : Math.min(
-        d.radius + 20 * Math.min(text_info.text.length, textLenSaturationValue),
+        d.radius + 20 * Math.min(text_info.caption.length, captionLenSaturationValue),
         d.children[0].radius - 10)
     };
 

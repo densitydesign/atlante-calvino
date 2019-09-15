@@ -117,7 +117,7 @@ function split_text(text, threshold)
 
 function draw_text(graphicsContainer, text_info, text_id)
 {
-  let text_split_threshold = 19;
+  let caption_split_threshold = 19;
 
   graphicsContainer.push({
     type : "text",
@@ -128,7 +128,7 @@ function draw_text(graphicsContainer, text_info, text_id)
     dx : "1em",
     text_anchor : text_info.textAnchor,
     transform : "translate(" + (text_info.tx) + ", " + (text_info.ty) + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")",
-    text : text_info.text,
-    text_segments : split_text(text_info.text, text_split_threshold)
+    caption : text_info.caption,
+    caption_segments : split_text(text_info.caption, caption_split_threshold)
   });
 }
