@@ -90,6 +90,8 @@ function process_hierarchy(hierarchy, x, y)
 function process_hierarchy_continuously(hierarchy, x, y)
 {
   let jellyfish = {
+    text_id : hierarchy.text_id,
+    node_id : hierarchy.node_id,
     caption : hierarchy.caption,
     level : hierarchy.level,
     basal_type : hierarchy.basal_type,
@@ -425,6 +427,7 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
   }
 
   let text_info = {
+    node_id : d.node_id,
     angle : inLeftEmicircle ? d.angle + Math.PI : d.angle,
     textColor : textColor,
     textAnchor : inLeftEmicircle ? "end" : "start",

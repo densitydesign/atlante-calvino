@@ -121,6 +121,7 @@ function draw_text(graphicsContainer, text_info, text_id)
 
   graphicsContainer.push({
     type : "text",
+    node_id : text_info.node_id,
     text_id : text_id,
     fill : text_info.textColor,
     font_size : "15px",

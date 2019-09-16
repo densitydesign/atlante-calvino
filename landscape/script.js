@@ -430,6 +430,7 @@ console.log(graphical_ops)
 			.range([15, 30]);
 
 		var label_classes = [];
+		var label_ids = [];
 
 		let text_ph_labels = place_hierarchies
  			.filter(d => d.type == "text")
@@ -445,6 +446,10 @@ console.log(graphical_ops)
 				return fontSizeScale(d.hill_size);
 			})
 //			.style("font-size", "40px")
+			.attr("id", d => {
+				label_ids.push(d.node_id);
+				return d.node_id;
+			})
 	    .attr("dy", d => d.dy)
 	    .attr("dx", d => d.dx)
 			.style("display", "none")
@@ -480,15 +485,20 @@ console.log(d.caption_segments);
 
 console.log("getting bboxes...");
 
-		label_classes.forEach(
+		label_ids.forEach(
 			d => {
-				let item = d3.select("." + d);
-//				let bbox = d3.select("." + d).node().getBBox();
-				let bbox = item.node().getBBox();
-//console.log(bbox);
-//console.log(item.datum());
+				let bbox = document.getElementById(d).getBBox();
+				let jellyfish_node = data.place_hierarchy_node_map.get(d);
+				jellyfish_node.bbox = bbox;
 			});
 
+/*
+		text_ph_labels.each(
+			d => {
+				let id = d.node_id;
+				let a = 6;
+			});
+*/
 console.log("data.place_hierarchies.size : " + data.place_hierarchies.size);
 
     // place_hierarchies
@@ -3355,12 +3365,16 @@ async function load_place_hierarchies()
 
 	let center = { x : 0, y : 0 };
 
+	data.place_hierarchy_node_map = new Map();
+
 	place_hierarchies_json.hierarchies.forEach(d => {
 		if(d.caption != "Terra" && d.caption != "S152")
 		{
-			let jn = data.json_node_map.get(d.caption);
-			let radiusScaleFactor = jn.steps[0].r / 30;
+			let j = data.json_node_map.get(d.caption);
+			let radiusScaleFactor = j.steps[0].r / 30;
 			data.place_hierarchies.set(d.caption, prepare_jellyfish_data(d, center, radiusScaleFactor));
+
+			visit(d, {}, (jn, status) => data.place_hierarchy_node_map.set(jn.node_id, j));
 		}
 	});
 
