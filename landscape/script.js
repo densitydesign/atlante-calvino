@@ -361,13 +361,18 @@ let metaballs = metaball_nodes
 			.attr("class", "place_hierarchy_node")
 			.attr("transform", function(d) {
 				if(!d.x || !d.y) return "";
+console.log(d);
+if(d.caption == "S014")
+{
+	console.log(`d.x : ${d.x}, d.y : ${d.y}, center.x : ${center.x}, center.y : ${center.y}`);
+}
 				return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 //			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 			});
 //		.on("click", d =>	console.log(d));
 		let graphical_ops = [];
 // place_hierarchies.each(d => { graphical_ops.push(d)});
-
+console.log("-----------------------");
 
 		let place_hierarchies = place_hierarchies_nodes
 			.selectAll(".place_hierarchy")
@@ -377,7 +382,7 @@ let metaballs = metaball_nodes
 			})
 			.enter();
 
-console.log(graphical_ops)
+//console.log(graphical_ops)
 
 		let drawplace_hierarchyArc = d3
 			.arc()
@@ -392,7 +397,7 @@ console.log(graphical_ops)
 			.attr("fill", d => d.fill)
 			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id)
 			.attr("d", drawplace_hierarchyArc)
-//			.style("display", "none")
+			.style("display", "none")
 			.attr("transform", d => {
 				 "translate(" + d.center.x + ", " + d.center.y + ")"
 			});
@@ -445,14 +450,15 @@ console.log(graphical_ops)
 //				return Math.trunc(fs * d.hill_size / 1000) + "px";
 				return fontSizeScale(d.hill_size);
 			})
-//			.style("font-size", "40px")
+//			.style("font-size", "40px"
 			.attr("id", d => {
 				label_ids.push(d.node_id);
 				return d.node_id;
 			})
 	    .attr("dy", d => d.dy)
 	    .attr("dx", d => d.dx)
-			.style("display", "none")
+//			.style("display", "none")
+			.style("opacity", 1)
 	    .style("text-anchor", d => d.text_anchor)
 	    .attr("transform", d => {
 //console.log(d.text_segments);
@@ -468,7 +474,7 @@ console.log(graphical_ops)
 		text_ph_labels
 			.selectAll(".caption_segment")
 			.data(d => {
-console.log(d.caption_segments);
+//console.log(d.caption_segments);
 				 return d.caption_segments;
 			 })
 //			.append("g")
@@ -498,13 +504,155 @@ console.log("getting bboxes...");
 				jellyfish,
 				{},
 				(jn, status) => jn.bbox = data.place_hierarchy_node_info_map.get(jn.node_id).bbox);
+
+			let radiusScaleFactor = 1;
+
+			prepare_jellyfish_data_2(jellyfish, center, radiusScaleFactor);
 		}
 
 console.log("data.place_hierarchies.size : " + data.place_hierarchies.size);
 
-    // place_hierarchies
-    //   .selectAll(".place_hierarchy")
-    //   .remove();
+    place_hierarchies
+      .selectAll(".place_hierarchy")
+      .remove();
+
+		prepare_place_hierarchies_2();
+
+		json_nodes.forEach(d => {
+			let item = data.place_hierarchies_graphics_item_map_2.get(d.id);
+			if(item)
+			{
+				item.x = d.x;
+				item.y = d.y;
+			}
+		});
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+
+
+let place_hierarchies_group_2 = svg_main_group
+	.append("g")
+	.attr("class", "place_hierarchies_nodes_2");
+
+let place_hierarchies_nodes_2 = place_hierarchies_group_2
+	.selectAll(".place_hierarchy_node_2")
+	.data(data.place_hierarchies_graphics_items_2)
+	.enter()
+	.append("g")
+	.attr("class", "place_hierarchy_node_2")
+	.attr("transform", function(d) {
+console.log(d);
+		if(!d.x || !d.y) return "";
+
+if(d.caption == "S014")
+{
+	console.log(`d.x : ${d.x}, d.y : ${d.y}, center.x : ${center.x}, center.y : ${center.y}`);
+}
+		return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
+	});
+
+let graphical_ops_2 = [];
+
+let place_hierarchies_2 = place_hierarchies_nodes_2
+	.selectAll(".place_hierarchy_2")
+	.data(d => {
+		graphical_ops_2 = graphical_ops_2.concat(d.graphical_ops);
+		return d.graphical_ops;
+	})
+	.enter();
+
+//console.log(graphical_ops_2)
+
+place_hierarchies_2
+	.filter(d => d.type == "arc")
+	.append("svg:path")
+	.attr("fill", d => d.fill)
+	.attr("class", d => "place_hierarchy_2 place_hierarchy_2_" + d.text_id)
+	.attr("d", drawplace_hierarchyArc)
+//	.style("display", "none")
+	.attr("transform", d => {
+		 "translate(" + d.center.x + ", " + d.center.y + ")"
+	});
+
+place_hierarchies_2
+	.filter(d => d.type == "line")
+	.append("line")
+	.attr("x1", d => d.x1)
+	.attr("y1", d => d.y1)
+	.attr("x2", d => d.x2)
+	.attr("y2", d => d.y2)
+	.attr("stroke", d => d.stroke)
+	.attr("stroke-width", d => d.stroke_width)
+//	.style("display", "none")
+	.attr("class", d => "place_hierarchy_2 place_hierarchy_2_" + d.text_id);
+
+place_hierarchies_2
+	.filter(d => d.type == "circle")
+	.append('circle')
+	.attr('fill', d => d.fill)
+	.attr('stroke', 'white')
+	.attr('stroke-width', 2)
+	.attr('r', d => d.r)
+	.attr("class", "place_hierarchy_node_2")
+//	.style("display", "none")
+	.attr("transform", d => {
+		return "translate(" + d.cx + ", " + d.cy + ")"
+	})
+	.attr("class", d => "place_hierarchy_2 place_hierarchy_2_" + d.text_id);
+
+var label_classes_2 = [];
+var label_ids_2 = [];
+
+let text_ph_labels_2 = place_hierarchies_2
+	.filter(d => d.type == "text")
+	.append("text")
+	.style("fill", d => d.fill)
+	.style("font-size", d => {
+		let fs = +d.font_size.substring(0, d.font_size.length - 2);
+
+		return fontSizeScale(d.hill_size);
+	})
+	.attr("id", d => {
+		label_ids_2.push(d.node_id);
+		return d.node_id;
+	})
+	.attr("dy", d => d.dy)
+	.attr("dx", d => d.dx)
+	.style("opacity", 1)
+	.style("text-anchor", d => d.text_anchor)
+	.attr("transform", d => {
+		return d.transform;
+	})
+	.attr("class", d => {
+		let label_class = "place_hierarchy_2_" + d.text_id;
+		label_classes_2.push(label_class);
+		return "place_hierarchy_2 place_hierarchy_text_2 " + label_class;
+	});
+
+text_ph_labels_2
+	.selectAll(".caption_segment")
+	.data(d => {
+//console.log(d.caption_segments);
+		 return d.caption_segments;
+	 })
+	.enter()
+	.append("tspan")
+	.attr("x", "0")
+	.attr("dx", "1em")
+	.attr("dy", (d,i) => {
+		return (i>0) ? "1.35em" : "0";
+	})
+	.classed("caption_segment", true)
+	.text(d => d);
+
+
+
+///////////////////////////////////////////////
+///////////////////////////////////////////////
+
+
+
 /*
 		let aa = d3.selectAll(".place_hierarchy_text");
 
@@ -1300,6 +1448,7 @@ console.log("bbox : " + bbox);
 		g.attr("transform", d3.event.transform);
 		metaball_group.attr("transform", d3.event.transform);
 		place_hierarchies_group.attr("transform", d3.event.transform);
+		place_hierarchies_group_2.attr("transform", d3.event.transform);
 		label.attr('transform', function(d) {
 			let one_rem = parseInt(d3.select('html').style('font-size'));
 			let k = one_rem * (1 / (d3.event.transform.k / scale));
@@ -3395,8 +3544,50 @@ async function load_place_hierarchies()
 		let place_hierarchy = data.place_hierarchies.get(d.caption);
 		if(place_hierarchy)
 		{
+//console.log(place_hierarchy.caption + " - x : " + place_hierarchy.circle_position.x + ", y : " + place_hierarchy.circle_position.y);
+console.log(place_hierarchy.circle_position);
 			draw_jellyfish(d.graphical_ops, place_hierarchy, place_hierarchy.circle_position, place_hierarchy.caption);
 			data.place_hierarchies_graphics_item_map.set(d.caption, d);
+		}
+	});
+}
+
+function prepare_place_hierarchies_2()
+{
+/*
+	data.place_hierarchies_graphics_items_2 = place_hierarchies_json.hierarchies.map(
+		d => {
+			let text_group = {
+				caption : d.caption,
+				graphical_ops : []
+			};
+
+			return text_group;
+		});
+*/
+
+	data.place_hierarchies_graphics_items_2 = [];
+//	 = place_hierarchies_json.hierarchies.map(
+
+	for(let [text_id, place_hierarchy] of data.place_hierarchies)
+	{
+			let text_group = {
+				caption : place_hierarchy.caption,
+				graphical_ops : []
+			};
+
+			data.place_hierarchies_graphics_items_2.push(text_group);
+	}
+
+	data.place_hierarchies_graphics_item_map_2 = new Map();
+
+	data.place_hierarchies_graphics_items_2.forEach(d => {
+		let place_hierarchy = data.place_hierarchies.get(d.caption);
+		if(place_hierarchy)
+		{
+console.log(place_hierarchy.caption + " - x : " + place_hierarchy.circle_position.x + ", y : " + place_hierarchy.circle_position.y);
+			draw_jellyfish(d.graphical_ops, place_hierarchy, { x:0, y:0 } /*place_hierarchy.circle_position*/, place_hierarchy.caption);
+			data.place_hierarchies_graphics_item_map_2.set(d.caption, d);
 		}
 	});
 }
