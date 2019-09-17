@@ -419,6 +419,7 @@ console.log("-----------------------");
 			.attr("class", "place_hierarchy_node")
 			.style("display", "none")
 			.attr("transform", d => {
+console.log(d);
 				return "translate(" + d.cx + ", " + d.cy + ")"
 			})
 			.attr("class", d => "place_hierarchy place_hierarchy_" + d.text_id);
@@ -502,8 +503,8 @@ console.log("getting bboxes...");
 
 			let j = data.json_node_map.get(jellyfish.caption);
 			let radiusScaleFactor = j.steps[0].r / 30;
-
-			prepare_jellyfish_data_2(jellyfish, center, radiusScaleFactor);
+console.log(jellyfish.caption + " - center, x : " + center.x + ", center.y : " + center.y);
+			prepare_jellyfish_data_2(jellyfish, { x:0, y:0 }, radiusScaleFactor);
 		}
 
 console.log("data.place_hierarchies.size : " + data.place_hierarchies.size);
@@ -589,6 +590,7 @@ place_hierarchies_2
 	.attr("class", "place_hierarchy_node_2")
 //	.style("display", "none")
 	.attr("transform", d => {
+console.log(d);
 		return "translate(" + d.cx + ", " + d.cy + ")"
 	})
 	.attr("class", d => "place_hierarchy_2 place_hierarchy_2_" + d.text_id);
@@ -3514,6 +3516,7 @@ async function load_place_hierarchies()
 		{
 			let j = data.json_node_map.get(d.caption);
 			let radiusScaleFactor = j.steps[0].r / 30;
+console.log(j.caption + " - center, x : " + center.x + ", center.y : " + center.y);
 			data.place_hierarchies.set(d.caption, prepare_jellyfish_data(d, center, radiusScaleFactor));
 
 			visit(d, {}, (jn, status) => data.place_hierarchy_node_info_map.set(jn.node_id, {}));
