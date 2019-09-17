@@ -2,8 +2,10 @@
   width: 100vw;
   height: 100vh;
   display: flex;
+  touch-action: manipulation;
 }
 
+.node {}
 
 .label {
     font-size: 0.8rem;
@@ -11,14 +13,11 @@
     pointer-events: none;
 }
 
-.node {
-}
-
-.link {
-
-}
+.link {}
 
 .link.part-of {
     stroke-width: 0.5px;
     stroke: #999;
 }
+
+.reset {}

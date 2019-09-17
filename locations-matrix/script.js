@@ -33,6 +33,14 @@ var svg = d3.select('#matrix')
 	.attr('width', w + margin.left + margin.right)
 	.attr('height', h + margin.top + margin.bottom);
 
+var resetRect = svg.append('rect')
+	.classed('reset', true)
+	.attr('x', margin.left)
+	.attr('width', w)
+	.attr('height', h)
+	.attr('fill', 'transparent')
+	.on('click', reset);
+
 var g = svg.append('g').attr("transform", `translate(${margin.left},${margin.top})`);
 var xAxis = g.append("g").attr("class", "x-axis");
 var yAxis = g.append('g').attr("class", "y-axis");
@@ -41,7 +49,7 @@ var link = g.append('g').classed('links', true).selectAll('.link');
 var hull = g.append('g').classed('hulls', true).selectAll('.hull');
 var node = g.append('g').classed('nodes', true).selectAll('.node');
 var label = g.append('g').classed('labels', true).selectAll('.label');
-var information = g.append('g').classed('informations', true).selectAll('.information')
+var information = g.append('g').classed('informations', true).selectAll('.information');
 
 var x = d3.scaleTime()
 	.range([0, w]);
@@ -50,12 +58,14 @@ var y = d3.scalePoint()
 	.range([0, h])
 	.padding(0.5);
 
+// per sampare su A3 impostare range [15,75] e in DevTools dimensione 3150x2228
+
 var r = d3.scalePow().exponent(0.5)
-	.range([5,25])
+	.range([15,75])
+	.range([3.5,25]);
 
 var color = d3.scaleOrdinal()
 	.domain(categories)
-	//.range(d3.schemeCategory10)
 	.range(categoriesColors)
 
 var nodes = [],
@@ -66,12 +76,14 @@ var nodes = [],
 var simulation = d3.forceSimulation(nodes)
 	.force("charge", d3.forceManyBody().strength(-1))
 	.force("link", d3.forceLink(links)
-		.strength(function(d) { return d.kind == 'same_text' ? 0 : 0.6; })
-		.distance(20)
+		.strength( 0.35 )
+		.distance( r.range()[0] + 1 )
 		.id(function(d) { return d.id; })
 	)
 	.force("x", d3.forceX(function(d) { return d.x })
-		.strength(function(d) { return d.part_of == '' ? 0.7 : 0; })
+		.strength(function(d) {
+			return d.part_of == '' ? 0.7 : 0;
+		})
 	)
 	.force("y", d3.forceY(function(d) { return d.y })
 		.strength(function(d) { return d.part_of == '' ? 0.7 : 0; })
@@ -79,7 +91,7 @@ var simulation = d3.forceSimulation(nodes)
 	.force("collision", d3.forceCollide(function(d){
 			return d.opened ? r(1)+collisionPadding : r(d.totalSubNodes + 1)+collisionPadding
 		})
-		.iterations(4)
+		.iterations(32)
 		.strength(.5)
 	)
 	.on("tick", ticked);
@@ -105,19 +117,19 @@ function ticked() {
 }
 
 function dragged(d) {
-	d.fx = d3.event.x, d.fy = d3.event.y;
+	// d.fx = d3.event.x, d.fy = d3.event.y;
 	// d3.select(this).attr("cx", d.x).attr("cy", d.y);
-	// link.filter(function(l) { return l.source === d; }).attr("x1", d.x).attr("y1", d.y);
-	// link.filter(function(l) { return l.target === d; }).attr("x2", d.x).attr("y2", d.y);
-	ticked();
-	// simulation.alpha(1).restart();
+	// // link.filter(function(l) { return l.source === d; }).attr("x1", d.x).attr("y1", d.y);
+	// // link.filter(function(l) { return l.target === d; }).attr("x2", d.x).attr("y2", d.y);
+	// ticked();
+	// // simulation.alpha(1).restart();
 }
 
 function toggleSubnodes(d, noRestart) {
-	d.fx = null;
-	d.fy = null;
 	if (d.opened) {
 		d.opened = false;
+		d.fx = null;
+		d.fy = null;
 
 		var subNodes2Remove = [];
 		var hulls2Remove = [d.id]
@@ -166,6 +178,7 @@ function toggleSubnodes(d, noRestart) {
 		} )
 
 		if (noRestart != false) {
+			console.log('restart');
 			restart();
 		}
 
@@ -237,6 +250,16 @@ function closeAll() {
 	restart();
 }
 
+function reset() {
+	node.style('opacity', 1);
+	label.classed('selected', false).style('display', 'none');
+	// remove work title
+	information = information.data([], function(d) { return d.id; });
+	information.exit().remove();
+}
+
+var last = 0;
+
 function restart() {
 	// Apply the general update pattern to the nodes.
 	node = node.data(nodes, function(d) { return d.id; });
@@ -245,9 +268,10 @@ function restart() {
 		.classed('node', true)
 		.attr("cx", function(d) { return d.x })
 		.attr("cy", function(d) { return d.y })
-		.on('mouseenter', function(d){
+		.on('click', function(d){
+
 			node.filter(function(e){ return e.source != d.source; }).style('opacity', 0.1);
-			label.filter(function(e){ return d.id == e.id }).style('display', 'block');
+			label.filter(function(e){ return d.id == e.id }).classed('selected', true).style('display','block');
 
 			// show work title
 			information = information.data([d], function(d) { return d.id; });
@@ -260,17 +284,26 @@ function restart() {
 				.attr('y', h - 10)
 				.text( d => (x(d.year) >= w/2) ? d.sourceTitle + ' ↓' : '↓ ' + d.sourceTitle)
 				.merge(information);
+
+			// get the double tap
+			if ((d3.event.timeStamp - last) < 500) {
+				d.fx = d.x*1;
+				d.fy = d.y*1;
+				console.log(d);
+        toggleSubnodes(d);
+      }
+      last = d3.event.timeStamp;
+		})
+		.on('mouseenter', function(d){
+			label.filter(function(e){ return d.id == e.id }).style('display', 'block');
 		})
 		.on('mouseleave', function(d){
-			node.style('opacity', 1);
-			label.style('display', 'none');
-
-			// remove work title
-			information = information.data([], function(d) { return d.id; });
-			information.exit().remove();
-		})
-		.on('click', d => {
-			toggleSubnodes(d);
+			const isSelected = label.filter(function(e){ return d.id == e.id }).classed('selected');
+			if (!isSelected) {
+				label
+					.filter(function(e){ return d.id == e.id })
+					.style('display', 'none');
+			}
 		})
 		.call(d3.drag().on("drag", dragged))
 		.merge(node)
@@ -319,8 +352,12 @@ function restart() {
 		})
 		.style('opacity', .25)
 		.on('click', d => {
-			// console.log(d[0])
-			toggleSubnodes(d[0]);
+			d3.event.preventDefault;
+			// get the double tap
+			if ((d3.event.timeStamp - last) < 500) {
+        toggleSubnodes(d[0]);
+      }
+      last = d3.event.timeStamp;
 		})
 		.merge(hull);
 
@@ -334,7 +371,7 @@ function restart() {
 Promise.all([ d3.tsv('data.tsv') ]).then(function(data) {
 	var locations = data[0]
 		// .filter(function(d) { return +d.year >= 1963 && +d.year <= 1963 })
-		// .filter(function(d) { return +d.year >= 1962 && +d.year <= 1969 });
+		// .filter(function(d) { return +d.year >= 1960 && +d.year <= 1973 });
 
 	locations.forEach(function(d){ d.year = new Date(d.year); }) // convert all years in JS Date
 
