@@ -528,14 +528,14 @@ function prepare_jellyfish_data_2(jellyfish, center, radiusScaleFactor)
     level_maxTextLen_map,
     (d, level) => {
       let maxTextLen = level_maxTextLen_map.get(level) || 0;
-/*
+
       if(+d.level > 0)
       {
         let diagonal = Math.sqrt(d.bbox.width * d.bbox.width + d.bbox.height * d.bbox.height);
         level_maxTextLen_map.set(level, Math.max(maxTextLen, diagonal));
       }
-*/
-      level_maxTextLen_map.set(level, Math.max(maxTextLen, d.caption.length));
+
+//      level_maxTextLen_map.set(level, Math.max(maxTextLen, d.caption.length));
     });
 
   // set level 0 at length 0
@@ -544,13 +544,21 @@ function prepare_jellyfish_data_2(jellyfish, center, radiusScaleFactor)
   let textLenScaleFactor = 15;
 
   // force first item to the hill radius, scaled
-  level_maxTextLen_map.set(0, jellyfish.children[0].stripe_position.y * radiusScaleFactor / textLenScaleFactor);
+//  level_maxTextLen_map.set(0, jellyfish.children[0].stripe_position.y * radiusScaleFactor / textLenScaleFactor);
 
   let level_deltaRadius_map = MapToMap(
     level_maxTextLen_map,
-    d => d * textLenScaleFactor);
+    d => d * 1.25);
+//    d => d * textLenScaleFactor);
+
+//   // force first item to the hill radius, scaled
+  level_deltaRadius_map.set(0, jellyfish.children[0].stripe_position.y * radiusScaleFactor /* / textLenScaleFactor*/);
 
   let level_progressiveRadius_map = getProgressiveSumMap(level_deltaRadius_map);
+
+console.log(jellyfish.text_id);
+console.log(jellyfish.children[0].stripe_position.y * radiusScaleFactor);
+console.log(level_progressiveRadius_map);
 
   visit(
     jellyfish,
