@@ -488,17 +488,18 @@ console.log("getting bboxes...");
 		label_ids.forEach(
 			d => {
 				let bbox = document.getElementById(d).getBBox();
-				let jellyfish_node = data.place_hierarchy_node_map.get(d);
-				jellyfish_node.bbox = bbox;
+				let jellyfish_node_info = data.place_hierarchy_node_info_map.get(d);
+				jellyfish_node_info.bbox = bbox;
 			});
 
-/*
-		text_ph_labels.each(
-			d => {
-				let id = d.node_id;
-				let a = 6;
-			});
-*/
+		for(let [k, jellyfish] of data.place_hierarchies)
+		{
+			visit(
+				jellyfish,
+				{},
+				(jn, status) => jn.bbox = data.place_hierarchy_node_info_map.get(jn.node_id).bbox);
+		}
+
 console.log("data.place_hierarchies.size : " + data.place_hierarchies.size);
 
     // place_hierarchies
@@ -3365,7 +3366,7 @@ async function load_place_hierarchies()
 
 	let center = { x : 0, y : 0 };
 
-	data.place_hierarchy_node_map = new Map();
+	data.place_hierarchy_node_info_map = new Map();
 
 	place_hierarchies_json.hierarchies.forEach(d => {
 		if(d.caption != "Terra" && d.caption != "S152")
@@ -3374,7 +3375,7 @@ async function load_place_hierarchies()
 			let radiusScaleFactor = j.steps[0].r / 30;
 			data.place_hierarchies.set(d.caption, prepare_jellyfish_data(d, center, radiusScaleFactor));
 
-			visit(d, {}, (jn, status) => data.place_hierarchy_node_map.set(jn.node_id, j));
+			visit(d, {}, (jn, status) => data.place_hierarchy_node_info_map.set(jn.node_id, {}));
 		}
 	});
 
