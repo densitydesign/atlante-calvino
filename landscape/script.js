@@ -361,11 +361,6 @@ let metaballs = metaball_nodes
 			.attr("class", "place_hierarchy_node")
 			.attr("transform", function(d) {
 				if(!d.x || !d.y) return "";
-console.log(d);
-if(d.caption == "S014")
-{
-	console.log(`d.x : ${d.x}, d.y : ${d.y}, center.x : ${center.x}, center.y : ${center.y}`);
-}
 				return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 //			return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 			});
@@ -505,7 +500,8 @@ console.log("getting bboxes...");
 				{},
 				(jn, status) => jn.bbox = data.place_hierarchy_node_info_map.get(jn.node_id).bbox);
 
-			let radiusScaleFactor = 1;
+			let j = data.json_node_map.get(jellyfish.caption);
+			let radiusScaleFactor = j.steps[0].r / 30;
 
 			prepare_jellyfish_data_2(jellyfish, center, radiusScaleFactor);
 		}
@@ -542,13 +538,9 @@ let place_hierarchies_nodes_2 = place_hierarchies_group_2
 	.append("g")
 	.attr("class", "place_hierarchy_node_2")
 	.attr("transform", function(d) {
-console.log(d);
+
 		if(!d.x || !d.y) return "";
 
-if(d.caption == "S014")
-{
-	console.log(`d.x : ${d.x}, d.y : ${d.y}, center.x : ${center.x}, center.y : ${center.y}`);
-}
 		return 'scale(1,0.5773) translate(' + (d.x - center.x) + ',' + (d.y - center.y) + ')'
 	});
 
@@ -3544,8 +3536,6 @@ async function load_place_hierarchies()
 		let place_hierarchy = data.place_hierarchies.get(d.caption);
 		if(place_hierarchy)
 		{
-//console.log(place_hierarchy.caption + " - x : " + place_hierarchy.circle_position.x + ", y : " + place_hierarchy.circle_position.y);
-console.log(place_hierarchy.circle_position);
 			draw_jellyfish(d.graphical_ops, place_hierarchy, place_hierarchy.circle_position, place_hierarchy.caption);
 			data.place_hierarchies_graphics_item_map.set(d.caption, d);
 		}
@@ -3585,7 +3575,6 @@ function prepare_place_hierarchies_2()
 		let place_hierarchy = data.place_hierarchies.get(d.caption);
 		if(place_hierarchy)
 		{
-console.log(place_hierarchy.caption + " - x : " + place_hierarchy.circle_position.x + ", y : " + place_hierarchy.circle_position.y);
 			draw_jellyfish(d.graphical_ops, place_hierarchy, { x:0, y:0 } /*place_hierarchy.circle_position*/, place_hierarchy.caption);
 			data.place_hierarchies_graphics_item_map_2.set(d.caption, d);
 		}
