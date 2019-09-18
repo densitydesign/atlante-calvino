@@ -446,10 +446,17 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
 
     let captionLenSaturationValue = 35;
 
+    let diagonal = d.bbox ? Math.sqrt(d.bbox.width * d.bbox.width + d.bbox.height * d.bbox.height) : 0;
+    let diagonalScaleFactor = 1.4;
+
+    let radiusProposedValue = d.bbox ?
+      d.radius + diagonal * diagonalScaleFactor:
+      d.radius + 20 * Math.min(text_info.caption.length, captionLenSaturationValue);
+
     let start_point = {
       angle : line_angle,
       radius : Math.min(
-        d.radius + 20 * Math.min(text_info.caption.length, captionLenSaturationValue),
+        radiusProposedValue,
         d.children[0].radius - 10)
     };
 
