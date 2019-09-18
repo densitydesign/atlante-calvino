@@ -130,6 +130,6 @@ function draw_text(graphicsContainer, text_info, text_id)
     text_anchor : text_info.textAnchor,
     transform : "translate(" + (text_info.tx) + ", " + (text_info.ty) + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")",
     caption : text_info.caption,
-    caption_segments : split_text(text_info.caption, caption_split_threshold)
+    caption_segments : split_text(text_info.caption, caption_split_threshold).map(d => ({ text : d }))
   });
 }

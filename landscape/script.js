@@ -135,13 +135,19 @@ async function treat_json(json) {
 
 
 	data.place_hierarchies_graphics_items.forEach(d => {
-		let jn = data.json_node_map.get(d.id);
+		let jn = data.json_node_map.get(d.caption);
 
 		if(jn)
 		{
 			d.n_steps = jn.steps.length;
 			d.graphical_ops.forEach(grop => {
 				grop.hill_size = jn.size;
+				if(grop.caption_segments)
+				{
+					grop.caption_segments.forEach(cs => {
+						cs.hill_size = jn.size;
+					});
+				}
 			});
 //			d.r = jn.steps[0].r;
 		}
@@ -481,8 +487,12 @@ console.log(d);
 			.attr("dy", (d,i) => {
 				return (i>0) ? "1.35em" : "0";
 			})
+			.style("font-size", d => {
+				let a = 6;
+				return fontSizeScale(d.hill_size);
+			})
 			.classed("caption_segment", true)
-			.text(d => d);
+			.text(d => d ? d.text : "");
 
 
 console.log("getting bboxes...");
@@ -514,6 +524,25 @@ console.log("data.place_hierarchies.size : " + data.place_hierarchies.size);
       .remove();
 
 		prepare_place_hierarchies_2();
+
+		data.place_hierarchies_graphics_items_2.forEach(d => {
+			let jn = data.json_node_map.get(d.caption);
+
+			if(jn)
+			{
+				d.n_steps = jn.steps.length;
+				d.graphical_ops.forEach(grop => {
+					grop.hill_size = jn.size;
+					if(grop.caption_segments)
+					{
+						grop.caption_segments.forEach(cs => {
+							cs.hill_size = jn.size;
+						});
+					}
+				});
+	//			d.r = jn.steps[0].r;
+			}
+		});
 
 		json_nodes.forEach(d => {
 			let item = data.place_hierarchies_graphics_item_map_2.get(d.id);
@@ -637,8 +666,12 @@ text_ph_labels_2
 	.attr("dy", (d,i) => {
 		return (i>0) ? "1.35em" : "0";
 	})
+	.style("font-size", d => {
+		let a = 6;
+		return fontSizeScale(d.hill_size);
+	})
 	.classed("caption_segment", true)
-	.text(d => d);
+	.text(d => d.text);
 
 
 
