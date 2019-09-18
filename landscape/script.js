@@ -306,7 +306,7 @@ let metaballs = metaball_nodes
 		.selectAll(".metaball")
 		.transition()
 		.duration(450)
-		.style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
+		.attr("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
 
 	data.nebbia_color_scale = d3
 		.scaleLinear()
@@ -858,7 +858,7 @@ let metaballs = metaball_nodes
 		})
 		.endAngle(function(d, i) {
 			return 2 * PI;
-		});			
+		});
 
 ///////////////////////////////////////////
 
@@ -1044,7 +1044,7 @@ let metaballs = metaball_nodes
         d3.selectAll('.an-analysis').style('display', 'none');
 
 		if (!d3.select('#interface').classed("analysis-visible")) {
-			toggleAnalysis();
+			toggleAnalysis(analysis);
 		}
 
         switch (analysis) {
@@ -1103,7 +1103,7 @@ let metaballs = metaball_nodes
 		toggleAnalysis();
 	})
 
-	function toggleAnalysis() {
+	function toggleAnalysis(selectedAnalysis) {
 		 console.log('toggle analysis')
 		d3.select('#interface')
 			.classed("timeline-visible", false)
@@ -1113,6 +1113,10 @@ let metaballs = metaball_nodes
 		d3.selectAll('.toggle-legend').classed('active', false);
 		d3.selectAll('.toggle-timeline').classed('active', false);
 		d3.selectAll('.toggle-analysis').classed('active', d3.select('.toggle-analysis').classed("active") ? false : true)
+
+
+    // remove isometric view
+    removeIsometricView(selectedAnalysis);
 	}
 
 	d3.selectAll('.toggle-tutorial').on('click', function(d) {
@@ -1168,6 +1172,56 @@ let metaballs = metaball_nodes
 		resetAnalysis();
 	})
 
+  function removeIsometricView(analysis) {
+    // per sicurezza
+    resetAnalysis();
+
+    // handle transformation on svg elements
+    d3.selectAll('.node, .metaball_node').each( function(d){
+     const ttt = d3.select(this).attr('transform').split(' ');
+     if(ttt.length > 1) {
+      d3.select(this).transition()
+                .duration(1500)
+                .attr('transform', ttt[1]);
+     }
+    });
+
+    d3.selectAll('.metaball').attr('opacity', 1).attr('display', 'block');
+
+
+
+    d3.selectAll('.hill:not([first_elem="true"])')
+      .transition()
+        .duration(1500)
+        .style('display', 'none');
+
+    d3.selectAll('.hill[first_elem="true"]')
+      .attr('stroke-width', 5)
+
+    d3.selectAll('.dubitativePhenomena_level_2').attr('transform', 'translate(0, 0)');
+
+    // activate correct resetAnalysis
+    switch (analysis) {
+
+      case 'doubt-sphere':
+        console.log(analysis);
+        highlightHills('nebbia_words_ratio', data.nebbia_color_scale);
+        break;
+
+      case 'form-sphere':
+        console.log(analysis);
+        forma_secondo_lvl()
+        break;
+
+      case 'realism-sphere':
+        console.log(analysis);
+        highlightHills('n_nominato_non_terrestre', data.nominato_non_terrestre_color_scale);
+        break;
+
+    }
+
+  }
+
 	function resetAnalysis(){
 
 		highlightHills();
@@ -1192,17 +1246,17 @@ let metaballs = metaball_nodes
 		text_nodes
 			.selectAll('.lists_level_3')
 			.style('fill-opacity', 0)
-			.style('stroke-opacity', 0);            
+			.style('stroke-opacity', 0);
 	}
 
     // Dubbio
     d3.select('#dubbio-first-lvl-nebbia').on('click', function(){
 		  resetAnalysis();
-      highlightHills('nebbia_words_ratio', data.cancellazione_color_scale);
+      highlightHills('nebbia_words_ratio', data.nebbia_color_scale);
     })
     d3.select('#dubbio-first-lvl-cancellazione').on('click', function(){
 		resetAnalysis();
-        highlightHills('cancellazione_words_ratio', data.nebbia_color_scale);
+        highlightHills('cancellazione_words_ratio', data.cancellazione_color_scale);
     })
 	d3.select('#dubbio-second-lvl').on('click', function(){
 		resetAnalysis();
@@ -1274,31 +1328,35 @@ let metaballs = metaball_nodes
 
 	// forma
 	d3.select('#forma-secondo-lvl').on('click', function(){
-		resetAnalysis();
-  
-		text_nodes
-			.selectAll('.hill')
-			.filter(d => !d.lists_are_present)
-			.transition()
-			.duration(450)
-			.style('fill-opacity', 0)
-			.style('stroke-opacity', 0.3);
-
-		text_nodes
-			.selectAll('.hill')
-			.filter(d => d.lists_are_present)
-			.transition()
-			.duration(450)
-      .style('fill', 'white')
-			.style('fill-opacity', 1)
-			.style('stroke-opacity', 1);
-
-		// donuts
-		text_nodes
-			.selectAll('.lists_level_2')
-			.style('fill-opacity', 1)
-			.style('stroke-opacity', 1);
+    forma_secondo_lvl()
 	})
+  function forma_secondo_lvl() {
+    resetAnalysis();
+
+    text_nodes
+      .selectAll('.hill')
+      .filter(d => !d.lists_are_present)
+      .transition()
+      .duration(450)
+      .style('fill-opacity', 0)
+      .style('stroke-opacity', 0.3);
+
+    text_nodes
+      .selectAll('.hill')
+      .filter(d => d.lists_are_present)
+      .transition()
+      .duration(450)
+      .style('fill', 'white')
+      .style('fill-opacity', 1)
+      .style('stroke-opacity', 1);
+
+    // donuts
+    text_nodes
+      .selectAll('.lists_level_2')
+      .style('fill-opacity', 1)
+      .style('stroke-opacity', 1);
+  }
+
 
 	d3.select('#forma-terzo-lvl').on('click', function(){
 		resetAnalysis();
@@ -1425,7 +1483,7 @@ let metaballs = metaball_nodes
 						.selectAll(".metaball")
 						.transition()
 						.duration(450)
-						.style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
+						.attr("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 1 : 0; });
 				} else if("0123456789".includes(eventKey)) {
 					let collectionId = collections[+eventKey].id;
 
@@ -1438,13 +1496,13 @@ let metaballs = metaball_nodes
 							.selectAll(".metaball." + collectionClass)
 							.transition()
 							.duration(450)
-							.style("stroke-opacity", 1);
+							.attr("stroke-opacity", 1);
 					} else {
 						metaballs
 							.selectAll(".metaball." + collectionClass)
 							.transition()
 							.duration(450)
-							.style("stroke-opacity", 0);
+							.attr("stroke-opacity", 0);
 					}
 				} else if(eventKey == " ") {
 					resetAnalysis();
