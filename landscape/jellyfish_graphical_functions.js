@@ -119,7 +119,19 @@ function draw_text(graphicsContainer, text_info, text_id)
 {
   let caption_split_threshold = 19;
 
-  graphicsContainer.push({
+  let jn = data.json_node_map.get(text_info.text_id);
+//if(jn) console.log("jn.hill_size : " + jn.size);
+
+if(text_info.inLeftEmicircle)
+{
+  console.log("angle : " + text_info.angle);
+}
+
+  let hillSizeScalingFactor = 30;
+  let tx = text_info.inLeftEmicircle ? text_info.tx - Math.cos(text_info.angle) * jn.size / hillSizeScalingFactor : text_info.tx;
+  let ty = text_info.inLeftEmicircle ? text_info.ty - Math.sin(text_info.angle) * jn.size / hillSizeScalingFactor : text_info.ty;
+
+  let graphical_operation = {
     type : "text",
     node_id : text_info.node_id,
     text_id : text_id,
@@ -128,8 +140,25 @@ function draw_text(graphicsContainer, text_info, text_id)
     dy : ".35em",
     dx : "1em",
     text_anchor : text_info.textAnchor,
-    transform : "translate(" + (text_info.tx) + ", " + (text_info.ty) + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")",
+    transform : "translate(" + tx + ", " + ty + ") rotate(" + (text_info.angle * 360 / (2 * Math.PI)) + ")",
     caption : text_info.caption,
     caption_segments : split_text(text_info.caption, caption_split_threshold).map(d => ({ text : d }))
-  });
+  };
+
+
+
+  if(jn)
+  {
+    graphical_operation.n_steps = jn.steps.length;
+
+    graphical_operation.hill_size = jn.size;
+    if(graphical_operation.caption_segments)
+    {
+      graphical_operation.caption_segments.forEach(cs => {
+        cs.hill_size = jn.size;
+      });
+    }
+  }
+
+  graphicsContainer.push(graphical_operation);
 }

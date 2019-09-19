@@ -525,6 +525,7 @@ console.log("data.place_hierarchies.size : " + data.place_hierarchies.size);
 
 		prepare_place_hierarchies_2();
 
+/*
 		data.place_hierarchies_graphics_items_2.forEach(d => {
 			let jn = data.json_node_map.get(d.caption);
 
@@ -543,6 +544,7 @@ console.log("data.place_hierarchies.size : " + data.place_hierarchies.size);
 	//			d.r = jn.steps[0].r;
 			}
 		});
+*/
 
 		json_nodes.forEach(d => {
 			let item = data.place_hierarchies_graphics_item_map_2.get(d.id);
@@ -619,7 +621,7 @@ place_hierarchies_2
 	.attr("class", "place_hierarchy_node_2")
 //	.style("display", "none")
 	.attr("transform", d => {
-console.log(d);
+//console.log(d);
 		return "translate(" + d.cx + ", " + d.cy + ")"
 	})
 	.attr("class", d => "place_hierarchy_2 place_hierarchy_2_" + d.text_id);

@@ -416,6 +416,10 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
 
   let textColor;
 
+//if(d.hill_size) console.log("d.hill_size : " + d.hill_size);
+console.log("d :");
+console.log(d);
+
   switch(d.local_type)
   {
       case "generico_terrestre"     : textColor = "orange";   break;
@@ -427,13 +431,15 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
   }
 
   let text_info = {
+    text_id : d.text_id,
     node_id : d.node_id,
     angle : inLeftEmicircle ? d.angle + Math.PI : d.angle,
     textColor : textColor,
     textAnchor : inLeftEmicircle ? "end" : "start",
     tx : center.x + (d.radius + (inLeftEmicircle ? textDistance1 : textDistance2)) * Math.cos(d.angle),
     ty : center.y + (d.radius + (inLeftEmicircle ? textDistance1 : textDistance2)) * Math.sin(d.angle),
-    caption : d.caption
+    caption : d.caption,
+    inLeftEmicircle : inLeftEmicircle
   };
 
   if(d.level > 0) draw_point(graphicsContainer, d.circle_position, textColor, text_id);
