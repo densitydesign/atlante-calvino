@@ -554,14 +554,14 @@ function prepare_jellyfish_data_2(jellyfish, center, radiusScaleFactor)
   // set level 0 at length 0
   level_maxTextLen_map.set(0, 0);
 
-  let textLenScaleFactor = 15;
+  let bboxSizeScaleFactor = 2; //1.25;
 
   // force first item to the hill radius, scaled
 //  level_maxTextLen_map.set(0, jellyfish.children[0].stripe_position.y * radiusScaleFactor / textLenScaleFactor);
 
   let level_deltaRadius_map = MapToMap(
     level_maxTextLen_map,
-    d => d * 1.25);
+    d => d * bboxSizeScaleFactor);
 //    d => d * textLenScaleFactor);
 
 //   // force first item to the hill radius, scaled
