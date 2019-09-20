@@ -105,11 +105,11 @@ function draw_arc(graphicsContainer, arc, color, text_id)
 
 function split_text(text, threshold)
 {
-console.log("split_text(" + text + ", " + threshold + ")");
+//console.log("split_text(" + text + ", " + threshold + ")");
   if(text.length <= threshold) return [text];
 
   let i = text.indexOf(" ", threshold);
-console.log("i : " + i);  
+//console.log("i : " + i);  
   if(i >= 0)
   {
     let s1 = text.substring(0, i);

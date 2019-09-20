@@ -3612,6 +3612,7 @@ function prepare_place_hierarchies_2()
 		let place_hierarchy = data.place_hierarchies.get(d.caption);
 		if(place_hierarchy)
 		{
+console.log("drawing jellyfish 2...");			
 			draw_jellyfish(d.graphical_ops, place_hierarchy, { x:0, y:0 } /*place_hierarchy.circle_position*/, place_hierarchy.caption);
 			data.place_hierarchies_graphics_item_map_2.set(d.caption, d);
 		}

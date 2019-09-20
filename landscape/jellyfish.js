@@ -272,11 +272,9 @@ function split_texts(hierarchy)
       for(let i = 0; i < d.children.length; ++i)
       {
         let child = d.children[i];
-console.log("-----------------------------");
-console.log("child.node_id : " + child.node_id);
-console.log("child.caption : " + child.caption);
+
         let caption_segments = split_text(child.caption, caption_split_threshold);
-console.log(caption_segments);
+
         child.caption = caption_segments[0];
         child.hasPoint = true;
         children2.push(child);
@@ -286,6 +284,7 @@ console.log(caption_segments);
           let parachild_j = {
             text_id    : child.text_id,
             node_id    : child.node_id + "_" + j,
+            family     : child.node_id,
             caption    : caption_segments[j],
             hasPoint   : false,
             level      : child.level,
@@ -454,6 +453,10 @@ console.log("d.radius : " + d.radius);
 function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
 {
   let inLeftEmicircle = Math.PI / 2 < d.angle && d.angle < 3 * Math.PI / 2;
+
+//if(d.text_id === "V021") console.log("setting inLeftEmicircle(text_id : " + d.text_id + ")");
+  d.inLeftEmicircle = inLeftEmicircle;
+
   let textDistanceFactor = 1; //1.5;
   let textDistanceFactor2 = 1.15;
   let textDistance1 = 30;
@@ -579,7 +582,27 @@ function draw_jellyfish(graphicsContainer, jellyfish, center, text_id)
 
 function prepare_jellyfish_data_2(jellyfish, center, radiusScaleFactor)
 {
+console.log("prepare_jellyfish_data_2()");
   var level_maxTextLen_map = new Map();
+
+  visit(
+    jellyfish,
+    {},
+    d => {
+      for(let i = 0; i < d.children.length; ++i)
+      {
+        if(!d.children[i].hasPoint && d.children[i].inLeftEmicircle)
+        {
+console.log("exchanging data...");
+//          d.children[i].caption = "xxx";
+          [d.children[i - 1], d.children[i]] = [d.children[i], d.children[i - 1]];
+          [d.children[i - 1].angle, d.children[i].angle] = [d.children[i].angle, d.children[i - 1].angle];
+
+          let deltaAngle = d.children[i - 1].angle - d.children[i].angle;
+          d.children[i].angle += deltaAngle * 0.4;
+        }
+      }
+    });
 
   visit_levels(
     jellyfish,
