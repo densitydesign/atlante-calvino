@@ -482,7 +482,7 @@ function handleHierarchies(nodes) {
 		})
 	// console.log(hierarchies);
 	// set domain of the radii scale
-	r.domain([1,d3.max(nodes, function(d){ return d.totalSubNodes })])
+	console.log('remember to: "r.domain([1,d3.max(nodes, function(d){ return d.totalSubNodes })])""')
 	// return array of hierarchical nodes
 	return hierarchies.filter(function(d){ return d.key == '' })[0].values;
 }
