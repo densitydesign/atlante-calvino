@@ -93,6 +93,7 @@ function process_hierarchy_continuously(hierarchy, x, y)
     text_id : hierarchy.text_id,
     node_id : hierarchy.node_id,
     caption : hierarchy.caption,
+    hasPoint : hierarchy.hasPoint,
     level : hierarchy.level,
     basal_type : hierarchy.basal_type,
     local_type : hierarchy.local_type,
@@ -258,8 +259,46 @@ function MapToMap(map, f)
   return map2;
 }
 
+function split_texts(hierarchy)
+{
+  visit(
+    hierarchy,
+    {},
+    d => {
+      let children2 = [];
+
+      for(let i = 0; i < d.children.length; ++i)
+      {
+        let child = d.children[i];
+        let caption_segments = split_text(child.caption);
+        child.caption = caption_segments[0];
+        child.hasPoint = true;
+        children2.push(child);
+
+        for(let j = 1; j < caption_segments.length; ++j)
+        {
+          let parachild_j = {
+            text_id    : child.text_id,
+            node_id    : child.node_id + "_" + j,
+            caption    : caption_segments[j],
+            hasPoint   : false,
+            level      : child.level,
+            basal_type : child.basal_type,
+            local_type : child.local_type,
+            children   : []
+          }
+
+          children2.push(parachild_j);
+        }
+      }
+
+      d.children = children2;
+    });
+}
+
 function prepare_jellyfish_data(hierarchy, center, radiusScaleFactor)
 {
+  split_texts(hierarchy);
   let jellyfish = process_hierarchy_continuously(hierarchy, 0, 0);
 
   let status2 = { extremes : { min_x : 1000000, max_x : 0 } };
@@ -442,7 +481,7 @@ console.log(d);
     inLeftEmicircle : inLeftEmicircle
   };
 
-  if(d.level > 0) draw_point(graphicsContainer, d.circle_position, textColor, text_id);
+  if(d.level > 0 && d.hasPoint) draw_point(graphicsContainer, d.circle_position, textColor, text_id);
 
   if(d.level > 0) draw_text(graphicsContainer, text_info, text_id);
 
