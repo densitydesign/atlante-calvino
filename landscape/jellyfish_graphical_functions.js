@@ -105,7 +105,11 @@ function draw_arc(graphicsContainer, arc, color, text_id)
 
 function split_text(text, threshold)
 {
+console.log("split_text(" + text + ", " + threshold + ")");
+  if(text.length <= threshold) return [text];
+
   let i = text.indexOf(" ", threshold);
+console.log("i : " + i);  
   if(i >= 0)
   {
     let s1 = text.substring(0, i);
@@ -122,10 +126,10 @@ function draw_text(graphicsContainer, text_info, text_id)
   let jn = data.json_node_map.get(text_info.text_id);
 //if(jn) console.log("jn.hill_size : " + jn.size);
 
-if(text_info.inLeftEmicircle)
-{
-  console.log("angle : " + text_info.angle);
-}
+//if(text_info.inLeftEmicircle)
+//{
+//  console.log("angle : " + text_info.angle);
+//}
 
   let hillSizeScalingFactor = 30;
   let tx = text_info.inLeftEmicircle ? text_info.tx - Math.cos(text_info.angle) * jn.size / hillSizeScalingFactor : text_info.tx;

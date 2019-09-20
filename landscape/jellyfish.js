@@ -261,6 +261,8 @@ function MapToMap(map, f)
 
 function split_texts(hierarchy)
 {
+  let caption_split_threshold = 19;
+
   visit(
     hierarchy,
     {},
@@ -270,7 +272,11 @@ function split_texts(hierarchy)
       for(let i = 0; i < d.children.length; ++i)
       {
         let child = d.children[i];
-        let caption_segments = split_text(child.caption);
+console.log("-----------------------------");
+console.log("child.node_id : " + child.node_id);
+console.log("child.caption : " + child.caption);
+        let caption_segments = split_text(child.caption, caption_split_threshold);
+console.log(caption_segments);
         child.caption = caption_segments[0];
         child.hasPoint = true;
         children2.push(child);
@@ -456,8 +462,8 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
   let textColor;
 
 //if(d.hill_size) console.log("d.hill_size : " + d.hill_size);
-console.log("d :");
-console.log(d);
+//console.log("d :");
+//console.log(d);
 
   switch(d.local_type)
   {
@@ -608,9 +614,9 @@ function prepare_jellyfish_data_2(jellyfish, center, radiusScaleFactor)
 
   let level_progressiveRadius_map = getProgressiveSumMap(level_deltaRadius_map);
 
-console.log(jellyfish.text_id);
-console.log(jellyfish.children[0].stripe_position.y * radiusScaleFactor);
-console.log(level_progressiveRadius_map);
+//console.log(jellyfish.text_id);
+//console.log(jellyfish.children[0].stripe_position.y * radiusScaleFactor);
+//console.log(level_progressiveRadius_map);
 
   visit(
     jellyfish,
