@@ -127,6 +127,14 @@ svg:active {
   letter-spacing: 0.02rem;
 }
 
+.place_hierarchy {
+  font-family: "HK Grotesk";
+}
+
+.jellyfish_node {
+  cursor: pointer;
+}
+
 .label .white-shadow {
   stroke: white;
   stroke-width: 0.4rem;
