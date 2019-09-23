@@ -597,15 +597,69 @@ console.log("prepare_jellyfish_data_2()");
     d => {
       for(let i = 0; i < d.children.length; ++i)
       {
-        if(!d.children[i].hasPoint && d.children[i].inLeftEmicircle)
+        if(!d.children[i].hasPoint)
         {
-console.log("exchanging data...");
-//          d.children[i].caption = "xxx";
-          [d.children[i - 1], d.children[i]] = [d.children[i], d.children[i - 1]];
-          [d.children[i - 1].angle, d.children[i].angle] = [d.children[i].angle, d.children[i - 1].angle];
+console.log("i : " + d.children[i].caption + " - emicircle : " + (d.children[i].inLeftEmicircle ? "left" : "right") + " - radius : " + d.children[i].radius);
+console.log("i-1 : " + d.children[i - 1].caption + " - emicircle : " + (d.children[i - 1].inLeftEmicircle ? "left" : "right") + " - radius : " + d.children[i - 1].radius);
 
-          let deltaAngle = d.children[i - 1].angle - d.children[i].angle;
-          d.children[i].angle += deltaAngle * 0.4;
+          if(d.children[i - 1].inLeftEmicircle)
+          {
+            // L -> L
+            if(d.children[i].inLeftEmicircle)
+            {
+              [d.children[i - 1], d.children[i]] = [d.children[i], d.children[i - 1]];
+              [d.children[i - 1].angle, d.children[i].angle] = [d.children[i].angle, d.children[i - 1].angle];
+
+              let deltaAngle = d.children[i - 1].angle - d.children[i].angle;
+              let wantedDeltaDegrees = 2;
+
+//              d.children[i].angle += deltaAngle * 0.4;
+              d.children[i - 1].angle = d.children[i].angle - (wantedDeltaDegrees / 360 * 2 * Math.PI); // move on the first line of the double line text
+            }
+            // L -> R
+            else
+            {
+              let deltaAngle = d.children[i - 1].angle - d.children[i].angle;
+              let wantedDeltaDegrees = 2;
+
+              // NOTE : this fix works if the pair (first line, second line) is the last one in the arc. if there are further nodes, they will have to be moved too
+              d.children[i].angle = d.children[i - 1].angle - (wantedDeltaDegrees / 360 * 2 * Math.PI); // move on the first line of the double line text
+
+/*
+              // and now fix what is the second line of the double line text
+              if(d.children[i - 1].inLeftEmicircle)
+              {
+//console.log("i : in right, i - 1 : in left");
+                d.children[i - 1].angle = d.children[i].angle + (wantedDeltaDegrees / 360 * 2 * Math.PI);
+              }
+              else
+              {
+//console.log("i : in right, i - 1 : in right");
+                d.children[i - 1].angle = d.children[i].angle + (wantedDeltaDegrees / 360 * 2 * Math.PI);
+              }
+*/
+            }
+          }
+          else
+          {
+            // R -> L
+            if(d.children[i].inLeftEmicircle)
+            {
+              let deltaAngle = d.children[i - 1].angle - d.children[i].angle;
+              let wantedDeltaDegrees = 2;
+
+              // NOTE : this fix works if the pair (first line, second line) is the last one in the arc. if there are further nodes, they will have to be moved too
+              d.children[i].angle = d.children[i - 1].angle + (wantedDeltaDegrees / 360 * 2 * Math.PI); // move on the first line of the double line text
+            }
+            else
+            {
+              let deltaAngle = d.children[i - 1].angle - d.children[i].angle;
+              let wantedDeltaDegrees = 2;
+
+              // NOTE : this fix works if the pair (first line, second line) is the last one in the arc. if there are further nodes, they will have to be moved too
+              d.children[i].angle = d.children[i - 1].angle + (wantedDeltaDegrees / 360 * 2 * Math.PI); // move on the first line of the double line text              
+            }
+          }
         }
       }
     });
