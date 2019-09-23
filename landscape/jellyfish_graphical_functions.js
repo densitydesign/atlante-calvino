@@ -109,7 +109,7 @@ function split_text(text, threshold)
   if(text.length <= threshold) return [text];
 
   let i = text.indexOf(" ", threshold);
-//console.log("i : " + i);  
+//console.log("i : " + i);
   if(i >= 0)
   {
     let s1 = text.substring(0, i);
@@ -126,11 +126,15 @@ function draw_text(graphicsContainer, text_info, text_id)
   let jn = data.json_node_map.get(text_info.text_id);
 //if(jn) console.log("jn.hill_size : " + jn.size);
 
-//if(text_info.inLeftEmicircle)
-//{
-//  console.log("angle : " + text_info.angle);
-//}
+/*
+if(text_info.node_id === "V009@Torino@Cottolengo_o_Piccola_Casa_della_Divina_Provvidenza_1")
+{
+  console.log("node_id : " + text_info.node_id);
 
+  text_info.angle = 3.8289838666829445;
+  console.log("angle : " + text_info.angle);
+}
+*/
   let hillSizeScalingFactor = 30;
   let tx = text_info.inLeftEmicircle ? text_info.tx - Math.cos(text_info.angle) * jn.size / hillSizeScalingFactor : text_info.tx;
   let ty = text_info.inLeftEmicircle ? text_info.ty - Math.sin(text_info.angle) * jn.size / hillSizeScalingFactor : text_info.ty;

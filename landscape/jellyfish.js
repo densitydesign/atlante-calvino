@@ -450,9 +450,14 @@ console.log("d.radius : " + d.radius);
   return jellyfish;
 }
 
+function angleIsInLeftEmicircle(angle)
+{
+  return Math.PI / 2 < angle && angle < 3 * Math.PI / 2;
+}
+
 function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
 {
-  let inLeftEmicircle = Math.PI / 2 < d.angle && d.angle < 3 * Math.PI / 2;
+  let inLeftEmicircle = angleIsInLeftEmicircle(d.angle);
 
 //if(d.text_id === "V021") console.log("setting inLeftEmicircle(text_id : " + d.text_id + ")");
   d.inLeftEmicircle = inLeftEmicircle;
@@ -478,14 +483,46 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
       case "no_ambientazione"       : textColor = "darkgrey";  break;
   }
 
+  let angle, textDistance;
+
+  if(d.changeTextRotation)
+  {
+    if(inLeftEmicircle)
+    {
+console.log("CL");
+console.log("textDistance1 : " + textDistance1);
+       angle = d.angle;
+       textDistance = textDistance1 + 50;
+    }
+    else
+    {
+console.log("CR");
+      angle = d.angle + Math.PI;
+      textDistance = textDistance2;
+    }
+  }
+  else
+  {
+    if(inLeftEmicircle)
+    {
+      angle = d.angle + Math.PI;
+      textDistance = textDistance1;
+    }
+    else
+    {
+      angle = d.angle;
+      textDistance = textDistance2;
+    }
+  }
+
   let text_info = {
     text_id : d.text_id,
     node_id : d.node_id,
-    angle : inLeftEmicircle ? d.angle + Math.PI : d.angle,
+    angle : angle,
     textColor : textColor,
     textAnchor : inLeftEmicircle ? "end" : "start",
-    tx : center.x + (d.radius + (inLeftEmicircle ? textDistance1 : textDistance2)) * Math.cos(d.angle),
-    ty : center.y + (d.radius + (inLeftEmicircle ? textDistance1 : textDistance2)) * Math.sin(d.angle),
+    tx : center.x + (d.radius + textDistance) * Math.cos(d.angle),
+    ty : center.y + (d.radius + textDistance) * Math.sin(d.angle),
     caption : d.caption,
     inLeftEmicircle : inLeftEmicircle
   };
@@ -588,7 +625,7 @@ function draw_jellyfish(graphicsContainer, jellyfish, center, text_id)
 
 function prepare_jellyfish_data_2(jellyfish, center, radiusScaleFactor)
 {
-console.log("prepare_jellyfish_data_2()");
+//console.log("prepare_jellyfish_data_2()");
   var level_maxTextLen_map = new Map();
 
   visit(
@@ -599,8 +636,8 @@ console.log("prepare_jellyfish_data_2()");
       {
         if(!d.children[i].hasPoint)
         {
-console.log("i : " + d.children[i].node_id + " - " + d.children[i].caption + " - emicircle : " + (d.children[i].inLeftEmicircle ? "left" : "right") + " - radius : " + d.children[i].radius);
-console.log("i-1 : " + d.children[i - 1].node_id + " - " + d.children[i - 1].caption + " - emicircle : " + (d.children[i - 1].inLeftEmicircle ? "left" : "right") + " - radius : " + d.children[i - 1].radius);
+//console.log("i : " + d.children[i].node_id + " - " + d.children[i].caption + " - emicircle : " + (d.children[i].inLeftEmicircle ? "left" : "right") + " - radius : " + d.children[i].radius);
+//console.log("i-1 : " + d.children[i - 1].node_id + " - " + d.children[i - 1].caption + " - emicircle : " + (d.children[i - 1].inLeftEmicircle ? "left" : "right") + " - radius : " + d.children[i - 1].radius);
 
           if(d.children[i - 1].inLeftEmicircle)
           {
@@ -655,11 +692,19 @@ console.log("i-1 : " + d.children[i - 1].node_id + " - " + d.children[i - 1].cap
             // R -> L
             if(d.children[i].inLeftEmicircle)
             {
+console.log("L -> R");
+console.log("d.children[i].angle : " + d.children[i].angle);
+console.log("d.children[i].node_id : " + d.children[i].node_id);
+
               let deltaAngle = d.children[i - 1].angle - d.children[i].angle;
-              let wantedDeltaDegrees = 2;
+
+              // Tuning : this should be a function of the radius
+              let wantedDeltaDegrees = 5;
 
               // NOTE : this fix works if the pair (first line, second line) is the last one in the arc. if there are further nodes, they will have to be moved too
               d.children[i].angle = d.children[i - 1].angle + (wantedDeltaDegrees / 360 * 2 * Math.PI); // move on the first line of the double line text
+
+              if(angleIsInLeftEmicircle(d.children[i].angle)) d.children[i].changeTextRotation = true;
             }
             // R -> R
             else
