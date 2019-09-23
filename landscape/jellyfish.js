@@ -558,12 +558,18 @@ function draw_jellyfish_node(graphicsContainer, d, status, center, text_id)
       }
       else
       {
+        let firstNodeWithPoint = d.children.find(d => d.hasPoint);
+
+        const reverted_children = [...d.children];
+        reverted_children.reverse();
+        let lastNodeWithPoint = reverted_children.find(d => d.hasPoint);
+
         let arc = {
           center : center,
           radius : d.children[0].radius,
           width : arcWidth,
-          startAngle : (d.children[0].angle + Math.PI / 2),
-          endAngle : (d.children[d.children.length - 1].angle + Math.PI / 2)
+          startAngle : firstNodeWithPoint.angle + Math.PI / 2,
+          endAngle : lastNodeWithPoint.angle + Math.PI / 2
         };
 
         draw_arc(graphicsContainer, arc, d.color, text_id);
