@@ -593,7 +593,7 @@ place_hierarchies_2
 	.attr("fill", d => d.fill)
 	.attr("class", d => "place_hierarchy_2 place_hierarchy_2_" + d.text_id)
 	.attr("d", drawplace_hierarchyArc)
-//	.style("display", "none")
+	.style("display", "none")
 	.attr("transform", d => {
 		 "translate(" + d.center.x + ", " + d.center.y + ")"
 	});
@@ -607,7 +607,7 @@ place_hierarchies_2
 	.attr("y2", d => d.y2)
 	.attr("stroke", d => d.stroke)
 	.attr("stroke-width", d => d.stroke_width)
-//	.style("display", "none")
+	.style("display", "none")
 	.attr("class", d => "place_hierarchy_2 place_hierarchy_2_" + d.text_id);
 
 place_hierarchies_2
@@ -618,7 +618,7 @@ place_hierarchies_2
 	.attr('stroke-width', 2)
 	.attr('r', d => d.r)
 	.attr("class", "place_hierarchy_node_2")
-//	.style("display", "none")
+	.style("display", "none")
 	.attr("transform", d => {
 //console.log(d);
 		return "translate(" + d.cx + ", " + d.cy + ")"
@@ -643,7 +643,8 @@ let text_ph_labels_2 = place_hierarchies_2
 	})
 	.attr("dy", d => d.dy)
 	.attr("dx", d => d.dx)
-	.style("opacity", 1)
+//	.style("opacity", 0)
+	.style("display", "none")
 	.style("text-anchor", d => d.text_anchor)
 	.attr("transform", d => {
 		return d.transform;
@@ -1655,8 +1656,8 @@ console.log("bbox : " + bbox);
 			.selectAll(".places")
 			.style("fill-opacity", 0);
 
-		place_hierarchies
-			.selectAll('.place_hierarchy_' + id)
+		place_hierarchies_2
+			.selectAll('.place_hierarchy_2_' + id)
 			.style('display', 'block')
 	}
 
@@ -1716,8 +1717,8 @@ console.log("bbox : " + bbox);
 			.selectAll('.lists_level_3')
 			.style('fill-opacity', 0)
 			.style('stroke-opacity', 0);
-		place_hierarchies
-			.selectAll('.place_hierarchy')
+		place_hierarchies_2
+			.selectAll('.place_hierarchy_2')
 			.style('display', 'none')
 
 		metaballs
@@ -1952,8 +1953,8 @@ console.log("bbox : " + bbox);
 		d3.selectAll(".hill")
 			.style('fill', 'white');
 
-		place_hierarchies
-			.selectAll('.place_hierarchy')
+		place_hierarchies_2
+			.selectAll('.place_hierarchy_2')
 			.style('display', 'block')
 	});
 
@@ -3612,7 +3613,7 @@ function prepare_place_hierarchies_2()
 		let place_hierarchy = data.place_hierarchies.get(d.caption);
 		if(place_hierarchy)
 		{
-console.log("drawing jellyfish 2...");			
+console.log("drawing jellyfish 2...");
 			draw_jellyfish(d.graphical_ops, place_hierarchy, { x:0, y:0 } /*place_hierarchy.circle_position*/, place_hierarchy.caption);
 			data.place_hierarchies_graphics_item_map_2.set(d.caption, d);
 		}
