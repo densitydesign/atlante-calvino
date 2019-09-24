@@ -712,24 +712,30 @@ console.log("d.children[i].node_id : " + d.children[i].node_id);
               let deltaAngle = d.children[i - 1].angle - d.children[i].angle;
               let wantedDeltaDegrees = 2;
 
-              // NOTE : this fix works if the pair (first line, second line) is the last one in the arc. if there are further nodes, they will have to be moved too
-//              d.children[i].angle = d.children[i - 1].angle + (wantedDeltaDegrees / 360 * 2 * Math.PI); // move on the first line of the double line text
-
-//              d.children[i].angle += deltaAngle * 0.4;
-
-
               // Tuning : for this precise node, this angle adjustment method is preferred
               if(d.children[i - 1].node_id === "V021@università@Istituto_di_lingue_e_letterature_botno-ugriche")
               {
-                d.children[i].angle += deltaAngle * 0.4;
+                if(i === d.children.length - 1)
+                {
+                  d.children[i - 1].angle -= deltaAngle * 0.4;
+                }
+                else
+                {
+                  d.children[i].angle += deltaAngle * 0.4;
+                }
               }
               // for all the others, this technique fits better
               else
               {
-                d.children[i - 1].angle = d.children[i].angle - (wantedDeltaDegrees / 360 * 2 * Math.PI); // move on the first line of the double line text
+                if(i === d.children.length - 1)
+                {
+                  d.children[i - 1].angle = d.children[i].angle - (wantedDeltaDegrees / 360 * 2 * Math.PI); // move on the first line of the double line text
+                }
+                else
+                {
+                  d.children[i].angle = d.children[i - 1].angle + (wantedDeltaDegrees / 360 * 2 * Math.PI); // move back the last line of the double line text
+                }
               }
-
-
             }
           }
         }
