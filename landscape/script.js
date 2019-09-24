@@ -1939,16 +1939,18 @@ console.log("bbox : " + bbox);
 
 		text_nodes
 			.selectAll('.hill')
+			.filter(d => !d.first_elem)
 			.transition()
 			.duration(250)
-			.style('stroke-opacity', 0.2)
+			.style('stroke-opacity', 0)
+			.style('fill-opacity', 0)
 			.style('stroke', stepBorderColor);
 
 			metaballs
 				.selectAll(".metaball")
 				.transition()
 				.duration(450)
-				.style("stroke-opacity", function(d) { return metaballsVisible[d.collection] ? 0.2 : 0; });
+				.style("stroke-opacity", 0);
 
 		d3.selectAll(".hill")
 			.style('fill', 'white');
