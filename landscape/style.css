@@ -250,10 +250,12 @@ svg:active {
 }
 
 #timeline .handle {
-  fill: transparent;
+  fill:tomato;
+  height:20px;
   opacity: 1;
   stroke: none;
   stroke-width: 5px;
+  stroke:transparent;
 }
 
 .toggle-timeline._close {

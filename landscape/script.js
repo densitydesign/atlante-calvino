@@ -2822,9 +2822,11 @@ function prepareTimeline(json_nodes, col_collections) {
 		.each(d => d.type = "selection")
 		.on("mousedown touchstart", brushcentered);
 
-	d3.select('.handle--e').style('stroke-dasharray', `0,6,${data.timeline_height-4},117`)
-	d3.select('.handle--w').style('stroke-dasharray', `0,${data.timeline_height+6+6},0`)
+	// d3.select('.handle--e').style('stroke-dasharray', `0,6,${data.timeline_height-4},117`)
+	// d3.select('.handle--w').style('stroke-dasharray', `0,${data.timeline_height+6+6},0`)
 
+d3.select('.handle--e').attr("transform",`translate(0,${(data.timeline_height - margin.bottom-10)/2})`);
+d3.select('.handle--w').attr("transform",`translate(0,${(data.timeline_height - margin.bottom-10)/2})`);
 /*
 	cell
 		.append("path")
