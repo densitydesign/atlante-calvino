@@ -3435,7 +3435,8 @@ function prepareTimeline(json_nodes, col_collections) {
 			.y(d => d.y)
 			.polygons(json_nodes))
 		.enter()
-		.append("g");
+		.append("g")
+		.classed("cell_node", true);
 
 	let colls = getCollections().map(c => c.id);
 
@@ -3471,9 +3472,11 @@ function prepareTimeline(json_nodes, col_collections) {
 		.each(d => d.type = "selection")
 		.on("mousedown touchstart", brushcentered);
 
-	d3.select('.handle--e').style('stroke-dasharray', `0,6,${data.timeline_height-4},117`)
-	d3.select('.handle--w').style('stroke-dasharray', `0,${data.timeline_height+6+6},0`)
+	// d3.select('.handle--e').style('stroke-dasharray', `0,6,${data.timeline_height-4},117`)
+	// d3.select('.handle--w').style('stroke-dasharray', `0,${data.timeline_height+6+6},0`)
 
+d3.select('.handle--e').attr("transform",`translate(0,${(data.timeline_height - margin.bottom-10)/2})`);
+d3.select('.handle--w').attr("transform",`translate(0,${(data.timeline_height - margin.bottom-10)/2})`);
 /*
 	cell
 		.append("path")
@@ -3497,7 +3500,14 @@ function brushcentered() {
 
 function brushed() {
 	data.extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
-	//console.log(extent);
+	// console.log(data.extent);
+
+	d3.selectAll(".cell_node").style('opacity', 1).filter( d => {
+		// console.log(+d.data.attributes.first_publication)
+		var fp = +d.data.attributes.first_publication
+		return fp < data.extent[0] || fp > data.extent[1]
+	})
+	.style('opacity', 0.1)
 
 	applyBeeSwarmFilter();
 }

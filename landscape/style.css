@@ -251,15 +251,19 @@ svg:active {
 }
 
 #timeline .selection {
-  fill: rgba(255, 255, 255, 0.75);
+  fill: transparent;
   fill-opacity: 1;
+  stroke: tomato;
+  stroke-width: 1.5;
 }
 
 #timeline .handle {
-  fill: black;
+  fill:tomato;
+  height:20px;
   opacity: 1;
   stroke: none;
-  stroke-width: 2px;
+  stroke-width: 5px;
+  stroke:transparent;
 }
 
 .toggle-timeline._close {
