@@ -21,7 +21,7 @@ html {
 
 /* Fight with CDS CSS */
 /* * {
-    font-family: 'Crimson Text';
+    font-family: 'HK Grotesk';
 } */
 
 /* p {
@@ -56,7 +56,7 @@ html {
 
 body {
   color: var(--c-text);
-  font-family: 'Crimson Text';
+  font-family: 'HK Grotesk';
   font-weight: normal;
   font-style: normal;
   font-size: 1rem;
@@ -64,7 +64,7 @@ body {
 }
 
 h1 {
-  font-family: 'Crimson Text';
+  font-family: 'HK Grotesk';
   color: darkslategrey;
 }
 
