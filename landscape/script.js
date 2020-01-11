@@ -3561,7 +3561,11 @@ async function load_place_hierarchies()
 	place_hierarchies_json.hierarchies.forEach(d => {
 		if(d.caption != "Terra" && d.caption != "S152")
 		{
-			let j = data.json_node_map.get(d.caption);
+      let j = data.json_node_map.get(d.caption);
+
+      // if we have restricted the json_nodes via allowedCollections, some j values will be null : nothing to do in these iterations
+      if(!j) return;
+
 			let radiusScaleFactor = j.steps[0].r / 30;
 console.log(j.caption + " - center, x : " + center.x + ", center.y : " + center.y);
 			data.place_hierarchies.set(d.caption, prepare_jellyfish_data(d, center, radiusScaleFactor));
