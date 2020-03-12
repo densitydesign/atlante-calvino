@@ -5345,6 +5345,25 @@
       ]
     },
     {
+      "text_id": "S087",
+      "node_id": "S087",
+      "caption": "S087",
+      "level": "0",
+      "basal_type": "",
+      "local_type": "",
+      "children": [
+        {
+          "text_id": "S087",
+          "node_id": "S087@no_ambientazione",
+          "caption": "no ambientazione",
+          "level": "1",
+          "basal_type": "no_ambientazione",
+          "local_type": "no_ambientazione",
+          "children": []
+        }
+      ]
+    },	
+    {
       "text_id": "S088",
       "node_id": "S088",
       "caption": "S088",

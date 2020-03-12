@@ -1,10 +1,10 @@
 body {
   margin: 0;
-  border-top: 6px solid var(--calvino-red);
+  border-top: 2px solid black;
   height: calc(100vh - 6px);
   width: 100vw;
   /* background-color: darkslategrey; */
-  color: darkslategrey;
+  color: black;
   overflow: hidden;
 }
 
@@ -37,7 +37,7 @@ p.text-bigger {
 
 #searchbox {
   outline: none;
-  border: 1px solid var(--calvino-red);
+  border: 1px solid black;
   border-radius: 4px;
   width: 100%;
 }
@@ -189,14 +189,14 @@ svg:active {
 .verbose-options-selector {
   outline: none;
   border: none;
-  border-bottom: 3px solid var(--calvino-red);
+  border-bottom: 3px solid #5151fc;
   transition: 0.3s cubic-bezier(.11,.31,.37,1) all;
   background-color: transparent;
   padding: 0 0.5rem;
   font-size: 2.5rem;
   font-size: inherit;
   text-transform: lowercase;
-  color: darkslategrey;
+  color: black;
 }
 
 .verbose-options-selector:hover {
@@ -217,7 +217,7 @@ svg:active {
 }
 
 .options-selector a {
-  color: var(--calvino-red);
+  color: #5151fc;
   opacity: 0.5;
   font-size: 1.15rem;
   text-align: left;
@@ -251,15 +251,19 @@ svg:active {
 }
 
 #timeline .selection {
-  fill: rgba(255, 255, 255, 0.75);
+  fill: transparent;
   fill-opacity: 1;
+  stroke: black;
+  stroke-width: 1.5;
 }
 
 #timeline .handle {
-  fill: black;
+  fill:black;
+  height:20px;
   opacity: 1;
   stroke: none;
-  stroke-width: 2px;
+  stroke-width: 5px;
+  stroke:transparent;
 }
 
 .toggle-timeline._close {
@@ -298,12 +302,12 @@ svg:active {
 }
 
 .bottom-bar .toggle-legend:hover, .bottom-bar .toggle-timeline:hover, .bottom-bar .toggle-analysis:hover {
-  border-bottom: 2px solid rgba(47, 79, 79, 1);
+  border-bottom: 2px solid black;
 }
 
 .bottom-bar .active {
-  border-bottom: 2px solid tomato !important;
-  color: tomato;
+  border-bottom: 2px solid black !important;
+  color: black;
 }
 
 #legend-container {
@@ -360,7 +364,7 @@ svg:active {
 }
 
 .an-analysis .reset-analysis {
-    color: var(--calvino-red);
+    color: black;
     text-decoration: underline;
 }
 
@@ -388,17 +392,17 @@ button.btn-analysis {
 }
 span.btn-analysis {
     cursor: pointer;
-    background-color: var(--calvino-red);
+    background-color: black;
     padding: .1rem 0.35rem;
-    border-radius: 3px;
+    border-radius: 0px;
     color: white;
     font-family: 'HK Grotesk';
     font-size: 86%;
 }
 
 .btn-analysis.btn-primary {
-    background-color: var(--calvino-red);
-    border-color: var(--calvino-red);
+    background-color: black;
+    border-color: black;
 }
 
 .analysis-visible #analysis-container {
@@ -460,20 +464,20 @@ span.btn-analysis {
 
 .st-box {
   background-color: white;
-  border: 1px solid var(--calvino-red);
-  border-radius: 3px;
+  border: 1px solid black;
+  border-radius: 0px;
   padding: 1.5rem;
-  box-shadow: 0px 1px 3px var(--calvino-red);
+  box-shadow: 0px 1px 3px black;
   margin: 1rem 0;
   position: relative;
 }
 
 .highlight {
-  color: var(--calvino-red);
+  color: black;
 }
 
 .st-box:before {
-  box-shadow: 0px 1px 3px var(--calvino-red) inset;
+  box-shadow: 0px 1px 3px black inset;
   content: "";
   width: 100%;
   height: 20px;

@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'Crimson Text';
+    font-family: 'HK Grotesk';
     src: url('CrimsonText-Roman.woff2') format('woff2'),
         url('CrimsonText-Roman.woff') format('woff');
     font-weight: normal;
@@ -7,7 +7,7 @@
 }
 
 @font-face {
-    font-family: 'Crimson Text';
+    font-family: 'HK Grotesk';
     src: url('CrimsonText-Semibold.woff2') format('woff2'),
         url('CrimsonText-Semibold.woff') format('woff');
     font-weight: 600;
@@ -15,7 +15,7 @@
 }
 
 @font-face {
-    font-family: 'Crimson Text';
+    font-family: 'HK Grotesk';
     src: url('CrimsonText-Italic.woff2') format('woff2'),
         url('CrimsonText-Italic.woff') format('woff');
     font-weight: normal;
@@ -23,7 +23,7 @@
 }
 
 @font-face {
-    font-family: 'Crimson Text';
+    font-family: 'HK Grotesk';
     src: url('CrimsonText-BoldItalic.woff2') format('woff2'),
         url('CrimsonText-BoldItalic.woff') format('woff');
     font-weight: bold;
@@ -31,7 +31,7 @@
 }
 
 @font-face {
-    font-family: 'Crimson Text';
+    font-family: 'HK Grotesk';
     src: url('CrimsonText-SemiboldItalic.woff2') format('woff2'),
         url('CrimsonText-SemiboldItalic.woff') format('woff');
     font-weight: 600;
@@ -39,7 +39,7 @@
 }
 
 @font-face {
-    font-family: 'Crimson Text';
+    font-family: 'HK Grotesk';
     src: url('CrimsonText-Bold.woff2') format('woff2'),
         url('CrimsonText-Bold.woff') format('woff');
     font-weight: bold;

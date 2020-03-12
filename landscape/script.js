@@ -177,7 +177,7 @@ let xxx = collections
 	let colour = d3
 		.scaleLinear()
 		.domain(d3.extent(json_nodes, function(d) { return d.attributes.first_publication; }))
-		.range(['#ff6347', '#455A64']);
+		.range(['#00c19c', '#5151fc']);
 
 	let col_collections = d3
 		.scaleOrdinal()
@@ -205,7 +205,7 @@ let xxx = collections
 	radialGradient
 		.append("stop")
 		.attr("offset", "30%")
-		.attr("stop-color", "green");
+		.attr("stop-color", "#00c19c");
 
 	radialGradient
 		.append("stop")
@@ -756,17 +756,17 @@ console.log("bbox : " + bbox);
 	data.nebbia_color_scale = d3
 		.scaleLinear()
 		.domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
-		.range(['#DDDDFF', 'blue']);
+		.range(['#DDDDFF', '#5151fc']);
 
 	data.cancellazione_color_scale = d3
 		.scaleLinear()
 		.domain(d3.extent(Object.values(data.x_csv2), d => d.nebbia_words_ratio))
-		.range(['#FFDDDD', 'red']);
+		.range(['#FFDDDD', '#ff6c39']);
 
 	data.generico_non_terrestre_color_scale = d3
 		.scaleLinear()
 		.domain(d3.extent(Object.values(data.x_csv2), d => d.n_generico_non_terrestre))
-		.range(['#DDDDDD', 'red']);
+		.range(['#DDDDDD', '#bbbbff']);
 
 	data.generico_terrestre_color_scale = d3
 		.scaleLinear()
@@ -776,7 +776,7 @@ console.log("bbox : " + bbox);
 	data.inventato_color_scale = d3
 		.scaleLinear()
 		.domain(d3.extent(Object.values(data.x_csv2), d => d.n_inventato))
-		.range(['#DDDDDD', 'fuchsia']);
+		.range(['#DDDDDD', '#ff6c39']);
 
 	data.no_ambientazione_color_scale = d3
 		.scaleLinear()
@@ -786,17 +786,17 @@ console.log("bbox : " + bbox);
 	data.nominato_non_terrestre_color_scale = d3
 		.scaleLinear()
 		.domain(d3.extent(Object.values(data.x_csv2), d => d.n_nominato_non_terrestre))
-		.range(['#DDDDDD', 'blue']);
+		.range(['#DDDDDD', '#5151fc']);
 
 	data.nominato_terrestre_color_scale = d3
 		.scaleLinear()
 		.domain(d3.extent(Object.values(data.x_csv2), d => d.n_nominato_terrestre))
-		.range(['#DDDDDD', 'dodgerblue']);
+		.range(['#DDDDDD', '#00c19c']);
 
 	data.dubitative_color_scale = d3
 		.scaleLinear()
 		.domain(d3.extent(Object.values(data.x_csv2), d => d.dubitative_ratio))
-		.range(['#FFDDFF', 'violet']);
+		.range(['#F5F5F5', 'black']);
 
 ///////////////////////////////////////////
 
@@ -908,7 +908,7 @@ console.log("bbox : " + bbox);
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
-		.attr("fill", "red")
+		.attr("fill", "#ff6c39")
 		.attr("class", "places")
 		.attr("d", drawPlacesArc1)
 		.attr('transform', function(d, i) {
@@ -930,7 +930,7 @@ console.log("bbox : " + bbox);
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
-		.attr("fill", "fuchsia")
+		.attr("fill", "#bbbbff")
 		.attr("class", "places")
 		.attr("d", drawPlacesArc3)
 		.attr('transform', function(d, i) {
@@ -952,7 +952,7 @@ console.log("bbox : " + bbox);
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
-		.attr("fill", "blue")
+		.attr("fill", "#5151fc")
 		.attr("class", "places")
 		.attr("d", drawPlacesArc5)
 		.attr('transform', function(d, i) {
@@ -964,7 +964,7 @@ console.log("bbox : " + bbox);
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
-		.attr("fill", "dodgerblue")
+		.attr("fill", "#00c19c")
 		.attr("class", "places")
 		.attr("d", drawPlacesArc6)
 		.attr('transform', function(d, i) {
@@ -1073,7 +1073,7 @@ console.log("bbox : " + bbox);
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
-		.attr("fill", "blue")
+		.attr("fill", "#5151fc")
 		.attr("class", "dubitativePhenomena_level_2")
 		.attr("d", drawDubitativePhenomenaArc1)
 		.attr('transform', function(d, i) {
@@ -1084,7 +1084,7 @@ console.log("bbox : " + bbox);
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
-		.attr("fill", "red")
+		.attr("fill", "#ff6c39")
 		.attr("class", "dubitativePhenomena_level_2")
 		.attr("d", drawDubitativePhenomenaArc2)
 		.attr('transform', function(d, i) {
@@ -1263,7 +1263,7 @@ console.log("bbox : " + bbox);
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
-		.attr("fill", "blue")
+		.attr("fill", "#5151fc")
 		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc1)
 		.attr('transform', function(d, i) {
@@ -1274,7 +1274,7 @@ console.log("bbox : " + bbox);
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
-		.attr("fill", "red")
+		.attr("fill", "#ff6c39")
 		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc2)
 		.attr('transform', function(d, i) {
@@ -1285,7 +1285,7 @@ console.log("bbox : " + bbox);
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
-		.attr("fill", "green")
+		.attr("fill", "#00c19c")
 		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc3)
 		.attr('transform', function(d, i) {
@@ -1296,7 +1296,7 @@ console.log("bbox : " + bbox);
 	steps
 		.filter(function(d) { return d.first_elem })
 		.append("svg:path")
-		.attr("fill", "yellow")
+		.attr("fill", "#ffce00")
 		.attr("class", "lists_level_3")
 		.attr("d", drawListsArc4)
 		.attr('transform', function(d, i) {
@@ -1350,7 +1350,7 @@ console.log("bbox : " + bbox);
 	steps
 		.filter(d => d.first_elem && d.lists_are_present)
 		.append("svg:path")
-		.attr("fill", d => d.lists_ratio_is_below_threshold ? "black" : "red")
+		.attr("fill", d => d.lists_ratio_is_below_threshold ? "black" : "#ff6c39")
 		.attr("class", "lists_level_2")
 		.attr("d", drawListsOverallArc1)
 		.attr('transform', function(d,i){
@@ -2400,7 +2400,7 @@ function getCollections() {
 			'n': 'Ultimo viene il corvo',
 			'id': 'V002',
 			'year': 1949,
-			'c': '#e9d05d',
+			'c': '#00c19c',
 			'has_metaball': true,
 			'concavityTolerance': 1.1
 		},
@@ -2415,7 +2415,7 @@ function getCollections() {
 			'n': 'L\'entrata in guerra',
 			'id': 'V004',
 			'year': 1954,
-			'c': '#12b259',
+			'c': '#8ae297',
 			'has_metaball': true,
 			'concavityTolerance': 1.1
 		},
@@ -2430,7 +2430,7 @@ function getCollections() {
 			'n': 'I racconti',
 			'id': 'V006',
 			'year': 1958,
-			'c': '#476a70',
+			'c': '#5151fc',
 			'has_metaball': true,
 			'concavityTolerance': 1.2
 		},
@@ -2466,7 +2466,7 @@ function getCollections() {
 			'n': 'Marcovaldo',
 			'id': 'V011',
 			'year': 1963,
-			'c': '#9f73b2',
+			'c': '#bbbbff',
 			'has_metaball': true,
 			'concavityTolerance': 1.1
 		},
@@ -2481,7 +2481,7 @@ function getCollections() {
 			'n': 'Le cosmicomiche',
 			'id': 'V013',
 			'year': 1965,
-			'c': '#e89fc0',
+			'c': '#97dadd',
 			'has_metaball': true,
 			'concavityTolerance': 1.1
 		},
@@ -2489,7 +2489,7 @@ function getCollections() {
 			'n': 'Ti con zero',
 			'id': 'V014',
 			'year': 1967,
-			'c': '#581745',
+			'c': '#ff3366',
 			'has_metaball': true,
 			'concavityTolerance': 1.2
 		},
@@ -2497,7 +2497,7 @@ function getCollections() {
 			'n': 'La memoria del mondo',
 			'id': 'V015',
 			'year': 1968,
-			'c': '#00b1b3',
+			'c': '#FFA500',
 			'has_metaball': true,
 			'concavityTolerance': 1.1
 		},
@@ -2512,7 +2512,7 @@ function getCollections() {
 			'n': 'Gli amori difficili',
 			'id': 'V017',
 			'year': 1970,
-			'c': '#f0be96',
+			'c': '#ffd93b',
 			'has_metaball': true,
 			'concavityTolerance': 1.1
 		},
@@ -2548,7 +2548,7 @@ function getCollections() {
 			'n': 'Palomar',
 			'id': 'V022',
 			'year': 1983,
-			'c': '#94d2ba',
+			'c': '#ff6c39',
 			'has_metaball': true,
 			'concavityTolerance': 1.1
 		},
@@ -2556,7 +2556,7 @@ function getCollections() {
 			'n': 'Cosmicomiche vecchie e nuove',
 			'id': 'V023',
 			'year': 1984,
-			'c': '#f1634b',
+			'c':'#00bfd3',
 			'has_metaball': true,
 			'concavityTolerance': 1.2
 		}
@@ -2588,7 +2588,7 @@ function prepareMetaballData(json_nodes, collection, lineColor) {
 	let hillBase_circles = hillBases.map(hillBase => ({
 		p: { x: hillBase.x, y: hillBase.y },
 		r: hillBase.r + metaballLineBaseSeparation + metaballLineStepSeparation * (hillBase.collections.length - 1 - hillBase.collections.indexOf(collection)),
-		color: "blue",
+		color: "#5151fc'",
 		step: hillBase.step,
 		id: hillBase.id
 	}));
@@ -2869,7 +2869,7 @@ function render(hillBases, hillBaseCircles, nCirclesToBeDrawn) {
 			.append("svg:path")
 			.attr("d", lobe)
 			.attr("fill", "none")
-			.attr("stroke", "red");
+			.attr("stroke", "#ff6c39");
 	}
 }
 
@@ -3435,7 +3435,8 @@ function prepareTimeline(json_nodes, col_collections) {
 			.y(d => d.y)
 			.polygons(json_nodes))
 		.enter()
-		.append("g");
+		.append("g")
+		.classed("cell_node", true);
 
 	let colls = getCollections().map(c => c.id);
 
@@ -3471,9 +3472,11 @@ function prepareTimeline(json_nodes, col_collections) {
 		.each(d => d.type = "selection")
 		.on("mousedown touchstart", brushcentered);
 
-	d3.select('.handle--e').style('stroke-dasharray', `0,6,${data.timeline_height-4},117`)
-	d3.select('.handle--w').style('stroke-dasharray', `0,${data.timeline_height+6+6},0`)
+	// d3.select('.handle--e').style('stroke-dasharray', `0,6,${data.timeline_height-4},117`)
+	// d3.select('.handle--w').style('stroke-dasharray', `0,${data.timeline_height+6+6},0`)
 
+d3.select('.handle--e').attr("transform",`translate(0,${(data.timeline_height - margin.bottom-10)/2})`);
+d3.select('.handle--w').attr("transform",`translate(0,${(data.timeline_height - margin.bottom-10)/2})`);
 /*
 	cell
 		.append("path")
@@ -3497,7 +3500,14 @@ function brushcentered() {
 
 function brushed() {
 	data.extent = d3.event.selection.map(data.timeline_x.invert, data.timeline_x);
-	//console.log(extent);
+	// console.log(data.extent);
+
+	d3.selectAll(".cell_node").style('opacity', 1).filter( d => {
+		// console.log(+d.data.attributes.first_publication)
+		var fp = +d.data.attributes.first_publication
+		return fp < data.extent[0] || fp > data.extent[1]
+	})
+	.style('opacity', 0.1)
 
 	applyBeeSwarmFilter();
 }
@@ -3551,7 +3561,11 @@ async function load_place_hierarchies()
 	place_hierarchies_json.hierarchies.forEach(d => {
 		if(d.caption != "Terra" && d.caption != "S152")
 		{
-			let j = data.json_node_map.get(d.caption);
+      let j = data.json_node_map.get(d.caption);
+
+      // if we have restricted the json_nodes via allowedCollections, some j values will be null : nothing to do in these iterations
+      if(!j) return;
+
 			let radiusScaleFactor = j.steps[0].r / 30;
 console.log(j.caption + " - center, x : " + center.x + ", center.y : " + center.y);
 			data.place_hierarchies.set(d.caption, prepare_jellyfish_data(d, center, radiusScaleFactor));
