@@ -1,0 +1,10 @@
+
+.chart {
+	background-color : white;
+}
+
+.stepLine {
+  stroke : darkgrey;
+  stroke-opacity : 1;
+  stroke-width : 1;
+}
