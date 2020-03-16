@@ -337,7 +337,22 @@ console.log("segments", segments);
 
   data.forEach((d, i) => {
 if(d.hasVerticalLine && !d.h) console.log("d", d);
-    if(d.hasVerticalLine) d.verticalLineHeight = y(d.h.index) - y(data[i - 1].h.index);
+
+
+    d.x = x(d.start);
+    d.y = y(d.h.index) - halfRectHeight;
+    d.height = rectHeight;
+    d.width = x(d.end) - x(d.start);
+
+    if(d.hasVerticalLine)
+    {
+      d.verticalLineHeight = y(d.h.index) - y(data[i - 1].h.index);
+      d.x1 = x(d.start);
+      d.y1 = y(d.h.index) + halfRectHeight * Math.sign(d.verticalLineHeight);
+      d.x2 = x(d.start);
+      d.y2 = y(d.h.index) - d.verticalLineHeight - halfRectHeight * Math.sign(d.verticalLineHeight);
+      d.stepLine = true;
+    }
   });
 
   const yAxisCall = d3
@@ -352,21 +367,18 @@ if(d.hasVerticalLine && !d.h) console.log("d", d);
   yAxis
     .attr("transform", `translate(${margin.left}, 0)`)
     .call(yAxisCall)
-    .call(g => {
-      g
-        .selectAll(".tick text")
-        .attr("x", -100);
-    });
+    .call(g => g.selectAll(".tick text").attr("x", -100));
 
   svg
     .selectAll("rect")
     .data(data)
     .enter()
     .append("rect")
-    .attr("x", d => x(d.start))
-    .attr("y", d => y(d.h.index) - halfRectHeight)
-    .attr("height", rectHeight)
-    .attr("width", d => x(d.end) - x(d.start))
+    .attr("x", d => d.x)
+    .attr("y", d => d.y)
+    .attr("height", d => d.height)
+    .attr("width", d => d.width)
+    .attr("stroke", "red")
     .attr("fill", d => d.h.color);
 console.log("adding lines...");
   svg
@@ -375,12 +387,36 @@ console.log("adding lines...");
     .enter()
     .filter(d => d.hasVerticalLine)
     .append("line")
-    .attr("x1", d => x(d.start))
-    .attr("y1", d => y(d.h.index) + halfRectHeight * Math.sign(d.verticalLineHeight))
-    .attr("x2", d => x(d.start))
-    .attr("y2", d => y(d.h.index) - d.verticalLineHeight - halfRectHeight * Math.sign(d.verticalLineHeight))
-    .classed("stepLine", true);
+    .attr("x1", d => d.x1)
+    .attr("y1", d => d.y1)
+    .attr("x2", d => d.x2)
+    .attr("y2", d => d.y2)
+    .classed("stepLine", d => d.stepLine);
 console.log("lines added.");
+
+  const lineFunction = d3
+    .line()
+    .curve(d3.curveMonotoneX)
+    .x(d => d.x + d.width / 2)
+    .y(d => d.y + d.height / 2);
+
+console.log("data", data);
+
+  const lineGraph = svg
+    .append("path")
+    .attr("d", lineFunction(data))
+    .classed("line1", true);
+
+  svg
+    .selectAll("circle")
+    .data(data)
+    .enter()
+    .append("circle")
+    .attr("cx", d => d.x + d.width / 2)
+    .attr("cy", d => d.y + d.height / 2)
+    .attr("r", 5)
+    .attr("stroke", "red")
+    .attr("fill", "transparent");
 }
 
 function handleDownloadClick(evt)

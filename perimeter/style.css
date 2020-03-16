@@ -8,3 +8,9 @@
   stroke-opacity : 1;
   stroke-width : 1;
 }
+
+.line1 {
+  stroke : blue;
+  stroke-width : 2;
+  fill : none;
+}
