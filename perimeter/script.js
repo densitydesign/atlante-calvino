@@ -289,26 +289,33 @@ function plot_segments(segments)
     { color : "#EFA625", name : "racconto incastonato" },
     { color : "#FFF800", name : "metanarrazione" },
     { color : "#F2CA22", name : "cornice" },
-    { color : "black", name : "titolo" },
-    { color : "purple", name : "-" }
+    { color : "black",   name : "titolo" },
+    { color : "purple",  name : "-" }
   ];
 
   levels.forEach((d, i) => d.index = i);
-/*
-  const data = [
-    { h : levels[0], start :   0, end : 100, hasVerticalLine : false },
-    { h : levels[2], start : 101, end : 300, hasVerticalLine : true  },
-    { h : levels[4], start : 301, end : 400, hasVerticalLine : true  },
-    { h : levels[3], start : 401, end : 500, hasVerticalLine : true  },
-  ];
-*/
+
 console.log("about to assign h...");
   segments.forEach((d, i) => {
     d.h = levels.find(dd => dd.name === d.tag);
     d.hasVerticalLine = i !== 0;
   });
 console.log("segments", segments);
-  const data = segments;
+  let data = segments;
+
+  if(data[0].tag === "-") data = data.slice(1, data.length - 1);
+  if(data[0].tag === "titolo") data = data.slice(1, data.length - 1);
+
+  const firstItem = Object.assign({}, data[0]);
+  firstItem.start = 0;
+  firstItem.end = 0;
+  data.unshift(firstItem);
+
+  const lastItem = Object.assign({}, data[data.length - 1]);
+  lastItem.start = lastItem.end;
+  data.push(lastItem);  
+
+//  if(data[data.length - 1].tag === "-") data.splice(0, data.length - 1);
 
   const svg = d3.select("svg");
 
@@ -344,8 +351,9 @@ if(d.hasVerticalLine && !d.h) console.log("d", d);
     d.height = rectHeight;
     d.width = x(d.end) - x(d.start);
 
-    if(d.hasVerticalLine)
+    if(d.hasVerticalLine && i > 0)
     {
+//console.log("i", i);
       d.verticalLineHeight = y(d.h.index) - y(data[i - 1].h.index);
       d.x1 = x(d.start);
       d.y1 = y(d.h.index) + halfRectHeight * Math.sign(d.verticalLineHeight);
