@@ -53,7 +53,7 @@ function handleFileSelect(evt)
 					level : 1, //levelMap.get(item.livello),
 					tag : item["motivo_type"]
 				};
-			});
+			}).sort((a, b) => a.textID > b.textID);
 
 
 //      const csv = d3.csvParse(reader.result);
@@ -303,10 +303,10 @@ function create_segments(vertices, levels, margin, width, yMapping)
   		end : end
     };
   });
-console.log("unfiltered_segments", unfiltered_segments);
+//console.log("unfiltered_segments", unfiltered_segments);
 
 	let segments = unfiltered_segments.filter(segment => segment.start !== segment.end + 1);
-console.log("segments", segments);
+//console.log("segments", segments);
 
   // add h level info and vertical line flag
   segments.forEach((d, i) => {
@@ -317,7 +317,7 @@ console.log("segments", segments);
   // remove initial segments with "-" or "titolo" markers
   if(segments[0].tag === "-") segments = segments.slice(1);
   if(segments[0].tag === "titolo") segments = segments.slice(1);
-console.log("segments 320", segments);
+//console.log("segments 320", segments);
   // add terminal items for creating horizontal terminal line parts
   const firstItem = Object.assign({}, segments[0]);
   firstItem.start = 0;
@@ -329,7 +329,7 @@ console.log("segments 320", segments);
   const lastItem = Object.assign({}, segments[segments.length - 1]);
   lastItem.start = lastItem.end;
   segments.push(lastItem);
-console.log("segments with lastItem", segments);
+//console.log("segments with lastItem", segments);
 
   const xMapping = d3
     .scaleLinear()
@@ -340,7 +340,7 @@ console.log("segments with lastItem", segments);
   const halfRectHeight = rectHeight / 2;
 
   segments.forEach((d, i) => {
-if(d.hasVerticalLine && !d.h) console.log("d", d);
+//if(d.hasVerticalLine && !d.h) console.log("d", d);
 
     d.x = xMapping(d.start);
     d.y = yMapping(d.h.index) - halfRectHeight;
@@ -357,10 +357,10 @@ if(d.hasVerticalLine && !d.h) console.log("d", d);
       d.y2 = yMapping(d.h.index) - d.verticalLineHeight - halfRectHeight * Math.sign(d.verticalLineHeight);
       d.middle_x = (d.x1 + d.x2) / 2;
       d.stepLine = true;
-console.log("d", d);
+//console.log("d", d);
     }
   });
-console.log("finally segments", segments);
+//console.log("finally segments", segments);
 	return segments;
 }
 
@@ -548,10 +548,10 @@ console.log("intervalInterpolatorMap", intervalInterpolatorMap);
 //    const matchingPair = intervalInterpolatorMap.find(d => d[0][0].middle_x <= x && x < d[0][1].middle_x);
     let matchingPair = intervalInterpolatorMap.find(d => d[0][0].middle_x <= x && x < d[0][1].middle_x);
     if(!matchingPair) matchingPair = intervalInterpolatorMap[0];
-console.log("x", x);
-console.log("matchingPair", matchingPair);
+//console.log("x", x);
+//console.log("matchingPair", matchingPair);
     const ratio = (x - matchingPair[0][0].middle_x) / (matchingPair[0][1].middle_x - matchingPair[0][0].middle_x);
-console.log("ratio", ratio);
+//console.log("ratio", ratio);
     return matchingPair[1](ratio);
   };
 
@@ -560,7 +560,7 @@ console.log("ratio", ratio);
   const path = d3.select(".line1").remove();
 
   const data = quads(samples(path.node(), 8));
-console.log("data", data);
+//console.log("data", data);
 
   const lineWidth = 2; //32;
 
@@ -573,10 +573,10 @@ console.log("data", data);
       return color(d[1][0]);
     })
     .style("stroke", function(d) {
-console.log("-----------");
-console.log("d", d);
-const cc = color(d[1][0]);
-console.log("cc", cc);
+//console.log("-----------");
+//console.log("d", d);
+//const cc = color(d[1][0]);
+//console.log("cc", cc);
       return color(d[1][0]);
     })
     .attr("d", function(d) { return lineJoin(d[0], d[1], d[2], d[3], lineWidth); });
