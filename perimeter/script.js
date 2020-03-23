@@ -1,7 +1,6 @@
 "use strict";
 
 document.getElementById("files").addEventListener("change", handleFileSelect, false);
-document.getElementById("download").addEventListener("click", handleDownloadClick, false);
 document.getElementById("texts").addEventListener("change", handleTextSelect, false);
 
 class node
@@ -55,7 +54,6 @@ function handleFileSelect(evt)
 				};
 			}).sort((a, b) => a.textID > b.textID);
 
-
 //      const csv = d3.csvParse(reader.result);
 //      preprocess_csv(csv);
 
@@ -108,7 +106,7 @@ function handleTextSelect(evt)
     .domain(levels.map(d => d.index))
     .range([margin.top, margin.top + height]);
 
-	window.segments = get_segments(
+	const segments = get_segments(
     csvItems,
     levels,
     margin,
@@ -118,62 +116,125 @@ function handleTextSelect(evt)
 
 console.log("------------------------------");
 console.log("textID", textID);
-console.log("window.segments", window.segments);
+console.log("segments", segments);
 
+  svg.selectAll("*").remove();
+/*
   plot_segments(
-    window.segments,
+    segments,
     svg,
     levels,
     margin,
     yMapping,
     width);
+*/
+  plot_circles(segments);
+
+  prepareColoredLine(segments);
+
+  plot_texts(segments);
+}
+
+function plot_circles(segments)
+{
+  d3
+    .select("svg")
+    .selectAll("circle")
+    .data(segments)
+    .enter()
+    .append("circle")
+    .attr("cx", d => d.x + d.width / 2)
+    .attr("cy", d => d.y + d.height / 2)
+    .attr("r", 5)
+    .attr("stroke", d => d.label ? "red" : "invisible")
+    .attr("fill", "transparent");
+}
+
+function plot_texts(segments)
+{
+  d3
+    .select("svg")
+    .selectAll("text")
+    .data(segments)
+    .enter()
+    .append("text")
+    .attr("x", d => d.cx + 20)
+    .attr("y", d => d.cy)
+    .attr("fill", "black")
+    .attr("text-anchor", "start")
+    .attr("transform", d => `rotate(-30,${d.cx},${d.cy})`)
+    .text(d => d.label);
+}
+
+function prepareColoredLine(segments)
+{
+  const lineFunction = d3
+    .line()
+    .curve(d3.curveMonotoneX)
+    .x(d => d.x + d.width / 2)
+    .y(d => d.y + d.height / 2);
+
+console.log("segments", segments);
+
+  const lineGraph = d3
+    .select("svg")
+    .append("path")
+    .attr("d", lineFunction(segments))
+    .classed("line1", true);
+
+  const colorIntervals = createColorIntervals(segments);
+  const colorInterpolators = createColorInterpolators(colorIntervals);
+
+  const intervalInterpolatorMap = colorIntervals.map((d, i) => [d, colorInterpolators[i]]);
+
+  plotColoredLine(intervalInterpolatorMap);
 }
 
 function get_levels()
 {
   const levels = [
-    { color : "#8131F4", name : "morte" },
-    { color : "#C890F4", name : "rivelazione" },
-    { color : "#0EE2BF", name : "aggressione/scontro" },
-    { color : "#0EE2BF", name : "scena erotica" },
-    { color : "#0EE2BF", name : "aiuto/salvataggio" },
-    { color : "#0EE2BF", name : "incontro femminile" },
-    { color : "#0EE2BF", name : "incontro maschile" },
-    { color : "#0EE2BF", name : "incontro di gruppo" },
-    { color : "#0EE2BF", name : "incontro animale" },
-    { color : "#0EE2BF", name : "compito/missione" },
-    { color : "#0EE2BF", name : "scommessa" },
-    { color : "#0EE2BF", name : "telefonata" },
-    { color : "#0EE2BF", name : "rifiuto" },
-    { color : "#0EE2BF", name : "offerta" },
-    { color : "#0EE2BF", name : "matrimonio" },
-    { color : "#BBF9F9", name : "inseguimento/ricerca" },
-    { color : "#BBF9F9", name : "fuga" },
-    { color : "#BBF9F9", name : "partenza/sparizione" },
-    { color : "#BBF9F9", name : "arrivo/ritorno" },
-    { color : "#BBF9F9", name : "viaggio" },
-    { color : "#00FFB6", name : "successo" },
-    { color : "#00FFB6", name : "ostacolo" },
-    { color : "#00FFB6", name : "iniziativa/piano" },
-    { color : "#1C1CCC", name : "innamoramento" },
-    { color : "#053BC4", name : "angoscia/delusione" },
-    { color : "#0606F7", name : "illusione/speranza" },
-    { color : "#1C4EC9", name : "smarrimento/dubbio" },
-    { color : "#DAE6FD", name : "ipotesi" },
-    { color : "#172B5E", name : "visione" },
-    { color : "#A0BAF9", name : "riflessione" },
-    { color : "#0653ED", name : "attesa" },
-    { color : "#6E94F4", name : "pausa/sospensione" },
-    { color : "#5A5AF9", name : "mistero/assurdità" },
-    { color : "#06F9FF", name : "cambiamento" },
-    { color : "#06F9FF", name : "guerra" },
-    { color : "#06F9FF", name : "città magica" },
-    { color : "#06F9FF", name : "situazione" },
-    { color : "#EFA625", name : "racconto incastonato" },
-    { color : "#FFF800", name : "metanarrazione" },
-    { color : "#F2CA22", name : "cornice" },
-    { color : "black",   name : "titolo" },
-    { color : "purple",  name : "-" }
+    { color : "#8131F4", code : "a", name : "morte" },
+    { color : "#C890F4", code : "b", name : "rivelazione" },
+    { color : "#0EE2BF", code : "c", name : "aggressione/scontro" },
+    { color : "#0EE2BF", code : "d", name : "scena erotica" },
+    { color : "#0EE2BF", code : "e", name : "aiuto/salvataggio" },
+    { color : "#0EE2BF", code : "f", name : "incontro femminile" },
+    { color : "#0EE2BF", code : "g", name : "incontro maschile" },
+    { color : "#0EE2BF", code : "h", name : "incontro di gruppo" },
+    { color : "#0EE2BF", code : "i", name : "incontro animale" },
+    { color : "#0EE2BF", code : "j", name : "compito/missione" },
+    { color : "#0EE2BF", code : "k", name : "scommessa" },
+    { color : "#0EE2BF", code : "l", name : "telefonata" },
+    { color : "#0EE2BF", code : "m", name : "rifiuto" },
+    { color : "#0EE2BF", code : "n", name : "offerta" },
+    { color : "#0EE2BF", code : "o", name : "matrimonio" },
+    { color : "#BBF9F9", code : "p", name : "inseguimento/ricerca" },
+    { color : "#BBF9F9", code : "q", name : "fuga" },
+    { color : "#BBF9F9", code : "r", name : "partenza/sparizione" },
+    { color : "#BBF9F9", code : "s", name : "arrivo/ritorno" },
+    { color : "#BBF9F9", code : "t", name : "viaggio" },
+    { color : "#00FFB6", code : "u", name : "successo" },
+    { color : "#00FFB6", code : "v", name : "ostacolo" },
+    { color : "#00FFB6", code : "w", name : "iniziativa/piano" },
+    { color : "#1C1CCC", code : "x", name : "innamoramento" },
+    { color : "#053BC4", code : "y", name : "angoscia/delusione" },
+    { color : "#0606F7", code : "z", name : "illusione/speranza" },
+    { color : "#1C4EC9", code : "A", name : "smarrimento/dubbio" },
+    { color : "#DAE6FD", code : "B", name : "ipotesi" },
+    { color : "#172B5E", code : "C", name : "visione" },
+    { color : "#A0BAF9", code : "D", name : "riflessione" },
+    { color : "#0653ED", code : "E", name : "attesa" },
+    { color : "#6E94F4", code : "F", name : "pausa/sospensione" },
+    { color : "#5A5AF9", code : "G", name : "mistero/assurdità" },
+    { color : "#06F9FF", code : "H", name : "cambiamento" },
+    { color : "#06F9FF", code : "I", name : "guerra" },
+    { color : "#06F9FF", code : "J", name : "città magica" },
+    { color : "#06F9FF", code : "K", name : "situazione" },
+    { color : "#EFA625", code : "L", name : "racconto incastonato" },
+    { color : "#FFF800", code : "M", name : "metanarrazione" },
+    { color : "#F2CA22", code : "N", name : "cornice" },
+    { color : "black",   code : "O", name : "titolo" },
+    { color : "purple",  code : "P", name : "-" }
   ];
 
   levels.forEach((d, i) => d.index = i);
@@ -346,6 +407,9 @@ function create_segments(vertices, levels, margin, width, yMapping)
     d.y = yMapping(d.h.index) - halfRectHeight;
     d.height = rectHeight;
     d.width = xMapping(d.end) - xMapping(d.start);
+    d.cx = d.x + d.width / 2;
+    d.cy = d.y + d.height / 2;
+    d.label = i !== 1 && i != segments.length - 2 ? d.tag : "";
 
     if(d.hasVerticalLine && i > 0)
     {
@@ -373,8 +437,6 @@ function plot_segments(
   width)
 {
 //  if(data[data.length - 1].tag === "-") data.splice(0, data.length - 1);
-
-  svg.selectAll("*").remove();
 
   const yAxis = svg.append("g");
 
@@ -414,52 +476,6 @@ console.log("adding lines...");
     .attr("y2", d => d.y2)
     .classed("stepLine", d => d.stepLine);
 console.log("lines added.");
-
-  const lineFunction = d3
-    .line()
-    .curve(d3.curveMonotoneX)
-    .x(d => d.x + d.width / 2)
-    .y(d => d.y + d.height / 2);
-
-console.log("segments", segments);
-
-  const lineGraph = svg
-    .append("path")
-    .attr("d", lineFunction(segments))
-    .classed("line1", true);
-
-  svg
-    .selectAll("circle")
-    .data(segments)
-    .enter()
-    .append("circle")
-    .attr("cx", d => d.x + d.width / 2)
-    .attr("cy", d => d.y + d.height / 2)
-    .attr("r", 5)
-    .attr("stroke", "red")
-    .attr("fill", "transparent");
-
-  const colorIntervals = createColorIntervals(segments);
-  const colorInterpolators = createColorInterpolators(colorIntervals);
-
-  const intervalInterpolatorMap = colorIntervals.map((d, i) => [d, colorInterpolators[i]]);
-
-  plotColoredLine(intervalInterpolatorMap);
-}
-
-function handleDownloadClick(evt)
-{
-  if(!window.segments) return;
-
-  let s = "tag,start,end\n";
-
-  window.segments.forEach(d => s += `${d.tag},${d.start},${d.end}\n`);
-
-  const fileName = "segments.csv";
-
-  saveAs(
-    new self.Blob([s], {type: "text/plain;charset=utf-8"}),
-    fileName);
 }
 
 function print_items(csv, index)
