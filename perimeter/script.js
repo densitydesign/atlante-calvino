@@ -118,7 +118,7 @@ function handleTextSelect(evt)
 
 console.log("------------------------------");
 console.log("textID", textID);
-console.log("segments", segments);
+console.log("window.segments", window.segments);
 
   plot_segments(
     window.segments,
@@ -303,10 +303,10 @@ function create_segments(vertices, levels, margin, width, yMapping)
   		end : end
     };
   });
+console.log("unfiltered_segments", unfiltered_segments);
 
 	let segments = unfiltered_segments.filter(segment => segment.start !== segment.end + 1);
-console.log("unfiltered_segments.length", unfiltered_segments.length);
-console.log("segments.length", segments.length);
+console.log("segments", segments);
 
   // add h level info and vertical line flag
   segments.forEach((d, i) => {
@@ -315,18 +315,21 @@ console.log("segments.length", segments.length);
   });
 
   // remove initial segments with "-" or "titolo" markers
-  if(segments[0].tag === "-") segments = segments.slice(1, segments.length - 1);
-  if(segments[0].tag === "titolo") segments = segments.slice(1, segments.length - 1);
-
+  if(segments[0].tag === "-") segments = segments.slice(1);
+  if(segments[0].tag === "titolo") segments = segments.slice(1);
+console.log("segments 320", segments);
   // add terminal items for creating horizontal terminal line parts
   const firstItem = Object.assign({}, segments[0]);
   firstItem.start = 0;
   firstItem.end = 0;
   segments.unshift(firstItem);
 
+  if(segments[segments.length - 1].tag === "-") segments.splice(segments.length - 1);
+
   const lastItem = Object.assign({}, segments[segments.length - 1]);
   lastItem.start = lastItem.end;
   segments.push(lastItem);
+console.log("segments with lastItem", segments);
 
   const xMapping = d3
     .scaleLinear()
@@ -350,13 +353,14 @@ if(d.hasVerticalLine && !d.h) console.log("d", d);
       d.verticalLineHeight = yMapping(d.h.index) - yMapping(segments[i - 1].h.index);
       d.x1 = xMapping(d.start);
       d.y1 = yMapping(d.h.index) + halfRectHeight * Math.sign(d.verticalLineHeight);
-      d.x2 = xMapping(d.start);
+      d.x2 = xMapping(d.end);
       d.y2 = yMapping(d.h.index) - d.verticalLineHeight - halfRectHeight * Math.sign(d.verticalLineHeight);
       d.middle_x = (d.x1 + d.x2) / 2;
       d.stepLine = true;
+console.log("d", d);
     }
   });
-
+console.log("finally segments", segments);
 	return segments;
 }
 
@@ -406,7 +410,7 @@ console.log("adding lines...");
     .append("line")
     .attr("x1", d => d.x1)
     .attr("y1", d => d.y1)
-    .attr("x2", d => d.x2)
+    .attr("x2", d => d.x1) // IMPORTANT : this IS d.x1 and NOT d.x2. it's taking the correct value!
     .attr("y2", d => d.y2)
     .classed("stepLine", d => d.stepLine);
 console.log("lines added.");
@@ -539,9 +543,11 @@ function plotColoredLine(intervalInterpolatorMap)
 {
 //  const color = d3.interpolateRainbow;
 //  const color = d3
-
+console.log("intervalInterpolatorMap", intervalInterpolatorMap);
   const color = function(x) {
-    const matchingPair = intervalInterpolatorMap.find(d => d[0][0].middle_x <= x && x < d[0][1].middle_x);
+//    const matchingPair = intervalInterpolatorMap.find(d => d[0][0].middle_x <= x && x < d[0][1].middle_x);
+    let matchingPair = intervalInterpolatorMap.find(d => d[0][0].middle_x <= x && x < d[0][1].middle_x);
+    if(!matchingPair) matchingPair = intervalInterpolatorMap[0];
 console.log("x", x);
 console.log("matchingPair", matchingPair);
     const ratio = (x - matchingPair[0][0].middle_x) / (matchingPair[0][1].middle_x - matchingPair[0][0].middle_x);
@@ -566,7 +572,13 @@ console.log("data", data);
     .style("fill", function(d) {
       return color(d[1][0]);
     })
-    .style("stroke", function(d) { return color(d[1][0]); })
+    .style("stroke", function(d) {
+console.log("-----------");
+console.log("d", d);
+const cc = color(d[1][0]);
+console.log("cc", cc);
+      return color(d[1][0]);
+    })
     .attr("d", function(d) { return lineJoin(d[0], d[1], d[2], d[3], lineWidth); });
 }
 
