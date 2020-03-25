@@ -6,9 +6,13 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <input type="file" id="files" multiple />
+	  <input type="file" id="files" multiple />
     <select id="texts"></select>
-	<input type="text" id="pattern" />
+    <input id="pattern" type="text" />
+    <button id="activatePattern" type="button" >filter</button>
+    <input id="lineWidthRange" type="range" min="1" max="9" value="5" />
+    <input id="lineSamplesPrecisionRange" type="range" min="1" max="9" value="5" />
+    <div id="selectedTextsDiv" ></div>
     <svg class="chart" width="100vw" height="100vh" background="yellow" />
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/5ed507ef8aa53d8ecfea96d96bc7214cd2476fd2/FileSaver.min.js"></script>

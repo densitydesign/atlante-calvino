@@ -1,7 +1,6 @@
 "use strict";
 
-document.getElementById("files").addEventListener("change", handleFileSelect, false);
-document.getElementById("texts").addEventListener("change", handleTextSelect, false);
+init();
 
 class node
 {
@@ -25,6 +24,57 @@ class node
 	}
 }
 
+function init()
+{
+  document.getElementById("files").addEventListener("change", handleFileSelect, false);
+  document.getElementById("texts").addEventListener("change", handleTextSelect, false);
+  document.getElementById("activatePattern").addEventListener("click", handlePatternClick, false);
+
+  document.getElementById("lineWidthRange").addEventListener("input", handleLineWidthRangeInput, false);
+  window.lineWidthMap = new Map([
+    [1, 0.2],
+    [2, 0.5],
+    [3, 1],
+    [4, 1.5],
+    [5, 2],
+    [6, 4],
+    [7, 8],
+    [8, 16],
+    [9, 32]
+  ]);
+  refreshLineWidth();
+
+  document.getElementById("lineSamplesPrecisionRange").addEventListener("input", handleLineSamplesPrecisionRangeInput, false);
+  window.lineSamplesPrecisionMap = new Map([
+    [1, 1],
+    [2, 2],
+    [3, 3],
+    [4, 4],
+    [5, 8],
+    [6, 10],
+    [7, 16],
+    [8, 20],
+    [9, 32]
+  ]);
+  refreshLineSamplesPrecision();
+
+  window.levels = get_levels();
+
+  window.margin = { top : 50, right : 50, bottom : 50, left : 150 };
+
+  window.svg = d3.select("svg");
+
+  const boundingClientRect = window.svg.node().getBoundingClientRect();
+
+  window.width = boundingClientRect.width - window.margin.left - window.margin.right;
+  window.height = boundingClientRect.height - window.margin.top - window.margin.bottom;
+
+  window.yMapping = d3
+    .scalePoint()
+    .domain(window.levels.map(d => d.index))
+    .range([window.margin.top, window.margin.top + window.height]);
+}
+
 function handleFileSelect(evt)
 {
 	const reader = new FileReader();
@@ -40,7 +90,7 @@ function handleFileSelect(evt)
 				["cinque", 5]
 			]);
 
-			window.csv = d3.csvParse(reader.result, item => {
+			window.raw_csv = d3.csvParse(reader.result, item => {
 
 //				const seqBig = item["SEQ BIG"].split(";");
 
@@ -54,6 +104,8 @@ function handleFileSelect(evt)
 				};
 			}).sort((a, b) => a.textID > b.textID);
 
+      window.csv = window.raw_csv.filter(item => item.textID);
+
 //      const csv = d3.csvParse(reader.result);
 //      preprocess_csv(csv);
 
@@ -63,21 +115,41 @@ console.log("printing items...");
 
       const select = document.getElementById("texts");
 
-      if(window.textIDs) Array.from(window.textIDs.values()).forEach(textID => select.remove(0));
+      if(window.textInfos) window.textInfos.forEach(textInfo => select.remove(0));
 
-      window.textIDs = new Set();
 
-			window.csv.forEach(item => {
-        window.textIDs.add(item.textID);
+      const textIDs = Array.from((new Set(window.csv.map(d => d.textID))).values());
+
+      window.textInfos = textIDs.map(textID => {
+
+        const csvItems = window.csv.filter(item => item.textID === textID);
+
+      	const segments = get_segments(
+          csvItems,
+          window.levels,
+          window.margin,
+          window.svg,
+          window.yMapping,
+          window.width);
+
+        const textCode = segments.map(segment => segment.h.code).reduce((textCode, segmentCode) => textCode + segmentCode, "");
+console.log("textCode", textCode);
+        return {
+          textID : textID,
+          segments : segments,
+          textCode : textCode
+        };
       });
 
-      Array.from(window.textIDs.values()).forEach(textID => {
+      window.textInfos.forEach(textInfo => {
         const option = document.createElement("option");
-        option.text = textID;
+        option.text = textInfo.textID;
         select.add(option);
       });
 
-console.log("window.textIDs.values()", window.textIDs.values());
+      refreshSelectedTextInfosByPattern();
+
+console.log("window.textInfos", window.textInfos);
 		};
 
 	reader.readAsText(evt.target.files[0]);
@@ -85,62 +157,122 @@ console.log("window.textIDs.values()", window.textIDs.values());
 
 function handleTextSelect(evt)
 {
-  const select = document.getElementById("texts");
+//  const segments = prepare_segments(textID);
+  refreshSelectedTextInfosByDrop();
 
-  const textID = select.value;
-
-  const csvItems = window.csv.filter(item => item.textID === textID);
-
-  const levels = get_levels();
-  const margin = { top : 50, right : 50, bottom : 50, left : 150 };
-
-  const svg = d3.select("svg");
-
-  const boundingClientRect = svg.node().getBoundingClientRect();
-
-  const width = boundingClientRect.width - margin.left - margin.right;
-  const height = boundingClientRect.height - margin.top - margin.bottom;
-
-  const yMapping = d3
-    .scalePoint()
-    .domain(levels.map(d => d.index))
-    .range([margin.top, margin.top + height]);
-
-	const segments = get_segments(
-    csvItems,
-    levels,
-    margin,
-    svg,
-    yMapping,
-    width);
-
-console.log("------------------------------");
-console.log("textID", textID);
-console.log("segments", segments);
-
-  svg.selectAll("*").remove();
-/*
-  plot_segments(
-    segments,
-    svg,
-    levels,
-    margin,
-    yMapping,
-    width);
-*/
-  plot_circles(segments);
-
-  prepareColoredLine(segments);
-
-  plot_texts(segments);
+  applyFiltering();
 }
 
-function plot_circles(segments)
+function refreshSelectedTextInfosByDrop()
+{
+  const textID = document.getElementById("texts").value;
+
+  const textInfo = window.textInfos.find(textInfo => textInfo.textID === textID);
+
+  window.selectedTextInfos = [ textInfo ];
+}
+
+function applyFiltering()
+{
+  const selectedTextsDiv = document.getElementById("selectedTextsDiv");
+
+  selectedTextsDiv.innerHTML = "";
+
+  if(window.selectedTextInfos.length < window.textInfos.length)
+  {
+    const text = window.selectedTextInfos.map(textInfo => textInfo.textID).reduce((text, textID) => text + " " + textID, "");
+
+    selectedTextsDiv.innerHTML = text;
+  }
+
+  clear_svg();
+
+  plot_axis(
+    window.svg,
+    window.levels,
+    window.margin,
+    window.yMapping);
+
+console.log("window.lineWidth", window.lineWidth);
+console.log("window.lineSamplesPrecision", window.lineSamplesPrecision);
+  redrawSelection(window.selectedTextInfos, window.lineWidth, window.lineSamplesPrecision);
+}
+
+function redrawSelection(selectedTextInfos, lineWidth, lineSamplesPrecision)
+{
+  selectedTextInfos.forEach(textInfo => plotTextDiagram(textInfo, lineWidth, lineSamplesPrecision));
+}
+
+function handlePatternClick(evt)
+{
+//  console.log("pattern", document.getElementById("pattern").value);
+
+  refreshSelectedTextInfosByPattern();
+
+  applyFiltering();
+}
+
+function refreshSelectedTextInfosByPattern()
+{
+  const pattern = document.getElementById("pattern").value;
+
+  const regex = RegExp(pattern);
+
+console.log("pattern", pattern);
+  window.selectedTextInfos = window.textInfos.filter(textInfo => regex.test(textInfo.textCode));
+console.log("selectedTextInfos", selectedTextInfos);
+}
+
+function refreshLineWidth()
+{
+  const rangeValue = Number.parseInt(document.getElementById("lineWidthRange").value);
+  window.lineWidth = window.lineWidthMap.get(rangeValue);
+}
+
+function handleLineWidthRangeInput(evt)
+{
+  refreshLineWidth();
+
+  applyFiltering();
+}
+
+function refreshLineSamplesPrecision()
+{
+  const rangeValue = Number.parseInt(document.getElementById("lineSamplesPrecisionRange").value);
+  window.lineSamplesPrecision = window.lineSamplesPrecisionMap.get(rangeValue);
+}
+
+function handleLineSamplesPrecisionRangeInput(evt)
+{
+console.log("handleLineSamplesPrecisionRangeInput");
+  refreshLineSamplesPrecision();
+console.log("window.lineSamplesPrecision", window.lineSamplesPrecision);
+  applyFiltering();
+}
+
+function plotTextDiagram(textInfo, lineWidth, lineSamplesPrecision)
+{
+console.log("------------------------------");
+console.log("textInfo", textInfo);
+
+  plot_circles(textInfo);
+
+  prepareColoredLine(textInfo, lineWidth, lineSamplesPrecision);
+
+  plot_texts(textInfo);
+}
+
+function clear_svg()
+{
+  d3.select("svg").selectAll("*").remove();
+}
+
+function plot_circles(textInfo)
 {
   d3
     .select("svg")
-    .selectAll("circle")
-    .data(segments)
+    .selectAll("circle." + textInfo.textID)
+    .data(textInfo.segments)
     .enter()
     .append("circle")
     .attr("cx", d => d.x + d.width / 2)
@@ -150,12 +282,12 @@ function plot_circles(segments)
     .attr("fill", "transparent");
 }
 
-function plot_texts(segments)
+function plot_texts(textInfo)
 {
   d3
     .select("svg")
-    .selectAll("text")
-    .data(segments)
+    .selectAll("text." + textInfo.textID)
+    .data(textInfo.segments)
     .enter()
     .append("text")
     .attr("x", d => d.cx + 20)
@@ -166,7 +298,7 @@ function plot_texts(segments)
     .text(d => d.label);
 }
 
-function prepareColoredLine(segments)
+function prepareColoredLine(textInfo, lineWidth, lineSamplesPrecision)
 {
   const lineFunction = d3
     .line()
@@ -174,20 +306,18 @@ function prepareColoredLine(segments)
     .x(d => d.x + d.width / 2)
     .y(d => d.y + d.height / 2);
 
-console.log("segments", segments);
-
   const lineGraph = d3
     .select("svg")
     .append("path")
-    .attr("d", lineFunction(segments))
+    .attr("d", lineFunction(textInfo.segments))
     .classed("line1", true);
 
-  const colorIntervals = createColorIntervals(segments);
+  const colorIntervals = createColorIntervals(textInfo.segments);
   const colorInterpolators = createColorInterpolators(colorIntervals);
 
   const intervalInterpolatorMap = colorIntervals.map((d, i) => [d, colorInterpolators[i]]);
 
-  plotColoredLine(intervalInterpolatorMap);
+  plotColoredLine(intervalInterpolatorMap, lineWidth, lineSamplesPrecision);
 }
 
 function get_levels()
@@ -234,7 +364,8 @@ function get_levels()
     { color : "#FFF800", code : "M", name : "metanarrazione" },
     { color : "#F2CA22", code : "N", name : "cornice" },
     { color : "black",   code : "O", name : "titolo" },
-    { color : "purple",  code : "P", name : "-" }
+    { color : "white",   code : "P", name : "missing" },
+    { color : "purple",  code : "Q", name : "-" }
   ];
 
   levels.forEach((d, i) => d.index = i);
@@ -369,9 +500,13 @@ function create_segments(vertices, levels, margin, width, yMapping)
 	let segments = unfiltered_segments.filter(segment => segment.start !== segment.end + 1);
 //console.log("segments", segments);
 
+  const default_h = levels.find(dd => dd.name === "missing");
+
   // add h level info and vertical line flag
   segments.forEach((d, i) => {
     d.h = levels.find(dd => dd.name === d.tag);
+    if(!d.h) d.h = default_h;
+
     d.hasVerticalLine = i !== 0;
   });
 
@@ -426,6 +561,27 @@ function create_segments(vertices, levels, margin, width, yMapping)
   });
 //console.log("finally segments", segments);
 	return segments;
+}
+
+function plot_axis(
+  svg,
+  levels,
+  margin,
+  yMapping)
+{
+  const yAxis = svg.append("g");
+
+  const yAxisCall = d3
+    .axisRight(yMapping)
+    .tickSize(0)
+    .tickFormat(d => levels[d].code + " " + levels[d].name);
+
+  // l'yAxis è un g. si scala in verticale colla funzione y, e quindi da essa può recepire
+  // il margin verticale; pel margin orizzontale, glielo comunico invece con questo transform:translate(quindi solo orizzontale)
+  yAxis
+    .attr("transform", `translate(${margin.left}, 0)`)
+    .call(yAxisCall)
+    .call(g => g.selectAll(".tick text").attr("x", -100));
 }
 
 function plot_segments(
@@ -555,7 +711,7 @@ function make_pairs_of_subsequent_items(items)
   return pairs;
 }
 
-function plotColoredLine(intervalInterpolatorMap)
+function plotColoredLine(intervalInterpolatorMap, lineWidth, lineSamplesPrecision)
 {
 //  const color = d3.interpolateRainbow;
 //  const color = d3
@@ -575,10 +731,12 @@ console.log("intervalInterpolatorMap", intervalInterpolatorMap);
 
   const path = d3.select(".line1").remove();
 
-  const data = quads(samples(path.node(), 8));
+//  const samplesPrecision = 16; //8;
+
+  const data = quads(samples(path.node(), lineSamplesPrecision));
 //console.log("data", data);
 
-  const lineWidth = 2; //32;
+//  const lineWidth = 0.5; //32;
 
   svg
     .selectAll(".line1")
