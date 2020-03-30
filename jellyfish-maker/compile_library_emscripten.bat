@@ -1,0 +1,1 @@
+em++ --bind -pedantic -std=c++17 -Wall -Wextra -Werror=return-type -Wshadow=local -Wempty-body -fdiagnostics-color -s -Os library.cpp -o library_emscripten.js -I../../../../../external/boost/boost_1_72_0/
