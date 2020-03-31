@@ -34,7 +34,7 @@ In svg, coloring a line continuously is not a simple task. This tool has been im
 .file list and possible file generation process
 index.html
 perimeter.doc.txt
-plot_data.csv
+plot_data.csv : a input plot data file example
 script.js
 style.css
 

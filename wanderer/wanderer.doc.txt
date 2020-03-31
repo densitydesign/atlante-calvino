@@ -41,8 +41,8 @@ filesaver
 the tool uses the selectionchange event to detect when highlighted text changes. The highglighted text coordinates (start and end character number) are stored in an object to track the annotation. A difficulty arises if previous, already saved annotations are present in the text, since each of them corresponds to a new tag. After each tag the coordinates are reset, so it becomes difficult to store the actual data. The solution adopted is saving actual annotation tags coordinates in a new custom attribute of the tag (its name is "data-pos"; see how it works in highlightAnnotationText() function); then the actual coordinates for the subsequent text are calculated based on these data.
 .file list and possible file generation process
 index.html
-machiavelli e i suoi tempi.txt
+machiavelli e i suoi tempi.txt : an input file example
 my-style.css
 script.js
-struttura_esempio_wanderer.tsv
+struttura_esempio_wanderer.tsv : a structure file example
 wanderer.doc.txt

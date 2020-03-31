@@ -41,10 +41,10 @@ the tool uses the selectionchange event to detect when highlighted text changes.
 explorer.doc.txt
 index.html
 list.tsv
-moby dick.txt
+moby dick.txt : an input file example
 my-style.css
 regexp.txt
 script.js
 slug.html
-struttura_esempio_explorer.tsv
+struttura_esempio_explorer.tsv : a structure file example
 

@@ -40,7 +40,7 @@ This tool was originally developed as a desktop program in C++. It had direct ac
 .file list and possible file generation process
 compile_library_emscripten.bat : this is a windows batch to compile the C++ library file in a javascript/wasm pair of files. To use on mac os / posix change the filename extension to .sh
 index.html
-input_data_spazio_gerarchie.csv
+input_data_spazio_gerarchie.csv : an input hierarchy data file example
 jellyfish-maker.doc.txt
 library.cpp : this is the C++ source code
 library_emscripten.js : this is the javascript file produced by the C++ library file compilation
