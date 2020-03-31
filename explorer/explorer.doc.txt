@@ -1,0 +1,50 @@
+-----------------------------------------------------------
+tool name :
+explorer
+-----------------------------------------------------------
+url :
+https://densitydesign.github.io/atlante-calvino/explorer/
+-----------------------------------------------------------
+description :
+a web-based tool for making annotations on a literary text. Annotation structure is dynamical an can be edited via a tsv fields file
+-----------------------------------------------------------
+how to use :
+-- to load a new text and analysis structure:
+- in the main application block (left) click on the file selector button and select a literary text file (.txt format)
+- in the sidebar (right), in the "Annotazioni" section click on "Browse..." and select a data structure file (.tsv format)
+-- to make an annotation
+° you must do this after having loaded a text, its data structure, and if necessary reloaded the work in progress
+- highlight some text in the main block
+- fill the various fields as required
+- to save the annotation, click on "Salva l'annotazione". This WILL NOT save on disk : it will just add the annotation to the annotation collection
+-- to export the annotations (i.e. to save all annotations to disk)
+- click on "Esporta le annotazioni"
+-> an annotations file will be downloaded
+-- to load a text, its analysis structure and a work in progress :
+- in the main application block (left) click on the file selector button and select a literary text file (.txt format)
+- in the sidebar (right), in the "Annotazioni" section click on the file selector button and select a data structure file (.tsv format)
+- in the sidebar (right), in the "Continua un'analisi lasciata in sospeso" section click on the file selector button and select an analysis file (.tsv format)
+-----------------------------------------------------------
+internals decriptions :
+.technology
+web page
+javascript
+jquery
+popper
+bootstrap
+d3
+voca
+filesaver
+.working principles
+the tool uses the selectionchange event to detect when highlighted text changes. The highglighted text coordinates (start and end character number) are stored in an object to track the annotation. A difficulty arises if previous, already saved annotations are present in the text, since each of them corresponds to a new tag. After each tag the coordinates are reset, so it becomes difficult to store the actual data. The solution adopted is saving actual annotation tags coordinates in a new custom attribute of the tag (its name is "data-pos"; see how it works in highlightAnnotationText() function); then the actual coordinates for the subsequent text are calculated based on these data.
+.file list and possible file generation process
+explorer.doc.txt
+index.html
+list.tsv
+moby dick.txt
+my-style.css
+regexp.txt
+script.js
+slug.html
+struttura_esempio_explorer.tsv
+

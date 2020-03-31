@@ -1,0 +1,50 @@
+-----------------------------------------------------------
+tool name :
+jellyfish-maker
+-----------------------------------------------------------
+url :
+https://densitydesign.github.io/atlante-calvino/jellyfish-maker/
+-----------------------------------------------------------
+description :
+a web-based tool to get nested json structures from an input csv with a denormalized hierarchy in its lines
+how to use :
+-- to load a new plot data file
+- click on the file selector button and select an hierarchy data file (.csv format)
+-> a json file will be automatically downloaded
+-----------------------------------------------------------
+internals decriptions :
+.technology
+webpage
+javascript
+filesaver
+emscripten
+C++
+boost
+.working principles
+Hierarchies processed in this tool are to be intended as tree of hierarchical places, such as a city contaning a house containing a room. The input data put these multiple containing relations in single derivational lines : 
+
+city -> house -> room
+
+if the city also contains a park which also contains a wood, we'll have a second line such as :
+
+city -> park -> wood
+
+The object hierarchy obtained will be a single object city, containing a collection of child hierarchies : house and park; house will be contain in turn one more hierarchy (room) and so park (wood).
+
+Merging of redundant branches of these hierarchies is obtained via single-key maps.
+
+When the hierarchy objects have been created, they are subsequently iterated over, along with their children and so on, by a visiting algorithm which builds a corresponding json nested structure.
+
+This tool was originally developed as a desktop program in C++. It had direct access on the computer file system. Now, due to the availability of the Emscripten compiler, a C++ compiler which produces javascript and wasm as target code (rather than assembly code), it has been possible to reuse it almost entirely (excluding just the C++ code related to file opening and writintg) by wrapping it into a very simple html page. The file loading and writing is deputed to the javascript code of the page.
+
+.file list and possible file generation process
+compile_library_emscripten.bat : this is a windows batch to compile the C++ library file in a javascript/wasm pair of files. To use on mac os / posix change the filename extension to .sh
+index.html
+input_data_spazio_gerarchie.csv
+jellyfish-maker.doc.txt
+library.cpp : this is the C++ source code
+library_emscripten.js : this is the javascript file produced by the C++ library file compilation
+library_emscripten.wasm : this is the wasm file produced by the C++ library file compilation
+script.js : this the true page's javascript file. It will use also functions exposed by library_emscripten.js
+style.css
+

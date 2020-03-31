@@ -1,0 +1,41 @@
+-----------------------------------------------------------
+tool name :
+perimeter
+-----------------------------------------------------------
+url :
+https://densitydesign.github.io/atlante-calvino/perimeter/
+-----------------------------------------------------------
+description :
+a web-based tool for plotting a literary text's plot items curve. Plot items are classified on an action scale, so that on the top there are the more dynamical ones, while on the bottom the more statical ones. regular expressions can be used to select multiple curves based on patterns of plot elements.
+-----------------------------------------------------------
+how to use :
+-- to load a new plot data file
+- click on the file selector button and select a plot data file (.csv format)
+-- to display a single text's curve
+- select in the drop down list the code of the wanted text
+-- to search and plot curves for multiple texts via regular expressions
+- write a regular expression with letters corresponding to the plot items on the left
+-- to regulate width of lines
+- move the left slider (left = less, right = more)
+-- to regulate the detail granularity of lines
+- move the right slider (left = more detail, right = less detail)
+-----------------------------------------------------------
+internals decriptions :
+.technology
+web page
+javascript
+d3
+filesaver
+.working principles
+the creation on line is based on the subdivision of the plot in segments, based on their plot item type. To understand how the program works, note that a plot item can contain other nested items; a plot item, let's say of type A, containing another shorter plot item, let's say of type B, can be seen as resulting in three segments : a first segment of type A, then a segment of type B and then again a segment of type A. When a plot data file is loaded, the tool calculates the actual segments for all the texts referred in the file. These segments can be seen as a stairs signal. The final curve can be seen as a continuous line touching all the steps in this stair, in their middle points. All the steps types are divided into macro-categories; each macro-category has a color and the line gets colored accordingly, changing smoothly from step to step.
+
+In svg, coloring a line continuously is not a simple task. This tool has been implemented using a technique which replaces an actual svg line with a series of little rectangles, each colored according to the wanted progression. Width and number of rectangles can be regulated via some parameters.
+
+.file list and possible file generation process
+index.html
+perimeter.doc.txt
+plot_data.csv
+script.js
+style.css
+
+

@@ -1,0 +1,17 @@
+name	type	values
+data_structure	data_structure_name	Corpus fenomeni dubitativi - struttura 3
+occorrenza	text	currentSelection
+starts_at	number	currentSelectionStart
+ends_at	number	currentSelectionEnd
+capitolo	text	
+macro_categoria	select	cosa;come;senso
+manifestazioni_stilistiche	select	N;R;D
+parole_formule	text	
+parentesi	checkbox	
+incisi	checkbox	
+subselection	subselectionCheckbox
+soggetto_starts_at	number	currentSubselectionStart
+soggetto_ends_at	number	currentSubselectionEnd
+soggetto	text	currentSubselection
+soggetto_parentesi	checkbox	
+soggetto_incisi	checkbox	

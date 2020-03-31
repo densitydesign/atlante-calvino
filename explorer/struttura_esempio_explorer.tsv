@@ -1,0 +1,15 @@
+name	type	values
+data_structure	data_structure_name	Corpus Luoghi EDIT
+occorrenza	text	currentSelection
+parte_di	text	
+starts_at	number	currentSelectionStart
+ends_at	number	currentSelectionEnd
+specifico_generico	select	specifico;generico
+scala	text	
+inizio	checkbox	
+complicazione	checkbox	
+fine	checkbox	
+localizzabile	checkbox	
+terrestre	checkbox	
+inventato	select	si;no;non applicabile;?
+nota	text	
