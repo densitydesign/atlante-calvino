@@ -1,0 +1,14 @@
+{
+  "name": "11b5d22090fd7c15",
+  "main": "11b5d22090fd7c15@276.js",
+  "version": "276.0.0",
+  "homepage": "https://observablehq.com/d/11b5d22090fd7c15",
+  "author": {
+    "name": "bea92",
+    "url": "https://observablehq.com/@bea92"
+  },
+  "type": "module",
+  "peerDependencies": {
+    "@observablehq/runtime": "4"
+  }
+}

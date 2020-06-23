@@ -1,0 +1,2208 @@
+Parole	Id	Ambientazione	Id ambientazione	Realtà-immaginazione	visione	Luoghi geografici	Coordinate geografiche	Nomi propri persona	tipo persona	metafora	similitudine	interrogativi	sostantivi concr-astr	contesto	paura	altra figura retorica
+Paura	P00001	-		-		no		no	-	-	-		astratto		sì	
+sul	P00002	-		-		no		no	-	-	-				-	
+sentiero	P00003	-		-		no		no	-	-	-		concreto	natura	-	
+Alle	P00004	Colla Bracca		realtà		no		no	-	-						
+nove	P00005	Colla Bracca		realtà		no		no	-	-						
+e	P00006	Colla Bracca		realtà		no		no	-	-						
+un	P00007	Colla Bracca		realtà		no		no	-	-						
+quarto	P00008	Colla Bracca		realtà		no		no	-	-						
+arrivò	P00009	Colla Bracca		realtà		no		no	-	-						
+su	P00010	Colla Bracca		realtà		no		no	-	-						
+Colla	L00014	Colla Bracca	L00014	realtà		sì		no	-	-						
+Bracca	L00014	Colla Bracca	L00014	realtà		sì		no	-	-						
+assieme		Colla Bracca		realtà		no		no	-	-						
+alla		Colla Bracca		realtà		no		no	-	-						
+luna,		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+ai		Colla Bracca		realtà		no		no	-	-						
+venti		Colla Bracca		realtà		no		no	-	-						
+era		Colla Bracca		realtà		no		no	-	-						
+già		Colla Bracca		realtà		no		no	-	-						
+al		Colla Bracca		realtà		no		no	-	-						
+bivio		Colla Bracca		realtà		no		no	-	-			concreto	natura?		
+dei		Colla Bracca		realtà		no		no	-	-						
+due		Colla Bracca		realtà		no		no	-	-						
+alberi,		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+per		Colla Bracca		realtà		no		no	-	-						
+la		Colla Bracca		realtà		no		no	-	-						
+mezza		Colla Bracca		realtà		no		no	-	-						
+sarebbe		Colla Bracca		realtà		no		no	-	-						
+stato		Colla Bracca		realtà		no		no	-	-						
+alla		Colla Bracca		realtà		no		no	-	-						
+fontana.		Colla Bracca		realtà		no		no	-	-			concreto			
+In		Colla Bracca		realtà		no		no	-	-						
+vista		Colla Bracca		realtà		no		no	-	-						
+di		Colla Bracca		realtà		no		no	-	-						
+San		Colla Bracca	L00014	realtà		sì		no	-	-						
+Faustino		Colla Bracca	L00014	realtà		sì		no	-	-						
+prima		Colla Bracca		realtà		no		no	-	-						
+delle		Colla Bracca		realtà		no		no	-	-						
+dieci,		Colla Bracca		realtà		no		no	-	-						
+dieci		Colla Bracca		realtà		no		no	-	-						
+e		Colla Bracca		realtà		no		no	-	-						
+mezzo		Colla Bracca		realtà		no		no	-	-						
+a		Colla Bracca		realtà		no		no	-	-						
+Perallo,		Colla Bracca	L00014	realtà		sì		no	-	-						
+Creppo		Colla Bracca	L00014	realtà		sì		no	-	-						
+a		Colla Bracca		realtà		no		no	-	-						
+mezzanotte,		Colla Bracca		realtà		no		no	-	-						
+per		Colla Bracca		realtà		no		no	-	-						
+l’una		Colla Bracca		realtà		no		no	-	-						
+poteva		Colla Bracca		realtà		no		no	-	-						
+essere		Colla Bracca		realtà		no		no	-	-						
+da		Colla Bracca		realtà		no		no	-	-						
+Vendetta		Colla Bracca		realtà		no		sì	partigiano	-						
+in		Colla Bracca		realtà		no		no	-	-						
+Castagna:		Colla Bracca	L00014	realtà		sì		no	-	-						
+dieci		Colla Bracca		realtà		no		no	-	-						
+ore		Colla Bracca		realtà		no		no	-	-			astratto			
+di		Colla Bracca		realtà		no		no	-	-						
+strada		Colla Bracca		realtà		no		no	-	-			concreto			
+a		Colla Bracca		realtà		no		no	-	-						
+passo		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+normale,		Colla Bracca		realtà		no		no	-	-						
+sei		Colla Bracca		realtà		no		no	-	-						
+ore		Colla Bracca		realtà		no		no	-	-			astratto			
+a		Colla Bracca		realtà		no		no	-	-						
+dir		Colla Bracca		realtà		no		no	-	-						
+tanto		Colla Bracca		realtà		no		no	-	-						
+per		Colla Bracca		realtà		no		no	-	-						
+lui,		Colla Bracca		realtà		no		no	-	-						
+Binda,		Colla Bracca		realtà		no		sì	partigiano	-						
+la		Colla Bracca		realtà		no		no	-	-						
+staffetta		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+del		Colla Bracca		realtà		no		no	-	-						
+primo		Colla Bracca		realtà		no		no	-	-						
+battaglione,		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+la		Colla Bracca		realtà		no		no	-	-						
+più		Colla Bracca		realtà		no		no	-	-						
+veloce		Colla Bracca		realtà		no		no	-	-						
+staffetta		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+della		Colla Bracca		realtà		no		no	-	-						
+brigata.		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+Andava		Colla Bracca		realtà		no		no	-	-						
+forte,		Colla Bracca		realtà		no		no	-	-						
+Binda,		Colla Bracca		realtà		no		sì	partigiano	-						
+a		Colla Bracca		realtà		no		no	-	-						
+corpo		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+morto		Colla Bracca		realtà		no		no	-	-						
+giù		Colla Bracca		realtà		no		no	-	-						
+per		Colla Bracca		realtà		no		no	-	-						
+le		Colla Bracca		realtà		no		no	-	-						
+scorciatoie,		Colla Bracca		realtà		no		no	-	-			concreto	natura?		
+senza		Colla Bracca		realtà		no		no	-	-						
+sbagliarsi		Colla Bracca		realtà		no		no	-	-						
+mai		Colla Bracca		realtà		no		no	-	-						
+alle		Colla Bracca		realtà		no		no	-	-						
+svolte		Colla Bracca		realtà		no		no	-	-			concreto			
+tutte		Colla Bracca		realtà		no		no	-	-						
+uguali,		Colla Bracca		realtà		no		no	-	-						
+riconoscendo		Colla Bracca		realtà		no		no	-	-						
+nel		Colla Bracca		realtà		no		no	-	-						
+buio		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+i		Colla Bracca		realtà		no		no	-	-						
+sassi,		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+i		Colla Bracca		realtà		no		no	-	-						
+cespugli,		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+prendendo		Colla Bracca		realtà		no		no	-	-						
+di		Colla Bracca		realtà		no		no	-	-						
+petto		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+le		Colla Bracca		realtà		no		no	-	-						
+salite,		Colla Bracca		realtà		no		no	-	-			concreto	natura?		
+di		Colla Bracca		realtà		no		no	-	-						
+petto		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+fermo		Colla Bracca		realtà		no		no	-	-						
+che		Colla Bracca		realtà		no		no	-	-						
+non		Colla Bracca		realtà		no		no	-	-						
+cambiava		Colla Bracca		realtà		no		no	-	-						
+il		Colla Bracca		realtà		no		no	-	-						
+ritmo		Colla Bracca		realtà		no		no	-	-			astratto			
+del		Colla Bracca		realtà		no		no	-	-						
+respiro,		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+la		Colla Bracca		realtà		no		no	-	-						
+lena		Colla Bracca		realtà		no		no	-	-			astratto			
+delle		Colla Bracca		realtà		no		no	-	-						
+gambe		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+spinte		Colla Bracca		realtà		no		no	-	-						
+come		Colla Bracca		realtà		no		no	-	-						
+da		Colla Bracca		realtà		no		no	-	-						
+stantuffi.		Colla Bracca		realtà		no		no	-	-			concreto			
+–		Colla Bracca		realtà		no		no	-	-						
+Forza		Colla Bracca		realtà		no		no	-	-			astratto			
+Binda!		Colla Bracca		realtà		no		sì	partigiano	-						
+–		Colla Bracca		realtà		no		no	-	-						
+gli		Colla Bracca		realtà		no		no	-	-						
+dicevano		Colla Bracca		realtà		no		no	-	-						
+i		Colla Bracca		realtà		no		no	-	-						
+compagni		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+appena		Colla Bracca		realtà		no		no	-	-						
+lo		Colla Bracca		realtà		no		no	-	-						
+vedevano		Colla Bracca		realtà		no		no	-	-						
+da		Colla Bracca		realtà		no		no	-	-						
+lontano		Colla Bracca		realtà		no		no	-	-						
+arrampicarsi		Colla Bracca		realtà		no		no	-	-						
+verso		Colla Bracca		realtà		no		no	-	-						
+il		Colla Bracca		realtà		no		no	-	-						
+loro		Colla Bracca		realtà		no		no	-	-						
+accampamento.		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+Cercavano		Colla Bracca		realtà		no		no	-	-						
+di		Colla Bracca		realtà		no		no	-	-						
+leggergli		Colla Bracca		realtà		no		no	-	-						
+in		Colla Bracca		realtà		no		no	-	-						
+volto		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+se		Colla Bracca		realtà		no		no	-	-						
+le		Colla Bracca		realtà		no		no	-	-						
+notizie,		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+gli		Colla Bracca		realtà		no		no	-	-						
+ordini		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+che		Colla Bracca		realtà		no		no	-	-						
+portava		Colla Bracca		realtà		no		no	-	-						
+erano		Colla Bracca		realtà		no		no	-	-						
+buoni		Colla Bracca		realtà		no		no	-	-						
+o		Colla Bracca		realtà		no		no	-	-						
+cattivi;		Colla Bracca		realtà		no		no	-	-						
+ma		Colla Bracca		realtà		no		no	-	-						
+la		Colla Bracca		realtà		no		no	-	-						
+faccia		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+di		Colla Bracca		realtà		no		no	-	-						
+Binda		Colla Bracca		realtà		no		sì	partigiano	-						
+era		Colla Bracca		realtà		no		no	-	-						
+chiusa		Colla Bracca		realtà		no		no	-	-						
+come		Colla Bracca		realtà		no		no	-	-	sì					
+un		Colla Bracca		realtà		no		no	-	-	sì					
+pugno,		Colla Bracca		realtà		no		no	-	-	sì		concreto	corpo		
+una		Colla Bracca		realtà		no		no	-	-						
+stretta		Colla Bracca		realtà		no		no	-	-						
+faccia		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+montanara		Colla Bracca		realtà		no		no	-	-						
+dal		Colla Bracca		realtà		no		no	-	-						
+labbro		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+peloso,		Colla Bracca		realtà		no		no	-	-						
+su		Colla Bracca		realtà		no		no	-	-						
+un		Colla Bracca		realtà		no		no	-	-						
+corpo		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+basso		Colla Bracca		realtà		no		no	-	-						
+e		Colla Bracca		realtà		no		no	-	-						
+ossuto		Colla Bracca		realtà		no		no	-	-						
+più		Colla Bracca		realtà		no		no	-	-						
+da		Colla Bracca		realtà		no		no	-	-						
+un		Colla Bracca		realtà		no		no	-	-						
+ragazzo		Colla Bracca		realtà		no		no	-	-			concreto			
+che		Colla Bracca		realtà		no		no	-	-						
+da		Colla Bracca		realtà		no		no	-	-						
+giovanotto,		Colla Bracca		realtà		no		no	-	-			concreto			
+con		Colla Bracca		realtà		no		no	-	-						
+muscoli		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+come		Colla Bracca		realtà		no		no	-	-	sì					
+sassi.		Colla Bracca		realtà		no		no	-	-	sì		concreto	natura		
+Era		-		riflessione-contesto		no		no	-	-						
+un		-		riflessione-contesto		no		no	-	-						
+duro		-		riflessione-contesto		no		no	-	-						
+e		-		riflessione-contesto		no		no	-	-						
+solitario		-		riflessione-contesto		no		no	-	-						
+compito		-		riflessione-contesto		no		no	-	-			concreto	guerra?		
+il		-		riflessione-contesto		no		no	-	-						
+suo,		-		riflessione-contesto		no		no	-	-						
+esser		-		riflessione-contesto		no		no	-	-						
+svegliato		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+tutte		-		riflessione-contesto		no		no	-	-						
+le		-		riflessione-contesto		no		no	-	-						
+ore,		-		riflessione-contesto		no		no	-	-			astratto			
+mandato		-		riflessione-contesto		no		no	-	-						
+fino		-		riflessione-contesto		no		no	-	-						
+da		-		riflessione-contesto		no		no	-	-						
+Serpe,		-		riflessione-contesto		no		sì	partigiano	-						
+da		-		riflessione-contesto		no		no	-	-						
+Pelle,		-		riflessione-contesto		no		sì	partigiano	-						
+dover		-		riflessione-contesto		no		no	-	-						
+marciare		-		riflessione-contesto		no		no	-	-						
+la		-		riflessione-contesto		no		no	-	-						
+notte		-		riflessione-contesto		no		no	-	-			concreto	natura		
+nel		-		riflessione-contesto		no		no	-	-						
+buio		-		riflessione-contesto		no		no	-	-			concreto	natura		
+delle		-		riflessione-contesto		no		no	-	-						
+vallate,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+con		-		riflessione-contesto		no		no	-	-						
+la		-		riflessione-contesto		no		no	-	-						
+compagnia		-		riflessione-contesto		no		no	-	-			astratto			
+di		-		riflessione-contesto		no		no	-	-						
+quell’arma		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+francese		-		riflessione-contesto		no		no	-	-						
+appesa		-		riflessione-contesto		no		no	-	-						
+alle		-		riflessione-contesto		no		no	-	-						
+spalle,		-		riflessione-contesto		no		no	-	-			concreto	corpo		
+leggera		-		riflessione-contesto		no		no	-	-						
+come		-		riflessione-contesto		no		no	-	-						
+un		-		riflessione-contesto		no		no	-	-						
+fuciletto		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+di		-		riflessione-contesto		no		no	-	-						
+legno,		-		riflessione-contesto		no		no	-	-			concreto			
+arrivare		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+un		-		riflessione-contesto		no		no	-	-						
+distaccamento		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+e		-		riflessione-contesto		no		no	-	-						
+dover		-		riflessione-contesto		no		no	-	-						
+ripartire		-		riflessione-contesto		no		no	-	-						
+per		-		riflessione-contesto		no		no	-	-						
+un		-		riflessione-contesto		no		no	-	-						
+altro		-		riflessione-contesto		no		no	-	-						
+o		-		riflessione-contesto		no		no	-	-						
+tornare		-		riflessione-contesto		no		no	-	-						
+con		-		riflessione-contesto		no		no	-	-						
+la		-		riflessione-contesto		no		no	-	-						
+risposta,		-		riflessione-contesto		no		no	-	-			concreto	guerra?		
+svegliare		-		riflessione-contesto		no		no	-	-						
+il		-		riflessione-contesto		no		no	-	-						
+cuoco		-		riflessione-contesto		no		no	-	-			concreto	guerra?		
+e		-		riflessione-contesto		no		no	-	-						
+frugare		-		riflessione-contesto		no		no	-	-						
+nelle		-		riflessione-contesto		no		no	-	-						
+marmitte		-		riflessione-contesto		no		no	-	-			concreto	guerra?		
+fredde,		-		riflessione-contesto		no		no	-	-						
+poi		-		riflessione-contesto		no		no	-	-						
+ripartire		-		riflessione-contesto		no		no	-	-						
+con		-		riflessione-contesto		no		no	-	-						
+una		-		riflessione-contesto		no		no	-	-						
+gavettata		-		riflessione-contesto		no		no	-	-			astratto			
+di		-		riflessione-contesto		no		no	-	-						
+castagne		-		riflessione-contesto		no		no	-	-			concreto	natura		
+ancora		-		riflessione-contesto		no		no	-	-						
+in		-		riflessione-contesto		no		no	-	-						
+gola.		-		riflessione-contesto		no		no	-	-			concreto	corpo		
+Ma		-		riflessione-contesto		no		no	-	-						
+era		-		riflessione-contesto		no		no	-	-						
+anche		-		riflessione-contesto		no		no	-	-						
+il		-		riflessione-contesto		no		no	-	-						
+suo		-		riflessione-contesto		no		no	-	-						
+compito		-		riflessione-contesto		no		no	-	-			concreto	guerra?		
+naturale,		-		riflessione-contesto		no		no	-	-						
+di		-		riflessione-contesto		no		no	-	-						
+lui		-		riflessione-contesto		no		no	-	-						
+che		-		riflessione-contesto		no		no	-	-						
+non		-		riflessione-contesto		no		no	-	-						
+si		-		riflessione-contesto		no		no	-	-						
+perdeva		-		riflessione-contesto		no		no	-	-						
+nei		-		riflessione-contesto		no		no	-	-						
+boschi,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+che		-		riflessione-contesto		no		no	-	-						
+conosceva		-		riflessione-contesto		no		no	-	-						
+tutti		-		riflessione-contesto		no		no	-	-						
+i		-		riflessione-contesto		no		no	-	-						
+sentieri,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+percorsi		-		riflessione-contesto		no		no	-	-						
+fin		-		riflessione-contesto		no		no	-	-						
+da		-		riflessione-contesto		no		no	-	-						
+bambino		-		riflessione-contesto		no		no	-	-			concreto			
+conducendo		-		riflessione-contesto		no		no	-	-						
+le		-		riflessione-contesto		no		no	-	-						
+capre,		-		riflessione-contesto		no		no	-	-			concreto	animale		
+andando		-		riflessione-contesto		no		no	-	-						
+per		-		riflessione-contesto		no		no	-	-						
+legna		-		riflessione-contesto		no		no	-	-			concreto	natura		
+o		-		riflessione-contesto		no		no	-	-						
+per		-		riflessione-contesto		no		no	-	-						
+fieno,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+di		-		riflessione-contesto		no		no	-	-						
+lui		-		riflessione-contesto		no		no	-	-						
+che		-		riflessione-contesto		no		no	-	-						
+non		-		riflessione-contesto		no		no	-	-						
+s’azzoppava		-		riflessione-contesto		no		no	-	-						
+e		-		riflessione-contesto		no		no	-	-						
+non		-		riflessione-contesto		no		no	-	-						
+si		-		riflessione-contesto		no		no	-	-						
+spellava		-		riflessione-contesto		no		no	-	-						
+i		-		riflessione-contesto		no		no	-	-						
+piedi		-		riflessione-contesto		no		no	-	-			concreto	corpo		
+su		-		riflessione-contesto		no		no	-	-						
+e		-		riflessione-contesto		no		no	-	-						
+giù		-		riflessione-contesto		no		no	-	-						
+per		-		riflessione-contesto		no		no	-	-						
+quei		-		riflessione-contesto		no		no	-	-						
+sassi		-		riflessione-contesto		no		no	-	-			concreto	natura		
+come		-		riflessione-contesto		no		no	-	-						
+tanti		-		riflessione-contesto		no		no	-	-						
+partigiani		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+saliti		-		riflessione-contesto		no		no	-	-						
+dalla		-		riflessione-contesto		no		no	-	-						
+città		-		riflessione-contesto		no		no	-	-			concreto			
+e		-		riflessione-contesto		no		no	-	-						
+dalla		-		riflessione-contesto		no		no	-	-						
+marina.		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+Un		-		riflessione-contesto		no		no	-	-						
+castagno		-		riflessione-contesto		no		no	-	-			concreto	natura		
+dal		-		riflessione-contesto		no		no	-	-						
+tronco		-		riflessione-contesto		no		no	-	-			concreto	natura		
+cavo,		-		riflessione-contesto		no		no	-	-						
+un		-		riflessione-contesto		no		no	-	-						
+lichene		-		riflessione-contesto		no		no	-	-			concreto	natura		
+celeste		-		riflessione-contesto		no		no	-	-						
+su		-		riflessione-contesto		no		no	-	-						
+una		-		riflessione-contesto		no		no	-	-						
+pietra,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+lo		-		riflessione-contesto		no		no	-	-						
+spiazzo		-		riflessione-contesto		no		no	-	-			concreto	natura?		
+nudo		-		riflessione-contesto		no		no	-	-						
+d’una		-		riflessione-contesto		no		no	-	-						
+carbonaia,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+quinte		-		riflessione-contesto		no		no	-	sì			concreto			
+di		-		riflessione-contesto		no		no	-	-						
+uno		-		riflessione-contesto		no		no	-	-						
+scenario		-		riflessione-contesto		no		no	-	sì			concreto			
+spaesato		-		riflessione-contesto		no		no	-	-						
+e		-		riflessione-contesto		no		no	-	-						
+uniforme,		-		riflessione-contesto		no		no	-	-						
+s’animavano		-		riflessione-contesto		no		no	-	-						
+in		-		riflessione-contesto		no		no	-	-						
+lui		-		riflessione-contesto		no		no	-	-						
+radicate		-		riflessione-contesto		no		no	-	-						
+ai		-		riflessione-contesto		no		no	-	-						
+ricordi		-		riflessione-contesto		no		no	-	-			astratto?			
+più		-		riflessione-contesto		no		no	-	-						
+remoti:		-		riflessione-contesto		no		no	-	-						
+una		-		riflessione-contesto		no		no	-	-						
+capra		-		riflessione-contesto		no		no	-	-			concreto	animale		
+scappata,		-		riflessione-contesto		no		no	-	-						
+una		-		riflessione-contesto		no		no	-	-						
+faina		-		riflessione-contesto		no		no	-	-			concreto	animale		
+stanata,		-		riflessione-contesto		no		no	-	-						
+la		-		riflessione-contesto		no		no	-	-						
+sottana		-		riflessione-contesto		no		no	-	-			concreto			
+alzata		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+una		-		riflessione-contesto		no		no	-	-						
+ragazza.		-		riflessione-contesto		no		no	-	-			concreto			
+E		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+questi		-		riflessione-contesto		no		no	-	-						
+s’aggiungevano		-		riflessione-contesto		no		no	-	-						
+i		-		riflessione-contesto		no		no	-	-						
+ricordi		-		riflessione-contesto		no		no	-	-			astratto?			
+nuovi,		-		riflessione-contesto		no		no	-	-						
+della		-		riflessione-contesto		no		no	-	-						
+guerra		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+fatta		-		riflessione-contesto		no		no	-	-						
+nei		-		riflessione-contesto		no		no	-	-						
+suoi		-		riflessione-contesto		no		no	-	-						
+posti,		-		riflessione-contesto		no		no	-	-			concreto			
+continuazione		-		riflessione-contesto		no		no	-	-						
+della		-		riflessione-contesto		no		no	-	-						
+sua		-		riflessione-contesto		no		no	-	-						
+storia:		-		riflessione-contesto		no		no	-	-			astratto			
+gioco,		-		riflessione-contesto		no		no	-	-			concreto			
+lavoro,		-		riflessione-contesto		no		no	-	-			concreto			
+caccia		-		riflessione-contesto		no		no	-	-			concreto			
+diventati		-		riflessione-contesto		no		no	-	-						
+guerra:		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+odore		-		riflessione-contesto		no		no	-	-			astratto			
+di		-		riflessione-contesto		no		no	-	-						
+spari		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+al		-		riflessione-contesto		no		no	-	-						
+ponte		-		riflessione-contesto		sì		no	-	-			concreto			
+di		-		riflessione-contesto		sì		no	-	-						
+Loreto,		-		riflessione-contesto		sì		no	-	-						
+salvataggi		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+giù		-		riflessione-contesto		no		no	-	-						
+per		-		riflessione-contesto		no		no	-	-						
+i		-		riflessione-contesto		no		no	-	-						
+cespugli		-		riflessione-contesto		no		no	-	-			concreto	natura		
+del		-		riflessione-contesto		no		no	-	-						
+pendio,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+prati		-		riflessione-contesto		no		no	-	-			concreto	natura		
+minati		-		riflessione-contesto		no		no	-	-						
+gravidi		-		riflessione-contesto		no		no	-	-						
+di		-		riflessione-contesto		no		no	-	-						
+morte.		-		riflessione-contesto		no		no	-	-			concreto?	guerra		
+La		-		riflessione-contesto		no		no	-	-						
+guerra		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+si		-		riflessione-contesto		no		no	-	-						
+rigirava		-		riflessione-contesto		no		no	-	-						
+allo		-		riflessione-contesto		no		no	-	-						
+stretto		-		riflessione-contesto		no		no	-	-						
+in		-		riflessione-contesto		no		no	-	-						
+quelle		-		riflessione-contesto		no		no	-	-						
+valli,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+come		-		riflessione-contesto		no		no	-	-	sì					
+un		-		riflessione-contesto		no		no	-	-	sì					
+cane		-		riflessione-contesto		no		no	-	-	sì		concreto	animale		
+che		-		riflessione-contesto		no		no	-	-	sì					
+vuol		-		riflessione-contesto		no		no	-	-	sì					
+mordersi		-		riflessione-contesto		no		no	-	-	sì					
+la		-		riflessione-contesto		no		no	-	-	sì					
+coda;		-		riflessione-contesto		no		no	-	-	sì		concreto	animale		
+i		-		riflessione-contesto		no		no	-	-						
+partigiani		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+gomito		-		riflessione-contesto		no		no	-	sì			concreto	corpo		
+a		-		riflessione-contesto		no		no	-	sì						
+gomito		-		riflessione-contesto		no		no	-	sì			concreto	corpo		
+coi		-		riflessione-contesto		no		no	-	-						
+bersaglieri		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+e		-		riflessione-contesto		no		no	-	-						
+i		-		riflessione-contesto		no		no	-	-						
+militi;		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+se		-		riflessione-contesto		no		no	-	-						
+gli		-		riflessione-contesto		no		no	-	-						
+uni		-		riflessione-contesto		no		no	-	-						
+salivano		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+monte		-		riflessione-contesto		no		no	-	-			concreto	natura		
+gli		-		riflessione-contesto		no		no	-	-						
+altri		-		riflessione-contesto		no		no	-	-						
+scendevano		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+valle,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+poi		-		riflessione-contesto		no		no	-	-						
+gli		-		riflessione-contesto		no		no	-	-						
+uni		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+valle		-		riflessione-contesto		no		no	-	-			concreto	natura		
+gli		-		riflessione-contesto		no		no	-	-						
+altri		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+monte,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+sempre		-		riflessione-contesto		no		no	-	-						
+con		-		riflessione-contesto		no		no	-	-						
+grandi		-		riflessione-contesto		no		no	-	-						
+giri		-		riflessione-contesto		no		no	-	-			concreto			
+sulle		-		riflessione-contesto		no		no	-	-						
+creste		-		riflessione-contesto		no		no	-	-			concreto	natura		
+per		-		riflessione-contesto		no		no	-	-						
+non		-		riflessione-contesto		no		no	-	-						
+finire		-		riflessione-contesto		no		no	-	-						
+gli		-		riflessione-contesto		no		no	-	-						
+uni		-		riflessione-contesto		no		no	-	-						
+sotto		-		riflessione-contesto		no		no	-	-						
+gli		-		riflessione-contesto		no		no	-	-						
+altri,		-		riflessione-contesto		no		no	-	-						
+e		-		riflessione-contesto		no		no	-	-						
+farsi		-		riflessione-contesto		no		no	-	-						
+sparare		-		riflessione-contesto		no		no	-	-						
+addosso,		-		riflessione-contesto		no		no	-	-						
+sempre		-		riflessione-contesto		no		no	-	-						
+con		-		riflessione-contesto		no		no	-	-						
+qualcuno		-		riflessione-contesto		no		no	-	-						
+che		-		riflessione-contesto		no		no	-	-						
+rimaneva		-		riflessione-contesto		no		no	-	-						
+morto,		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+monte		-		riflessione-contesto		no		no	-	-			concreto	natura		
+o		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+valle.		-		riflessione-contesto		no		no	-	-			concreto	natura		
+Il		-		riflessione-contesto		no		no	-	-						
+paese		-		riflessione-contesto		no		no	-	-			concreto			
+di		-		riflessione-contesto		no		no	-	-						
+Binda		-		riflessione-contesto		no		sì	partigiano	-						
+era		-		riflessione-contesto		no		no	-	-						
+giù		-		riflessione-contesto		no		no	-	-						
+per		-		riflessione-contesto		no		no	-	-						
+le		-		riflessione-contesto		no		no	-	-						
+campagne,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+San		-		riflessione-contesto		sì		no	-	-						
+Faustino,		-		riflessione-contesto		sì		no	-	-						
+tre		-		riflessione-contesto		no		no	-	-						
+gruppi		-		riflessione-contesto		no		no	-	-			astratto?			
+di		-		riflessione-contesto		no		no	-	-						
+case		-		riflessione-contesto		no		no	-	-			concreto			
+uno		-		riflessione-contesto		no		no	-	-						
+qua		-		riflessione-contesto		no		no	-	-						
+uno		-		riflessione-contesto		no		no	-	-						
+là		-		riflessione-contesto		no		no	-	-						
+nella		-		riflessione-contesto		no		no	-	-						
+vallata,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+la		-		riflessione-contesto		no		no	-	-						
+finestra		-		riflessione-contesto		no		no	-	-			concreto			
+di		-		riflessione-contesto		no		no	-	-						
+Regina		-		riflessione-contesto		no		sì	donna	-						
+col		-		riflessione-contesto		no		no	-	-						
+lenzuolo		-		riflessione-contesto		no		no	-	-			concreto			
+steso		-		riflessione-contesto		no		no	-	-						
+nei		-		riflessione-contesto		no		no	-	-						
+giorni		-		riflessione-contesto		no		no	-	-			astratto			
+di		-		riflessione-contesto		no		no	-	-						
+rastrellamento.		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+Il		-		riflessione-contesto		no		no	-	-						
+paese		-		riflessione-contesto		no		no	-	-			concreto			
+di		-		riflessione-contesto		no		no	-	-						
+Binda		-		riflessione-contesto		no		sì	partigiano	-						
+era		-		riflessione-contesto		no		no	-	-						
+una		-		riflessione-contesto		no		no	-	-						
+pausa		-		riflessione-contesto		no		no	-	-			astratto			
+breve		-		riflessione-contesto		no		no	-	-						
+tra		-		riflessione-contesto		no		no	-	-						
+lo		-		riflessione-contesto		no		no	-	-						
+scendere		-		riflessione-contesto		no		no	-	-						
+e		-		riflessione-contesto		no		no	-	-						
+il		-		riflessione-contesto		no		no	-	-						
+salire,		-		riflessione-contesto		no		no	-	-						
+una		-		riflessione-contesto		no		no	-	-						
+sorsata		-		riflessione-contesto		no		no	-	-			astratto?			
+di		-		riflessione-contesto		no		no	-	-						
+latte,		-		riflessione-contesto		no		no	-	-			concreto	natura?		
+la		-		riflessione-contesto		no		no	-	-						
+maglia		-		riflessione-contesto		no		no	-	-			concreto			
+pulita		-		riflessione-contesto		no		no	-	-						
+preparata		-		riflessione-contesto		no		no	-	-						
+da		-		riflessione-contesto		no		no	-	-						
+sua		-		riflessione-contesto		no		no	-	-						
+madre;		-		riflessione-contesto		no		no	-	-			concreto			
+poi		-		riflessione-contesto		no		no	-	-						
+lesto		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+scappare		-		riflessione-contesto		no		no	-	-						
+per		-		riflessione-contesto		no		no	-	-						
+non		-		riflessione-contesto		no		no	-	-						
+vederli		-		riflessione-contesto		no		no	-	-						
+arrivare		-		riflessione-contesto		no		no	-	-						
+da		-		riflessione-contesto		no		no	-	-						
+ogni		-		riflessione-contesto		no		no	-	-						
+parte		-		riflessione-contesto		no		no	-	-			astratto			
+tutt’a		-		riflessione-contesto		no		no	-	-						
+un		-		riflessione-contesto		no		no	-	-						
+tratto,		-		riflessione-contesto		no		no	-	-			concreto?			
+ché		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+San		-		riflessione-contesto		sì		no	-	-						
+Faustino		-		riflessione-contesto		sì		no	-	-						
+partigiani		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+ne		-		riflessione-contesto		no		no	-	-						
+erano		-		riflessione-contesto		no		no	-	-						
+morti		-		riflessione-contesto		no		no	-	-						
+abbastanza.		-		riflessione-contesto		no		no	-	-						
+L’inverno		-		riflessione-contesto		no		no	-	-			astratto?			
+era		-		riflessione-contesto		no		no	-	-						
+un		-		riflessione-contesto		no		no	-	-						
+gioco		-		riflessione-contesto		no		no	-	-			concreto			
+di		-		riflessione-contesto		no		no	-	-						
+rincorrersi		-		riflessione-contesto		no		no	-	-						
+e		-		riflessione-contesto		no		no	-	-						
+nascondersi;		-		riflessione-contesto		no		no	-	-						
+i		-		riflessione-contesto		no		no	-	-						
+bersaglieri		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+a		-		riflessione-contesto		no		no	-	-						
+Baiardo,		-		riflessione-contesto		sì		no	-	-						
+i		-		riflessione-contesto		no		no	-	-						
+militi		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+ai		-		riflessione-contesto		no		no	-	-						
+Molini,		-		riflessione-contesto		sì		no	-	-						
+i		-		riflessione-contesto		no		no	-	-						
+tedeschi		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+a		-		riflessione-contesto		no		no	-	-						
+Briga:		-		riflessione-contesto		sì		no	-	-						
+in		-		riflessione-contesto		no		no	-	-						
+mezzo		-		riflessione-contesto		no		no	-	-						
+i		-		riflessione-contesto		no		no	-	-						
+partigiani		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+stretti		-		riflessione-contesto		no		no	-	-						
+in		-		riflessione-contesto		no		no	-	-						
+due		-		riflessione-contesto		no		no	-	-						
+gomiti		-		riflessione-contesto		no		no	-	sì			concreto	corpo		
+di		-		riflessione-contesto		no		no	-	-						
+valle,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+che		-		riflessione-contesto		no		no	-	-						
+scansavano		-		riflessione-contesto		no		no	-	-						
+i		-		riflessione-contesto		no		no	-	-						
+rastrellamenti		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+spostandosi		-		riflessione-contesto		no		no	-	-						
+dall’uno		-		riflessione-contesto		no		no	-	-						
+all’altro		-		riflessione-contesto		no		no	-	-						
+nella		-		riflessione-contesto		no		no	-	-						
+notte,		-		riflessione-contesto		no		no	-	-			concreto	natura		
+attraverso		-		riflessione-contesto		no		no	-	-						
+posti		-		riflessione-contesto		no		no	-	-			concreto			
+contesi.		-		riflessione-contesto		no		no	-	-						
+Proprio		-		riflessione-contesto		no		no	-	-						
+in		-		riflessione-contesto		no		no	-	-						
+quella		-		riflessione-contesto		no		no	-	-						
+notte		-		riflessione-contesto		no		no	-	-			concreto	natura		
+una		-		riflessione-contesto		no		no	-	-						
+colonna		-		riflessione-contesto		no		no	-	-			astratto	guerra?		
+tedesca		-		riflessione-contesto		no		no	-	-						
+era		-		riflessione-contesto		no		no	-	-						
+in		-		riflessione-contesto		no		no	-	-						
+marcia		-		riflessione-contesto		no		no	-	-			concreto?	guerra		
+da		-		riflessione-contesto		no		no	-	-						
+Briga,		-		riflessione-contesto		sì		no	-	-						
+forse		-		riflessione-contesto		no		no	-	-						
+già		-		riflessione-contesto		no		no	-	-						
+al		-		riflessione-contesto		no		no	-	-						
+Carmo,		-		riflessione-contesto		sì		no	-	-						
+i		-		riflessione-contesto		no		no	-	-						
+militi		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+si		-		riflessione-contesto		no		no	-	-						
+preparavano		-		riflessione-contesto		no		no	-	-						
+a		-		riflessione-contesto		no		no	-	-						
+salire		-		riflessione-contesto		no		no	-	-						
+dai		-		riflessione-contesto		no		no	-	-						
+Molini		-		riflessione-contesto		sì		no	-	-						
+di		-		riflessione-contesto		no		no	-	-						
+rinforzo,		-		riflessione-contesto		no		no	-	-			astratto			
+i		-		riflessione-contesto		no		no	-	-						
+distaccamenti		-		riflessione-contesto		no		no	-	-			concreto	guerra		
+dormivano		-		riflessione-contesto		no		no	-	-						
+sepolti		-		riflessione-contesto		no		no	-	-						
+nella		-		riflessione-contesto		no		no	-	-						
+paglia		-		riflessione-contesto		no		no	-	-			concreto	natura		
+dei		-		riflessione-contesto		no		no	-	-						
+casoni,		-		riflessione-contesto		no		no	-	-			concreto			
+attorno		-		riflessione-contesto		no		no	-	-						
+alle		-		riflessione-contesto		no		no	-	-						
+braci		-		riflessione-contesto		no		no	-	-			concreto	natura		
+semispente;		-		riflessione-contesto		no		no	-	-						
+Binda		Colla Bracca		realtà		no		sì	partigiano	-						
+marciava		Colla Bracca		realtà		no		no	-	-						
+nel		Colla Bracca		realtà		no		no	-	-						
+buio		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+dei		Colla Bracca		realtà		no		no	-	-						
+boschi		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+con		Colla Bracca		realtà		no		no	-	-						
+la		Colla Bracca		realtà		no		no	-	-						
+loro		Colla Bracca		realtà		no		no	-	-						
+salvezza		Colla Bracca		realtà		no		no	-	-			astratto	guerra		
+affidata		Colla Bracca		realtà		no		no	-	-						
+alle		Colla Bracca		realtà		no		no	-	-						
+sue		Colla Bracca		realtà		no		no	-	-						
+gambe,		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+in		Colla Bracca		realtà		no		no	-	-						
+quell’ordine:		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+«Sgombrare		Colla Bracca		realtà		no		no	-	-						
+subito		Colla Bracca		realtà		no		no	-	-						
+la		Colla Bracca		realtà		no		no	-	-						
+valle,		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+per		Colla Bracca		realtà		no		no	-	-						
+l’alba		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+tutto		Colla Bracca		realtà		no		no	-	-						
+il		Colla Bracca		realtà		no		no	-	-						
+battaglione		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+con		Colla Bracca		realtà		no		no	-	-						
+le		Colla Bracca		realtà		no		no	-	-						
+pesanti		Colla Bracca		realtà		no		no	-	-						
+in		Colla Bracca		realtà		no		no	-	-						
+cresta		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+al		Colla Bracca		realtà		no		no	-	-						
+Pellegrino».		Colla Bracca		realtà		sì		no	-	-						
+L’ansia		Colla Bracca		immaginazione 		no		no	-	sì			astratto			
+era		Colla Bracca		immaginazione 		no		no	-	sì						
+un		Colla Bracca		immaginazione 		no		no	-	sì						
+leggero		Colla Bracca		immaginazione 		no		no	-	sì						
+battere		Colla Bracca		immaginazione 		no		no	-	sì						
+d’ali		Colla Bracca		immaginazione 		no		no	-	sì			concreto	animale		
+di		Colla Bracca		immaginazione 		no		no	-	sì						
+pipistrello		Colla Bracca		immaginazione 		no		no	-	sì			concreto	animale		
+nei		Colla Bracca		immaginazione 		no		no	-	sì						
+polmoni		Colla Bracca		immaginazione 		no		no	-	sì			concreto	corpo		
+di		Colla Bracca		immaginazione 		no		no	-	sì						
+Binda,		Colla Bracca		immaginazione 		no		sì	partigiano	sì						
+una		Colla Bracca		immaginazione 		no		no	-	-						
+voglia		Colla Bracca		immaginazione 		no		no	-	-			astratto			
+d’afferrare		Colla Bracca		immaginazione 		no		no	-	-						iperbole
+con		Colla Bracca		immaginazione 		no		no	-	-						iperbole
+la		Colla Bracca		immaginazione 		no		no	-	-						iperbole
+mano		Colla Bracca		immaginazione 		no		no	-	-			concreto	corpo		iperbole
+il		Colla Bracca		immaginazione 		no		no	-	-						iperbole
+costone		Colla Bracca		immaginazione 		no		no	-	-			concreto	natura		iperbole
+lontano		Colla Bracca		immaginazione 		no		no	-	-						iperbole
+due		Colla Bracca		immaginazione 		no		no	-	-						iperbole
+chilometri,		Colla Bracca		immaginazione 		no		no	-	-			astratto			iperbole
+nel		Colla Bracca		immaginazione 		no		no	-	-						iperbole
+buio		Colla Bracca		immaginazione 		no		no	-	-			concreto	natura		iperbole
+senza		Colla Bracca		immaginazione 		no		no	-	-						iperbole
+prospettiva,		Colla Bracca		immaginazione 		no		no	-	-			astratto			iperbole
+d’issarsi		Colla Bracca		immaginazione 		no		no	-	-						
+fin		Colla Bracca		immaginazione 		no		no	-	-						
+lassù,		Colla Bracca		immaginazione 		no		no	-	-						
+soffiare		Colla Bracca		immaginazione 		no		no	-	-						
+l’ordine		Colla Bracca		immaginazione 		no		no	-	-			concreto	guerra		
+come		Colla Bracca		immaginazione 		no		no	-	-	sì					
+un		Colla Bracca		immaginazione 		no		no	-	-	sì					
+alito		Colla Bracca		immaginazione 		no		no	-	-	sì		concreto	corpo		
+di		Colla Bracca		immaginazione 		no		no	-	-	sì					
+vento		Colla Bracca		immaginazione 		no		no	-	-	sì		concreto	natura		
+nell’erba		Colla Bracca		immaginazione 		no		no	-	-	sì		concreto	natura		
+e		Colla Bracca		immaginazione 		no		no	-	-						
+sentirlo		Colla Bracca		immaginazione 		no		no	-	-						
+scorrere		Colla Bracca		immaginazione 		no		no	-	-						
+via		Colla Bracca		immaginazione 		no		no	-	-						
+come		Colla Bracca		immaginazione 		no		no	-	-						
+attraverso		Colla Bracca		immaginazione 		no		no	-	-						
+i		Colla Bracca		immaginazione 		no		no	-	-						
+baffi		Colla Bracca		immaginazione 		no		no	-	-			concreto	corpo		
+su		Colla Bracca		immaginazione 		no		no	-	-						
+per		Colla Bracca		immaginazione 		no		no	-	-						
+le		Colla Bracca		immaginazione 		no		no	-	-						
+narici,		Colla Bracca		immaginazione 		no		no	-	-			concreto	corpo		
+fino		Colla Bracca		immaginazione 		no		no	-	-						
+a		Colla Bracca		immaginazione 		no		no	-	-						
+Vendetta,		Colla Bracca		immaginazione 		no		sì	partigiano	-						
+a		Colla Bracca		immaginazione 		no		no	-	-						
+Serpe,		Colla Bracca		immaginazione 		no		sì	partigiano	-						
+a		Colla Bracca		immaginazione 		no		no	-	-						
+Guerriglia.		Colla Bracca		immaginazione 		no		sì	partigiano	-						
+Poi		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+scavarsi		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+un		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+vano		Colla Bracca		immaginazione 	desiderio	no		no	-	-			astratto?			
+tra		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+le		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+foglie		Colla Bracca		immaginazione 	desiderio	no		no	-	-			concreto	natura		
+di		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+castagno,		Colla Bracca		immaginazione 	desiderio	no		no	-	-			concreto	natura		
+e		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+affondarci,		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+lui		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+e		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+Regina,		Colla Bracca		immaginazione 	desiderio	no		sì	donna	-						
+prima		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+togliere		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+i		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+ricci		Colla Bracca		immaginazione 	desiderio	no		no	-	-			concreto	natura		
+che		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+avrebbero		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+punto		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+Regina,		Colla Bracca		immaginazione 	desiderio	no		sì	donna	-						
+ma		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+più		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+si		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+scava		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+nelle		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+foglie		Colla Bracca		immaginazione 	desiderio	no		no	-	-			concreto	natura		
+più		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+ricci		Colla Bracca		immaginazione 	desiderio	no		no	-	-			concreto	natura		
+si		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+trovano,		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+impossibile		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+far		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+posto		Colla Bracca		immaginazione 	desiderio	no		no	-	-			concreto?			
+a		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+Regina		Colla Bracca		immaginazione 	desiderio	no		sì	donna	-						
+là		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+in		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+mezzo,		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+a		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+Regina		Colla Bracca		immaginazione 	desiderio	no		sì	donna	-						
+dalla		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+pelle		Colla Bracca		immaginazione 	desiderio	no		no	-	-			concreto	corpo		
+liscia		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+e		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+sottile.		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+Le		Colla Bracca		realtà		no		no	-	-						
+foglie		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+secche		Colla Bracca		realtà		no		no	-	-						
+e		Colla Bracca		realtà		no		no	-	-						
+i		Colla Bracca		realtà		no		no	-	-						
+ricci		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+frusciavano		Colla Bracca		realtà		no		no	-	-						
+sotto		Colla Bracca		realtà		no		no	-	-						
+i		Colla Bracca		realtà		no		no	-	-						
+piedi		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+di		Colla Bracca		realtà		no		no	-	-						
+Binda,		Colla Bracca		realtà		no		sì	partigiano	-						
+quasi		Colla Bracca		realtà		no		no	-	-						
+con		Colla Bracca		realtà		no		no	-	-						
+uno		Colla Bracca		realtà		no		no	-	-						
+sciacquio;		Colla Bracca		realtà		no		no	-	-			concreto?			
+i		Colla Bracca		realtà		no		no	-	-						
+ghiri		Colla Bracca		realtà		no		no	-	-			concreto	animale		
+dai		Colla Bracca		realtà		no		no	-	-						
+tondi		Colla Bracca		realtà		no		no	-	-						
+occhi		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+lucenti		Colla Bracca		realtà		no		no	-	-						
+correvano		Colla Bracca		realtà		no		no	-	-						
+a		Colla Bracca		realtà		no		no	-	-						
+rintanarsi		Colla Bracca		realtà		no		no	-	-						
+in		Colla Bracca		realtà		no		no	-	-						
+cima		Colla Bracca		realtà		no		no	-	-			astratto			
+agli		Colla Bracca		realtà		no		no	-	-						
+alberi.		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+–		Colla Bracca		realtà		no		no	-	-						
+Forza,		Colla Bracca		realtà		no		no	-	-			astratto			
+Binda!		Colla Bracca		realtà		no		sì	partigiano	-						
+–		Colla Bracca		realtà		no		no	-	-						
+gli		Colla Bracca		realtà		no		no	-	-						
+aveva		Colla Bracca		realtà		no		no	-	-						
+detto		Colla Bracca		realtà		no		no	-	-						
+Fegato,		Colla Bracca		realtà		no		sì	partigiano	-						
+il		Colla Bracca		realtà		no		no	-	-						
+comandante,		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+dandogli		Colla Bracca		realtà		no		no	-	-						
+la		Colla Bracca		realtà		no		no	-	-						
+consegna.		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+Il		Colla Bracca		realtà		no		no	-	-						
+sonno		Colla Bracca		realtà		no		no	-	-			astratto			
+s’alzava		Colla Bracca		realtà		no		no	-	-						
+dal		Colla Bracca		realtà		no		no	-	-						
+cuore		Colla Bracca		realtà		no		no	-	sì			concreto	corpo		
+della		Colla Bracca		realtà		no		no	-	sì						
+notte		Colla Bracca		realtà		no		no	-	sì			concreto?	natura		
+a		Colla Bracca		realtà		no		no	-	-						
+vellutargli		Colla Bracca		realtà		no		no	-	-						
+l’interno		Colla Bracca		realtà		no		no	-	-			astratto			
+delle		Colla Bracca		realtà		no		no	-	-						
+palpebre;		Colla Bracca		realtà		no		no	-	-			concreto	corpo		
+Binda		Colla Bracca		immaginazione 	desiderio	no		sì	partigiano	-						
+avrebbe		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+voluto		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+perdere		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+il		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+sentiero,		Colla Bracca		immaginazione 	desiderio	no		no	-	-			concreto	natura		
+smarrirsi		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+in		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+un		Colla Bracca		immaginazione 	desiderio	no		no	-	sì						
+mare		Colla Bracca		immaginazione 	desiderio	no		no	-	sì			concreto	natura		
+di		Colla Bracca		immaginazione 	desiderio	no		no	-	sì						
+foglie		Colla Bracca		immaginazione 	desiderio	no		no	-	sì			concreto	natura		
+secche,		Colla Bracca		immaginazione 	desiderio	no		no	-	sì						
+nuotare		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+fino		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+ad		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+esserne		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+sommerso.		Colla Bracca		immaginazione 	desiderio	no		no	-	-						
+–		Colla Bracca		realtà		no		no	-	-						
+Forza,		Colla Bracca		realtà		no		no	-	-			astratto			
+Binda!		Colla Bracca		realtà		no		sì	partigiano	-						
+Binda		Tumena		realtà		no		sì	partigiano	-						
+camminava		Tumena		realtà		no		no	-	-						
+ora		Tumena		realtà		no		no	-	-						
+sulla		Tumena		realtà		no		no	-	-						
+costiera		Tumena		realtà		no		no	-	-			concreto	natura		
+alta		Tumena		realtà		sì		no	-	-						
+di		Tumena		realtà		no		no	-	-						
+Tumena,		Tumena		realtà		sì		no	-	-						
+ancora		Tumena		realtà		no		no	-	-						
+ghiacciata,		Tumena		realtà		no		no	-	-						
+su		Tumena		realtà		no		no	-	-						
+una		Tumena		realtà		no		no	-	-						
+stretta		Tumena		realtà		no		no	-	-						
+pista		Tumena		realtà		no		no	-	-			concreto	natura		
+marcata		Tumena		realtà		no		no	-	-						
+di		Tumena		realtà		no		no	-	-						
+passi.		Tumena		realtà		no		no	-	-			concreto	corpo		
+Tumena		Tumena		realtà		sì		no	-	-						
+era		Tumena		realtà		no		no	-	-						
+la		Tumena		realtà		no		no	-	-						
+vallata		Tumena		realtà		no		no	-	-			concreto	natura		
+più		Tumena		realtà		no		no	-	-						
+ampia		Tumena		realtà		no		no	-	-						
+di		Tumena		realtà		no		no	-	-						
+quelle		Tumena		realtà		no		no	-	-						
+regioni,		Tumena		realtà		no		no	-	-			concreto			
+dalle		Tumena		realtà		no		no	-	-						
+rive		Tumena		realtà		no		no	-	-			concreto	natura		
+distanti		Tumena		realtà		no		no	-	-						
+e		Tumena		realtà		no		no	-	-						
+altissime;		Tumena		realtà		no		no	-	-						
+la		Tumena		realtà		no		no	-	-						
+riva		Tumena		realtà		no		no	-	-			concreto	natura		
+opposta		Tumena		realtà		no		no	-	-						
+sfumava		Tumena		realtà		no		no	-	-						
+nel		Tumena		realtà		no		no	-	-						
+buio,		Tumena		realtà		no		no	-	-			concreto	natura		
+quella		Tumena		realtà		no		no	-	-						
+su		Tumena		realtà		no		no	-	-						
+cui		Tumena		realtà		no		no	-	-						
+marciava		Tumena		realtà		no		no	-	-						
+si		Tumena		realtà		no		no	-	-						
+perdeva		Tumena		realtà		no		no	-	-						
+nel		Tumena		realtà		no		no	-	-						
+pendio		Tumena		realtà		no		no	-	-			concreto	natura		
+brullo,		Tumena		realtà		no		no	-	-						
+tra		Tumena		realtà		no		no	-	-						
+i		Tumena		realtà		no		no	-	-						
+cespugli		Tumena		realtà		no		no	-	-			concreto	natura		
+da		Tumena		realtà		no		no	-	-						
+cui,		Tumena		realtà		no		no	-	-						
+a		Tumena		realtà		no		no	-	-						
+giorno,		Tumena		realtà		no		no	-	-			astratto			
+s’alzavano		Tumena		realtà		no		no	-	-						
+frullanti		Tumena		realtà		no		no	-	-						
+stormi		Tumena		realtà		no		no	-	-			concreto	animale		
+di		Tumena		realtà		no		no	-	-						
+pernici.		Tumena		realtà		no		no	-	-			concreto	animale		
+Parve		Tumena		realtà		no		no	-	-						
+a		Tumena		realtà		no		no	-	-						
+Binda		Tumena		realtà		no		sì	partigiano	-						
+di		Tumena		realtà		no		no	-	-						
+vedere		Tumena		realtà		no		no	-	-						
+una		Tumena		realtà		no		no	-	-						
+luce		Tumena		realtà		no		no	-	-			concreto	natura?		
+lontana,		Tumena		realtà		no		no	-	-						
+in		Tumena		realtà		no		no	-	-						
+Tumena		Tumena		realtà		sì		no	-	-						
+bassa,		Tumena		realtà		sì		no	-	-						
+che		Tumena		realtà		no		no	-	-						
+camminava		Tumena		realtà		no		no	-	-						
+più		Tumena		realtà		no		no	-	-						
+avanti		Tumena		realtà		no		no	-	-						
+di		Tumena		realtà		no		no	-	-						
+lui.		Tumena		realtà		no		no	-	-						
+Faceva		Tumena		realtà		no		no	-	-						
+ogni		Tumena		realtà		no		no	-	-						
+tanto		Tumena		realtà		no		no	-	-						
+uno		Tumena		realtà		no		no	-	-						
+zig-zag		Tumena		realtà		no		no	-	-			astratto			
+come		Tumena		realtà		no		no	-	-						
+prendesse		Tumena		realtà		no		no	-	-						
+una		Tumena		realtà		no		no	-	-						
+curva,		Tumena		realtà		no		no	-	-			astratto?			
+spariva,		Tumena		realtà		no		no	-	-						
+riappariva		Tumena		realtà		no		no	-	-						
+di		Tumena		realtà		no		no	-	-						
+lì		Tumena		realtà		no		no	-	-						
+a		Tumena		realtà		no		no	-	-						
+poco		Tumena		realtà		no		no	-	-						
+in		Tumena		realtà		no		no	-	-						
+una		Tumena		realtà		no		no	-	-						
+direzione		Tumena		realtà		no		no	-	-			astratto			
+inaspettata.		Tumena		realtà		no		no	-	-						
+Chi		Tumena		realtà		no		no	-	-		interrogativo				
+era		Tumena		realtà		no		no	-	-		interrogativo				
+mai		Tumena		realtà		no		no	-	-		interrogativo				
+a		Tumena		realtà		no		no	-	-		interrogativo				
+quell’ora?		Tumena		realtà		no		no	-	-		interrogativo	astratto			
+A		Tumena		realtà		no		no	-	-						
+volte		Tumena		realtà		no		no	-	-			astratto			
+pareva		Tumena		realtà		no		no	-	-						
+a		Tumena		realtà		no		no	-	-						
+Binda		Tumena		realtà		no		sì	partigiano	-						
+che		Tumena		realtà		no		no	-	-						
+il		Tumena		realtà		no		no	-	-						
+lume		Tumena		realtà		no		no	-	-			concreto	natura		
+fosse		Tumena		realtà		no		no	-	-						
+molto		Tumena		realtà		no		no	-	-						
+più		Tumena		realtà		no		no	-	-						
+distante,		Tumena		realtà		no		no	-	-						
+sull’altra		Tumena		realtà		no		no	-	-						
+riva,		Tumena		realtà		no		no	-	-			concreto	natura		
+a		Tumena		realtà		no		no	-	-						
+volte		Tumena		realtà		no		no	-	-						
+fermo,		Tumena		realtà		no		no	-	-						
+a		Tumena		realtà		no		no	-	-						
+volte		Tumena		realtà		no		no	-	-						
+rimasto		Tumena		realtà		no		no	-	-						
+dietro		Tumena		realtà		no		no	-	-						
+a		Tumena		realtà		no		no	-	-						
+lui.		Tumena		realtà		no		no	-	-						
+Tanti		Tumena		realtà		no		no	-	-						
+lumi		Tumena		realtà		no		no	-	-			concreto	natura		
+diversi,		Tumena		realtà		no		no	-	-						
+potevano		Tumena		realtà		no		no	-	-						
+essere,		Tumena		realtà		no		no	-	-						
+in		Tumena		realtà		no		no	-	-						
+marcia		Tumena		realtà		no		no	-	-			concreto	guerra		
+per		Tumena		realtà		no		no	-	-						
+tutti		Tumena		realtà		no		no	-	-						
+i		Tumena		realtà		no		no	-	-						
+sentieri		Tumena		realtà		no		no	-	-			concreto	natura		
+di		Tumena		realtà		no		no	-	-						
+Tumena		Tumena		realtà		sì		no	-	-						
+bassa,		Tumena		realtà		sì		no	-	-						
+fors’anche		Tumena		realtà		no		no	-	-						
+dietro		Tumena		realtà		no		no	-	-						
+e		Tumena		realtà		no		no	-	-						
+avanti		Tumena		realtà		no		no	-	-						
+a		Tumena		realtà		no		no	-	-						
+lui,		Tumena		realtà		no		no	-	-						
+in		Tumena		realtà		no		no	-	-						
+Tumena		Tumena		realtà		sì		no	-	-						
+alta,		Tumena		realtà		sì		no	-	-						
+che		Tumena		realtà		no		no	-	-						
+s’accendevano		Tumena		realtà		no		no	-	-						
+e		Tumena		realtà		no		no	-	-						
+si		Tumena		realtà		no		no	-	-						
+spegnevano.		Tumena		realtà		no		no	-	-						
+I		Tumena		realtà		no		no	-	-						
+tedeschi!		Tumena		realtà		no		no	-	-			concreto	guerra		
+Una		Tumena		immaginazione		no		no	-	sì						
+bestia		Tumena		immaginazione		no		no	-	sì			concreto	animale		
+correva		Tumena		immaginazione		no		no	-	sì						
+sulle		Tumena		immaginazione		no		no	-	sì						
+orme		Tumena		immaginazione		no		no	-	sì			concreto	animale		
+di		Tumena		immaginazione		no		no	-	sì						
+Binda,		Tumena		immaginazione		no		sì	partigiano	sì						
+svegliata		Tumena		immaginazione		no		no	-	sì						
+dal		Tumena		immaginazione		no		no	-	sì						
+fondo		Tumena		immaginazione		no		no	-	sì			astratto			
+di		Tumena		immaginazione		no		no	-	sì						
+regioni		Tumena		immaginazione		no		no	-	sì			concreto			
+bambine,		Tumena		immaginazione		no		no	-	sì						
+lo		Tumena		immaginazione		no		no	-	sì						
+inseguiva,		Tumena		immaginazione		no		no	-	sì						
+presto		Tumena		immaginazione		no		no	-	sì						
+lo		Tumena		immaginazione		no		no	-	sì						
+avrebbe		Tumena		immaginazione		no		no	-	sì						
+raggiunto:		Tumena		immaginazione		no		no	-	sì						
+la		Tumena		immaginazione		no		no	-	sì						
+paura.		Tumena		immaginazione		no		no	-	sì			astratto		sì	
+Quei		Tumena		immaginazione		no		no	-	-						
+lumi		Tumena		immaginazione		no		no	-	-			concreto	natura		
+erano		Tumena		immaginazione		no		no	-	-						
+di		Tumena		immaginazione		no		no	-	-						
+tedeschi		Tumena		immaginazione		no		no	-	-			concreto	guerra		
+che		Tumena		immaginazione		no		no	-	-						
+perlustravano		Tumena		immaginazione		no		no	-	-						
+Tumena,		Tumena		immaginazione		sì		no	-	-						
+cespuglio		Tumena		immaginazione		no		no	-	-			concreto	natura		
+per		Tumena		immaginazione		no		no	-	-						
+cespuglio,		Tumena		immaginazione		no		no	-	-			concreto	natura		
+a		Tumena		immaginazione		no		no	-	-						
+battaglioni.		Tumena		immaginazione		no		no	-	-			concreto	guerra		
+Una		Tumena		immaginazione		no		no	-	-						
+cosa		Tumena		immaginazione		no		no	-	-			concreto			
+impossibile:		Tumena		immaginazione		no		no	-	-						
+Binda		Tumena		immaginazione		no		sì	partigiano	-						
+lo		Tumena		immaginazione		no		no	-	-						
+sapeva,		Tumena		immaginazione		no		no	-	-						
+pure		Tumena		immaginazione		no		no	-	-						
+sentiva		Tumena		immaginazione		no		no	-	-						
+che		Tumena		immaginazione		no		no	-	-						
+sarebbe		Tumena		immaginazione		no		no	-	-						
+stato		Tumena		immaginazione		no		no	-	-						
+piacevole		Tumena		immaginazione		no		no	-	-						
+crederci,		Tumena		immaginazione		no		no	-	-						
+abbandonarsi		Tumena		immaginazione		no		no	-	-						
+alla		Tumena		immaginazione		no		no	-	-						
+lusinga		Tumena		immaginazione		no		no	-	-			astratto			
+di		Tumena		immaginazione		no		no	-	-						
+quella		Tumena		immaginazione		no		no	-	-						
+bestia		Tumena		immaginazione		no		no	-	-			concreto	animale		
+bambina		Tumena		immaginazione		no		no	-	-						
+che		Tumena		immaginazione		no		no	-	-						
+lo		Tumena		immaginazione		no		no	-	-						
+inseguiva		Tumena		immaginazione		no		no	-	-						
+dappresso.		Tumena		immaginazione		no		no	-	-						
+In		Tumena		immaginazione		no		no	-	-						
+gola		Tumena		immaginazione		no		no	-	-			concreto	corpo		
+a		Tumena		immaginazione		no		no	-	-						
+Binda		Tumena		immaginazione		no		sì	partigiano	-						
+il		Tumena		immaginazione		no		no	-	-						
+tempo		Tumena		immaginazione		no		no	-	-			astratto			
+batteva		Tumena		immaginazione		no		no	-	-						
+sul		Tumena		immaginazione		no		no	-	-						
+suo		Tumena		immaginazione		no		no	-	-						
+tam-tam		Tumena		immaginazione		no		no	-	-			astratto			
+inghiottito.		Tumena		immaginazione		no		no	-	-						
+Era		Tumena		immaginazione		no		no	-	-						
+ormai		Tumena		immaginazione		no		no	-	-						
+tardi		Tumena		immaginazione		no		no	-	-						
+per		Tumena		immaginazione		no		no	-	-						
+arrivare		Tumena		immaginazione		no		no	-	-						
+prima		Tumena		immaginazione		no		no	-	-						
+dei		Tumena		immaginazione		no		no	-	-						
+tedeschi,		Tumena		immaginazione		no		no	-	-			concreto	guerra		
+per		Tumena		immaginazione		no		no	-	-						
+salvare		Tumena		immaginazione		no		no	-	-						
+i		Tumena		immaginazione		no		no	-	-						
+compagni.		Tumena		immaginazione		no		no	-	-			concreto	guerra		
+Già		Tumena		immaginazione	visione	no		no	-	-						
+Binda		Tumena		immaginazione	visione	no		sì	partigiano	-						
+vedeva		Tumena		immaginazione	visione	no		no	-	-						
+il		Tumena		immaginazione	visione	no		no	-	-						
+casone		Tumena		immaginazione	visione	no		no	-	-			concreto			
+di		Tumena		immaginazione	visione	no		no	-	-						
+Vendetta,		Tumena		immaginazione	visione	no		sì	partigiano	-						
+in		Tumena		immaginazione	visione	no		no	-	-						
+Castagna,		Tumena		immaginazione	visione	sì		no	-	-						
+bruciato,		Tumena		immaginazione	visione	no		no	-	-						
+i		Tumena		immaginazione	visione	no		no	-	-						
+corpi		Tumena		immaginazione	visione	no		no	-	-			concreto	corpo		
+dei		Tumena		immaginazione	visione	no		no	-	-						
+compagni		Tumena		immaginazione	visione	no		no	-	-			concreto	guerra		
+sanguinanti,		Tumena		immaginazione	visione	no		no	-	-						
+le		Tumena		immaginazione	visione	no		no	-	-						
+teste		Tumena		immaginazione	visione	no		no	-	-			concreto	corpo		
+di		Tumena		immaginazione	visione	no		no	-	-						
+alcuni		Tumena		immaginazione	visione	no		no	-	-						
+appese		Tumena		immaginazione	visione	no		no	-	-						
+ai		Tumena		immaginazione	visione	no		no	-	-						
+rami		Tumena		immaginazione	visione	no		no	-	-			concreto	natura		
+dei		Tumena		immaginazione	visione	no		no	-	-						
+larici		Tumena		immaginazione	visione	no		no	-	-			concreto	natura		
+per		Tumena		immaginazione	visione	no		no	-	-						
+i		Tumena		immaginazione	visione	no		no	-	-						
+lunghi		Tumena		immaginazione	visione	no		no	-	-						
+capelli.		Tumena		immaginazione	visione	no		no	-	-			concreto	corpo		
+–		Tumena		immaginazione		no		no	-	-						
+Forza		Tumena		immaginazione		no		no	-	-			astratto			
+Binda!		Tumena		immaginazione		no		sì	partigiano	-						
+Si		Tumena		realtà		no		no	-	-						
+stupì		Tumena		realtà		no		no	-	-						
+del		Tumena		realtà		no		no	-	-						
+luogo		Tumena		realtà		no		no	-	-			concreto?			
+dove		Tumena		realtà		no		no	-	-						
+si		Tumena		realtà		no		no	-	-						
+trovava,		Tumena		realtà		no		no	-	-						
+gli		Tumena		realtà		no		no	-	-						
+sembrava		Tumena		realtà		no		no	-	-						
+di		Tumena		realtà		no		no	-	-						
+aver		Tumena		realtà		no		no	-	-						
+percorsa		Tumena		realtà		no		no	-	-						
+poca		Tumena		realtà		no		no	-	-						
+strada		Tumena		realtà		no		no	-	-			concreto			
+in		Tumena		realtà		no		no	-	-						
+molto		Tumena		realtà		no		no	-	-						
+tempo:		Tumena		realtà		no		no	-	-			astratto			
+forse		Tumena		realtà		no		no	-	-						
+aveva		Tumena		realtà		no		no	-	-						
+rallentato		Tumena		realtà		no		no	-	-						
+senz’avvedersene,		Tumena		realtà		no		no	-	-						
+forse		Tumena		realtà		no		no	-	-						
+s’era		Tumena		realtà		no		no	-	-						
+fermato.		Tumena		realtà		no		no	-	-						
+Non		Tumena		realtà		no		no	-	-						
+cambiò		Tumena		realtà		no		no	-	-						
+andatura,		Tumena		realtà		no		no	-	-			astratto	corpo		
+però:		Tumena		realtà		no		no	-	-						
+sapeva		Tumena		realtà		no		no	-	-						
+bene		Tumena		realtà		no		no	-	-						
+che		Tumena		realtà		no		no	-	-						
+il		Tumena		realtà		no		no	-	-						
+suo		Tumena		realtà		no		no	-	-						
+passo		Tumena		realtà		no		no	-	-			concreto	corpo		
+era		Tumena		realtà		no		no	-	-						
+sempre		Tumena		realtà		no		no	-	-						
+uguale		Tumena		realtà		no		no	-	-						
+e		Tumena		realtà		no		no	-	-						
+sicuro,		Tumena		realtà		no		no	-	-						
+che		Tumena		realtà		no		no	-	-						
+non		Tumena		realtà		no		no	-	-						
+bisognava		Tumena		realtà		no		no	-	-						
+fidarsi		Tumena		realtà		no		no	-	-						
+di		Tumena		realtà		no		no	-	-						
+quella		Tumena		realtà		no		no	-	-						
+bestia		Tumena		realtà		no		no	-	-			concreto	animale		
+che		Tumena		realtà		no		no	-	-						
+veniva		Tumena		realtà		no		no	-	-						
+a		Tumena		realtà		no		no	-	-						
+fargli		Tumena		realtà		no		no	-	-						
+visita		Tumena		realtà		no		no	-	-						
+nelle		Tumena		realtà		no		no	-	-						
+missioni		Tumena		realtà		no		no	-	-			concreto?	guerra		
+notturne,		Tumena		realtà		no		no	-	-						
+a		Tumena		realtà		no		no	-	-						
+bagnargli		Tumena		realtà		no		no	-	-						
+le		Tumena		realtà		no		no	-	-						
+tempie		Tumena		realtà		no		no	-	-			concreto	corpo		
+con		Tumena		realtà		no		no	-	-						
+le		Tumena		realtà		no		no	-	-						
+sue		Tumena		realtà		no		no	-	-						
+dita		Tumena		realtà		no		no	-	-			concreto	corpo		
+invisibili,		Tumena		realtà		no		no	-	-						
+intinte		Tumena		realtà		no		no	-	-						
+di		Tumena		realtà		no		no	-	-						
+saliva.		Tumena		realtà		no		no	-	-			concreto	corpo		
+Era		Tumena		realtà		no		no	-	-						
+un		Tumena		realtà		no		no	-	-						
+ragazzo		Tumena		realtà		no		no	-	-			concreto			
+a		Tumena		realtà		no		no	-	-						
+posto,		Tumena		realtà		no		no	-	-						
+Binda,		Tumena		realtà		no		sì	partigiano	-						
+coi		Tumena		realtà		no		no	-	-						
+nervi		Tumena		realtà		no		no	-	-			concreto	corpo		
+saldi		Tumena		realtà		no		no	-	-						
+e		Tumena		realtà		no		no	-	-						
+il		Tumena		realtà		no		no	-	-						
+sangue		Tumena		realtà		no		no	-	-			concreto	corpo		
+freddo		Tumena		realtà		no		no	-	-						
+in		Tumena		realtà		no		no	-	-						
+ogni		Tumena		realtà		no		no	-	-						
+evenienza;		Tumena		realtà		no		no	-	-			astratto			
+serbava		Tumena		realtà		no		no	-	-						
+intatta		Tumena		realtà		no		no	-	-						
+tutta		Tumena		realtà		no		no	-	-						
+la		Tumena		realtà		no		no	-	-						
+sua		Tumena		realtà		no		no	-	-						
+risolutezza		Tumena		realtà		no		no	-	-			astratto			
+d’agire,		Tumena		realtà		no		no	-	-						
+pur		Tumena		realtà		no		no	-	-						
+portando		Tumena		realtà		no		no	-	-						
+quella		Tumena		realtà		no		no	-	-						
+bestia		Tumena		realtà		no		no	-	-			concreto	animale		
+ormai		Tumena		realtà		no		no	-	-						
+su		Tumena		realtà		no		no	-	-						
+di		Tumena		realtà		no		no	-	-						
+sé,		Tumena		realtà		no		no	-	-						
+come		Tumena		realtà		no		no	-	-	sì					
+una		Tumena		realtà		no		no	-	-	sì					
+scimmia		Tumena		realtà		no		no	-	-	sì		concreto	animale		
+aggrappata		Tumena		realtà		no		no	-	-	sì					
+al		Tumena		realtà		no		no	-	-	sì					
+collo.		Tumena		realtà		no		no	-	-	sì		concreto	corpo		
+Il		Colla Bracca		realtà		no		no	-	-						
+prato		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+di		Colla Bracca		realtà		no		no	-	-						
+Colla		Colla Bracca		realtà		sì		no	-	-						
+Bracca		Colla Bracca		realtà		sì		no	-	-						
+nella		Colla Bracca		realtà		no		no	-	-						
+luna		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+sembrava		Colla Bracca		realtà		no		no	-	-						
+molle.		Colla Bracca		realtà		no		no	-	-						
+«Le		Colla Bracca		realtà		no		no	-	-						
+mine!»		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+pensò		Colla Bracca		realtà		no		no	-	-						
+Binda.		Colla Bracca		realtà		no		sì	partigiano	-						
+Non		Colla Bracca		realtà		no		no	-	-						
+c’erano		Colla Bracca		realtà		no		no	-	-						
+mine		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+lassù,		Colla Bracca		realtà		no		no	-	-						
+Binda		Colla Bracca		realtà		no		sì	partigiano	-						
+lo		Colla Bracca		realtà		no		no	-	-						
+sapeva:		Colla Bracca		realtà		no		no	-	-						
+le		Colla Bracca		realtà		no		no	-	-						
+mine		Colla Bracca		realtà		no		no	-	-			concreto	guerra		
+erano		Colla Bracca		realtà		no		no	-	-						
+distanti,		Colla Bracca		realtà		no		no	-	-						
+sull’altro		Colla Bracca		realtà		no		no	-	-						
+versante		Colla Bracca		realtà		no		no	-	-			concreto	natura		
+di		Colla Bracca		realtà		no		no	-	-						
+Ceppo.		Colla Bracca		realtà		sì		no	-	-						
+Ma		Colla Bracca		immaginazione		no		no	-	-						
+Binda		Colla Bracca		immaginazione		no		sì	partigiano	-						
+ora		Colla Bracca		immaginazione		no		no	-	-						
+pensava		Colla Bracca		immaginazione		no		no	-	-						
+che		Colla Bracca		immaginazione		no		no	-	-						
+le		Colla Bracca		immaginazione		no		no	-	-						
+mine		Colla Bracca		immaginazione		no		no	-	-			concreto	guerra		
+si		Colla Bracca		immaginazione		no		no	-	-						
+muovessero		Colla Bracca		immaginazione		no		no	-	-						
+sottoterra,		Colla Bracca		immaginazione		no		no	-	-			concreto	natura		
+camminassero		Colla Bracca		immaginazione		no		no	-	-						
+da		Colla Bracca		immaginazione		no		no	-	-						
+una		Colla Bracca		immaginazione		no		no	-	-						
+parte		Colla Bracca		immaginazione		no		no	-	-			astratto			
+all’altra		Colla Bracca		immaginazione		no		no	-	-						
+delle		Colla Bracca		immaginazione		no		no	-	-						
+montagne,		Colla Bracca		immaginazione		no		no	-	-			concreto	natura		
+inseguissero		Colla Bracca		immaginazione		no		no	-	-						
+i		Colla Bracca		immaginazione		no		no	-	-						
+suoi		Colla Bracca		immaginazione		no		no	-	-						
+passi,		Colla Bracca		immaginazione		no		no	-	-			concreto	corpo		
+come		Colla Bracca		immaginazione		no		no	-	-	sì					
+enormi		Colla Bracca		immaginazione		no		no	-	-	sì					
+ragni		Colla Bracca		immaginazione		no		no	-	-	sì		concreto	animale		
+sotterranei.		Colla Bracca		immaginazione		no		no	-	-	sì					
+La		Colla Bracca		immaginazione		no		no	-	-						
+terra		Colla Bracca		immaginazione		no		no	-	-			concreto	natura		
+sopra		Colla Bracca		immaginazione		no		no	-	-						
+le		Colla Bracca		immaginazione		no		no	-	-						
+mine		Colla Bracca		immaginazione		no		no	-	-			concreto	guerra		
+produce		Colla Bracca		immaginazione		no		no	-	-						
+strani		Colla Bracca		immaginazione		no		no	-	-						
+funghi,		Colla Bracca		immaginazione		no		no	-	-			concreto	natura		
+guai		Colla Bracca		immaginazione		no		no	-	-						
+a		Colla Bracca		immaginazione		no		no	-	-						
+calpestarli:		Colla Bracca		immaginazione		no		no	-	-						
+tutto		Colla Bracca		immaginazione		no		no	-	-						iperbole
+scoppierebbe		Colla Bracca		immaginazione		no		no	-	-						iperbole
+all’istante,		Colla Bracca		immaginazione		no		no	-	-						iperbole
+ma		Colla Bracca		immaginazione		no		no	-	-						iperbole
+i		Colla Bracca		immaginazione		no		no	-	-						iperbole
+secondi		Colla Bracca		immaginazione		no		no	-	-			astratto			iperbole
+diventerebbero		Colla Bracca		immaginazione		no		no	-	-						iperbole
+lunghi		Colla Bracca		immaginazione		no		no	-	-						iperbole
+come		Colla Bracca		immaginazione		no		no	-	-						iperbole
+secoli,		Colla Bracca		immaginazione		no		no	-	-			astratto			iperbole
+e		Colla Bracca		immaginazione		no		no	-	-						iperbole
+il		Colla Bracca		immaginazione		no		no	-	-						iperbole
+mondo		Colla Bracca		immaginazione		no		no	-	-						iperbole
+sembrerebbe		Colla Bracca		immaginazione		no		no	-	-						iperbole
+fermarsi		Colla Bracca		immaginazione		no		no	-	-						iperbole
+come		Colla Bracca		immaginazione		no		no	-	-						iperbole
+incantato.		Colla Bracca		immaginazione		no		no	-	-						iperbole
+Binda		bosco		realtà		no		sì	partigiano	-						
+scendeva		bosco		realtà		no		no	-	-						
+per		bosco		realtà		no		no	-	-						
+il		bosco		realtà		no		no	-	-						
+bosco,		bosco		realtà		no		no	-	-			concreto	natura		
+adesso.		bosco		realtà		no		no	-	-						
+Il		bosco		immaginazione		no		no	-	sì						
+sonno		bosco		immaginazione		no		no	-	sì			astratto	corpo		
+e		bosco		immaginazione		no		no	-	sì						
+il		bosco		immaginazione		no		no	-	sì						
+buio		bosco		immaginazione		no		no	-	sì			concreto	natura		
+mettevano		bosco		immaginazione		no		no	-	sì						
+maschere		bosco		immaginazione		no		no	-	sì			concreto			
+tetre		bosco		immaginazione		no		no	-	sì						
+ai		bosco		immaginazione		no		no	-	sì						
+tronchi		bosco		immaginazione		no		no	-	sì			concreto	natura		
+ed		bosco		immaginazione		no		no	-	sì						
+ai		bosco		immaginazione		no		no	-	sì						
+cespugli.		bosco		immaginazione		no		no	-	sì			concreto	natura		
+C’erano		bosco		immaginazione		no		no	-	-						
+tedeschi		bosco		immaginazione		no		no	-	-			concreto	guerra		
+tutt’intorno,		bosco		immaginazione		no		no	-	-						
+era		bosco		immaginazione		no		no	-	-						
+vero.		bosco		immaginazione		no		no	-	-						
+Certo		bosco		immaginazione		no		no	-	-						
+l’avevano		bosco		immaginazione		no		no	-	-						
+visto		bosco		immaginazione		no		no	-	-						
+mentre		bosco		immaginazione		no		no	-	-						
+passava		bosco		immaginazione		no		no	-	-						
+il		bosco		immaginazione		no		no	-	-						
+prato		bosco		immaginazione		no		no	-	-			concreto	natura		
+di		bosco		immaginazione		no		no	-	-						
+Colla		bosco		immaginazione		sì		no	-	-						
+Bracca		bosco		immaginazione		sì		no	-	-						
+sotto		bosco		immaginazione		no		no	-	-						
+la		bosco		immaginazione		no		no	-	-						
+luna,		bosco		immaginazione		no		no	-	-			concreto	natura		
+lo		bosco		immaginazione		no		no	-	-						
+stavano		bosco		immaginazione		no		no	-	-						
+inseguendo,		bosco		immaginazione		no		no	-	-						
+lo		bosco		immaginazione		no		no	-	-						
+attendevano		bosco		immaginazione		no		no	-	-						
+al		bosco		immaginazione		no		no	-	-						
+varco.		bosco		immaginazione		no		no	-	-			concreto			
+Un		bosco		immaginazione		no		no	-	-						
+gufo		bosco		immaginazione		no		no	-	-			concreto	animale		
+gridò		bosco		immaginazione		no		no	-	-						
+poco		bosco		immaginazione		no		no	-	-						
+distante:		bosco		immaginazione		no		no	-	-						
+era		bosco		immaginazione		no		no	-	-						
+il		bosco		immaginazione		no		no	-	-						
+fischio		bosco		immaginazione		no		no	-	-			concreto	animale		
+convenuto		bosco		immaginazione		no		no	-	-						
+dei		bosco		immaginazione		no		no	-	-						
+tedeschi		bosco		immaginazione		no		no	-	-			concreto	guerra		
+che		bosco		immaginazione		no		no	-	-						
+serravano		bosco		immaginazione		no		no	-	-						
+intorno		bosco		immaginazione		no		no	-	-						
+a		bosco		immaginazione		no		no	-	-						
+lui,		bosco		immaginazione		no		no	-	-						
+ecco		bosco		immaginazione		no		no	-	-						
+che		bosco		immaginazione		no		no	-	-						
+un		bosco		immaginazione		no		no	-	-						
+altro		bosco		immaginazione		no		no	-	-						
+fischio		bosco		immaginazione		no		no	-	-			concreto	animale		
+gli		bosco		immaginazione		no		no	-	-						
+rispondeva,		bosco		immaginazione		no		no	-	-						
+era		bosco		immaginazione		no		no	-	-						
+circondato!		bosco		immaginazione		no		no	-	-						
+Una		bosco		immaginazione		no		no	-	-						
+bestia		bosco		immaginazione		no		no	-	-			concreto	animale		
+si		bosco		immaginazione		no		no	-	-						
+mosse		bosco		immaginazione		no		no	-	-						
+in		bosco		immaginazione		no		no	-	-						
+fondo		bosco		immaginazione		no		no	-	-						
+a		bosco		immaginazione		no		no	-	-						
+un		bosco		immaginazione		no		no	-	-						
+cespo		bosco		immaginazione		no		no	-	-			astratto?			
+d’eriche:		bosco		immaginazione		no		no	-	-			concreto	natura		
+forse		bosco		immaginazione		no		no	-	-		dubbio				
+una		bosco		immaginazione		no		no	-	-		dubbio				
+lepre,		bosco		immaginazione		no		no	-	-		dubbio	concreto	animale		
+forse		bosco		immaginazione		no		no	-	-		dubbio				
+una		bosco		immaginazione		no		no	-	-		dubbio				
+volpe,		bosco		immaginazione		no		no	-	-		dubbio	concreto	animale		
+forse		bosco		immaginazione		no		no	-	-		dubbio				
+un		bosco		immaginazione		no		no	-	-		dubbio				
+tedesco		bosco		immaginazione		no		no	-	-		dubbio	concreto	guerra		
+coricato		bosco		immaginazione		no		no	-	-		dubbio				
+tra		bosco		immaginazione		no		no	-	-		dubbio				
+gli		bosco		immaginazione		no		no	-	-		dubbio				
+arbusti		bosco		immaginazione		no		no	-	-		dubbio	concreto	natura		
+che		bosco		immaginazione		no		no	-	-		dubbio				
+lo		bosco		immaginazione		no		no	-	-		dubbio				
+prendeva		bosco		immaginazione		no		no	-	-		dubbio				
+di		bosco		immaginazione		no		no	-	-		dubbio				
+mira.		bosco		immaginazione		no		no	-	-		dubbio	astratto	guerra		
+C’era		bosco		immaginazione	visione	no		no	-	-						
+un		bosco		immaginazione	visione	no		no	-	-						
+tedesco		bosco		immaginazione	visione	no		no	-	-			concreto	guerra		
+per		bosco		immaginazione	visione	no		no	-	-						
+ogni		bosco		immaginazione	visione	no		no	-	-						
+cespuglio,		bosco		immaginazione	visione	no		no	-	-			concreto	natura		
+un		bosco		immaginazione	visione	no		no	-	-						
+tedesco		bosco		immaginazione	visione	no		no	-	-			concreto	guerra		
+appollaiato		bosco		immaginazione	visione	no		no	-	-						
+in		bosco		immaginazione	visione	no		no	-	-						
+cima		bosco		immaginazione	visione	no		no	-	-			astratto			
+a		bosco		immaginazione	visione	no		no	-	-						
+ogni		bosco		immaginazione	visione	no		no	-	-						
+albero,		bosco		immaginazione	visione	no		no	-	-			concreto	guerra		
+coi		bosco		immaginazione	visione	no		no	-	-						
+ghiri.		bosco		immaginazione	visione	no		no	-	-			concreto	animale		
+Le		bosco		immaginazione	visione	no		no	-	-						
+pietraie		bosco		immaginazione	visione	no		no	-	-			concreto	guerra		
+pullulavano		bosco		immaginazione	visione	no		no	-	-						
+d’elmi,		bosco		immaginazione	visione	no		no	-	-			concreto	guerra		
+fucili		bosco		immaginazione	visione	no		no	-	-			concreto	guerra		
+s’alzavano		bosco		immaginazione	visione	no		no	-	-						
+tra		bosco		immaginazione	visione	no		no	-	-						
+i		bosco		immaginazione	visione	no		no	-	-						
+rami,		bosco		immaginazione	visione	no		no	-	-			concreto	natura		
+le		bosco		immaginazione	visione	no		no	-	-						
+radici		bosco		immaginazione	visione	no		no	-	-			concreto	natura		
+degli		bosco		immaginazione	visione	no		no	-	-						
+alberi		bosco		immaginazione	visione	no		no	-	-			concreto	natura		
+finivano		bosco		immaginazione	visione	no		no	-	-						
+in		bosco		immaginazione	visione	no		no	-	-						
+piedi		bosco		immaginazione	visione	no		no	-	-			concreto	corpo		
+umani.		bosco		immaginazione	visione	no		no	-	-						
+Binda		bosco		immaginazione	visione	no		sì	partigiano	-						
+marciava		bosco		immaginazione	visione	no		no	-	-						
+lungo		bosco		immaginazione	visione	no		no	-	-						
+una		bosco		immaginazione	visione	no		no	-	-						
+doppia		bosco		immaginazione	visione	no		no	-	-						
+siepe		bosco		immaginazione	visione	no		no	-	-			concreto	natura		
+di		bosco		immaginazione	visione	no		no	-	-						
+tedeschi		bosco		immaginazione	visione	no		no	-	-			concreto	guerra		
+in		bosco		immaginazione	visione	no		no	-	-						
+agguato,		bosco		immaginazione	visione	no		no	-	-			astratto	guerra		
+che		bosco		immaginazione	visione	no		no	-	-						
+lo		bosco		immaginazione	visione	no		no	-	-						
+guardavano		bosco		immaginazione	visione	no		no	-	-						
+con		bosco		immaginazione	visione	no		no	-	-						
+occhi		bosco		immaginazione	visione	no		no	-	-			concreto	corpo		
+luccicanti		bosco		immaginazione	visione	no		no	-	-						
+come		bosco		immaginazione	visione	no		no	-	-						
+foglie:		bosco		immaginazione	visione	no		no	-	-			concreto	natura		
+più		bosco		immaginazione	visione	no		no	-	-						
+camminava		bosco		immaginazione	visione	no		no	-	-						
+più		bosco		immaginazione	visione	no		no	-	-						
+s’approfondiva		bosco		immaginazione	visione	no		no	-	-						
+in		bosco		immaginazione	visione	no		no	-	-						
+mezzo		bosco		immaginazione	visione	no		no	-	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+loro.		bosco		immaginazione	visione	no		no	-	-						
+Al		bosco		immaginazione	visione	no		no	-	-						
+terzo,		bosco		immaginazione	visione	no		no	-	-						
+al		bosco		immaginazione	visione	no		no	-	-						
+quarto,		bosco		immaginazione	visione	no		no	-	-						
+al		bosco		immaginazione	visione	no		no	-	-						
+sesto		bosco		immaginazione	visione	no		no	-	-						
+urlo		bosco		immaginazione	visione	no		no	-	-						
+di		bosco		immaginazione	visione	no		no	-	-						
+gufo		bosco		immaginazione	visione	no		no	-	-						
+tutti		bosco		immaginazione	visione	no		no	-	-						
+i		bosco		immaginazione	visione	no		no	-	-						
+tedeschi		bosco		immaginazione	visione	no		no	-	-						
+sarebbero		bosco		immaginazione	visione	no		no	-	-						
+balzati		bosco		immaginazione	visione	no		no	-	-						
+in		bosco		immaginazione	visione	no		no	-	-						
+piedi		bosco		immaginazione	visione	no		no	-	-						
+attorno		bosco		immaginazione	visione	no		no	-	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+lui,		bosco		immaginazione	visione	no		no	-	-						
+le		bosco		immaginazione	visione	no		no	-	-						
+armi		bosco		immaginazione	visione	no		no	-	-						
+puntate,		bosco		immaginazione	visione	no		no	-	-						
+il		bosco		immaginazione	visione	no		no	-	-						
+petto		bosco		immaginazione	visione	no		no	-	-						
+traversato		bosco		immaginazione	visione	no		no	-	-						
+da		bosco		immaginazione	visione	no		no	-	-						
+nastri		bosco		immaginazione	visione	no		no	-	-						
+di		bosco		immaginazione	visione	no		no	-	-						
+mitraglia.		bosco		immaginazione	visione	no		no	-	-						
+Uno		bosco		immaginazione	visione	no		no	-	-						
+in		bosco		immaginazione	visione	no		no	-	-						
+mezzo		bosco		immaginazione	visione	no		no	-	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+loro,		bosco		immaginazione	visione	no		no	-	-						
+detto		bosco		immaginazione	visione	no		no	-	-						
+Gund,		bosco		immaginazione	visione	no		sì	tedesco	-						
+con		bosco		immaginazione	visione	no		no	-	-						
+un		bosco		immaginazione	visione	no		no	-	-						
+terribile		bosco		immaginazione	visione	no		no	-	-						
+sorriso		bosco		immaginazione	visione	no		no	-	-						
+bianco		bosco		immaginazione	visione	no		no	-	-						
+sotto		bosco		immaginazione	visione	no		no	-	-						
+l’elmo,		bosco		immaginazione	visione	no		no	-	-						
+avrebbe		bosco		immaginazione	visione	no		no	-	-						
+proteso		bosco		immaginazione	visione	no		no	-	-						
+le		bosco		immaginazione	visione	no		no	-	-						
+mani		bosco		immaginazione	visione	no		no	-	-						
+enormi		bosco		immaginazione	visione	no		no	-	-						
+sopra		bosco		immaginazione	visione	no		no	-	-						
+di		bosco		immaginazione	visione	no		no	-	-						
+lui,		bosco		immaginazione	visione	no		no	-	-						
+per		bosco		immaginazione	visione	no		no	-	-						
+afferrarlo.		bosco		immaginazione	visione	no		no	-	-						
+Binda		bosco		immaginazione	visione	no		sì	partigiano	-						
+temeva		bosco		immaginazione	visione	no		no	-	-						
+di		bosco		immaginazione	visione	no		no	-	-						
+voltarsi		bosco		immaginazione	visione	no		no	-	-						
+per		bosco		immaginazione	visione	no		no	-	-						
+non		bosco		immaginazione	visione	no		no	-	-						
+vederselo		bosco		immaginazione	visione	no		no	-	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+un		bosco		immaginazione	visione	no		no	-	-						
+tratto		bosco		immaginazione	visione	no		no	-	-						
+alto		bosco		immaginazione	visione	no		no	-	-						
+sulle		bosco		immaginazione	visione	no		no	-	-						
+sue		bosco		immaginazione	visione	no		no	-	-						
+spalle,		bosco		immaginazione	visione	no		no	-	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+mitra		bosco		immaginazione	visione	no		no	-	-						
+spianato,		bosco		immaginazione	visione	no		no	-	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+mani		bosco		immaginazione	visione	no		no	-	-						
+aperte		bosco		immaginazione	visione	no		no	-	-						
+nell’aria.		bosco		immaginazione	visione	no		no	-	-						
+O		bosco		immaginazione	visione	no		no	-	-						
+forse		bosco		immaginazione	visione	no		no	-	-						
+gli		bosco		immaginazione	visione	no		no	-	-						
+sarebbe		bosco		immaginazione	visione	no		no	-	-						
+venuto		bosco		immaginazione	visione	no		no	-	-						
+incontro		bosco		immaginazione	visione	no		no	-	-						
+sul		bosco		immaginazione	visione	no		no	-	-						
+sentiero,		bosco		immaginazione	visione	no		no	-	-						
+indicandolo		bosco		immaginazione	visione	no		no	-	-						
+con		bosco		immaginazione	visione	no		no	-	-						
+un		bosco		immaginazione	visione	no		no	-	-						
+dito,		bosco		immaginazione	visione	no		no	-	-						
+o		bosco		immaginazione	visione	no		no	-	-						
+l’avrebbe		bosco		immaginazione	visione	no		no	-	-						
+sentito		bosco		immaginazione	visione	no		no	-	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+un		bosco		immaginazione	visione	no		no	-	-						
+rotolar		bosco		immaginazione	visione	no		no	-	-						
+di		bosco		immaginazione	visione	no		no	-	-						
+pietre		bosco		immaginazione	visione	no		no	-	-						
+che		bosco		immaginazione	visione	no		no	-	-						
+si		bosco		immaginazione	visione	no		no	-	-						
+metteva		bosco		immaginazione	visione	no		no	-	-						
+al		bosco		immaginazione	visione	no		no	-	-						
+suo		bosco		immaginazione	visione	no		no	-	-						
+fianco,		bosco		immaginazione	visione	no		no	-	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+camminare		bosco		immaginazione	visione	no		no	-	-						
+assieme		bosco		immaginazione	visione	no		no	-	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+lui		bosco		immaginazione	visione	no		no	-	-						
+in		bosco		immaginazione	visione	no		no	-	-						
+silenzio.		bosco		immaginazione	visione	no		no	-	-						
+A		bosco		realtà		no		no	-	-						
+un		bosco		realtà		no		no	-	-						
+tratto		bosco		realtà		no		no	-	-						
+gli		bosco		realtà		no		no	-	-						
+sembrò		bosco		realtà		no		no	-	-						
+d’aver		bosco		realtà		no		no	-	-						
+sbagliato		bosco		realtà		no		no	-	-						
+strada:		bosco		realtà		no		no	-	-						
+eppure		bosco		realtà		no		no	-	-						
+riconosceva		bosco		realtà		no		no	-	-						
+il		bosco		realtà		no		no	-	-						
+sentiero,		bosco		realtà		no		no	-	-						
+le		bosco		realtà		no		no	-	-						
+pietre,		bosco		realtà		no		no	-	-						
+gli		bosco		realtà		no		no	-	-						
+alberi,		bosco		realtà		no		no	-	-						
+il		bosco		realtà		no		no	-	-						
+muschio.		bosco		realtà		no		no	-	-						
+Ma		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+erano		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+pietre,		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+alberi,		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+muschio		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+d’un		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+altro		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+luogo,		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+distante,		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+di		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+mille		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+altri		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+luoghi		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+diversi		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+e		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+distanti.		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+Dopo		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+quel		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+gradino		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+di		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+sassi		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+doveva		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+esserci		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+un		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+dirupo,		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+non		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+un		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+roveto;		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+superato		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+quel		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+costone		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+un		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+cespo		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+di		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+ginestra,		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+non		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+d’agrifoglio;		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+il		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+rigagnolo		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+doveva		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+essere		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+asciutto,		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+non		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+con		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+acqua		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+e		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+rane.		bosco		immaginazione		no		no	-	-		dubbio-smarrimento				
+Erano		bosco		immaginazione		no		no	-	-						
+rane		bosco		immaginazione		no		no	-	-						
+d’un’altra		bosco		immaginazione		no		no	-	-						
+vallata,		bosco		immaginazione		no		no	-	-						
+rane		bosco		immaginazione		no		no	-	-						
+vicine		bosco		immaginazione		no		no	-	-						
+ai		bosco		immaginazione		no		no	-	-						
+tedeschi,		bosco		immaginazione		no		no	-	-						
+al		bosco		immaginazione		no		no	-	-						
+giro		bosco		immaginazione		no		no	-	-						
+della		bosco		immaginazione		no		no	-	-						
+strada,		bosco		immaginazione		no		no	-	-						
+era		bosco		immaginazione		no		no	-	-						
+un		bosco		immaginazione		no		no	-	-						
+inganno		bosco		immaginazione		no		no	-	-						
+preparato		bosco		immaginazione		no		no	-	-						
+dai		bosco		immaginazione		no		no	-	-						
+tedeschi		bosco		immaginazione		no		no	-	-						
+appostati,		bosco		immaginazione		no		no	-	-						
+che		bosco		immaginazione		no		no	-	-						
+l’avrebbe		bosco		immaginazione		no		no	-	-						
+messo		bosco		immaginazione		no		no	-	-						
+ad		bosco		immaginazione		no		no	-	-						
+un		bosco		immaginazione		no		no	-	-						
+tratto		bosco		immaginazione		no		no	-	-						
+nelle		bosco		immaginazione		no		no	-	-						
+loro		bosco		immaginazione		no		no	-	-						
+mani,		bosco		immaginazione		no		no	-	-						
+di		bosco		immaginazione		no		no	-	-						
+fronte		bosco		immaginazione		no		no	-	-						
+al		bosco		immaginazione		no		no	-	-						
+grande		bosco		immaginazione		no		no	-	-						
+tedesco		bosco		immaginazione		no		no	-	-						
+che		bosco		immaginazione		no		no	-	-						
+è		bosco		immaginazione		no		no	-	-						
+in		bosco		immaginazione		no		no	-	-						
+fondo		bosco		immaginazione		no		no	-	-						
+a		bosco		immaginazione		no		no	-	-						
+tutti		bosco		immaginazione		no		no	-	-						
+noi,		bosco		immaginazione		no		no	-	-						
+chiamato		bosco		immaginazione		no		no	-	-						
+Gund,		bosco		immaginazione		no		sì	tedesco	-						
+carico		bosco		immaginazione		no		no	-	-						
+d’elmi,		bosco		immaginazione		no		no	-	-						
+bandoliere,		bosco		immaginazione		no		no	-	-						
+bocche		bosco		immaginazione		no		no	-	-						
+d’armi		bosco		immaginazione		no		no	-	-						
+puntate,		bosco		immaginazione		no		no	-	-						
+che		bosco		immaginazione		no		no	-	-						
+apre		bosco		immaginazione		no		no	-	-						
+sopra		bosco		immaginazione		no		no	-	-						
+a		bosco		immaginazione		no		no	-	-						
+tutti		bosco		immaginazione		no		no	-	-						
+noi		bosco		immaginazione		no		no	-	-						
+le		bosco		immaginazione		no		no	-	-						
+mani		bosco		immaginazione		no		no	-	-						
+enormi		bosco		immaginazione		no		no	-	-						
+e		bosco		immaginazione		no		no	-	-						
+non		bosco		immaginazione		no		no	-	-						
+riesce		bosco		immaginazione		no		no	-	-						
+ad		bosco		immaginazione		no		no	-	-						
+afferrarci		bosco		immaginazione		no		no	-	-						
+mai.		bosco		immaginazione		no		no	-	-						
+Per		bosco		immaginazione	visione	no		no	-	-						
+cacciare		bosco		immaginazione	visione	no		no	-	-						
+Gund		bosco		immaginazione	visione	no		sì	tedesco	-						
+bisogna		bosco		immaginazione	visione	no		no	-	-						
+pensare		bosco		immaginazione	visione	no		no	-	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+Regina,		bosco		immaginazione	visione	no		sì	donna	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+scavarci		bosco		immaginazione	visione	no		no	-	-						
+una		bosco		immaginazione	visione	no		no	-	-						
+nicchia		bosco		immaginazione	visione	no		no	-	-						
+con		bosco		immaginazione	visione	no		no	-	-						
+Regina,		bosco		immaginazione	visione	no		sì	donna	-						
+nella		bosco		immaginazione	visione	no		no	-	-						
+neve,		bosco		immaginazione	visione	no		no	-	-						
+ma		bosco		immaginazione	visione	no		no	-	-						
+la		bosco		immaginazione	visione	no		no	-	-						
+neve		bosco		immaginazione	visione	no		no	-	-						
+è		bosco		immaginazione	visione	no		no	-	-						
+dura		bosco		immaginazione	visione	no		no	-	-						
+e		bosco		immaginazione	visione	no		no	-	-						
+ghiacciata,		bosco		immaginazione	visione	no		no	-	-						
+non		bosco		immaginazione	visione	no		no	-	-						
+si		bosco		immaginazione	visione	no		no	-	-						
+può		bosco		immaginazione	visione	no		no	-	-						
+farci		bosco		immaginazione	visione	no		no	-	-						
+sdraiare		bosco		immaginazione	visione	no		no	-	-						
+Regina,		bosco		immaginazione	visione	no		sì	donna	-						
+vestita		bosco		immaginazione	visione	no		no	-	-						
+d’una		bosco		immaginazione	visione	no		no	-	-						
+sottana		bosco		immaginazione	visione	no		no	-	-						
+sottile		bosco		immaginazione	visione	no		no	-	-						
+come		bosco		immaginazione	visione	no		no	-	-						
+pelle;		bosco		immaginazione	visione	no		no	-	-						
+neanche		bosco		immaginazione	visione	no		no	-	-						
+sotto		bosco		immaginazione	visione	no		no	-	-						
+i		bosco		immaginazione	visione	no		no	-	-						
+pini		bosco		immaginazione	visione	no		no	-	-						
+si		bosco		immaginazione	visione	no		no	-	-						
+può,		bosco		immaginazione	visione	no		no	-	-						
+lo		bosco		immaginazione	visione	no		no	-	-						
+strato		bosco		immaginazione	visione	no		no	-	-						
+degli		bosco		immaginazione	visione	no		no	-	-						
+aghi		bosco		immaginazione	visione	no		no	-	-						
+non		bosco		immaginazione	visione	no		no	-	-						
+ha		bosco		immaginazione	visione	no		no	-	-						
+fine,		bosco		immaginazione	visione	no		no	-	-						
+il		bosco		immaginazione	visione	no		no	-	-						
+terriccio		bosco		immaginazione	visione	no		no	-	-						
+raggiunto		bosco		immaginazione	visione	no		no	-	-						
+è		bosco		immaginazione	visione	no		no	-	-						
+un		bosco		immaginazione	visione	no		no	-	-						
+formicaio,		bosco		immaginazione	visione	no		no	-	-						
+e		bosco		immaginazione	visione	no		no	-	-						
+Gund		bosco		immaginazione	visione	no		sì	tedesco	-						
+è		bosco		immaginazione	visione	no		no	-	-						
+già		bosco		immaginazione	visione	no		no	-	-						
+sopra		bosco		immaginazione	visione	no		no	-	-						
+di		bosco		immaginazione	visione	no		no	-	-						
+noi,		bosco		immaginazione	visione	no		no	-	-						
+abbassa		bosco		immaginazione	visione	no		no	-	-						
+la		bosco		immaginazione	visione	no		no	-	-						
+mano		bosco		immaginazione	visione	no		no	-	-						
+sulla		bosco		immaginazione	visione	no		no	-	-						
+nostra		bosco		immaginazione	visione	no		no	-	-						
+testa,		bosco		immaginazione	visione	no		no	-	-						
+sulla		bosco		immaginazione	visione	no		no	-	-						
+nostra		bosco		immaginazione	visione	no		no	-	-						
+gola,		bosco		immaginazione	visione	no		no	-	-						
+sul		bosco		immaginazione	visione	no		no	-	-						
+nostro		bosco		immaginazione	visione	no		no	-	-						
+petto,		bosco		immaginazione	visione	no		no	-	-						
+l’abbassa		bosco		immaginazione	visione	no		no	-	-						
+ancora:		bosco		immaginazione	visione	no		no	-	-						
+urliamo.		bosco		immaginazione	visione	no		no	-	-						
+Bisogna		bosco		immaginazione	visione	no		no	-	-						
+pensare		bosco		immaginazione	visione	no		no	-	-						
+a		bosco		immaginazione	visione	no		no	-	-						
+Regina,		bosco		immaginazione	visione	no		sì	donna	-						
+la		bosco		immaginazione	visione	no		no	-	-						
+ragazza		bosco		immaginazione	visione	no		no	-	-						
+che		bosco		immaginazione	visione	no		no	-	-						
+è		bosco		immaginazione	visione	no		no	-	-						
+in		bosco		immaginazione	visione	no		no	-	-						
+tutti		bosco		immaginazione	visione	no		no	-	-						
+noi		bosco		immaginazione	visione	no		no	-	-						
+e		bosco		immaginazione	visione	no		no	-	-						
+per		bosco		immaginazione	visione	no		no	-	-						
+cui		bosco		immaginazione	visione	no		no	-	-						
+tutti		bosco		immaginazione	visione	no		no	-	-						
+noi		bosco		immaginazione	visione	no		no	-	-						
+vorremmo		bosco		immaginazione	visione	no		no	-	-						
+scavare		bosco		immaginazione	visione	no		no	-	-						
+una		bosco		immaginazione	visione	no		no	-	-						
+nicchia		bosco		immaginazione	visione	no		no	-	-						
+in		bosco		immaginazione	visione	no		no	-	-						
+fondo		bosco		immaginazione	visione	no		no	-	-						
+al		bosco		immaginazione	visione	no		no	-	-						
+bosco.		bosco		immaginazione	visione	no		no	-	-						
+Ma		bosco		immaginazione		no		no	-	-						
+l’inseguimento		bosco		immaginazione		no		no	-	-						
+era		bosco		immaginazione		no		no	-	-						
+alla		bosco		immaginazione		no		no	-	-						
+fine,		bosco		immaginazione		no		no	-	-						
+tra		bosco		immaginazione		no		no	-	-						
+Binda		bosco		immaginazione		no		sì	partigiano	-						
+e		bosco		immaginazione		no		no	-	-						
+Gund:		bosco		immaginazione		no		sì	tedesco	-						
+l’accampamento		bosco		realtà		no		no	-	-						
+di		bosco		realtà		no		no	-	-						
+Vendetta		bosco		realtà		no		sì	partigiano	-						
+distava		bosco		realtà		no		no	-	-						
+ormai		bosco		realtà		no		no	-	-						
+solo		bosco		realtà		no		no	-	-						
+quindici,		bosco		realtà		no		no	-	-						
+venti		bosco		realtà		no		no	-	-						
+minuti.		bosco		realtà		no		no	-	-						
+Binda		bosco		immaginazione		no		sì	partigiano	-						
+correva,		bosco		immaginazione		no		no	-	-						
+col		bosco		immaginazione		no		no	-	-						
+pensiero:		bosco		immaginazione		no		no	-	-						
+ma		bosco		realtà		no		no	-	-						
+i		bosco		realtà		no		no	-	-						
+suoi		bosco		realtà		no		no	-	-						
+passi		bosco		realtà		no		no	-	-						
+continuavano		bosco		realtà		no		no	-	-						
+a		bosco		realtà		no		no	-	-						
+posarsi		bosco		realtà		no		no	-	-						
+regolari,		bosco		realtà		no		no	-	-						
+per		bosco		realtà		no		no	-	-						
+non		bosco		realtà		no		no	-	-						
+sfiatarsi.		bosco		realtà		no		no	-	-						
+Raggiunti		bosco		realtà		no		no	-	-						
+i		bosco		realtà		no		no	-	-						
+compagni		bosco		realtà		no		no	-	-						
+la		bosco		realtà		no		no	-	-						
+paura		bosco		realtà		no		no	-	-					sì	
+sarebbe		bosco		realtà		no		no	-	-						
+scomparsa,		bosco		realtà		no		no	-	-						
+cancellata		bosco		realtà		no		no	-	-						
+fin		bosco		realtà		no		no	-	-						
+dal		bosco		realtà		no		no	-	-						
+fondo		bosco		realtà		no		no	-	-						
+della		bosco		realtà		no		no	-	-						
+memoria,		bosco		realtà		no		no	-	-						
+data		bosco		realtà		no		no	-	-						
+per		bosco		realtà		no		no	-	-						
+impossibile.		bosco		realtà		no		no	-	-						
+C’era		bosco		realtà		no		no	-	-						
+da		bosco		realtà		no		no	-	-						
+pensare		bosco		realtà		no		no	-	-						
+a		bosco		realtà		no		no	-	-						
+svegliare		bosco		realtà		no		no	-	-						
+Vendetta		bosco		realtà		no		sì	partigiano	-						
+e		bosco		realtà		no		no	-	-						
+Sciabola,		bosco		realtà		no		sì	partigiano	-						
+il		bosco		realtà		no		no	-	-						
+commissario,		bosco		realtà		no		no	-	-						
+spiegar		bosco		realtà		no		no	-	-						
+loro		bosco		realtà		no		no	-	-						
+l’ordine		bosco		realtà		no		no	-	-						
+di		bosco		realtà		no		no	-	-						
+Fegato,		bosco		realtà		no		sì	partigiano	-						
+poi		bosco		realtà		no		no	-	-						
+ripartire		bosco		realtà		no		no	-	-						
+per		bosco		realtà		no		no	-	-						
+Gerbonte,		bosco		realtà		sì		no	-	-						
+da		bosco		realtà		no		no	-	-						
+Serpe.		bosco		realtà		no		sì	partigiano	-						
+Ma		bosco		realtà		no		no	-	-		interrogativo				
+si		bosco		realtà		no		no	-	-		interrogativo				
+sarebbe		bosco		realtà		no		no	-	-		interrogativo				
+raggiunto		bosco		realtà		no		no	-	-		interrogativo				
+mai,		bosco		realtà		no		no	-	-		interrogativo				
+il		bosco		realtà		no		no	-	-		interrogativo				
+casone?		bosco		realtà		no		no	-	-		interrogativo				
+Non		bosco		immaginazione		no		no	-	-		interrogativo				
+era		bosco		immaginazione		no		no	-	-		interrogativo				
+legato		bosco		immaginazione		no		no	-	-		interrogativo				
+a		bosco		immaginazione		no		no	-	-		interrogativo				
+un		bosco		immaginazione		no		no	-	-		interrogativo				
+filo		bosco		immaginazione		no		no	-	-		interrogativo				
+che		bosco		immaginazione		no		no	-	-		interrogativo				
+lo		bosco		immaginazione		no		no	-	-		interrogativo				
+trascinava		bosco		immaginazione		no		no	-	-		interrogativo				
+lontano		bosco		immaginazione		no		no	-	-		interrogativo				
+da		bosco		immaginazione		no		no	-	-		interrogativo				
+lui,		bosco		immaginazione		no		no	-	-		interrogativo				
+man		bosco		immaginazione		no		no	-	-		interrogativo				
+mano		bosco		immaginazione		no		no	-	-		interrogativo				
+che		bosco		immaginazione		no		no	-	-		interrogativo				
+s’avvicinava?		bosco		immaginazione		no		no	-	-		interrogativo				
+E		bosco		immaginazione		no		no	-	-						
+arrivando		bosco		immaginazione		no		no	-	-						
+non		bosco		immaginazione		no		no	-	-						
+avrebbe		bosco		immaginazione		no		no	-	-						
+sentito		bosco		immaginazione		no		no	-	-						
+ausch-ausch		bosco		immaginazione		no		no	-	-						
+i		bosco		immaginazione		no		no	-	-						
+tedeschi		bosco		immaginazione		no		no	-	-						
+tutt’intorno		bosco		immaginazione		no		no	-	-						
+al		bosco		immaginazione		no		no	-	-						
+fuoco		bosco		immaginazione		no		no	-	-						
+che		bosco		immaginazione		no		no	-	-						
+mangiavano		bosco		immaginazione		no		no	-	-						
+le		bosco		immaginazione		no		no	-	-						
+castagne		bosco		immaginazione		no		no	-	-						
+rimaste?		bosco		immaginazione		no		no	-	-						
+Binda		bosco		immaginazione	visione	no		sì	partigiano	-						
+già		bosco		immaginazione	visione	no		no	-	-						
+s’immaginava		bosco		immaginazione	visione	no		no	-	-						
+d’arrivare		bosco		immaginazione	visione	no		no	-	-						
+al		bosco		immaginazione	visione	no		no	-	-						
+casone		bosco		immaginazione	visione	no		no	-	-						
+mezz’incendiato		bosco		immaginazione	visione	no		no	-	-						
+e		bosco		immaginazione	visione	no		no	-	-						
+deserto.		bosco		immaginazione	visione	no		no	-	-						
+Entrava:		bosco		immaginazione	visione	no		no	-	-						
+vuoto.		bosco		immaginazione	visione	no		no	-	-						
+Ma		bosco		immaginazione	visione	no		no	-	-						
+in		bosco		immaginazione	visione	no		no	-	-						
+un		bosco		immaginazione	visione	no		no	-	-						
+angolo,		bosco		immaginazione	visione	no		no	-	-						
+grandissimo,		bosco		immaginazione	visione	no		no	-	-						
+seduto		bosco		immaginazione	visione	no		no	-	-						
+alla		bosco		immaginazione	visione	no		no	-	-						
+turca,		bosco		immaginazione	visione	no		no	-	-						
+con		bosco		immaginazione	visione	no		no	-	-						
+l’elmo		bosco		immaginazione	visione	no		no	-	-						
+che		bosco		immaginazione	visione	no		no	-	-						
+toccava		bosco		immaginazione	visione	no		no	-	-						
+il		bosco		immaginazione	visione	no		no	-	-						
+tetto,		bosco		immaginazione	visione	no		no	-	-						
+c’era		bosco		immaginazione	visione	no		no	-	-						
+Gund,		bosco		immaginazione	visione	no		sì	tedesco	-						
+gli		bosco		immaginazione	visione	no		no	-	-						
+occhi		bosco		immaginazione	visione	no		no	-	-						
+tondi		bosco		immaginazione	visione	no		no	-	-						
+e		bosco		immaginazione	visione	no		no	-	-						
+lucenti		bosco		immaginazione	visione	no		no	-	-						
+come		bosco		immaginazione	visione	no		no	-	-						
+quelli		bosco		immaginazione	visione	no		no	-	-						
+dei		bosco		immaginazione	visione	no		no	-	-						
+ghiri,		bosco		immaginazione	visione	no		no	-	-						
+il		bosco		immaginazione	visione	no		no	-	-						
+sorriso		bosco		immaginazione	visione	no		no	-	-						
+bianco		bosco		immaginazione	visione	no		no	-	-						
+di		bosco		immaginazione	visione	no		no	-	-						
+denti		bosco		immaginazione	visione	no		no	-	-						
+tra		bosco		immaginazione	visione	no		no	-	-						
+le		bosco		immaginazione	visione	no		no	-	-						
+labbra		bosco		immaginazione	visione	no		no	-	-						
+tumide.		bosco		immaginazione	visione	no		no	-	-						
+Gund		bosco		immaginazione	visione	no		sì	tedesco	-						
+gli		bosco		immaginazione	visione	no		no	-	-						
+faceva		bosco		immaginazione	visione	no		no	-	-						
+cenno:		bosco		immaginazione	visione	no		no	-	-						
+«Siediti».		bosco		immaginazione	visione	no		no	-	-						
+E		bosco		immaginazione	visione	no		no	-	-						
+Binda		bosco		immaginazione	visione	no		sì	partigiano	-						
+si		bosco		immaginazione	visione	no		no	-	-						
+sarebbe		bosco		immaginazione	visione	no		no	-	-						
+seduto.		bosco		immaginazione	visione	no		no	-	-						
+Ecco,		Pian Castagna		realtà		no		no	-	-						
+a		Pian Castagna		realtà		no		no	-	-						
+cento		Pian Castagna		realtà		no		no	-	-						
+metri		Pian Castagna		realtà		no		no	-	-						
+da		Pian Castagna		realtà		no		no	-	-						
+lui		Pian Castagna		realtà		no		no	-	-						
+una		Pian Castagna		realtà		no		no	-	-						
+luce:		Pian Castagna		realtà		no		no	-	-						
+erano		Pian Castagna		realtà		no		no	-	-						
+loro!		Pian Castagna		realtà		no		no	-	-						
+Chi		Pian Castagna		realtà		no		no	-	-						
+loro?		Pian Castagna		realtà		no		no	-	-						
+Ebbe		Pian Castagna		realtà		no		no	-	-						
+voglia		Pian Castagna		realtà		no		no	-	-						
+di		Pian Castagna		realtà		no		no	-	-						
+tornare		Pian Castagna		realtà		no		no	-	-						
+indietro,		Pian Castagna		realtà		no		no	-	-						
+di		Pian Castagna		realtà		no		no	-	-						
+fuggire,		Pian Castagna		realtà		no		no	-	-						
+come		Pian Castagna		realtà		no		no	-	-						
+tutto		Pian Castagna		realtà		no		no	-	-						
+il		Pian Castagna		realtà		no		no	-	-						
+pericolo		Pian Castagna		realtà		no		no	-	-						
+fosse		Pian Castagna		realtà		no		no	-	-						
+laggiù		Pian Castagna		realtà		no		no	-	-						
+nel		Pian Castagna		realtà		no		no	-	-						
+casolare		Pian Castagna		realtà		no		no	-	-						
+di		Pian Castagna		realtà		no		no	-	-						
+pian		Pian Castagna		realtà		no		no	-	-						
+Castagna.		Pian Castagna		realtà		sì		no	-	-						
+Ma		Pian Castagna		realtà		no		no	-	-						
+continuava		Pian Castagna		realtà		no		no	-	-						
+a		Pian Castagna		realtà		no		no	-	-						
+camminare		Pian Castagna		realtà		no		no	-	-						
+spedito,		Pian Castagna		realtà		no		no	-	-						
+la		Pian Castagna		realtà		no		no	-	-						
+faccia		Pian Castagna		realtà		no		no	-	-						
+dura		Pian Castagna		realtà		no		no	-	-						
+e		Pian Castagna		realtà		no		no	-	-						
+chiusa		Pian Castagna		realtà		no		no	-	-						
+come		Pian Castagna		realtà		no		no	-	-	sì					
+un		Pian Castagna		realtà		no		no	-	-	sì					
+pugno.		Pian Castagna		realtà		no		no	-	-	sì					
+Ora		Pian Castagna		realtà		no		no	-	-		interrogativo				
+il		Pian Castagna		realtà		no		no	-	-		interrogativo				
+fuoco		Pian Castagna		realtà		no		no	-	-		interrogativo				
+sembrava		Pian Castagna		realtà		no		no	-	-		interrogativo				
+avvicinarsi		Pian Castagna		realtà		no		no	-	-		interrogativo				
+troppo		Pian Castagna		realtà		no		no	-	-		interrogativo				
+in		Pian Castagna		realtà		no		no	-	-		interrogativo				
+fretta:		Pian Castagna		realtà		no		no	-	-		interrogativo				
+muoveva		Pian Castagna		realtà		no		no	-	-		interrogativo				
+incontro		Pian Castagna		realtà		no		no	-	-		interrogativo				
+a		Pian Castagna		realtà		no		no	-	-		interrogativo				
+lui?		Pian Castagna		realtà		no		no	-	-		interrogativo				
+Ora		Pian Castagna		realtà		no		no	-	-		interrogativo				
+allontanarsi:		Pian Castagna		realtà		no		no	-	-		interrogativo				
+fuggiva?		Pian Castagna		realtà		no		no	-	-		interrogativo				
+Ma		Pian Castagna		realtà		no		no	-	-						
+era		Pian Castagna		realtà		no		no	-	-						
+fermo,		Pian Castagna		realtà		no		no	-	-						
+era		Pian Castagna		realtà		no		no	-	-						
+il		Pian Castagna		realtà		no		no	-	-						
+fuoco		Pian Castagna		realtà		no		no	-	-						
+dell’accampamento		Pian Castagna		realtà		no		no	-	-						
+non		Pian Castagna		realtà		no		no	-	-						
+ancora		Pian Castagna		realtà		no		no	-	-						
+spento,		Pian Castagna		realtà		no		no	-	-						
+Binda		Pian Castagna		realtà		no		sì	partigiano	-						
+lo		Pian Castagna		realtà		no		no	-	-						
+sapeva.		Pian Castagna		realtà		no		no	-	-						
+–		Pian Castagna		realtà		no		no	-	-						
+Chi		Pian Castagna		realtà		no		no	-	-						
+va		Pian Castagna		realtà		no		no	-	-						
+là!		Pian Castagna		realtà		no		no	-	-						
+–		Pian Castagna		realtà		no		no	-	-						
+Non		Pian Castagna		realtà		no		no	-	-						
+trasalì.		Pian Castagna		realtà		no		no	-	-						
+–		Pian Castagna		realtà		no		no	-	-						
+Binda,		Pian Castagna		realtà		no		sì	partigiano	-						
+–		Pian Castagna		realtà		no		no	-	-						
+disse.		Pian Castagna		realtà		no		no	-	-						
+–		Pian Castagna		realtà		no		no	-	-						
+Sentinella.		Pian Castagna		realtà		no		no	-	-						
+Sono		Pian Castagna		realtà		no		no	-	-						
+Civetta.		Pian Castagna		realtà		no		sì	partigiano	-						
+Novità,		Pian Castagna		realtà		no		no	-	-						
+Binda?		Pian Castagna		realtà		no		sì	partigiano	-						
+–		Pian Castagna		realtà		no		no	-	-						
+Dorme,		Pian Castagna		realtà		no		no	-	-						
+Vendetta?		Pian Castagna		realtà		no		sì	partigiano	-						
+–		Pian Castagna		realtà		no		no	-	-						
+Ora		Pian Castagna		realtà		no		no	-	-						
+era		Pian Castagna		realtà		no		no	-	-						
+già		Pian Castagna		realtà		no		no	-	-						
+nel		Pian Castagna		realtà		no		no	-	-						
+casone		Pian Castagna		realtà		no		no	-	-						
+col		Pian Castagna		realtà		no		no	-	-						
+fiato		Pian Castagna		realtà		no		no	-	-						
+dei		Pian Castagna		realtà		no		no	-	-						
+compagni		Pian Castagna		realtà		no		no	-	-						
+addormentati		Pian Castagna		realtà		no		no	-	-						
+intorno.		Pian Castagna		realtà		no		no	-	-						
+Compagni,		Pian Castagna		realtà		no		no	-	-						
+naturalmente,		Pian Castagna		realtà		no		no	-	-						
+e		Pian Castagna		realtà		no		no	-	-						
+chi		Pian Castagna		realtà		no		no	-	-						
+mai		Pian Castagna		realtà		no		no	-	-						
+avrebbe		Pian Castagna		realtà		no		no	-	-						
+potuto		Pian Castagna		realtà		no		no	-	-						
+esserci,		Pian Castagna		realtà		no		no	-	-						
+d’altri?		Pian Castagna		realtà		no		no	-	-						
+–		Pian Castagna		realtà		no		no	-	-						
+Tedeschi		Pian Castagna		realtà		no		no	-	-						
+giù		Pian Castagna		realtà		no		no	-	-						
+da		Pian Castagna		realtà		no		no	-	-						
+Briga,		Pian Castagna		realtà		sì		no	-	-						
+fascisti		Pian Castagna		realtà		no		no	-	-						
+su		Pian Castagna		realtà		no		no	-	-						
+dai		Pian Castagna		realtà		no		no	-	-						
+Molini.		Pian Castagna		realtà		sì		no	-	-						
+Sgombrare.		Pian Castagna		realtà		no		no	-	-						
+Per		Pian Castagna		realtà		no		no	-	-						
+l’alba		Pian Castagna		realtà		no		no	-	-						
+tutti		Pian Castagna		realtà		no		no	-	-						
+in		Pian Castagna		realtà		no		no	-	-						
+cresta		Pian Castagna		realtà		no		no	-	-						
+al		Pian Castagna		realtà		no		no	-	-						
+Pellegrino		Pian Castagna		realtà		no		no	-	-						
+con		Pian Castagna		realtà		no		no	-	-						
+le		Pian Castagna		realtà		no		no	-	-						
+pesanti		Pian Castagna		realtà		no		no	-	-						
+–.		Pian Castagna		realtà		no		no	-	-						
+Vendetta		Pian Castagna		realtà		no		sì	partigiano	-						
+appena		Pian Castagna		realtà		no		no	-	-						
+sveglio		Pian Castagna		realtà		no		no	-	-						
+annaspava		Pian Castagna		realtà		no		no	-	-						
+un		Pian Castagna		realtà		no		no	-	-						
+poco		Pian Castagna		realtà		no		no	-	-						
+con		Pian Castagna		realtà		no		no	-	-						
+le		Pian Castagna		realtà		no		no	-	-						
+palpebre.		Pian Castagna		realtà		no		no	-	-						
+–		Pian Castagna		realtà		no		no	-	-						
+Sacramento,		Pian Castagna		realtà		no		no	-	-						
+–		Pian Castagna		realtà		no		no	-	-						
+disse.		Pian Castagna		realtà		no		no	-	-						
+Poi		Pian Castagna		realtà		no		no	-	-						
+s’alzò,		Pian Castagna		realtà		no		no	-	-						
+batté		Pian Castagna		realtà		no		no	-	-						
+le		Pian Castagna		realtà		no		no	-	-						
+mani:		Pian Castagna		realtà		no		no	-	-						
+–		Pian Castagna		realtà		no		no	-	-						
+Sveglia		Pian Castagna		realtà		no		no	-	-						
+voialtri,		Pian Castagna		realtà		no		no	-	-						
+c’è		Pian Castagna		realtà		no		no	-	-						
+da		Pian Castagna		realtà		no		no	-	-						
+andare		Pian Castagna		realtà		no		no	-	-						
+a		Pian Castagna		realtà		no		no	-	-						
+picchiarsi.		Pian Castagna		realtà		no		no	-	-						
+Binda		Pian Castagna		realtà		no		sì	partigiano	-						
+ora		Pian Castagna		realtà		no		no	-	-						
+scucchiaiava		Pian Castagna		realtà		no		no	-	-						
+in		Pian Castagna		realtà		no		no	-	-						
+un		Pian Castagna		realtà		no		no	-	-						
+gavettino		Pian Castagna		realtà		no		no	-	-						
+di		Pian Castagna		realtà		no		no	-	-						
+castagne		Pian Castagna		realtà		no		no	-	-						
+bollite,		Pian Castagna		realtà		no		no	-	-						
+sputacchiando		Pian Castagna		realtà		no		no	-	-						
+le		Pian Castagna		realtà		no		no	-	-						
+pellicole		Pian Castagna		realtà		no		no	-	-						
+rimaste		Pian Castagna		realtà		no		no	-	-						
+appiccicate.		Pian Castagna		realtà		no		no	-	-						
+Gli		Pian Castagna		realtà		no		no	-	-						
+uomini		Pian Castagna		realtà		no		no	-	-						
+si		Pian Castagna		realtà		no		no	-	-						
+dividevano		Pian Castagna		realtà		no		no	-	-						
+i		Pian Castagna		realtà		no		no	-	-						
+turni		Pian Castagna		realtà		no		no	-	-						
+per		Pian Castagna		realtà		no		no	-	-						
+portare		Pian Castagna		realtà		no		no	-	-						
+le		Pian Castagna		realtà		no		no	-	-						
+munizioni,		Pian Castagna		realtà		no		no	-	-						
+il		Pian Castagna		realtà		no		no	-	-						
+treppiede		Pian Castagna		realtà		no		no	-	-						
+della		Pian Castagna		realtà		no		no	-	-						
+pesante.		Pian Castagna		realtà		no		no	-	-						
+S’incamminò.		Pian Castagna		realtà		no		no	-	-						
+–		Pian Castagna		realtà		no		no	-	-						
+Vado		Pian Castagna		realtà		no		no	-	-						
+da		Pian Castagna		realtà		no		no	-	-						
+Serpe,		Pian Castagna		realtà		no		sì	partigiano	-						
+in		Pian Castagna		realtà		no		no	-	-						
+Gerbonte,		Pian Castagna		realtà		sì		no	-	-						
+–		Pian Castagna		realtà		no		no	-	-						
+disse.		Pian Castagna		realtà		no		no	-	-						
+–		Pian Castagna		realtà		no		no	-	-						
+Forza,		Pian Castagna		realtà		no		no	-	-						
+Binda,		Pian Castagna		realtà		no		sì	partigiano	-						
+–		Pian Castagna		realtà		no		no	-	-						
+gli		Pian Castagna		realtà		no		no	-	-						
+fecero		Pian Castagna		realtà		no		no	-	-						
+i		Pian Castagna		realtà		no		no	-	-						
+compagni.		Pian Castagna		realtà		no		no	-	-						
+Lui		Pian Castagna		realtà		no		no	-	-						
+già		Pian Castagna		realtà		no		no	-	-						
+svoltava		Pian Castagna		realtà		no		no	-	-						
+dietro		Pian Castagna		realtà		no		no	-	-						
+lo		Pian Castagna		realtà		no		no	-	-						
+sperone		Pian Castagna		realtà		no		no	-	-						
+di		Pian Castagna		realtà		no		no	-	-						
+roccia,		Pian Castagna		realtà		no		no	-	-						
+aveva		Pian Castagna		realtà		no		no	-	-						
+perso		Pian Castagna		realtà		no		no	-	-						
+di		Pian Castagna		realtà		no		no	-	-						
+vista		Pian Castagna		realtà		no		no	-	-						
+il		Pian Castagna		realtà		no		no	-	-						
+casone,		Pian Castagna		realtà		no		no	-	-						
+si		Pian Castagna		realtà		no		no	-	-						
+lasciava		Pian Castagna		realtà		no		no	-	-						
+alle		Pian Castagna		realtà		no		no	-	-						
+spalle		Pian Castagna		realtà		no		no	-	-						
+il		Pian Castagna		realtà		no		no	-	-						
+dirupo		Pian Castagna		realtà		no		no	-	-						
+nero		Pian Castagna		realtà		no		no	-	-						
+di		Pian Castagna		realtà		no		no	-	-						
+cespugli.		Pian Castagna		realtà		no		no	-	-						
+Gund		Pian Castagna		immaginazione		no		sì	tedesco	-						
+s’alzò		Pian Castagna		immaginazione		no		no	-	-						
+dai		Pian Castagna		immaginazione		no		no	-	-						
+cespugli,		Pian Castagna		immaginazione		no		no	-	-						
+si		Pian Castagna		immaginazione		no		no	-	-						
+rimise		Pian Castagna		immaginazione		no		no	-	-						
+in		Pian Castagna		immaginazione		no		no	-	-						
+marcia		Pian Castagna		immaginazione		no		no	-	-						
+dietro		Pian Castagna		immaginazione		no		no	-	-						
+di		Pian Castagna		immaginazione		no		no	-	-						
+lui,		Pian Castagna		immaginazione		no		no	-	-						
+coi		Pian Castagna		immaginazione		no		no	-	-						
+suoi		Pian Castagna		immaginazione		no		no	-	-						
+passi		Pian Castagna		immaginazione		no		no	-	-						
+di		Pian Castagna		immaginazione		no		no	-	-						
+gigante.		Pian Castagna		immaginazione		no		no	-	-						
