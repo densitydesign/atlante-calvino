@@ -11,7 +11,6 @@
 - [matrice luoghi](https://densitydesign.github.io/atlante-calvino/locations-matrix)
 - [scheda dubbio](https://bea92.github.io/dubbio/index.html)
 - [scheda forma](https://bea92.github.io/stream-elenchi/index.html)
-- [muro paura](https://densitydesign.github.io/atlante-calvino/Scheda%203%20-%20Spazio/)
 
 
 
